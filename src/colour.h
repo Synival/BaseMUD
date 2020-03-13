@@ -16,13 +16,13 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #ifndef __ROM_COLOUR_H
@@ -31,22 +31,22 @@
 #include "merc.h"
 
 /* Colour Bits */
-#define CB_RED          (A) // 0x0001
-#define CB_GREEN        (B) // 0x0002
-#define CB_BLUE         (C) // 0x0004
-#define CB_BRIGHT       (D) // 0x0008
-#define CB_BACK_RED     (E) // 0x0010
-#define CB_BACK_GREEN   (F) // 0x0020
-#define CB_BACK_BLUE    (G) // 0x0040
-#define CB_BACK_BRIGHT  (H) // 0x0080
-#define CB_BEEP         (I) // 0x0100
-#define CB_DEFAULT      (J) // 0x0200
-#define CB_BACK_DEFAULT (K) // 0x0400
+#define CB_RED          (BIT_01)
+#define CB_GREEN        (BIT_02)
+#define CB_BLUE         (BIT_03)
+#define CB_BRIGHT       (BIT_04)
+#define CB_BACK_RED     (BIT_05)
+#define CB_BACK_GREEN   (BIT_06)
+#define CB_BACK_BLUE    (BIT_07)
+#define CB_BACK_BRIGHT  (BIT_08)
+#define CB_BEEP         (BIT_09)
+#define CB_DEFAULT      (BIT_10)
+#define CB_BACK_DEFAULT (BIT_11)
 
 /* Colour bitMasks */
-#define CM_FORECOLOUR   ((A) | (B) | (C) | (D) | (J))
-#define CM_BACKCOLOUR   ((E) | (F) | (G) | (H) | (K))
-#define CM_BEEP         (I)
+#define CM_FORECOLOUR   ((BIT_01) | (BIT_02) | (BIT_03) | (BIT_04) | (BIT_10))
+#define CM_BACKCOLOUR   ((BIT_05) | (BIT_06) | (BIT_07) | (BIT_08) | (BIT_11))
+#define CM_BEEP         (BIT_09)
 
 /* Colour Codes */
 #define CC_CLEAR               (CB_DEFAULT | CB_BACK_DEFAULT)
@@ -89,7 +89,7 @@
 
 /* functions */
 int colour_to_full_name (flag_t colour, char *buf_out, size_t size);
-int colour_code_to_ansi (CHAR_T *ch, int use_colour, char type, char *buf_out,
+int colour_code_to_ansi (CHAR_T *ch, bool use_colour, char type, char *buf_out,
     size_t size);
 int colour_puts (CHAR_T *ch, bool use_colour, const char *buf_in, char *buf_out,
     size_t size);

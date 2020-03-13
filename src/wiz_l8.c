@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 
@@ -51,7 +51,7 @@ DEFINE_DO_FUN (do_goto) {
         "No such location.\n\r", ch);
 
     count = 0;
-    for (rch = location->people; rch != NULL; rch = rch->next_in_room)
+    for (rch = location->people_first; rch; rch = rch->room_next)
         count++;
 
     BAIL_IF (!room_is_owner (location, ch) && room_is_private (location) &&
@@ -61,7 +61,7 @@ DEFINE_DO_FUN (do_goto) {
     if (ch->fighting != NULL)
         stop_fighting (ch, TRUE);
 
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next) {
         if (char_get_trust (rch) >= ch->invis_level) {
             if (ch->pcdata != NULL && ch->pcdata->bamfout[0] != '\0')
                 act ("$t", ch, ch->pcdata->bamfout, rch, TO_VICT);
@@ -70,10 +70,8 @@ DEFINE_DO_FUN (do_goto) {
         }
     }
 
-    char_from_room (ch);
     char_to_room (ch, location);
-
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next) {
         if (char_get_trust (rch) >= ch->invis_level) {
             if (ch->pcdata != NULL && ch->pcdata->bamfin[0] != '\0')
                 act ("$t", ch, ch->pcdata->bamfin, rch, TO_VICT);
@@ -90,7 +88,7 @@ DEFINE_DO_FUN (do_bamfin) {
     if (IS_NPC (ch))
         return;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     if (argument[0] == '\0') {
         printf_to_char (ch, "Your poofin is %s\n\r", ch->pcdata->bamfin);
         return;
@@ -106,7 +104,7 @@ DEFINE_DO_FUN (do_bamfout) {
     if (IS_NPC (ch))
         return;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     if (argument[0] == '\0') {
         printf_to_char (ch, "Your poofout is %s\n\r", ch->pcdata->bamfout);
         return;

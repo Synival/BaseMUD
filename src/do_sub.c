@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 /* NOTE
  * ----
@@ -44,9 +44,19 @@
 #include "do_sub.h"
 
 void do_autolist_flag (char *name, CHAR_T *ch, flag_t flags, flag_t flag) {
-    int padding = 15, i;
     char *msg = IS_SET (flags, flag) ? "{GON{x" : "{ROFF{x";
+    do_autolist_flag_message (ch, name, msg);
+}
 
+void do_autolist_ext_flag (char *name, CHAR_T *ch, EXT_FLAGS_T flags,
+    int bit)
+{
+    char *msg = EXT_IS_SET (flags, bit) ? "{GON{x" : "{ROFF{x";
+    do_autolist_flag_message (ch, name, msg);
+}
+
+void do_autolist_flag_message (CHAR_T *ch, const char *name, const char *msg) {
+    int padding = 15, i;
     for (i = 0; name[i] != '\0'; i++)
         if (name[i] == '{')
             padding += 2;
@@ -66,6 +76,22 @@ void do_flag_toggle (CHAR_T *ch, int player_only, flag_t *flags,
     else {
         send_to_char (on_msg, ch);
         SET_BIT ((*flags), flag);
+    }
+}
+
+void do_ext_flag_toggle (CHAR_T *ch, int player_only, EXT_FLAGS_T *flags,
+    int bit, char *off_msg, char *on_msg)
+{
+    BAIL_IF (player_only && IS_NPC (ch),
+        "NPCs can't use player flags.\n\r", ch);
+
+    if (EXT_IS_SET (*flags, bit)) {
+        send_to_char (off_msg, ch);
+        EXT_UNSET (*flags, bit);
+    }
+    else {
+        send_to_char (on_msg, ch);
+        EXT_SET (*flags, bit);
     }
 }
 

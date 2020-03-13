@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 #include <stdlib.h>
@@ -36,8 +36,58 @@
 
 #include "lookup.h"
 
-int lookup_backup (int (*func) (const char *str), char *str, char *errf,
-    int backup)
+/* Lookup bundles. */
+SIMPLE_INDEX_BUNDLE (master,   TABLE_T,    0);
+
+SIMPLE_INDEX_BUNDLE (attack,   ATTACK_T,   ATTACK_MAX);
+SIMPLE_INDEX_BUNDLE (board,    BOARD_T,    BOARD_MAX);
+SIMPLE_INDEX_BUNDLE (clan,     CLAN_T,     CLAN_MAX);
+SIMPLE_INDEX_BUNDLE (class,    CLASS_T,    CLASS_MAX);
+SIMPLE_INDEX_BUNDLE (liq,      LIQ_T,      LIQ_MAX);
+SIMPLE_INDEX_BUNDLE (pc_race,  PC_RACE_T,  PC_RACE_MAX);
+SIMPLE_INDEX_BUNDLE (race,     RACE_T,     RACE_MAX);
+SIMPLE_INDEX_BUNDLE (skill,    SKILL_T,    SKILL_MAX);
+SIMPLE_INDEX_BUNDLE (skill_group, SKILL_GROUP_T, SKILL_GROUP_MAX);
+SIMPLE_INDEX_BUNDLE (song,     SONG_T,     MAX_SONGS);
+SIMPLE_INDEX_BUNDLE (spec,     SPEC_T,     SPEC_MAX);
+
+SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_T,       type);
+SIMPLE_HASH_BUNDLE (colour,     COLOUR_T,           code);
+SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_T, index);
+SIMPLE_HASH_BUNDLE (cond,       COND_T,             type);
+SIMPLE_HASH_BUNDLE (dam,        DAM_T,              type);
+SIMPLE_HASH_BUNDLE (day,        DAY_T,              type);
+SIMPLE_HASH_BUNDLE (door,       DOOR_T,             dir);
+SIMPLE_HASH_BUNDLE (effect,     EFFECT_T,           type);
+SIMPLE_HASH_BUNDLE (furniture,  FURNITURE_BITS_T,   position);
+SIMPLE_HASH_BUNDLE (item,       ITEM_T,             type);
+SIMPLE_HASH_BUNDLE (map_flags,  MAP_LOOKUP_TABLE_T, index);
+SIMPLE_HASH_BUNDLE (map_lookup, MAP_LOOKUP_TABLE_T, index);
+SIMPLE_HASH_BUNDLE (material,   MATERIAL_T,         type);
+SIMPLE_HASH_BUNDLE (month,      MONTH_T,            type);
+SIMPLE_HASH_BUNDLE (nanny,      NANNY_HANDLER_T,    state);
+SIMPLE_HASH_BUNDLE (position,   POSITION_T,         pos);
+SIMPLE_HASH_BUNDLE (recycle,    RECYCLE_T,          type);
+SIMPLE_HASH_BUNDLE (sector,     SECTOR_T,           type);
+SIMPLE_HASH_BUNDLE (sex,        SEX_T,              sex);
+SIMPLE_HASH_BUNDLE (size,       SIZE_T,             size);
+SIMPLE_HASH_BUNDLE (sky,        SKY_T,              type);
+SIMPLE_HASH_BUNDLE (sun,        SUN_T,              type);
+SIMPLE_HASH_BUNDLE (weapon,     WEAPON_T,           type);
+SIMPLE_HASH_BUNDLE (wear_loc,   WEAR_LOC_T,         type);
+SIMPLE_HASH_BUNDLE (wiznet,     WIZNET_T,           bit);
+
+SIMPLE_REC_BUNDLE (area,        AREA_T,        RECYCLE_AREA_T);
+SIMPLE_REC_BUNDLE (ban,         BAN_T,         RECYCLE_BAN_T);
+SIMPLE_REC_BUNDLE (had,         HELP_AREA_T,   RECYCLE_HELP_AREA_T);
+SIMPLE_REC_BUNDLE (help,        HELP_T,        RECYCLE_HELP_T);
+SIMPLE_REC_BUNDLE (obj_index,   OBJ_INDEX_T,   RECYCLE_OBJ_INDEX_T);
+SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_T, RECYCLE_PORTAL_EXIT_T);
+SIMPLE_REC_BUNDLE (room_index,  ROOM_INDEX_T,  RECYCLE_ROOM_INDEX_T);
+SIMPLE_REC_BUNDLE (social,      SOCIAL_T,      RECYCLE_SOCIAL_T);
+
+int lookup_func_backup (LOOKUP_FUN *func, const char *str,
+    const char *errf, int backup)
 {
     int num = func (str);
     if (num >= 0)
@@ -46,156 +96,40 @@ int lookup_backup (int (*func) (const char *str), char *str, char *errf,
     return backup;
 }
 
-bool is_table_flagged (const void *table, flag_t t_flags, flag_t f_flags) {
+bool table_is_of_type (const void *table, int type) {
     int i;
     for (i = 0; master_table[i].table; i++)
         if (master_table[i].table == table)
-            return (ARE_SET (master_table[i].flags, t_flags) &&
-                   NONE_SET (master_table[i].flags, f_flags)) ? TRUE : FALSE;
+            return (master_table[i].type == type) ? TRUE : FALSE;
     return FALSE;
 }
 
-bool is_flag (const void *table)
-    { return is_table_flagged (table, TABLE_FLAG_TYPE | TABLE_BITS, 0); }
-bool is_type (const void *table)
-    { return is_table_flagged (table, TABLE_FLAG_TYPE, TABLE_BITS); }
-bool is_special (const void *table)
-    { return is_table_flagged (table, 0, TABLE_FLAG_TYPE); }
+bool table_is_flags (const void *table)
+    { return table_is_of_type (table, TABLE_FLAGS); }
+bool table_is_types (const void *table)
+    { return table_is_of_type (table, TABLE_TYPES); }
+bool table_is_unique (const void *table)
+    { return table_is_of_type (table, TABLE_UNIQUE); }
 
-flag_t flag_value (const FLAG_T *flag_table, const char *argument)
-    { return flag_value_real (flag_table, argument, NO_FLAG, FALSE); }
-
-flag_t flag_value_real (const FLAG_T *flag_table, const char *argument,
-    flag_t no_flag, bool exact)
-{
-    char word[MAX_INPUT_LENGTH];
-    bool found = FALSE;
-    flag_t bit;
-    flag_t marked = 0;
-
-    RETURN_IF_BUG (is_special (flag_table),
-        "flag_value: cannot yet look up values for special types :(", 0, 0);
-    if (!is_flag (flag_table)) {
-        bit = exact
-            ? flag_lookup_exact (argument, flag_table)
-            : flag_lookup (argument, flag_table);
-        return (bit == NO_FLAG) ? no_flag : bit;
-    }
-
-    /* Accept multiple flags. */
-    while (1) {
-        argument = one_argument (argument, word);
-        if (word[0] == '\0')
-            break;
-        bit = exact
-            ? flag_lookup_exact (word, flag_table)
-            : flag_lookup (word, flag_table);
-        if (bit != NO_FLAG) {
-            SET_BIT (marked, bit);
-            found = TRUE;
-        }
-    }
-    return (found) ? marked : no_flag;
-}
-
-/* Increased buffers from 2 to 16! That should give us the illusion
- * of stability. -- Synival */
-const char *flag_string (const FLAG_T *flag_table, flag_t bits)
-    { return flag_string_real (flag_table, bits, "none"); }
-
-const char *flag_string_real (const FLAG_T *flag_table, flag_t bits,
-    const char *none_str)
-{
-    static char buf[16][512];
-    static int cnt = 0;
+const TABLE_T *master_table_get_exact (const char *name) {
     int i;
-    const TABLE_T *mt;
-    bool bitflag;
-
-    if (++cnt >= 16)
-        cnt = 0;
-
-    for (i = 0; master_table[i].table; i++)
-        if (master_table[i].table == flag_table)
-            break;
-    mt = &(master_table[i]);
-    if (mt->table == NULL)
-        return none_str;
-    RETURN_IF_BUG (!IS_SET(mt->flags, TABLE_FLAG_TYPE),
-        "flag_type: cannot yet lookup special tables :(", 0, none_str);
-
-    buf[cnt][0] = '\0';
-    bitflag = IS_SET (mt->flags, TABLE_BITS);
-    for (i = 0; flag_table[i].name != NULL; i++) {
-        if (bitflag && IS_SET (bits, flag_table[i].bit)) {
-            strcat (buf[cnt], " ");
-            strcat (buf[cnt], flag_table[i].name);
-        }
-        else if (!bitflag && bits == flag_table[i].bit) {
-            strcat (buf[cnt], " ");
-            strcat (buf[cnt], flag_table[i].name);
-            break;
-        }
-    }
-    return (buf[cnt][0] != '\0') ? buf[cnt] + 1 : none_str;
+    for (i = 0; master_table[i].name != NULL; i++)
+        if (str_cmp (master_table[i].name, name) == 0)
+            return &(master_table[i]);
+    return NULL;
 }
 
-flag_t flag_lookup (const char *name, const FLAG_T *flag_table)
-    { SIMPLE_LOOKUP_PROP (flag_table, bit, name, NO_FLAG, 0); }
-flag_t flag_lookup_exact (const char *name, const FLAG_T *flag_table)
-    { SIMPLE_LOOKUP_PROP_EXACT (flag_table, bit, name, NO_FLAG, 0); }
-const FLAG_T *flag_get_by_name (const char *name, const FLAG_T *flag_table)
-    { SIMPLE_GET_BY_NAME (flag_table, name, 0); }
-const FLAG_T *flag_get_by_name_exact (const char *name, const FLAG_T *flag_table)
-    { SIMPLE_GET_BY_NAME_EXACT (flag_table, name, 0); }
-const FLAG_T *flag_get (flag_t bit, const FLAG_T *flag_table)
-    { SIMPLE_GET (flag_table, bit, name, NULL, 0); }
-const char *flag_get_name (flag_t bit, const FLAG_T *flag_table)
-    { SIMPLE_GET_NAME (FLAG_T, flag_get(bit, flag_table), name); }
-
-SIMPLE_ARRAY_BUNDLE (clan,     CLAN_T,     CLAN_MAX);
-SIMPLE_ARRAY_BUNDLE (position, POSITION_T, POS_MAX);
-SIMPLE_ARRAY_BUNDLE (sex,      SEX_T,      SEX_MAX);
-SIMPLE_ARRAY_BUNDLE (size,     SIZE_T,     SIZE_MAX_R);
-SIMPLE_ARRAY_BUNDLE (race,     RACE_T,     RACE_MAX);
-SIMPLE_ARRAY_BUNDLE (liq,      LIQ_T,      LIQ_MAX);
-SIMPLE_ARRAY_BUNDLE (attack,   ATTACK_T,   ATTACK_MAX);
-SIMPLE_ARRAY_BUNDLE (class,    CLASS_T,    CLASS_MAX);
-SIMPLE_ARRAY_BUNDLE (skill,    SKILL_T,    SKILL_MAX);
-SIMPLE_ARRAY_BUNDLE (spec,     SPEC_T,     SPEC_MAX);
-SIMPLE_ARRAY_BUNDLE (group,    GROUP_T,    GROUP_MAX);
-SIMPLE_ARRAY_BUNDLE (wear_loc, WEAR_LOC_T, WEAR_LOC_MAX);
-SIMPLE_ARRAY_BUNDLE (recycle,  RECYCLE_T,  RECYCLE_MAX);
-SIMPLE_ARRAY_BUNDLE (board,    BOARD_T,    BOARD_MAX);
-SIMPLE_ARRAY_BUNDLE (master,   TABLE_T,    0);
-
-SIMPLE_HASH_BUNDLE (wiznet,     WIZNET_T,           bit);
-SIMPLE_HASH_BUNDLE (weapon,     WEAPON_T,           type);
-SIMPLE_HASH_BUNDLE (item,       ITEM_T,             type);
-SIMPLE_HASH_BUNDLE (sector,     SECTOR_T,           type);
-SIMPLE_HASH_BUNDLE (map_lookup, MAP_LOOKUP_TABLE_T, index);
-SIMPLE_HASH_BUNDLE (map_flags,  MAP_LOOKUP_TABLE_T, index);
-SIMPLE_HASH_BUNDLE (nanny,      NANNY_HANDLER_T,    state);
-SIMPLE_HASH_BUNDLE (furniture,  FURNITURE_BITS_T,   position);
-SIMPLE_HASH_BUNDLE (door,       DOOR_T,             dir);
-SIMPLE_HASH_BUNDLE (material,   MATERIAL_T,         type);
-SIMPLE_HASH_BUNDLE (dam,        DAM_T,              type);
-SIMPLE_HASH_BUNDLE (colour,     COLOUR_T,           code);
-SIMPLE_HASH_BUNDLE (colour_setting, COLOUR_SETTING_T, index);
-SIMPLE_HASH_BUNDLE (affect_bit, AFFECT_BIT_T  ,     type);
-SIMPLE_HASH_BUNDLE (day,        DAY_T,              type);
-SIMPLE_HASH_BUNDLE (month,      MONTH_T,            type);
-SIMPLE_HASH_BUNDLE (sky,        SKY_T,              type);
-SIMPLE_HASH_BUNDLE (sun,        SUN_T,              type);
-
-SIMPLE_REC_BUNDLE (ban,         BAN_T,         RECYCLE_BAN_T);
-SIMPLE_REC_BUNDLE (area,        AREA_T,        RECYCLE_AREA_T);
-SIMPLE_REC_BUNDLE (room_index,  ROOM_INDEX_T,  RECYCLE_ROOM_INDEX_T);
-SIMPLE_REC_BUNDLE (obj_index,   OBJ_INDEX_T,   RECYCLE_OBJ_INDEX_T);
-SIMPLE_REC_BUNDLE (help,        HELP_T,        RECYCLE_HELP_T);
-SIMPLE_REC_BUNDLE (had,         HELP_AREA_T,   RECYCLE_HELP_AREA_T);
-SIMPLE_REC_BUNDLE (social,      SOCIAL_T,      RECYCLE_SOCIAL_T);
-SIMPLE_REC_BUNDLE (portal_exit, PORTAL_EXIT_T, RECYCLE_PORTAL_EXIT_T);
+const TABLE_T *master_table_get_by_obj_name (const char *name) {
+    int i;
+    for (i = 0; master_table[i].name != NULL; i++) {
+        if (master_table[i].obj_name != NULL &&
+            str_cmp (master_table[i].obj_name, name) == 0)
+        {
+            return &(master_table[i]);
+        }
+    }
+    return NULL;
+}
 
 SPEC_FUN *spec_lookup_function (const char *name)
     { SIMPLE_LOOKUP_PROP (spec_table, function, name, NULL, SPEC_MAX); }
@@ -217,7 +151,7 @@ const char *map_lookup_get_string (int index, flag_t value) {
     if (lookup == NULL)
         return NULL;
     if (lookup->flags)
-        return flag_get_name (value, lookup->flags);
+        return flag_get_name (lookup->flags, value);
 
     switch (lookup->index) {
         case MAP_LOOKUP_WEAPON_TYPE: return weapon_get_name (value);
@@ -257,7 +191,7 @@ int map_flags_get_string (int index, flag_t value, char *buf, size_t size) {
         return 0;
 
     if (lookup->flags)
-        str = flag_string (lookup->flags, value);
+        str = flags_to_string (lookup->flags, value);
     else {
         switch (lookup->index) {
             default:
@@ -287,7 +221,7 @@ flag_t map_flags_get_value (int index, const char *str) {
             "has no flags\n", lookup->name);
         return 0;
     }
-    return flag_value_real (lookup->flags, str, 0, TRUE);
+    return flags_from_string_real (lookup->flags, str, TRUE);
 }
 
 const OBJ_MAP_VALUE_T *obj_map_value_get (const OBJ_MAP_T *map, int index) {
@@ -329,27 +263,16 @@ AREA_T *area_get_by_inner_vnum (int vnum) {
     return NULL;
 }
 
-flag_t wear_get_loc_by_type (flag_t wear_flag) {
-    int i;
-    for (i = 0; wear_loc_table[i].name != NULL; i++)
-        if (wear_flag == wear_loc_table[i].wear_flag)
-            return wear_loc_table[i].type;
-    return 0;
-}
-
-flag_t wear_get_type_by_loc (flag_t wear_loc) {
-    int i;
-    for (i = 0; wear_loc_table[i].name != NULL; i++)
-        if (wear_loc == wear_loc_table[i].type)
-            return wear_loc_table[i].wear_flag;
-    return 0;
+flag_t wear_loc_get_flag (int wear_loc) {
+    const WEAR_LOC_T *loc = wear_loc_get (wear_loc);
+    return loc ? loc->wear_flag : 0;
 }
 
 HELP_AREA_T *help_area_get_by_help (HELP_T *help) {
     HELP_AREA_T *had;
     HELP_T *h;
-    for (had = had_first; had; had = had->next)
-        for (h = had->first; h; h = h->next_area)
+    for (had = had_first; had; had = had->global_next)
+        for (h = had->help_first; h; h = h->had_next)
             if (h == help)
                 return had;
     return NULL;
@@ -357,7 +280,7 @@ HELP_AREA_T *help_area_get_by_help (HELP_T *help) {
 
 HELP_AREA_T *help_area_get_by_filename (const char *filename) {
     HELP_AREA_T *had;
-    for (had = had_first; had; had = had->next)
+    for (had = had_first; had; had = had->global_next)
         if (strcmp (had->filename, filename) == 0)
             return had;
     return NULL;
@@ -394,7 +317,7 @@ const SUN_T *sun_get_by_hour (int hour) {
 
 /* Lookup a skill by slot number. Used for object loading. */
 int skill_get_index_by_slot (int slot) {
-    extern bool fBootDb;
+    extern bool in_boot_db;
     int sn;
 
     if (slot <= 0)
@@ -403,7 +326,7 @@ int skill_get_index_by_slot (int slot) {
         if (slot == skill_table[sn].slot)
             return sn;
 
-    EXIT_IF_BUG (fBootDb,
+    EXIT_IF_BUG (in_boot_db,
         "skill_get_index_by_slot: bad slot %d.", slot);
     return -1;
 }
@@ -435,34 +358,6 @@ const char *align_name (int align) {
     else                   return "satanic";
 }
 
-const char *condition_name_by_percent (int percent) {
-#ifdef BASEMUD_MORE_PRECISE_CONDITIONS
-         if (percent >= 100) return "is in excellent condition";
-    else if (percent >=  90) return "has a few scratches";
-    else if (percent >=  80) return "has a few bruises";
-    else if (percent >=  70) return "has some small wounds and bruises";
-    else if (percent >=  60) return "has some large wounds";
-    else if (percent >=  50) return "has quite a large few wounds";
-    else if (percent >=  40) return "has some big nasty wounds and scratches";
-    else if (percent >=  30) return "looks seriously wounded";
-    else if (percent >=  20) return "looks pretty hurt";
-    else if (percent >=  10) return "is in awful condition";
-    else if (percent >    0) return "is in critical condition";
-    else if (percent >  -10) return "is stunned on the floor";
-    else if (percent >  -20) return "is incapacitated and bleeding to death";
-    else                     return "is mortally wounded";
-#else
-         if (percent >= 100) return "is in excellent condition";
-    else if (percent >=  90) return "has a few scratches";
-    else if (percent >=  75) return "has some small wounds and bruises";
-    else if (percent >=  50) return "has quite a few wounds";
-    else if (percent >=  30) return "has some big nasty wounds and scratches";
-    else if (percent >=  15) return "looks pretty hurt";
-    else if (percent >=   0) return "is in awful condition";
-    else                     return "is bleeding to death";
-#endif
-}
-
 const char *wiz_class_by_level (int level) {
     switch (level) {
         case IMPLEMENTOR: return "IMP";
@@ -484,40 +379,39 @@ const char *position_name (int position) {
         : position_table[position].long_name;
 }
 
-const char *affect_apply_name (flag_t type)
-    { return flag_string (affect_apply_types, type); }
 const char *room_bit_name (flag_t flags)
-    { return flag_string (room_flags, flags); }
+    { return flags_to_string (room_flags, flags); }
 const char *affect_bit_name (flag_t flags)
-    { return flag_string (affect_flags, flags); }
+    { return flags_to_string (affect_flags, flags); }
 const char *extra_bit_name (flag_t flags)
-    { return flag_string (extra_flags, flags); }
-const char *mob_bit_name (flag_t flags)
-    { return flag_string (mob_flags, flags); }
-const char *plr_bit_name (flag_t flags)
-    { return flag_string (plr_flags, flags); }
+    { return flags_to_string (extra_flags, flags); }
+const char *mob_bit_name (EXT_FLAGS_T flags)
+    { return ext_flags_to_string (mob_flags, flags); }
+const char *plr_bit_name (EXT_FLAGS_T flags)
+    { return ext_flags_to_string (plr_flags, flags); }
 const char *comm_bit_name (flag_t flags)
-    { return flag_string (comm_flags, flags); }
+    { return flags_to_string (comm_flags, flags); }
 const char *res_bit_name (flag_t flags)
-    { return flag_string (res_flags, flags); }
-const char *wear_loc_name (flag_t type)
-    { return flag_string (wear_loc_types, type); }
+    { return flags_to_string (res_flags, flags); }
 const char *wear_flag_name (flag_t flags)
-    { return flag_string (wear_flags, flags); }
+    { return flags_to_string (wear_flags, flags); }
 const char *form_bit_name (flag_t flags)
-    { return flag_string (form_flags, flags); }
+    { return flags_to_string (form_flags, flags); }
 const char *part_bit_name (flag_t flags)
-    { return flag_string (part_flags, flags); }
+    { return flags_to_string (part_flags, flags); }
 const char *weapon_bit_name (flag_t flags)
-    { return flag_string (weapon_flags, flags); }
+    { return flags_to_string (weapon_flags, flags); }
 const char *cont_bit_name (flag_t flags)
-    { return flag_string (container_flags, flags); }
+    { return flags_to_string (container_flags, flags); }
 const char *off_bit_name (flag_t flags)
-    { return flag_string (off_flags, flags); }
-const char *sex_name (int sex)
-    { return flag_string (sex_types, sex); }
-const char *ac_type_name (int type)
-    { return flag_string (ac_types, type); }
+    { return flags_to_string (off_flags, flags); }
+
+const char *affect_apply_name (type_t type)
+    { return type_get_name (affect_apply_types, type); }
+const char *sex_name (type_t sex)
+    { return type_get_name (sex_types, sex); }
+const char *ac_type_name (type_t type)
+    { return type_get_name (ac_types, type); }
 
 const STR_APP_T *str_app_get (int attr)
     { return str_app_table + URANGE(0, attr, ATTRIBUTE_HIGHEST); }
@@ -544,4 +438,27 @@ SOCIAL_T *social_lookup_exact (const char *name) {
         if (strcmp (soc->name, name) == 0)
             return soc;
     return NULL;
+}
+
+const HP_COND_T *hp_cond_get_for_char (const CHAR_T *ch) {
+    const HP_COND_T *cond;
+    int i, percent;
+
+    percent = (ch->max_hit > 0) ? ((ch->hit * 100) / ch->max_hit) : -1;
+    if (ch->hit > 0 && percent == 0)
+        percent = 1;
+
+    for (i = 0; hp_cond_table[i].hp_percent != -999; i++) {
+        cond = &(hp_cond_table[i]);
+        if (percent >= cond->hp_percent || cond->hp_percent <= -100)
+            return cond;
+    }
+    return NULL;
+}
+
+const PC_RACE_T *pc_race_get_by_race (type_t race) {
+    const RACE_T *race_obj;
+    if ((race_obj = race_get (race)) == NULL)
+        return NULL;
+    return pc_race_get_by_name (race_obj->name);
 }

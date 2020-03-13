@@ -15,7 +15,6 @@
     "level": 1,
     "weight": 20,
     "cost": 230,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -34,15 +33,12 @@
     "level": 10,
     "weight": 110,
     "cost": 570,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 10,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -61,15 +57,12 @@
     "level": 8,
     "weight": 20,
     "cost": 700,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 8,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -88,23 +81,18 @@
     "level": 11,
     "weight": 120,
     "cost": 910,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 11,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 11,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -125,23 +113,18 @@
     "level": 15,
     "weight": 120,
     "cost": 1510,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 15,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 15,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -161,23 +144,18 @@
     "level": 14,
     "weight": 130,
     "cost": 1550,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "strength",
         "level": 14,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 14,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -197,15 +175,12 @@
     "level": 13,
     "weight": 60,
     "cost": 1530,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take shield",
     "affects": [{
-      "apply": "saves",
       "level": 13,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -224,7 +199,6 @@
     "level": 20,
     "weight": 40,
     "cost": 2300,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take head",
     "extra_description": [{
@@ -232,11 +206,9 @@
       "description": "This elegant helm is plated in mithril and silver."
     }],
     "affects": [{
-      "apply": "wisdom",
       "level": 20,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -255,15 +227,12 @@
     "level": 12,
     "weight": 20,
     "cost": 1540,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take wrist",
     "affects": [{
-      "apply": "strength",
       "level": 12,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "strength",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -277,15 +246,12 @@
     "level": 0,
     "weight": 20,
     "cost": 100,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take neck",
     "affects": [{
-      "apply": "armor class",
       "level": 0,
-      "modifier": 6,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": 6
     }]
   }},
   {"object": {
@@ -303,7 +269,6 @@
     "level": 5,
     "weight": 10,
     "cost": 320,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -323,7 +288,6 @@
     "level": 0,
     "weight": 100,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -341,7 +305,6 @@
     "level": 0,
     "weight": 80,
     "cost": 10,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -355,7 +318,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -369,7 +331,6 @@
     "level": 12,
     "weight": 10,
     "cost": 750,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "extra_description": [{
@@ -377,11 +338,9 @@
       "description": "This key is of an unusual shape ... must go to an unusual lock!"
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 12,
-      "modifier": -3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -3
     }]
   }},
   {"object": {
@@ -399,11 +358,10 @@
     "level": 5,
     "weight": 50,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "short bow",
-      "description": "It looks like the bows used by rustin hunters.\n"
+      "description": "It looks like the bows used by rustin hunters."
     }]
   }},
   {"object": {
@@ -422,15 +380,12 @@
     "level": 12,
     "weight": 70,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hp",
       "level": 12,
-      "modifier": 5,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hp",
+      "modifier": 5
     }]
   }},
   {"object": {
@@ -449,23 +404,18 @@
     "level": 19,
     "weight": 100,
     "cost": 2500,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 19,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 3
       },
       {
-        "apply": "hit roll",
         "level": 19,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 3
       }
     ]
   }},
@@ -484,7 +434,6 @@
     "level": 0,
     "weight": 10,
     "cost": 168,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -502,15 +451,12 @@
     "level": 12,
     "weight": 20,
     "cost": 880,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take feet",
     "affects": [{
-      "apply": "moves",
       "level": 12,
-      "modifier": 10,
-      "bit_type": "object",
-      "bits": null
+      "apply": "moves",
+      "modifier": 10
     }]
   }},
   {"object": {
@@ -524,15 +470,12 @@
     "level": 5,
     "weight": 10,
     "cost": 55,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [{
-      "apply": "mana",
       "level": 5,
-      "modifier": 5,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": 5
     }]
   }}
 ]

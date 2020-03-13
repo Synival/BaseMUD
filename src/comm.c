@@ -19,13 +19,13 @@
  ***************************************************************************/
 
 /***************************************************************************
-*    ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
-*    ROM has been brought to you by the ROM consortium                      *
-*        Russ Taylor (rtaylor@hypercube.org)                                *
-*        Gabrielle Taylor (gtaylor@hypercube.org)                           *
-*        Brian Moore (zump@rom.org)                                         *
-*    By using this code, you have agreed to follow the terms of the         *
-*    ROM license, in the file Rom24/doc/rom.license                         *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
 ****************************************************************************/
 
 /* This file contains all of the OS-dependent stuff:
@@ -62,6 +62,7 @@
 #include "objs.h"
 #include "descs.h"
 #include "globals.h"
+#include "players.h"
 
 #include "comm.h"
 
@@ -130,14 +131,14 @@ void bust_a_prompt (CHAR_T *ch) {
             case 'O': sprintf (buf2, "%s",  olc_ed_vnum (ch)); i = buf2; break;
 
             case 'e':
-                char_exit_string (ch, ch->in_room, EXITS_PROMPT,
+                char_format_exit_string (ch, ch->in_room, EXITS_PROMPT,
                     buf2, sizeof (buf2));
                 i = buf2;
                 break;
 
             case 'X':
                 sprintf (buf2, "%d", IS_NPC (ch) ? 0 : (ch->level + 1)
-                    * exp_per_level (ch, ch->pcdata->points) - ch->exp);
+                    * player_get_exp_per_level (ch) - ch->exp);
                 i = buf2;
                 break;
 
@@ -156,7 +157,7 @@ void bust_a_prompt (CHAR_T *ch) {
             case 'r':
                 if (ch->in_room != NULL) {
                     sprintf (buf2, "%s",
-                        ((!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT)) ||
+                        ((!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT)) ||
                          (!IS_AFFECTED (ch, AFF_BLIND) &&
                              !room_is_dark (ch->in_room))
                         ) ? ch->in_room-> name : "darkness"
@@ -299,14 +300,23 @@ bool act_is_valid_recipient (CHAR_T *to, flag_t flags,
     return FALSE;
 }
 
-char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to,
-    OBJ_T *obj1, OBJ_T *obj2, const void *arg1, const void *arg2,
-    char *out_buf, size_t size)
-{
+char *act_code_pronoun (const CHAR_T *ch, char code) {
     static char *const he_she[]  = { "it",  "he",  "she" };
     static char *const him_her[] = { "it",  "him", "her" };
     static char *const his_her[] = { "its", "his", "her" };
 
+    switch (code) {
+        case 'e': case 'E': return he_she [URANGE (0, ch->sex, 2)];
+        case 'm': case 'M': return him_her[URANGE (0, ch->sex, 2)];
+        case 's': case 'S': return his_her[URANGE (0, ch->sex, 2)];
+        default:            return "???";
+    }
+}
+
+char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to,
+    OBJ_T *obj1, OBJ_T *obj2, const void *arg1, const void *arg2,
+    char *out_buf, size_t size)
+{
     #define FILTER_BAD_CODE(true_cond, message) \
         do { \
             RETURN_IF_BUG (!(true_cond), \
@@ -332,22 +342,22 @@ char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to,
             return PERS_AW (vch, to);
         case 'e':
             FILTER_BAD_CODE (ch, "bad code $e for 'ch'");
-            return he_she[URANGE (0, ch->sex, 2)];
+            return act_code_pronoun (ch, 'e');
         case 'E':
             FILTER_BAD_CODE (vch, "bad code $E for 'vch'");
-            return he_she[URANGE (0, vch->sex, 2)];
+            return act_code_pronoun (vch, 'E');
         case 'm':
             FILTER_BAD_CODE (ch, "bad code $m for 'ch'");
-            return him_her[URANGE (0, ch->sex, 2)];
+            return act_code_pronoun (ch, 'm');
         case 'M':
             FILTER_BAD_CODE (vch, "bad code $M for 'vch'");
-            return him_her[URANGE (0, vch->sex, 2)];
+            return act_code_pronoun (vch, 'm');
         case 's':
             FILTER_BAD_CODE (ch, "bad code $s for 'ch'");
-            return his_her[URANGE (0, ch->sex, 2)];
+            return act_code_pronoun (ch, 's');
         case 'S':
             FILTER_BAD_CODE (vch, "bad code $S for 'vch'");
-            return his_her[URANGE (0, vch->sex, 2)];
+            return act_code_pronoun (vch, 's');
         case 'p':
             FILTER_BAD_CODE (to && obj1, "bad code $p for 'to' or 'obj1'");
             return char_can_see_obj (to, obj1) ? obj1->short_descr : "something";
@@ -355,7 +365,7 @@ char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to,
             FILTER_BAD_CODE (to && obj2, "bad code $P for 'to' or 'obj2'");
             return char_can_see_obj (to, obj2) ? obj2->short_descr : "something";
         case 'd':
-            return door_keyword_to_name ((char *) arg2, out_buf, size);
+            return room_get_door_name ((char *) arg2, out_buf, size);
 
         default:
             bug ("bad code %d.", code);
@@ -386,16 +396,16 @@ void act_new (const char *format, CHAR_T *ch, const void *arg1,
     if (ch == NULL || ch->in_room == NULL)
         return;
 
-    to = ch->in_room->people;
+    to = ch->in_room->people_first;
     if (flags == TO_VICT) {
         BAIL_IF_BUG (vch == NULL,
             "act: null vch with TO_VICT.", 0);
         if (vch->in_room == NULL)
             return;
-        to = vch->in_room->people;
+        to = vch->in_room->people_first;
     }
 
-    for (; to != NULL; to = to->next_in_room) {
+    for (; to != NULL; to = to->room_next) {
         if (!IS_NPC (to) && to->desc == NULL)
             continue;
         if (IS_NPC (to) && to->desc == NULL && !HAS_TRIGGER (to, TRIG_ACT))
@@ -441,7 +451,7 @@ void act_new (const char *format, CHAR_T *ch, const void *arg1,
             buf, pbuff, MAX_STRING_LENGTH);
         if (to->desc && (to->desc->connected == CON_PLAYING))
             write_to_buffer (to->desc, buffer, 0); /* changed to buffer to reflect prev. fix */
-        else if (MOBtrigger)
+        else if (trigger_mobs)
             mp_act_trigger (buf, to, ch, arg1, arg2, TRIG_ACT);
     }
 }
@@ -461,7 +471,7 @@ void wiznet (const char *string, CHAR_T *ch, OBJ_T *obj,
 {
     DESCRIPTOR_T *d;
 
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         if (d->connected == CON_PLAYING && IS_IMMORTAL (d->character)
             && IS_SET (d->character->wiznet, WIZ_ON)
             && (!flag || IS_SET (d->character->wiznet, flag))

@@ -25,73 +25,81 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include <string.h>
+
 #include "merc.h"
 
-/* various flag tables */
-const FLAG_T mob_flags[] = {
-    {"npc",           MOB_IS_NPC,        FALSE},
-    {"sentinel",      MOB_SENTINEL,      TRUE},
-    {"scavenger",     MOB_SCAVENGER,     TRUE},
-    {"unused_act_1",  MOB_UNUSED_FLAG_1, FALSE},
-    {"unused_act_2",  MOB_UNUSED_FLAG_2, FALSE},
-    {"aggressive",    MOB_AGGRESSIVE,    TRUE},
-    {"stay_area",     MOB_STAY_AREA,     TRUE},
-    {"wimpy",         MOB_WIMPY,         TRUE},
-    {"pet",           MOB_PET,           TRUE},
-    {"train",         MOB_TRAIN,         TRUE},
-    {"practice",      MOB_PRACTICE,      TRUE},
-    {"unused_act_3",  MOB_UNUSED_FLAG_3, FALSE},
-    {"unused_act_4",  MOB_UNUSED_FLAG_4, FALSE},
-    {"unused_act_5",  MOB_UNUSED_FLAG_5, FALSE},
-    {"undead",        MOB_UNDEAD,        TRUE},
-    {"unused_act_6",  MOB_UNUSED_FLAG_6, FALSE},
-    {"cleric",        MOB_CLERIC,        TRUE},
-    {"mage",          MOB_MAGE,          TRUE},
-    {"thief",         MOB_THIEF,         TRUE},
-    {"warrior",       MOB_WARRIOR,       TRUE},
-    {"noalign",       MOB_NOALIGN,       TRUE},
-    {"nopurge",       MOB_NOPURGE,       TRUE},
-    {"outdoors",      MOB_OUTDOORS,      TRUE},
-    {"unused_act_7",  MOB_UNUSED_FLAG_7, FALSE},
-    {"indoors",       MOB_INDOORS,       TRUE},
-    {"unused_act_8",  MOB_UNUSED_FLAG_8, FALSE},
-    {"healer",        MOB_IS_HEALER,     TRUE},
-    {"gain",          MOB_GAIN,          TRUE},
-    {"update_always", MOB_UPDATE_ALWAYS, TRUE},
-    {"changer",       MOB_IS_CHANGER,    TRUE},
-    {0}
-};
+#include "interp.h"
+#include "lookup.h"
+#include "utils.h"
 
-const FLAG_T plr_flags[] = {
-    {"!npc!",         PLR_IS_NPC,        FALSE},
-    {"unused_plr_1",  PLR_UNUSED_FLAG_1, FALSE},
-    {"autoassist",    PLR_AUTOASSIST,    FALSE},
-    {"autoexit",      PLR_AUTOEXIT,      FALSE},
-    {"autoloot",      PLR_AUTOLOOT,      FALSE},
-    {"autosac",       PLR_AUTOSAC,       FALSE},
-    {"autogold",      PLR_AUTOGOLD,      FALSE},
-    {"autosplit",     PLR_AUTOSPLIT,     FALSE},
-    {"unused_plr_2",  PLR_UNUSED_FLAG_2, FALSE},
-    {"unused_plr_3",  PLR_UNUSED_FLAG_3, FALSE},
-    {"unused_plr_4",  PLR_UNUSED_FLAG_4, FALSE},
-    {"unused_plr_5",  PLR_UNUSED_FLAG_5, FALSE},
-    {"unused_plr_6",  PLR_UNUSED_FLAG_6, FALSE},
-    {"holylight",     PLR_HOLYLIGHT,     FALSE},
-    {"unused_plr_7",  PLR_UNUSED_FLAG_7, FALSE},
-    {"can_loot",      PLR_CANLOOT,       FALSE},
-    {"nosummon",      PLR_NOSUMMON,      FALSE},
-    {"nofollow",      PLR_NOFOLLOW,      FALSE},
-    {"unused_plr_8",  PLR_UNUSED_FLAG_8, FALSE},
-    {"colour",        PLR_COLOUR,        FALSE},
-    {"permit",        PLR_PERMIT,        TRUE},
-    {"unused_plr_9",  PLR_UNUSED_FLAG_9, FALSE},
-    {"log",           PLR_LOG,           FALSE},
-    {"deny",          PLR_DENY,          FALSE},
-    {"freeze",        PLR_FREEZE,        FALSE},
-    {"thief",         PLR_THIEF,         FALSE},
-    {"killer",        PLR_KILLER,        FALSE},
-    {0}
-};
+#include "flags.h"
+
+flag_t flag_lookup (const FLAG_T *flag_table, const char *name)
+    { SIMPLE_LOOKUP_PROP (flag_table, bit, name, FLAG_NONE, 0); }
+flag_t flag_lookup_exact (const FLAG_T *flag_table, const char *name)
+    { SIMPLE_LOOKUP_PROP_EXACT (flag_table, bit, name, FLAG_NONE, 0); }
+const FLAG_T *flag_get_by_name (const FLAG_T *flag_table, const char *name)
+    { SIMPLE_GET_BY_NAME (flag_table, name, 0); }
+const FLAG_T *flag_get_by_name_exact (const FLAG_T *flag_table, char const *name)
+    { SIMPLE_GET_BY_NAME_EXACT (flag_table, name, 0); }
+const FLAG_T *flag_get (const FLAG_T *flag_table, flag_t bit)
+    { SIMPLE_GET (flag_table, bit, name, NULL, 0); }
+const char *flag_get_name (const FLAG_T *flag_table, flag_t bit)
+    { SIMPLE_GET_NAME_FROM_ELEMENT (FLAG_T, flag_get (flag_table, bit), name); }
+
+flag_t flags_from_string (const FLAG_T *flag_table, const char *name)
+    { return flags_from_string_real (flag_table, name, FALSE); }
+flag_t flags_from_string_exact (const FLAG_T *flag_table, const char *name)
+    { return flags_from_string_real (flag_table, name, TRUE); }
+
+flag_t flags_from_string_real (const FLAG_T *flag_table, const char *name,
+    bool exact)
+{
+    const FLAG_T *flag;
+    char word[MAX_INPUT_LENGTH];
+    flag_t marked;
+
+    /* Accept multiple flags. */
+    marked = 0;
+    while (1) {
+        name = one_argument (name, word);
+        if (word[0] == '\0')
+            break;
+        flag = exact
+            ? flag_get_by_name_exact (flag_table, word)
+            : flag_get_by_name (flag_table, word);
+        if (flag != NULL)
+            SET_BIT (marked, flag->bit);
+    }
+    return (marked != 0) ? marked : FLAG_NONE;
+}
+
+/* Increased buffers from 2 to 16! That should give us the illusion
+ * of stability. -- Synival */
+const char *flags_to_string (const FLAG_T *flag_table, flag_t bits)
+    { return flags_to_string_real (flag_table, bits, "none"); }
+
+const char *flags_to_string_real (const FLAG_T *flag_table, flag_t bits,
+    const char *none_str)
+{
+    static char buf[16][512];
+    static int cnt = 0;
+    int i;
+
+    if (++cnt >= 16)
+        cnt = 0;
+
+    buf[cnt][0] = '\0';
+    for (i = 0; flag_table[i].name != NULL; i++) {
+        if (IS_SET (bits, flag_table[i].bit)) {
+            if (buf[cnt][0] != '\0')
+                strcat (buf[cnt], " ");
+            strcat (buf[cnt], flag_table[i].name);
+        }
+    }
+    return (buf[cnt][0] == '\0') ? none_str : buf[cnt];
+}
 
 const FLAG_T affect_flags[] = {
     {"blind",         AFF_BLIND,         TRUE},
@@ -241,6 +249,7 @@ const FLAG_T comm_flags[] = {
     {"unused_comm_3", COMM_UNUSED_FLAG_3, FALSE},
     {"snoop_proof",   COMM_SNOOP_PROOF,   FALSE},
     {"afk",           COMM_AFK,           TRUE},
+    {"materials",     COMM_MATERIALS,     TRUE},
     {0}
 };
 
@@ -440,5 +449,44 @@ const FLAG_T furniture_flags[] = {
     {"put_on",     PUT_ON,     TRUE},
     {"put_in",     PUT_IN,     TRUE},
     {"put_inside", PUT_INSIDE, TRUE},
+    {0}
+};
+
+const FLAG_T dam_flags[] = {
+    {"magical", DAM_MAGICAL, TRUE},
+    {0}
+};
+
+const FLAG_T ban_flags[] = {
+    {"suffix",    BAN_SUFFIX,    TRUE},
+    {"prefix",    BAN_PREFIX,    TRUE},
+    {"newbies",   BAN_NEWBIES,   TRUE},
+    {"all",       BAN_ALL,       TRUE},
+    {"permit",    BAN_PERMIT,    TRUE},
+    {"permanent", BAN_PERMANENT, TRUE},
+    {0}
+};
+
+const FLAG_T wiz_flags[] = {
+    {"on",        WIZ_ON,        TRUE},
+    {"ticks",     WIZ_TICKS,     TRUE},
+    {"logins",    WIZ_LOGINS,    TRUE},
+    {"sites",     WIZ_SITES,     TRUE},
+    {"links",     WIZ_LINKS,     TRUE},
+    {"deaths",    WIZ_DEATHS,    TRUE},
+    {"resets",    WIZ_RESETS,    TRUE},
+    {"mobdeaths", WIZ_MOBDEATHS, TRUE},
+    {"flags",     WIZ_FLAGS,     TRUE},
+    {"penalties", WIZ_PENALTIES, TRUE},
+    {"saccing",   WIZ_SACCING,   TRUE},
+    {"levels",    WIZ_LEVELS,    TRUE},
+    {"secure",    WIZ_SECURE,    TRUE},
+    {"switches",  WIZ_SWITCHES,  TRUE},
+    {"snoops",    WIZ_SNOOPS,    TRUE},
+    {"restore",   WIZ_RESTORE,   TRUE},
+    {"load",      WIZ_LOAD,      TRUE},
+    {"newbie",    WIZ_NEWBIE,    TRUE},
+    {"prefix",    WIZ_PREFIX,    TRUE},
+    {"spam",      WIZ_SPAM,      TRUE},
     {0}
 };

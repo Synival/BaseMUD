@@ -16,13 +16,13 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #ifndef __ROM_DEFS_H
@@ -35,6 +35,27 @@
 #define DEFINE_SPELL_FUN(fun) \
     void fun (int sn, int level, CHAR_T *ch, void *vo, int target, \
               const char *target_name)
+
+#define DEFINE_EFFECT_FUN(fun) \
+    void fun (void *vo, int level, int dam, int target)
+
+#define DEFINE_NANNY_FUN(fun) \
+    void fun (DESCRIPTOR_T *d, char *argument)
+
+#define DEFINE_JSON_WRITE_FUN(fun) \
+    JSON_T *fun (const void *obj, const char *obj_name)
+
+#define DEFINE_JSON_READ_FUN(fun) \
+    void *fun (const JSON_T *json, const char *obj_name)
+
+#define DEFINE_INIT_FUN(fun) \
+    void fun (void *obj)
+
+#define DEFINE_DISPOSE_FUN(fun) \
+    void fun (void *obj)
+
+#define DEFINE_COND_FUN(fun) \
+    bool fun (const CHAR_T *ch)
 
 /* Short scalar types.
  * Diavolo reports AIX compiler has bugs with short types. */
@@ -192,23 +213,13 @@
 #define DAM_SOUND          19
 #define DAM_MAX            20
 
-/* Damage classes. */
-#define DAM_PHYSICAL    0
-#define DAM_MAGICAL     1
-
-/* TO types for act. */
-#define TO_CHAR    (A) /* 'ch' only */
-#define TO_VICT    (B) /* 'vch' only */
-#define TO_OTHERS  (C) /* everyone else */
-#define TO_NOTCHAR (TO_VICT | TO_OTHERS)
-#define TO_ALL     (TO_CHAR | TO_VICT | TO_OTHERS)
-
 /* Shop types. */
 #define MAX_TRADE 5
 
 /* Per-class stuff. */
 #define MAX_GUILD 2
 
+/* Stat types. */
 #define STAT_STR  0
 #define STAT_INT  1
 #define STAT_WIS  2
@@ -296,6 +307,7 @@
 #define PILL_SKILL_MAX      4
 #define SCROLL_SKILL_MAX    4
 #define POTION_SKILL_MAX    4
+#define JUKEBOX_QUEUE_MAX   3
 
 /* Values for object mapping.
  * Used in #OBJECTS. */
@@ -346,21 +358,30 @@
 #define COND_FULL     1
 #define COND_THIRST   2
 #define COND_HUNGER   3
+#define COND_MAX      4
 
 /* Types of attacks.
  * Must be non-overlapping with spell/skill types,
  * but may be arbitrary beyond that. */
-#define TYPE_UNDEFINED   -1
-#define TYPE_HIT       1000
+#define ATTACK_DEFAULT     -1
+#define ATTACK_NONE         0
+#define ATTACK_SLASH        3  /* TODO: don't hard-code */
+#define ATTACK_POUND        7  /* TODO: don't hard-code */
+#define ATTACK_PIERCE       11 /* TODO: don't hard-code */
+#define ATTACK_PUNCH        17 /* TODO: don't hard-code */
+
+/* Internal flag used to designate non-skill attacks. */
+#define ATTACK_FIGHTING     1000
 
 /* Target types. */
-#define TAR_IGNORE          0
-#define TAR_CHAR_OFFENSIVE  1
-#define TAR_CHAR_DEFENSIVE  2
-#define TAR_CHAR_SELF       3
-#define TAR_OBJ_INV         4
-#define TAR_OBJ_CHAR_DEF    5
-#define TAR_OBJ_CHAR_OFF    6
+#define SKILL_TARGET_IGNORE          0
+#define SKILL_TARGET_CHAR_OFFENSIVE  1
+#define SKILL_TARGET_CHAR_DEFENSIVE  2
+#define SKILL_TARGET_CHAR_SELF       3
+#define SKILL_TARGET_OBJ_INV         4
+#define SKILL_TARGET_OBJ_CHAR_DEF    5
+#define SKILL_TARGET_OBJ_CHAR_OFF    6
+#define SKILL_TARGET_MAX             7
 
 #define TARGET_CHAR         0
 #define TARGET_OBJ          1
@@ -371,7 +392,9 @@
  * Used in save.c to load objects that don't exist. */
 #define OBJ_VNUM_DUMMY    30
 
-#define NO_FLAG    -1
+#define FLAG_NONE       0
+#define TYPE_NONE       -999
+#define EXT_FLAG_NONE   -999
 
 /* Includes for board system */
 /* This is version 2 of the board system, (c) 1995-96 erwin@pip.dknet.dk */
@@ -380,6 +403,7 @@
 #define DEF_NORMAL  0  /* No forced change, but default (any string)  */
 #define DEF_INCLUDE 1 /* 'names' MUST be included (only ONE name!)    */
 #define DEF_EXCLUDE 2 /* 'names' must NOT be included (one name only) */
+#define DEF_MAX     3
 
 #define DEFAULT_BOARD 0 /* default board is board #0 in the boards      */
                         /* It should be readable by everyone!           */
@@ -419,25 +443,28 @@
 #define NANNY_MAX              24
 
 /* Character classes. */
-#define CLASS_NONE     -1
-#define CLASS_MAGE      0
-#define CLASS_CLERIC    1
-#define CLASS_THIEF     2
-#define CLASS_WARRIOR   3
-#define CLASS_MAX       4
+#define CLASS_NONE  -1
+#define CLASS_MAX    16
 
 /* Limits not defined elsewhere. */
 #define CLAN_MAX            3
 #define WIZNET_MAX          20
 #define RACE_MAX            30
-#define PC_RACE_MAX         6
+#define PC_RACE_MAX         16
+#define PC_RACE_SKILL_MAX   16
 #define SOCIAL_MAX          256
 #define SKILL_MAX           150
-#define GROUP_MAX           30
+#define SKILL_GROUP_MAX     30
 #define SPEC_MAX            22
 #define ATTRIBUTE_HIGHEST   25
 #define ATTACK_MAX          40
 #define BOARD_MAX           5
+#define HP_COND_MAX         32
+#define MAP_LOOKUP_MAX      16
+#define COLOUR_MAX          32
+#define COND_HOURS_STUFFED  40
+#define COND_HOURS_MAX      48
+#define AC_MAX              4
 
 /* Colour setting codes */
 #define COLOUR_TEXT            0
@@ -475,7 +502,7 @@
 #define COLOUR_FIGHT_OHIT     32
 #define COLOUR_FIGHT_THIT     33
 #define COLOUR_FIGHT_SKILL    34
-#define COLOUR_MAX            35
+#define COLOUR_SETTING_MAX    35
 
 /* This file holds the copyover data */
 #define COPYOVER_FILE "copyover.data"
@@ -511,17 +538,15 @@
 #define RECYCLE_PORTAL_T      24
 #define RECYCLE_MAX           25
 
-/* Memory management.
- * Increase MAX_STRING if you have too.
- * Tune the others only if you understand what you're doing. */
-#define MAX_STRING_SPACE    2097152 /* 2^21 */
-#define MAX_PERM_BLOCK      131072
-#define MAX_MEM_LIST        11
-#define MAX_PERM_BLOCKS     1024
-
 /* Types of tables used for our master reference table. */
-#define TABLE_FLAG_TYPE 0x01
-#define TABLE_BITS      0x02
+#define TABLE_FLAGS     0
+#define TABLE_TYPES     1
+#define TABLE_UNIQUE    2
+#define TABLE_EXT_FLAGS 3
+#define TABLE_INTERNAL  4
+
+#define TABLE_MAX               76
+#define TABLE_LENGTH_DYNAMIC    -1
 
 /* Types of portals. */
 #define PORTAL_TO_ROOM  0
@@ -595,12 +620,100 @@
 #define LOG_ALWAYS  1
 #define LOG_NEVER   2
 
-/* Pose stuff. */
-#define POSE_MAX 17
-
 /* Music stuff. */
-#define MAX_SONGS       20
+#define MAX_SONGS       50
 #define MAX_SONG_LINES  100 /* this boils down to about 1k per song */
 #define MAX_SONG_GLOBAL 10  /* max songs the global jukebox can hold */
+
+/* Types of damage effects. */
+#define EFFECT_NONE     0
+#define EFFECT_FIRE     1
+#define EFFECT_COLD     2
+#define EFFECT_SHOCK    3
+#define EFFECT_ACID     4
+#define EFFECT_POISON   5
+#define EFFECT_MAX      6
+
+/* Internal mappings of skills. */
+#define SKILL_MAP_BACKSTAB          0
+#define SKILL_MAP_DODGE             1
+#define SKILL_MAP_ENVENOM           2
+#define SKILL_MAP_HIDE              3
+#define SKILL_MAP_PEEK              4
+#define SKILL_MAP_PICK_LOCK         5
+#define SKILL_MAP_SNEAK             6
+#define SKILL_MAP_STEAL             7
+#define SKILL_MAP_DISARM            8
+#define SKILL_MAP_ENHANCED_DAMAGE   9
+#define SKILL_MAP_KICK             10
+#define SKILL_MAP_PARRY            11
+#define SKILL_MAP_RESCUE           12
+#define SKILL_MAP_SECOND_ATTACK    13
+#define SKILL_MAP_THIRD_ATTACK     14
+#define SKILL_MAP_BLINDNESS        15
+#define SKILL_MAP_CHARM_PERSON     16
+#define SKILL_MAP_CURSE            17
+#define SKILL_MAP_INVIS            18
+#define SKILL_MAP_MASS_INVIS       19
+#define SKILL_MAP_POISON           20
+#define SKILL_MAP_PLAGUE           21
+#define SKILL_MAP_SLEEP            22
+#define SKILL_MAP_SANCTUARY        23
+#define SKILL_MAP_FLY              24
+#define SKILL_MAP_AXE              25
+#define SKILL_MAP_DAGGER           26
+#define SKILL_MAP_FLAIL            27
+#define SKILL_MAP_MACE             28
+#define SKILL_MAP_POLEARM          29
+#define SKILL_MAP_SHIELD_BLOCK     30
+#define SKILL_MAP_SPEAR            31
+#define SKILL_MAP_SWORD            32
+#define SKILL_MAP_WHIP             33
+#define SKILL_MAP_BASH             34
+#define SKILL_MAP_BERSERK          35
+#define SKILL_MAP_DIRT             36
+#define SKILL_MAP_HAND_TO_HAND     37
+#define SKILL_MAP_TRIP             38
+#define SKILL_MAP_FAST_HEALING     39
+#define SKILL_MAP_HAGGLE           40
+#define SKILL_MAP_LORE             41
+#define SKILL_MAP_MEDITATION       42
+#define SKILL_MAP_SCROLLS          43
+#define SKILL_MAP_STAVES           44
+#define SKILL_MAP_WANDS            45
+#define SKILL_MAP_RECALL           46
+#define SKILL_MAP_FRENZY           47
+#define SKILL_MAP_MAX              48
+
+/* Stuff for providing a crash-proof buffer */
+#define MAX_BUF_LIST     11
+#define BASE_BUF         1024
+
+/* valid states */
+#define BUFFER_SAFE      0
+#define BUFFER_OVERFLOW  1
+#define BUFFER_FREED     2
+
+/* extended flag limits */
+#define EXT_FLAGS_ARRAY_LENGTH   8
+#define EXT_FLAGS_ELEMENT_SIZE   8
+#define EXT_FLAGS_LIMIT (EXT_FLAGS_ARRAY_LENGTH * EXT_FLAGS_ELEMENT_SIZE)
+
+/* types of affect attachments */
+#define AFFECT_NONE         0
+#define AFFECT_CHAR         1
+#define AFFECT_OBJ          2
+#define AFFECT_OBJ_INDEX    3
+
+/* types of extra_descr attachments */
+#define EXTRA_DESCR_NONE         0
+#define EXTRA_DESCR_ROOM_INDEX   1
+#define EXTRA_DESCR_OBJ          2
+#define EXTRA_DESCR_OBJ_INDEX    3
+
+/* area reset ages. */
+#define AREA_RESET_MINIMUM_AGE          3
+#define AREA_RESET_AFTER_PLAYERS_AGE    15
+#define AREA_RESET_ALWAYS_AGE           31
 
 #endif

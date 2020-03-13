@@ -19,47 +19,49 @@
  ***************************************************************************/
 
 /***************************************************************************
-*    ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
-*    ROM has been brought to you by the ROM consortium                      *
-*        Russ Taylor (rtaylor@hypercube.org)                                *
-*        Gabrielle Taylor (gtaylor@hypercube.org)                           *
-*        Brian Moore (zump@rom.org)                                         *
-*    By using this code, you have agreed to follow the terms of the         *
-*    ROM license, in the file Rom24/doc/rom.license                         *
-****************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
-#include <stdlib.h>
-#include <time.h>
 #include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
 
 #if defined(unix)
     #include <signal.h>
 #endif
 
-#include "interp.h"
-#include "comm.h"
-#include "db.h"
+#include "signal.h"
+#include "globals.h"
 #include "utils.h"
-#include "signal.h"
+#include "interp.h"
+#include "db.h"
 #include "descs.h"
-#include "signal.h"
-#include "string.h"
+#include "recycle.h"
+#include "memory.h"
 #include "save.h"
+#include "chars.h"
+#include "string.h"
 #include "olc.h"
 #include "nanny.h"
 #include "update.h"
-#include "chars.h"
-#include "descs.h"
-#include "recycle.h"
+#include "comm.h"
+#include "rooms.h"
+#include "quickmud.h"
+
 #include "act_info.h"
-#include "globals.h"
-#include "memory.h"
 
 #include "boot.h"
 
 int main (int argc, char **argv) {
     struct timeval now_time;
-    bool fCopyOver = FALSE;
+    bool copyover = FALSE;
     int free_count;
     #ifdef IMC
         int imcsocket = -1;
@@ -76,7 +78,7 @@ int main (int argc, char **argv) {
     /* Init time.  */
     gettimeofday (&now_time, NULL);
     current_time = (time_t) now_time.tv_sec;
-    strcpy (str_boot_time, ctime (&current_time));
+    strcpy (str_boot_time, ctime_fixed (&current_time));
 
     /* Macintosh console initialization. */
     #if defined(macintosh)
@@ -87,7 +89,7 @@ int main (int argc, char **argv) {
     #endif
 
     /* Reserve one channel for our use. */
-    if ((fpReserve = fopen (NULL_FILE, "r")) == NULL) {
+    if ((reserve_file = fopen (NULL_FILE, "r")) == NULL) {
         perror (NULL_FILE);
         exit (1);
     }
@@ -106,37 +108,38 @@ int main (int argc, char **argv) {
 
         /* Are we recovering from a copyover? */
         if (argv[2] && argv[2][0]) {
-            fCopyOver = TRUE;
+            copyover = TRUE;
             control = atoi (argv[3]);
             #ifdef IMC
                 imcsocket = atoi (argv[4]);
             #endif
         }
         else
-            fCopyOver = FALSE;
+            copyover = FALSE;
     }
 
     /* Run the game. */
+    qmconfig_read(); /* Here because it fits, no conflicts with Linux placement -- JR 05/06/01 */
+                     /* Here so we can set the IP adress. -- JR 05/06/01 */
+
     #if defined(macintosh) || defined(MSDOS)
-        qmconfig_read(); /* Here because it fits, no conflicts with Linux placement -- JR 05/06/01 */
         boot_db ();
-        log_string ("Merc is ready to rock.");
+        log_f ("ROM is ready to rock on port %d (%s).", port, mud_ipaddress);
         game_loop_mac_msdos ();
     #endif
 
     #if defined(unix)
-        qmconfig_read(); /* Here so we can set the IP adress. -- JR 05/06/01 */
-        if (!fCopyOver)
+        if (!copyover)
             control = init_socket (port);
         boot_db ();
         log_f ("ROM is ready to rock on port %d (%s).", port, mud_ipaddress);
 
         #ifdef IMC
             /* Initialize and connect to IMC2 */
-            imc_startup (FALSE, imcsocket, fCopyOver);
+            imc_startup (FALSE, imcsocket, copyover);
         #endif
 
-        if (fCopyOver)
+        if (copyover)
             copyover_recover ();
 
         game_loop_unix (control);
@@ -151,17 +154,21 @@ int main (int argc, char **argv) {
     log_string ("Freeing all objects.");
     free_count = recycle_free_all ();
     log_f ("   %d object(s) freed.", free_count);
+    log_string ("Freeing all tables.");
+    table_dispose_all ();
 
     /* Free allocated memory so we can track what was lost due to
      * memory leaks. */
+#ifndef BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
     log_string ("Freeing all allocated memory.");
     free_count = string_space_dispose ();
     log_f ("   %d bytes of string space freed.", free_count);
     free_count = mem_pages_dispose ();
     log_f ("   %d bytes of paged memory freed.", free_count);
+#endif
 
     /* Close our reserved file. */
-    fclose (fpReserve);
+    fclose (reserve_file);
 
     /* That's all, folks. */
     log_string ("Normal termination of game.");
@@ -184,17 +191,18 @@ void game_loop_mac_msdos (void) {
         dcon.connected = CON_GET_NAME;
     else
         dcon.connected = CON_ANSI;
-    dcon.ansi = mud_ansicolor;
-    dcon.host = str_dup ("localhost");
-    dcon.outsize = 2000;
-    dcon.outbuf = mem_alloc (dcon.outsize);
-    dcon.next = descriptor_list;
-    dcon.showstr_head = NULL;
+
+    dcon.ansi          = mud_ansicolor;
+    dcon.host          = str_dup ("localhost");
+    dcon.outsize       = 2000;
+    dcon.outbuf        = mem_alloc (dcon.outsize);
+    dcon.next          = descriptor_list;
+    dcon.showstr_head  = NULL;
     dcon.showstr_point = NULL;
-    dcon.pEdit = NULL;            /* OLC */
-    dcon.pString = NULL;        /* OLC */
-    dcon.editor = 0;            /* OLC */
-    descriptor_list = &dcon;
+    dcon.olc_edit      = NULL; /* OLC */
+    dcon.string_edit   = NULL; /* OLC */
+    dcon.editor        = 0;    /* OLC */
+    descriptor_list    = &dcon;
 
     /* First Contact! */
     if (!mud_ansiprompt) {
@@ -208,6 +216,8 @@ void game_loop_mac_msdos (void) {
         write_to_buffer (&dcon, "Do you want ANSI? (Y/n) ", 0);
 
     /* Main loop */
+    merc_down = FALSE;
+    in_game_loop = TRUE;
     while (!merc_down) {
         DESCRIPTOR_T *d;
 
@@ -244,7 +254,7 @@ void game_loop_mac_msdos (void) {
                     d->lines_written = 0;
                     show_page (d);
                 }
-                else if (d->pString)
+                else if (d->string_edit)
                     string_add (d->character, d->incomm);
                 else {
                     switch (d->connected) {
@@ -310,6 +320,7 @@ void game_loop_mac_msdos (void) {
         last_time = now_time;
         current_time = (time_t) last_time.tv_sec;
     }
+    in_game_loop = FALSE;
 }
 #endif
 
@@ -323,6 +334,8 @@ void game_loop_unix (int control) {
     current_time = (time_t) last_time.tv_sec;
 
     /* Main loop */
+    merc_down = FALSE;
+    in_game_loop = TRUE;
     while (!merc_down) {
         fd_set in_set;
         fd_set out_set;
@@ -341,7 +354,7 @@ void game_loop_unix (int control) {
         FD_ZERO (&exc_set);
         FD_SET (control, &in_set);
         maxdesc = control;
-        for (d = descriptor_list; d; d = d->next) {
+        for (d = descriptor_first; d; d = d->global_next) {
             maxdesc = UMAX (maxdesc, d->descriptor);
             FD_SET (d->descriptor, &in_set);
             FD_SET (d->descriptor, &out_set);
@@ -358,8 +371,8 @@ void game_loop_unix (int control) {
             init_descriptor (control);
 
         /* Kick out the freaky folks. */
-        for (d = descriptor_list; d != NULL; d = d_next) {
-            d_next = d->next;
+        for (d = descriptor_first; d != NULL; d = d_next) {
+            d_next = d->global_next;
             if (FD_ISSET (d->descriptor, &exc_set)) {
                 FD_CLR (d->descriptor, &in_set);
                 FD_CLR (d->descriptor, &out_set);
@@ -371,8 +384,8 @@ void game_loop_unix (int control) {
         }
 
         /* Process input. */
-        for (d = descriptor_list; d != NULL; d = d_next) {
-            d_next = d->next;
+        for (d = descriptor_first; d != NULL; d = d_next) {
+            d_next = d->global_next;
             d->fcommand = FALSE;
 
             if (FD_ISSET (d->descriptor, &in_set)) {
@@ -401,7 +414,7 @@ void game_loop_unix (int control) {
                     d->lines_written = 0;
                     show_page (d);
                 }
-                else if (d->pString)
+                else if (d->string_edit)
                     string_add (d->character, d->incomm);
                 else {
                     switch (d->connected) {
@@ -426,8 +439,8 @@ void game_loop_unix (int control) {
         update_handler ();
 
         /* Output. */
-        for (d = descriptor_list; d != NULL; d = d_next) {
-            d_next = d->next;
+        for (d = descriptor_first; d != NULL; d = d_next) {
+            d_next = d->global_next;
 
             if ((d->fcommand || d->outtop > 0)
                 && FD_ISSET (d->descriptor, &out_set))
@@ -469,8 +482,10 @@ void game_loop_unix (int control) {
                 stall_time.tv_usec = usecDelta;
                 stall_time.tv_sec = secDelta;
                 if (select (0, NULL, NULL, NULL, &stall_time) < 0) {
-                    perror ("Game_loop: select: stall");
-                    exit (1);
+                    if (errno != EINTR) {
+                        perror ("Game_loop: select: stall");
+                        exit (1);
+                    }
                 }
             }
         }
@@ -478,6 +493,7 @@ void game_loop_unix (int control) {
         gettimeofday (&last_time, NULL);
         current_time = (time_t) last_time.tv_sec;
     }
+    in_game_loop = FALSE;
 }
 #endif
 
@@ -488,7 +504,7 @@ void copyover_recover (void) {
     char name[100];
     char host[MSL];
     int desc;
-    bool fOld;
+    bool old;
 
     log_f ("Copyover recovery initiated");
     fp = fopen (COPYOVER_FILE, "r");
@@ -519,14 +535,15 @@ void copyover_recover (void) {
         d->descriptor = desc;
 
         d->host = str_dup (host);
-        LIST_FRONT (d, next, descriptor_list);
+        LIST2_FRONT (d, global_prev, global_next,
+            descriptor_first, descriptor_last);
         d->connected = CON_COPYOVER_RECOVER;    /* -15, so close_socket frees the char */
 
         /* Now, find the pfile */
-        fOld = load_char_obj (d, name);
+        old = load_char_obj (d, name);
 
         /* Player file not found?! */
-        if (!fOld) {
+        if (!old) {
             write_to_descriptor (desc,
                 "\n\rSomehow, your character was lost in the copyover. Sorry.\n\r", 0);
             close_socket (d);
@@ -538,10 +555,11 @@ void copyover_recover (void) {
 
         /* Just In Case */
         if (!d->character->in_room)
-            d->character->in_room = get_room_index (ROOM_VNUM_TEMPLE);
+            d->character->in_room = room_get_index (ROOM_VNUM_TEMPLE);
 
         /* Insert in the char_list */
-        LIST_FRONT (d->character, next, char_list);
+        LIST2_FRONT (d->character, global_prev, global_next,
+            char_first, char_last);
 
         char_to_room (d->character, d->character->in_room);
         do_look (d->character, "auto");
@@ -554,61 +572,5 @@ void copyover_recover (void) {
                  TO_NOTCHAR);
         }
     }
-    fclose (fp);
-}
-
-void qmconfig_read (void) {
-    FILE *fp;
-    bool fMatch, fReading;
-    char *word;
-    extern int mud_ansiprompt, mud_ansicolor, mud_telnetga;
-
-    log_f ("Loading configuration settings from %s.", QMCONFIG_FILE);
-    fp = fopen (QMCONFIG_FILE, "r");
-    if (!fp) {
-        log_f ("%s not found. Using compiled-in defaults.", QMCONFIG_FILE);
-        return;
-    }
-
-    fReading = TRUE;
-    while (fReading) {
-        word = feof (fp) ? "END" : fread_word(fp);
-        fMatch = FALSE;
-
-        switch (UPPER(word[0])) {
-            case '#':
-                /* This is a comment line! */
-                fMatch = TRUE;
-                fread_to_eol (fp);
-                break;
-
-            case '*':
-                fMatch = TRUE;
-                fread_to_eol (fp);
-                break;
-
-            case 'A':
-                KEY ("Ansicolor", mud_ansicolor, fread_number(fp));
-                KEY ("Ansiprompt", mud_ansiprompt, fread_number(fp));
-                break;
-
-            case 'E':
-                if (!str_cmp (word, "END")) {
-                    fReading = FALSE;
-                    fMatch = TRUE;
-                }
-                break;
-
-            case 'T':
-                KEY ("Telnetga", mud_telnetga, fread_number(fp));
-                break;
-        }
-        if (!fMatch) {
-            log_f ("qmconfig_read: no match for %s!", word);
-            fread_to_eol(fp);
-        }
-    }
-
- // log_f ("Settings have been read from %s", QMCONFIG_FILE);
     fclose (fp);
 }

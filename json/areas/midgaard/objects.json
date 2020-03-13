@@ -15,7 +15,6 @@
     "level": 0,
     "weight": 160,
     "cost": 75,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -34,7 +33,6 @@
     "level": 0,
     "weight": 10,
     "cost": 5,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -53,7 +51,6 @@
     "level": 0,
     "weight": 20,
     "cost": 6,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -72,7 +69,6 @@
     "level": 0,
     "weight": 10,
     "cost": 25,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -91,7 +87,6 @@
     "level": 0,
     "weight": 10,
     "cost": 11,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -112,12 +107,13 @@
     "level": 42,
     "weight": 450,
     "cost": 5600,
-    "condition": 100,
     "extra_flags": "hum bless",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "scimitar blade",
-      "description": "It is quite heavy.  The blade is made of some metal that you can't even\nspell.  The edge of the blade looks as if it could cut through anything\nor anyone.\n"
+      "description": "It is quite heavy.  The blade is made of some metal that you can't even
+                     |spell.  The edge of the blade looks as if it could cut through anything
+                     |or anyone."
     }]
   }},
   {"object": {
@@ -135,7 +131,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -153,7 +148,6 @@
     "level": 0,
     "weight": 20,
     "cost": 22,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -171,11 +165,11 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "nopurge",
     "extra_description": [{
       "keyword": "pit",
-      "description": "This is where you put money and items to help Doz expand this shrine and\nconvert more people to the belief of Mota, lord of the gods.\n"
+      "description": "This is where you put money and items to help Doz expand this shrine and
+                     |convert more people to the belief of Mota, lord of the gods."
     }]
   }},
   {"object": {
@@ -193,7 +187,6 @@
     "level": 0,
     "weight": 10,
     "cost": 9,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -211,7 +204,6 @@
     "level": 0,
     "weight": 10,
     "cost": 16,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -229,7 +221,6 @@
     "level": 0,
     "weight": 10,
     "cost": 11,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -247,7 +238,6 @@
     "level": 0,
     "weight": 10,
     "cost": 5,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -330,11 +320,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 3,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -357,11 +345,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "damage roll",
       "level": 6,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -446,11 +432,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "armor class",
       "level": 9,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -473,11 +457,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "armor class",
       "level": 1,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -507,16 +489,17 @@
     "level": 0,
     "weight": 40,
     "cost": 75,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [
       {
         "keyword": "letters",
-        "description": "They say, \"Use 'hold lantern' to activate.\"\n"
+        "description": "They say, \"Use 'hold lantern' to activate.\""
       },
       {
         "keyword": "lantern",
-        "description": "It is a large and robust but somewhat battered oil lantern made from brass,\nequipped with a handle to make it handy and a hood to protect its flame.\nSome letters have been scratched on its bottom.\n"
+        "description": "It is a large and robust but somewhat battered oil lantern made from brass,
+                       |equipped with a handle to make it handy and a hood to protect its flame.
+                       |Some letters have been scratched on its bottom."
       }
     ]
   }},
@@ -573,12 +556,11 @@
     "level": 9,
     "weight": 10,
     "cost": 1190,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll",
-      "description": "Use this scroll to remove magical curses.\n"
+      "description": "Use this scroll to remove magical curses."
     }]
   }},
   {"object": {
@@ -596,12 +578,17 @@
     "level": 7,
     "weight": 10,
     "cost": 890,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll identify",
-      "description": "The scroll has a magic formula drawn upon it:\n     ???\n    ?   ?\n       ?\n      ?\n      ?\n      *\n"
+      "description": "The scroll has a magic formula drawn upon it:
+                     |     ???
+                     |    ?   ?
+                     |       ?
+                     |      ?
+                     |      ?
+                     |      *"
     }]
   }},
   {"object": {
@@ -619,12 +606,11 @@
     "level": 0,
     "weight": 10,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "potion yellow",
-      "description": "The potion has a small label 'Detect The Invisible'.\n"
+      "description": "The potion has a small label 'Detect The Invisible'."
     }]
   }},
   {"object": {
@@ -642,12 +628,11 @@
     "level": 17,
     "weight": 20,
     "cost": 2900,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll",
-      "description": "The scroll has written a formula of 'Word of Recall' upon it.\n"
+      "description": "The scroll has written a formula of 'Word of Recall' upon it."
     }]
   }},
   {"object": {
@@ -662,27 +647,22 @@
     "level": 8,
     "weight": 10,
     "cost": 640,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring",
-      "description": "It's a silver ring set with a gleaming moonstone.\n"
+      "description": "It's a silver ring set with a gleaming moonstone."
     }],
     "affects": [
       {
-        "apply": "saves",
         "level": 8,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -1
       },
       {
-        "apply": "armor class",
         "level": 8,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       }
     ]
   }},
@@ -703,12 +683,11 @@
     "level": 2,
     "weight": 10,
     "cost": 320,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "wand",
-      "description": "It has a little note that says 'point this end at target'.\n"
+      "description": "It has a little note that says 'point this end at target'."
     }]
   }},
   {"object": {
@@ -787,7 +766,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "raft",
-      "description": "The raft looks very primitive.\n"
+      "description": "The raft looks very primitive."
     }]
   }},
   {"object": {
@@ -806,7 +785,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "canoe",
-      "description": "The canoe is fairly light.\n"
+      "description": "The canoe is fairly light."
     }]
   }},
   {"object": {
@@ -1116,7 +1095,6 @@
     "level": 5,
     "weight": 140,
     "cost": 850,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -1136,7 +1114,6 @@
     "level": 5,
     "weight": 40,
     "cost": 420,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -1156,7 +1133,6 @@
     "level": 5,
     "weight": 80,
     "cost": 420,
-    "condition": 100,
     "wear_flags": "take legs"
   }},
   {"object": {
@@ -1176,7 +1152,6 @@
     "level": 5,
     "weight": 40,
     "cost": 420,
-    "condition": 100,
     "wear_flags": "take feet"
   }},
   {"object": {
@@ -1196,7 +1171,6 @@
     "level": 5,
     "weight": 20,
     "cost": 420,
-    "condition": 100,
     "wear_flags": "take hands"
   }},
   {"object": {
@@ -1216,7 +1190,6 @@
     "level": 5,
     "weight": 60,
     "cost": 420,
-    "condition": 100,
     "wear_flags": "take arms"
   }},
   {"object": {
@@ -1234,7 +1207,6 @@
     "level": 11,
     "weight": 10,
     "cost": 800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1253,7 +1225,6 @@
     "level": 11,
     "weight": 10,
     "cost": 800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1274,7 +1245,6 @@
     "level": 16,
     "weight": 10,
     "cost": 1800,
-    "condition": 100,
     "extra_flags": "glow hum magic bless",
     "wear_flags": "take hold"
   }},
@@ -1293,7 +1263,6 @@
     "level": 0,
     "weight": 10,
     "cost": 150,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1312,7 +1281,6 @@
     "level": 1,
     "weight": 10,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1331,7 +1299,6 @@
     "level": 5,
     "weight": 10,
     "cost": 390,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1352,7 +1319,6 @@
     "level": 8,
     "weight": 10,
     "cost": 550,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1371,7 +1337,6 @@
     "level": 0,
     "weight": 10,
     "cost": 230,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1392,7 +1357,6 @@
     "level": 10,
     "weight": 10,
     "cost": 720,
-    "condition": 100,
     "extra_flags": "glow magic bless",
     "wear_flags": "take hold"
   }},
@@ -1411,7 +1375,6 @@
     "level": 0,
     "weight": 10,
     "cost": 200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1430,7 +1393,6 @@
     "level": 9,
     "weight": 10,
     "cost": 830,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take hold"
   }},
@@ -1449,7 +1411,6 @@
     "level": 3,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1470,7 +1431,6 @@
     "level": 4,
     "weight": 10,
     "cost": 290,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1492,7 +1452,6 @@
     "level": 5,
     "weight": 30,
     "cost": 750,
-    "condition": 100,
     "wear_flags": "take shield"
   }},
   {"object": {
@@ -1511,11 +1470,10 @@
     "level": 0,
     "weight": 10,
     "cost": 8,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "cup",
-      "description": "It is a small simple cup.\n"
+      "description": "It is a small simple cup."
     }]
   }},
   {"object": {
@@ -1534,11 +1492,10 @@
     "level": 0,
     "weight": 10,
     "cost": 6,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "cup",
-      "description": "It is a small simple cup.\n"
+      "description": "It is a small simple cup."
     }]
   }},
   {"object": {
@@ -1557,11 +1514,10 @@
     "level": 0,
     "weight": 10,
     "cost": 1,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "cup",
-      "description": "It is a large simple cup.\n"
+      "description": "It is a large simple cup."
     }]
   }},
   {"object": {
@@ -1621,7 +1577,6 @@
     "level": 10,
     "weight": 180,
     "cost": 1320,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -1641,7 +1596,6 @@
     "level": 10,
     "weight": 50,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -1661,7 +1615,6 @@
     "level": 10,
     "weight": 100,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take legs"
   }},
   {"object": {
@@ -1681,7 +1634,6 @@
     "level": 10,
     "weight": 60,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take feet"
   }},
   {"object": {
@@ -1701,7 +1653,6 @@
     "level": 10,
     "weight": 40,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take hands"
   }},
   {"object": {
@@ -1721,7 +1672,6 @@
     "level": 10,
     "weight": 80,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take arms"
   }},
   {"object": {
@@ -1742,7 +1692,6 @@
     "level": 10,
     "weight": 100,
     "cost": 1190,
-    "condition": 100,
     "wear_flags": "take shield"
   }},
   {"object": {
@@ -1763,7 +1712,6 @@
     "level": 3,
     "weight": 20,
     "cost": 510,
-    "condition": 100,
     "wear_flags": "take shield"
   }},
   {"object": {
@@ -1782,7 +1730,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key iron",
-      "description": "The iron key is not special.\n"
+      "description": "The iron key is not special."
     }]
   }},
   {"object": {
@@ -1801,7 +1749,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key rusty",
-      "description": "The key is a fairly large rusty key.  You notice some fresh dirt on it.\n"
+      "description": "The key is a fairly large rusty key.  You notice some fresh dirt on it."
     }]
   }},
   {"object": {
@@ -1820,7 +1768,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key wooden",
-      "description": "The wooden key is not special.\n"
+      "description": "The wooden key is not special."
     }]
   }},
   {"object": {
@@ -1839,7 +1787,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key brass",
-      "description": "The brass key is small and looks like it fits a very complicated lock.\n"
+      "description": "The brass key is small and looks like it fits a very complicated lock."
     }]
   }},
   {"object": {
@@ -1860,11 +1808,14 @@
     "level": 26,
     "weight": 50,
     "cost": 2000,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword long",
-      "description": "This is the ceremonial sword of the Mayor of Midgaard.\nA\n13 20\nA\n12 20\n"
+      "description": "This is the ceremonial sword of the Mayor of Midgaard.
+                     |A
+                     |13 20
+                     |A
+                     |12 20"
     }]
   }},
   {"object": {
@@ -1904,11 +1855,11 @@
     "extra_description": [
       {
         "keyword": "drawer",
-        "description": "You notice a keyhole in the drawer.\n"
+        "description": "You notice a keyhole in the drawer."
       },
       {
         "keyword": "desk",
-        "description": "The desk looks very sparse, there is a drawer on the left side.\n"
+        "description": "The desk looks very sparse, there is a drawer on the left side."
       }
     ]
   }},
@@ -1933,7 +1884,7 @@
     "condition": 90,
     "extra_description": [{
       "keyword": "safe",
-      "description": "The safe is very heavy.\n"
+      "description": "The safe is very heavy."
     }]
   }},
   {"object": {
@@ -1948,11 +1899,10 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "silver",
-      "description": "Looks like at least a thousand coins.\n"
+      "description": "Looks like at least a thousand coins."
     }]
   }},
   {"object": {
@@ -1971,7 +1921,9 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "city key",
-      "description": "It is probably the biggest key you have seen in your life. It is made from\npolished gold and has various patterns on it along with the Midgaard Coat of\nArms.\n"
+      "description": "It is probably the biggest key you have seen in your life. It is made from
+                     |polished gold and has various patterns on it along with the Midgaard Coat of
+                     |Arms."
     }]
   }},
   {"object": {
@@ -1994,7 +1946,9 @@
     "condition": 90,
     "extra_description": [{
       "keyword": "bench",
-      "description": "It is a quite heavy but very comfortable bench.  It is placed with its front\ntowards the river so you can sit and watch the river and the houses on the\nother side.\n"
+      "description": "It is a quite heavy but very comfortable bench.  It is placed with its front
+                     |towards the river so you can sit and watch the river and the houses on the
+                     |other side."
     }]
   }},
   {"object": {
@@ -2011,7 +1965,7 @@
     "condition": 90,
     "extra_description": [{
       "keyword": "fountain",
-      "description": "It is very nice.  Made from fine white marble.\n"
+      "description": "It is very nice.  Made from fine white marble."
     }]
   }},
   {"object": {
@@ -2026,7 +1980,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -2045,7 +1998,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key steel",
-      "description": "A key of this size must fit a very strong lock.\n"
+      "description": "A key of this size must fit a very strong lock."
     }]
   }},
   {"object": {
@@ -2082,10 +2035,18 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "letter resignation",
-      "description": "The letter is written in a bold and feminine Carolinian hand.\n\n    To whom it may concern,\n\n        Merc Industries has installed a new no-rent save and quit\n        system.  Apparently one can now save and quit at any time\n        from anywhere inside a town or out.  My services here are\n        no longer required.\n\n    Diana the Receptionist\n"
+      "description": "The letter is written in a bold and feminine Carolinian hand.
+                     |
+                     |    To whom it may concern,
+                     |
+                     |        Merc Industries has installed a new no-rent save and quit
+                     |        system.  Apparently one can now save and quit at any time
+                     |        from anywhere inside a town or out.  My services here are
+                     |        no longer required.
+                     |
+                     |    Diana the Receptionist"
     }]
   }},
   {"object": {
@@ -2103,10 +2064,18 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "notice liquidation bank",
-      "description": "The letter is written in a reserved and dignified Spencer hand.\n\n    To whom it may concern,\n\n        Merc Industries has charmed your money.  Apparently one's\n        gold will remain close, even beyond death. We are closing\n        down our offices and ATM machines.  Our services here are\n        no longer required.\n\n    Midgaard City Bank\n"
+      "description": "The letter is written in a reserved and dignified Spencer hand.
+                     |
+                     |    To whom it may concern,
+                     |
+                     |        Merc Industries has charmed your money.  Apparently one's
+                     |        gold will remain close, even beyond death. We are closing
+                     |        down our offices and ATM machines.  Our services here are
+                     |        no longer required.
+                     |
+                     |    Midgaard City Bank"
     }]
   }},
   {"object": {
@@ -2125,11 +2094,10 @@
     "level": 0,
     "weight": 10,
     "cost": 12,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "coffee",
-      "description": "It's a nice flavorful blend, just right for late-night mudding sessions.\n"
+      "description": "It's a nice flavorful blend, just right for late-night mudding sessions."
     }]
   }},
   {"object": {
@@ -2147,11 +2115,10 @@
     "level": 0,
     "weight": 20,
     "cost": 10,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "soup",
-      "description": "This looks like just the thing for a cold!\n"
+      "description": "This looks like just the thing for a cold!"
     }]
   }},
   {"object": {
@@ -2169,11 +2136,11 @@
     "level": 0,
     "weight": 30,
     "cost": 14,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "stew bowl",
-      "description": "This is Kate's special stew, guaranteed to keep hunger pangs away for many\nhours.  Care for a bite?\n"
+      "description": "This is Kate's special stew, guaranteed to keep hunger pangs away for many
+                     |hours.  Care for a bite?"
     }]
   }},
   {"object": {
@@ -2191,11 +2158,10 @@
     "level": 0,
     "weight": 10,
     "cost": 5,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "biscuit",
-      "description": "A nice, soft biscuit with just enough butter.  Better buy two.\n"
+      "description": "A nice, soft biscuit with just enough butter.  Better buy two."
     }]
   }},
   {"object": {
@@ -2214,11 +2180,11 @@
     "level": 0,
     "weight": 20,
     "cost": 20,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "beer bottle",
-      "description": "It's a fine beer for serious drinkers, complete with the famous horse head\nlogo.  Worth every penny.\n"
+      "description": "It's a fine beer for serious drinkers, complete with the famous horse head
+                     |logo.  Worth every penny."
     }]
   }},
   {"object": {
@@ -2241,7 +2207,8 @@
     "condition": 90,
     "extra_description": [{
       "keyword": "bed",
-      "description": "This is a standard bed you'll find in most inns. Sleeping in or resting on\nit may yield positive results for your health!\n"
+      "description": "This is a standard bed you'll find in most inns. Sleeping in or resting on
+                     |it may yield positive results for your health!"
     }]
   }},
   {"object": {
@@ -2271,11 +2238,50 @@
     "level": 0,
     "weight": 10,
     "cost": 500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map midgaard",
-      "description": ".\n                        * * * MIDGAARD * * *\n                         = = ========== = =\n \n                                     Rainbow Bridge (Asgard and Valhalla)\n                                    /\n          North            Temple Altar   Mud School <--- ** NEWBIES **\n            |   /Up        (Healer, Pit)      |           ** GO HERE **\n            | /                  |       /Entrance to\n     West---+---East             |     /  Mud School\n          / |                 Temple of       |\n    Down/   |                   Mota        Arena\n          South               (Recall)\n                                 |\n                                 |   /In the Air   /Bedrooms\n                  Cleric         | /             /\n       Northern   Guild----Temple Square---Grunting---Bar    Northern\n       Midgaard              (Fountain)    Boar Inn          Midgaard\n     (Clan Road) Magic           |                          (Clan Road)\n           |     Shop   Bakery   |    Grocer    Weaponsmith     |\n           |       |      |      |       |           |          |\nTo    <---West---Main-Street---Market----Main-Street-+--------East--->Cross\nShire,    Gate     |      |    Square    |           |        Gate    Roads\nForest of  |     Mage  Armoury   |     Jeweler    Warrior       |\nHaon-Dor   |     Guild           |                 Guild     Wall Road\n          Wall                   |                              |\n          Road  Leather  Map     |    Grebe's  Pet   Apothecary |\n           |     Shop    Shop    |    Tavern   Shop  (Potions)  |\n           |      |       |    Common   |       |       |       |\n          Wall---Poor-Alley----Square---Dark-Alley------+----Wall Road\n          Road    |       |      |      |       |       |       |\n           |   Temple   Grubby   |   Thieves  Levee   Warehouse |\n           |  Of Stupid  Inn     |    Guild   (Boats) (Sailor)  |\n           |                    Dump            |               |\n          Wall  Mob      Sewers/ |              |             Wall\n          Road--Factory          |              |             Road\n           |                   South         Midgaard           |         To the\n         Bridge                Bridge         River---------> Bridge <--> Sands\n           |                     |                              |           of\n        Southern              Southern                       Southern     Sorrow\n        Midgaard              Midgaard                       Midgaard\n"
+      "description": ".
+                     |                        * * * MIDGAARD * * *
+                     |                         = = ========== = =
+                     | 
+                     |                                     Rainbow Bridge (Asgard and Valhalla)
+                     |                                    /
+                     |          North            Temple Altar   Mud School <--- ** NEWBIES **
+                     |            |   /Up        (Healer, Pit)      |           ** GO HERE **
+                     |            | /                  |       /Entrance to
+                     |     West---+---East             |     /  Mud School
+                     |          / |                 Temple of       |
+                     |    Down/   |                   Mota        Arena
+                     |          South               (Recall)
+                     |                                 |
+                     |                                 |   /In the Air   /Bedrooms
+                     |                  Cleric         | /             /
+                     |       Northern   Guild----Temple Square---Grunting---Bar    Northern
+                     |       Midgaard              (Fountain)    Boar Inn          Midgaard
+                     |     (Clan Road) Magic           |                          (Clan Road)
+                     |           |     Shop   Bakery   |    Grocer    Weaponsmith     |
+                     |           |       |      |      |       |           |          |
+                     |To    <---West---Main-Street---Market----Main-Street-+--------East--->Cross
+                     |Shire,    Gate     |      |    Square    |           |        Gate    Roads
+                     |Forest of  |     Mage  Armoury   |     Jeweler    Warrior       |
+                     |Haon-Dor   |     Guild           |                 Guild     Wall Road
+                     |          Wall                   |                              |
+                     |          Road  Leather  Map     |    Grebe's  Pet   Apothecary |
+                     |           |     Shop    Shop    |    Tavern   Shop  (Potions)  |
+                     |           |      |       |    Common   |       |       |       |
+                     |          Wall---Poor-Alley----Square---Dark-Alley------+----Wall Road
+                     |          Road    |       |      |      |       |       |       |
+                     |           |   Temple   Grubby   |   Thieves  Levee   Warehouse |
+                     |           |  Of Stupid  Inn     |    Guild   (Boats) (Sailor)  |
+                     |           |                    Dump            |               |
+                     |          Wall  Mob      Sewers/ |              |             Wall
+                     |          Road--Factory          |              |             Road
+                     |           |                   South         Midgaard           |         To the
+                     |         Bridge                Bridge         River---------> Bridge <--> Sands
+                     |           |                     |                              |           of
+                     |        Southern              Southern                       Southern     Sorrow
+                     |        Midgaard              Midgaard                       Midgaard"
     }]
   }},
   {"object": {
@@ -2290,11 +2296,42 @@
     "level": 0,
     "weight": 10,
     "cost": 1500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map thera",
-      "description": ".\n                         * * * Northern Thera  * * *\n                          = = ================== = =\n \n                                                   Moria\n                             Olympus          New    |    Dwarven--Mines\nMage            Elven Valley    |     Ofcol--Ofcol   +----Kingdom\nTower                       \\   |       |            |       |    \\Catacombs\n  |    Dragon Tower          Plains-----+            |   Day-Care\n  |   /                         |       |            |             Void---Old\nShadow                      Northern  Stones of      |   Nirvana\\    |   Thalos\nGrove---Galaxy              Midgaard   G'harne       |            \\Holy\n  |                             |                    |     Smurf   Grove\n   \\  Arachnos    Shire  Asgard | In the Air         |    Village    |\n     \\   |          |         \\ | /                  |       |       |    Check\n      Forest Of-----+-------Midgaard---------------Cross---Eastern Road---Point\n      Haon Dor              / | | | \\              Roads             |\n     /     |     Mob Factory  | | |  Machine            \\        Gnome Village\n  Old    Troll               /  | |  Dreams               \\\n Marsh    Den           Sewer   |  \\            Ruins of---Dwarf---Frigid Waste\n                                |    \\Midgaard   Thalos    Forest         |\n       Redferne's---Chain---Southern    River                |  \\      Keep of\n       Residence            Midgaard         \\       Wyvern--+  Drow   Mahn-tor\n           |                  / | \\          Sands of Tower  |  City\n         Clouds      Gang Land  | Graveyard  Sorrow          |\n        (Harpies)               |      \\           \\       Elemental\n                            Miden'nir   Church   Mega-City  Canyon\n                            (Goblins)  Catacombs    One\n \nThis map shows just about all the major areas on ROM.  This map is NOT drawn\nto scale, some of the directions were changed to make everything fit.  This\nmap shows the GENERAL location of an area with respect to the other areas.\nType \"areas\" for a complete list with suggested levels and the authors.\n"
+      "description": ".
+                     |                         * * * Northern Thera  * * *
+                     |                          = = ================== = =
+                     | 
+                     |                                                   Moria
+                     |                             Olympus          New    |    Dwarven--Mines
+                     |Mage            Elven Valley    |     Ofcol--Ofcol   +----Kingdom
+                     |Tower                       \\   |       |            |       |    \\Catacombs
+                     |  |    Dragon Tower          Plains-----+            |   Day-Care
+                     |  |   /                         |       |            |             Void---Old
+                     |Shadow                      Northern  Stones of      |   Nirvana\\    |   Thalos
+                     |Grove---Galaxy              Midgaard   G'harne       |            \\Holy
+                     |  |                             |                    |     Smurf   Grove
+                     |   \\  Arachnos    Shire  Asgard | In the Air         |    Village    |
+                     |     \\   |          |         \\ | /                  |       |       |    Check
+                     |      Forest Of-----+-------Midgaard---------------Cross---Eastern Road---Point
+                     |      Haon Dor              / | | | \\              Roads             |
+                     |     /     |     Mob Factory  | | |  Machine            \\        Gnome Village
+                     |  Old    Troll               /  | |  Dreams               \\
+                     | Marsh    Den           Sewer   |  \\            Ruins of---Dwarf---Frigid Waste
+                     |                                |    \\Midgaard   Thalos    Forest         |
+                     |       Redferne's---Chain---Southern    River                |  \\      Keep of
+                     |       Residence            Midgaard         \\       Wyvern--+  Drow   Mahn-tor
+                     |           |                  / | \\          Sands of Tower  |  City
+                     |         Clouds      Gang Land  | Graveyard  Sorrow          |
+                     |        (Harpies)               |      \\           \\       Elemental
+                     |                            Miden'nir   Church   Mega-City  Canyon
+                     |                            (Goblins)  Catacombs    One
+                     | 
+                     |This map shows just about all the major areas on ROM.  This map is NOT drawn
+                     |to scale, some of the directions were changed to make everything fit.  This
+                     |map shows the GENERAL location of an area with respect to the other areas.
+                     |Type \"areas\" for a complete list with suggested levels and the authors."
     }]
   }},
   {"object": {
@@ -2309,11 +2346,50 @@
     "level": 0,
     "weight": 10,
     "cost": 1000,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map southern midgaard",
-      "description": ".\n                         * * * SOUTHERN MIDGAARD * * *\n                          = = =================== = =\n \n West                          South             Kate's                   East\nBridge                         Bridge            Diner                   Bridge\n  |                              |                 |                       |\nNorthwest                        |              Austral                Northeast\nConcourse---Promenade--------Promenade----------Square-----------------Concourse\n    |           |                |                 |                       |\n    |           |                |                 |          Fountain     |\n    |           |                |              Emerald           |        |\nConcourse     Park              Park-----Park     Ave----Penny--Penny--Concourse\n    |         Road            Entrance   Cafe      |     Lane   Lane       |\n    |           |                |              Emerald                    |\n    |           |                |                Ave                      |\n    |           |                |                 |                       |\n    |  Guard  Park     Park     The      Park   Emerald   Town             |\n    |   HQ----Road---Entrance---Park---Entrance---Ave-----Hall             |\n    |           |                                  |                       |\n    |         Park              Emerald---------Emerald--------------Gang  |\n    |         Road                Ave             Ave                |  |  |\n    |           |                  |                                 |  |  |\n    |         Park----------------Road----------Park            Elm--Land  |\n    |         Road             /Crossing        Road           Street      |\n    |                     Chain    |              |              |         |\nConcourse                /         |            Park----Elm-----Elm----Concourse\n    |       (Redferne's, Harpies)  |            Road   Street  Street      |\n    |                              |              |              |         |\n    |                Emerald--Emerald            Park        Graveyard     |\n    |                  Ave      Ave             Road    (Church Catacombs) |\n    |                   |                         |                        |\n    |                Emerald                    Park                       |\n    |                  Ave                      Road                       |\n    |                   |                         |                        |\nConcourse-----------Concourse------Inside-----Concourse----------------Concourse\n                                 South Gate\n                                     |\n                                 Miden'Nir\n                                 (Goblins)\n\n"
+      "description": ".
+                     |                         * * * SOUTHERN MIDGAARD * * *
+                     |                          = = =================== = =
+                     | 
+                     | West                          South             Kate's                   East
+                     |Bridge                         Bridge            Diner                   Bridge
+                     |  |                              |                 |                       |
+                     |Northwest                        |              Austral                Northeast
+                     |Concourse---Promenade--------Promenade----------Square-----------------Concourse
+                     |    |           |                |                 |                       |
+                     |    |           |                |                 |          Fountain     |
+                     |    |           |                |              Emerald           |        |
+                     |Concourse     Park              Park-----Park     Ave----Penny--Penny--Concourse
+                     |    |         Road            Entrance   Cafe      |     Lane   Lane       |
+                     |    |           |                |              Emerald                    |
+                     |    |           |                |                Ave                      |
+                     |    |           |                |                 |                       |
+                     |    |  Guard  Park     Park     The      Park   Emerald   Town             |
+                     |    |   HQ----Road---Entrance---Park---Entrance---Ave-----Hall             |
+                     |    |           |                                  |                       |
+                     |    |         Park              Emerald---------Emerald--------------Gang  |
+                     |    |         Road                Ave             Ave                |  |  |
+                     |    |           |                  |                                 |  |  |
+                     |    |         Park----------------Road----------Park            Elm--Land  |
+                     |    |         Road             /Crossing        Road           Street      |
+                     |    |                     Chain    |              |              |         |
+                     |Concourse                /         |            Park----Elm-----Elm----Concourse
+                     |    |       (Redferne's, Harpies)  |            Road   Street  Street      |
+                     |    |                              |              |              |         |
+                     |    |                Emerald--Emerald            Park        Graveyard     |
+                     |    |                  Ave      Ave             Road    (Church Catacombs) |
+                     |    |                   |                         |                        |
+                     |    |                Emerald                    Park                       |
+                     |    |                  Ave                      Road                       |
+                     |    |                   |                         |                        |
+                     |Concourse-----------Concourse------Inside-----Concourse----------------Concourse
+                     |                                 South Gate
+                     |                                     |
+                     |                                 Miden'Nir
+                     |                                 (Goblins)
+                     |"
     }]
   }},
   {"object": {
@@ -2328,11 +2404,46 @@
     "level": 0,
     "weight": 10,
     "cost": 750,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map dwarven kingdom dwarf",
-      "description": ".\n                         * * * The Dwarven Kingdom * * *\n                          = = ===================== = =\n \n                    Dwarven\n                    Hospital\n                       |                                              *Path to\n         North of---Path by---Path by---Barracks     Guard--Door to----Castle\n          Shops     Hospital  Barracks  Entrance     House  Kingdom  Strangelove\nGranite     |                              |                   |\nHead's---Path North                      First               Narrow\nBakery    of Shop                       Barracks              Path\n            |                              |                   |\n         Hide and    Turn               Back of     Bend in--Narrow\n        Tooth Shop--in Road             Barracks     Path     Path\n                       |                    \\         |\n                    Path to               Dwarven   Narrow\n                    Village              Catacombs   Path\n                       |                              |\n             Store  *Inside    Entrance     Top of   Dark   *Mine\n             Room---Entrance--To Mountain--Mountain--Path--Entrance\n                \\                             |                 \\\n               Wine                        Middle of          Dwarven\n              Cellar                       Mountain            Mines\n                  \\                            |\n                Dwarven                    Base of\n               Catacombs    Moria          Mountain           North\n                              |               |           Up\\   |\n                              |            Path to            \\ |\n                            Plains--Hills--Dwarven      West----+----East\n                              |            Kingdom              | \\\n                              |               |                 |   \\Down\n              Midgaard <----Cross          Dwarven            South\n                            Roads          Drop-off\n                                          (Day-Care)\n \n*key required\n"
+      "description": ".
+                     |                         * * * The Dwarven Kingdom * * *
+                     |                          = = ===================== = =
+                     | 
+                     |                    Dwarven
+                     |                    Hospital
+                     |                       |                                              *Path to
+                     |         North of---Path by---Path by---Barracks     Guard--Door to----Castle
+                     |          Shops     Hospital  Barracks  Entrance     House  Kingdom  Strangelove
+                     |Granite     |                              |                   |
+                     |Head's---Path North                      First               Narrow
+                     |Bakery    of Shop                       Barracks              Path
+                     |            |                              |                   |
+                     |         Hide and    Turn               Back of     Bend in--Narrow
+                     |        Tooth Shop--in Road             Barracks     Path     Path
+                     |                       |                    \\         |
+                     |                    Path to               Dwarven   Narrow
+                     |                    Village              Catacombs   Path
+                     |                       |                              |
+                     |             Store  *Inside    Entrance     Top of   Dark   *Mine
+                     |             Room---Entrance--To Mountain--Mountain--Path--Entrance
+                     |                \\                             |                 \\
+                     |               Wine                        Middle of          Dwarven
+                     |              Cellar                       Mountain            Mines
+                     |                  \\                            |
+                     |                Dwarven                    Base of
+                     |               Catacombs    Moria          Mountain           North
+                     |                              |               |           Up\\   |
+                     |                              |            Path to            \\ |
+                     |                            Plains--Hills--Dwarven      West----+----East
+                     |                              |            Kingdom              | \\
+                     |                              |               |                 |   \\Down
+                     |              Midgaard <----Cross          Dwarven            South
+                     |                            Roads          Drop-off
+                     |                                          (Day-Care)
+                     | 
+                     |*key required"
     }]
   }},
   {"object": {
@@ -2347,11 +2458,40 @@
     "level": 0,
     "weight": 10,
     "cost": 1500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map moria first",
-      "description": "* * * MORIA - Map 1 * * *                                           To Mahn-Tor\n = = =============== = =                                                 |\nTalk about a mess!                                                   Foothills\n                                                                         |\nThis is as far as our courageous, noble, brave           Light Cave    Valley\nand apparently quite deceased cartographers                   |           |\ncould get.  Perhaps more maps could be found             Smelly Tunnel  Cave\nin the depths of Moria itself.                                |           |\n                                                  Cave---Many Tunnels---Tunnel\n                                                    |         |           |\n         West End--Large Cave--East End           Cave      Tunnel      *Hole\n            |          |                            |         |        (Map 2)\n            |        Tunnel---------Tunnel--------Tunnel----Tunnel\n            |                                       |\n *Hole----Damp----Damp  Tunnel--Tunnel--Tunnel    Tunnel\n(Map 3)  Tunnel  Tunnel   |               |         |\n                   |      |            (*Map 3)  The Cave\n                   |      |                         |\n                   |    Tunnel--Light--Maze      End of\n                   |            Cave    |        The Path\n                   |                  Light         |\n                   |                  Cave      The Hills--> Dwarven Kingdom\n                   |                    |           |\n                 Tunnel----Tunnel-----Light     The Plains\n                                      Cave          |\n                                                 The Lane\n                                                    |\n                                      Midgaard <--Cross--> Eastern Road\n                                                  Roads\n                                                    |\n                                               Dwarf Forest\n"
+      "description": "* * * MORIA - Map 1 * * *                                           To Mahn-Tor
+                     | = = =============== = =                                                 |
+                     |Talk about a mess!                                                   Foothills
+                     |                                                                         |
+                     |This is as far as our courageous, noble, brave           Light Cave    Valley
+                     |and apparently quite deceased cartographers                   |           |
+                     |could get.  Perhaps more maps could be found             Smelly Tunnel  Cave
+                     |in the depths of Moria itself.                                |           |
+                     |                                                  Cave---Many Tunnels---Tunnel
+                     |                                                    |         |           |
+                     |         West End--Large Cave--East End           Cave      Tunnel      *Hole
+                     |            |          |                            |         |        (Map 2)
+                     |            |        Tunnel---------Tunnel--------Tunnel----Tunnel
+                     |            |                                       |
+                     | *Hole----Damp----Damp  Tunnel--Tunnel--Tunnel    Tunnel
+                     |(Map 3)  Tunnel  Tunnel   |               |         |
+                     |                   |      |            (*Map 3)  The Cave
+                     |                   |      |                         |
+                     |                   |    Tunnel--Light--Maze      End of
+                     |                   |            Cave    |        The Path
+                     |                   |                  Light         |
+                     |                   |                  Cave      The Hills--> Dwarven Kingdom
+                     |                   |                    |           |
+                     |                 Tunnel----Tunnel-----Light     The Plains
+                     |                                      Cave          |
+                     |                                                 The Lane
+                     |                                                    |
+                     |                                      Midgaard <--Cross--> Eastern Road
+                     |                                                  Roads
+                     |                                                    |
+                     |                                               Dwarf Forest"
     }]
   }},
   {"object": {
@@ -2366,11 +2506,62 @@
     "level": 0,
     "weight": 10,
     "cost": 2500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map new thalos",
-      "description": ".\n           * * * **************** New Thalos ***************** * * *\n                   \"Not Thalos or Old Thalos but New Thalos\"\n            = = =============================================== = =\n\n                                   Plains\n                                     |\nNorthwest--West Casbah-------------North-----------------Casbah--------Northeast\n  Tower     |                       Gate                    |            Tower\n          Alley                      |                      |              |\n            |    Guard            Sultan's                  |  Library----Kali\n          Alley  House              Walk                    |             Row\n                   |                 |      Dancing         |              |\n     Sultan's----Grand----Palace--Sultan's--Daemon          |   Dance-----Kali\n      Palace    Entrance   Gate     Walk      Inn           |   Hall      Row\n                   |                 |                      |\n                 Guard               |         Bowyer--Guildsman's--Mason's\n                 House               |         Guild       Row      Guild\n High                                |                      |\nPriest                               |         Weaver--Guildsman's--Craftsman\nChamber  Altar                    Sultan's     Guild       Row        Guild\n  |        |                        Walk                    |\nInside--Inside--Donation             |         Tanner--Guildsman's--Museum\nTemple  Temple    Room               |         Guild       Row      of the\n  |        |                         |                      |       Greater\nCleric     |                         |                 Guildsman's---Gods\nGuild     /                          |                     Row\n        /                            |                      |\n     Temple             Ahkeem's  Sultan's  Vera's     Guildsman's         Mage\n     Gates                Stuff     Walk   Veggies         Row             Tower\n       |     Alley--Alley    |       |       |              |                |\n     Temple    |           Market--Market--Market           | Witch's  Magic |\n     Square  Alley   Bank--Square  Square  Square--Butchery |  Brew    Shop  |\n       |       |             |       |       |              |    |      |    |\nWest--West---West---West---Market--Center--Market---East--East--East--East--East\nGate  Main   Main   Main   Square  Square  Square   Main  Main  Main  Main  Gate\n  |    |       |             |       |       |              |    |\n  |  Repair  Alley  Store--Market--Market--Market--Abdul's  | Mercenary--Thieves\n  |   Shop     |           Square  Square  Sqaure   Armor   |   Guild     Guild\n  |          Alley--Alley    |       |       |             Alley\nWarrior's                  Bread   Medina  Igor's  Leather  |           Smuggler\n  Guild                    Stand     |    Weapons   Shop---Alley--Alley---Inn\n                                   Medina                        /\n      Warehouse    Shipwright        |     Forge  Stables      /    Cass's  Dump\n       |     |          |          Common    |       |        |       |      |\n       +-----West Ishtar Drive-----Square----+---East Ishtar Drive----+------+\n                        |            |\n                    Boat Ramp        |\n                        |          South\n===================Ishtar River====Bridge======================> To Dragon Sea\n                                     |\n                                   South\n                                   Gate\n"
+      "description": ".
+                     |           * * * **************** New Thalos ***************** * * *
+                     |                   \"Not Thalos or Old Thalos but New Thalos\"
+                     |            = = =============================================== = =
+                     |
+                     |                                   Plains
+                     |                                     |
+                     |Northwest--West Casbah-------------North-----------------Casbah--------Northeast
+                     |  Tower     |                       Gate                    |            Tower
+                     |          Alley                      |                      |              |
+                     |            |    Guard            Sultan's                  |  Library----Kali
+                     |          Alley  House              Walk                    |             Row
+                     |                   |                 |      Dancing         |              |
+                     |     Sultan's----Grand----Palace--Sultan's--Daemon          |   Dance-----Kali
+                     |      Palace    Entrance   Gate     Walk      Inn           |   Hall      Row
+                     |                   |                 |                      |
+                     |                 Guard               |         Bowyer--Guildsman's--Mason's
+                     |                 House               |         Guild       Row      Guild
+                     | High                                |                      |
+                     |Priest                               |         Weaver--Guildsman's--Craftsman
+                     |Chamber  Altar                    Sultan's     Guild       Row        Guild
+                     |  |        |                        Walk                    |
+                     |Inside--Inside--Donation             |         Tanner--Guildsman's--Museum
+                     |Temple  Temple    Room               |         Guild       Row      of the
+                     |  |        |                         |                      |       Greater
+                     |Cleric     |                         |                 Guildsman's---Gods
+                     |Guild     /                          |                     Row
+                     |        /                            |                      |
+                     |     Temple             Ahkeem's  Sultan's  Vera's     Guildsman's         Mage
+                     |     Gates                Stuff     Walk   Veggies         Row             Tower
+                     |       |     Alley--Alley    |       |       |              |                |
+                     |     Temple    |           Market--Market--Market           | Witch's  Magic |
+                     |     Square  Alley   Bank--Square  Square  Square--Butchery |  Brew    Shop  |
+                     |       |       |             |       |       |              |    |      |    |
+                     |West--West---West---West---Market--Center--Market---East--East--East--East--East
+                     |Gate  Main   Main   Main   Square  Square  Square   Main  Main  Main  Main  Gate
+                     |  |    |       |             |       |       |              |    |
+                     |  |  Repair  Alley  Store--Market--Market--Market--Abdul's  | Mercenary--Thieves
+                     |  |   Shop     |           Square  Square  Sqaure   Armor   |   Guild     Guild
+                     |  |          Alley--Alley    |       |       |             Alley
+                     |Warrior's                  Bread   Medina  Igor's  Leather  |           Smuggler
+                     |  Guild                    Stand     |    Weapons   Shop---Alley--Alley---Inn
+                     |                                   Medina                        /
+                     |      Warehouse    Shipwright        |     Forge  Stables      /    Cass's  Dump
+                     |       |     |          |          Common    |       |        |       |      |
+                     |       +-----West Ishtar Drive-----Square----+---East Ishtar Drive----+------+
+                     |                        |            |
+                     |                    Boat Ramp        |
+                     |                        |          South
+                     |===================Ishtar River====Bridge======================> To Dragon Sea
+                     |                                     |
+                     |                                   South
+                     |                                   Gate"
     }]
   }},
   {"object": {
@@ -2385,11 +2576,44 @@
     "level": 0,
     "weight": 10,
     "cost": 2000,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map olympus",
-      "description": ".\n                               *****OLYMPUS*****\n                               =================\n \n                                   Bedroom\n                                      |\n                                   Northern\n                                     Hall\n                        Western       |         Eastern\n              Bedroom----Hall----Second Floor----Hall----Bedroom\n                                /     |\n                         Stairway  Southern\n                             |       Hall                    North\n                        Throne Room   |                        |  /Up\n                             |      Bedroom                    |/\n                             |                          West---+---East\n                  Kitchen    |     Stable                     /|\n                     |       |       |                  Down/  |\n        Guest     Western  Castle  Eastern   Guest           South\n       Quarters----Wing----Entry----Wing----Quarters\n                     |       |       |\n                  Storage   Z|    Storage\n                   Room     e|S    Room   Smithy\n                            u|t             |\n                            s+--Ares Street-+--Weapon\n                    Mystery  |              |   Shop\n                    Shop-----+           Armoury\n                             |\n                   Residence-+-Residence\n                             |\n                     Bakery--+\n                             |\n                       **Entrance**\n                            /\n                      Mountain\n"
+      "description": ".
+                     |                               *****OLYMPUS*****
+                     |                               =================
+                     | 
+                     |                                   Bedroom
+                     |                                      |
+                     |                                   Northern
+                     |                                     Hall
+                     |                        Western       |         Eastern
+                     |              Bedroom----Hall----Second Floor----Hall----Bedroom
+                     |                                /     |
+                     |                         Stairway  Southern
+                     |                             |       Hall                    North
+                     |                        Throne Room   |                        |  /Up
+                     |                             |      Bedroom                    |/
+                     |                             |                          West---+---East
+                     |                  Kitchen    |     Stable                     /|
+                     |                     |       |       |                  Down/  |
+                     |        Guest     Western  Castle  Eastern   Guest           South
+                     |       Quarters----Wing----Entry----Wing----Quarters
+                     |                     |       |       |
+                     |                  Storage   Z|    Storage
+                     |                   Room     e|S    Room   Smithy
+                     |                            u|t             |
+                     |                            s+--Ares Street-+--Weapon
+                     |                    Mystery  |              |   Shop
+                     |                    Shop-----+           Armoury
+                     |                             |
+                     |                   Residence-+-Residence
+                     |                             |
+                     |                     Bakery--+
+                     |                             |
+                     |                       **Entrance**
+                     |                            /
+                     |                      Mountain"
     }]
   }},
   {"object": {
@@ -2403,8 +2627,7 @@
     "values": {},
     "level": 0,
     "weight": 0,
-    "cost": 0,
-    "condition": 100
+    "cost": 0
   }},
   {"object": {
     "area": "midgaard",
@@ -2421,7 +2644,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "nopurge"
   }},
   {"object": {
@@ -2458,12 +2680,17 @@
     "level": 7,
     "weight": 10,
     "cost": 890,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll identify",
-      "description": "The scroll has a magic formula drawn upon it:\n     ???\n    ?   ?\n       ?\n      ?\n      ?\n      *\n"
+      "description": "The scroll has a magic formula drawn upon it:
+                     |     ???
+                     |    ?   ?
+                     |       ?
+                     |      ?
+                     |      ?
+                     |      *"
     }]
   }},
   {"object": {
@@ -2481,12 +2708,11 @@
     "level": 0,
     "weight": 10,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "potion yellow",
-      "description": "The potion has a small label 'Detect The Invisible'.\n"
+      "description": "The potion has a small label 'Detect The Invisible'."
     }]
   }},
   {"object": {
@@ -2504,12 +2730,11 @@
     "level": 17,
     "weight": 20,
     "cost": 2900,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll",
-      "description": "The scroll has written a formula of 'Word of Recall' upon it.\n"
+      "description": "The scroll has written a formula of 'Word of Recall' upon it."
     }]
   }},
   {"object": {
@@ -2527,7 +2752,6 @@
     "level": 11,
     "weight": 10,
     "cost": 800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2546,7 +2770,6 @@
     "level": 11,
     "weight": 10,
     "cost": 800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2567,7 +2790,6 @@
     "level": 16,
     "weight": 10,
     "cost": 1800,
-    "condition": 100,
     "extra_flags": "glow hum magic bless",
     "wear_flags": "take hold"
   }},
@@ -2586,7 +2808,6 @@
     "level": 0,
     "weight": 10,
     "cost": 150,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2605,7 +2826,6 @@
     "level": 1,
     "weight": 10,
     "cost": 220,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2624,7 +2844,6 @@
     "level": 5,
     "weight": 10,
     "cost": 390,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2645,7 +2864,6 @@
     "level": 8,
     "weight": 10,
     "cost": 550,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2664,7 +2882,6 @@
     "level": 0,
     "weight": 10,
     "cost": 230,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2685,7 +2902,6 @@
     "level": 10,
     "weight": 10,
     "cost": 720,
-    "condition": 100,
     "extra_flags": "glow magic bless",
     "wear_flags": "take hold"
   }},
@@ -2704,7 +2920,6 @@
     "level": 0,
     "weight": 10,
     "cost": 200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2723,7 +2938,6 @@
     "level": 9,
     "weight": 10,
     "cost": 830,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take hold"
   }},
@@ -2742,7 +2956,6 @@
     "level": 3,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2763,7 +2976,6 @@
     "level": 4,
     "weight": 10,
     "cost": 290,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -2788,22 +3000,18 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "long sword",
-      "description": "It looks exceptionally sharp and well-balanced. Maybe you should keep it.\n"
+      "description": "It looks exceptionally sharp and well-balanced. Maybe you should keep it."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -2824,27 +3032,23 @@
     "level": 16,
     "weight": 50,
     "cost": 1280,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword",
-      "description": "You see a sword of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a sword of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -2865,27 +3069,23 @@
     "level": 8,
     "weight": 20,
     "cost": 590,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger",
-      "description": "You see a dagger of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a dagger of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 8,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 8,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -2906,27 +3106,23 @@
     "level": 7,
     "weight": 100,
     "cost": 620,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "mace",
-      "description": "You see a mace of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a mace of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 7,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -2948,11 +3144,11 @@
     "level": 5,
     "weight": 50,
     "cost": 900,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "vest",
-      "description": "You see a vest of great craftsmanship.  Stamped on the side is:\nMerc Industries\n"
+      "description": "You see a vest of great craftsmanship.  Stamped on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -2973,11 +3169,11 @@
     "level": 5,
     "weight": 30,
     "cost": 810,
-    "condition": 100,
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield",
-      "description": "You see a shield of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a shield of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -2998,11 +3194,11 @@
     "level": 5,
     "weight": 40,
     "cost": 510,
-    "condition": 100,
     "wear_flags": "take neck",
     "extra_description": [{
       "keyword": "cloak",
-      "description": "You see a cloak of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a cloak of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3023,11 +3219,11 @@
     "level": 5,
     "weight": 30,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "helmet",
-      "description": "You see a helmet of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a helmet of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3048,11 +3244,11 @@
     "level": 5,
     "weight": 30,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "leggings",
-      "description": "You see leggings of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see leggings of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3073,11 +3269,11 @@
     "level": 5,
     "weight": 30,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "boots",
-      "description": "You see boots of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see boots of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3098,11 +3294,11 @@
     "level": 5,
     "weight": 30,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "gloves",
-      "description": "You see gloves of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see gloves of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3123,11 +3319,11 @@
     "level": 5,
     "weight": 20,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take arms",
     "extra_description": [{
       "keyword": "sleeves",
-      "description": "You see sleeves of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see sleeves of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3148,11 +3344,11 @@
     "level": 3,
     "weight": 20,
     "cost": 380,
-    "condition": 100,
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "cape",
-      "description": "You see a cape of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a cape of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3173,11 +3369,11 @@
     "level": 5,
     "weight": 20,
     "cost": 450,
-    "condition": 100,
     "wear_flags": "take waist",
     "extra_description": [{
       "keyword": "belt standard merc",
-      "description": "You see a bronze belt of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a bronze belt of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3197,11 +3393,11 @@
     "level": 3,
     "weight": 10,
     "cost": 390,
-    "condition": 100,
     "wear_flags": "take wrist",
     "extra_description": [{
       "keyword": "bracer",
-      "description": "You see a bracer of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a bracer of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -3216,23 +3412,18 @@
     "level": 16,
     "weight": 10,
     "cost": 1280,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "saves",
         "level": 16,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -1
       },
       {
-        "apply": "armor class",
         "level": 16,
-        "modifier": -4,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -4
       }
     ]
   }},
@@ -3248,27 +3439,22 @@
     "level": 8,
     "weight": 10,
     "cost": 640,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "banner",
-      "description": "This is the official Merc war banner to see you through the darkest realm!\n"
+      "description": "This is the official Merc war banner to see you through the darkest realm!"
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 8,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       },
       {
-        "apply": "saves",
         "level": 8,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -1
       }
     ]
   }},
@@ -3284,19 +3470,17 @@
     "level": 20,
     "weight": 10,
     "cost": 860,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring diamond wedding",
-      "description": "A slender gold band set with a marquise-cut four carat blue-white solitaire.\nInscribed on the inside of the band is: 'Your loving husband, House'.\n"
+      "description": "A slender gold band set with a marquise-cut four carat blue-white solitaire.
+                     |Inscribed on the inside of the band is: 'Your loving husband, House'."
     }],
     "affects": [{
-      "apply": "saves",
       "level": 20,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -3311,19 +3495,16 @@
     "level": 20,
     "weight": 10,
     "cost": 860,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "band gold wedding",
-      "description": "A wide, plain circle of gold inscribed: 'Your loving wife, Vanya'.\n"
+      "description": "A wide, plain circle of gold inscribed: 'Your loving wife, Vanya'."
     }],
     "affects": [{
-      "apply": "saves",
       "level": 20,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -3338,7 +3519,6 @@
     "level": 0,
     "weight": 1,
     "cost": 1000,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }},
@@ -3354,7 +3534,6 @@
     "level": 0,
     "weight": 1,
     "cost": 500,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }},
@@ -3370,7 +3549,6 @@
     "level": 0,
     "weight": 1,
     "cost": 5000,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }},
@@ -3386,7 +3564,6 @@
     "level": 0,
     "weight": 1,
     "cost": 6000,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }},
@@ -3402,7 +3579,6 @@
     "level": 0,
     "weight": 1,
     "cost": 10000,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }},
@@ -3418,7 +3594,6 @@
     "level": 0,
     "weight": 1,
     "cost": 2000,
-    "condition": 100,
     "extra_flags": "sellextract",
     "wear_flags": "take hold"
   }}

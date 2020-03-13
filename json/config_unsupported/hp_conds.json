@@ -1,0 +1,46 @@
+[
+  {"hp_cond": {
+    "hp_percent": 100,
+    "message": "$1 is in excellent condition."
+  }},
+  {"hp_cond": {
+    "hp_percent": 90,
+    "message": "$1 has a few scratches."
+  }},
+  {"hp_cond": {
+    "hp_percent": 80,
+    "message": "$1 has a few bruises."
+  }},
+  {"hp_cond": {
+    "hp_percent": 70,
+    "message": "$1 has some small wounds and bruises."
+  }},
+  {"hp_cond": {
+    "hp_percent": 60,
+    "message": "$1 has some large wounds."
+  }},
+  {"hp_cond": {
+    "hp_percent": 50,
+    "message": "$1 has quite a large few wounds."
+  }},
+  {"hp_cond": {
+    "hp_percent": 40,
+    "message": "$1 has some big nasty wounds and scratches."
+  }},
+  {"hp_cond": {
+    "hp_percent": 30,
+    "message": "$1 looks seriously wounded."
+  }},
+  {"hp_cond": {
+    "hp_percent": 20,
+    "message": "$1 looks pretty hurt."
+  }},
+  {"hp_cond": {
+    "hp_percent": 10,
+    "message": "$1 is in awful condition."
+  }},
+  {"hp_cond": {
+    "hp_percent": 1,
+    "message": "$1 is in critical condition."
+  }}
+]

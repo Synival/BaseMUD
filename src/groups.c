@@ -13,25 +13,25 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include "utils.h"
 #include "affects.h"
 #include "comm.h"
-#include "skills.h"
 #include "db.h"
 #include "chars.h"
 #include "globals.h"
+#include "recycle.h"
 
 #include "groups.h"
 
@@ -39,7 +39,7 @@
  * (1) A ~ A
  * (2) if A ~ B then B ~ A
  * (3) if A ~ B  and B ~ C, then A ~ C */
-bool is_same_group (CHAR_T *ach, CHAR_T *bch) {
+bool is_same_group (const CHAR_T *ach, const CHAR_T *bch) {
     if (ach == NULL || bch == NULL)
         return FALSE;
 
@@ -68,12 +68,14 @@ void stop_follower (CHAR_T *ch) {
 
     if (IS_AFFECTED (ch, AFF_CHARM)) {
         REMOVE_BIT (ch->affected_by, AFF_CHARM);
-        affect_strip (ch, gsn_charm_person);
+        affect_strip_char (ch, SN(CHARM_PERSON));
     }
 
-    if (char_can_see_in_room (ch->master, ch) && ch->in_room != NULL)
-        act ("$n stops following you.", ch, NULL, ch->master, TO_VICT);
-    act ("You stop following $N.", ch, NULL, ch->master, TO_CHAR);
+    if (ch->in_room != NULL) {
+        if (char_can_see_in_room (ch->master, ch))
+            act ("$n stops following you.", ch, NULL, ch->master, TO_VICT);
+        act ("You stop following $N.", ch, NULL, ch->master, TO_CHAR);
+    }
     if (ch->master->pet == ch)
         ch->master->pet = NULL;
 
@@ -87,9 +89,12 @@ void nuke_pets (CHAR_T *ch) {
 
     if ((pet = ch->pet) != NULL) {
         stop_follower (pet);
-        if (pet->in_room != NULL)
+        if (pet->in_room != NULL) {
             act ("$N slowly fades away.", ch, NULL, pet, TO_OTHERS);
-        char_extract (pet, TRUE);
+            char_extract (pet);
+        }
+        else
+            char_free (pet);
     }
     ch->pet = NULL;
 }
@@ -104,7 +109,7 @@ void die_follower (CHAR_T *ch) {
     }
 
     ch->leader = NULL;
-    for (fch = char_list; fch != NULL; fch = fch->next) {
+    for (fch = char_first; fch != NULL; fch = fch->global_next) {
         if (fch->master == ch)
             stop_follower (fch);
         if (fch->leader == ch)

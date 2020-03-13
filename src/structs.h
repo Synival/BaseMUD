@@ -16,19 +16,31 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #ifndef __ROM_STRUCTS_H
 #define __ROM_STRUCTS_H
 
 #include "merc.h"
+
+/* Extended flags. */
+/* NOTE: the type used should be determined by EXT_FLAGS_ELEMENT_SIZE,
+ *       defined in 'defs.h'. If you want to use anything other than
+ *       8-bit unsigned chars, please upgrade! */
+struct ext_flags_type {
+    unsigned char bits[EXT_FLAGS_ARRAY_LENGTH];
+};
+
+struct ext_init_flags_type {
+    int *bits;
+};
 
 /* Objects that can be instantiated, freed, recycled, and catalogued. */
 struct recycle_type {
@@ -37,13 +49,13 @@ struct recycle_type {
     size_t size;
     size_t obj_data_off;
     size_t obj_name_off;
-    RECYCLE_INIT_FUN *const init_fun;
-    RECYCLE_DISPOSE_FUN *const dispose_fun;
+    INIT_FUN *const init_fun;
+    DISPOSE_FUN *const dispose_fun;
 
     /* internal - do not set in definition table! */
     int top, list_count, free_count;
-    OBJ_RECYCLE_T *list_front, *list_back;
-    OBJ_RECYCLE_T *free_front, *free_back;
+    OBJ_RECYCLE_T *list_first, *list_last;
+    OBJ_RECYCLE_T *free_first, *free_last;
 };
 
 /* Data stored in individual objects to make recycling work. */
@@ -55,7 +67,7 @@ struct obj_recycle_data {
 
 /* Structures, ahoy!*/
 struct ban_data {
-    BAN_T *next;
+    BAN_T *global_next, *global_prev;
     flag_t ban_flags;
     sh_int level;
     char *name;
@@ -63,8 +75,8 @@ struct ban_data {
 };
 
 struct buf_type {
-    sh_int state;  /* error state of the buffer */
-    sh_int size;   /* size in k */
+    sh_int state; /* error state of the buffer */
+    int size;     /* size in bytes */
     char *string; /* buffer's string */
     OBJ_RECYCLE_T rec_data;
 };
@@ -85,7 +97,7 @@ struct weather_data {
 
 /* Descriptor (channel) structure. */
 struct descriptor_data {
-    DESCRIPTOR_T *next;
+    DESCRIPTOR_T *global_next, *global_prev;
     DESCRIPTOR_T *snoop_by;
     CHAR_T *character;
     CHAR_T *original;
@@ -103,10 +115,10 @@ struct descriptor_data {
     int outtop;
     char *showstr_head;
     char *showstr_point;
-    int lines_written; /* for the pager */
-    void *pEdit;    /* OLC */
-    char **pString; /* OLC */
-    int editor;     /* OLC */
+    int lines_written;  /* for the pager */
+    void *olc_edit;     /* OLC */
+    char **string_edit; /* OLC */
+    int editor;         /* OLC */
     OBJ_RECYCLE_T rec_data;
 };
 
@@ -143,8 +155,9 @@ struct con_app_type {
 
 /* Help table types. */
 struct help_data {
-    HELP_T *next;
-    HELP_T *next_area;
+    HELP_T *global_next, *global_prev;
+    HELP_AREA_T *had;
+    HELP_T *had_next, *had_prev;
     sh_int level;
     char *keyword;
     char *text;
@@ -152,11 +165,11 @@ struct help_data {
 };
 
 struct help_area_data {
-    HELP_AREA_T *next;
-    HELP_T *first;
-    HELP_T *last;
-    char *area_str;
+    HELP_AREA_T *global_next, *global_prev;
     AREA_T *area;
+    HELP_AREA_T *area_next, *area_prev;
+    HELP_T *help_first, *help_last;
+    char *area_str;
     char *filename;
     char *name;
     bool changed;
@@ -164,7 +177,7 @@ struct help_area_data {
 };
 
 struct shop_data {
-    SHOP_T *next;
+    SHOP_T *global_next, *global_prev;
     sh_int keeper;                /* Vnum of shop keeper mob     */
     sh_int buy_type [MAX_TRADE];  /* Item types shop will buy    */
     sh_int profit_buy;            /* Cost multiplier for buying  */
@@ -175,9 +188,8 @@ struct shop_data {
 };
 
 struct class_type {
-    int type;
     char *name;              /* the full name of the class  */
-    char who_name    [4];    /* Three-letter name for 'who' */
+    char who_name[4];        /* Three-letter name for 'who' */
     sh_int attr_prime;       /* Prime attribute             */
     sh_int weapon;           /* First weapon                */
     sh_int guild[MAX_GUILD]; /* Vnum of guild rooms         */
@@ -186,10 +198,10 @@ struct class_type {
     sh_int thac0_32;         /* Thac0 for level 32          */
     sh_int hp_min;           /* Min hp gained on leveling   */
     sh_int hp_max;           /* Max hp gained on leveling   */
-    bool fMana;              /* Class gains mana on level   */
+    bool gains_mana;         /* Class gains mana on level   */
     char *base_group;        /* base skills gained          */
     char *default_group;     /* default skills gained       */
-    OBJ_RECYCLE_T rec_data;
+    bool can_sneak_away;     /* Can sneak away when fleeing */
 };
 
 struct item_type {
@@ -200,8 +212,9 @@ struct item_type {
 struct weapon_type {
     sh_int type;
     char *name;
+    char *skill;
     sh_int newbie_vnum;
-    sh_int *gsn;
+    int skill_index; /* dynamically set */
 };
 
 struct wiznet_type {
@@ -210,24 +223,29 @@ struct wiznet_type {
     int level;
 };
 
+struct effect_type {
+    int type;
+    char *name;
+    EFFECT_FUN *effect_fun;
+};
+
 struct dam_type {
     int type;
     char *name;
     flag_t res;
-    EFFECT_FUN *effect;
-    int dam_class;
+    int effect;
+    flag_t dam_flags;
 };
 
 struct attack_type {
-    char *name; /* name         */
-    char *noun; /* message      */
-    int damage; /* damage class */
+    char *name;   /* name          */
+    char *noun;   /* message       */
+    int dam_type; /* type of DAM_T */
 };
 
 struct race_type {
     char *name;   /* call name of the race          */
-    bool pc_race; /* can be chosen by pcs           */
-    flag_t mob;   /* act bits for the race          */
+    EXT_FLAGS_T ext_mob; /* act bits for the race   */
     flag_t aff;   /* aff bits for the race          */
     flag_t off;   /* off bits for the race          */
     flag_t imm;   /* imm bits for the race          */
@@ -240,12 +258,13 @@ struct race_type {
 struct pc_race_type {             /* additional data for pc races    */
     char *name;                   /* MUST be in race_type            */
     char who_name[8];
-    sh_int points;                /* cost in points of the race      */
+    sh_int creation_points;       /* cost in points of the race      */
     sh_int class_mult[CLASS_MAX]; /* exp multiplier for class, * 100 */
-    char *skills[5];              /* bonus skills for the race       */
+    char *skills[PC_RACE_SKILL_MAX]; /* bonus skills for the race    */
     sh_int stats[STAT_MAX];       /* starting stats                  */
     sh_int max_stats[STAT_MAX];   /* maximum stats                   */
     sh_int size;                  /* aff bits for the race           */
+    sh_int bonus_max;             /* bonus to maximum stats          */
 };
 
 struct spec_type {
@@ -255,7 +274,8 @@ struct spec_type {
 
 /* Data structure for notes. */
 struct note_data {
-    NOTE_T *next;
+    BOARD_T *board;
+    NOTE_T *board_next, *board_prev;
     sh_int type;
     char *sender;
     char *date;
@@ -269,7 +289,9 @@ struct note_data {
 
 /* An affect.  */
 struct affect_data {
-    AFFECT_T *next;
+    void *parent;
+    int parent_type;
+    AFFECT_T *on_next, *on_prev;
     sh_int bit_type;
     sh_int type;
     sh_int level;
@@ -292,6 +314,18 @@ struct flag_type {
     bool settable;
 };
 
+struct ext_flag_def_type {
+    char *name;
+    int bit;
+    bool settable;
+};
+
+struct type_type {
+    char *name;
+    type_t type;
+    bool settable;
+};
+
 struct sector_type {
     int type;
     const char *name;
@@ -306,10 +340,17 @@ struct clan_type {
     bool independent; /* true for loners */
 };
 
+struct hp_cond_type {
+    int hp_percent;
+    char *message;
+};
+
 struct position_type {
     int pos;
     char *long_name;
     char *name;
+    char *room_msg;
+    char *room_msg_furniture;
 };
 
 struct sex_type {
@@ -325,7 +366,7 @@ struct size_type {
 struct door_type {
     int dir;
     const char *name;
-    const char *from;
+    const char *from_phrase;
     const char *to_phrase;
     int reverse;
     const char *short_name;
@@ -340,16 +381,18 @@ struct dice_type {
 /* Prototype for a mob.
  * This is the in-memory version of #MOBILES. */
 struct mob_index_data {
-    MOB_INDEX_T *next;
-    SPEC_FUN *spec_fun;
-    SHOP_T *pShop;
-    MPROG_LIST_T *mprogs;
-    char *area_str;
+    MOB_INDEX_T *hash_next, *hash_prev;
     AREA_T *area; /* OLC */
+    MOB_INDEX_T *area_next, *area_prev;
+    SPEC_FUN *spec_fun;
+    SHOP_T *shop;
+    MPROG_LIST_T *mprog_first, *mprog_last;
+    CHAR_T *mob_first, *mob_last;
+    char *area_str;
     sh_int vnum, anum;
     sh_int group;
     bool new_format;
-    sh_int count;
+    sh_int mob_count;
     sh_int killed;
     char *name;
     char *short_descr;
@@ -361,8 +404,8 @@ struct mob_index_data {
     DICE_T hit;
     DICE_T mana;
     DICE_T damage;
-    sh_int ac[4];
-    sh_int dam_type;
+    sh_int ac[AC_MAX];
+    sh_int attack_type;
     sh_int start_pos;
     sh_int default_pos;
     sh_int sex;
@@ -371,7 +414,7 @@ struct mob_index_data {
     sh_int size;
     sh_int material;
     flag_t mprog_flags;
-    flag_t mob_plus,         mob_final,         mob_minus;
+    EXT_FLAGS_T ext_mob_plus, ext_mob_final, ext_mob_minus;
     flag_t affected_by_plus, affected_by_final, affected_by_minus;
     flag_t off_flags_plus,   off_flags_final,   off_flags_minus;
     flag_t imm_flags_plus,   imm_flags_final,   imm_flags_minus;
@@ -392,8 +435,8 @@ struct mem_data {
 
 /* One character (PC or NPC). */
 struct char_data {
-    CHAR_T *next;
-    CHAR_T *next_in_room;
+    CHAR_T *global_next, *global_prev;
+    CHAR_T *room_next, *room_prev;
     CHAR_T *master;
     CHAR_T *leader;
     CHAR_T *fighting;
@@ -402,14 +445,15 @@ struct char_data {
     CHAR_T *mprog_target;
     MEM_T *memory;
     SPEC_FUN *spec_fun;
-    MOB_INDEX_T *pIndexData;
+    MOB_INDEX_T *mob_index;
+    CHAR_T *mob_index_prev, *mob_index_next;
     DESCRIPTOR_T *desc;
-    AFFECT_T *affected;
-    OBJ_T *carrying;
+    AFFECT_T *affect_first, *affect_last;
+    OBJ_T *content_first, *content_last;
     OBJ_T *on;
     ROOM_INDEX_T *in_room;
     ROOM_INDEX_T *was_in_room;
-    AREA_T *zone;
+    AREA_T *area;
     PC_T *pcdata;
     GEN_T *gen_data;
     char *name;
@@ -442,8 +486,8 @@ struct char_data {
     long gold;
     long silver;
     int exp;
-    flag_t mob;
-    flag_t plr;
+    EXT_FLAGS_T ext_mob;
+    EXT_FLAGS_T ext_plr;
     flag_t comm;   /* RT added to pad the vector */
     flag_t wiznet; /* wiz stuff */
     flag_t imm_flags;
@@ -477,7 +521,7 @@ struct char_data {
     /* mobile stuff */
     flag_t off_flags;
     DICE_T damage;
-    sh_int dam_type;
+    sh_int attack_type;
     sh_int start_pos;
     sh_int default_pos;
     sh_int mprog_delay;
@@ -523,18 +567,19 @@ struct pc_data {
     sh_int perm_move;
     sh_int true_sex;
     int last_level;
-    sh_int condition[4];
+    sh_int cond_hours[4];
     sh_int learned[SKILL_MAX];
-    bool group_known[GROUP_MAX];
-    sh_int points;
+    sh_int skill_known[SKILL_MAX];
+    sh_int group_known[SKILL_GROUP_MAX];
+    sh_int creation_points;
     bool confirm_delete;
     char *alias[MAX_ALIAS];
     char *alias_sub[MAX_ALIAS];
-    BOARD_T *board;           /* The current board        */
+    BOARD_T *board;              /* The current board        */
     time_t last_note[BOARD_MAX]; /* last note for the boards */
     NOTE_T *in_progress;
     int security;                /* OLC - Builder security */
-    flag_t colour[COLOUR_MAX];
+    flag_t colour[COLOUR_SETTING_MAX];
 
 #ifdef IMC
     IMC_CHARDATA *imcchardata;
@@ -545,20 +590,22 @@ struct pc_data {
 /* Data for generating characters -- only used during generation */
 struct gen_data {
     bool skill_chosen[SKILL_MAX];
-    bool group_chosen[GROUP_MAX];
-    int points_chosen;
+    bool group_chosen[SKILL_GROUP_MAX];
     OBJ_RECYCLE_T rec_data;
 };
 
 struct liq_type {
     char *name;
     char *color;
-    sh_int affect[5];
+    sh_int cond[COND_MAX];
+    sh_int serving_size;
 };
 
 /* Extra description data for a room or object. */
 struct extra_descr_data {
-    EXTRA_DESCR_T *next;
+    void *parent;
+    int parent_type;
+    EXTRA_DESCR_T *on_next, *on_prev;
     char *keyword;          /* Keyword in look/examine */
     char *description;      /* What to see             */
     OBJ_RECYCLE_T rec_data;
@@ -684,6 +731,12 @@ struct obj_values_portal {
     flag_t key;
 };
 
+struct obj_values_jukebox {
+    flag_t line;
+    flag_t song;
+    flag_t queue[JUKEBOX_QUEUE_MAX];
+};
+
 union obj_value_type {
     flag_t value[OBJ_VALUE_MAX];
     struct obj_values_weapon    weapon;
@@ -702,6 +755,7 @@ union obj_value_type {
     struct obj_values_furniture furniture;
     struct obj_values_light     light;
     struct obj_values_portal    portal;
+    struct obj_values_jukebox   jukebox;
 };
 
 /* Reset values for all reset types. */
@@ -774,11 +828,13 @@ union reset_value_type {
 
 /* Prototype for an object. */
 struct obj_index_data {
-    OBJ_INDEX_T *next;
-    EXTRA_DESCR_T *extra_descr;
-    AFFECT_T *affected;
-    char *area_str;
+    OBJ_INDEX_T *hash_next, *hash_prev;
     AREA_T *area; /* OLC */
+    OBJ_INDEX_T *area_next, *area_prev;
+    EXTRA_DESCR_T *extra_descr_first, *extra_descr_last;
+    AFFECT_T *affect_first, *affect_last;
+    OBJ_T *obj_first, *obj_last;
+    char *area_str;
     bool new_format;
     char *name;
     char *short_descr;
@@ -791,7 +847,7 @@ struct obj_index_data {
     flag_t wear_flags;
     sh_int level;
     sh_int condition;
-    sh_int count;
+    sh_int obj_count;
     sh_int weight;
     int cost;
     OBJ_RECYCLE_T rec_data;
@@ -813,15 +869,16 @@ struct obj_map {
 
 /* One object. */
 struct obj_data {
-    OBJ_T *next;
-    OBJ_T *next_content;
-    OBJ_T *contains;
-    OBJ_T *in_obj;
-    OBJ_T *on;
+    OBJ_T *global_next, *global_prev;
     CHAR_T *carried_by;
-    EXTRA_DESCR_T *extra_descr;
-    AFFECT_T *affected;
-    OBJ_INDEX_T *pIndexData;
+    OBJ_T *in_obj;
+    OBJ_T *content_next, *content_prev;
+    OBJ_T *content_first, *content_last;
+    OBJ_T *on;
+    EXTRA_DESCR_T *extra_descr_first, *extra_descr_last;
+    AFFECT_T *affect_first, *affect_last;
+    OBJ_INDEX_T *obj_index;
+    OBJ_T *obj_index_prev, *obj_index_next;
     ROOM_INDEX_T *in_room;
     bool enchanted;
     char *owner;
@@ -844,8 +901,8 @@ struct obj_data {
 
 /* Exit data. */
 struct exit_data {
-    ROOM_INDEX_T *to_room;
-    sh_int vnum, area_vnum, room_anum;
+    ROOM_INDEX_T *from_room, *to_room;
+    sh_int to_vnum, to_anum, to_area_vnum;
     flag_t exit_flags;
     sh_int key;
     char *keyword;
@@ -869,8 +926,10 @@ struct exit_data {
 
 /* Area-reset definition. */
 struct reset_data {
-    RESET_T *next;
     AREA_T *area;
+    RESET_T *area_next, *area_prev;
+    ROOM_INDEX_T *room;
+    RESET_T *room_next, *room_prev;
     char command;
     int room_vnum;
     RESET_VALUE_T v;
@@ -879,8 +938,14 @@ struct reset_data {
 
 /* Area definition.  */
 struct area_data {
-    AREA_T *next;
-    HELP_AREA_T *helps;
+    AREA_T *global_next, *global_prev;
+    HELP_AREA_T *had_first, *had_last;
+    MOB_INDEX_T *mob_first, *mob_last;
+    OBJ_INDEX_T *obj_first, *obj_last;
+    ROOM_INDEX_T *room_first, *room_last;
+    MPROG_LIST_T *mprog_first, *mprog_last;
+    MPROG_CODE_T *mpcode_first, *mpcode_last;
+    RESET_T *reset_first, *reset_last;
     char *name;
     char *filename;
     char *title;
@@ -891,7 +956,7 @@ struct area_data {
     sh_int high_range;
     sh_int min_vnum;
     sh_int max_vnum;
-    bool empty;
+    bool had_players;
     char *builders;    /* OLC - Listing of */
     int vnum;          /* OLC - Area vnum  */
     flag_t area_flags; /* OLC              */
@@ -901,15 +966,15 @@ struct area_data {
 
 /* Room type. */
 struct room_index_data {
-    ROOM_INDEX_T *next;
-    CHAR_T *people;
-    OBJ_T *contents;
-    EXTRA_DESCR_T *extra_descr;
-    char *area_str;
+    ROOM_INDEX_T *hash_next, *hash_prev;
     AREA_T *area;
+    ROOM_INDEX_T *area_next, *area_prev;
+    CHAR_T *people_first, *people_last;
+    OBJ_T *content_first, *content_last;
+    RESET_T *reset_first, *reset_last;
+    EXTRA_DESCR_T *extra_descr_first, *extra_descr_last;
     EXIT_T *exit[DIR_MAX];
-    RESET_T *reset_first; /* OLC */
-    RESET_T *reset_last;  /* OLC */
+    char *area_str;
     char *name;
     char *description;
     char *owner;
@@ -924,42 +989,59 @@ struct room_index_data {
     OBJ_RECYCLE_T rec_data;
 };
 
+struct skill_class_type {
+    sh_int level;  /* Level needed by class       */
+    sh_int effort; /* How hard it is to learn     */
+};
+
 /* Skills include spells as a particular case. */
 struct skill_type {
     char *name;                    /* Name of skill               */
-    sh_int skill_level[CLASS_MAX]; /* Level needed by class       */
-    sh_int rating[CLASS_MAX];      /* How hard it is to learn     */
+    SKILL_CLASS_T classes[CLASS_MAX]; /* Restrictions based on class */
     SPELL_FUN *spell_fun;          /* Spell pointer (for spells)  */
     sh_int target;                 /* Legal targets               */
     sh_int minimum_position;       /* Position for caster / user  */
-    sh_int *pgsn;                  /* Pointer to associated gsn   */
     sh_int slot;                   /* Slot for #OBJECT loading    */
     sh_int min_mana;               /* Minimum mana used           */
     sh_int beats;                  /* Waiting time after use      */
     char *noun_damage;             /* Damage message              */
     char *msg_off;                 /* Wear off message            */
     char *msg_obj;                 /* Wear off message for obects */
+    int map_index;                 /* Dynamically set             */
+    int weapon_index;              /* Dynamically set             */
 };
 
-struct  group_type {
+struct skill_group_class_type {
+    sh_int cost; /* How hard it is to learn */
+};
+
+struct skill_group_type {
     char *name;
-    sh_int rating[CLASS_MAX];
+    SKILL_GROUP_CLASS_T classes[CLASS_MAX];
     char *spells[MAX_IN_GROUP];
 };
 
+struct skill_map_type {
+    int map_index;
+    char *name;
+    int skill_index; /* dynamically set */
+};
+
 struct mprog_list {
-    MPROG_LIST_T *next;
+    AREA_T *area;
+    MPROG_LIST_T *area_next, *area_prev;
+    MPROG_LIST_T *mob_next, *mob_prev;
     int trig_type;
     char *trig_phrase;
-    AREA_T *area;
     sh_int vnum, anum;
     char *code;
     OBJ_RECYCLE_T rec_data;
 };
 
 struct mprog_code {
-    MPROG_CODE_T *next;
     AREA_T *area;
+    MPROG_CODE_T *global_next, *global_prev;
+    MPROG_CODE_T *area_next, *area_prev;
     sh_int vnum, anum;
     char *code;
     OBJ_RECYCLE_T rec_data;
@@ -981,7 +1063,7 @@ struct furniture_bits {
 
 /* Structure for a social in the socials table. */
 struct social_type {
-    char name[20];
+    char *name;
     char *char_no_arg;
     char *others_no_arg;
     char *char_found;
@@ -990,26 +1072,24 @@ struct social_type {
     char *char_not_found;
     char *char_auto;
     char *others_auto;
+    int min_pos;
     OBJ_RECYCLE_T rec_data;
 };
 
 /* Data about a board */
 struct board_data {
-    char *name;       /* Max 8 chars */
-    char *long_name;  /* Explanatory text, should be no more than 40 ? chars */
-
-    int read_level;   /* minimum level to see board */
-    int write_level;  /* minimum level to post notes */
-
-    char *names;      /* Default recipient */
-    int force_type;   /* Default action (DEF_XXX) */
-
+    char *name;      /* Max 8 chars */
+    char *long_name; /* Explanatory text, should be no more than 40 ? chars */
+    int read_level;  /* minimum level to see board */
+    int write_level; /* minimum level to post notes */
+    char *names;     /* Default recipient */
+    int force_type;  /* Default action (DEF_XXX) */
     int purge_days;  /* Default expiration */
 
     /* Non-constant data */
-    BOARD_T *next;
-    NOTE_T *note_first; /* pointer to board's first note */
-    bool changed;          /* currently unused */
+    BOARD_T *global_next, *global_prev;
+    NOTE_T *note_first, *note_last; /* pointer to board's first note */
+    bool changed;       /* currently unused */
 
 };
 
@@ -1017,8 +1097,10 @@ struct board_data {
 struct wear_loc_type {
     int type;
     const char *name;
+    const char *phrase;
     const char *look_msg;
     flag_t wear_flag;
+    int ac_bonus;
     const char *msg_wear_self, *msg_wear_room;
 };
 
@@ -1037,24 +1119,27 @@ struct flag_stat_type {
 struct table_type {
     const void *table;
     const char *name;
-    flag_t flags;
+    int type;
     const char *description;
 
-    size_t type_size;
-    TABLE_JSON_FUN *json_write_func;
-    TABLE_JSON_FUN *json_read_func;
+    size_t type_size, table_length;
+    const char *obj_name;
+    const char *json_path;
+    JSON_WRITE_FUN *json_write_func;
+    JSON_READ_FUN  *json_read_func;
+    DISPOSE_FUN *dispose_fun;
 };
 
 struct portal_exit_type {
     ROOM_INDEX_T *room;
+    EXIT_T *exit;
     char *name;
-    int dir;
     OBJ_RECYCLE_T rec_data;
 };
 
 struct portal_type {
     char *name_from, *name_to;
-    bool two_way, generated;
+    bool two_way;
     PORTAL_EXIT_T *from, *to;
     OBJ_RECYCLE_T rec_data;
 };
@@ -1103,7 +1188,7 @@ struct anum_type {
     sh_int *vnum_ref;
     char *area_str;
     int anum;
-    ANUM_T *prev, *next;
+    ANUM_T *global_prev, *global_next;
 };
 
 /* Structure for a command in the command lookup table. */
@@ -1130,7 +1215,8 @@ struct editor_cmd_type {
 
 /* All the posing stuff. */
 struct pose_type {
-    char *message[2 * CLASS_MAX];
+    const char *class_name;
+    const char *message[MAX_LEVEL * 2 + 2];
 };
 
 /* Music stuff. */
@@ -1139,6 +1225,15 @@ struct song_type {
     char *name;
     char *lyrics[MAX_SONG_LINES];
     int lines;
+};
+
+/* Conditions like hunger/thirst. */
+struct cond_type {
+    int type;
+    char *name;
+    COND_FUN *good_fun, *bad_fun;
+    char *msg_good, *msg_bad;
+    char *msg_better, *msg_worse;
 };
 
 #endif

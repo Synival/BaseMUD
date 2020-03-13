@@ -14,16 +14,17 @@
     "level": 3,
     "weight": 50,
     "cost": 310,
-    "condition": 100,
     "wear_flags": "take legs",
     "extra_description": [
       {
         "keyword": "motto",
-        "description": "'Time on the ground is time wasted.'\n"
+        "description": "'Time on the ground is time wasted.'"
       },
       {
         "keyword": "bells morris",
-        "description": "These are a set of sturdy leather leggings with small brass bells sewn on.\nThey look like the leggings worn by Morris dancers.  There is a motto tooled\ninto the leather.\n"
+        "description": "These are a set of sturdy leather leggings with small brass bells sewn on.
+                       |They look like the leggings worn by Morris dancers.  There is a motto tooled
+                       |into the leather."
       }
     ]
   }},
@@ -42,11 +43,10 @@
     "level": 3,
     "weight": 50,
     "cost": 310,
-    "condition": 100,
     "wear_flags": "take wrist",
     "extra_description": [{
       "keyword": "handkerchief hankie kerchief",
-      "description": "This is a fine linen handkerchief used for ritual Morris dances.\n"
+      "description": "This is a fine linen handkerchief used for ritual Morris dances."
     }]
   }},
   {"object": {
@@ -64,11 +64,10 @@
     "level": 3,
     "weight": 50,
     "cost": 310,
-    "condition": 100,
     "wear_flags": "take waist",
     "extra_description": [{
       "keyword": "sash",
-      "description": "This is a fine linen sash used for ritual Morris dances.\n"
+      "description": "This is a fine linen sash used for ritual Morris dances."
     }]
   }},
   {"object": {
@@ -87,11 +86,11 @@
     "level": 6,
     "weight": 50,
     "cost": 1460,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "stick staff",
-      "description": "Made from the wood of a Yule Tree, this staff is about one meter long and\nhighly polished.  It looks more like a ritual device than a weapon.\n"
+      "description": "Made from the wood of a Yule Tree, this staff is about one meter long and
+                     |highly polished.  It looks more like a ritual device than a weapon."
     }]
   }}
 ]

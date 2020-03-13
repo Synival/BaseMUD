@@ -19,14 +19,14 @@
  ***************************************************************************/
 
 /***************************************************************************
-*    ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
-*    ROM has been brought to you by the ROM consortium                      *
-*        Russ Taylor (rtaylor@hypercube.org)                                *
-*        Gabrielle Taylor (gtaylor@hypercube.org)                           *
-*        Brian Moore (zump@rom.org)                                         *
-*    By using this code, you have agreed to follow the terms of the         *
-*    ROM license, in the file Rom24/doc/rom.license                         *
-****************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 /****************************************************************************
  *   This file is just the stock nanny() function ripped from comm.c. It    *
@@ -39,7 +39,6 @@
 #include "interp.h"
 #include "recycle.h"
 #include "lookup.h"
-#include "skills.h"
 #include "utils.h"
 #include "comm.h"
 #include "db.h"
@@ -55,6 +54,9 @@
 #include "descs.h"
 #include "globals.h"
 #include "memory.h"
+#include "magic.h"
+#include "players.h"
+#include "rooms.h"
 
 #include "nanny.h"
 
@@ -63,7 +65,7 @@ bool new_player_name_is_valid (char *name) {
     int clan;
 
     /* Reserved words. */
-    if (is_exact_name (name,
+    if (str_in_namelist_exact (name,
             "all auto immortal self someone something the you loner none"))
         return FALSE;
 
@@ -75,7 +77,7 @@ bool new_player_name_is_valid (char *name) {
     }
 
     /* Restrict certain specific names. */
-    if (str_cmp (capitalize (name), "Alander") &&
+    if (str_cmp (str_capitalized (name), "Alander") &&
             (!str_prefix ("Alan", name) || !str_suffix ("Alander", name)))
         return FALSE;
 
@@ -96,10 +98,10 @@ bool new_player_name_is_valid (char *name) {
     /* Alphanumerics only.  Lock out IllIll twits. */
     {
         char *pc;
-        bool fIll, adjcaps = FALSE, cleancaps = FALSE;
+        bool ill, adjcaps = FALSE, cleancaps = FALSE;
         int total_caps = 0;
 
-        fIll = TRUE;
+        ill = TRUE;
         for (pc = name; *pc != '\0'; pc++) {
             if (!isalpha (*pc))
                 return FALSE;
@@ -115,10 +117,10 @@ bool new_player_name_is_valid (char *name) {
                 adjcaps = FALSE;
 
             if (LOWER (*pc) != 'i' && LOWER (*pc) != 'l')
-                fIll = FALSE;
+                ill = FALSE;
         }
 
-        if (fIll)
+        if (ill)
             return FALSE;
         if (cleancaps || (total_caps > (strlen (name)) / 2 && strlen (name) < 3))
             return FALSE;
@@ -127,14 +129,14 @@ bool new_player_name_is_valid (char *name) {
     /* Prevent players from naming themselves after mobs. */
     {
         extern MOB_INDEX_T *mob_index_hash[MAX_KEY_HASH];
-        MOB_INDEX_T *pMobIndex;
-        int iHash;
+        MOB_INDEX_T *mob_index;
+        int hash;
 
-        for (iHash = 0; iHash < MAX_KEY_HASH; iHash++) {
-            for (pMobIndex = mob_index_hash[iHash];
-                 pMobIndex != NULL; pMobIndex = pMobIndex->next)
+        for (hash = 0; hash < MAX_KEY_HASH; hash++) {
+            for (mob_index = mob_index_hash[hash];
+                 mob_index != NULL; mob_index = mob_index->hash_next)
             {
-                if (is_name (name, pMobIndex->name))
+                if (str_in_namelist (name, mob_index->name))
                     return FALSE;
             }
         }
@@ -144,12 +146,12 @@ bool new_player_name_is_valid (char *name) {
      *
      * Check names of people playing. Yes, this is necessary for multiple
      * newbies with the same name (thanks Saro) */
-    if (descriptor_list) {
+    if (descriptor_first) {
         int count = 0;
         DESCRIPTOR_T *d, *dnext;
 
-        for (d = descriptor_list; d != NULL; d = dnext) {
-            dnext=d->next;
+        for (d = descriptor_first; d != NULL; d = dnext) {
+            dnext = d->global_next;
             if (d->connected!=CON_PLAYING&&d->character&&d->character->name
                 && d->character->name[0] && !str_cmp(d->character->name,name))
             {
@@ -185,7 +187,7 @@ void nanny (DESCRIPTOR_T *d, char *argument) {
     handler->action (d, argument);
 }
 
-void nanny_ansi (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_ansi) {
     extern char *help_greeting;
     if (argument[0] == '\0' || UPPER (argument[0]) == 'Y') {
         d->ansi = TRUE;
@@ -207,8 +209,8 @@ void nanny_ansi (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_GET_NAME;
 }
 
-void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
-    bool fOld;
+DEFINE_NANNY_FUN (nanny_get_player_name) {
+    bool old;
     CHAR_T *ch;
 
     if (argument[0] == '\0') {
@@ -222,24 +224,24 @@ void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
         return;
     }
 
-    fOld = load_char_obj (d, argument);
+    old = load_char_obj (d, argument);
     ch = d->character;
 
-    if (IS_SET (ch->plr, PLR_DENY)) {
+    if (EXT_IS_SET (ch->ext_plr, PLR_DENY)) {
         log_f ("Denying access to %s@%s.", argument, d->host);
         send_to_desc ("You are denied access.\n\r", d);
         close_socket (d);
         return;
     }
 
-    if (check_ban (d->host, BAN_PERMIT) && !IS_SET (ch->plr, PLR_PERMIT)) {
+    if (ban_check (d->host, BAN_PERMIT) && !EXT_IS_SET (ch->ext_plr, PLR_PERMIT)) {
         send_to_desc ("Your site has been banned from this mud.\n\r", d);
         close_socket (d);
         return;
     }
 
     if (check_reconnect (d, argument, FALSE))
-        fOld = TRUE;
+        old = TRUE;
     else {
         if (wizlock && !IS_IMMORTAL (ch)) {
             send_to_desc ("The game is wizlocked.\n\r", d);
@@ -248,7 +250,7 @@ void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
         }
     }
 
-    if (fOld) {
+    if (old) {
         /* Old player */
         send_to_desc ("Password: ", d);
         write_to_buffer (d, echo_off_str, 0);
@@ -263,7 +265,7 @@ void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
             return;
         }
 
-        if (check_ban (d->host, BAN_NEWBIES)) {
+        if (ban_check (d->host, BAN_NEWBIES)) {
             send_to_desc (
                 "New players are not allowed from your site.\n\r", 0);
             close_socket (d);
@@ -276,7 +278,7 @@ void nanny_get_player_name (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void nanny_get_old_password (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_old_password) {
     CHAR_T *ch = d->character;
 
 #if defined(unix)
@@ -300,9 +302,9 @@ void nanny_get_old_password (DESCRIPTOR_T *d, char *argument) {
     wiznet (log_buf, NULL, NULL, WIZ_SITES, 0, char_get_trust (ch));
 
     if (ch->desc->ansi)
-        SET_BIT (ch->plr, PLR_COLOUR);
+        EXT_SET (ch->ext_plr, PLR_COLOUR);
     else
-        REMOVE_BIT (ch->plr, PLR_COLOUR);
+        EXT_UNSET (ch->ext_plr, PLR_COLOUR);
 
     if (IS_IMMORTAL (ch)) {
         do_function (ch, &do_help, "imotd");
@@ -314,7 +316,7 @@ void nanny_get_old_password (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void nanny_break_connect (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_break_connect) {
     switch (UPPER(argument[0])) {
         case 'Y':
             nanny_break_connect_confirm (d, argument);
@@ -323,7 +325,10 @@ void nanny_break_connect (DESCRIPTOR_T *d, char *argument) {
         case 'N':
             send_to_desc ("Name: ", d);
             if (d->character != NULL) {
-                char_free (d->character);
+                if (d->character->in_room)
+                    char_extract (d->character);
+                else
+                    char_free (d->character);
                 d->character = NULL;
             }
             d->connected = CON_GET_NAME;
@@ -335,12 +340,12 @@ void nanny_break_connect (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void nanny_break_connect_confirm (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_break_connect_confirm) {
     CHAR_T *ch = d->character;
     DESCRIPTOR_T *d_old, *d_next;
 
-    for (d_old = descriptor_list; d_old != NULL; d_old = d_next) {
-        d_next = d_old->next;
+    for (d_old = descriptor_first; d_old != NULL; d_old = d_next) {
+        d_next = d_old->global_next;
         if (d_old == d || d_old->character == NULL)
             continue;
 
@@ -355,13 +360,16 @@ void nanny_break_connect_confirm (DESCRIPTOR_T *d, char *argument) {
 
     send_to_desc ("Reconnect attempt failed.\n\rName: ", d);
     if (d->character != NULL) {
-        char_free (d->character);
+        if (d->character->in_room)
+            char_extract (d->character);
+        else
+            char_free (d->character);
         d->character = NULL;
     }
     d->connected = CON_GET_NAME;
 }
 
-void nanny_confirm_new_name (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_confirm_new_name) {
     CHAR_T *ch = d->character;
 
     switch (UPPER(argument[0])) {
@@ -370,7 +378,7 @@ void nanny_confirm_new_name (DESCRIPTOR_T *d, char *argument) {
                 "Give me a password for %s: %s", ch->name, echo_off_str);
             d->connected = CON_GET_NEW_PASSWORD;
             if (ch->desc->ansi)
-                SET_BIT (ch->plr, PLR_COLOUR);
+                EXT_SET (ch->ext_plr, PLR_COLOUR);
             break;
 
         case 'N':
@@ -386,7 +394,7 @@ void nanny_confirm_new_name (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void nanny_get_new_password (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_new_password) {
     CHAR_T *ch = d->character;
     char *pwdnew, *p;
 
@@ -416,9 +424,10 @@ void nanny_get_new_password (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_CONFIRM_PASSWORD;
 }
 
-void nanny_confirm_new_password (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_confirm_new_password) {
+    const PC_RACE_T *pc_race;
     CHAR_T *ch = d->character;
-    int race;
+    int i;
 
 #if defined(unix)
     write_to_buffer (d, "\n\r", 2);
@@ -432,10 +441,10 @@ void nanny_confirm_new_password (DESCRIPTOR_T *d, char *argument) {
 
     write_to_buffer (d, echo_on_str, 0);
     send_to_desc ("The following races are available:\n\r  ", d);
-    for (race = 1; race_table[race].name != NULL; race++) {
-        if (!race_table[race].pc_race)
+    for (i = 0; i < PC_RACE_MAX; i++) {
+        if ((pc_race = pc_race_get (i)) == NULL)
             break;
-        write_to_buffer (d, race_table[race].name, 0);
+        write_to_buffer (d, pc_race->name, 0);
         write_to_buffer (d, " ", 1);
     }
     write_to_buffer (d, "\n\r", 0);
@@ -443,10 +452,12 @@ void nanny_confirm_new_password (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_GET_NEW_RACE;
 }
 
-void nanny_get_new_race (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_new_race) {
+    const PC_RACE_T *pc_race;
+    const RACE_T *race;
     char arg[MAX_STRING_LENGTH];
     CHAR_T *ch = d->character;
-    int i, race;
+    int i, race_num;
 
     one_argument (argument, arg);
     if (!strcmp (arg, "help")) {
@@ -459,14 +470,16 @@ void nanny_get_new_race (DESCRIPTOR_T *d, char *argument) {
         return;
     }
 
-    race = race_lookup (argument);
-    if (race < 0 || !race_table[race].pc_race) {
+    pc_race = pc_race_get_by_name (argument);
+    race_num = (pc_race == NULL)
+        ? TYPE_NONE : race_lookup_exact (pc_race->name);
+    if (race_num < 0) {
         send_to_desc ("That is not a valid race.\n\r", d);
         send_to_desc ("The following races are available:\n\r  ", d);
-        for (race = 1; race_table[race].name != NULL; race++) {
-            if (!race_table[race].pc_race)
+        for (i = 0; i < PC_RACE_MAX; i++) {
+            if ((pc_race = pc_race_get (i)) == NULL)
                 break;
-            write_to_buffer (d, race_table[race].name, 0);
+            write_to_buffer (d, pc_race->name, 0);
             write_to_buffer (d, " ", 1);
         }
         write_to_buffer (d, "\n\r", 0);
@@ -474,37 +487,41 @@ void nanny_get_new_race (DESCRIPTOR_T *d, char *argument) {
         return;
     }
 
-    ch->race = race;
+    ch->race = race_num;
+    pc_race = pc_race_get_by_race (race_num);
+    race = race_get (race_num);
 
     /* initialize stats */
     for (i = 0; i < STAT_MAX; i++)
-        ch->perm_stat[i] = pc_race_table[race].stats[i];
-    ch->affected_by = ch->affected_by | race_table[race].aff;
-    ch->imm_flags = ch->imm_flags | race_table[race].imm;
-    ch->res_flags = ch->res_flags | race_table[race].res;
-    ch->vuln_flags = ch->vuln_flags | race_table[race].vuln;
-    ch->form = race_table[race].form;
-    ch->parts = race_table[race].parts;
+        ch->perm_stat[i] = pc_race->stats[i];
+
+    ch->affected_by = ch->affected_by | race->aff;
+    ch->imm_flags   = ch->imm_flags   | race->imm;
+    ch->res_flags   = ch->res_flags   | race->res;
+    ch->vuln_flags  = ch->vuln_flags  | race->vuln;
+    ch->form        = race->form;
+    ch->parts       = race->parts;
 
     /* add skills */
-    for (i = 0; i < PC_RACE_MAX; i++) {
-        if (pc_race_table[race].skills[i] == NULL)
+    for (i = 0; i < PC_RACE_SKILL_MAX; i++) {
+        if (pc_race->skills[i] == NULL)
             break;
-        group_add (ch, pc_race_table[race].skills[i], FALSE);
+        player_add_skill_or_group (ch, pc_race->skills[i], FALSE);
     }
 
     /* add cost */
-    ch->pcdata->points = pc_race_table[race].points;
-    ch->size = pc_race_table[race].size;
+    ch->pcdata->creation_points = pc_race->creation_points;
+    ch->size = pc_race->size;
 
     send_to_desc ("What is your sex (M/F)? ", d);
     d->connected = CON_GET_NEW_SEX;
 }
 
-void nanny_get_new_sex (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_new_sex) {
+    const CLASS_T *class;
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
-    int iClass;
+    int i;
 
     switch (UPPER(argument[0])) {
         case 'M':
@@ -521,27 +538,25 @@ void nanny_get_new_sex (DESCRIPTOR_T *d, char *argument) {
     }
 
     strcpy (buf, "Select a class [");
-    for (iClass = 0; iClass < CLASS_MAX; iClass++) {
-        if (iClass > 0)
+    for (i = 0; (class = class_get (i)) != NULL; i++) {
+        if (i > 0)
             strcat (buf, " ");
-        strcat (buf, class_table[iClass].name);
+        strcat (buf, class->name);
     }
     strcat (buf, "]: ");
     write_to_buffer (d, buf, 0);
     d->connected = CON_GET_NEW_CLASS;
 }
 
-void nanny_get_new_class (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_new_class) {
     CHAR_T *ch = d->character;
-    int iClass;
+    int class_n;
 
-    iClass = class_lookup (argument);
-    if (iClass < 0) {
+    if ((class_n = class_lookup (argument)) < 0) {
         send_to_desc ("That's not a class.\n\rWhat IS your class? ", d);
         return;
     }
-
-    ch->class = iClass;
+    ch->class = class_n;
 
     sprintf (log_buf, "%s@%s new player.", ch->name, d->host);
     log_string (log_buf);
@@ -554,7 +569,7 @@ void nanny_get_new_class (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_GET_ALIGNMENT;
 }
 
-void nanny_get_alignment (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_get_alignment) {
     CHAR_T *ch = d->character;
     switch (UPPER(argument[0])) {
         case 'G': ch->alignment =  750; break;
@@ -569,18 +584,21 @@ void nanny_get_alignment (DESCRIPTOR_T *d, char *argument) {
 
     write_to_buffer (d, "\n\r", 0);
 
-    group_add (ch, "rom basics", FALSE);
-    group_add (ch, class_table[ch->class].base_group, FALSE);
-    ch->pcdata->learned[gsn_recall] = 50;
+    player_add_skill_or_group (ch, "rom basics", FALSE);
+    if (class_table[ch->class].base_group != NULL)
+        player_add_skill_or_group (ch, class_table[ch->class].base_group, FALSE);
+
+    player_set_default_skills (ch);
+
     send_to_desc ("Do you wish to customize this character?\n\r", d);
     send_to_desc
-        ("Customization takes time, but allows a wider range of skills and abilities.\n\r",
-         d);
+        ("Customization takes time, but allows a wider range of skills "
+         "and abilities.\n\r", d);
     send_to_desc ("Customize (Y/N)? ", d);
     d->connected = CON_DEFAULT_CHOICE;
 }
 
-void nanny_default_choice (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_default_choice) {
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     int i;
@@ -589,10 +607,9 @@ void nanny_default_choice (DESCRIPTOR_T *d, char *argument) {
     switch (UPPER(argument[0])) {
         case 'Y':
             ch->gen_data = gen_data_new ();
-            ch->gen_data->points_chosen = ch->pcdata->points;
             do_function (ch, &do_help, "group header");
             write_to_buffer (d, "\n\r", 0);
-            list_group_costs (ch);
+            player_list_skills_and_groups (ch, FALSE);
 
             write_to_buffer (d,
                 "\n\rYou already have the following skills and spells:\n\r", 0);
@@ -603,14 +620,15 @@ void nanny_default_choice (DESCRIPTOR_T *d, char *argument) {
             break;
 
         case 'N':
-            group_add (ch, class_table[ch->class].default_group, TRUE);
+            if (class_table[ch->class].default_group != NULL)
+                player_add_skill_or_group (ch, class_table[ch->class].default_group, TRUE);
             write_to_buffer (d, "\n\r", 2);
             write_to_buffer (d,
                 "Please pick a weapon from the following choices:\n\r", 0);
 
             buf[0] = '\0';
             for (i = 0; weapon_table[i].name != NULL; i++) {
-                if (ch->pcdata->learned[*weapon_table[i].gsn] > 0) {
+                if (ch->pcdata->learned[weapon_table[i].skill_index] > 0) {
                     strcat (buf, weapon_table[i].name);
                     strcat (buf, " ");
                 }
@@ -627,7 +645,7 @@ void nanny_default_choice (DESCRIPTOR_T *d, char *argument) {
     }
 }
 
-void nanny_pick_weapon (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_pick_weapon) {
     CHAR_T *ch = d->character;
     const WEAPON_T *weapon;
     char buf[MAX_STRING_LENGTH];
@@ -636,11 +654,11 @@ void nanny_pick_weapon (DESCRIPTOR_T *d, char *argument) {
     write_to_buffer (d, "\n\r", 2);
 
     weapon = weapon_get_by_name (argument);
-    if (weapon == NULL || ch->pcdata->learned[*(weapon->gsn)] <= 0) {
+    if (weapon == NULL || ch->pcdata->learned[weapon->skill_index] <= 0) {
         write_to_buffer (d, "That's not a valid selection. Choices are:\n\r", 0);
         buf[0] = '\0';
         for (i = 0; weapon_table[i].name != NULL; i++) {
-            if (ch->pcdata->learned[*(weapon_table[i].gsn)] > 0) {
+            if (ch->pcdata->learned[weapon_table[i].skill_index] > 0) {
                 strcat (buf, weapon_table[i].name);
                 strcat (buf, " ");
             }
@@ -650,13 +668,13 @@ void nanny_pick_weapon (DESCRIPTOR_T *d, char *argument) {
         return;
     }
 
-    ch->pcdata->learned[*(weapon->gsn)] = 40;
+    ch->pcdata->learned[weapon->skill_index] = 40;
     write_to_buffer (d, "\n\r", 2);
     do_function (ch, &do_help, "motd");
     d->connected = CON_READ_MOTD;
 }
 
-void nanny_gen_groups (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_gen_groups) {
     CHAR_T *ch = d->character;
 
     if (!str_cmp (argument, "done")) {
@@ -664,32 +682,172 @@ void nanny_gen_groups (DESCRIPTOR_T *d, char *argument) {
         return;
     }
 
-    if (parse_gen_groups (ch, argument))
+    if (nanny_parse_gen_groups (ch, argument))
         send_to_char ("\n\r", ch);
     do_function (ch, &do_help, "menu choice");
 }
 
-void nanny_gen_groups_done (DESCRIPTOR_T *d, char *argument) {
+/* this procedure handles the input parsing for the skill generator */
+bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
+    const SKILL_T *skill;
+    const SKILL_GROUP_T *group;
+    char arg[MAX_INPUT_LENGTH];
+    int num;
+
+    if (argument[0] == '\0')
+        return FALSE;
+
+    argument = one_argument (argument, arg);
+    if (!str_prefix (arg, "help")) {
+        if (argument[0] == '\0') {
+            do_function (ch, &do_help, "group help");
+            return TRUE;
+        }
+
+        do_function (ch, &do_help, argument);
+        return TRUE;
+    }
+
+    if (!str_prefix (arg, "add")) {
+        if (argument[0] == '\0') {
+            send_to_char ("You must provide a skill name.\n\r", ch);
+            return TRUE;
+        }
+
+        num = skill_group_lookup (argument);
+        if (num != -1) {
+            group = skill_group_get (num);
+            if (ch->gen_data->group_chosen[num] || ch->pcdata->group_known[num]) {
+                send_to_char ("You already know that group!\n\r", ch);
+                return TRUE;
+            }
+            if (group->classes[ch->class].cost < 1) {
+                send_to_char ("That group is not available.\n\r", ch);
+                return TRUE;
+            }
+
+            /* Close security hole */
+            if (ch->pcdata->creation_points + group->classes[ch->class].cost > 300) {
+                send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
+                return TRUE;
+            }
+
+            printf_to_char (ch, "Group '%s' added.\n\r", group->name);
+            player_add_skill_group (ch, num, TRUE);
+            ch->gen_data->group_chosen[num] = TRUE;
+            return TRUE;
+        }
+
+        num = skill_lookup (argument);
+        if (num != -1) {
+            skill = skill_get (num);
+            if (ch->gen_data->skill_chosen[num] || ch->pcdata->skill_known[num] > 0 ||
+                ch->pcdata->learned[num] > 0)
+            {
+                send_to_char ("You already know that skill!\n\r", ch);
+                return TRUE;
+            }
+            if (skill->classes[ch->class].effort < 1 || skill->spell_fun != spell_null) {
+                send_to_char ("That skill is not available.\n\r", ch);
+                return TRUE;
+            }
+
+            /* Close security hole */
+            if (ch->pcdata->creation_points + skill->classes[ch->class].effort > 300) {
+                send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
+                return TRUE;
+            }
+
+            printf_to_char (ch, "Skill '%s' added.\n\r", skill->name);
+            player_add_skill (ch, num, TRUE);
+            ch->gen_data->skill_chosen[num] = TRUE;
+            return TRUE;
+        }
+
+        send_to_char ("No skills or groups by that name...\n\r", ch);
+        return TRUE;
+    }
+
+    if (!strcmp (arg, "drop")) {
+        if (argument[0] == '\0') {
+            send_to_char ("You must provide a skill to drop.\n\r", ch);
+            return TRUE;
+        }
+
+        num = skill_group_lookup (argument);
+        if (num != -1 && ch->gen_data->group_chosen[num]) {
+            group = skill_group_get (num);
+            printf_to_char (ch, "Group '%s' dropped.\n\r", group->name);
+            player_remove_skill_group (ch, num, TRUE);
+            ch->gen_data->group_chosen[num] = FALSE;
+            return TRUE;
+        }
+
+        num = skill_lookup (argument);
+        if (num != -1 && ch->gen_data->skill_chosen[num]) {
+            skill = skill_get (num);
+            printf_to_char (ch, "Skill '%s' dropped.\n\r", skill->name);
+            player_remove_skill (ch, num, TRUE);
+            ch->gen_data->skill_chosen[num] = FALSE;
+            return TRUE;
+        }
+
+        send_to_char ("You haven't bought any such skill or group.\n\r", ch);
+        return TRUE;
+    }
+
+    if (!str_prefix (arg, "premise")) {
+        do_function (ch, &do_help, "premise");
+        return TRUE;
+    }
+    if (!str_prefix (arg, "list")) {
+        player_list_skills_and_groups (ch, FALSE);
+        return TRUE;
+    }
+    if (!str_prefix (arg, "learned")) {
+        player_list_skills_and_groups (ch, TRUE);
+        return TRUE;
+    }
+    if (!str_prefix (arg, "abilities")) {
+        do_function (ch, &do_abilities, "all");
+        return TRUE;
+    }
+    if (!str_prefix (arg, "info")) {
+        do_function (ch, &do_groups, argument);
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+DEFINE_NANNY_FUN (nanny_gen_groups_done) {
+    const PC_RACE_T *pc_race;
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
     int i;
 
-    BAIL_IF (ch->pcdata->points == pc_race_table[ch->race].points,
-        "You didn't pick anything.\n\r", ch);
-
-    if (ch->pcdata->points < 40 + pc_race_table[ch->race].points) {
-        printf_to_char (ch,
-             "You must take at least %d points of skills "
-             "and groups.\n\r", 40 + pc_race_table[ch->race].points);
+    pc_race = pc_race_get_by_race (ch->race);
+    if (ch->pcdata->creation_points == pc_race->creation_points) {
+        send_to_char ("You didn't pick anything.\n\r\n\r", ch);
+        do_function (ch, &do_help, "menu choice");
         return;
     }
 
-    printf_to_char (ch, "Creation points: %d\n\r", ch->pcdata->points);
-    printf_to_char (ch, "Experience per level: %d\n\r",
-        exp_per_level (ch, ch->gen_data->points_chosen));
+    if (ch->pcdata->creation_points < 40 + pc_race->creation_points) {
+        printf_to_char (ch,
+            "You must take at least %d points of skills and groups.\n\r\n\r",
+            40 + pc_race->creation_points);
+        do_function (ch, &do_help, "menu choice");
+        return;
+    }
 
-    if (ch->pcdata->points < 40)
-        ch->train = (40 - ch->pcdata->points + 1) / 2;
+    printf_to_char (ch, "Creation points: %d\n\r",
+        ch->pcdata->creation_points);
+    printf_to_char (ch, "Experience per level: %d\n\r",
+        player_get_exp_per_level (ch));
+
+    if (ch->pcdata->creation_points < 40)
+        ch->train = (40 - ch->pcdata->creation_points + 1) / 2;
     gen_data_free (ch->gen_data);
     ch->gen_data = NULL;
 
@@ -697,7 +855,7 @@ void nanny_gen_groups_done (DESCRIPTOR_T *d, char *argument) {
     write_to_buffer (d, "Please pick a weapon from the following choices:\n\r", 0);
     buf[0] = '\0';
     for (i = 0; weapon_table[i].name != NULL; i++) {
-        if (ch->pcdata->learned[*weapon_table[i].gsn] > 0) {
+        if (ch->pcdata->learned[weapon_table[i].skill_index] > 0) {
             strcat (buf, weapon_table[i].name);
             strcat (buf, " ");
         }
@@ -707,7 +865,7 @@ void nanny_gen_groups_done (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_PICK_WEAPON;
 }
 
-void nanny_read_imotd (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_read_imotd) {
     CHAR_T *ch = d->character;
 
     write_to_buffer (d, "\n\r", 2);
@@ -715,37 +873,35 @@ void nanny_read_imotd (DESCRIPTOR_T *d, char *argument) {
     d->connected = CON_READ_MOTD;
 }
 
-void nanny_read_motd (DESCRIPTOR_T *d, char *argument) {
+DEFINE_NANNY_FUN (nanny_read_motd) {
     CHAR_T *ch = d->character;
     char buf[MAX_STRING_LENGTH];
 
     extern int mud_telnetga, mud_ansicolor;
     if (ch->pcdata == NULL || ch->pcdata->pwd[0] == '\0') {
         write_to_buffer (d,
-            "Warning! Null password!\n\r", 0);
-        write_to_buffer (d,
-            "Please report old password with bug.\n\r", 0);
-        write_to_buffer (d,
+            "Warning! Null password!\n\r"
+            "Please report old password with bug.\n\r"
             "Type 'password null <new password>' to fix.\n\r", 0);
     }
 
     write_to_buffer (d,
         "\n\rWelcome to ROM 2.4.  Please don't feed the mobiles!\n\r", 0);
-    LIST_FRONT (ch, next, char_list);
+    LIST2_FRONT (ch, global_prev, global_next, char_first, char_last);
 
     d->connected = CON_PLAYING;
-    char_reset (ch);
+    player_reset (ch);
 
     if (ch->level == 0) {
         if(mud_ansicolor)
-            SET_BIT (ch->plr, PLR_COLOUR);
+            EXT_SET (ch->ext_plr, PLR_COLOUR);
         if(mud_telnetga)
             SET_BIT (ch->comm, COMM_TELNET_GA);
 
         ch->perm_stat[class_table[ch->class].attr_prime] += 3;
 
         ch->level = 1;
-        ch->exp   = exp_per_level (ch, ch->pcdata->points);
+        ch->exp   = player_get_exp_per_level (ch);
         ch->hit   = ch->max_hit;
         ch->mana  = ch->max_mana;
         ch->move  = ch->max_move;
@@ -753,12 +909,12 @@ void nanny_read_motd (DESCRIPTOR_T *d, char *argument) {
         ch->practice = 5;
         sprintf (buf, "the %s", title_table[ch->class][ch->level]
                  [ch->sex == SEX_FEMALE ? 1 : 0]);
-        char_set_title (ch, buf);
+        player_set_title (ch, buf);
 
         do_function (ch, &do_outfit, "");
-        obj_give_to_char (obj_create (get_obj_index (OBJ_VNUM_MAP), 0), ch);
+        obj_give_to_char (obj_create (obj_get_index (OBJ_VNUM_MAP), 0), ch);
 
-        char_to_room (ch, get_room_index (ROOM_VNUM_SCHOOL));
+        char_to_room (ch, room_get_index (ROOM_VNUM_SCHOOL));
         send_to_char ("\n\r", ch);
         do_function (ch, &do_help, "newbie info");
         send_to_char ("\n\r", ch);
@@ -766,9 +922,9 @@ void nanny_read_motd (DESCRIPTOR_T *d, char *argument) {
     else if (ch->in_room != NULL)
         char_to_room (ch, ch->in_room);
     else if (IS_IMMORTAL (ch))
-        char_to_room (ch, get_room_index (ROOM_VNUM_CHAT));
+        char_to_room (ch, room_get_index (ROOM_VNUM_CHAT));
     else
-        char_to_room (ch, get_room_index (ROOM_VNUM_TEMPLE));
+        char_to_room (ch, room_get_index (ROOM_VNUM_TEMPLE));
 
     act ("$n has entered the game.", ch, NULL, NULL, TO_NOTCHAR);
     do_function (ch, &do_look, "auto");

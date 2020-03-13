@@ -16,13 +16,13 @@
  ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #ifndef __ROM_MACROS_H
@@ -39,31 +39,61 @@
 #define ENTRE(min, num, max) (((min) < (num)) && ((num) < (max)))
 
 /* Bit macros. */
-#define IS_SET(flag, bit)      ((flag) & (bit))
-#define SET_BIT(var, bit)      ((var) |= (bit))
-#define REMOVE_BIT(var, bit)   ((var) &= ~(bit))
-#define TOGGLE_BIT(var, bit)   ((var) ^= (bit))
-#define MISSING_BITS(var, bit) (~((~var) | (bit)))
-#define ARE_SET(flag, bit)     (((flag) & (bit)) == (bit))
-#define NONE_SET(flag, bit)    (((flag) & (bit)) == 0)
+#define IS_SET(_var, _bit)       ((_var) & (_bit))
+#define SET_BIT(_var, _bit)      ((_var) |= (_bit))
+#define REMOVE_BIT(_var, _bit)   ((_var) &= ~(_bit))
+#define TOGGLE_BIT(_var, _bit)   ((_var) ^= (_bit))
+
+#define ARE_SET(_var, _bit)      (((_var) & (_bit)) == (_bit))
+#define NONE_SET(_var, _bit)     (((_var) & (_bit)) == 0)
+
+/* Extended bit macros. */
+#define EXT_ZERO                     ((EXT_FLAGS_T) {{ 0 }})
+#define EXT_IS_ZERO(_bits)           (ext_flags_is_zero(_bits))
+#define EXT_IS_NONZERO(_bits)        (!EXT_IS_ZERO(_bits))
+#define EXT_BITS(...)                (ext_flags_build(__VA_ARGS__, -1))
+#define EXT_IS_SET(_var, _flag)      (ext_flags_is_set     ((_var), (_flag)))
+#define EXT_EQUALS(_bits1, _bits2)   (ext_flags_equals     ((_bits1), (_bits2)))
+#define EXT_SET(_var, _flag)         (ext_flags_set        (&(_var), (_flag)))
+#define EXT_SET_MANY(_var, _var2)    (ext_flags_set_many   (&(_var), (_var2)))
+#define EXT_UNSET(_var, _flag)       (ext_flags_unset      (&(_var), (_flag)))
+#define EXT_UNSET_MANY(_var, _var2)  (ext_flags_unset_many (&(_var), (_var2)))
+#define EXT_TOGGLE(_var, _flag)      (ext_flags_toggle     (&(_var), (_flag)))
+#define EXT_TOGGLE_MANY(_var, _var2) (ext_flags_toggle_many(&(_var), (_var2)))
+
+#define EXT_TO_FLAG_T(_bits)         (ext_flags_to_flag_t(_bits))
+
+#define EXT_INIT_ZERO                ((EXT_INIT_FLAGS_T) {(int[]) { -1 }})
+#define EXT_INIT_BITS(...)           ((EXT_INIT_FLAGS_T) {(int[]) { __VA_ARGS__, -1 }})
+#define EXT_FROM_FLAG_T(_flags)      (ext_flags_from_flag_t(_flags))
+#define EXT_FROM_INIT(_bits)         (ext_flags_from_init(&(_bits)))
+
+#define EXT_WITH(_bits, _flag)           (ext_flags_with (_bits, _flag))
+#define EXT_WITHOUT(_bits, _flag)        (ext_flags_without (_bits, _flag))
+#define EXT_WITH_MANY(_bits1, _bits2)    (ext_flags_with_many (_bits1, _bits2))
+#define EXT_WITHOUT_MANY(_bits1, _bits2) (ext_flags_without_many (_bits1, _bits2))
+#define EXT_INVERTED(_bits)              (ext_flags_inverted (_bits))
+
+/* Skill macros. */
+#define SN(map)      (skill_map_table[SKILL_MAP_ ## map].skill_index)
 
 /* Alias for "new" act function. */
 #define act(format, ch, arg1, arg2, flags) \
     act_new((format), (ch), (arg1), (arg2), (flags), POS_RESTING)
 
 /* Mob program macros. */
-#define HAS_TRIGGER(ch, trig) (IS_SET((ch)->pIndexData->mprog_flags,(trig)))
-#define HAS_ANY_TRIGGER(ch)   ((ch)->pIndexData->mprog_flags != 0)
+#define HAS_TRIGGER(ch, trig) (IS_SET((ch)->mob_index->mprog_flags,(trig)))
+#define HAS_ANY_TRIGGER(ch)   ((ch)->mob_index->mprog_flags != 0)
 
 /* Read in a char. */
 #if defined(KEY)
     #undef KEY
 #endif
-#define KEY(literal, field, value)  \
-    if (!str_cmp(word, literal)) {  \
-        field  = value;             \
-        fMatch = TRUE;              \
-        break;                      \
+#define KEY(literal, field, value) \
+    if (!str_cmp(word, literal)) { \
+        field = value;             \
+        match = TRUE;              \
+        break;                     \
     }
 
 /* provided to free strings */
@@ -73,8 +103,8 @@
 #define KEYS(literal, field, value) \
     if (!str_cmp(word, literal)) {  \
         str_free (&(field));        \
-        field  = value;             \
-        fMatch = TRUE;              \
+        field = value;              \
+        match = TRUE;               \
         break;                      \
     }
 
@@ -269,6 +299,24 @@
         if (obj->nxt) obj->nxt->prv = obj->prv; \
         obj->prv = NULL; \
         obj->nxt = NULL; \
+    } while (0)
+
+#define LIST2_REASSIGN_BACK(child, child_parent, child_prev, child_next, \
+                            parent, parent_first, parent_last) \
+    do { \
+        if ((child->child_parent) == (parent)) \
+            break; \
+        if ((child->child_parent) != NULL) { \
+            LIST2_REMOVE (child, child_prev, child_next, \
+                child->child_parent->parent_first, \
+                child->child_parent->parent_last); \
+        } \
+        if ((parent) != NULL) { \
+            LIST2_BACK (child, child_prev, child_next, \
+                parent->parent_first, \
+                parent->parent_last); \
+        } \
+        child->child_parent = parent; \
     } while (0)
 
 #define TOP(type) \

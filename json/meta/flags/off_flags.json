@@ -1,0 +1,111 @@
+{"flags": {
+  "name": "off_flags",
+  "description": "Mobile offensive behaviour.",
+  "values": [
+    {
+      "name": "area_attack",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "backstab",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "bash",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "berserk",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "disarm",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "dodge",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "fade",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "fast",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "kick",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "dirt_kick",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "parry",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "rescue",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "tail",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "trip",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "crush",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "assist_all",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "assist_align",
+      "value": 16,
+      "settable": true
+    },
+    {
+      "name": "assist_race",
+      "value": 17,
+      "settable": true
+    },
+    {
+      "name": "assist_players",
+      "value": 18,
+      "settable": true
+    },
+    {
+      "name": "assist_guard",
+      "value": 19,
+      "settable": true
+    },
+    {
+      "name": "assist_vnum",
+      "value": 20,
+      "settable": true
+    }
+  ]
+}}

@@ -9,10 +9,9 @@
   "level": 0,
   "weight": 80,
   "cost": 0,
-  "condition": 100,
   "wear_flags": "take head",
   "extra_description": [{
     "keyword": "rose",
-    "description": "It's a beautiful red rose, with a soft and romantic fragrance.\n"
+    "description": "It's a beautiful red rose, with a soft and romantic fragrance."
   }]
 }}]

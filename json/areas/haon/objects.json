@@ -16,11 +16,10 @@
     "level": 8,
     "weight": 100,
     "cost": 820,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "axe lumber",
-      "description": "It is a heavy axe of the kind lumberjacks use to chop down trees.\n"
+      "description": "It is a heavy axe of the kind lumberjacks use to chop down trees."
     }]
   }},
   {"object": {
@@ -38,11 +37,10 @@
     "level": 3,
     "weight": 20,
     "cost": 610,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "shirt",
-      "description": "It is an extra large, chequered shirt made from heavy cloth.\n"
+      "description": "It is an extra large, chequered shirt made from heavy cloth."
     }]
   }},
   {"object": {
@@ -60,11 +58,11 @@
     "level": 3,
     "weight": 40,
     "cost": 310,
-    "condition": 100,
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "boots",
-      "description": "They are fashioned from rough leather that has been oiled frequently to make\nit stay waterproof.  They look worn but quite functional.\n"
+      "description": "They are fashioned from rough leather that has been oiled frequently to make
+                     |it stay waterproof.  They look worn but quite functional."
     }]
   }},
   {"object": {
@@ -82,10 +80,11 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "fireplace",
-      "description": "It is fashioned from stones of various sizes that have been stacked on top of\neach other and fastened with mortar.  Its chimney is constructed likewise and\nleads the smoke out through the low cabin ceiling.\n"
+      "description": "It is fashioned from stones of various sizes that have been stacked on top of
+                     |each other and fastened with mortar.  Its chimney is constructed likewise and
+                     |leads the smoke out through the low cabin ceiling."
     }]
   }},
   {"object": {
@@ -105,11 +104,11 @@
     "level": 0,
     "weight": 400,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "chest",
-      "description": "It is a robust chest made from short, heavy planks that have been fastened\ntogether with tenons.  It is equipped with a simple brass lock.\n"
+      "description": "It is a robust chest made from short, heavy planks that have been fastened
+                     |together with tenons.  It is equipped with a simple brass lock."
     }]
   }},
   {"object": {
@@ -123,11 +122,10 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key",
-      "description": "It is a small, simple brass key with no inscriptions or marks of any kind.\n"
+      "description": "It is a small, simple brass key with no inscriptions or marks of any kind."
     }]
   }},
   {"object": {
@@ -144,11 +142,10 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "coins",
-      "description": "The coins seem to be gold.  They are obviously valuable.\n"
+      "description": "The coins seem to be gold.  They are obviously valuable."
     }]
   }},
   {"object": {
@@ -165,11 +162,10 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "blackberries",
-      "description": "They look very tasty indeed.\n"
+      "description": "They look very tasty indeed."
     }]
   }},
   {"object": {
@@ -186,11 +182,10 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "mushroom",
-      "description": "It is a tasty little thing.\n"
+      "description": "It is a tasty little thing."
     }]
   }},
   {"object": {
@@ -208,7 +203,6 @@
     "level": 0,
     "weight": 200,
     "cost": 20,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -226,15 +220,17 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [
       {
         "keyword": "opening",
-        "description": "The opening is far too narrow for you to squeeze through but it looks as if the\ntree is hollow.\n"
+        "description": "The opening is far too narrow for you to squeeze through but it looks as if the
+                       |tree is hollow."
       },
       {
         "keyword": "tree",
-        "description": "This enormous tree must be a thousand years old.  Its rough bark looks grey\nand pale and is decorated with scratches and claw marks.  On its west side is a\nsmall opening just above ground level.\n"
+        "description": "This enormous tree must be a thousand years old.  Its rough bark looks grey
+                       |and pale and is decorated with scratches and claw marks.  On its west side is a
+                       |small opening just above ground level."
       }
     ]
   }},
@@ -249,7 +245,6 @@
     "level": 0,
     "weight": 200,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -268,14 +263,11 @@
     "level": 6,
     "weight": 300,
     "cost": 290,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 6,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -289,7 +281,6 @@
     "level": 0,
     "weight": 400,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -306,11 +297,12 @@
     "level": 0,
     "weight": 50,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "toadstool",
-      "description": "It is a large, brown boletus that must weigh nearly five pounds.  The top\nsurface is covered in a thin layer of transparent slime that emits a weak,\nmusty smell.  Not the most delicious thing you have seen.\n"
+      "description": "It is a large, brown boletus that must weigh nearly five pounds.  The top
+                     |surface is covered in a thin layer of transparent slime that emits a weak,
+                     |musty smell.  Not the most delicious thing you have seen."
     }]
   }},
   {"object": {
@@ -328,11 +320,12 @@
     "level": 0,
     "weight": 50,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "toadstool",
-      "description": "It is a large, brown boletus that must weigh nearly five pounds.  It has small\nwhite spots and the top surface is covered in a thin layer of transparent slime\nthat emits a weak, musty smell.  Not the most delicious thing you have seen.\n"
+      "description": "It is a large, brown boletus that must weigh nearly five pounds.  It has small
+                     |white spots and the top surface is covered in a thin layer of transparent slime
+                     |that emits a weak, musty smell.  Not the most delicious thing you have seen."
     }]
   }},
   {"object": {
@@ -349,12 +342,11 @@
     "level": 4,
     "weight": 20,
     "cost": 350,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion yellow",
-      "description": "It has a deep yellow colour and and a strong spicy smell.\n"
+      "description": "It has a deep yellow colour and and a strong spicy smell."
     }]
   }},
   {"object": {
@@ -373,11 +365,10 @@
     "level": 15,
     "weight": 150,
     "cost": 1760,
-    "condition": 100,
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield large",
-      "description": "It is made from hard wood that has been reinforced with heavy iron bands.\n"
+      "description": "It is made from hard wood that has been reinforced with heavy iron bands."
     }]
   }},
   {"object": {
@@ -395,12 +386,11 @@
     "level": 15,
     "weight": 100,
     "cost": 1050,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "crown iron",
-      "description": "It is a heavy human-sized crown made from solid iron.\n"
+      "description": "It is a heavy human-sized crown made from solid iron."
     }]
   }},
   {"object": {
@@ -414,12 +404,12 @@
     "level": 0,
     "weight": 10,
     "cost": 50,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring iron",
-      "description": "It is a quite heavy human-sized ring made from solid iron.  It lacks\ndecorations of any kind.\n"
+      "description": "It is a quite heavy human-sized ring made from solid iron.  It lacks
+                     |decorations of any kind."
     }]
   }},
   {"object": {
@@ -438,7 +428,6 @@
     "level": 15,
     "weight": 100,
     "cost": 750,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield"
   }}

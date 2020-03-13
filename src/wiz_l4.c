@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 #include <stdlib.h>
@@ -35,7 +35,6 @@
 #include "fight.h"
 #include "utils.h"
 #include "lookup.h"
-#include "skills.h"
 #include "affects.h"
 #include "chars.h"
 #include "objs.h"
@@ -43,6 +42,7 @@
 #include "recycle.h"
 #include "descs.h"
 #include "globals.h"
+#include "mobiles.h"
 
 #include "wiz_l4.h"
 
@@ -78,7 +78,7 @@ DEFINE_DO_FUN (do_guild) {
         printf_to_char (victim, "You are now a %s.\n\r", cname);
     }
     else {
-        cname = capitalize (clan->name);
+        cname = str_capitalized (clan->name);
         printf_to_char (ch,    "They are now a member of clan %s.\n\r", cname);
         printf_to_char (victim, "You are now a member of clan %s.\n\r", cname);
     }
@@ -97,10 +97,10 @@ DEFINE_DO_FUN (do_sockets) {
     buf[0] = '\0';
 
     one_argument (argument, arg);
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         if (d->character != NULL && char_can_see_anywhere (ch, d->character)
-            && (arg[0] == '\0' || is_name (arg, d->character->name)
-                || (d->original && is_name (arg, d->original->name))))
+            && (arg[0] == '\0' || str_in_namelist (arg, d->character->name)
+                || (d->original && str_in_namelist (arg, d->original->name))))
         {
             count++;
             sprintf (buf + strlen (buf), "[%3d %2d] %s@%s\n\r",
@@ -124,9 +124,12 @@ DEFINE_DO_FUN (do_flag) {
         arg3[MAX_INPUT_LENGTH];
     char word[MAX_INPUT_LENGTH];
     CHAR_T *victim;
-    flag_t *flag, old = 0, new = 0, marked = 0, pos;
+    flag_t *flags;
     char type;
     const FLAG_T *flag_table;
+    EXT_FLAGS_T *ext_flags;
+    const EXT_FLAG_DEF_T *ext_flag_table;
+    bool set_ext = FALSE;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -165,47 +168,49 @@ DEFINE_DO_FUN (do_flag) {
     if (!str_prefix (arg3, "mob")) {
         BAIL_IF (!IS_NPC (victim),
             "Use plr for PCs.\n\r", ch);
-        flag = &victim->mob;
-        flag_table = mob_flags;
+        ext_flags = &victim->ext_mob;
+        ext_flag_table = mob_flags;
+        set_ext = TRUE;
     }
     else if (!str_prefix (arg3, "plr")) {
         BAIL_IF (IS_NPC (victim),
             "Use act for NPCs.\n\r", ch);
-        flag = &victim->plr;
-        flag_table = plr_flags;
+        ext_flags = &victim->ext_plr;
+        ext_flag_table = plr_flags;
+        set_ext = TRUE;
     }
     else if (!str_prefix (arg3, "aff")) {
-        flag = &victim->affected_by;
+        flags = &victim->affected_by;
         flag_table = affect_flags;
     }
     else if (!str_prefix (arg3, "immunity")) {
-        flag = &victim->imm_flags;
+        flags = &victim->imm_flags;
         flag_table = res_flags;
     }
     else if (!str_prefix (arg3, "resist")) {
-        flag = &victim->res_flags;
+        flags = &victim->res_flags;
         flag_table = res_flags;
     }
     else if (!str_prefix (arg3, "vuln")) {
-        flag = &victim->vuln_flags;
+        flags = &victim->vuln_flags;
         flag_table = res_flags;
     }
     else if (!str_prefix (arg3, "form")) {
         BAIL_IF (!IS_NPC (victim),
             "Form can't be set on PCs.\n\r", ch);
-        flag = &victim->form;
+        flags = &victim->form;
         flag_table = form_flags;
     }
     else if (!str_prefix (arg3, "parts")) {
         BAIL_IF (!IS_NPC (victim),
             "Parts can't be set on PCs.\n\r", ch);
-        flag = &victim->parts;
+        flags = &victim->parts;
         flag_table = part_flags;
     }
     else if (!str_prefix (arg3, "comm")) {
         BAIL_IF (IS_NPC (victim),
             "Comm can't be set on NPCs.\n\r", ch);
-        flag = &victim->comm;
+        flags = &victim->comm;
         flag_table = comm_flags;
     }
     else {
@@ -213,8 +218,26 @@ DEFINE_DO_FUN (do_flag) {
         return;
     }
 
-    old = *flag;
-    victim->zone = NULL;
+    if (set_ext)
+        do_flag_ext (ch, victim, type, ext_flag_table, ext_flags, argument);
+    else
+        do_flag_simple (ch, victim, type, flag_table, flags, argument);
+}
+
+void do_flag_ext (CHAR_T *ch, CHAR_T *victim, char type,
+    const EXT_FLAG_DEF_T *flag_table, EXT_FLAGS_T *flags, char *argument)
+{
+    /* TODO: everything */
+}
+
+void do_flag_simple (CHAR_T *ch, CHAR_T *victim, char type,
+    const FLAG_T *flag_table, flag_t *flags, char *argument)
+{
+    flag_t old = 0, new = 0, marked = 0, pos;
+    char word[MAX_INPUT_LENGTH];
+
+    old = *flags;
+    victim->area = NULL;
 
     if (type != '=')
         new = old;
@@ -225,7 +248,7 @@ DEFINE_DO_FUN (do_flag) {
         if (word[0] == '\0')
             break;
 
-        pos = flag_lookup (word, flag_table);
+        pos = flag_lookup (flag_table, word);
         BAIL_IF (pos < 0,
             "That flag doesn't exist!\n\r", ch);
         SET_BIT (marked, pos);
@@ -256,7 +279,7 @@ DEFINE_DO_FUN (do_flag) {
             }
         }
     }
-    *flag = new;
+    *flags = new;
 }
 
 DEFINE_DO_FUN (do_freeze) {
@@ -272,15 +295,15 @@ DEFINE_DO_FUN (do_freeze) {
         "Not on NPC's.\n\r", ch);
     BAIL_IF (char_get_trust (victim) >= char_get_trust (ch),
         "You failed.\n\r", ch);
-    if (IS_SET (victim->plr, PLR_FREEZE)) {
-        REMOVE_BIT (victim->plr, PLR_FREEZE);
+    if (EXT_IS_SET (victim->ext_plr, PLR_FREEZE)) {
+        EXT_UNSET (victim->ext_plr, PLR_FREEZE);
         send_to_char ("You can play again.\n\r", victim);
         send_to_char ("FREEZE removed.\n\r", ch);
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N thaws %s.", victim->name);
     }
     else {
-        SET_BIT (victim->plr, PLR_FREEZE);
+        EXT_SET (victim->ext_plr, PLR_FREEZE);
         send_to_char ("You can't do ANYthing!\n\r", victim);
         send_to_char ("FREEZE set.\n\r", ch);
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
@@ -312,16 +335,16 @@ DEFINE_DO_FUN (do_load) {
 
 DEFINE_DO_FUN (do_mload) {
     char arg[MAX_INPUT_LENGTH];
-    MOB_INDEX_T *pMobIndex;
+    MOB_INDEX_T *mob_index;
     CHAR_T *victim;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0' || !is_number (arg),
         "Syntax: load mob <vnum>.\n\r", ch);
-    BAIL_IF ((pMobIndex = get_mob_index (atoi (arg))) == NULL,
+    BAIL_IF ((mob_index = mobile_get_index (atoi (arg))) == NULL,
         "No mob has that vnum.\n\r", ch);
 
-    victim = char_create_mobile (pMobIndex);
+    victim = mobile_create (mob_index);
     char_to_room (victim, ch->in_room);
     act ("$n has created $N!", ch, NULL, victim, TO_NOTCHAR);
     wiznetf (ch, NULL, WIZ_LOAD, WIZ_SECURE, char_get_trust (ch),
@@ -331,7 +354,7 @@ DEFINE_DO_FUN (do_mload) {
 
 DEFINE_DO_FUN (do_oload) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
-    OBJ_INDEX_T *pObjIndex;
+    OBJ_INDEX_T *obj_index;
     OBJ_T *obj;
     int level;
 
@@ -351,11 +374,11 @@ DEFINE_DO_FUN (do_oload) {
             "Level must be be between 0 and your level.\n\r", ch);
     }
 
-    BAIL_IF ((pObjIndex = get_obj_index (atoi (arg1))) == NULL,
+    BAIL_IF ((obj_index = obj_get_index (atoi (arg1))) == NULL,
         "No object has that vnum.\n\r", ch);
 
-    obj = obj_create (pObjIndex, level);
-    if (CAN_WEAR_FLAG (obj, ITEM_TAKE))
+    obj = obj_create (obj_index, level);
+    if (obj_can_wear_flag (obj, ITEM_TAKE))
         obj_give_to_char (obj, ch);
     else
         obj_give_to_room (obj, ch->in_room);
@@ -395,14 +418,14 @@ DEFINE_DO_FUN (do_purge) {
         CHAR_T *vnext;
         OBJ_T *obj_next;
 
-        for (victim = ch->in_room->people; victim != NULL; victim = vnext) {
-            vnext = victim->next_in_room;
-            if (IS_NPC (victim) && !IS_SET (victim->mob, MOB_NOPURGE)
+        for (victim = ch->in_room->people_first; victim != NULL; victim = vnext) {
+            vnext = victim->room_next;
+            if (IS_NPC (victim) && !EXT_IS_SET (victim->ext_mob, MOB_NOPURGE)
                 && victim != ch /* safety precaution */ )
-                char_extract (victim, TRUE);
+                char_extract (victim);
         }
-        for (obj = ch->in_room->contents; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = ch->in_room->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             if (!IS_OBJ_STAT (obj, ITEM_NOPURGE))
                 obj_extract (obj);
         }
@@ -432,22 +455,22 @@ DEFINE_DO_FUN (do_purge) {
         if (victim->level > 1)
             save_char_obj (victim);
         d = victim->desc;
-        char_extract (victim, TRUE);
+        char_extract (victim);
         if (d != NULL)
             close_socket (d);
     }
 
     act3 ("You purge $N.", "$n purges you.", "$n purges $N.",
         ch, 0, victim, 0, POS_RESTING);
-    char_extract (victim, TRUE);
+    char_extract (victim);
 }
 
 void do_restore_single (CHAR_T *ch, CHAR_T *vch) {
-    affect_strip (vch, gsn_plague);
-    affect_strip (vch, gsn_poison);
-    affect_strip (vch, gsn_blindness);
-    affect_strip (vch, gsn_sleep);
-    affect_strip (vch, gsn_curse);
+    affect_strip_char (vch, SN(PLAGUE));
+    affect_strip_char (vch, SN(POISON));
+    affect_strip_char (vch, SN(BLINDNESS));
+    affect_strip_char (vch, SN(SLEEP));
+    affect_strip_char (vch, SN(CURSE));
 
     vch->hit = vch->max_hit;
     vch->mana = vch->max_mana;
@@ -465,7 +488,7 @@ DEFINE_DO_FUN (do_restore) {
     one_argument (argument, arg);
     if (arg[0] == '\0' || !str_cmp (arg, "room")) {
         /* cure room */
-        for (victim = ch->in_room->people; victim != NULL; victim = victim->next_in_room)
+        for (victim = ch->in_room->people_first; victim; victim = victim->room_next)
             do_restore_single (ch, victim);
 
         wiznetf (ch, NULL, WIZ_RESTORE, WIZ_SECURE, char_get_trust (ch),
@@ -476,7 +499,7 @@ DEFINE_DO_FUN (do_restore) {
 
     if (char_get_trust (ch) >= MAX_LEVEL - 1 && !str_cmp (arg, "all")) {
         /* cure all */
-        for (d = descriptor_list; d != NULL; d = d->next) {
+        for (d = descriptor_first; d != NULL; d = d->global_next) {
             victim = d->character;
             if (victim == NULL || IS_NPC (victim))
                 continue;
@@ -505,7 +528,7 @@ DEFINE_DO_FUN (do_echo) {
     BAIL_IF (argument[0] == '\0',
         "Global echo what?\n\r", ch);
 
-    for (d = descriptor_list; d; d = d->next)
+    for (d = descriptor_first; d; d = d->global_next)
         if (d->connected == CON_PLAYING)
             echo_to_char (d->character, ch, "global", argument);
 }
@@ -567,7 +590,7 @@ DEFINE_DO_FUN (do_mfind) {
         "Find whom?\n\r", ch);
 
     for (mob = mob_index_get_first(); mob; mob = mob_index_get_next (mob)) {
-        if (is_name (argument, mob->name)) {
+        if (str_in_namelist (argument, mob->name)) {
             printf_to_char (ch, "[%5d] %s\n\r", mob->vnum, mob->short_descr);
             matches++;
         }
@@ -588,7 +611,7 @@ DEFINE_DO_FUN (do_ofind) {
         "Find what?\n\r", ch);
 
     for (obj = obj_index_get_first(); obj; obj = obj_index_get_next (obj)) {
-        if (is_name (argument, obj->name)) {
+        if (str_in_namelist (argument, obj->name)) {
             printf_to_char (ch, "[%5d] %s\n\r", obj->vnum, obj->short_descr);
             matches++;
         }
@@ -608,7 +631,7 @@ DEFINE_DO_FUN (do_zecho) {
     BAIL_IF (ch->in_room == NULL,
         "Good idea - if only you were in a zone...\n\r", ch);
 
-    for (d = descriptor_list; d; d = d->next) {
+    for (d = descriptor_first; d; d = d->global_next) {
         if (d->connected != CON_PLAYING)
             continue;
         if ((vch = d->character) == NULL)

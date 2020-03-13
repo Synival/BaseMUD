@@ -15,14 +15,12 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring",
-      "description": "It feels heavy.\n"
+      "description": "It feels heavy."
     }],
     "affects": [{
-      "apply": "strength",
       "level": 0,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "strength",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -37,12 +35,12 @@
     "level": 0,
     "weight": 1000,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "rotdeath",
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "corpse",
-      "description": "Ew.  This must have been the mapper that was lost in Moria.  His rotted hand\nstill clutches a partially digested map...\n"
+      "description": "Ew.  This must have been the mapper that was lost in Moria.  His rotted hand
+                     |still clutches a partially digested map..."
     }]
   }},
   {"object": {
@@ -60,7 +58,6 @@
     "level": 0,
     "weight": 5000,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -84,14 +81,12 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger",
-      "description": "It's old and rusted, but it still has a good edge.\n"
+      "description": "It's old and rusted, but it still has a good edge."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 0,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -114,11 +109,9 @@
     "condition": 90,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 3,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -143,14 +136,13 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "club tree",
-      "description": "This is the biggest club you have ever seen!  The giant didn't even bother to\ntrim the roots off the end.\n"
+      "description": "This is the biggest club you have ever seen!  The giant didn't even bother to
+                     |trim the roots off the end."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 14,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -175,14 +167,13 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "furs",
-      "description": "They're heavy and smelly and would probably slow you down...but they do look\nlike good armor.\n"
+      "description": "They're heavy and smelly and would probably slow you down...but they do look
+                     |like good armor."
     }],
     "affects": [{
-      "apply": "dexterity",
       "level": 8,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -205,7 +196,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "potion purple",
-      "description": "It looks rather strange!\n"
+      "description": "It looks rather strange!"
     }]
   }},
   {"object": {
@@ -230,11 +221,9 @@
     "extra_flags": "magic",
     "wear_flags": "take head",
     "affects": [{
-      "apply": "saves",
       "level": 5,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -257,7 +246,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "mushroom",
-      "description": "Let's put it this way - I wouldn't eat it !\n"
+      "description": "Let's put it this way - I wouldn't eat it !"
     }]
   }},
   {"object": {
@@ -282,22 +271,20 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dirk",
-      "description": "It's a medium sized, beautifully crafted dirk made from grey alloy.\nIts blade is double-edged and very thin ... this looks like a good\nthieves weapon.\n"
+      "description": "It's a medium sized, beautifully crafted dirk made from grey alloy.
+                     |Its blade is double-edged and very thin ... this looks like a good
+                     |thieves weapon."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 8,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 8,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -318,19 +305,16 @@
     "level": 12,
     "weight": 70,
     "cost": 930,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "axe",
-      "description": "It has an edge sharp enough to cut a passing thought. A good find, this.\n"
+      "description": "It has an edge sharp enough to cut a passing thought. A good find, this."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 12,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -354,7 +338,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword",
-      "description": "It's much heavier than a long sword, but not as well balanced.\n"
+      "description": "It's much heavier than a long sword, but not as well balanced."
     }]
   }},
   {"object": {
@@ -378,22 +362,19 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "flail",
-      "description": "It's a stout wooden rod with two spiked balls attached, each weighing over 2\npounds.  It's a little worn for wear, but looks most painful.\n"
+      "description": "It's a stout wooden rod with two spiked balls attached, each weighing over 2
+                     |pounds.  It's a little worn for wear, but looks most painful."
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 3,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": 1
       },
       {
-        "apply": "damage roll",
         "level": 3,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       }
     ]
   }},
@@ -418,14 +399,12 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "mace",
-      "description": "A metal shaft mounted with an iron head, shaped into armor-shattering form.\n"
+      "description": "A metal shaft mounted with an iron head, shaped into armor-shattering form."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 6,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -449,7 +428,8 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "falchion",
-      "description": "It's curved like a scimitar, only with no recurved blade and a tip designed\nfor piercing as well as slashing.\n"
+      "description": "It's curved like a scimitar, only with no recurved blade and a tip designed
+                     |for piercing as well as slashing."
     }]
   }},
   {"object": {
@@ -474,14 +454,13 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "voulge",
-      "description": "It looks a lot like a staff with a pruning knife tied to the end, but it's\nquite effective.\n"
+      "description": "It looks a lot like a staff with a pruning knife tied to the end, but it's
+                     |quite effective."
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 10,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -502,12 +481,11 @@
     "level": 11,
     "weight": 80,
     "cost": 940,
-    "condition": 100,
     "extra_flags": "magic antigood antineutral",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "blade",
-      "description": "You'll become as evil as the weapon, if you use it!\n"
+      "description": "You'll become as evil as the weapon, if you use it!"
     }]
   }},
   {"object": {
@@ -533,18 +511,14 @@
     "wear_flags": "take hands",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -568,7 +542,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll",
-      "description": "It looks informative.\n"
+      "description": "It looks informative."
     }]
   }},
   {"object": {
@@ -591,7 +565,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "slime mold",
-      "description": "It wasn't meant to be food, - Certainly not for humans.\n"
+      "description": "It wasn't meant to be food, - Certainly not for humans."
     }]
   }},
   {"object": {
@@ -615,7 +589,7 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "slime mold",
-      "description": "It wasn't meant to be food, - Certainly not for humans.\n"
+      "description": "It wasn't meant to be food, - Certainly not for humans."
     }]
   }},
   {"object": {
@@ -640,14 +614,12 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "staff",
-      "description": "It's a superb weapon for warrior or mage.\n"
+      "description": "It's a superb weapon for warrior or mage."
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 10,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -670,7 +642,7 @@
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "potion black",
-      "description": "It looks healthy.\n"
+      "description": "It looks healthy."
     }]
   }},
   {"object": {
@@ -696,19 +668,17 @@
     "extra_description": [
       {
         "keyword": "runes",
-        "description": "The runes says : Funthark.\n"
+        "description": "The runes says : Funthark."
       },
       {
         "keyword": "staff oak",
-        "description": "You see it has some sort of runes on it.\n"
+        "description": "You see it has some sort of runes on it."
       }
     ],
     "affects": [{
-      "apply": "mana",
       "level": 13,
-      "modifier": -20,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": -20
     }]
   }},
   {"object": {
@@ -728,26 +698,21 @@
     "level": 7,
     "weight": 20,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger light silver",
-      "description": "It looks like an excellent weapon for thieves.\n"
+      "description": "It looks like an excellent weapon for thieves."
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 7,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -1
       },
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -772,22 +737,19 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "star morning",
-      "description": "It's a huge length of wood studded with iron spikes and bands. You wouldn't\nwant to meet this in a dark alley...\n"
+      "description": "It's a huge length of wood studded with iron spikes and bands. You wouldn't
+                     |want to meet this in a dark alley..."
     }],
     "affects": [
       {
-        "apply": "dexterity",
         "level": 9,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       },
       {
-        "apply": "damage roll",
         "level": 9,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       }
     ]
   }},
@@ -807,7 +769,23 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map moria second",
-      "description": ".\n    * * * MORIA - Map 2 * * *\n     = = =============== = =\n\nMaze--Maze\n |     |    (Map 1)\n |    Maze--Tunnel*\n |\nMaze--Maze--Maze--Maze\n              |\n     Large--Large\n     Cave   Cave\n      |       |\n     Large--Large--Tunnel--End of\n     Cave    Cave    |     Tunnel\n                   *Hole\n                  (Map 3)\n"
+      "description": ".
+                     |    * * * MORIA - Map 2 * * *
+                     |     = = =============== = =
+                     |
+                     |Maze--Maze
+                     | |     |    (Map 1)
+                     | |    Maze--Tunnel*
+                     | |
+                     |Maze--Maze--Maze--Maze
+                     |              |
+                     |     Large--Large
+                     |     Cave   Cave
+                     |      |       |
+                     |     Large--Large--Tunnel--End of
+                     |     Cave    Cave    |     Tunnel
+                     |                   *Hole
+                     |                  (Map 3)"
     }]
   }},
   {"object": {
@@ -826,7 +804,39 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map moria third",
-      "description": ".\n                                                   (Map 1*)\n                             Long                     |\n        Tunnel----Tunnel----Tunnel--Tunnel--Tunnel--Tunnel\n          |                   |\n          |                  Gold--Gold\n          |                  Cave  Cave\n          |                   |      |\n          |                  Gold--Gold---Passage\n          |                  Cave  Cave      |\n          |                   |           Passage--Tunnel--Tunnel--Tunnel\n          |          Dark*---Gold            |\n          |         Passage  Cave            |     Secret\n          |                               Passage  Chamber\n          |                      Hole        |       |\n          |                        |      Passage  Secret\n        Large   Large   Large    Small       |     Chamber--Cave--Cave\n        Tunnel--Tunnel--Tunnel--Passage      |                |      |\n          |                        |      Passage-----------Cave--Cave\n          |                       Long\n          |                      Tunnel\n         Wet    Small  Small       |\n        Tunnel--Maze---Maze   Inscription\n          |       |      |         |\n         Wet    Small--Small-----Small\n        Tunnel  Maze   Maze      Maze\n          |       |                |\n          |      Wet    Wet      End of\n        Water    Maze---Maze-----Tunnel\n          |       |      |\n        Water---Water  End of\n                       Maze*\n                      (Map 2)\n"
+      "description": ".
+                     |                                                   (Map 1*)
+                     |                             Long                     |
+                     |        Tunnel----Tunnel----Tunnel--Tunnel--Tunnel--Tunnel
+                     |          |                   |
+                     |          |                  Gold--Gold
+                     |          |                  Cave  Cave
+                     |          |                   |      |
+                     |          |                  Gold--Gold---Passage
+                     |          |                  Cave  Cave      |
+                     |          |                   |           Passage--Tunnel--Tunnel--Tunnel
+                     |          |          Dark*---Gold            |
+                     |          |         Passage  Cave            |     Secret
+                     |          |                               Passage  Chamber
+                     |          |                      Hole        |       |
+                     |          |                        |      Passage  Secret
+                     |        Large   Large   Large    Small       |     Chamber--Cave--Cave
+                     |        Tunnel--Tunnel--Tunnel--Passage      |                |      |
+                     |          |                        |      Passage-----------Cave--Cave
+                     |          |                       Long
+                     |          |                      Tunnel
+                     |         Wet    Small  Small       |
+                     |        Tunnel--Maze---Maze   Inscription
+                     |          |       |      |         |
+                     |         Wet    Small--Small-----Small
+                     |        Tunnel  Maze   Maze      Maze
+                     |          |       |                |
+                     |          |      Wet    Wet      End of
+                     |        Water    Maze---Maze-----Tunnel
+                     |          |       |      |
+                     |        Water---Water  End of
+                     |                       Maze*
+                     |                      (Map 2)"
     }]
   }}
 ]

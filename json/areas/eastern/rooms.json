@@ -3,7 +3,8 @@
     "area": "eastern",
     "anum": 1,
     "name": "A long tunnel",
-    "description": "You encounter some rapids as you enter this tunnel cut out of\nthe mountains by the river.\n",
+    "description": "You encounter some rapids as you enter this tunnel cut out of
+                   |the mountains by the river.",
     "sector_type": "noswim",
     "room_flags": "dark indoors",
     "doors": [
@@ -13,7 +14,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "portal": "eastern-west-1"
       }
     ]
@@ -22,7 +22,7 @@
     "area": "eastern",
     "anum": 2,
     "name": "A long tunnel",
-    "description": "The tunnel branches off north.\n",
+    "description": "The tunnel branches off north.",
     "sector_type": "noswim",
     "room_flags": "dark indoors",
     "doors": [
@@ -44,7 +44,7 @@
     "area": "eastern",
     "anum": 3,
     "name": "A long tunnel",
-    "description": "The tunnel branches off south.\n",
+    "description": "The tunnel branches off south.",
     "sector_type": "noswim",
     "room_flags": "dark indoors",
     "doors": [
@@ -66,7 +66,7 @@
     "area": "eastern",
     "anum": 4,
     "name": "A long tunnel",
-    "description": "The tunnel branches off to the south.\n",
+    "description": "The tunnel branches off to the south.",
     "sector_type": "noswim",
     "room_flags": "dark indoors",
     "doors": [
@@ -88,7 +88,10 @@
     "area": "eastern",
     "anum": 5,
     "name": "An underground lake",
-    "description": "You are floating on a jet-black underground lake fed by dripping\nwater and lime from above. The tunnel continues to the east and the river\nleads back west. To the north is a roughly-hewn hallway. There is also\na tunnel south.\n",
+    "description": "You are floating on a jet-black underground lake fed by dripping
+                   |water and lime from above. The tunnel continues to the east and the river
+                   |leads back west. To the north is a roughly-hewn hallway. There is also
+                   |a tunnel south.",
     "sector_type": "noswim",
     "room_flags": "dark indoors",
     "doors": [
@@ -114,7 +117,7 @@
     "area": "eastern",
     "anum": 6,
     "name": "A long narrow tunnel",
-    "description": "The tunnel rises sharply to the east.\n",
+    "description": "The tunnel rises sharply to the east.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -132,7 +135,8 @@
     "area": "eastern",
     "anum": 7,
     "name": "A wide tunnel",
-    "description": "The tunnel continues east and west. To the east the tunnel dives\ndown into a bright light.\n",
+    "description": "The tunnel continues east and west. To the east the tunnel dives
+                   |down into a bright light.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -150,7 +154,8 @@
     "area": "eastern",
     "anum": 8,
     "name": "Cave-in",
-    "description": "You stand at the edge of a large pile of rubble created from the last\nrockslide.\n",
+    "description": "You stand at the edge of a large pile of rubble created from the last
+                   |rockslide.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -169,7 +174,8 @@
     "area": "eastern",
     "anum": 9,
     "name": "At the foot of the rubble",
-    "description": "You are at the bottom of a large pile of rubble. A tunnel branches\noff to the north and east.\n",
+    "description": "You are at the bottom of a large pile of rubble. A tunnel branches
+                   |off to the north and east.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -212,7 +218,8 @@
     "area": "eastern",
     "anum": 10,
     "name": "Cave entrance",
-    "description": "You stand in the middle of a large and beautiful cave. A path leads\ndeeper into the darkness.\n",
+    "description": "You stand in the middle of a large and beautiful cave. A path leads
+                   |deeper into the darkness.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -231,7 +238,8 @@
     "area": "eastern",
     "anum": 11,
     "name": "Giant cave",
-    "description": "This cavern overwhelms you. The walls and ceiling seem miles away.\nBones of previous adventurers lie strewn on the cavern floor.\n",
+    "description": "This cavern overwhelms you. The walls and ceiling seem miles away.
+                   |Bones of previous adventurers lie strewn on the cavern floor.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [{
@@ -275,7 +283,7 @@
     "area": "eastern",
     "anum": 12,
     "name": "Narrow bend",
-    "description": "The tunnel turns to the south and west.\n",
+    "description": "The tunnel turns to the south and west.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -293,7 +301,7 @@
     "area": "eastern",
     "anum": 13,
     "name": "Large cave",
-    "description": "You are standing in a large cave. Many furs are spread out on the floor.\n",
+    "description": "You are standing in a large cave. Many furs are spread out on the floor.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -311,7 +319,7 @@
     "area": "eastern",
     "anum": 14,
     "name": "Damp hallway",
-    "description": "The walls here are extremely damp, as well as the floor.\n",
+    "description": "The walls here are extremely damp, as well as the floor.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -348,7 +356,7 @@
     "area": "eastern",
     "anum": 15,
     "name": "Underground pool",
-    "description": "You are wading in a knee deep pool of lime-water.\n",
+    "description": "You are wading in a knee deep pool of lime-water.",
     "sector_type": "swim",
     "room_flags": "dark indoors",
     "doors": [
@@ -366,7 +374,8 @@
     "area": "eastern",
     "anum": 16,
     "name": "Damp hallway",
-    "description": "The walls of the tunnel are extremely damp here. You hear the faint\nsound of running water to the south.\n",
+    "description": "The walls of the tunnel are extremely damp here. You hear the faint
+                   |sound of running water to the south.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -385,7 +394,8 @@
     "area": "eastern",
     "anum": 17,
     "name": "Narrow crawlway",
-    "description": "This crawlway is just big enough for a human to crawl through or a\nhalfling to walk through.\n",
+    "description": "This crawlway is just big enough for a human to crawl through or a
+                   |halfling to walk through.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -408,7 +418,8 @@
     "area": "eastern",
     "anum": 18,
     "name": "Large cavern",
-    "description": "You have entered a very large cavern. The rock formations would amaze\nalmost any dwarf.\n",
+    "description": "You have entered a very large cavern. The rock formations would amaze
+                   |almost any dwarf.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -426,7 +437,8 @@
     "area": "eastern",
     "anum": 19,
     "name": "Fungus patch",
-    "description": "As you walk through the fungus patch, you are shot at by many millions of\nspores. You can hardly breathe.\n",
+    "description": "As you walk through the fungus patch, you are shot at by many millions of
+                   |spores. You can hardly breathe.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -437,7 +449,7 @@
       {
         "dir": "east",
         "to": 20,
-        "description": "The fragrant smell of fungus spores continues to the east"
+        "description": "The fragrant smell of fungus spores continues to the east."
       }
     ]
   }},
@@ -445,7 +457,8 @@
     "area": "eastern",
     "anum": 20,
     "name": "Fungus path",
-    "description": "As you walk along the path, millions of spores are shot at you. You can\nhardly breathe.\n",
+    "description": "As you walk along the path, millions of spores are shot at you. You can
+                   |hardly breathe.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -465,7 +478,8 @@
     "area": "eastern",
     "anum": 21,
     "name": "Fungus temple",
-    "description": "You find yourself standing inside of a giant mushroom. The inside\nis decorated in the fashion of a temple.\n",
+    "description": "You find yourself standing inside of a giant mushroom. The inside
+                   |is decorated in the fashion of a temple.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -509,7 +523,7 @@
     "area": "eastern",
     "anum": 22,
     "name": "Sloping passage",
-    "description": "You follow a path sloping down from the fungus temple.\n",
+    "description": "You follow a path sloping down from the fungus temple.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -527,7 +541,7 @@
     "area": "eastern",
     "anum": 23,
     "name": "Sloping passage",
-    "description": "You are on a path that gently slopes up from the underground pool.\n",
+    "description": "You are on a path that gently slopes up from the underground pool.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -546,29 +560,30 @@
     "area": "eastern",
     "anum": 24,
     "name": "The Sands of Sorrow",
-    "description": "A vast desert stretches for miles, the sand constantly shifting around you.\nYou feel lost.\n",
+    "description": "A vast desert stretches for miles, the sand constantly shifting around you.
+                   |You feel lost.",
     "sector_type": "desert",
     "room_flags": "no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 30,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "east",
         "to": 25,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "south",
         "to": 27,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "west",
         "to": 26,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       }
     ],
     "resets": [{
@@ -584,29 +599,30 @@
     "area": "eastern",
     "anum": 25,
     "name": "The Sands of Sorrow",
-    "description": "A vast desert stretches for miles, the sand constantly shifting around you.\nYou feel lost.\n",
+    "description": "A vast desert stretches for miles, the sand constantly shifting around you.
+                   |You feel lost.",
     "sector_type": "desert",
     "room_flags": "no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 56,
-        "description": "You see a nomad camp by an oasis.\n"
+        "description": "You see a nomad camp by an oasis."
       },
       {
         "dir": "east",
         "to": 26,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "south",
         "to": 28,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "west",
         "to": 24,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       }
     ],
     "resets": [
@@ -635,29 +651,30 @@
     "area": "eastern",
     "anum": 26,
     "name": "The Sands of Sorrow",
-    "description": "A vast desert stretches for miles, the sand constantly shifting around you.\nYou feel lost.\n",
+    "description": "A vast desert stretches for miles, the sand constantly shifting around you.
+                   |You feel lost.",
     "sector_type": "desert",
     "room_flags": "no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 32,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "east",
         "to": 24,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "south",
         "to": 29,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "west",
         "to": 25,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       }
     ],
     "resets": [{
@@ -673,29 +690,30 @@
     "area": "eastern",
     "anum": 27,
     "name": "The Sands of Sorrow",
-    "description": "A vast desert stretches for miles, the sand constantly shifting around you.\nYou feel lost.\n",
+    "description": "A vast desert stretches for miles, the sand constantly shifting around you.
+                   |You feel lost.",
     "sector_type": "desert",
     "room_flags": "no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 24,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "east",
         "to": 28,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "south",
         "to": 30,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "west",
         "to": 7,
-        "description": "You see a river flowing into the mountain.\n"
+        "description": "You see a river flowing into the mountain."
       }
     ],
     "resets": [
@@ -724,29 +742,30 @@
     "area": "eastern",
     "anum": 28,
     "name": "The Sands of Sorrow",
-    "description": "A vast desert stretches for miles, the sand constantly shifting around you.\nYou feel lost.\n",
+    "description": "A vast desert stretches for miles, the sand constantly shifting around you.
+                   |You feel lost.",
     "sector_type": "desert",
     "room_flags": "no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 25,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "east",
         "to": 29,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "south",
         "to": 31,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "west",
         "to": 27,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       }
     ],
     "resets": [
@@ -793,29 +812,30 @@
     "area": "eastern",
     "anum": 29,
     "name": "The Sands of Sorrow",
-    "description": "A vast desert stretches for miles, the sand constantly shifting around you.\nYou feel lost.\n",
+    "description": "A vast desert stretches for miles, the sand constantly shifting around you.
+                   |You feel lost.",
     "sector_type": "desert",
     "room_flags": "no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 26,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "east",
         "to": 62,
-        "description": "The sand is glowing in this direction.\n"
+        "description": "The sand is glowing in this direction."
       },
       {
         "dir": "south",
         "to": 32,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "west",
         "to": 28,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       }
     ],
     "resets": [
@@ -844,29 +864,30 @@
     "area": "eastern",
     "anum": 30,
     "name": "The Sands of Sorrow",
-    "description": "A vast desert stretches for miles, the sand constantly shifting around you.\nYou feel lost.\n",
+    "description": "A vast desert stretches for miles, the sand constantly shifting around you.
+                   |You feel lost.",
     "sector_type": "desert",
     "room_flags": "no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 27,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "east",
         "to": 31,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "south",
         "to": 24,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "west",
         "to": 32,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       }
     ],
     "resets": [{
@@ -882,29 +903,30 @@
     "area": "eastern",
     "anum": 31,
     "name": "The Sands of Sorrow",
-    "description": "A vast desert stretches for miles, the sand constantly shifting around you.\nYou feel lost.\n",
+    "description": "A vast desert stretches for miles, the sand constantly shifting around you.
+                   |You feel lost.",
     "sector_type": "desert",
     "room_flags": "no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 28,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "east",
         "to": 32,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "south",
         "to": 63,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "west",
         "to": 30,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       }
     ],
     "resets": [
@@ -941,29 +963,30 @@
     "area": "eastern",
     "anum": 32,
     "name": "The Sands of Sorrow",
-    "description": "A vast desert stretches for miles, the sand constantly shifting around you.\nYou feel lost.\n",
+    "description": "A vast desert stretches for miles, the sand constantly shifting around you.
+                   |You feel lost.",
     "sector_type": "desert",
     "room_flags": "no_recall",
     "doors": [
       {
         "dir": "north",
         "to": 29,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "east",
         "to": 30,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "south",
         "to": 26,
-        "description": "You see a tiny ledge.\n"
+        "description": "You see a tiny ledge."
       },
       {
         "dir": "west",
         "to": 31,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       }
     ],
     "resets": [{
@@ -979,23 +1002,26 @@
     "area": "eastern",
     "anum": 56,
     "name": "A nomad camp",
-    "description": "This small group of desert nomads has stopped for the day to rest\nand refresh themselves beside this beautiful oasis. Three tents and some\ncamels make up the party. From within two of the tents you hear muffled\nvoices, obviously surprised at your visit.\n",
+    "description": "This small group of desert nomads has stopped for the day to rest
+                   |and refresh themselves beside this beautiful oasis. Three tents and some
+                   |camels make up the party. From within two of the tents you hear muffled
+                   |voices, obviously surprised at your visit.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 58,
-        "description": "You see ill-tempered camels.\n"
+        "description": "You see ill-tempered camels."
       },
       {
         "dir": "east",
         "to": 57,
-        "description": "You see inside one of the tents a huddled mass of people, probably slaves.\n"
+        "description": "You see inside one of the tents a huddled mass of people, probably slaves."
       },
       {
         "dir": "south",
         "to": 25,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       }
     ]
   }},
@@ -1003,19 +1029,20 @@
     "area": "eastern",
     "anum": 57,
     "name": "Inside a small tent",
-    "description": "This is a small and simple tent with few possessions in sight. Lying\nhere and there are young-looking men and women, possibly slaves to the\nleader of this band.\n",
+    "description": "This is a small and simple tent with few possessions in sight. Lying
+                   |here and there are young-looking men and women, possibly slaves to the
+                   |leader of this band.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "east",
-        "to": null,
-        "description": "Waving in the heat over the sand you see a HUGE pyramid.\n",
+        "description": "Waving in the heat over the sand you see a HUGE pyramid.",
         "portal": "eastern-east-1"
       },
       {
         "dir": "west",
         "to": 56,
-        "description": "You see the center of the nomad camp.\n"
+        "description": "You see the center of the nomad camp."
       }
     ],
     "resets": [{
@@ -1031,23 +1058,26 @@
     "area": "eastern",
     "anum": 58,
     "name": "Beside the camels",
-    "description": "Here stand about ten camels, all hitched to some stakes plugged into\nthe ground. To the east you see a small tent while to the north you see a\nlarger, fancier tent.\n",
+    "description": "Here stand about ten camels, all hitched to some stakes plugged into
+                   |the ground. To the east you see a small tent while to the north you see a
+                   |larger, fancier tent.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 60,
-        "description": "This tent seems to be the temporary abode of the nomad leader. You make a\nmental note to visit it before you leave."
+        "description": "This tent seems to be the temporary abode of the nomad leader. You make a
+                       |mental note to visit it before you leave."
       },
       {
         "dir": "east",
         "to": 59,
-        "description": "In this tent there are very large men, all carrying weapons.\n"
+        "description": "In this tent there are very large men, all carrying weapons."
       },
       {
         "dir": "south",
         "to": 56,
-        "description": "You see the center of the nomad camp.\n"
+        "description": "You see the center of the nomad camp."
       }
     ],
     "resets": [{
@@ -1063,13 +1093,14 @@
     "area": "eastern",
     "anum": 59,
     "name": "The warrior's tent.",
-    "description": "This tent has a few furnishings, but mainly it holds the band's\nprotectors. They all stare at you coldly as you enter.\n",
+    "description": "This tent has a few furnishings, but mainly it holds the band's
+                   |protectors. They all stare at you coldly as you enter.",
     "sector_type": "field",
     "room_flags": "unused_room_5",
     "doors": [{
       "dir": "west",
       "to": 58,
-      "description": "Outside you see some peaceful camels.\n"
+      "description": "Outside you see some peaceful camels."
     }],
     "resets": [
       {
@@ -1094,7 +1125,9 @@
     "area": "eastern",
     "anum": 60,
     "name": "The main tent",
-    "description": "This tent is as lavishly decorated on the inside as it is on the\noutside. A fancy carpet lies on the sand and numerous baskets line the\nwalls.\n",
+    "description": "This tent is as lavishly decorated on the inside as it is on the
+                   |outside. A fancy carpet lies on the sand and numerous baskets line the
+                   |walls.",
     "sector_type": "field",
     "room_flags": "unused_room_5",
     "doors": [
@@ -1105,7 +1138,7 @@
       {
         "dir": "south",
         "to": 58,
-        "description": "You see some peaceful camels.\n"
+        "description": "You see some peaceful camels."
       }
     ],
     "resets": [
@@ -1157,13 +1190,15 @@
     "area": "eastern",
     "anum": 61,
     "name": "The main tent",
-    "description": "This is where the leader of this band of nomads resides. He is\ndefinitely rich as you inspect the tapestries, baskets, and a few\npaintings as well.\n",
+    "description": "This is where the leader of this band of nomads resides. He is
+                   |definitely rich as you inspect the tapestries, baskets, and a few
+                   |paintings as well.",
     "sector_type": "field",
     "room_flags": "unused_room_5",
     "doors": [{
       "dir": "west",
       "to": 60,
-      "description": "You see the entrance to this tent.\n"
+      "description": "You see the entrance to this tent."
     }],
     "resets": [
       {
@@ -1230,20 +1265,21 @@
     "area": "eastern",
     "anum": 62,
     "name": "Strange Glowing Sand",
-    "description": "A vast desert stretches for miles, the sand constantly shifting around\nyou.  But this patch of desert looks different...the sand glows.  You see a\nfuturistic city to the south.\n",
+    "description": "A vast desert stretches for miles, the sand constantly shifting around
+                   |you.  But this patch of desert looks different...the sand glows.  You see a
+                   |futuristic city to the south.",
     "sector_type": "mountain",
     "room_flags": "no_mob indoors",
     "doors": [
       {
         "dir": "south",
-        "to": null,
-        "description": "You see a futuristic city.\n",
+        "description": "You see a futuristic city.",
         "portal": "eastern-south-1"
       },
       {
         "dir": "west",
         "to": 29,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       }
     ]
   }},
@@ -1251,18 +1287,20 @@
     "area": "eastern",
     "anum": 63,
     "name": "The wind-swept ledge",
-    "description": "Being very careful not to lose your balance, you look around and\nfind that this canyon is about a half a kilometer deep. To the west is\na dark cave leading under the desert sands.\n",
+    "description": "Being very careful not to lose your balance, you look around and
+                   |find that this canyon is about a half a kilometer deep. To the west is
+                   |a dark cave leading under the desert sands.",
     "sector_type": "mountain",
     "doors": [
       {
         "dir": "north",
         "to": 31,
-        "description": "Sand as far as the eye can see.\n"
+        "description": "Sand as far as the eye can see."
       },
       {
         "dir": "west",
         "to": 64,
-        "description": "You see a dark cave.\n"
+        "description": "You see a dark cave."
       }
     ]
   }},
@@ -1270,7 +1308,9 @@
     "area": "eastern",
     "anum": 64,
     "name": "The cave mouth",
-    "description": "The air in here is MUCH cooler than outside. From the west you hear\nstrange sounds, but can see nothing. The cave slopes down into the\ndarkness.\n",
+    "description": "The air in here is MUCH cooler than outside. From the west you hear
+                   |strange sounds, but can see nothing. The cave slopes down into the
+                   |darkness.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1289,7 +1329,10 @@
     "area": "eastern",
     "anum": 65,
     "name": "The mysterious lair.",
-    "description": "You have stumbled upon the home of something. From the treasure\nhaphazardly strewn about and the rotting carcasses, you would guess that\nthis is a dragon's lair. As to what type, you can't really say. The cave\nnarrows out into a tunnel to the west.\n",
+    "description": "You have stumbled upon the home of something. From the treasure
+                   |haphazardly strewn about and the rotting carcasses, you would guess that
+                   |this is a dragon's lair. As to what type, you can't really say. The cave
+                   |narrows out into a tunnel to the west.",
     "sector_type": "mountain",
     "room_flags": "dark indoors unused_room_5",
     "doors": [
@@ -1334,7 +1377,8 @@
     "area": "eastern",
     "anum": 66,
     "name": "A wide tunnel",
-    "description": "This tunnel seems to go on forever into the darkness. You carefully\nfeel your way along the walls.\n",
+    "description": "This tunnel seems to go on forever into the darkness. You carefully
+                   |feel your way along the walls.",
     "sector_type": "mountain",
     "room_flags": "dark no_mob indoors",
     "doors": [
@@ -1355,7 +1399,8 @@
     "area": "eastern",
     "anum": 67,
     "name": "A narrower tunnel",
-    "description": "The tunnel becomes very narrow and you fight to squeeze your way through.\nThe floor seems to level off a little.\n",
+    "description": "The tunnel becomes very narrow and you fight to squeeze your way through.
+                   |The floor seems to level off a little.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1373,7 +1418,8 @@
     "area": "eastern",
     "anum": 68,
     "name": "A narrow crack",
-    "description": "This part of the tunnel is the hardest to move through as the walls\nmove in to meet you.\n",
+    "description": "This part of the tunnel is the hardest to move through as the walls
+                   |move in to meet you.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1391,7 +1437,8 @@
     "area": "eastern",
     "anum": 69,
     "name": "A small cavern.",
-    "description": "It is dark and damp and bats hang from the ceiling. A narrow crack is\nin the east wall. The floor now slopes upwards.\n",
+    "description": "It is dark and damp and bats hang from the ceiling. A narrow crack is
+                   |in the east wall. The floor now slopes upwards.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [
@@ -1409,7 +1456,8 @@
     "area": "eastern",
     "anum": 70,
     "name": "A small shaft",
-    "description": "From within this shaft you can see a narrow hole in the roof just\nlarge enough for one person. Back south is the cavern.\n",
+    "description": "From within this shaft you can see a narrow hole in the roof just
+                   |large enough for one person. Back south is the cavern.",
     "sector_type": "mountain",
     "room_flags": "dark indoors",
     "doors": [

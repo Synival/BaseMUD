@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 #include <stdlib.h>
@@ -44,6 +44,11 @@
 #include "memory.h"
 #include "globals.h"
 #include "find.h"
+#include "players.h"
+#include "mobiles.h"
+#include "objs.h"
+#include "quickmud.h"
+#include "json_export.h"
 
 #include "wiz_ml.h"
 
@@ -51,8 +56,7 @@ DEFINE_DO_FUN (do_advance) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     CHAR_T *victim;
-    int level;
-    int iLevel;
+    int i, level;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -81,7 +85,7 @@ DEFINE_DO_FUN (do_advance) {
         send_to_char ("**** OOOOHHHHHHHHHH  NNNNOOOO ****\n\r", victim);
         temp_prac = victim->practice;
         victim->level = 1;
-        victim->exp = exp_per_level (victim, victim->pcdata->points);
+        victim->exp = player_get_exp_per_level (victim);
         victim->max_hit = 10;
         victim->max_mana = 100;
         victim->max_move = 100;
@@ -89,20 +93,19 @@ DEFINE_DO_FUN (do_advance) {
         victim->hit = victim->max_hit;
         victim->mana = victim->max_mana;
         victim->move = victim->max_move;
-        advance_level (victim, TRUE);
+        player_advance_level (victim, TRUE);
         victim->practice = temp_prac;
     }
     else {
         send_to_char ("Raising a player's level!\n\r", ch);
         send_to_char ("**** OOOOHHHHHHHHHH  YYYYEEEESSS ****\n\r", victim);
     }
-    for (iLevel = victim->level; iLevel < level; iLevel++) {
+    for (i = victim->level; i < level; i++) {
         victim->level += 1;
-        advance_level (victim, TRUE);
+        player_advance_level (victim, TRUE);
     }
     printf_to_char (victim, "You are now level %d.\n\r", victim->level);
-    victim->exp = exp_per_level (victim, victim->pcdata->points)
-        * UMAX (1, victim->level);
+    victim->exp = player_get_exp_per_level (victim) * UMAX (1, victim->level);
     victim->trust = 0;
     save_char_obj (victim);
 }
@@ -133,9 +136,9 @@ DEFINE_DO_FUN (do_copyover) {
         ch->name);
 
     /* For each playing descriptor, save its state */
-    for (d = descriptor_list; d; d = d_next) {
+    for (d = descriptor_first; d; d = d_next) {
         CHAR_T *och = CH (d);
-        d_next = d->next;        /* We delete from the list , so need to save this */
+        d_next = d->global_next; /* We delete from the list , so need to save this */
 
         /* drop those logging on */
         if (!d->character || d->connected < CON_PLAYING) {
@@ -163,7 +166,7 @@ DEFINE_DO_FUN (do_copyover) {
     fclose (fp);
 
     /* Close reserve and other always-open files and release other resources */
-    fclose (fpReserve);
+    fclose (reserve_file);
 
 #ifdef IMC
     imc_hotboot();
@@ -186,8 +189,8 @@ DEFINE_DO_FUN (do_copyover) {
     perror ("do_copyover: execl");
     send_to_char ("Copyover FAILED!\n\r", ch);
 
-    /* Here you might want to reopen fpReserve */
-    fpReserve = fopen (NULL_FILE, "r");
+    /* Here you might want to reopen reserve_file */
+    reserve_file = fopen (NULL_FILE, "r");
 }
 
 DEFINE_DO_FUN (do_trust) {
@@ -250,13 +253,13 @@ DEFINE_DO_FUN (do_dump) {
 }
 
 void do_dump_stats (CHAR_T *ch) {
-    MOB_INDEX_T *pMobIndex;
-    OBJ_INDEX_T *pObjIndex;
+    MOB_INDEX_T *mob_index;
+    OBJ_INDEX_T *obj_index;
     FILE *fp;
-    int vnum, nMatch = 0;
+    int vnum, matches = 0;
 
     /* lock writing? */
-    fclose (fpReserve);
+    fclose (reserve_file);
 
     /* standard memory dump */
     printf_to_char (ch, "Writing '%smemory.dump'...\n\r", DUMP_DIR);
@@ -272,13 +275,13 @@ void do_dump_stats (CHAR_T *ch) {
 
     fprintf (fp, "Mobile Analysis\n");
     fprintf (fp, "---------------\n");
-    nMatch = 0;
-    for (vnum = 0; nMatch < TOP(RECYCLE_MOB_INDEX_T); vnum++) {
-        if ((pMobIndex = get_mob_index (vnum)) != NULL) {
-            nMatch++;
+    matches = 0;
+    for (vnum = 0; matches < TOP(RECYCLE_MOB_INDEX_T); vnum++) {
+        if ((mob_index = mobile_get_index (vnum)) != NULL) {
+            matches++;
             fprintf (fp, "#%-4d %3d active %3d killed     %s\n",
-                     pMobIndex->vnum, pMobIndex->count,
-                     pMobIndex->killed, pMobIndex->short_descr);
+                     mob_index->vnum, mob_index->mob_count,
+                     mob_index->killed, mob_index->short_descr);
         }
     }
     fclose (fp);
@@ -289,43 +292,43 @@ void do_dump_stats (CHAR_T *ch) {
     fp = fopen (DUMP_DIR "obj.dump", "w");
     fprintf (fp, "Object Analysis\n");
     fprintf (fp, "---------------\n");
-    nMatch = 0;
-    for (vnum = 0; nMatch < TOP(RECYCLE_OBJ_INDEX_T); vnum++) {
-        if ((pObjIndex = get_obj_index (vnum)) != NULL) {
-            nMatch++;
+    matches = 0;
+    for (vnum = 0; matches < TOP(RECYCLE_OBJ_INDEX_T); vnum++) {
+        if ((obj_index = obj_get_index (vnum)) != NULL) {
+            matches++;
             fprintf (fp, "#%-4d %3d active %3d reset      %s\n",
-                     pObjIndex->vnum, pObjIndex->count,
-                     pObjIndex->reset_num, pObjIndex->short_descr);
+                     obj_index->vnum, obj_index->obj_count,
+                     obj_index->reset_num, obj_index->short_descr);
         }
     }
     fclose (fp);
 
     /* unlock writing? */
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
     send_to_char ("Done.\n\r", ch);
 }
 
 void do_dump_world_raw (CHAR_T *ch) {
     /* lock writing, dump, unlock writing. */
-    fclose (fpReserve);
+    fclose (reserve_file);
 
     printf_to_char (ch, "Writing '%sworld.dump'...\n\r", DUMP_DIR);
     desc_flush_output (ch->desc);
     db_dump_world (DUMP_DIR "world.dump");
 
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
     send_to_char ("Done.\n\r", ch);
 }
 
 void do_dump_world_json (CHAR_T *ch) {
     /* lock writing, dump, unlock writing. */
-    fclose (fpReserve);
+    fclose (reserve_file);
 
     printf_to_char (ch, "Writing '%sworld.json'...\n\r", DUMP_DIR);
     desc_flush_output (ch->desc);
-    db_export_json (FALSE, DUMP_DIR "world.json");
+    json_export_all (FALSE, DUMP_DIR "world.json");
 
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
     send_to_char ("Done.\n\r", ch);
 }
 
@@ -343,7 +346,7 @@ DEFINE_DO_FUN (do_violate) {
     if (ch->fighting != NULL)
         stop_fighting (ch, TRUE);
 
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next) {
         if (char_get_trust (rch) >= ch->invis_level) {
             if (ch->pcdata != NULL && ch->pcdata->bamfout[0] != '\0')
                 act ("$t", ch, ch->pcdata->bamfout, rch, TO_VICT);
@@ -352,10 +355,8 @@ DEFINE_DO_FUN (do_violate) {
         }
     }
 
-    char_from_room (ch);
     char_to_room (ch, location);
-
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next) {
         if (char_get_trust (rch) >= ch->invis_level) {
             if (ch->pcdata != NULL && ch->pcdata->bamfin[0] != '\0')
                 act ("$t", ch, ch->pcdata->bamfin, rch, TO_VICT);

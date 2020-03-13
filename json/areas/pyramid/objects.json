@@ -15,11 +15,10 @@
     "level": 6,
     "weight": 100,
     "cost": 370,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "egyptian mace",
-      "description": "The mace is formed from solid brass, and engraved in strange hieroglyphs.\n"
+      "description": "The mace is formed from solid brass, and engraved in strange hieroglyphs."
     }]
   }},
   {"object": {
@@ -37,11 +36,12 @@
     "level": 5,
     "weight": 50,
     "cost": 480,
-    "condition": 100,
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "sand robes",
-      "description": "The robes are colored a sandy off-white, and are in fact caked and covered\nwith sand as well.  You don't seem to be able to remove all of the sand, no\nmatter how much you try.\n"
+      "description": "The robes are colored a sandy off-white, and are in fact caked and covered
+                     |with sand as well.  You don't seem to be able to remove all of the sand, no
+                     |matter how much you try."
     }]
   }},
   {"object": {
@@ -60,19 +60,16 @@
     "level": 15,
     "weight": 10,
     "cost": 910,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "obsidian dirk",
-      "description": "The blade of the dirk is black, glassy obsidian, chipped razor sharp.\n"
+      "description": "The blade of the dirk is black, glassy obsidian, chipped razor sharp."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 15,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -90,27 +87,23 @@
     "level": 13,
     "weight": 100,
     "cost": 1470,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "cloth turban",
-      "description": "The turban used to be white cloth, now it is covered with oil and dirt from\nthe head and hair of its previous owner, who must not have bathed much.\n"
+      "description": "The turban used to be white cloth, now it is covered with oil and dirt from
+                     |the head and hair of its previous owner, who must not have bathed much."
     }],
     "affects": [
       {
-        "apply": "hp",
         "level": 13,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 5
       },
       {
-        "apply": "dexterity",
         "level": 13,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       }
     ]
   }},
@@ -129,11 +122,10 @@
     "level": 10,
     "weight": 150,
     "cost": 1450,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "cloth wrappings",
-      "description": "The cloth wrappings are old, wrinkled, and stink of embalming fluid.\n"
+      "description": "The cloth wrappings are old, wrinkled, and stink of embalming fluid."
     }]
   }},
   {"object": {
@@ -150,11 +142,10 @@
     "level": 3,
     "weight": 50,
     "cost": 270,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "bottle fluid",
-      "description": "The bottle is dusty and the fluid has a strange sickly-sweet smell to it.\n"
+      "description": "The bottle is dusty and the fluid has a strange sickly-sweet smell to it."
     }]
   }},
   {"object": {
@@ -171,11 +162,10 @@
     "level": 0,
     "weight": 60,
     "cost": 200,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "jar formaldehyde",
-      "description": "The jar is sticky and smells really bad.\n"
+      "description": "The jar is sticky and smells really bad."
     }]
   }},
   {"object": {
@@ -189,27 +179,22 @@
     "level": 20,
     "weight": 100,
     "cost": 720,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "ball fire",
-      "description": "The ball of fire is hot to the touch and very very bright.\n"
+      "description": "The ball of fire is hot to the touch and very very bright."
     }],
     "affects": [
       {
-        "apply": "moves",
         "level": 20,
-        "modifier": 20,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": 20
       },
       {
-        "apply": "hp",
         "level": 20,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 10
       }
     ]
   }},
@@ -229,27 +214,23 @@
     "level": 20,
     "weight": 180,
     "cost": 1820,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "stone scimitar",
-      "description": "The scimitar is formed from solid stone, chipped and carved to perfection,\nwith a sharp, cold blade that is marred only by a few nicks here and there.\n"
+      "description": "The scimitar is formed from solid stone, chipped and carved to perfection,
+                     |with a sharp, cold blade that is marred only by a few nicks here and there."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 20,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -264,11 +245,10 @@
     "level": 0,
     "weight": 150,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "stone key",
-      "description": "The key is made from stone, but is otherwise unremarkable.\n"
+      "description": "The key is made from stone, but is otherwise unremarkable."
     }]
   }},
   {"object": {
@@ -288,10 +268,15 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "stone sarcophagus",
-      "description": "The sarcophagus is engraved on the sides with the images of pharoahs,\ngreat wars fought long ago, mighty pyramids being constructed...\n\nA raised image atop the sarcophagus is formed in the visage of one of\nthe mighty pharoahs, painted in gold and studded with precious gems.\n\nYou see a small keyhole in the side of the sarcophagus.\n"
+      "description": "The sarcophagus is engraved on the sides with the images of pharoahs,
+                     |great wars fought long ago, mighty pyramids being constructed...
+                     |
+                     |A raised image atop the sarcophagus is formed in the visage of one of
+                     |the mighty pharoahs, painted in gold and studded with precious gems.
+                     |
+                     |You see a small keyhole in the side of the sarcophagus."
     }]
   }},
   {"object": {
@@ -305,11 +290,11 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "dust",
-      "description": "The dust is old.  As you sift it through your hands you find tiny chips\nof aged bone inside -- it must be the ancient remains of something.\n"
+      "description": "The dust is old.  As you sift it through your hands you find tiny chips
+                     |of aged bone inside -- it must be the ancient remains of something."
     }]
   }},
   {"object": {
@@ -323,11 +308,11 @@
     "level": 0,
     "weight": 50,
     "cost": 3000,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "scarab",
-      "description": "The scarab is intricately detailed, down to the tiny hairs on its\ninsectile legs and the faceting of the emeralds in its eyes.\n"
+      "description": "The scarab is intricately detailed, down to the tiny hairs on its
+                     |insectile legs and the faceting of the emeralds in its eyes."
     }]
   }},
   {"object": {
@@ -346,27 +331,23 @@
     "level": 20,
     "weight": 100,
     "cost": 4700,
-    "condition": 100,
     "extra_flags": "glow hum magic antievil",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "lamp",
-      "description": "The lamp is quite old and tarnished.  You rub at it to get some of the\ngrime off, but it doesn't seem like anybody is home.\n"
+      "description": "The lamp is quite old and tarnished.  You rub at it to get some of the
+                     |grime off, but it doesn't seem like anybody is home."
     }],
     "affects": [
       {
-        "apply": "hit roll",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       },
       {
-        "apply": "armor class",
         "level": 20,
-        "modifier": -5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -5
       }
     ]
   }},
@@ -381,34 +362,28 @@
     "level": 14,
     "weight": 90,
     "cost": 2100,
-    "condition": 100,
     "extra_flags": "bless antievil",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "ankh",
-      "description": "The ankh is a small brass symbol of an ancient religion.\nIt glows with a soft bright light that is soothing to you.\n"
+      "description": "The ankh is a small brass symbol of an ancient religion.
+                     |It glows with a soft bright light that is soothing to you."
     }],
     "affects": [
       {
+        "level": 14,
         "apply": "wisdom",
-        "level": 14,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
+        "level": 14,
         "apply": "intelligence",
-        "level": 14,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
-        "apply": "armor class",
         "level": 14,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -3
       }
     ]
   }},
@@ -428,11 +403,12 @@
     "level": 10,
     "weight": 150,
     "cost": 1540,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "book riddles",
-      "description": "The book has well-worn pages, containing many befuddling riddles\nto surprise, confuse, and amuse you.  You find yourself bewildered\nby its contents and put it down to sort your head out.\n"
+      "description": "The book has well-worn pages, containing many befuddling riddles
+                     |to surprise, confuse, and amuse you.  You find yourself bewildered
+                     |by its contents and put it down to sort your head out."
     }]
   }},
   {"object": {
@@ -450,34 +426,29 @@
     "level": 26,
     "weight": 200,
     "cost": 4400,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "lion paw",
-      "description": "The massive paw has straps on it formed of bronze, so that it will\nfit snugly over your hand.  As you put it on, it melds with your hand,\nbecoming an extension of your arm.\n"
+      "description": "The massive paw has straps on it formed of bronze, so that it will
+                     |fit snugly over your hand.  As you put it on, it melds with your hand,
+                     |becoming an extension of your arm."
     }],
     "affects": [
       {
+        "level": 26,
         "apply": "damage roll",
-        "level": 26,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
+        "level": 26,
         "apply": "hit roll",
-        "level": 26,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
-        "apply": "constitution",
         "level": 26,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "constitution",
+        "modifier": 1
       }
     ]
   }},
@@ -492,11 +463,11 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "answer hieroglyphics",
-      "description": "You cannot decipher the strange hieroglyphics that cover the\nsheet of parchment.\n"
+      "description": "You cannot decipher the strange hieroglyphics that cover the
+                     |sheet of parchment."
     }]
   }},
   {"object": {
@@ -513,11 +484,11 @@
     "level": 0,
     "weight": 200,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "treasure",
-      "description": "The treasure is incredibly large, filled with gold coins and valuables, more \nwealth than you could ever possibly imagine accumulated in one place.\n"
+      "description": "The treasure is incredibly large, filled with gold coins and valuables, more 
+                     |wealth than you could ever possibly imagine accumulated in one place."
     }]
   }},
   {"object": {
@@ -531,11 +502,10 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "pile sand",
-      "description": "You think you see some coins and valuables glinting amongst the grains of sand.\n"
+      "description": "You think you see some coins and valuables glinting amongst the grains of sand."
     }]
   }},
   {"object": {
@@ -549,48 +519,39 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "evil magic nodrop noremove",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "curse mummy",
-      "description": "Rumor has it that whomever disturbs the grave of the mummy shall be \ncursed for all eternity, and that the descendents of that person shall\nlikewise be cursed for ten generations to follow.\n"
+      "description": "Rumor has it that whomever disturbs the grave of the mummy shall be 
+                     |cursed for all eternity, and that the descendents of that person shall
+                     |likewise be cursed for ten generations to follow."
     }],
     "affects": [
       {
+        "level": 0,
         "apply": "moves",
-        "level": 0,
-        "modifier": -100,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -100
       },
       {
+        "level": 0,
         "apply": "hp",
-        "level": 0,
-        "modifier": -50,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -50
       },
       {
+        "level": 0,
         "apply": "constitution",
-        "level": 0,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -3
       },
       {
+        "level": 0,
         "apply": "dexterity",
-        "level": 0,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -3
       },
       {
-        "apply": "strength",
         "level": 0,
-        "modifier": -3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": -3
       }
     ]
   }},
@@ -610,12 +571,13 @@
     "level": 16,
     "weight": 20,
     "cost": 1820,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "small elixir",
-      "description": "The elixir is deceptively small.  Something tells you that its\ncontents are truly quite potent.  Perhaps too potent for ordinary\nmortals to attempt to consume.\n"
+      "description": "The elixir is deceptively small.  Something tells you that its
+                     |contents are truly quite potent.  Perhaps too potent for ordinary
+                     |mortals to attempt to consume."
     }]
   }},
   {"object": {
@@ -634,41 +596,35 @@
     "level": 33,
     "weight": 100,
     "cost": 5500,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "golden mask",
-      "description": "This beautiful mask was shaped from solid gold and magically enchanted\nto perfectly fit the face of any who choose to wear it, its golden features\nand turquoise highlights even moving to match the expressions of the face\nof the wearer.\n"
+      "description": "This beautiful mask was shaped from solid gold and magically enchanted
+                     |to perfectly fit the face of any who choose to wear it, its golden features
+                     |and turquoise highlights even moving to match the expressions of the face
+                     |of the wearer."
     }],
     "affects": [
       {
+        "level": 33,
         "apply": "saves",
-        "level": 33,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -1
       },
       {
+        "level": 33,
         "apply": "moves",
-        "level": 33,
-        "modifier": 30,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 30
       },
       {
+        "level": 33,
         "apply": "hp",
-        "level": 33,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 10
       },
       {
-        "apply": "mana",
         "level": 33,
-        "modifier": 25,
-        "bit_type": "object",
-        "bits": null
+        "apply": "mana",
+        "modifier": 25
       }
     ]
   }},
@@ -683,11 +639,13 @@
     "level": 0,
     "weight": 50,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "diamond",
-      "description": "Aha!\n\nYou see a multifaceted gemstone, which strangely reflects no\nlight, making it very hard to see when it lies on the ground.\n"
+      "description": "Aha!
+                     |
+                     |You see a multifaceted gemstone, which strangely reflects no
+                     |light, making it very hard to see when it lies on the ground."
     }]
   }},
   {"object": {
@@ -706,19 +664,18 @@
     "level": 24,
     "weight": 100,
     "cost": 29800,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "sun wand",
-      "description": "This small brass shaft is a holy weapon used by the ancient people of \nthis land to defend against the deadliest of foes.  It shines with the \nbrilliant blazing light of the sun.\n"
+      "description": "This small brass shaft is a holy weapon used by the ancient people of 
+                     |this land to defend against the deadliest of foes.  It shines with the 
+                     |brilliant blazing light of the sun."
     }],
     "affects": [{
-      "apply": "saves",
       "level": 24,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -732,27 +689,23 @@
     "level": 20,
     "weight": 50,
     "cost": 1300,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "sandy ring",
-      "description": "The ring is small, smooth, sandy-colored and unremarkable, save that\nit gives off a continuous low humming noise that tickles your fingertips.\n"
+      "description": "The ring is small, smooth, sandy-colored and unremarkable, save that
+                     |it gives off a continuous low humming noise that tickles your fingertips."
     }],
     "affects": [
       {
-        "apply": "mana",
         "level": 20,
-        "modifier": 20,
-        "bit_type": "object",
-        "bits": null
+        "apply": "mana",
+        "modifier": 20
       },
       {
-        "apply": "intelligence",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": 1
       }
     ]
   }},
@@ -767,19 +720,18 @@
     "level": 5,
     "weight": 50,
     "cost": 550,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "golden sphinx",
-      "description": "The golden sphinx is incredibly detailed and very small, fitting easily\ninto the palm of your hand.  You can even make out the expression\nof wisdom and peace on its face.\n"
+      "description": "The golden sphinx is incredibly detailed and very small, fitting easily
+                     |into the palm of your hand.  You can even make out the expression
+                     |of wisdom and peace on its face."
     }],
     "affects": [{
-      "apply": "wisdom",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -798,27 +750,24 @@
     "level": 32,
     "weight": 200,
     "cost": 7800,
-    "condition": 100,
     "extra_flags": "magic antievil",
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "sphinxian leggings",
-      "description": "These magically fashioned leggings impart the strength and stamina\nof the mightiest of the ancient sphinxes.  You feel ancient power \nemanating from them; they seem to be almost alive.\n"
+      "description": "These magically fashioned leggings impart the strength and stamina
+                     |of the mightiest of the ancient sphinxes.  You feel ancient power 
+                     |emanating from them; they seem to be almost alive."
     }],
     "affects": [
       {
-        "apply": "moves",
         "level": 32,
-        "modifier": 30,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": 30
       },
       {
-        "apply": "strength",
         "level": 32,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 2
       }
     ]
   }}

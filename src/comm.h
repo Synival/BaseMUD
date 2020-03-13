@@ -10,19 +10,22 @@
  *  license in 'license.txt'.  In particular, you may not remove either of *
  *  these copyright notices.                                               *
  *                                                                         *
+ *  Thanks to abaddon for proof-reading our comm.c and pointing out bugs.  *
+ *  Any remaining bugs are, of course, our work, not his.  :)              *
+ *                                                                         *
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #ifndef __ROM_COMM_H
@@ -114,7 +117,6 @@ extern const char go_ahead_str[];
     #if !defined(isascii)
         #define isascii(c) ( (c) < 0200 )
     #endif
-    static long theKeys[4];
 
     int gettimeofday (struct timeval *tp, void *tzp) {
         tp->tv_sec = time (NULL);
@@ -227,6 +229,7 @@ void act2 (const char *to_char, const char *to_room, CHAR_T *ch,
 void act3 (const char *to_char, const char *to_vict, const char *to_room,
     CHAR_T *ch, const void *arg1, const void *arg2, flag_t flags, int min_pos);
 bool act_is_valid_recipient (CHAR_T *to, flag_t flags, CHAR_T *ch, CHAR_T *vch);
+char *act_code_pronoun (const CHAR_T *ch, char code);
 char *act_code (char code, CHAR_T *ch, CHAR_T *vch, CHAR_T *to, OBJ_T *obj1,
     OBJ_T *obj2, const void *arg1, const void *arg2, char *out_buf,
     size_t size);

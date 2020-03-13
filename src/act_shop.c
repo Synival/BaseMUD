@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include "magic.h"
 #include "lookup.h"
@@ -31,7 +31,6 @@
 #include "interp.h"
 #include "utils.h"
 #include "db.h"
-#include "skills.h"
 #include "groups.h"
 #include "chars.h"
 #include "objs.h"
@@ -41,6 +40,10 @@
 #include "materials.h"
 #include "globals.h"
 #include "memory.h"
+#include "items.h"
+#include "mobiles.h"
+#include "players.h"
+#include "rooms.h"
 
 #include "act_shop.h"
 
@@ -50,7 +53,7 @@ bool do_filter_get_keeper (CHAR_T *ch, CHAR_T **out_keeper) {
 
     FILTER ((keeper = char_get_keeper_room (ch)) == NULL,
         "You can't do that here.\n\r", ch);
-    FILTER ((shop = char_get_shop (keeper)) == NULL,
+    FILTER ((shop = mobile_get_shop (keeper)) == NULL,
         "They don't have a shop.\n\r", ch);
 
     /* Undesirables. */
@@ -92,28 +95,28 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
     char arg[MAX_INPUT_LENGTH];
     char buf[MAX_STRING_LENGTH];
     CHAR_T *pet;
-    ROOM_INDEX_T *pRoomIndexNext;
+    ROOM_INDEX_T *room_index_next;
     ROOM_INDEX_T *in_room;
     int cost, roll;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     if (IS_NPC (ch))
         return;
     argument = one_argument (argument, arg);
 
     /* hack to make new thalos pets work */
     if (ch->in_room->vnum == 9621)
-        pRoomIndexNext = get_room_index (9706);
+        room_index_next = room_get_index (9706);
     else
-        pRoomIndexNext = get_room_index (ch->in_room->vnum + 1);
-    if (pRoomIndexNext == NULL) {
+        room_index_next = room_get_index (ch->in_room->vnum + 1);
+    if (room_index_next == NULL) {
         bug ("do_buy: bad pet shop at vnum %d.", ch->in_room->vnum);
         send_to_char ("Sorry, you can't buy that here.\n\r", ch);
         return;
     }
 
     in_room = ch->in_room;
-    ch->in_room = pRoomIndexNext;
+    ch->in_room = room_index_next;
     pet = find_char_same_room (ch, arg);
     ch->in_room = in_room;
 
@@ -130,15 +133,15 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
 
     /* haggle */
     roll = number_percent ();
-    if (roll < get_skill (ch, gsn_haggle)) {
+    if (roll < char_get_skill (ch, SN(HAGGLE))) {
         cost -= cost / 2 * roll / 100;
         printf_to_char (ch, "You haggle the price down to %d coins.\n\r", cost);
-        check_improve (ch, gsn_haggle, TRUE, 4);
+        player_try_skill_improve (ch, SN(HAGGLE), TRUE, 4);
     }
 
     char_reduce_money (ch, cost);
-    pet = char_create_mobile (pet->pIndexData);
-    SET_BIT (pet->mob, MOB_PET);
+    pet = mobile_create (pet->mob_index);
+    EXT_SET (pet->ext_mob, MOB_PET);
     SET_BIT (pet->affected_by, AFF_CHARM);
     pet->comm = COMM_NOTELL | COMM_NOSHOUT | COMM_NOCHANNELS;
 
@@ -148,7 +151,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
         str_replace_dup (&(pet->name), buf);
     }
 
-    sprintf (buf, "%sA neck tag says 'I belong to %s'.\n\r",
+    snprintf (buf, sizeof(buf), "%sA neck tag says 'I belong to %s'.\n\r",
         pet->description, ch->name);
     str_replace_dup (&(pet->description), buf);
 
@@ -173,7 +176,7 @@ void do_buy_item (CHAR_T *ch, char *argument) {
 
     number = mult_argument (argument, arg);
     obj = find_obj_keeper (ch, keeper, arg);
-    cost = char_get_obj_cost (keeper, obj, TRUE);
+    cost = mobile_get_obj_cost (keeper, obj, TRUE);
 
     BAIL_IF_ACT (number < 1 || number > 99,
         "$N tells you 'Get real!", ch, NULL, keeper);
@@ -181,11 +184,11 @@ void do_buy_item (CHAR_T *ch, char *argument) {
         "$N tells you 'I don't sell that -- try 'list''.", ch, NULL, keeper);
 
     if (!IS_OBJ_STAT (obj, ITEM_INVENTORY)) {
-        for (t_obj = obj->next_content;
-             count < number && t_obj != NULL; t_obj = t_obj->next_content)
+        for (t_obj = obj->content_next;
+             count < number && t_obj != NULL; t_obj = t_obj->content_next)
         {
-            if (t_obj->pIndexData == obj->pIndexData
-                && !str_cmp (t_obj->short_descr, obj->short_descr))
+            if (t_obj->obj_index == obj->obj_index &&
+                    !str_cmp (t_obj->short_descr, obj->short_descr))
                 count++;
             else
                 break;
@@ -212,11 +215,11 @@ void do_buy_item (CHAR_T *ch, char *argument) {
     /* haggle */
     roll = number_percent ();
     if (!IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT)
-        && roll < get_skill (ch, gsn_haggle))
+        && roll < char_get_skill (ch, SN(HAGGLE)))
     {
         cost -= obj->cost / 2 * roll / 100;
         act ("You haggle with $N.", ch, NULL, keeper, TO_CHAR);
-        check_improve (ch, gsn_haggle, TRUE, 4);
+        player_try_skill_improve (ch, SN(HAGGLE), TRUE, 4);
     }
     if (number > 1) {
         sprintf (buf, "You buy $p[%d] for %d silver.", number, cost * number);
@@ -235,11 +238,10 @@ void do_buy_item (CHAR_T *ch, char *argument) {
 
     for (count = 0; count < number; count++) {
         if (IS_SET (obj->extra_flags, ITEM_INVENTORY))
-            t_obj = obj_create (obj->pIndexData, obj->level);
+            t_obj = obj_create (obj->obj_index, obj->level);
         else {
             t_obj = obj;
-            obj = obj->next_content;
-            obj_take_from_char (t_obj);
+            obj = obj->content_next;
         }
 
         if (t_obj->timer > 0 && !IS_OBJ_STAT (t_obj, ITEM_HAD_TIMER))
@@ -261,24 +263,24 @@ DEFINE_DO_FUN (do_buy) {
 }
 
 void do_list_pets (CHAR_T *ch, char *argument) {
-    ROOM_INDEX_T *pRoomIndexNext;
+    ROOM_INDEX_T *room_index_next;
     CHAR_T *pet;
     bool found;
     char *material_str;
 
     /* hack to make new thalos pets work */
     if (ch->in_room->vnum == 9621)
-        pRoomIndexNext = get_room_index (9706);
+        room_index_next = room_get_index (9706);
     else
-        pRoomIndexNext = get_room_index (ch->in_room->vnum + 1);
-    if (pRoomIndexNext == NULL) {
+        room_index_next = room_get_index (ch->in_room->vnum + 1);
+    if (room_index_next == NULL) {
         bug ("do_list: bad pet shop at vnum %d.", ch->in_room->vnum);
         send_to_char ("You can't do that here.\n\r", ch);
         return;
     }
 
     found = FALSE;
-    for (pet = pRoomIndexNext->people; pet; pet = pet->next_in_room) {
+    for (pet = room_index_next->people_first; pet; pet = pet->room_next) {
         if (!IS_PET (pet))
             continue;
         if (!found) {
@@ -308,14 +310,14 @@ void do_list_items (CHAR_T *ch, char *argument) {
     one_argument (argument, arg);
 
     found = FALSE;
-    for (obj = keeper->carrying; obj; obj = obj->next_content) {
-        if (obj->wear_loc != WEAR_NONE)
+    for (obj = keeper->content_first; obj; obj = obj->content_next) {
+        if (obj->wear_loc != WEAR_LOC_NONE)
             continue;
         if (!char_can_see_obj (ch, obj))
             continue;
-        if ((cost = char_get_obj_cost (keeper, obj, TRUE)) <= 0)
+        if ((cost = mobile_get_obj_cost (keeper, obj, TRUE)) <= 0)
             continue;
-        if (!(arg[0] == '\0' || is_name (arg, obj->name)))
+        if (!(arg[0] == '\0' || str_in_namelist (arg, obj->name)))
             continue;
 
         if (!found) {
@@ -332,12 +334,12 @@ void do_list_items (CHAR_T *ch, char *argument) {
         }
         else {
             count = 1;
-            while (obj->next_content != NULL
-                   && obj->pIndexData == obj->next_content->pIndexData
+            while (obj->content_next != NULL
+                   && obj->obj_index == obj->content_next->obj_index
                    && !str_cmp (obj->short_descr,
-                                obj->next_content->short_descr))
+                                obj->content_next->short_descr))
             {
-                obj = obj->next_content;
+                obj = obj->content_next;
                 count++;
             }
             sprintf (buf, "[%2d %5d %2d ] %s%s\n\r",
@@ -374,7 +376,7 @@ DEFINE_DO_FUN (do_sell) {
         "You can't let go of it.\n\r", ch);
     BAIL_IF_ACT (!char_can_see_obj (keeper, obj),
         "$N doesn't see what you are offering.", ch, NULL, keeper);
-    BAIL_IF_ACT ((cost = char_get_obj_cost (keeper, obj, FALSE)) <= 0,
+    BAIL_IF_ACT ((cost = mobile_get_obj_cost (keeper, obj, FALSE)) <= 0,
         "$N looks uninterested in $p.", ch, obj, keeper);
     BAIL_IF_ACT (cost > (keeper->silver + 100 * keeper->gold),
         "$N tells you 'I'm afraid I don't have enough wealth to buy $p.",
@@ -385,13 +387,13 @@ DEFINE_DO_FUN (do_sell) {
     /* haggle */
     roll = number_percent ();
     if (!IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT)
-        && roll < get_skill (ch, gsn_haggle))
+        && roll < char_get_skill (ch, SN(HAGGLE)))
     {
         send_to_char ("You haggle with the shopkeeper.\n\r", ch);
         cost += obj->cost / 2 * roll / 100;
-        cost = UMIN (cost, 95 * char_get_obj_cost (keeper, obj, TRUE) / 100);
+        cost = UMIN (cost, 95 * mobile_get_obj_cost (keeper, obj, TRUE) / 100);
         cost = UMIN (cost, (keeper->silver + 100 * keeper->gold));
-        check_improve (ch, gsn_haggle, TRUE, 4);
+        player_try_skill_improve (ch, SN(HAGGLE), TRUE, 4);
     }
 
     sprintf (buf, "You sell $p for %d silver and %d gold piece%s.",
@@ -407,10 +409,9 @@ DEFINE_DO_FUN (do_sell) {
     if (keeper->silver < 0)
         keeper->silver = 0;
 
-    if (obj->item_type == ITEM_TRASH || IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT))
+    if (!item_can_sell (obj) || IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT))
         obj_extract (obj);
     else {
-        obj_take_from_char (obj);
         if (obj->timer)
             SET_BIT (obj->extra_flags, ITEM_HAD_TIMER);
         else
@@ -436,7 +437,7 @@ DEFINE_DO_FUN (do_value) {
         "$N doesn't see what you are offering.", ch, NULL, keeper);
     BAIL_IF (!char_can_drop_obj (ch, obj),
         "You can't let go of it.\n\r", ch);
-    BAIL_IF_ACT ((cost = char_get_obj_cost (keeper, obj, FALSE)) <= 0,
+    BAIL_IF_ACT ((cost = mobile_get_obj_cost (keeper, obj, FALSE)) <= 0,
         "$N looks uninterested in $p.", ch, obj, keeper);
 
     sprintf (buf, "$N tells you 'I'll give you %d silver and "
@@ -452,8 +453,8 @@ DEFINE_DO_FUN (do_heal) {
     SPELL_FUN *spell;
 
     /* check for healer */
-    for (mob = ch->in_room->people; mob; mob = mob->next_in_room)
-        if (IS_NPC (mob) && IS_SET (mob->mob, MOB_IS_HEALER))
+    for (mob = ch->in_room->people_first; mob; mob = mob->room_next)
+        if (IS_NPC (mob) && EXT_IS_SET (mob->ext_mob, MOB_IS_HEALER))
             break;
     BAIL_IF (mob == NULL,
         "You can't do that here.\n\r", ch);
@@ -547,14 +548,14 @@ DEFINE_DO_FUN (do_heal) {
     if (spell == NULL) {
         ch->mana += dice (2, 8) + mob->level / 3;
         ch->mana = UMIN (ch->mana, ch->max_mana);
-        say_spell_name (mob, "restore mana", CLASS_CLERIC);
+        say_spell_name (mob, "restore mana", class_lookup_exact ("cleric"));
         send_to_char ("A warm glow passes through you.\n\r", ch);
         return;
     }
     if (sn == -1)
         return;
     else {
-        say_spell (mob, sn, CLASS_CLERIC);
+        say_spell (mob, sn, class_lookup_exact ("cleric"));
         spell (sn, mob->level, mob, ch, TARGET_CHAR, "");
     }
 }

@@ -16,18 +16,17 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #include <stdlib.h>
 
-#include "skills.h"
 #include "affects.h"
 #include "utils.h"
 #include "comm.h"
@@ -40,10 +39,11 @@
 #include "act_comm.h"
 #include "chars.h"
 #include "find.h"
+#include "players.h"
 
 #include "act_fight.h"
 
-bool fight_filter_skill_target (CHAR_T *ch, const char *argument,
+bool do_fight_filter_skill_target (CHAR_T *ch, const char *argument,
     int sn, flag_t npc_flag, const char *cant_msg, const char *self_msg,
     int *out_chance, CHAR_T **out_victim)
 {
@@ -53,7 +53,7 @@ bool fight_filter_skill_target (CHAR_T *ch, const char *argument,
 
     /* If a skill is available, make sure we can use it. */
     if (sn >= 0) {
-        chance = get_skill (ch, sn);
+        chance = char_get_skill (ch, sn);
         FILTER (chance == 0,
             cant_msg, ch);
     }
@@ -64,7 +64,7 @@ bool fight_filter_skill_target (CHAR_T *ch, const char *argument,
     FILTER (IS_NPC (ch) && npc_flag != 0 && !IS_SET (ch->off_flags, npc_flag),
         cant_msg, ch);
     FILTER (sn >= 0 && !IS_NPC (ch) &&
-            ch->level < skill_table[sn].skill_level[ch->class],
+            ch->level < skill_table[sn].classes[ch->class].level,
         cant_msg, ch);
 
     one_argument (argument, arg);
@@ -99,17 +99,18 @@ DEFINE_DO_FUN (do_berserk) {
     AFFECT_T af;
     int chance, hp_percent;
 
-    if ((chance = get_skill (ch, gsn_berserk)) == 0           ||
+    if ((chance = char_get_skill (ch, SN(BERSERK))) == 0      ||
         (IS_NPC (ch) && !IS_SET (ch->off_flags, OFF_BERSERK)) ||
         (!IS_NPC (ch) && ch->level <
-            skill_table[gsn_berserk].skill_level[ch->class]))
+            skill_table[SN(BERSERK)].classes[ch->class].level))
     {
         send_to_char ("You turn red in the face, but nothing happens.\n\r", ch);
         return;
     }
 
-    BAIL_IF (IS_AFFECTED (ch, AFF_BERSERK) || is_affected (ch, gsn_berserk) ||
-             is_affected (ch, gsn_frenzy),
+    BAIL_IF (IS_AFFECTED (ch, AFF_BERSERK)             ||
+             affect_is_char_affected (ch, SN(BERSERK)) ||
+             affect_is_char_affected (ch, SN(FRENZY)),
         "You get a little madder.\n\r", ch);
     BAIL_IF (IS_AFFECTED (ch, AFF_CALM),
         "You're feeling to mellow to berserk.\n\r", ch);
@@ -133,7 +134,7 @@ DEFINE_DO_FUN (do_berserk) {
         ch->move /= 2;
 
         send_to_char ("Your pulse speeds up, but nothing happens.\n\r", ch);
-        check_improve (ch, gsn_berserk, FALSE, 2);
+        player_try_skill_improve (ch, SN(BERSERK), FALSE, 2);
         return;
     }
 
@@ -147,26 +148,26 @@ DEFINE_DO_FUN (do_berserk) {
 
     send_to_char ("Your pulse races as you are consumed by rage!\n\r", ch);
     act ("$n gets a wild look in $s eyes.", ch, NULL, NULL, TO_NOTCHAR);
-    check_improve (ch, gsn_berserk, TRUE, 2);
+    player_try_skill_improve (ch, SN(BERSERK), TRUE, 2);
 
-    affect_init (&af, AFF_TO_AFFECTS, gsn_berserk, ch->level, number_fuzzy (ch->level / 8), 0, UMAX (1, ch->level / 5), AFF_BERSERK);
+    affect_init (&af, AFF_TO_AFFECTS, SN(BERSERK), ch->level, number_fuzzy (ch->level / 8), 0, UMAX (1, ch->level / 5), AFF_BERSERK);
 
     af.apply = APPLY_HITROLL;
-    affect_to_char (ch, &af);
+    affect_copy_to_char (&af, ch);
 
     af.apply = APPLY_DAMROLL;
-    affect_to_char (ch, &af);
+    affect_copy_to_char (&af, ch);
 
     af.modifier = UMAX (10, 10 * (ch->level / 5));
     af.apply = APPLY_AC;
-    affect_to_char (ch, &af);
+    affect_copy_to_char (&af, ch);
 }
 
 DEFINE_DO_FUN (do_bash) {
     CHAR_T *victim;
     int chance;
 
-    if (fight_filter_skill_target (ch, argument, gsn_bash, OFF_BASH,
+    if (do_fight_filter_skill_target (ch, argument, SN(BASH), OFF_BASH,
             "Bashing? What's that?\n\r",
             "You try to bash your brains out, but fail.\n\r",
             &chance, &victim))
@@ -201,8 +202,8 @@ DEFINE_DO_FUN (do_bash) {
 
     /* level */
     chance += (ch->level - victim->level);
-    if (!IS_NPC (victim) && chance < get_skill (victim, gsn_dodge))
-        chance -= 3 * (get_skill (victim, gsn_dodge) - chance);
+    if (!IS_NPC (victim) && chance < char_get_skill (victim, SN(DODGE)))
+        chance -= 3 * (char_get_skill (victim, SN(DODGE)) - chance);
 
     /* now the attack */
     if (number_percent () < chance) {
@@ -210,24 +211,24 @@ DEFINE_DO_FUN (do_bash) {
               "{5$n sends you sprawling with a powerful bash!{x",
               "{5$n sends $N sprawling with a powerful bash.{x",
             ch, NULL, victim, 0, POS_RESTING);
-        check_improve (ch, gsn_bash, TRUE, 1);
+        player_try_skill_improve (ch, SN(BASH), TRUE, 1);
 
         DAZE_STATE (victim, PULSE_VIOLENCE * 5 / 2);
-        WAIT_STATE (ch, skill_table[gsn_bash].beats);
+        WAIT_STATE (ch, skill_table[SN(BASH)].beats);
         victim->position = POS_SITTING;
         damage_quiet (ch, victim, number_range (2, 2 + 2*ch->size + chance/20),
-            gsn_bash, DAM_BASH);
+            SN(BASH), DAM_BASH);
     }
     else {
         act3 ("{5You fall flat on your face!{x",
               "{5You evade $n's bash, causing $m to fall flat on $s face.{x",
               "{5$n falls flat on $s face.{x",
             ch, NULL, victim, 0, POS_RESTING);
-        check_improve (ch, gsn_bash, FALSE, 1);
+        player_try_skill_improve (ch, SN(BASH), FALSE, 1);
 
-        WAIT_STATE (ch, skill_table[gsn_bash].beats * 3 / 2);
+        WAIT_STATE (ch, skill_table[SN(BASH)].beats * 3 / 2);
         ch->position = POS_SITTING;
-        damage_quiet (ch, victim, 0, gsn_bash, DAM_BASH);
+        damage_quiet (ch, victim, 0, SN(BASH), DAM_BASH);
     }
     check_killer (ch, victim);
 }
@@ -236,7 +237,7 @@ DEFINE_DO_FUN (do_dirt) {
     CHAR_T *victim;
     int chance;
 
-    if (fight_filter_skill_target (ch, argument, gsn_dirt, OFF_KICK_DIRT,
+    if (do_fight_filter_skill_target (ch, argument, SN(DIRT), OFF_KICK_DIRT,
             "You get your feet dirty.\n\r",
             "Very funny.\n\r",
             &chance, &victim))
@@ -295,19 +296,19 @@ DEFINE_DO_FUN (do_dirt) {
               "{5$n kicks dirt in $N's eyes!{x",
             ch, NULL, victim, 0, POS_RESTING);
 
-        damage_quiet (ch, victim, number_range (2, 5), gsn_dirt, DAM_NONE);
+        damage_quiet (ch, victim, number_range (2, 5), SN(DIRT), DAM_NONE);
         send_to_char ("{5You can't see a thing!{x\n\r", victim);
 
-        check_improve (ch, gsn_dirt, TRUE, 2);
-        WAIT_STATE (ch, skill_table[gsn_dirt].beats);
+        player_try_skill_improve (ch, SN(DIRT), TRUE, 2);
+        WAIT_STATE (ch, skill_table[SN(DIRT)].beats);
 
-        affect_init (&af, AFF_TO_AFFECTS, gsn_dirt, ch->level, 0, APPLY_HITROLL, -4, AFF_BLIND);
-        affect_to_char (victim, &af);
+        affect_init (&af, AFF_TO_AFFECTS, SN(DIRT), ch->level, 0, APPLY_HITROLL, -4, AFF_BLIND);
+        affect_copy_to_char (&af, victim);
     }
     else {
-        damage_visible (ch, victim, 0, gsn_dirt, DAM_NONE, NULL);
-        check_improve (ch, gsn_dirt, FALSE, 2);
-        WAIT_STATE (ch, skill_table[gsn_dirt].beats);
+        damage_visible (ch, victim, 0, SN(DIRT), DAM_NONE, NULL);
+        player_try_skill_improve (ch, SN(DIRT), FALSE, 2);
+        WAIT_STATE (ch, skill_table[SN(DIRT)].beats);
     }
     check_killer (ch, victim);
 }
@@ -316,7 +317,7 @@ DEFINE_DO_FUN (do_trip) {
     CHAR_T *victim;
     int chance;
 
-    if (fight_filter_skill_target (ch, argument, gsn_trip, OFF_TRIP,
+    if (do_fight_filter_skill_target (ch, argument, SN(TRIP), OFF_TRIP,
             "Tripping? What's that?\n\r", NULL, &chance, &victim))
         return;
 
@@ -333,7 +334,7 @@ DEFINE_DO_FUN (do_trip) {
 
     if (victim == ch) {
         send_to_char ("{5You fall flat on your face!{x\n\r", ch);
-        WAIT_STATE (ch, 2 * skill_table[gsn_trip].beats);
+        WAIT_STATE (ch, 2 * skill_table[SN(TRIP)].beats);
         act ("{5$n trips over $s own feet!{x", ch, NULL, NULL, TO_NOTCHAR);
         return;
     }
@@ -363,18 +364,18 @@ DEFINE_DO_FUN (do_trip) {
               "{5$n trips you and you go down!{x",
               "{5$n trips $N, sending $M to the ground.{x",
             ch, NULL, victim, 0, POS_RESTING);
-        check_improve (ch, gsn_trip, TRUE, 1);
+        player_try_skill_improve (ch, SN(TRIP), TRUE, 1);
 
         DAZE_STATE (victim, PULSE_VIOLENCE * 3 / 2);
-        WAIT_STATE (ch, skill_table[gsn_trip].beats);
+        WAIT_STATE (ch, skill_table[SN(TRIP)].beats);
         victim->position = POS_SITTING;
         damage_visible (ch, victim, number_range (2, 2 + 2 * victim->size),
-            gsn_trip, DAM_BASH, NULL);
+            SN(TRIP), DAM_BASH, NULL);
     }
     else {
-        check_improve (ch, gsn_trip, FALSE, 1);
-        WAIT_STATE (ch, skill_table[gsn_trip].beats * 2 / 3);
-        damage_visible (ch, victim, 0, gsn_trip, DAM_BASH, NULL);
+        player_try_skill_improve (ch, SN(TRIP), FALSE, 1);
+        WAIT_STATE (ch, skill_table[SN(TRIP)].beats * 2 / 3);
+        damage_visible (ch, victim, 0, SN(TRIP), DAM_BASH, NULL);
     }
     check_killer (ch, victim);
 }
@@ -383,7 +384,7 @@ DEFINE_DO_FUN (do_kick) {
     CHAR_T *victim;
     int chance;
 
-    if (fight_filter_skill_target (ch, argument, gsn_kick, OFF_KICK,
+    if (do_fight_filter_skill_target (ch, argument, SN(KICK), OFF_KICK,
             "You better leave the martial arts to fighters.\n\r",
             "You're having trouble connecting your foot to your torso.\n\r",
             &chance, &victim))
@@ -391,15 +392,15 @@ DEFINE_DO_FUN (do_kick) {
     BAIL_IF (ch->position < POS_FIGHTING,
         "It's hard to kick when you're on the ground.\n\r", ch);
 
-    WAIT_STATE (ch, skill_table[gsn_kick].beats);
+    WAIT_STATE (ch, skill_table[SN(KICK)].beats);
     if (chance > number_percent ()) {
-        damage_visible (ch, victim, number_range (1, ch->level), gsn_kick,
+        damage_visible (ch, victim, number_range (1, ch->level), SN(KICK),
             DAM_BASH, NULL);
-        check_improve (ch, gsn_kick, TRUE, 1);
+        player_try_skill_improve (ch, SN(KICK), TRUE, 1);
     }
     else {
-        damage_visible (ch, victim, 0, gsn_kick, DAM_BASH, NULL);
-        check_improve (ch, gsn_kick, FALSE, 1);
+        damage_visible (ch, victim, 0, SN(KICK), DAM_BASH, NULL);
+        player_try_skill_improve (ch, SN(KICK), FALSE, 1);
     }
     check_killer (ch, victim);
 }
@@ -425,7 +426,7 @@ DEFINE_DO_FUN (do_kill) {
 
     if (victim == ch) {
         send_to_char ("You hit yourself.  Ouch!\n\r", ch);
-        multi_hit (ch, ch, TYPE_UNDEFINED);
+        multi_hit (ch, ch, ATTACK_DEFAULT);
         return;
     }
     if (do_filter_can_attack (ch, victim))
@@ -439,7 +440,7 @@ DEFINE_DO_FUN (do_kill) {
 
     WAIT_STATE (ch, 1 * PULSE_VIOLENCE);
     check_killer (ch, victim);
-    multi_hit (ch, victim, TYPE_UNDEFINED);
+    multi_hit (ch, victim, ATTACK_DEFAULT);
 }
 
 DEFINE_DO_FUN (do_murde) {
@@ -477,7 +478,7 @@ DEFINE_DO_FUN (do_murder) {
 
     do_function (victim, &do_yell, buf);
     check_killer (ch, victim);
-    multi_hit (ch, victim, TYPE_UNDEFINED);
+    multi_hit (ch, victim, ATTACK_DEFAULT);
 }
 
 DEFINE_DO_FUN (do_backstab) {
@@ -498,22 +499,24 @@ DEFINE_DO_FUN (do_backstab) {
     BAIL_IF (IS_NPC (victim) && victim->fighting != NULL &&
              !is_same_group (ch, victim->fighting),
         "Kill stealing is not permitted.\n\r", ch);
-    BAIL_IF ((obj = char_get_eq_by_wear_loc (ch, WEAR_WIELD)) == NULL,
+    BAIL_IF (ch->position < POS_FIGHTING,
+        "You can't even reach their back on the ground!\n\r", ch);
+    BAIL_IF ((obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD)) == NULL,
         "You need to wield a weapon to backstab.\n\r", ch);
     BAIL_IF_ACT (victim->hit < victim->max_hit / 3,
         "$N is hurt and suspicious ... you can't sneak up.", ch, NULL, victim);
 
     check_killer (ch, victim);
-    WAIT_STATE (ch, skill_table[gsn_backstab].beats);
-    if (number_percent () < get_skill (ch, gsn_backstab)
-        || (get_skill (ch, gsn_backstab) >= 2 && !IS_AWAKE (victim)))
+    WAIT_STATE (ch, skill_table[SN(BACKSTAB)].beats);
+    if (number_percent () < char_get_skill (ch, SN(BACKSTAB))
+        || (char_get_skill (ch, SN(BACKSTAB)) >= 2 && !IS_AWAKE (victim)))
     {
-        check_improve (ch, gsn_backstab, TRUE, 1);
-        multi_hit (ch, victim, gsn_backstab);
+        player_try_skill_improve (ch, SN(BACKSTAB), TRUE, 1);
+        multi_hit (ch, victim, SN(BACKSTAB));
     }
     else {
-        check_improve (ch, gsn_backstab, FALSE, 1);
-        damage_visible (ch, victim, 0, gsn_backstab, DAM_NONE, NULL);
+        player_try_skill_improve (ch, SN(BACKSTAB), FALSE, 1);
+        damage_visible (ch, victim, 0, SN(BACKSTAB), DAM_NONE, NULL);
     }
 }
 
@@ -558,13 +561,16 @@ DEFINE_DO_FUN (do_flee) {
         ch->in_room = now_in;
 
         if (!IS_NPC (ch)) {
+            const CLASS_T *class;
             send_to_char ("You flee from combat!\n\r", ch);
-            if ((ch->class == CLASS_THIEF) &&
+
+            class = class_get (ch->class);
+            if (class != NULL && class->can_sneak_away &&
                     (number_percent () < 3 * (ch->level / 2)))
                 send_to_char ("You snuck away safely.\n\r", ch);
             else {
                 send_to_char ("You lost 10 exp.\n\r", ch);
-                gain_exp (ch, -10);
+                player_gain_exp (ch, -10);
             }
         }
 
@@ -595,10 +601,10 @@ DEFINE_DO_FUN (do_rescue) {
     BAIL_IF (IS_NPC (fch) && !is_same_group (ch, victim),
         "Kill stealing is not permitted.\n\r", ch);
 
-    WAIT_STATE (ch, skill_table[gsn_rescue].beats);
-    if (number_percent () > get_skill (ch, gsn_rescue)) {
+    WAIT_STATE (ch, skill_table[SN(RESCUE)].beats);
+    if (number_percent () > char_get_skill (ch, SN(RESCUE))) {
         send_to_char ("You fail the rescue.\n\r", ch);
-        check_improve (ch, gsn_rescue, FALSE, 1);
+        player_try_skill_improve (ch, SN(RESCUE), FALSE, 1);
         return;
     }
 
@@ -606,7 +612,7 @@ DEFINE_DO_FUN (do_rescue) {
           "{5$n rescues you!{x",
           "{5$n rescues $N!{x",
         ch, NULL, victim, 0, POS_RESTING);
-    check_improve (ch, gsn_rescue, TRUE, 1);
+    player_try_skill_improve (ch, SN(RESCUE), TRUE, 1);
 
     stop_fighting (fch, FALSE);
     stop_fighting (victim, FALSE);
@@ -623,15 +629,15 @@ DEFINE_DO_FUN (do_disarm) {
     int chance, hth, ch_weapon, vict_weapon, ch_vict_weapon;
     hth = 0;
 
-    BAIL_IF ((chance = get_skill (ch, gsn_disarm)) == 0,
+    BAIL_IF ((chance = char_get_skill (ch, SN(DISARM))) == 0,
         "You don't know how to disarm opponents.\n\r", ch);
-    BAIL_IF (char_get_eq_by_wear_loc (ch, WEAR_WIELD) == NULL &&
-        ((hth = get_skill (ch, gsn_hand_to_hand)) == 0 ||
+    BAIL_IF (char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD) == NULL &&
+        ((hth = char_get_skill (ch, SN(HAND_TO_HAND))) == 0 ||
          (IS_NPC (ch) && !IS_SET (ch->off_flags, OFF_DISARM))),
         "You must wield a weapon to disarm.\n\r", ch);
     BAIL_IF ((victim = ch->fighting) == NULL,
         "You aren't fighting anyone.\n\r", ch);
-    BAIL_IF ((obj = char_get_eq_by_wear_loc (victim, WEAR_WIELD)) == NULL,
+    BAIL_IF ((obj = char_get_eq_by_wear_loc (victim, WEAR_LOC_WIELD)) == NULL,
         "Your opponent is not wielding a weapon.\n\r", ch);
 
     /* find weapon skills */
@@ -642,7 +648,7 @@ DEFINE_DO_FUN (do_disarm) {
     /* modifiers */
 
     /* skill */
-    if (char_get_eq_by_wear_loc (ch, WEAR_WIELD) == NULL)
+    if (char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD) == NULL)
         chance = chance * hth / 150;
     else
         chance = chance * ch_weapon / 100;
@@ -658,17 +664,17 @@ DEFINE_DO_FUN (do_disarm) {
 
     /* and now the attack */
     if (number_percent () < chance) {
-        WAIT_STATE (ch, skill_table[gsn_disarm].beats);
+        WAIT_STATE (ch, skill_table[SN(DISARM)].beats);
         disarm (ch, victim);
-        check_improve (ch, gsn_disarm, TRUE, 1);
+        player_try_skill_improve (ch, SN(DISARM), TRUE, 1);
     }
     else {
-        WAIT_STATE (ch, skill_table[gsn_disarm].beats);
+        WAIT_STATE (ch, skill_table[SN(DISARM)].beats);
         act3 ("{5You fail to disarm $N.{x",
               "{5$n tries to disarm you, but fails.{x",
               "{5$n tries to disarm $N, but fails.{x",
             ch, NULL, victim, 0, POS_RESTING);
-        check_improve (ch, gsn_disarm, FALSE, 1);
+        player_try_skill_improve (ch, SN(DISARM), FALSE, 1);
     }
     check_killer (ch, victim);
 }
@@ -696,7 +702,7 @@ DEFINE_DO_FUN (do_disengage) {
     BAIL_IF (ch->fighting == NULL,
         "You're not fighting anybody.\n\r", ch);
 
-    for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room)
+    for (rch = ch->in_room->people_first; rch != NULL; rch = rch->room_next)
         BAIL_IF (rch->fighting == ch,
             "You can't disengage while someone is fighting you!\n\r", ch);
 

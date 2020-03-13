@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 #include <stdlib.h>
@@ -44,25 +44,22 @@
 
 DEFINE_DO_FUN (do_allow) {
     char arg[MAX_INPUT_LENGTH];
-    BAN_T *pban, *prev, *pban_next;
+    BAN_T *pban, *pban_next;
 
     one_argument (argument, arg);
     BAIL_IF (arg[0] == '\0',
         "Remove which site from the ban list?\n\r", ch);
 
-    prev = NULL;
-    for (pban = ban_first; pban; prev = pban, pban = pban_next) {
-        pban_next = pban->next;
+    for (pban = ban_first; pban; pban = pban_next) {
+        pban_next = pban->global_next;
         if (str_cmp (arg, pban->name))
             continue;
         BAIL_IF (pban->level > char_get_trust (ch),
             "You are not powerful enough to lift that ban.\n\r", ch);
-
-        LISTB_REMOVE_WITH_PREV (pban, prev, next, ban_first, ban_last);
         ban_free (pban);
 
         printf_to_char (ch, "Ban on %s lifted.\n\r", arg);
-        save_bans ();
+        ban_save_all ();
         return;
     }
 
@@ -109,7 +106,7 @@ DEFINE_DO_FUN (do_sset) {
     CHAR_T *victim;
     int value;
     int sn;
-    bool fAll;
+    bool all;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -128,9 +125,9 @@ DEFINE_DO_FUN (do_sset) {
     BAIL_IF (IS_NPC (victim),
         "Not on NPC's.\n\r", ch);
 
-    fAll = !str_cmp (arg2, "all");
+    all = !str_cmp (arg2, "all");
     sn = 0;
-    BAIL_IF (!fAll && (sn = skill_lookup (arg2)) < 0,
+    BAIL_IF (!all && (sn = skill_lookup (arg2)) < 0,
         "No such skill or spell.\n\r", ch);
 
     /* Snarf the value. */
@@ -141,7 +138,7 @@ DEFINE_DO_FUN (do_sset) {
     BAIL_IF (value < 0 || value > 100,
         "Value range is 0 to 100.\n\r", ch);
 
-    if (fAll) {
+    if (all) {
         for (sn = 0; sn < SKILL_MAX; sn++)
             if (skill_table[sn].name != NULL)
                 victim->pcdata->learned[sn] = value;
@@ -151,13 +148,15 @@ DEFINE_DO_FUN (do_sset) {
 }
 
 DEFINE_DO_FUN (do_mset) {
+    const CLASS_T *class;
     char arg1[MIL];
     char arg2[MIL];
     char arg3[MIL];
     CHAR_T *victim;
     int value;
+    int class_n, i;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
     strcpy (arg3, argument);
@@ -177,7 +176,7 @@ DEFINE_DO_FUN (do_mset) {
         "They aren't here.\n\r", ch);
 
     /* clear zones for mobs */
-    victim->zone = NULL;
+    victim->area = NULL;
 
     /* Snarf the value (which need not be numeric). */
     value = is_number (arg3) ? atoi (arg3) : -1;
@@ -259,19 +258,18 @@ DEFINE_DO_FUN (do_mset) {
     }
 
     if (!str_prefix (arg2, "class")) {
-        int class;
         BAIL_IF (IS_NPC (victim),
             "Mobiles have no class.\n\r", ch);
 
-        class = class_lookup (arg3);
-        if (class == -1) {
+        class_n = class_lookup (arg3);
+        if (class < 0) {
             char buf[MAX_STRING_LENGTH];
 
             strcpy (buf, "Possible classes are: ");
-            for (class = 0; class < CLASS_MAX; class++) {
-                if (class > 0)
+            for (i = 0; (class = class_get (i)) != NULL; i++) {
+                if (i > 0)
                     strcat (buf, " ");
-                strcat (buf, class_table[class].name);
+                strcat (buf, class->name);
             }
             strcat (buf, ".\n\r");
 
@@ -279,7 +277,7 @@ DEFINE_DO_FUN (do_mset) {
             return;
         }
 
-        victim->class = class;
+        victim->class = class_n;
         return;
     }
 
@@ -355,7 +353,7 @@ DEFINE_DO_FUN (do_mset) {
             "Not on NPC's.\n\r", ch);
         BAIL_IF (value < -1 || value > 100,
             "Thirst range is -1 to 100.\n\r", ch);
-        victim->pcdata->condition[COND_THIRST] = value;
+        victim->pcdata->cond_hours[COND_THIRST] = value;
         return;
     }
 
@@ -364,7 +362,7 @@ DEFINE_DO_FUN (do_mset) {
             "Not on NPC's.\n\r", ch);
         BAIL_IF (value < -1 || value > 100,
             "Drunk range is -1 to 100.\n\r", ch);
-        victim->pcdata->condition[COND_DRUNK] = value;
+        victim->pcdata->cond_hours[COND_DRUNK] = value;
         return;
     }
 
@@ -373,7 +371,7 @@ DEFINE_DO_FUN (do_mset) {
             "Not on NPC's.\n\r", ch);
         BAIL_IF (value < -1 || value > 100,
             "Full range is -1 to 100.\n\r", ch);
-        victim->pcdata->condition[COND_FULL] = value;
+        victim->pcdata->cond_hours[COND_FULL] = value;
         return;
     }
 
@@ -382,15 +380,16 @@ DEFINE_DO_FUN (do_mset) {
             "Not on NPC's.\n\r", ch);
         BAIL_IF (value < -1 || value > 100,
             "Full range is -1 to 100.\n\r", ch);
-        victim->pcdata->condition[COND_HUNGER] = value;
+        victim->pcdata->cond_hours[COND_HUNGER] = value;
         return;
     }
 
     if (!str_prefix (arg2, "race")) {
         int race = race_lookup (arg3);
+
         BAIL_IF (race <= 0,
             "That is not a valid race.\n\r", ch);
-        BAIL_IF (!IS_NPC (victim) && !race_table[race].pc_race,
+        BAIL_IF (!IS_NPC (victim) && !pc_race_get_by_race (race),
             "That is not a valid player race.\n\r", ch);
         victim->race = race;
         return;
@@ -429,7 +428,7 @@ DEFINE_DO_FUN (do_oset) {
     OBJ_T *obj;
     int value;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
     strcpy (arg3, argument);
@@ -483,7 +482,7 @@ DEFINE_DO_FUN (do_rset) {
     ROOM_INDEX_T *location;
     int value;
 
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
     strcpy (arg3, argument);

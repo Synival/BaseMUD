@@ -26,7 +26,6 @@
  ***************************************************************************/
 
 #include "magic.h"
-#include "skills.h"
 #include "comm.h"
 #include "utils.h"
 #include "lookup.h"
@@ -39,12 +38,12 @@
 DEFINE_SPELL_FUN (spell_cure_blindness) {
     CHAR_T *victim = (CHAR_T *) vo;
 
-    if (isnt_affected_with_act (victim, gsn_blindness, 0, ch,
+    if (affect_isnt_char_affected_with_act (victim, SN(BLINDNESS), 0, ch,
             "You aren't blind.",
             "$N doesn't appear to be blinded."))
         return;
 
-    BAIL_IF (!check_dispel (level, victim, gsn_blindness),
+    BAIL_IF (!check_dispel (level, victim, SN(BLINDNESS)),
         "Spell failed.\n\r", ch);
 
     send_to_char ("Your vision returns!\n\r", victim);
@@ -67,12 +66,12 @@ DEFINE_SPELL_FUN (spell_cure_critical) {
 DEFINE_SPELL_FUN (spell_cure_disease) {
     CHAR_T *victim = (CHAR_T *) vo;
 
-    if (isnt_affected_with_act (victim, gsn_plague, 0, ch,
+    if (affect_isnt_char_affected_with_act (victim, SN(PLAGUE), 0, ch,
             "You aren't ill.",
             "$N doesn't appear to be diseased."))
         return;
 
-    BAIL_IF (!check_dispel (level, victim, gsn_plague),
+    BAIL_IF (!check_dispel (level, victim, SN(PLAGUE)),
         "Spell failed.\n\r", ch);
 
     send_to_char ("Your sores vanish.\n\r", victim);
@@ -95,12 +94,12 @@ DEFINE_SPELL_FUN (spell_cure_light) {
 DEFINE_SPELL_FUN (spell_cure_poison) {
     CHAR_T *victim = (CHAR_T *) vo;
 
-    if (isnt_affected_with_act (victim, gsn_poison, 0, ch,
+    if (affect_isnt_char_affected_with_act (victim, SN(POISON), 0, ch,
             "You aren't poisoned.",
             "$N doesn't appear to be poisoned."))
         return;
 
-    BAIL_IF (!check_dispel (level, victim, gsn_poison),
+    BAIL_IF (!check_dispel (level, victim, SN(POISON)),
         "Spell failed.\n\r", ch);
 
     send_to_char ("A warm feeling runs through your body.\n\r", victim);
@@ -136,7 +135,7 @@ DEFINE_SPELL_FUN (spell_mass_healing) {
     heal_num    = skill_lookup ("heal");
     refresh_num = skill_lookup ("refresh");
 
-    for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room) {
+    for (gch = ch->in_room->people_first; gch != NULL; gch = gch->room_next) {
         if ((IS_NPC (ch) && IS_NPC (gch)) || (!IS_NPC (ch) && !IS_NPC (gch))) {
             spell_heal (heal_num, level, ch, (void *) gch, TARGET_CHAR,
                 target_name);
@@ -185,14 +184,14 @@ DEFINE_SPELL_FUN (spell_remove_curse_char) {
     OBJ_T *obj;
     bool found = FALSE;
 
-    if (check_dispel (level, victim, gsn_curse)) {
+    if (check_dispel (level, victim, SN(CURSE))) {
         found = TRUE;
         send_to_char ("You feel better.\n\r", victim);
         act ("$n looks more relaxed.", victim, NULL, NULL, TO_NOTCHAR);
     }
 
-    for (obj = victim->carrying; (obj != NULL && !found);
-         obj = obj->next_content)
+    for (obj = victim->content_first; (obj != NULL && !found);
+         obj = obj->content_next)
     {
         if (!(IS_OBJ_STAT (obj, ITEM_NODROP) ||
               IS_OBJ_STAT (obj, ITEM_NOREMOVE)))

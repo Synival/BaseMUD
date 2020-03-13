@@ -1,0 +1,141 @@
+{"flags": {
+  "name": "extra_flags",
+  "description": "Object attributes.",
+  "values": [
+    {
+      "name": "glow",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "hum",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "dark",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "lock",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "evil",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "invis",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "magic",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "nodrop",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "bless",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "antigood",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "antievil",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "antineutral",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "noremove",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "inventory",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "nopurge",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "rotdeath",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "visdeath",
+      "value": 16,
+      "settable": true
+    },
+    {
+      "name": "unused_extra_1",
+      "value": 17,
+      "settable": false
+    },
+    {
+      "name": "nonmetal",
+      "value": 18,
+      "settable": true
+    },
+    {
+      "name": "nolocate",
+      "value": 19,
+      "settable": true
+    },
+    {
+      "name": "meltdrop",
+      "value": 20,
+      "settable": true
+    },
+    {
+      "name": "hadtimer",
+      "value": 21,
+      "settable": true
+    },
+    {
+      "name": "sellextract",
+      "value": 22,
+      "settable": true
+    },
+    {
+      "name": "unused_extra_2",
+      "value": 23,
+      "settable": false
+    },
+    {
+      "name": "burnproof",
+      "value": 24,
+      "settable": true
+    },
+    {
+      "name": "nouncurse",
+      "value": 25,
+      "settable": true
+    },
+    {
+      "name": "corroded",
+      "value": 26,
+      "settable": true
+    }
+  ]
+}}

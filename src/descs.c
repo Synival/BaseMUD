@@ -19,14 +19,14 @@
  ***************************************************************************/
 
 /***************************************************************************
-*    ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
-*    ROM has been brought to you by the ROM consortium                      *
-*        Russ Taylor (rtaylor@hypercube.org)                                *
-*        Gabrielle Taylor (gtaylor@hypercube.org)                           *
-*        Brian Moore (zump@rom.org)                                         *
-*    By using this code, you have agreed to follow the terms of the         *
-*    ROM license, in the file Rom24/doc/rom.license                         *
-****************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 #include <ctype.h>
@@ -151,8 +151,8 @@ void init_descriptor (int control) {
     dnew->showstr_head  = NULL;
     dnew->showstr_point = NULL;
     dnew->outsize       = 2000;
-    dnew->pEdit         = NULL; /* OLC */
-    dnew->pString       = NULL; /* OLC */
+    dnew->olc_edit      = NULL; /* OLC */
+    dnew->string_edit   = NULL; /* OLC */
     dnew->editor        = 0;    /* OLC */
     dnew->outbuf        = mem_alloc (dnew->outsize);
 
@@ -183,7 +183,7 @@ void init_descriptor (int control) {
      *
      * Furey: added suffix check by request of Nickel of HiddenWorlds. */
 
-    if (check_ban (dnew->host, BAN_ALL)) {
+    if (ban_check (dnew->host, BAN_ALL)) {
         write_to_descriptor (desc, "Your site has been banned from this mud.\n\r", 0);
         close (desc);
         descriptor_free (dnew);
@@ -191,7 +191,8 @@ void init_descriptor (int control) {
     }
 
     /* Init descriptor data. */
-    LIST_FRONT (dnew, next, descriptor_list);
+    LIST2_FRONT (dnew, global_prev, global_next,
+        descriptor_first, descriptor_last);
 
     /* First Contact! */
     if (!mud_ansiprompt) {
@@ -216,7 +217,7 @@ void close_socket (DESCRIPTOR_T *dclose) {
 
     {
         DESCRIPTOR_T *d;
-        for (d = descriptor_list; d != NULL; d = d->next)
+        for (d = descriptor_first; d != NULL; d = d->global_next)
             if (d->snoop_by == dclose)
                 d->snoop_by = NULL;
     }
@@ -234,14 +235,20 @@ void close_socket (DESCRIPTOR_T *dclose) {
             wiznet ("Net death has claimed $N.", ch, NULL, WIZ_LINKS, 0, 0);
             ch->desc = NULL;
         }
-        else
-            char_free (dclose->original ? dclose->original : dclose->character);
+        else {
+            CHAR_T *ch = dclose->original ? dclose->original : dclose->character;
+            if (ch->in_room)
+                char_extract (ch);
+            else
+                char_free (ch);
+        }
     }
 
     if (d_next == dclose)
-        d_next = d_next->next;
+        d_next = d_next->global_next;
 
-    LIST_REMOVE (dclose, next, descriptor_list, DESCRIPTOR_T, NO_FAIL);
+    LIST2_REMOVE (dclose, global_prev, global_next,
+        descriptor_first, descriptor_last);
 
     close (dclose->descriptor);
     descriptor_free (dclose);
@@ -251,15 +258,15 @@ void close_socket (DESCRIPTOR_T *dclose) {
 }
 
 bool read_from_descriptor (DESCRIPTOR_T *d) {
-    int iStart;
+    int start;
 
     /* Hold horses if pending command already. */
     if (d->incomm[0] != '\0')
         return TRUE;
 
     /* Check for overflow. */
-    iStart = strlen (d->inbuf);
-    if (iStart >= sizeof (d->inbuf) - 10) {
+    start = strlen (d->inbuf);
+    if (start >= sizeof (d->inbuf) - 10) {
         log_f ("%s input overflow!", d->host);
         write_to_descriptor (d->descriptor,
             "\n\r*** PUT A LID ON IT!!! ***\n\r", 0);
@@ -276,23 +283,23 @@ bool read_from_descriptor (DESCRIPTOR_T *d) {
         putc (c, stdout);
         if (c == '\r')
             putc ('\n', stdout);
-        d->inbuf[iStart++] = c;
-        if (iStart > sizeof (d->inbuf) - 10)
+        d->inbuf[start++] = c;
+        if (start > sizeof (d->inbuf) - 10)
             break;
     }
     #endif
 
 #if defined(MSDOS) || defined(unix)
     while (1) {
-        int nRead;
-        nRead = read (d->descriptor, d->inbuf + iStart,
-                      sizeof (d->inbuf) - 10 - iStart);
-        if (nRead > 0) {
-            iStart += nRead;
-            if (d->inbuf[iStart - 1] == '\n' || d->inbuf[iStart - 1] == '\r')
+        int bytes_read;
+        bytes_read = read (d->descriptor, d->inbuf + start,
+                      sizeof (d->inbuf) - 10 - start);
+        if (bytes_read > 0) {
+            start += bytes_read;
+            if (d->inbuf[start - 1] == '\n' || d->inbuf[start - 1] == '\r')
                 break;
         }
-        else if (nRead == 0) {
+        else if (bytes_read == 0) {
             log_string ("EOF encountered on read.");
             return FALSE;
         }
@@ -305,7 +312,7 @@ bool read_from_descriptor (DESCRIPTOR_T *d) {
     }
 #endif
 
-    d->inbuf[iStart] = '\0';
+    d->inbuf[start] = '\0';
     return TRUE;
 }
 
@@ -386,7 +393,7 @@ void read_from_buffer (DESCRIPTOR_T *d) {
 }
 
 /* Low level output function. */
-bool process_output (DESCRIPTOR_T *d, bool fPrompt) {
+bool process_output (DESCRIPTOR_T *d, bool prompt) {
     extern bool merc_down;
 
     /* Bust a prompt. */
@@ -398,28 +405,21 @@ bool process_output (DESCRIPTOR_T *d, bool fPrompt) {
 
         if (d->showstr_point)
             write_to_buffer (d, "[Hit Return to continue] ", 0);
-        else if (fPrompt && d->pString && d->connected == CON_PLAYING)
+        else if (prompt && d->string_edit && d->connected == CON_PLAYING)
             write_to_buffer (d, "> ", 2);
-        else if (fPrompt && d->connected == CON_PLAYING) {
+        else if (prompt && d->connected == CON_PLAYING) {
             CHAR_T *ch, *victim;
             ch = d->character;
 
             /* battle prompt */
             if ((victim = ch->fighting) != NULL && char_can_see_in_room (ch, victim)) {
-                int percent;
                 char *pbuff;
                 char buf[MSL];
                 char buffer[MSL*2];
 
-                if (victim->max_hit > 0)
-                    percent = victim->hit * 100 / victim->max_hit;
-                else
-                    percent = -1;
-
-                sprintf (buf, "%s %s.\n\r", PERS_IR (victim, ch),
-                    condition_name_by_percent (percent));
-                buf[0] = UPPER (buf[0]);
                 pbuff = buffer;
+                char_format_condition_or_pos_msg (buf, sizeof (buf), ch, victim,
+                    FALSE);
                 colour_puts (CH(d), d->ansi, buf, pbuff, MAX_STRING_LENGTH);
                 write_to_buffer (d, buffer, 0);
             }
@@ -458,10 +458,9 @@ bool desc_flush_output (DESCRIPTOR_T *d) {
         d->outtop = 0;
         return FALSE;
     }
-    else {
-        d->outtop = 0;
-        return TRUE;
-    }
+
+    d->outtop = 0;
+    return TRUE;
 }
 
 /* Append onto an output buffer. */
@@ -503,9 +502,9 @@ void write_to_buffer (DESCRIPTOR_T *d, const char *txt, int length) {
  * If this gives errors on very long blocks (like 'ofind all'),
  *   try lowering the max block size. */
 bool write_to_descriptor (int desc, char *txt, int length) {
-    int iStart;
-    int nWrite;
-    int nBlock;
+    int start;
+    int bytes_written;
+    int block_size;
 
 #if defined(macintosh) || defined(MSDOS)
     if (desc == 0)
@@ -515,9 +514,9 @@ bool write_to_descriptor (int desc, char *txt, int length) {
     if (length <= 0)
         length = strlen (txt);
 
-    for (iStart = 0; iStart < length; iStart += nWrite) {
-        nBlock = UMIN (length - iStart, 4096);
-        if ((nWrite = write (desc, txt + iStart, nBlock)) < 0) {
+    for (start = 0; start < length; start += bytes_written) {
+        block_size = UMIN (length - start, 4096);
+        if ((bytes_written = write (desc, txt + start, block_size)) < 0) {
             perror ("Write_to_descriptor");
             return FALSE;
         }
@@ -527,19 +526,23 @@ bool write_to_descriptor (int desc, char *txt, int length) {
 }
 
 /* Look for link-dead player to reconnect. */
-bool check_reconnect (DESCRIPTOR_T *d, char *name, bool fConn) {
+bool check_reconnect (DESCRIPTOR_T *d, char *name, bool conn) {
     CHAR_T *ch;
 
-    for (ch = char_list; ch != NULL; ch = ch->next) {
+    for (ch = char_first; ch != NULL; ch = ch->global_next) {
         if (!IS_NPC (ch)
-            && (!fConn || ch->desc == NULL)
+            && (!conn || ch->desc == NULL)
             && !str_cmp (d->character->name, ch->name))
         {
-            if (fConn == FALSE) {
+            if (conn == FALSE) {
                 str_replace_dup (&(d->character->pcdata->pwd), ch->pcdata->pwd);
             }
             else {
-                char_free (d->character);
+                if (d->character->in_room)
+                    char_extract (d->character);
+                else
+                    char_free (d->character);
+
                 d->character = ch;
                 ch->desc = d;
                 ch->timer = 0;
@@ -566,15 +569,19 @@ bool check_reconnect (DESCRIPTOR_T *d, char *name, bool fConn) {
 /* Check if already playing. */
 bool check_playing (DESCRIPTOR_T *d, char *name) {
     DESCRIPTOR_T *dold;
+    const char *ch_name;
 
-    for (dold = descriptor_list; dold; dold = dold->next) {
-        if (dold != d
-            && dold->character != NULL
-            && dold->connected != CON_GET_NAME
-            && dold->connected != CON_GET_OLD_PASSWORD
-            && !str_cmp (name, dold->original
-                         ? dold->original->name : dold->character->name))
-        {
+    for (dold = descriptor_first; dold; dold = dold->global_next) {
+        if (dold == d)
+            continue;
+        if (dold->character == NULL)
+            continue;
+        if (dold->connected == CON_GET_NAME ||
+            dold->connected == CON_GET_OLD_PASSWORD)
+            continue;
+
+        ch_name = (CH (dold))->name;
+        if (str_cmp (name, ch_name) == 0) {
             write_to_buffer (d, "That character is already playing.\n\r", 0);
             write_to_buffer (d, "Do you wish to connect anyway (Y/N)?", 0);
             d->connected = CON_BREAK_CONNECT;
@@ -618,14 +625,15 @@ void append_to_page (DESCRIPTOR_T *d, const char *txt) {
     }
     else {
         int offset = d->showstr_point - d->showstr_head;
-        char *new_buf = mem_alloc (strlen (d->showstr_head) + len + 1);
+        int head_len = strlen (d->showstr_head);
+        char *new_buf = mem_alloc (head_len + len + 1);
         strcpy (new_buf, d->showstr_head);
         strcat (new_buf, txt);
 
-        clear_page (d);
+        mem_free (d->showstr_head, head_len);
         d->showstr_head = new_buf;
         d->showstr_point = d->showstr_head + offset;
-        strcpy (d->showstr_head, txt);
+        strcpy (d->showstr_head + head_len, txt);
     }
 
     /* write what we can immediately. */

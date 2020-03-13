@@ -35,6 +35,7 @@
 #include "interp.h"
 #include "chars.h"
 #include "globals.h"
+#include "items.h"
 
 #include "spell_misc.h"
 
@@ -144,7 +145,7 @@ DEFINE_SPELL_FUN (spell_dispel_magic) {
 
     if (IS_AFFECTED (victim, AFF_SANCTUARY)
         && !saves_dispel (level, victim->level, -1)
-        && !is_affected (victim, skill_lookup ("sanctuary")))
+        && !affect_is_char_affected (victim, skill_lookup ("sanctuary")))
     {
         REMOVE_BIT (victim->affected_by, AFF_SANCTUARY);
         act ("The white aura around $n's body vanishes.",
@@ -160,24 +161,8 @@ DEFINE_SPELL_FUN (spell_recharge) {
     int chance, percent;
     flag_t wlevel, *recharge_ptr, *charges_ptr;
 
-    switch (obj->item_type) {
-        case ITEM_WAND:
-            wlevel       = obj->v.wand.level;
-            recharge_ptr = &(obj->v.wand.recharge);
-            charges_ptr  = &(obj->v.wand.charges);
-            break;
-
-        case ITEM_STAFF:
-            wlevel       = obj->v.staff.level;
-            recharge_ptr = &(obj->v.staff.recharge);
-            charges_ptr  = &(obj->v.staff.charges);
-            break;
-
-        default:
-            send_to_char ("That item does not carry charges.\n\r", ch);
-            return;
-    }
-
+    BAIL_IF (!item_get_recharge_values (obj, &wlevel, &recharge_ptr, &charges_ptr),
+        "That item does not carry charges.\n\r", ch);
     BAIL_IF (wlevel >= 3 * level / 2,
         "Your skills are not great enough for that.\n\r", ch);
     BAIL_IF (*recharge_ptr == 0,
@@ -233,7 +218,7 @@ DEFINE_SPELL_FUN (spell_ventriloquate) {
     sprintf (buf2, "Someone makes %s say '%s'.\n\r", speaker, target_name);
     buf1[0] = UPPER (buf1[0]);
 
-    for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room)
-        if (!is_exact_name (speaker, vch->name) && IS_AWAKE (vch))
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next)
+        if (!str_in_namelist_exact (speaker, vch->name) && IS_AWAKE (vch))
             send_to_char (saves_spell (level, vch, DAM_OTHER) ? buf2 : buf1, vch);
 }

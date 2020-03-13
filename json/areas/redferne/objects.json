@@ -10,16 +10,15 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [
       {
         "keyword": "writing letters",
-        "description": "It reads: \"Hi Conan.  No more coins from here, pal. :) Signed, Redferne\".\n"
+        "description": "It reads: \"Hi Conan.  No more coins from here, pal. :) Signed, Redferne\"."
       },
       {
         "keyword": "treasure",
-        "description": "Looks like a LOT of coins.  One of them has writing on it.\n"
+        "description": "Looks like a LOT of coins.  One of them has writing on it."
       }
     ]
   }},
@@ -40,11 +39,11 @@
     "level": 0,
     "weight": 4000,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "chest",
-      "description": "It is a robust chest made from short, heavy planks that have been fastened\ntogether with tenons.  It is equipped with a simple brass lock.\n"
+      "description": "It is a robust chest made from short, heavy planks that have been fastened
+                     |together with tenons.  It is equipped with a simple brass lock."
     }]
   }},
   {"object": {
@@ -58,11 +57,10 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key",
-      "description": "It is a small, simple brass key with no inscriptions or marks of any kind.\n"
+      "description": "It is a small, simple brass key with no inscriptions or marks of any kind."
     }]
   }}
 ]

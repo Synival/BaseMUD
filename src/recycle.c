@@ -25,6 +25,7 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -36,6 +37,15 @@
 #include "chars.h"
 #include "globals.h"
 #include "memory.h"
+#include "resets.h"
+#include "board.h"
+#include "extra_descrs.h"
+#include "mob_prog.h"
+#include "rooms.h"
+#include "objs.h"
+#include "mobiles.h"
+#include "help.h"
+#include "portals.h"
 
 #include "recycle.h"
 
@@ -78,16 +88,16 @@ void *recycle_new (int type) {
         "new_recycle: Unknown type '%d'", type, NULL);
 
     /* If there's nothing to recycle, allocate a new object. */
-    if (rec->free_front == NULL) {
+    if (rec->free_first == NULL) {
         obj  = mem_alloc_perm (rec->size);
         data = APPLY_OFFSET (OBJ_RECYCLE_T, obj, rec->obj_data_off);
         rec->top++;
     }
     /* There's a recycled object - get it and pull it off the stack. */
     else {
-        obj  = rec->free_front->obj;
-        data = rec->free_front;
-        LIST2_REMOVE (data, prev, next, rec->free_front, rec->free_back);
+        obj  = rec->free_first->obj;
+        data = rec->free_first;
+        LIST2_REMOVE (data, prev, next, rec->free_first, rec->free_last);
         rec->free_count--;
     }
 
@@ -96,14 +106,14 @@ void *recycle_new (int type) {
     data->obj = obj;
 
     /* Push it to the back of our valid object list. */
-    LIST2_BACK (data, prev, next, rec->list_front, rec->list_back);
+    LIST2_BACK (data, prev, next, rec->list_first, rec->list_last);
     rec->list_count++;
 
     /* 'Validate' our object so we know it's in use. */
     data->valid = TRUE;
 
     if (rec->init_fun) {
-        RECYCLE_INIT_FUN *func = rec->init_fun;
+        INIT_FUN *func = rec->init_fun;
         func (obj);
     }
     return obj;
@@ -119,42 +129,54 @@ void recycle_free (int type, void *obj) {
     /* This function is cool enough to disregard const.
      * It's BAD, but... This can be fixed in a later refactoring.
      * -- Synival */
-    BAIL_IF_BUG  ((rec = (RECYCLE_T *) recycle_get (type)) == NULL,
-        "free_recycle: Unknown type '%d'", type);
+    BAIL_IF_BUG ((rec = (RECYCLE_T *) recycle_get (type)) == NULL,
+        "recycle_free: Unknown type '%d'", type);
 
     /* Don't free objects that are already invalidated. */
     data = APPLY_OFFSET (OBJ_RECYCLE_T, obj, rec->obj_data_off);
     BAIL_IF_BUGF (!data->valid,
-        "free_recycle: Attempted to free invalidated %s", rec->name);
+        "recycle_free: Attempted to free invalidated %s", rec->name);
 
     /* Use a disposal function if we have one. */
     if (rec->dispose_fun) {
-        RECYCLE_DISPOSE_FUN *func = rec->dispose_fun;
+        DISPOSE_FUN *func = rec->dispose_fun;
         func (obj);
     }
 
-    /* Remove from our valid object list and add to the 'free' list. */
-    LIST2_REMOVE (data, prev, next, rec->list_front, rec->list_back);
-    LIST2_BACK   (data, prev, next, rec->free_front, rec->free_back);
-    rec->list_count--;
-    rec->free_count++;
-
     /* 'Invalidate' our object so we know it's no longer in use. */
+    if (data->obj == NULL) {
+        bugf ("recycle_free: Warning - recycle data of entity with type '%s' "
+            "lost its 'rec->obj' reference at some point! Was it accidentally "
+            "zeroed-out somewhere?", rec->name);
+        data->obj = obj;
+    }
     data->valid = FALSE;
+
+    /* Remove from our valid object list and add to the 'free' list. */
+    LIST2_REMOVE (data, prev, next, rec->list_first, rec->list_last);
+    rec->list_count--;
+
+#ifdef BASEMUD_DEBUG_DISABLE_RECYCLE
+    mem_free (data->obj, rec->size);
+#else
+    LIST2_BACK (data, prev, next, rec->free_first, rec->free_last);
+    rec->free_count++;
+#endif
 }
 
 int recycle_free_all (void) {
     int i, count = 0;
 
     /* Free some high-level objects first. */
-    recycle_free_all_type (RECYCLE_AREA_T);
-    recycle_free_all_type (RECYCLE_MOB_INDEX_T);
-    recycle_free_all_type (RECYCLE_CHAR_T);
+    recycle_free_all_type (RECYCLE_AFFECT_T);
     recycle_free_all_type (RECYCLE_OBJ_T);
-    recycle_free_all_type (RECYCLE_HELP_AREA_T);
-    recycle_free_all_type (RECYCLE_HELP_T);
-    recycle_free_all_type (RECYCLE_ROOM_INDEX_T);
+    recycle_free_all_type (RECYCLE_CHAR_T);
     recycle_free_all_type (RECYCLE_OBJ_INDEX_T);
+    recycle_free_all_type (RECYCLE_MOB_INDEX_T);
+    recycle_free_all_type (RECYCLE_ROOM_INDEX_T);
+    recycle_free_all_type (RECYCLE_HELP_T);
+    recycle_free_all_type (RECYCLE_HELP_AREA_T);
+    recycle_free_all_type (RECYCLE_AREA_T);
 
     /* Free anything else we may have missed. */
     for (i = 0; i < RECYCLE_MAX; i++)
@@ -165,16 +187,31 @@ int recycle_free_all (void) {
 
 int recycle_free_all_type (int type) {
     RECYCLE_T *rec;
-    int count = 0;
+    OBJ_RECYCLE_T *data;
+    void *obj;
+    int count = 0, free_count = 0;
 
     rec = &(recycle_table[type]);
-    if (rec->list_count == 0 && !rec->list_front)
+    if ((rec->list_count == 0 || !rec->list_first) &&
+        (rec->free_count == 0 || !rec->free_first))
         return 0;
 
-    log_f ("Freeing %d recyclable '%s(s)'...", rec->list_count, rec->name);
-    while (rec->list_count > 0 || rec->list_front) {
-        recycle_free (type, rec->list_front->obj);
-        count++;
+    if (rec->list_count > 0 || rec->list_first) {
+        log_f ("Freeing %d recyclable '%s(s)'...", rec->list_count, rec->name);
+        while (rec->list_count > 0 || rec->list_first) {
+            recycle_free (type, rec->list_first->obj);
+            count++;
+        }
+    }
+    while (rec->free_count > 0 || rec->free_first) {
+        obj = rec->free_first->obj;
+        data = APPLY_OFFSET (OBJ_RECYCLE_T, obj, rec->obj_data_off);
+        LIST2_REMOVE (data, prev, next, rec->free_first, rec->free_last);
+#ifdef BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT
+        mem_free (obj, rec->size);
+#endif
+        rec->free_count--;
+        free_count++;
     }
 
     return count;
@@ -182,20 +219,22 @@ int recycle_free_all_type (int type) {
 
 void *recycle_get_first_obj (int type) {
     const RECYCLE_T *rec = recycle_get (type);
-    return (rec->list_front) ? rec->list_front->obj : NULL;
+    return (rec->list_first) ? rec->list_first->obj : NULL;
 }
 
-void ban_init (void *obj) {
+DEFINE_INIT_FUN (ban_init) {
     BAN_T *ban = obj;
     ban->name = &str_empty[0];
 }
 
-void ban_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (ban_dispose) {
     BAN_T *ban = obj;
     str_free (&(ban->name));
+    LIST2_REMOVE (ban, global_prev, global_next,
+        ban_first, ban_last);
 }
 
-void descriptor_init (void *obj) {
+DEFINE_INIT_FUN (descriptor_init) {
     DESCRIPTOR_T *d = obj;
     d->connected     = CON_GET_NAME;
     d->showstr_head  = NULL;
@@ -204,50 +243,59 @@ void descriptor_init (void *obj) {
     d->outbuf        = mem_alloc (d->outsize);
 }
 
-void descriptor_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (descriptor_dispose) {
     DESCRIPTOR_T *d = obj;
     str_free (&(d->host));
     mem_free (d->outbuf, d->outsize);
+    LIST2_REMOVE (d, global_prev, global_next,
+        descriptor_first, descriptor_last);
 }
 
-void extra_descr_init (void *obj) {
+DEFINE_INIT_FUN (extra_descr_init) {
     EXTRA_DESCR_T *ed = obj;
     ed->keyword = &str_empty[0];
     ed->description = &str_empty[0];
 }
 
-void extra_descr_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (extra_descr_dispose) {
     EXTRA_DESCR_T *ed = obj;
     str_free (&(ed->keyword));
     str_free (&(ed->description));
+    extra_descr_unlink (ed);
 }
 
-void obj_dispose (void *vobj) {
-    OBJ_T *obj = vobj;
-    AFFECT_T *paf, *paf_next;
-    EXTRA_DESCR_T *ed, *ed_next;
+DEFINE_DISPOSE_FUN (obj_dispose) {
+    OBJ_T *o = obj;
+    bool obj_in_world;
 
-    for (ed = obj->extra_descr; ed != NULL; ed = ed_next) {
-        ed_next = ed->next;
-        extra_descr_free (ed);
-    }
-    obj->extra_descr = NULL;
+    /* Objects loaded into the playable world should use obj_extract(). */
+    obj_in_world = obj_take (obj);
+    if (obj_in_world && in_game_loop)
+        bugf ("obj_free: %s is still in the real world.", o->short_descr);
 
-    for (paf = obj->affected; paf != NULL; paf = paf_next) {
-        paf_next = paf->next;
-        affect_free (paf);
-    }
-    obj->affected = NULL;
+    str_free (&(o->name));
+    str_free (&(o->description));
+    str_free (&(o->short_descr));
+    str_free (&(o->owner));
 
-    str_free (&(obj->name));
-    str_free (&(obj->description));
-    str_free (&(obj->short_descr));
-    str_free (&(obj->owner));
+    while (o->content_first)
+        obj_free (o->content_first);
+    while (o->extra_descr_first)
+        extra_descr_free (o->extra_descr_first);
+    while (o->affect_first)
+        affect_free (o->affect_first);
+    while (o->content_first)
+        obj_free (o->content_first);
+
+    obj_to_obj_index (o, NULL);
+    LIST2_REMOVE (o, global_prev, global_next,
+        object_first, object_last);
 }
 
-void char_init (void *obj) {
+DEFINE_INIT_FUN (char_init) {
     CHAR_T *ch = obj;
     int i;
+
     ch->name        = &str_empty[0];
     ch->short_descr = &str_empty[0];
     ch->long_descr  = &str_empty[0];
@@ -272,27 +320,30 @@ void char_init (void *obj) {
     }
 }
 
-void char_dispose (void *vobj) {
-    CHAR_T *ch = vobj;
-    OBJ_T *obj;
-    OBJ_T *obj_next;
-    AFFECT_T *paf;
-    AFFECT_T *paf_next;
+DEFINE_DISPOSE_FUN (char_dispose) {
+    CHAR_T *ch = obj;
+    CHAR_T *wch;
 
+    /* Characters loaded into the playable world should use char_extract(). */
+    if (ch->in_room != NULL) {
+        char_from_room (ch);
+        if (in_game_loop)
+            bugf ("char_dispose: %s is still in the real world.", ch->short_descr);
+    }
+
+    for (wch = char_first; wch != NULL; wch = wch->global_next) {
+        if (wch->reply == ch)
+            wch->reply = NULL;
+        if (ch->mprog_target == wch)
+            wch->mprog_target = NULL;
+    }
+
+    if (ch->desc != NULL)
+        ch->desc->character = NULL;
+
+    mobile_to_mob_index (ch, NULL);
     if (IS_NPC (ch))
         mobile_count--;
-
-    for (obj = ch->carrying; obj != NULL; obj = obj_next) {
-        obj_next = obj->next_content;
-        obj_extract (obj);
-    }
-    ch->carrying = NULL;
-
-    for (paf = ch->affected; paf != NULL; paf = paf_next) {
-        paf_next = paf->next;
-        affect_remove (ch, paf);
-    }
-    ch->affected = NULL;
 
     str_free (&(ch->name));
     str_free (&(ch->short_descr));
@@ -302,23 +353,31 @@ void char_dispose (void *vobj) {
     str_free (&(ch->prefix));
 /*  note_free (ch->pnote); */
 
+    while (ch->affect_first)
+        affect_free (ch->affect_first);
+    while (ch->content_first)
+        obj_free (ch->content_first);
+
 #ifdef IMC
     imc_freechardata( ch );
 #endif
     pcdata_free (ch->pcdata);
+
+    LIST2_REMOVE (ch, global_prev, global_next,
+        char_first, char_last);
 }
 
-void pcdata_init (void *obj) {
+DEFINE_INIT_FUN (pcdata_init) {
     PC_T *pcdata = obj;
     int alias;
     for (alias = 0; alias < MAX_ALIAS; alias++) {
-        pcdata->alias[alias] = NULL;
+        pcdata->alias[alias]     = NULL;
         pcdata->alias_sub[alias] = NULL;
     }
     pcdata->buffer = buf_new ();
 }
 
-void pcdata_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (pcdata_dispose) {
     PC_T *pcdata = obj;
     int alias;
 
@@ -334,7 +393,7 @@ void pcdata_dispose (void *obj) {
     }
 }
 
-void buf_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (buf_dispose) {
     BUFFER_T *buffer = obj;
     mem_free (buffer->string, buffer->size);
     buffer->string = NULL;
@@ -342,82 +401,126 @@ void buf_dispose (void *obj) {
     buffer->state = BUFFER_FREED;
 }
 
-void mprog_init (void *obj) {
+DEFINE_INIT_FUN (mprog_init) {
     MPROG_LIST_T *mp = obj;
     mp->code = str_dup ("");
 }
 
-void mprog_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (mprog_dispose) {
     MPROG_LIST_T *mp = obj;
     str_free (&(mp->code));
+    mprog_to_area (mp, NULL);
 }
 
-void had_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (had_dispose) {
     HELP_AREA_T *had = obj;
-    HELP_T *help, *help_next;
 
     str_free (&(had->filename));
     str_free (&(had->name));
     str_free (&(had->area_str));
 
-    for (help = had->first; help != NULL; help = help_next) {
-        help_next = help->next_area;
-        help_free (help);
-    }
-    had->first = NULL;
-    had->next = NULL;
+    while (had->help_first)
+        help_free (had->help_first);
+
+    help_area_to_area (had, NULL);
+    LIST2_REMOVE (had, global_prev, global_next,
+        had_first, had_last);
 }
 
-void help_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (help_dispose) {
     HELP_T *help = obj;
+
     str_free (&(help->keyword));
     str_free (&(help->text));
+
+    help_to_help_area (help, NULL);
+    LIST2_REMOVE (help, global_prev, global_next,
+        help_first, help_last);
 }
 
-void reset_data_init (void *obj) {
+DEFINE_INIT_FUN (reset_data_init) {
     RESET_T *reset = obj;
     reset->command = 'X';
 }
 
-void area_init (void *obj) {
+DEFINE_DISPOSE_FUN (reset_data_dispose) {
+    RESET_T *reset = obj;
+    reset_to_area (reset, NULL);
+    reset_to_room (reset, NULL);
+}
+
+DEFINE_INIT_FUN (area_init) {
     AREA_T *area = obj;
     char buf[MAX_INPUT_LENGTH];
+
     area->title      = str_dup ("New area");
 /*  area->recall     = ROOM_VNUM_TEMPLE;      ROM OLC */
     area->area_flags = AREA_ADDED;
     area->security   = 1;
     area->builders   = str_dup ("None");
-    area->empty      = TRUE;        /* ROM patch */
-    sprintf (buf, "area%d.are", area->vnum);
-    area->filename   = str_dup (buf);
     area->vnum       = TOP(RECYCLE_AREA_T);
+
+    sprintf (buf, "area%d", area->vnum);
+    area->name = str_dup (buf);
+
+    sprintf (buf, "area%d.are", area->vnum);
+    area->filename = str_dup (buf);
 }
 
-void area_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (area_dispose) {
     AREA_T *area = obj;
+
     str_free (&(area->title));
     str_free (&(area->name));
     str_free (&(area->filename));
     str_free (&(area->builders));
     str_free (&(area->credits));
+
+    while (area->had_first)
+        had_free (area->had_first);
+    while (area->room_first)
+        room_index_free (area->room_first);
+    while (area->mprog_first)
+        mprog_free (area->mprog_first);
+    while (area->mpcode_first)
+        mpcode_free (area->mpcode_first);
+    while (area->reset_first)
+        reset_data_free (area->reset_first);
+    while (area->mob_first)
+        mob_index_free (area->mob_first);
+    while (area->obj_first)
+        obj_index_free (area->obj_first);
+
+    LIST2_REMOVE (area, global_prev, global_next,
+        area_first, area_last);
 }
 
-void exit_init (void *obj) {
+DEFINE_INIT_FUN (exit_init) {
     EXIT_T *exit = obj;
-    exit->keyword     = &str_empty[0];
-    exit->description = &str_empty[0];
-    exit->vnum        = -1;
-    exit->area_vnum   = -1;
-    exit->key         = KEY_NOKEYHOLE;
+    exit->keyword      = &str_empty[0];
+    exit->description  = &str_empty[0];
+    exit->to_vnum      = -1;
+    exit->to_area_vnum = -1;
+    exit->to_anum      = -1;
+    exit->key          = KEY_NOKEYHOLE;
 }
 
-void exit_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (exit_dispose) {
     EXIT_T *exit = obj;
+
     str_free (&(exit->keyword));
     str_free (&(exit->description));
+
+    if (exit->portal) {
+        portal_exit_free (exit->portal);
+        exit->portal = NULL;
+    }
+
+    exit_to_room_index_from (exit, NULL, DIR_NONE);
+    exit_to_room_index_to (exit, NULL);
 }
 
-void room_index_init (void *obj) {
+DEFINE_INIT_FUN (room_index_init) {
     ROOM_INDEX_T *room = obj;
     room->name        = &str_empty[0];
     room->description = &str_empty[0];
@@ -426,36 +529,44 @@ void room_index_init (void *obj) {
     room->mana_rate   = 100;
 }
 
-void room_index_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (room_index_dispose) {
     ROOM_INDEX_T *room = obj;
     int door;
-    EXTRA_DESCR_T *extra, *extra_next;
-    RESET_T *reset, *reset_next;
 
     str_free (&(room->name));
     str_free (&(room->description));
     str_free (&(room->owner));
     str_free (&(room->area_str));
 
-    for (door = 0; door < DIR_MAX; door++)
+    for (door = 0; door < DIR_MAX; door++) {
         if (room->exit[door])
             exit_free (room->exit[door]);
-
-    for (extra = room->extra_descr; extra; extra = extra_next) {
-        extra_next = extra->next;
-        extra_descr_free (extra);
+        if (room->exit[door]) {
+            bugf ("room_index_dispose: Room '%s' exit %d not "
+                "properly unlinked.", room->name, door);
+            room->exit[door] = NULL;
+        }
     }
-    room->extra_descr = NULL;
 
-    for (reset = room->reset_first; reset; reset = reset_next) {
-        reset_next = reset->next;
-        reset_data_free (reset);
+    if (room->portal) {
+        portal_exit_free (room->portal);
+        room->portal = NULL;
     }
-    room->reset_first = NULL;
-    room->reset_last = NULL;
+
+    while (room->extra_descr_first)
+        extra_descr_free (room->extra_descr_first);
+    while (room->reset_first)
+        reset_data_free (room->reset_first);
+    while (room->content_first)
+        obj_free (room->content_first);
+    while (room->people_first)
+        char_free (room->people_first);
+
+    room_to_area (room, NULL);
+    room_index_from_hash (room);
 }
 
-void shop_init (void *obj) {
+DEFINE_INIT_FUN (shop_init) {
     SHOP_T *shop = obj;
     shop->profit_buy  = 100;
     shop->profit_sell = 100;
@@ -463,48 +574,51 @@ void shop_init (void *obj) {
     shop->close_hour  = 23;
 }
 
-void obj_index_init (void *vobj) {
-    OBJ_INDEX_T *obj = vobj;
-    obj->name        = str_dup ("no name");
-    obj->short_descr = str_dup ("(no short description)");
-    obj->description = str_dup ("(no description)");
-    obj->item_type   = ITEM_TRASH;
-    obj->condition   = 100;
-    obj->material    = MATERIAL_GENERIC;
-    obj->new_format  = TRUE;
+DEFINE_DISPOSE_FUN (shop_dispose) {
+    SHOP_T *shop = obj;
+    LIST2_REMOVE (shop, global_prev, global_next,
+        shop_first, shop_last);
 }
 
-void obj_index_dispose (void *vobj) {
-    OBJ_INDEX_T *obj = vobj;
-    EXTRA_DESCR_T *extra, *extra_next;
-    AFFECT_T *af, *af_next;
-
-    str_free (&(obj->name));
-    str_free (&(obj->short_descr));
-    str_free (&(obj->description));
-    str_free (&(obj->area_str));
-
-    for (extra = obj->extra_descr; extra; extra = extra_next) {
-        extra_next = extra->next;
-        extra_descr_free (extra);
-    }
-    obj->extra_descr = NULL;
-
-    for (af = obj->affected; af; af = af_next) {
-        af_next = af->next;
-        affect_free (af);
-    }
-    obj->affected = NULL;
+DEFINE_INIT_FUN (obj_index_init) {
+    OBJ_INDEX_T *o = obj;
+    o->name        = str_dup ("no name");
+    o->short_descr = str_dup ("(no short description)");
+    o->description = str_dup ("(no description)");
+    o->item_type   = ITEM_TRASH;
+    o->condition   = 100;
+    o->material    = MATERIAL_GENERIC;
+    o->new_format  = TRUE;
 }
 
-void mob_index_init (void *obj) {
+DEFINE_DISPOSE_FUN (obj_index_dispose) {
+    OBJ_INDEX_T *o = obj;
+
+    while (o->obj_first)
+        obj_free (o->obj_first);
+
+    str_free (&(o->name));
+    str_free (&(o->short_descr));
+    str_free (&(o->description));
+    str_free (&(o->area_str));
+
+    while (o->extra_descr_first)
+        extra_descr_free (o->extra_descr_first);
+    while (o->affect_first)
+        affect_free (o->affect_first);
+
+    obj_index_to_area (o, NULL);
+    obj_index_from_hash (o);
+}
+
+DEFINE_INIT_FUN (mob_index_init) {
     MOB_INDEX_T *mob = obj;
     mob->name         = str_dup ("no name");
     mob->short_descr  = str_dup ("(no short description)");
     mob->long_descr   = str_dup ("(no long description)\n\r");
     mob->description  = &str_empty[0];
-    mob->mob_plus     = MOB_IS_NPC;
-    mob->race         = race_lookup ("human"); /* -- Hugin */
+    mob->ext_mob_plus = EXT_BITS (MOB_IS_NPC);
+    mob->race         = race_lookup_exact ("human"); /* -- Hugin */
     mob->size         = SIZE_MEDIUM;  /* ROM patch -- Hugin */
     mob->start_pos    = POS_STANDING; /* -- Hugin */
     mob->default_pos  = POS_STANDING; /* -- Hugin */
@@ -514,51 +628,73 @@ void mob_index_init (void *obj) {
     db_finalize_mob (mob);
 }
 
-void mob_index_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (mob_index_dispose) {
     MOB_INDEX_T *mob = obj;
+
+    while (mob->mob_first)
+        char_free (mob->mob_first);
+
     str_free (&(mob->name));
     str_free (&(mob->short_descr));
     str_free (&(mob->long_descr));
     str_free (&(mob->description));
     str_free (&(mob->area_str));
-    mprog_free (mob->mprogs);
-    shop_free (mob->pShop);
+
+    while (mob->mprog_first)
+        mprog_free (mob->mprog_first);
+    if (mob->shop)
+        shop_free (mob->shop);
+
+    mob_index_to_area (mob, NULL);
+    mob_index_from_hash (mob);
 }
 
-void mpcode_init (void *obj) {
+DEFINE_INIT_FUN (mpcode_init) {
     MPROG_CODE_T *mpcode = obj;
     mpcode->code = str_dup ("");
 }
 
-void mpcode_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (mpcode_dispose) {
     MPROG_CODE_T *mpcode = obj;
     str_free (&(mpcode->code));
+
+    mpcode_to_area (mpcode, NULL);
+    LIST2_REMOVE (mpcode, global_prev, global_next,
+        mpcode_first, mpcode_last);
 }
 
-static size_t new_buf_current_size = BASE_BUF;
-void buf_init (void *obj) {
+DEFINE_INIT_FUN (buf_init) {
     BUFFER_T *buffer = obj;
     buffer->state = BUFFER_SAFE;
 
-    buffer->size  = get_size (new_buf_current_size);
+    buffer->size = buf_get_size (new_buf_size);
     EXIT_IF_BUG (buffer->size == -1,
-        "new_buf: buffer size %d too large.", new_buf_current_size);
+        "new_buf: buffer size %d too large.", new_buf_size);
 
     buffer->string = mem_alloc (buffer->size);
     buffer->string[0] = '\0';
 }
 
-void note_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (note_dispose) {
     NOTE_T *note = obj;
+
     str_free (&(note->sender));
     str_free (&(note->to_list));
     str_free (&(note->subject));
     str_free (&(note->date));
     str_free (&(note->text));
+
+    note_to_board (note, NULL);
 }
 
-void social_dispose (void *obj) {
+DEFINE_INIT_FUN (social_init) {
+    SOCIAL_T *social = obj;
+    social->min_pos = POS_RESTING;
+}
+
+DEFINE_DISPOSE_FUN (social_dispose) {
     SOCIAL_T *soc = obj;
+    str_free (&(soc->name));
     str_free (&(soc->char_no_arg));
     str_free (&(soc->others_no_arg));
     str_free (&(soc->char_found));
@@ -569,15 +705,25 @@ void social_dispose (void *obj) {
     str_free (&(soc->others_auto));
 }
 
-void portal_exit_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (portal_exit_dispose) {
     PORTAL_EXIT_T *pex = obj;
+
+    portal_free_all_with_portal_exit (pex);
+    portal_exit_to_exit (pex, NULL);
+
     str_free (&(pex->name));
 }
 
-void portal_dispose (void *obj) {
+DEFINE_DISPOSE_FUN (portal_dispose) {
     PORTAL_T *portal = obj;
+
     str_free (&(portal->name_from));
     str_free (&(portal->name_to));
+}
+
+DEFINE_DISPOSE_FUN (affect_dispose) {
+    AFFECT_T *affect = obj;
+    affect_unlink (affect);
 }
 
 static long last_pc_id  = 0;
@@ -592,69 +738,4 @@ static long last_mob_id = 0;
 long get_mob_id (void) {
     last_mob_id++;
     return last_mob_id;
-}
-
-/* buffer sizes */
-static const int buf_size[MAX_BUF_LIST] = {
-    16, 32, 64, 128, 256, 1024, 2048, 4096, 8192, 16384
-};
-
-/* local procedure for finding the next acceptable size */
-/* -1 indicates out-of-boundary error */
-int get_size (int val) {
-    int i;
-    for (i = 0; i < MAX_BUF_LIST; i++)
-        if (buf_size[i] >= val)
-            return buf_size[i];
-    return -1;
-}
-
-BUFFER_T *new_buf_size (int size) {
-    BUFFER_T *buf;
-    new_buf_current_size = size;
-    buf = buf_new ();
-    new_buf_current_size = BASE_BUF;
-    return buf;
-}
-
-bool add_buf (BUFFER_T *buffer, char *string) {
-    int len;
-    char *oldstr;
-    int oldsize;
-
-    oldstr = buffer->string;
-    oldsize = buffer->size;
-
-    if (buffer->state == BUFFER_OVERFLOW)    /* don't waste time on bad strings! */
-        return FALSE;
-
-    len = strlen (buffer->string) + strlen (string) + 1;
-    while (len >= buffer->size) { /* increase the buffer size */
-        buffer->size = get_size (buffer->size + 1); {
-            if (buffer->size == -1) { /* overflow */
-                buffer->size = oldsize;
-                buffer->state = BUFFER_OVERFLOW;
-                bug ("buffer overflow past size %d", buffer->size);
-                return FALSE;
-            }
-        }
-    }
-
-    if (buffer->size != oldsize) {
-        buffer->string = mem_alloc (buffer->size);
-        strcpy (buffer->string, oldstr);
-        mem_free (oldstr, oldsize);
-    }
-
-    strcat (buffer->string, string);
-    return TRUE;
-}
-
-void clear_buf (BUFFER_T *buffer) {
-    buffer->string[0] = '\0';
-    buffer->state = BUFFER_SAFE;
-}
-
-char *buf_string (BUFFER_T *buffer) {
-    return buffer->string;
 }

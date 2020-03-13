@@ -1,0 +1,18 @@
+[
+  {"sex": {
+    "sex": 0,
+    "name": "neutral"
+  }},
+  {"sex": {
+    "sex": 1,
+    "name": "male"
+  }},
+  {"sex": {
+    "sex": 2,
+    "name": "female"
+  }},
+  {"sex": {
+    "sex": 3,
+    "name": "either"
+  }}
+]

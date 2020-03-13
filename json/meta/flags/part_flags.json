@@ -1,0 +1,131 @@
+{"flags": {
+  "name": "part_flags",
+  "description": "Mobile body parts.",
+  "values": [
+    {
+      "name": "head",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "arms",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "legs",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "heart",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "brains",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "guts",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "hands",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "feet",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "fingers",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "ear",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "eye",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "long_tongue",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "eyestalks",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "tentacles",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "fins",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "wings",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "tail",
+      "value": 16,
+      "settable": true
+    },
+    {
+      "name": "unused_part_1",
+      "value": 17,
+      "settable": false
+    },
+    {
+      "name": "unused_part_2",
+      "value": 18,
+      "settable": false
+    },
+    {
+      "name": "unused_part_3",
+      "value": 19,
+      "settable": false
+    },
+    {
+      "name": "claws",
+      "value": 20,
+      "settable": true
+    },
+    {
+      "name": "fangs",
+      "value": 21,
+      "settable": true
+    },
+    {
+      "name": "horns",
+      "value": 22,
+      "settable": true
+    },
+    {
+      "name": "scales",
+      "value": 23,
+      "settable": true
+    },
+    {
+      "name": "tusks",
+      "value": 24,
+      "settable": true
+    }
+  ]
+}}

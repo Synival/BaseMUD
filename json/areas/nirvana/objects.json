@@ -17,27 +17,23 @@
     "level": 39,
     "weight": 400,
     "cost": 8800,
-    "condition": 100,
     "extra_flags": "glow magic antigood antievil",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword long the",
-      "description": "This is an extremely long and heavy sword, with many magical runes inscribed\non it.  It glows with the power of Primus, Lord of the Plane of Nirvana.\n"
+      "description": "This is an extremely long and heavy sword, with many magical runes inscribed
+                     |on it.  It glows with the power of Primus, Lord of the Plane of Nirvana."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 39,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 5
       },
       {
-        "apply": "hit roll",
         "level": 39,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 5
       }
     ]
   }},
@@ -53,12 +49,12 @@
     "level": 0,
     "weight": 0,
     "cost": 500,
-    "condition": 100,
     "extra_flags": "glow nolocate",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "moonstone moon stone white",
-      "description": "Looking into the smooth surface of this moonstone, you feel strangely at \npeace and balance with the world around you.\n"
+      "description": "Looking into the smooth surface of this moonstone, you feel strangely at 
+                     |peace and balance with the world around you."
     }]
   }}
 ]

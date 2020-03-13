@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 
@@ -57,7 +57,7 @@ DEFINE_DO_FUN (do_deny) {
     BAIL_IF (char_get_trust (victim) >= char_get_trust (ch),
         "You failed.\n\r", ch);
 
-    SET_BIT (victim->plr, PLR_DENY);
+    EXT_SET (victim->ext_plr, PLR_DENY);
     printf_to_char(victim, "You have been denied access!\n\r");
     wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
         "$N denies access to %s", victim->name);
@@ -99,7 +99,6 @@ DEFINE_DO_FUN (do_reboo) {
 
 DEFINE_DO_FUN (do_reboot) {
     char buf[MAX_STRING_LENGTH];
-    extern bool merc_down;
     DESCRIPTOR_T *d, *d_next;
     CHAR_T *vch;
 
@@ -109,8 +108,8 @@ DEFINE_DO_FUN (do_reboot) {
     }
 
     merc_down = TRUE;
-    for (d = descriptor_list; d != NULL; d = d_next) {
-        d_next = d->next;
+    for (d = descriptor_first; d != NULL; d = d_next) {
+        d_next = d->global_next;
         vch = d->original ? d->original : d->character;
         if (vch != NULL)
             save_char_obj (vch);
@@ -124,7 +123,6 @@ DEFINE_DO_FUN (do_shutdow) {
 
 DEFINE_DO_FUN (do_shutdown) {
     char buf[MAX_STRING_LENGTH];
-    extern bool merc_down;
     DESCRIPTOR_T *d, *d_next;
     CHAR_T *vch;
 
@@ -135,8 +133,9 @@ DEFINE_DO_FUN (do_shutdown) {
     if (ch->invis_level < LEVEL_HERO)
         do_function (ch, &do_echo, buf);
     merc_down = TRUE;
-    for (d = descriptor_list; d != NULL; d = d_next) {
-        d_next = d->next;
+
+    for (d = descriptor_first; d != NULL; d = d_next) {
+        d_next = d->global_next;
         vch = d->original ? d->original : d->character;
         if (vch != NULL)
             save_char_obj (vch);
@@ -153,12 +152,12 @@ DEFINE_DO_FUN (do_log) {
         "Log whom?\n\r", ch);
 
     if (!str_cmp (arg, "all")) {
-        if (fLogAll) {
-            fLogAll = FALSE;
+        if (log_all_commands) {
+            log_all_commands = FALSE;
             send_to_char ("Log ALL off.\n\r", ch);
         }
         else {
-            fLogAll = TRUE;
+            log_all_commands = TRUE;
             send_to_char ("Log ALL on.\n\r", ch);
         }
         return;
@@ -170,12 +169,12 @@ DEFINE_DO_FUN (do_log) {
         "Not on NPC's.\n\r", ch);
 
     /* No level check, gods can log anyone. */
-    if (IS_SET (victim->plr, PLR_LOG)) {
-        REMOVE_BIT (victim->plr, PLR_LOG);
+    if (EXT_IS_SET (victim->ext_plr, PLR_LOG)) {
+        EXT_UNSET (victim->ext_plr, PLR_LOG);
         send_to_char ("LOG removed.\n\r", ch);
     }
     else {
-        SET_BIT (victim->plr, PLR_LOG);
+        EXT_SET (victim->ext_plr, PLR_LOG);
         send_to_char ("LOG set.\n\r", ch);
     }
 }

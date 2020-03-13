@@ -23,11 +23,13 @@
 #include "chars.h"
 #include "globals.h"
 #include "olc.h"
+#include "memory.h"
+#include "mob_prog.h"
 
 #include "olc_mpedit.h"
 
 MPEDIT (mpedit_create) {
-    MPROG_CODE_T *pMcode;
+    MPROG_CODE_T *mcode;
     int value = atoi (argument);
     AREA_T *ad;
 
@@ -39,15 +41,15 @@ MPEDIT (mpedit_create) {
         "MPEdit: That area vnum does not exist.\n\r", ch, FALSE);
     RETURN_IF (!IS_BUILDER (ch, ad),
         "MPEdit: Vnum in an area you cannot build in.\n\r", ch, FALSE);
-    RETURN_IF (get_mprog_index (value),
+    RETURN_IF (mpcode_get_index (value),
         "MPEdit: Mob program vnum already exists.\n\r", ch, FALSE);
 
-    pMcode = mpcode_new ();
-    pMcode->area = ad;
-    pMcode->vnum = value;
-    pMcode->anum = value - ad->min_vnum;
-    LIST_FRONT (pMcode, next, mprog_list);
-    ch->desc->pEdit = (void *) pMcode;
+    mcode = mpcode_new ();
+    mpcode_to_area (mcode, ad);
+    mcode->vnum = value;
+    mcode->anum = value - ad->min_vnum;
+    LIST2_FRONT (mcode, global_prev, global_next, mpcode_first, mpcode_last);
+    ch->desc->olc_edit = (void *) mcode;
     ch->desc->editor = ED_MPCODE;
 
     send_to_char ("Mob program created.\n\r", ch);
@@ -55,21 +57,21 @@ MPEDIT (mpedit_create) {
 }
 
 MPEDIT (mpedit_show) {
-    MPROG_CODE_T *pMcode;
-    EDIT_MPCODE (ch, pMcode);
+    MPROG_CODE_T *mcode;
+    EDIT_MPCODE (ch, mcode);
 
     printf_to_char (ch,
          "Vnum:       [%d]\n\r"
-         "Code:\n\r%s\n\r", pMcode->vnum, pMcode->code);
+         "Code:\n\r%s\n\r", mcode->vnum, mcode->code);
     return FALSE;
 }
 
 MPEDIT (mpedit_code) {
-    MPROG_CODE_T *pMcode;
-    EDIT_MPCODE (ch, pMcode);
+    MPROG_CODE_T *mcode;
+    EDIT_MPCODE (ch, mcode);
 
     if (argument[0] == '\0') {
-        string_append (ch, &pMcode->code);
+        string_append (ch, &mcode->code);
         return TRUE;
     }
 
@@ -82,15 +84,15 @@ MPEDIT (mpedit_list) {
     MPROG_CODE_T *mprg;
     char buf[MAX_STRING_LENGTH];
     BUFFER_T *buffer;
-    bool fAll = !str_cmp (argument, "all");
+    bool all = !str_cmp (argument, "all");
     char chr;
     AREA_T *ad;
 
     buffer = buf_new ();
-    for (mprg = mprog_list; mprg != NULL; mprg = mprg->next) {
-        if (fAll
-            || ENTRE (ch->in_room->area->min_vnum, mprg->vnum,
-                      ch->in_room->area->max_vnum))
+    for (mprg = mpcode_first; mprg != NULL; mprg = mprg->global_next) {
+        if (all || ENTRE (
+            ch->in_room->area->min_vnum, mprg->vnum,
+            ch->in_room->area->max_vnum))
         {
             ad = area_get_by_inner_vnum (mprg->vnum);
             if (ad == NULL)
@@ -101,16 +103,16 @@ MPEDIT (mpedit_list) {
                 chr = ' ';
 
             sprintf (buf, "[%3d] (%c) %5d\n\r", count, chr, mprg->vnum);
-            add_buf (buffer, buf);
+            buf_cat (buffer, buf);
             count++;
         }
     }
 
     if (count == 1) {
-        if (fAll)
-            add_buf (buffer, "MobPrograms do not exist!\n\r");
+        if (all)
+            buf_cat (buffer, "MobPrograms do not exist!\n\r");
         else
-            add_buf (buffer, "MobPrograms do not exist in this area.\n\r");
+            buf_cat (buffer, "MobPrograms do not exist in this area.\n\r");
     }
 
     page_to_char (buf_string (buffer), ch);

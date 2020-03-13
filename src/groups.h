@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #ifndef __ROM_GROUPS_H
 #define __ROM_GROUPS_H
@@ -31,11 +31,10 @@
 #include "merc.h"
 
 /* Function prototypes. */
-bool is_same_group (CHAR_T *ach, CHAR_T *bch);
+bool is_same_group (const CHAR_T *ach, const CHAR_T *bch);
 void add_follower (CHAR_T *ch, CHAR_T *master);
 void stop_follower (CHAR_T *ch);
 void nuke_pets (CHAR_T *ch);
 void die_follower (CHAR_T *ch);
-bool is_same_group (CHAR_T *ach, CHAR_T *bch);
 
 #endif

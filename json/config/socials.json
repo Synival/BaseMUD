@@ -563,7 +563,8 @@
   {"social": {
     "name": "snore",
     "char_no_arg": "Zzzzzzzzzzzzzzzzz.",
-    "others_no_arg": "$n snores loudly."
+    "others_no_arg": "$n snores loudly.",
+    "min_pos": "sleep"
   }},
   {"social": {
     "name": "squeeze",

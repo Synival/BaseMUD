@@ -15,11 +15,11 @@
     "level": 17,
     "weight": 20,
     "cost": 48900,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "spit gun",
-      "description": "A standard weapon in Mega-City One.  It uses general\npurpose ammunition.\n"
+      "description": "A standard weapon in Mega-City One.  It uses general
+                     |purpose ammunition."
     }]
   }},
   {"object": {
@@ -37,11 +37,11 @@
     "level": 5,
     "weight": 30,
     "cost": 480,
-    "condition": 100,
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "knee pads",
-      "description": "It is a set of Grak Brothers knee pads.  They are currently\npopular with the juve and punk gangs.\n"
+      "description": "It is a set of Grak Brothers knee pads.  They are currently
+                     |popular with the juve and punk gangs."
     }]
   }},
   {"object": {
@@ -59,11 +59,10 @@
     "level": 13,
     "weight": 10,
     "cost": 1000,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "stooky gland",
-      "description": "Stooky glands are known for the restorative properties.\n"
+      "description": "Stooky glands are known for the restorative properties."
     }]
   }},
   {"object": {
@@ -82,11 +81,11 @@
     "level": 27,
     "weight": 20,
     "cost": 58000,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "lawgiver gun",
-      "description": "The standard weapon for the city's Judges.  It uses general\nhigh explosive ammunition.\n"
+      "description": "The standard weapon for the city's Judges.  It uses general
+                     |high explosive ammunition."
     }]
   }},
   {"object": {
@@ -106,11 +105,11 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "hum",
     "extra_description": [{
       "keyword": "safe",
-      "description": "This safe looks like not even a Sov-Cit Nuke could open it.\nYou better find the code box.\n"
+      "description": "This safe looks like not even a Sov-Cit Nuke could open it.
+                     |You better find the code box."
     }]
   }},
   {"object": {
@@ -124,12 +123,11 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "code box",
-      "description": "The box looks like some kind of access device.\n"
+      "description": "The box looks like some kind of access device."
     }]
   }},
   {"object": {
@@ -149,18 +147,16 @@
     "level": 14,
     "weight": 30,
     "cost": 870,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "bashball bat",
-      "description": "This is the same type of bat used by the little spuggers\nto play bashball.\n"
+      "description": "This is the same type of bat used by the little spuggers
+                     |to play bashball."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 14,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -179,41 +175,33 @@
     "level": 18,
     "weight": 20,
     "cost": 2800,
-    "condition": 100,
     "extra_flags": "glow hum invis",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "vibroblade",
-      "description": "Obviously of alien manufacture, this blade enhances fighting\nand survival skills.\n"
+      "description": "Obviously of alien manufacture, this blade enhances fighting
+                     |and survival skills."
     }],
     "affects": [
       {
+        "level": 18,
         "apply": "dexterity",
-        "level": 18,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
+        "level": 18,
         "apply": "constitution",
-        "level": 18,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
+        "level": 18,
         "apply": "damage roll",
-        "level": 18,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 18,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -233,12 +221,12 @@
     "level": 15,
     "weight": 100,
     "cost": 2100,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "vacuum cleaner",
-      "description": "This vacuum looks well built and will last you many years of\ncleaning pleasure.\n"
+      "description": "This vacuum looks well built and will last you many years of
+                     |cleaning pleasure."
     }]
   }},
   {"object": {
@@ -257,11 +245,10 @@
     "level": 5,
     "weight": 10,
     "cost": 360,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "knife",
-      "description": "It is a knife. 'Nuff said. (Marvel joke).\n"
+      "description": "It is a knife. 'Nuff said. (Marvel joke)."
     }]
   }},
   {"object": {
@@ -280,18 +267,15 @@
     "level": 5,
     "weight": 10,
     "cost": 670,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "noodle",
-      "description": "It looks like a noodle freshly made at the Olive Garden.\n"
+      "description": "It looks like a noodle freshly made at the Olive Garden."
     }],
     "affects": [{
-      "apply": "intelligence",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "intelligence",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -310,18 +294,16 @@
     "level": 17,
     "weight": 30,
     "cost": 1050,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "judge club",
-      "description": "It is a standard Justice Hall issue club.  Many a Perp's\nhead has been bashed with this baby.\n"
+      "description": "It is a standard Justice Hall issue club.  Many a Perp's
+                     |head has been bashed with this baby."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 17,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -335,12 +317,11 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "vault key",
-      "description": "The key looks like it could be useful.\n"
+      "description": "The key looks like it could be useful."
     }]
   }},
   {"object": {
@@ -354,11 +335,10 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "key card",
-      "description": "It looks like it fits a slot somewhere.\n"
+      "description": "It looks like it fits a slot somewhere."
     }]
   }},
   {"object": {
@@ -377,18 +357,16 @@
     "level": 26,
     "weight": 30,
     "cost": 1700,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "judge club",
-      "description": "It is a head judge Justice Hall issue club.  Many a Perp's\nhead has been bashed with this baby.\n"
+      "description": "It is a head judge Justice Hall issue club.  Many a Perp's
+                     |head has been bashed with this baby."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 26,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -408,7 +386,6 @@
     "level": 15,
     "weight": 30,
     "cost": 750,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take wield"
   }},
@@ -430,7 +407,6 @@
     "level": 23,
     "weight": 20,
     "cost": 1160,
-    "condition": 100,
     "wear_flags": "take wield"
   }}
 ]

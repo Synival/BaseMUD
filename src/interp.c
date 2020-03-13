@@ -16,14 +16,14 @@
  ***************************************************************************/
 
 /***************************************************************************
-*    ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
-*    ROM has been brought to you by the ROM consortium                      *
-*        Russ Taylor (rtaylor@hypercube.org)                                *
-*        Gabrielle Taylor (gtaylor@hypercube.org)                           *
-*        Brian Moore (zump@rom.org)                                         *
-*    By using this code, you have agreed to follow the terms of the         *
-*    ROM license, in the file Rom24/doc/rom.license                         *
-****************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 #include <ctype.h>
@@ -38,6 +38,7 @@
 #include "descs.h"
 #include "globals.h"
 #include "memory.h"
+#include "lookup.h"
 
 #include "act_board.h"
 #include "act_comm.h"
@@ -372,6 +373,7 @@ const CMD_T cmd_table[] = {
     {"oedit",       do_oedit,       POS_DEAD,     0, LOG_NORMAL,  1},
     {"mpedit",      do_mpedit,      POS_DEAD,     0, LOG_NORMAL,  1},
     {"hedit",       do_hedit,       POS_DEAD,     0, LOG_NORMAL,  1},
+    {"portals",     do_portals,     POS_DEAD,     0, LOG_NORMAL,  1},
 
     /* End of list. */
     {"", 0, POS_DEAD, 0, LOG_NORMAL, 0}
@@ -380,6 +382,7 @@ const CMD_T cmd_table[] = {
 /* The main entry point for executing commands.
  * Can be recursively called from 'at', 'order', 'force'. */
 void interpret (CHAR_T *ch, char *argument) {
+    const char *msg;
     char command[MAX_INPUT_LENGTH];
     char logline[MAX_INPUT_LENGTH];
     int cmd;
@@ -396,7 +399,7 @@ void interpret (CHAR_T *ch, char *argument) {
     REMOVE_BIT (ch->affected_by, AFF_HIDE);
 
     /* Implement freeze command. */
-    BAIL_IF (!IS_NPC (ch) && IS_SET (ch->plr, PLR_FREEZE),
+    BAIL_IF (!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_FREEZE),
         "You're totally frozen!\n\r", ch);
 
     /* Grab the command word.
@@ -427,7 +430,7 @@ void interpret (CHAR_T *ch, char *argument) {
     }
 
     /* Log and snoop. */
-    smash_dollar(logline);
+    str_smash_dollar (logline);
 
     if (cmd_table[cmd].log == LOG_NEVER)
         strcpy (logline, "");
@@ -436,8 +439,8 @@ void interpret (CHAR_T *ch, char *argument) {
      * to prevent crashes due to dollar signs in logstrings.
      * I threw in the above call to smash_dollar() just for
      * the sake of overkill :) JR -- 10/15/00 */
-    if ((!IS_NPC(ch) && IS_SET(ch->plr, PLR_LOG))
-        || fLogAll
+    if ((!IS_NPC(ch) && EXT_IS_SET (ch->ext_plr, PLR_LOG))
+        || log_all_commands
         || cmd_table[cmd].log == LOG_ALWAYS)
     {
         char s[2 * MAX_INPUT_LENGTH], *ps;
@@ -478,30 +481,9 @@ void interpret (CHAR_T *ch, char *argument) {
 
     /* Character not in position for command?  */
     if (ch->position < cmd_table[cmd].position) {
-        switch (ch->position) {
-            case POS_DEAD:
-                send_to_char ("Lie still; you are DEAD.\n\r", ch);
-                break;
-            case POS_MORTAL:
-            case POS_INCAP:
-                send_to_char ("You are hurt far too bad for that.\n\r", ch);
-                break;
-            case POS_STUNNED:
-                send_to_char ("You are too stunned to do that.\n\r", ch);
-                break;
-            case POS_SLEEPING:
-                send_to_char ("In your dreams, or what?\n\r", ch);
-                break;
-            case POS_RESTING:
-                send_to_char ("Nah... You feel too relaxed...\n\r", ch);
-                break;
-            case POS_SITTING:
-                send_to_char ("Better stand up first.\n\r", ch);
-                break;
-            case POS_FIGHTING:
-                send_to_char ("No way!  You are still fighting!\n\r", ch);
-                break;
-        }
+        msg = interpret_pos_message (ch->position);
+        if (msg != NULL)
+            send_to_char (msg, ch);
         return;
     }
 
@@ -509,6 +491,20 @@ void interpret (CHAR_T *ch, char *argument) {
     (*cmd_table[cmd].do_fun) (ch, argument);
 
     tail_chain ();
+}
+
+const char *interpret_pos_message (int pos) {
+    switch (pos) {
+        case POS_DEAD:     return "Lie still; you are DEAD.\n\r";
+        case POS_MORTAL:   return "You are hurt far too bad for that.\n\r";
+        case POS_INCAP:    return "You are hurt far too bad for that.\n\r";
+        case POS_STUNNED:  return "You are too stunned to do that.\n\r";
+        case POS_SLEEPING: return "In your dreams, or what?\n\r";
+        case POS_RESTING:  return "Nah... You feel too relaxed...\n\r";
+        case POS_SITTING:  return "Better stand up first.\n\r";
+        case POS_FIGHTING: return "No way!  You are still fighting!\n\r";
+        default:           return NULL;
+    }
 }
 
 /* function to keep argument safe in all commands -- no static strings */
@@ -529,61 +525,34 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
     CHAR_T *victim;
     SOCIAL_T *soc;
     char arg[MAX_INPUT_LENGTH];
-    bool found;
 
-    found = FALSE;
-    for (soc = social_get_first(); soc != NULL; soc = social_get_next(soc)) {
-        if (command[0] == soc->name[0] && !str_prefix (command, soc->name)) {
-            found = TRUE;
-            break;
-        }
-    }
-
-    if (!found)
+    if ((soc = social_get_by_name (command)) == NULL)
         return FALSE;
     if (!IS_NPC (ch) && IS_SET (ch->comm, COMM_NOEMOTE)) {
         send_to_char ("You are anti-social!\n\r", ch);
         return TRUE;
     }
 
-    switch (ch->position) {
-        case POS_DEAD:
-            send_to_char ("Lie still; you are DEAD.\n\r", ch);
-            return TRUE;
-
-        case POS_INCAP:
-        case POS_MORTAL:
-            send_to_char ("You are hurt far too bad for that.\n\r", ch);
-            return TRUE;
-
-        case POS_STUNNED:
-            send_to_char ("You are too stunned to do that.\n\r", ch);
-            return TRUE;
-
-        case POS_SLEEPING:
-            /* I just know this is the path to a 12" 'if' statement.  :(
-             * But two players asked for it already!  -- Furey */
-            if (!str_cmp (soc->name, "snore"))
-                break;
-            send_to_char ("In your dreams, or what?\n\r", ch);
-            return TRUE;
-
+    /* TODO: allow a minimum position for socials? */
+    while (ch->position < soc->min_pos) {
+        send_to_char (interpret_pos_message (ch->position), ch);
+        return TRUE;
     }
 
     one_argument (argument, arg);
     victim = NULL;
     if (arg[0] == '\0') {
-        act (soc->char_no_arg,   ch, NULL, victim, TO_CHAR);
+        act_new (soc->char_no_arg,   ch, NULL, victim, TO_CHAR, POS_DEAD);
         act (soc->others_no_arg, ch, NULL, victim, TO_NOTCHAR);
     }
     else if ((victim = find_char_same_room (ch, arg)) == NULL)
         send_to_char ("They aren't here.\n\r", ch);
     else if (victim == ch) {
-        act (soc->char_auto,   ch, NULL, victim, TO_CHAR);
+        act_new (soc->char_auto,   ch, NULL, victim, TO_CHAR, POS_DEAD);
         act (soc->others_auto, ch, NULL, victim, TO_NOTCHAR);
     }
     else {
-        act (soc->char_found,   ch, NULL, victim, TO_CHAR);
+        act_new (soc->char_found,   ch, NULL, victim, TO_CHAR, POS_DEAD);
         act (soc->vict_found,   ch, NULL, victim, TO_VICT);
         act (soc->others_found, ch, NULL, victim, TO_OTHERS);
 
@@ -601,10 +570,10 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
                 case 6:
                 case 7:
                 case 8:
+                    act_new (soc->char_found, victim, NULL, ch,
+                         TO_CHAR, POS_DEAD);
                     act (soc->others_found,
                          victim, NULL, ch, TO_OTHERS);
-                    act (soc->char_found, victim, NULL, ch,
-                         TO_CHAR);
                     act (soc->vict_found, victim, NULL, ch,
                          TO_VICT);
                     break;
@@ -613,8 +582,9 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
                 case 10:
                 case 11:
                 case 12:
+                    act_new ("You slap $N.", victim, NULL, ch, TO_CHAR,
+                        POS_DEAD);
                     act ("$n slaps $N.", victim, NULL, ch, TO_OTHERS);
-                    act ("You slap $N.", victim, NULL, ch, TO_CHAR);
                     act ("$n slaps you.", victim, NULL, ch, TO_VICT);
                     break;
             }
@@ -676,17 +646,17 @@ int mult_argument (const char *arg_in, char *arg_out) {
 /* Pick off one argument from a string and return the rest.
  * Understands quotes. */
 char *one_argument (const char *argument, char *arg_first) {
-    char cEnd;
+    char end_ch;
 
     while (isspace (*argument))
         argument++;
 
-    cEnd = ' ';
+    end_ch = ' ';
     if (*argument == '\'' || *argument == '"')
-        cEnd = *argument++;
+        end_ch = *argument++;
 
     while (*argument != '\0') {
-        if (*argument == cEnd) {
+        if (*argument == end_ch) {
             argument++;
             break;
         }

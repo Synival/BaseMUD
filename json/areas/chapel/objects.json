@@ -10,11 +10,11 @@
     "level": 0,
     "weight": 50,
     "cost": 50,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "candlestick",
-      "description": "It is a rather old-looking three-armed candlestick made from pewter.  Its\ncandles are a yellowish white colour.\n"
+      "description": "It is a rather old-looking three-armed candlestick made from pewter.  Its
+                     |candles are a yellowish white colour."
     }]
   }},
   {"object": {
@@ -33,27 +33,23 @@
     "level": 7,
     "weight": 80,
     "cost": 540,
-    "condition": 100,
     "extra_flags": "nodrop",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "tickler",
-      "description": "A horrid black mass of gooey tentacles obviously ripped from the corpse\nof a nightgaunt ... disgusting.\n"
+      "description": "A horrid black mass of gooey tentacles obviously ripped from the corpse
+                     |of a nightgaunt ... disgusting."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 7,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -73,12 +69,11 @@
     "level": 10,
     "weight": 100,
     "cost": 1800,
-    "condition": 100,
     "extra_flags": "antigood antineutral",
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "plasma webbing",
-      "description": "Yuck, mossy and wet.  It looks like some sort of webbing.\n"
+      "description": "Yuck, mossy and wet.  It looks like some sort of webbing."
     }]
   }},
   {"object": {
@@ -92,11 +87,11 @@
     "level": 0,
     "weight": 50,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "rod key",
-      "description": "This rod looks sort of octagonal, and sort of like a key and crowbar.  You\nrecognize that it will probably fit the lock at the entrance of the tombs.\n"
+      "description": "This rod looks sort of octagonal, and sort of like a key and crowbar.  You
+                     |recognize that it will probably fit the lock at the entrance of the tombs."
     }]
   }},
   {"object": {
@@ -110,11 +105,11 @@
     "level": 0,
     "weight": 30,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "large black dirty key",
-      "description": "One of those traditional old lock type keys ... except huge, black and\nfilthy ... hmm ... like it has been buried for some time ...\n"
+      "description": "One of those traditional old lock type keys ... except huge, black and
+                     |filthy ... hmm ... like it has been buried for some time ..."
     }]
   }},
   {"object": {
@@ -134,12 +129,12 @@
     "level": 0,
     "weight": 200,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "antievil",
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "head jubal mummy",
-      "description": "ACK! It's half eaten away ... yet it is whole ... in fact I think it can be\nopened and closed ... is there something in its teeth!?!?!? ACK you do it!\n"
+      "description": "ACK! It's half eaten away ... yet it is whole ... in fact I think it can be
+                     |opened and closed ... is there something in its teeth!?!?!? ACK you do it!"
     }]
   }},
   {"object": {
@@ -153,27 +148,23 @@
     "level": 3,
     "weight": 20,
     "cost": 26,
-    "condition": 100,
     "extra_flags": "magic antievil",
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "black marble ring",
-      "description": "It is pitch black and has beautiful swirls characteristic of marble all\nthrough it.\n"
+      "description": "It is pitch black and has beautiful swirls characteristic of marble all
+                     |through it."
     }],
     "affects": [
       {
-        "apply": "saves",
         "level": 3,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": 1
       },
       {
-        "apply": "moves",
         "level": 3,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": 10
       }
     ]
   }},
@@ -193,27 +184,22 @@
     "level": 16,
     "weight": 40,
     "cost": 3500,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "thin rapier",
-      "description": "It seems so thin that it would be useless but at the same time it looks deadly.\n"
+      "description": "It seems so thin that it would be useless but at the same time it looks deadly."
     }],
     "affects": [
       {
-        "apply": "hit roll",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       },
       {
-        "apply": "dexterity",
         "level": 16,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 2
       }
     ]
   }},
@@ -234,10 +220,10 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "sarcophagus coffin",
-      "description": "A well crafted, if dusty and ancient, home for the afterworld, it seems\nto be able to be opened but needs a key.\n"
+      "description": "A well crafted, if dusty and ancient, home for the afterworld, it seems
+                     |to be able to be opened but needs a key."
     }]
   }},
   {"object": {
@@ -251,11 +237,10 @@
     "level": 0,
     "weight": 40,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key iron heavy",
-      "description": "It looks to be a very heavy old iron key.\n"
+      "description": "It looks to be a very heavy old iron key."
     }]
   }},
   {"object": {
@@ -273,11 +258,11 @@
     "level": 0,
     "weight": 10,
     "cost": 400,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "wineflask flask",
-      "description": "A nice leather wineflask that has somehow survived the ages in a coffin.\nThe wine should be nicely aged.\n"
+      "description": "A nice leather wineflask that has somehow survived the ages in a coffin.
+                     |The wine should be nicely aged."
     }]
   }},
   {"object": {
@@ -294,7 +279,6 @@
     "level": 0,
     "weight": 500,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -308,11 +292,11 @@
     "level": 0,
     "weight": 30,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key",
-      "description": "Neat you have the key to the coffin...is is a soft orange color\nand burns in your hand a bit.\n"
+      "description": "Neat you have the key to the coffin...is is a soft orange color
+                     |and burns in your hand a bit."
     }]
   }},
   {"object": {
@@ -331,11 +315,10 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "dark",
     "extra_description": [{
       "keyword": "rathcor",
-      "description": "Ah HA!  A hidden compartment!\n"
+      "description": "Ah HA!  A hidden compartment!"
     }]
   }},
   {"object": {
@@ -354,11 +337,11 @@
     "level": 3,
     "weight": 60,
     "cost": 370,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "rusty sword scimitar",
-      "description": "Very rusty and old...it has a wide blade and chunks missing from\nits cutting edge.\n"
+      "description": "Very rusty and old...it has a wide blade and chunks missing from
+                     |its cutting edge."
     }]
   }},
   {"object": {
@@ -375,11 +358,11 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "slime piece",
-      "description": "ICK! This is a piece of slug-like brownish green slime...\nBlech!\n"
+      "description": "ICK! This is a piece of slug-like brownish green slime...
+                     |Blech!"
     }]
   }},
   {"object": {
@@ -393,11 +376,11 @@
     "level": 0,
     "weight": 70,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "smock",
-      "description": "It has paint and little shavings of different materials all over it.\nIt is very old an smells of paint, mildew, and rot.\n"
+      "description": "It has paint and little shavings of different materials all over it.
+                     |It is very old an smells of paint, mildew, and rot."
     }]
   }},
   {"object": {
@@ -416,12 +399,19 @@
     "level": 8,
     "weight": 50,
     "cost": 1070,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "scroll tightly rolled",
-      "description": "It is tightly wound. The writing on the inside when opened up is very\nunreadable but the scroll has a seal on it with a grey :\n\n    88\n    88\n8888  8888\n    88\n    88\n\n"
+      "description": "It is tightly wound. The writing on the inside when opened up is very
+                     |unreadable but the scroll has a seal on it with a grey :
+                     |
+                     |    88
+                     |    88
+                     |8888  8888
+                     |    88
+                     |    88
+                     |"
     }]
   }},
   {"object": {
@@ -440,12 +430,12 @@
     "level": 15,
     "weight": 100,
     "cost": 4700,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "auburn orb",
-      "description": "You gaze into the orb and are almost lost in the swirling mists of color\ninside of this rare and beautiful object.\n"
+      "description": "You gaze into the orb and are almost lost in the swirling mists of color
+                     |inside of this rare and beautiful object."
     }]
   }},
   {"object": {
@@ -459,11 +449,11 @@
     "level": 0,
     "weight": 30,
     "cost": 1000,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "bar gold",
-      "description": "A nice little brick of gold...very dusty and old... it has some emblem\non it...The emblem is a large 'J'\n"
+      "description": "A nice little brick of gold...very dusty and old... it has some emblem
+                     |on it...The emblem is a large 'J'"
     }]
   }},
   {"object": {
@@ -481,27 +471,23 @@
     "level": 0,
     "weight": 100,
     "cost": 100,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "dark black cape",
-      "description": "The cape is gently flows and pulls in the light so evenly and perfectly\nthat the cape seems to be simply a void of blackness. It is quite beautiful\n"
+      "description": "The cape is gently flows and pulls in the light so evenly and perfectly
+                     |that the cape seems to be simply a void of blackness. It is quite beautiful"
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 0,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": 10
       },
       {
-        "apply": "hp",
         "level": 0,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 10
       }
     ]
   }},
@@ -522,19 +508,18 @@
     "level": 28,
     "weight": 200,
     "cost": 2200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "flaming sword long longsword",
-      "description": "This sword is amazing! It almost wields itself! As you test it out, the\nflames seems to roar brighter as you go thru basic swordsman routines.\nit is obviously a great find!\n"
+      "description": "This sword is amazing! It almost wields itself! As you test it out, the
+                     |flames seems to roar brighter as you go thru basic swordsman routines.
+                     |it is obviously a great find!"
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 28,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -552,11 +537,10 @@
     "level": 15,
     "weight": 500,
     "cost": 2100,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "breast dented plate worn",
-      "description": "Though this piece of armour is worn and dented it looks very usable.\n"
+      "description": "Though this piece of armour is worn and dented it looks very usable."
     }]
   }},
   {"object": {
@@ -570,11 +554,10 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "key silver",
-      "description": "for the altar...\n"
+      "description": "for the altar..."
     }]
   }}
 ]

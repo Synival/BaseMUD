@@ -31,7 +31,6 @@
 #include "lookup.h"
 #include "affects.h"
 #include "comm.h"
-#include "skills.h"
 #include "fight.h"
 #include "utils.h"
 #include "chars.h"
@@ -53,7 +52,7 @@ int find_spell (CHAR_T *ch, const char *name) {
         {
             if (found == -1)
                 found = sn;
-            if (ch->level >= skill_table[sn].skill_level[ch->class]
+            if (ch->level >= skill_table[sn].classes[ch->class].level
                 && ch->pcdata->learned[sn] > 0)
                 return sn;
         }
@@ -71,8 +70,8 @@ void say_spell_name (CHAR_T *ch, const char *name, int class) {
     char buf1[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
     CHAR_T *rch;
-    const char *pName, *plural;
-    int iSyl;
+    const char *name_pos, *plural;
+    int syl;
     int length;
 
     struct syl_type {
@@ -115,10 +114,10 @@ void say_spell_name (CHAR_T *ch, const char *name, int class) {
     };
 
     words[0] = '\0';
-    for (pName = name; *pName != '\0'; pName += length) {
-        for (iSyl = 0; (length = strlen (syl_table[iSyl].old)) != 0; iSyl++) {
-            if (!str_prefix (syl_table[iSyl].old, pName)) {
-                strcat (words, syl_table[iSyl].new);
+    for (name_pos = name; *name_pos != '\0'; name_pos += length) {
+        for (syl = 0; (length = strlen (syl_table[syl].old)) != 0; syl++) {
+            if (!str_prefix (syl_table[syl].old, name_pos)) {
+                strcat (words, syl_table[syl].new);
                 break;
             }
         }
@@ -134,7 +133,7 @@ void say_spell_name (CHAR_T *ch, const char *name, int class) {
     plural = (strchr (words, ' ')) ? "s" : "";
     sprintf (buf2, "{5$n utters the word%s, '%s'.{x", plural, words);
 
-    for (rch = ch->in_room->people; rch; rch = rch->next_in_room)
+    for (rch = ch->in_room->people_first; rch; rch = rch->room_next)
         if (rch != ch)
             act ((!IS_NPC (rch) && rch->class == class) ? buf1 : buf2,
                  ch, NULL, rch, TO_VICT);
@@ -149,13 +148,13 @@ bool saves_spell (int level, CHAR_T *victim, int dam_type) {
     if (IS_AFFECTED (victim, AFF_BERSERK))
         save += victim->level / 2;
 
-    switch (check_immune (victim, dam_type)) {
+    switch (char_get_immunity (victim, dam_type)) {
         case IS_IMMUNE:     return TRUE;
         case IS_RESISTANT:  save += 2; break;
         case IS_VULNERABLE: save -= 2; break;
     }
 
-    if (!IS_NPC (victim) && class_table[victim->class].fMana)
+    if (!IS_NPC (victim) && class_table[victim->class].gains_mana)
         save = 9 * save / 10;
     save = URANGE (5, save, 95);
 
@@ -181,13 +180,13 @@ bool check_dispel_act (int dis_level, CHAR_T *victim, int sn,
 {
     AFFECT_T *af;
 
-    if (!is_affected (victim, sn))
+    if (!affect_is_char_affected (victim, sn))
         return FALSE;
-    for (af = victim->affected; af != NULL; af = af->next) {
+    for (af = victim->affect_first; af != NULL; af = af->on_next) {
         if (af->type != sn)
             continue;
         if (!saves_dispel (dis_level, af->level, af->duration)) {
-            affect_strip (victim, sn);
+            affect_strip_char (victim, sn);
             if (skill_table[sn].msg_off)
                 printf_to_char (victim, "%s\n\r", skill_table[sn].msg_off);
             if (act_to_room)
@@ -226,15 +225,16 @@ bool spell_fight_back_if_possible (CHAR_T *ch, CHAR_T *victim,
 
     if (victim == ch || victim == NULL || victim->master == ch)
         return FALSE;
-    if (!( skill_table[sn].target == TAR_CHAR_OFFENSIVE ||
-          (skill_table[sn].target == TAR_OBJ_CHAR_OFF && target == TARGET_CHAR)))
+    if (!( skill_table[sn].target == SKILL_TARGET_CHAR_OFFENSIVE ||
+          (skill_table[sn].target == SKILL_TARGET_OBJ_CHAR_OFF &&
+            target == TARGET_CHAR)))
         return FALSE;
 
-    for (vch = ch->in_room->people; vch; vch = vch_next) {
-        vch_next = vch->next_in_room;
+    for (vch = ch->in_room->people_first; vch; vch = vch_next) {
+        vch_next = vch->room_next;
         if (victim == vch && victim->fighting == NULL) {
             check_killer (victim, ch);
-            multi_hit (victim, ch, TYPE_UNDEFINED);
+            multi_hit (victim, ch, ATTACK_DEFAULT);
             return TRUE;
         }
     }
@@ -254,11 +254,11 @@ void obj_cast_spell (int sn, int level, CHAR_T *ch, CHAR_T *victim,
         "obj_cast_spell: bad sn %d.", sn);
 
     switch (skill_table[sn].target) {
-        case TAR_IGNORE:
+        case SKILL_TARGET_IGNORE:
             vo = NULL;
             break;
 
-        case TAR_CHAR_OFFENSIVE:
+        case SKILL_TARGET_CHAR_OFFENSIVE:
             if (victim == NULL)
                 victim = ch->fighting;
             BAIL_IF (victim == NULL,
@@ -269,22 +269,22 @@ void obj_cast_spell (int sn, int level, CHAR_T *ch, CHAR_T *victim,
             target = TARGET_CHAR;
             break;
 
-        case TAR_CHAR_DEFENSIVE:
-        case TAR_CHAR_SELF:
+        case SKILL_TARGET_CHAR_DEFENSIVE:
+        case SKILL_TARGET_CHAR_SELF:
             if (victim == NULL)
                 victim = ch;
             vo = (void *) victim;
             target = TARGET_CHAR;
             break;
 
-        case TAR_OBJ_INV:
+        case SKILL_TARGET_OBJ_INV:
             BAIL_IF (obj == NULL,
                 "You can't do that.\n\r", ch);
             vo = (void *) obj;
             target = TARGET_OBJ;
             break;
 
-        case TAR_OBJ_CHAR_OFF:
+        case SKILL_TARGET_OBJ_CHAR_OFF:
             if (victim == NULL && obj == NULL) {
                 BAIL_IF (ch->fighting == NULL,
                     "You can't do that.\n\r", ch);
@@ -303,7 +303,7 @@ void obj_cast_spell (int sn, int level, CHAR_T *ch, CHAR_T *victim,
             }
             break;
 
-        case TAR_OBJ_CHAR_DEF:
+        case SKILL_TARGET_OBJ_CHAR_DEF:
             if (victim == NULL && obj == NULL) {
                 vo = (void *) ch;
                 target = TARGET_CHAR;
@@ -327,10 +327,10 @@ void obj_cast_spell (int sn, int level, CHAR_T *ch, CHAR_T *victim,
     spell_fight_back_if_possible (ch, victim, sn, target);
 }
 
-int is_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
+int affect_is_char_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
     CHAR_T *ch, char *to_self, char *to_victim)
 {
-    if ((sn   >= 0 && is_affected (victim, sn)) ||
+    if ((sn   >= 0 && affect_is_char_affected (victim, sn)) ||
         (flag >  0 && IS_AFFECTED (victim, flag)))
     {
         act ((victim == ch) ? to_self : to_victim, ch, NULL, victim, TO_CHAR);
@@ -339,10 +339,10 @@ int is_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
     return 0;
 }
 
-int isnt_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
+int affect_isnt_char_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
     CHAR_T *ch, char *to_self, char *to_victim)
 {
-    if (!((sn   >= 0 && is_affected (victim, sn)) ||
+    if (!((sn   >= 0 && affect_is_char_affected (victim, sn)) ||
           (flag >  0 && IS_AFFECTED (victim, flag))))
     {
         act ((victim == ch) ? to_self : to_victim, ch, NULL, victim, TO_CHAR);

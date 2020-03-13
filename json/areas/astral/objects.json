@@ -15,34 +15,27 @@
     "level": 38,
     "weight": 550,
     "cost": 5200,
-    "condition": 100,
     "extra_flags": "antigood antievil",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "hammer sledge grey",
-      "description": "This massive hammer is incredibly hard, heavy, and utterly grey and featureless.\n"
+      "description": "This massive hammer is incredibly hard, heavy, and utterly grey and featureless."
     }],
     "affects": [
       {
+        "level": 38,
         "apply": "damage roll",
-        "level": 38,
-        "modifier": 6,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 6
       },
       {
+        "level": 38,
         "apply": "hit roll",
-        "level": 38,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -2
       },
       {
-        "apply": "dexterity",
         "level": 38,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       }
     ]
   }},
@@ -62,12 +55,11 @@
     "level": 11,
     "weight": 10,
     "cost": 1510,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "scroll violet",
-      "description": "The scroll is written on soft violet parchment that has a pleasing smell to it.\n"
+      "description": "The scroll is written on soft violet parchment that has a pleasing smell to it."
     }]
   }},
   {"object": {
@@ -85,12 +77,12 @@
     "level": 12,
     "weight": 50,
     "cost": 2100,
-    "condition": 100,
     "extra_flags": "evil",
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "tablet scroll black",
-      "description": "The tablet is an unreflective black rectangular piece of stone, with strange\nwritings etched deep into its surface.\n"
+      "description": "The tablet is an unreflective black rectangular piece of stone, with strange
+                     |writings etched deep into its surface."
     }]
   }},
   {"object": {
@@ -108,11 +100,10 @@
     "level": 7,
     "weight": 10,
     "cost": 1240,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "scroll githyanki",
-      "description": "The scroll has writings on it that you cannot comprehend.\n"
+      "description": "The scroll has writings on it that you cannot comprehend."
     }]
   }},
   {"object": {
@@ -131,27 +122,27 @@
     "level": 11,
     "weight": 50,
     "cost": 2600,
-    "condition": 100,
     "extra_flags": "evil nodrop",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "amulet demon",
-      "description": "The amulet is a small circular object made from some bizarre metallic alloy.\nIt is inscribed with various symbols and raised images of snakes, tortured\nvictims, and other things too horrible to describe.\n\nStenciled in the center is an unpronounceable name which it would behoove you\nnot to utter aloud.\n"
+      "description": "The amulet is a small circular object made from some bizarre metallic alloy.
+                     |It is inscribed with various symbols and raised images of snakes, tortured
+                     |victims, and other things too horrible to describe.
+                     |
+                     |Stenciled in the center is an unpronounceable name which it would behoove you
+                     |not to utter aloud."
     }],
     "affects": [
       {
-        "apply": "wisdom",
         "level": 11,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": -1
       },
       {
-        "apply": "intelligence",
         "level": 11,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": -1
       }
     ]
   }},
@@ -171,19 +162,20 @@
     "level": 14,
     "weight": 50,
     "cost": 5300,
-    "condition": 100,
     "extra_flags": "evil nodrop",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "talisman devilish",
-      "description": "The talisman is a red circular stone object hanging from a metallic chain.  It\nseems to pulse with a life of its own, and you feel uncomfortable being anywhere\nnear it.\n\nEngraved in the center is one word.  Merely reading the word induces fright.\n"
+      "description": "The talisman is a red circular stone object hanging from a metallic chain.  It
+                     |seems to pulse with a life of its own, and you feel uncomfortable being anywhere
+                     |near it.
+                     |
+                     |Engraved in the center is one word.  Merely reading the word induces fright."
     }],
     "affects": [{
-      "apply": "hp",
       "level": 14,
-      "modifier": -10,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hp",
+      "modifier": -10
     }]
   }},
   {"object": {
@@ -202,26 +194,23 @@
     "level": 6,
     "weight": 30,
     "cost": 480,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "knife silvery",
-      "description": "The knife is forged from a strange silvery metal the likes of which you have\nnever seen in your own world.  It is incredibly sharp and hard, yet feels almost\nfluid to the touch.\n"
+      "description": "The knife is forged from a strange silvery metal the likes of which you have
+                     |never seen in your own world.  It is incredibly sharp and hard, yet feels almost
+                     |fluid to the touch."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 6,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 6,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -241,26 +230,23 @@
     "level": 13,
     "weight": 30,
     "cost": 980,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "dagger silvery",
-      "description": "The dagger is forged from a strange silvery metal the likes of which you have\nnever seen in your own world.  It is incredibly sharp and hard, yet feels almost\nfluid to the touch.\n"
+      "description": "The dagger is forged from a strange silvery metal the likes of which you have
+                     |never seen in your own world.  It is incredibly sharp and hard, yet feels almost
+                     |fluid to the touch."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 13,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 13,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -280,33 +266,28 @@
     "level": 16,
     "weight": 30,
     "cost": 2300,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword thin",
-      "description": "The sword is forged from a strange silvery metal.  It barely measures an inch\nacross at its widest point, yet it is totally inflexible and razor-sharp.  It\ncould probably cut through stone.\n"
+      "description": "The sword is forged from a strange silvery metal.  It barely measures an inch
+                     |across at its widest point, yet it is totally inflexible and razor-sharp.  It
+                     |could probably cut through stone."
     }],
     "affects": [
       {
+        "level": 16,
         "apply": "damage roll",
-        "level": 16,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 3
       },
       {
+        "level": 16,
         "apply": "hit roll",
-        "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
-        "apply": "dexterity",
         "level": 16,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       }
     ]
   }},
@@ -327,26 +308,23 @@
     "level": 24,
     "weight": 160,
     "cost": 2600,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword thin two two-handed",
-      "description": "The sword is forged from a strange silvery metal.  It barely measures two inches\nacross at its widest point, yet it is totally inflexible and razor sharp.  It\ncould probably cut through stone.\n"
+      "description": "The sword is forged from a strange silvery metal.  It barely measures two inches
+                     |across at its widest point, yet it is totally inflexible and razor sharp.  It
+                     |could probably cut through stone."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 24,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 24,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -367,27 +345,24 @@
     "level": 19,
     "weight": 130,
     "cost": 4600,
-    "condition": 100,
     "extra_flags": "glow",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword silvery",
-      "description": "The sword is forged from a strange silvery metal the likes of which you have\nnever seen in your own world.  It is incredibly sharp and hard, yet feels almost\nfluid to the touch.\n"
+      "description": "The sword is forged from a strange silvery metal the likes of which you have
+                     |never seen in your own world.  It is incredibly sharp and hard, yet feels almost
+                     |fluid to the touch."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 19,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "dexterity",
         "level": 19,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 2
       }
     ]
   }},
@@ -407,19 +382,18 @@
     "level": 29,
     "weight": 140,
     "cost": 2800,
-    "condition": 100,
     "extra_flags": "hum evil",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "flail barbed iron",
-      "description": "This hideous weapon has claimed many lives.  You can tell from the bloodstains\ndried into the iron and from the residue of flesh that hangs from the many\nbarbs on it.\n"
+      "description": "This hideous weapon has claimed many lives.  You can tell from the bloodstains
+                     |dried into the iron and from the residue of flesh that hangs from the many
+                     |barbs on it."
     }],
     "affects": [{
-      "apply": "hit roll",
       "level": 29,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -439,41 +413,35 @@
     "level": 31,
     "weight": 250,
     "cost": 5100,
-    "condition": 100,
     "extra_flags": "evil nodrop noremove",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword gith",
-      "description": "The blade of this sword is a featureless gray.  As you touch it you feel an\nevil presence reaching out to consume your soul.\n\nMaybe picking it up wasn't such a good idea.\n"
+      "description": "The blade of this sword is a featureless gray.  As you touch it you feel an
+                     |evil presence reaching out to consume your soul.
+                     |
+                     |Maybe picking it up wasn't such a good idea."
     }],
     "affects": [
       {
+        "level": 31,
         "apply": "hit roll",
-        "level": 31,
-        "modifier": 4,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 4
       },
       {
+        "level": 31,
         "apply": "wisdom",
-        "level": 31,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -1
       },
       {
+        "level": 31,
         "apply": "intelligence",
-        "level": 31,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": -1
       },
       {
-        "apply": "strength",
         "level": 31,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -488,26 +456,22 @@
     "level": 20,
     "weight": 10,
     "cost": 1440,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "stone flame",
-      "description": "This stone burns with an flame that emits great heat, yet it can be held with\nease.  The flame creates a light that allows you to see for miles.\n"
+      "description": "This stone burns with an flame that emits great heat, yet it can be held with
+                     |ease.  The flame creates a light that allows you to see for miles."
     }],
     "affects": [
       {
-        "apply": "saves",
         "level": 20,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 20,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       }
     ]
   }},
@@ -522,11 +486,10 @@
     "level": 0,
     "weight": 10,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "powder astral",
-      "description": "You see the residue of the astral plane.\n"
+      "description": "You see the residue of the astral plane."
     }]
   }},
   {"object": {
@@ -544,11 +507,11 @@
     "level": 15,
     "weight": 450,
     "cost": 2100,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "vest splint",
-      "description": "This splint mail has been expertly and ornately fashioned from the highest\nquality of steels.\n"
+      "description": "This splint mail has been expertly and ornately fashioned from the highest
+                     |quality of steels."
     }]
   }},
   {"object": {
@@ -566,11 +529,11 @@
     "level": 20,
     "weight": 200,
     "cost": 1450,
-    "condition": 100,
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "skirt splint",
-      "description": "This splint mail has been expertly and ornately fashioned from the highest\nquality of steels.\n"
+      "description": "This splint mail has been expertly and ornately fashioned from the highest
+                     |quality of steels."
     }]
   }},
   {"object": {
@@ -588,11 +551,11 @@
     "level": 20,
     "weight": 150,
     "cost": 1450,
-    "condition": 100,
     "wear_flags": "take arms",
     "extra_description": [{
       "keyword": "sleeves splint",
-      "description": "This splint mail has been expertly and ornately fashioned from the highest\nquality of steels.\n"
+      "description": "This splint mail has been expertly and ornately fashioned from the highest
+                     |quality of steels."
     }]
   }},
   {"object": {
@@ -610,33 +573,27 @@
     "level": 20,
     "weight": 50,
     "cost": 2700,
-    "condition": 100,
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "gauntlets ornate",
-      "description": "These gauntlets have been expertly and ornately fashioned from the highest\nquality of steels.\n"
+      "description": "These gauntlets have been expertly and ornately fashioned from the highest
+                     |quality of steels."
     }],
     "affects": [
       {
+        "level": 20,
         "apply": "damage roll",
-        "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
+        "level": 20,
         "apply": "hit roll",
-        "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
-        "apply": "strength",
         "level": 20,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -656,26 +613,22 @@
     "level": 31,
     "weight": 50,
     "cost": 8500,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "vest cracked leather",
-      "description": "The ancient vest is barely intact.  All of the leather has cracked and dried\nto a husk.  It is covered with stains, burns, scorch marks, and blood.\n"
+      "description": "The ancient vest is barely intact.  All of the leather has cracked and dried
+                     |to a husk.  It is covered with stains, burns, scorch marks, and blood."
     }],
     "affects": [
       {
-        "apply": "saves",
         "level": 31,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       },
       {
-        "apply": "armor class",
         "level": 31,
-        "modifier": -6,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -6
       }
     ]
   }},
@@ -695,11 +648,10 @@
     "level": 2,
     "weight": 20,
     "cost": 320,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion violet",
-      "description": "The violet fluid inside shifts and swirls.\n"
+      "description": "The violet fluid inside shifts and swirls."
     }]
   }},
   {"object": {
@@ -717,11 +669,10 @@
     "level": 10,
     "weight": 10,
     "cost": 760,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion vial murky",
-      "description": "The murky liquid inside this vial looks a lot like sewer water.\n"
+      "description": "The murky liquid inside this vial looks a lot like sewer water."
     }]
   }},
   {"object": {
@@ -740,11 +691,10 @@
     "level": 1,
     "weight": 20,
     "cost": 320,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion silvery",
-      "description": "The octagonal vial contains a silvery-colored liquid that shimmers in the light.\n"
+      "description": "The octagonal vial contains a silvery-colored liquid that shimmers in the light."
     }]
   }},
   {"object": {
@@ -762,11 +712,11 @@
     "level": 11,
     "weight": 0,
     "cost": 990,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "mint chocolate",
-      "description": "This mint is made from the finest of chocolates, surrounding a cool peppermint\ninterior that must be savored, not swallowed.\n"
+      "description": "This mint is made from the finest of chocolates, surrounding a cool peppermint
+                     |interior that must be savored, not swallowed."
     }]
   }},
   {"object": {
@@ -780,12 +730,12 @@
     "level": 0,
     "weight": 100,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "invis",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "pentagram",
-      "description": "The pentagram is a small circular hoop that surrounds a five-pointed star.\nInscribed on its exterior loop are markings in an alien tongue.\n"
+      "description": "The pentagram is a small circular hoop that surrounds a five-pointed star.
+                     |Inscribed on its exterior loop are markings in an alien tongue."
     }]
   }},
   {"object": {
@@ -799,11 +749,10 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "pouch rotting",
-      "description": "You think you see glints of metal through the holes...\n"
+      "description": "You think you see glints of metal through the holes..."
     }]
   }}
 ]

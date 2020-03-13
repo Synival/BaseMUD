@@ -1,0 +1,138 @@
+[
+  {"item": {
+    "type": 1,
+    "name": "light"
+  }},
+  {"item": {
+    "type": 2,
+    "name": "scroll"
+  }},
+  {"item": {
+    "type": 3,
+    "name": "wand"
+  }},
+  {"item": {
+    "type": 4,
+    "name": "staff"
+  }},
+  {"item": {
+    "type": 5,
+    "name": "weapon"
+  }},
+  {"item": {
+    "type": 6,
+    "name": "unused_item_1"
+  }},
+  {"item": {
+    "type": 7,
+    "name": "unused_item_2"
+  }},
+  {"item": {
+    "type": 8,
+    "name": "treasure"
+  }},
+  {"item": {
+    "type": 9,
+    "name": "armor"
+  }},
+  {"item": {
+    "type": 10,
+    "name": "potion"
+  }},
+  {"item": {
+    "type": 11,
+    "name": "clothing"
+  }},
+  {"item": {
+    "type": 12,
+    "name": "furniture"
+  }},
+  {"item": {
+    "type": 13,
+    "name": "trash"
+  }},
+  {"item": {
+    "type": 14,
+    "name": "unused_item_3"
+  }},
+  {"item": {
+    "type": 15,
+    "name": "container"
+  }},
+  {"item": {
+    "type": 16,
+    "name": "unused_item_4"
+  }},
+  {"item": {
+    "type": 17,
+    "name": "drink"
+  }},
+  {"item": {
+    "type": 18,
+    "name": "key"
+  }},
+  {"item": {
+    "type": 19,
+    "name": "food"
+  }},
+  {"item": {
+    "type": 20,
+    "name": "money"
+  }},
+  {"item": {
+    "type": 21,
+    "name": "unused_item_5"
+  }},
+  {"item": {
+    "type": 22,
+    "name": "boat"
+  }},
+  {"item": {
+    "type": 23,
+    "name": "npc_corpse"
+  }},
+  {"item": {
+    "type": 24,
+    "name": "pc_corpse"
+  }},
+  {"item": {
+    "type": 25,
+    "name": "fountain"
+  }},
+  {"item": {
+    "type": 26,
+    "name": "pill"
+  }},
+  {"item": {
+    "type": 27,
+    "name": "protect"
+  }},
+  {"item": {
+    "type": 28,
+    "name": "map"
+  }},
+  {"item": {
+    "type": 29,
+    "name": "portal"
+  }},
+  {"item": {
+    "type": 30,
+    "name": "warp_stone"
+  }},
+  {"item": {
+    "type": 31,
+    "name": "room_key"
+  }},
+  {"item": {
+    "type": 32,
+    "name": "gem"
+  }},
+  {"item": {
+    "type": 33,
+    "name": "jewelry"
+  }},
+  {"item": {
+    "type": 34,
+    "name": "jukebox"
+  }}
+]

@@ -15,10 +15,9 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "closet",
-      "description": "It is large, yet gracefully made, obviously of Scandinavian design.\n"
+      "description": "It is large, yet gracefully made, obviously of Scandinavian design."
     }]
   }},
   {"object": {
@@ -37,7 +36,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -54,11 +52,14 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "powder",
-      "description": "*        *         *\n      *      *       *\n****   AAAHHHH-TSHOU!   ****\n      *      *       *\n    *        *         *\n"
+      "description": "*        *         *
+                     |      *      *       *
+                     |****   AAAHHHH-TSHOU!   ****
+                     |      *      *       *
+                     |    *        *         *"
     }]
   }},
   {"object": {
@@ -75,11 +76,10 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "kernel kernels",
-      "description": "Look fairly dull...\n"
+      "description": "Look fairly dull..."
     }]
   }},
   {"object": {
@@ -93,11 +93,40 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "paper wad",
-      "description": "It looks old and worn, but You can still make out a faint lettering on it, \nwritten in a strange, alien hand:\n\no    WARNING! WARNING! WARNING! WARNING! WARNING! WARNING! WARNING!   o\no                                                                     o\no    MSGS: MATRIX CONTROL      TO   SUBSYSTEMS/<ALL>                  o\no    ACT : REQUIRED            T:   NOW                               o\no                                                                     o\no    RECENT DATAQUAKE EVALUATED... EVALUATION FOLLOWS...              o\no    MASSIVE SEGMENTATION HAS OCCURRED... ALL SUBSIDIARY SECTORS      o\no    SHUTDOWN... CENTRAL SHUTDOWN: AUTOMATICS ENGAGED...              o\no                                                                     o\no    DATALEAK DETECTED... DIRECTION:FOREIGN VIRTUAL REALITY, CODENAME o\no    ASSIGNED: 'Midgaard'...                                          o\no    SPECIFIC LOCATION: UNCERTAIN, BEING WITHIN 'Midgaard' SUBSECTOR  o\no    CODENAME ASSIGNED: 'Holy Grove'...                               o\no    BEWARE INTRUSIONS POSSIBLE. ADVISE EXTREME CAUTION...            o\no    .                                                                o\no    .                                                                o\no    .                                                                o\no                                                                     o\no    MSGS: MATRIX CONTROL      TO   SUBSYSTEMS/<Sark>                 o\no                                              <101110101101>         o\no                                              <1101111010101101>     o\no    ACT : URGENT              T:   IMMEDIATE                         o\no                                                                     o\no    INTRUDERS DETECTED IN MAIN MATRIX... DIRECTIVE SEARCH AND        o\no    ELIMINATE...                                                     o\no    .                                                                o\no    .                                                                o\no                                                                     o\n"
+      "description": "It looks old and worn, but You can still make out a faint lettering on it, 
+                     |written in a strange, alien hand:
+                     |
+                     |o    WARNING! WARNING! WARNING! WARNING! WARNING! WARNING! WARNING!   o
+                     |o                                                                     o
+                     |o    MSGS: MATRIX CONTROL      TO   SUBSYSTEMS/<ALL>                  o
+                     |o    ACT : REQUIRED            T:   NOW                               o
+                     |o                                                                     o
+                     |o    RECENT DATAQUAKE EVALUATED... EVALUATION FOLLOWS...              o
+                     |o    MASSIVE SEGMENTATION HAS OCCURRED... ALL SUBSIDIARY SECTORS      o
+                     |o    SHUTDOWN... CENTRAL SHUTDOWN: AUTOMATICS ENGAGED...              o
+                     |o                                                                     o
+                     |o    DATALEAK DETECTED... DIRECTION:FOREIGN VIRTUAL REALITY, CODENAME o
+                     |o    ASSIGNED: 'Midgaard'...                                          o
+                     |o    SPECIFIC LOCATION: UNCERTAIN, BEING WITHIN 'Midgaard' SUBSECTOR  o
+                     |o    CODENAME ASSIGNED: 'Holy Grove'...                               o
+                     |o    BEWARE INTRUSIONS POSSIBLE. ADVISE EXTREME CAUTION...            o
+                     |o    .                                                                o
+                     |o    .                                                                o
+                     |o    .                                                                o
+                     |o                                                                     o
+                     |o    MSGS: MATRIX CONTROL      TO   SUBSYSTEMS/<Sark>                 o
+                     |o                                              <101110101101>         o
+                     |o                                              <1101111010101101>     o
+                     |o    ACT : URGENT              T:   IMMEDIATE                         o
+                     |o                                                                     o
+                     |o    INTRUDERS DETECTED IN MAIN MATRIX... DIRECTIVE SEARCH AND        o
+                     |o    ELIMINATE...                                                     o
+                     |o    .                                                                o
+                     |o    .                                                                o
+                     |o                                                                     o"
     }]
   }},
   {"object": {
@@ -116,12 +145,11 @@
     "level": 16,
     "weight": 50,
     "cost": 1500,
-    "condition": 100,
     "extra_flags": "antievil",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "staff wooden",
-      "description": "This oaken staff is very hefty but balanced.\n"
+      "description": "This oaken staff is very hefty but balanced."
     }]
   }},
   {"object": {
@@ -139,19 +167,16 @@
     "level": 16,
     "weight": 50,
     "cost": 2300,
-    "condition": 100,
     "extra_flags": "antievil",
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "robe brown cloth",
-      "description": "This robe is rough, but appears quite durable.\n"
+      "description": "This robe is rough, but appears quite durable."
     }],
     "affects": [{
-      "apply": "mana",
       "level": 16,
-      "modifier": 10,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": 10
     }]
   }},
   {"object": {
@@ -168,7 +193,6 @@
     "level": 1,
     "weight": 10,
     "cost": 270,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -185,7 +209,6 @@
     "level": 0,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -202,7 +225,6 @@
     "level": 0,
     "weight": 10,
     "cost": 178,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -220,7 +242,6 @@
     "level": 5,
     "weight": 10,
     "cost": 360,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -237,7 +258,6 @@
     "level": 0,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -254,7 +274,6 @@
     "level": 0,
     "weight": 10,
     "cost": 150,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -272,7 +291,6 @@
     "level": 6,
     "weight": 10,
     "cost": 430,
-    "condition": 100,
     "wear_flags": "take"
   }}
 ]

@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_comm.c,v 1.2 2000/12/01 10:48:33 ring0 Exp $ */
 
@@ -63,7 +63,7 @@ DEFINE_DO_FUN (do_delete) {
         }
         else {
             wiznet ("$N turns $Mself into line noise.", ch, NULL, 0, 0, 0);
-            sprintf (strsave, "%s%s", PLAYER_DIR, capitalize (ch->name));
+            sprintf (strsave, "%s%s", PLAYER_DIR, str_capitalized (ch->name));
             stop_fighting (ch, TRUE);
             do_function (ch, &do_quit, "");
             unlink (strsave);
@@ -119,18 +119,18 @@ DEFINE_DO_FUN (do_quit) {
 
     id = ch->id;
     d = ch->desc;
-    char_extract (ch, TRUE);
+    char_extract (ch);
     if (d != NULL)
         close_socket (d);
 
     /* toast evil cheating bastards */
-    for (d = descriptor_list; d != NULL; d = d_next) {
+    for (d = descriptor_first; d != NULL; d = d_next) {
         CHAR_T *tch;
-        d_next = d->next;
+        d_next = d->global_next;
 
         tch = d->original ? d->original : d->character;
         if (tch && tch->id == id) {
-            char_extract (tch, TRUE);
+            char_extract (tch);
             close_socket (d);
         }
     }
@@ -148,49 +148,49 @@ DEFINE_DO_FUN (do_save) {
 DEFINE_DO_FUN (do_password) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    char *pArg;
+    char *arg;
     char *pwdnew;
     char *p;
-    char cEnd;
+    char end_ch;
 
     if (IS_NPC (ch))
         return;
 
     /* Can't use one_argument here because it smashes case.
      * So we just steal all its code. Bleagh. */
-    pArg = arg1;
+    arg = arg1;
     while (isspace (*argument))
         argument++;
 
-    cEnd = ' ';
+    end_ch = ' ';
     if (*argument == '\'' || *argument == '"')
-        cEnd = *argument++;
+        end_ch = *argument++;
 
     while (*argument != '\0') {
-        if (*argument == cEnd) {
+        if (*argument == end_ch) {
             argument++;
             break;
         }
-        *pArg++ = *argument++;
+        *arg++ = *argument++;
     }
-    *pArg = '\0';
+    *arg = '\0';
 
-    pArg = arg2;
+    arg = arg2;
     while (isspace (*argument))
         argument++;
 
-    cEnd = ' ';
+    end_ch = ' ';
     if (*argument == '\'' || *argument == '"')
-        cEnd = *argument++;
+        end_ch = *argument++;
 
     while (*argument != '\0') {
-        if (*argument == cEnd) {
+        if (*argument == end_ch) {
             argument++;
             break;
         }
-        *pArg++ = *argument++;
+        *arg++ = *argument++;
     }
-    *pArg = '\0';
+    *arg = '\0';
 
     BAIL_IF (arg1[0] == '\0' || arg2[0] == '\0',
         "Syntax: password <old> <new>.\n\r", ch);
@@ -214,3 +214,29 @@ DEFINE_DO_FUN (do_password) {
     save_char_obj (ch);
     printf_to_char(ch, "Password changed successfully.\n\r");
 }
+
+/* Used for debugging conditions :) */
+#if 0
+DEFINE_DO_FUN (do_cond) {
+    char arg1[MAX_INPUT_LENGTH];
+    char arg2[MAX_INPUT_LENGTH];
+    int cond, value, old_hours, new_hours;
+
+    argument = one_argument (argument, arg1);
+    argument = one_argument (argument, arg2);
+
+    BAIL_IF (arg1[0] == '\0' || arg2 == '\0',
+        "Bad syntax\n\r", ch);
+
+    cond = atoi (arg1);
+    BAIL_IF (cond_get (cond) == NULL,
+        "Bad cond\n\r", ch);
+
+    value = atoi (arg2);
+    old_hours = ch->pcdata->cond_hours[cond];
+    player_change_condition (ch, cond, value);
+    new_hours = ch->pcdata->cond_hours[cond];
+
+    printf_to_char (ch, "%d -> %d\n\r", old_hours, new_hours);
+}
+#endif

@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_move.c,v 1.2 2000/12/01 10:48:33 ring0 Exp $ */
 
@@ -35,7 +35,6 @@
 #include "comm.h"
 #include "mob_prog.h"
 #include "affects.h"
-#include "skills.h"
 #include "db.h"
 #include "fight.h"
 #include "groups.h"
@@ -45,10 +44,12 @@
 #include "objs.h"
 #include "find.h"
 #include "globals.h"
+#include "items.h"
+#include "players.h"
 
 #include "act_move.h"
 
-int door_filter_find (CHAR_T *ch, char *argument) {
+int do_door_filter_find (CHAR_T *ch, char *argument) {
     EXIT_T *pexit;
     int door;
 
@@ -72,7 +73,7 @@ int door_filter_find (CHAR_T *ch, char *argument) {
     return door;
 }
 
-bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
+bool do_door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
     OBJ_T *obj, flag_t *out_flags, bool *out_container, int *out_key)
 {
     flag_t flags;
@@ -81,16 +82,12 @@ bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
 
     /* Evaluate flags and flag types for objects. */
     if (obj) {
-        switch (obj->item_type) {
-            case ITEM_PORTAL:
-                flags     = obj->v.portal.exit_flags;
+        switch (item_get_door_flags (obj, &flags, &key)) {
+            case ITEM_DOOR_EXIT:
                 container = FALSE;
-                key       = obj->v.portal.key;
                 break;
-            case ITEM_CONTAINER:
-                flags     = obj->v.container.flags;
+            case ITEM_DOOR_CONTAINER:
                 container = TRUE;
-                key       = obj->v.container.key;
                 break;
             default:
                 send_to_char ("That's not a container.\n\r", ch);
@@ -105,7 +102,7 @@ bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
     }
     /* Not sure what we're evaluating. */
     else {
-        bug ("door_filter_can_open: No exit or object provided", 0);
+        bug ("do_door_filter_can_open: No exit or object provided", 0);
         return TRUE;
     }
 
@@ -121,11 +118,11 @@ bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
     return FALSE;
 }
 
-bool door_filter_can_open (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
+bool do_door_filter_can_open (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
 
-    if (door_filter_is_door (ch, pexit, obj, &flags, &container, NULL))
+    if (do_door_filter_is_door (ch, pexit, obj, &flags, &container, NULL))
         return TRUE;
     FILTER (!IS_SET (flags, container ? CONT_CLOSED : EX_CLOSED),
         "It's already open.\n\r", ch);
@@ -134,23 +131,23 @@ bool door_filter_can_open (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     return FALSE;
 }
 
-bool door_filter_can_close (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
+bool do_door_filter_can_close (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
 
-    if (door_filter_is_door (ch, pexit, obj, &flags, &container, NULL))
+    if (do_door_filter_is_door (ch, pexit, obj, &flags, &container, NULL))
         return TRUE;
     FILTER (IS_SET (flags, container ? CONT_CLOSED : EX_CLOSED),
         "It's already closed.\n\r", ch);
     return FALSE;
 }
 
-bool door_filter_can_lock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
+bool do_door_filter_can_lock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
     int key;
 
-    if (door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
+    if (do_door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
         return TRUE;
     FILTER (!IS_SET (flags, container ? CONT_CLOSED : EX_CLOSED),
         "It's not closed.\n\r", ch);
@@ -163,12 +160,12 @@ bool door_filter_can_lock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     return FALSE;
 }
 
-bool door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
+bool do_door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
     int key;
 
-    if (door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
+    if (do_door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
         return TRUE;
     FILTER (!IS_SET (flags, container ? CONT_CLOSED : EX_CLOSED),
         "It's not closed.\n\r", ch);
@@ -181,12 +178,12 @@ bool door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     return FALSE;
 }
 
-bool door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
+bool do_door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     flag_t flags;
     bool container;
     int key;
 
-    if (door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
+    if (do_door_filter_is_door (ch, pexit, obj, &flags, &container, &key))
         return TRUE;
     FILTER (!IS_SET (flags, container ? CONT_CLOSED : EX_CLOSED),
         "It's not closed.\n\r", ch);
@@ -198,7 +195,7 @@ bool door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     /* look for guards, but not if it's ch's own object. */
     if (obj == NULL || obj->carried_by != ch) {
         CHAR_T *gch;
-        for (gch = ch->in_room->people; gch; gch = gch->next_in_room) {
+        for (gch = ch->in_room->people_first; gch; gch = gch->room_next) {
             if (IS_NPC (gch) && IS_AWAKE (gch) && ch->level + 5 < gch->level) {
                 act ("$N is standing too close to the lock.", ch, NULL, gch, TO_CHAR);
                 return TRUE;
@@ -207,12 +204,12 @@ bool door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
     }
 
     /* we're actually trying to pick something - make us wait. */
-    WAIT_STATE (ch, skill_table[gsn_pick_lock].beats);
+    WAIT_STATE (ch, skill_table[SN(PICK_LOCK)].beats);
 
     /* pick-specific checks. */
-    if (!IS_NPC (ch) && number_percent () > get_skill (ch, gsn_pick_lock)) {
+    if (!IS_NPC (ch) && number_percent () > char_get_skill (ch, SN(PICK_LOCK))) {
         send_to_char ("You failed.\n\r", ch);
-        check_improve (ch, gsn_pick_lock, FALSE, 2);
+        player_try_skill_improve (ch, SN(PICK_LOCK), FALSE, 2);
         return TRUE;
     }
     FILTER (IS_SET (flags, container ? CONT_PICKPROOF : EX_PICKPROOF),
@@ -221,40 +218,40 @@ bool door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
 }
 
 void do_open_object (CHAR_T *ch, OBJ_T *obj) {
-    if (door_filter_can_open (ch, NULL, obj))
+    if (do_door_filter_can_open (ch, NULL, obj))
         return;
-    obj_remove_exit_flag (obj, EX_CLOSED);
+    item_remove_exit_flag (obj, EX_CLOSED);
     act2 ("You open $p.", "$n opens $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_close_object (CHAR_T *ch, OBJ_T *obj) {
-    if (door_filter_can_close (ch, NULL, obj))
+    if (do_door_filter_can_close (ch, NULL, obj))
         return;
-    obj_set_exit_flag (obj, EX_CLOSED);
+    item_set_exit_flag (obj, EX_CLOSED);
     act2 ("You close $p.", "$n closes $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_unlock_object (CHAR_T *ch, OBJ_T *obj) {
-    if (door_filter_can_unlock (ch, NULL, obj))
+    if (do_door_filter_can_unlock (ch, NULL, obj))
         return;
-    obj_remove_exit_flag (obj, EX_LOCKED);
+    item_remove_exit_flag (obj, EX_LOCKED);
     act2 ("You unlock $p.", "$n unlocks $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_lock_object (CHAR_T *ch, OBJ_T *obj) {
-    if (door_filter_can_lock (ch, NULL, obj))
+    if (do_door_filter_can_lock (ch, NULL, obj))
         return;
-    obj_set_exit_flag (obj, EX_LOCKED);
+    item_set_exit_flag (obj, EX_LOCKED);
     act2 ("You lock $p.", "$n locks $p.", ch, obj, NULL, 0, POS_RESTING);
 }
 
 void do_pick_object (CHAR_T *ch, OBJ_T *obj) {
-    if (door_filter_can_pick (ch, NULL, obj))
+    if (do_door_filter_can_pick (ch, NULL, obj))
         return;
-    obj_remove_exit_flag (obj, EX_LOCKED);
+    item_remove_exit_flag (obj, EX_LOCKED);
     act2 ("You pick the lock on $p.", "$n picks the lock on $p.",
         ch, obj, NULL, 0, POS_RESTING);
-    check_improve (ch, gsn_pick_lock, TRUE, 2);
+    player_try_skill_improve (ch, SN(PICK_LOCK), TRUE, 2);
 }
 
 void do_open_door (CHAR_T *ch, int door) {
@@ -262,7 +259,7 @@ void do_open_door (CHAR_T *ch, int door) {
     EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
-    if (door_filter_can_open (ch, pexit, NULL))
+    if (do_door_filter_can_open (ch, pexit, NULL))
         return;
 
     REMOVE_BIT (pexit->exit_flags, EX_CLOSED);
@@ -273,7 +270,7 @@ void do_open_door (CHAR_T *ch, int door) {
     if ((pexit_rev = room_get_opposite_exit (ch->in_room, door, NULL)) != NULL) {
         CHAR_T *rch;
         REMOVE_BIT (pexit_rev->exit_flags, EX_CLOSED);
-        for (rch = pexit->to_room->people; rch != NULL; rch = rch->next_in_room)
+        for (rch = pexit->to_room->people_first; rch != NULL; rch = rch->room_next)
             act ("The $d is opened from the other side.", rch, NULL,
                 pexit_rev->keyword, TO_CHAR);
     }
@@ -284,7 +281,7 @@ void do_close_door (CHAR_T *ch, int door) {
     EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
-    if (door_filter_can_close (ch, pexit, NULL))
+    if (do_door_filter_can_close (ch, pexit, NULL))
         return;
 
     SET_BIT (pexit->exit_flags, EX_CLOSED);
@@ -295,7 +292,7 @@ void do_close_door (CHAR_T *ch, int door) {
     if ((pexit_rev = room_get_opposite_exit (ch->in_room, door, NULL)) != NULL) {
         CHAR_T *rch;
         SET_BIT (pexit_rev->exit_flags, EX_CLOSED);
-        for (rch = pexit->to_room->people; rch != NULL; rch = rch->next_in_room)
+        for (rch = pexit->to_room->people_first; rch != NULL; rch = rch->room_next)
             act ("The $d is closed from the other side.", rch, NULL,
                 pexit_rev->keyword, TO_CHAR);
     }
@@ -306,7 +303,7 @@ void do_unlock_door (CHAR_T *ch, int door) {
     EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
-    if (door_filter_can_unlock (ch, pexit, NULL))
+    if (do_door_filter_can_unlock (ch, pexit, NULL))
         return;
 
     REMOVE_BIT (pexit->exit_flags, EX_LOCKED);
@@ -323,7 +320,7 @@ void do_lock_door (CHAR_T *ch, int door) {
     EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
-    if (door_filter_can_lock (ch, pexit, NULL))
+    if (do_door_filter_can_lock (ch, pexit, NULL))
         return;
 
     SET_BIT (pexit->exit_flags, EX_LOCKED);
@@ -340,13 +337,13 @@ void do_pick_door (CHAR_T *ch, int door) {
     EXIT_T *pexit_rev;
 
     pexit = ch->in_room->exit[door];
-    if (door_filter_can_pick (ch, pexit, NULL))
+    if (do_door_filter_can_pick (ch, pexit, NULL))
         return;
 
     REMOVE_BIT (pexit->exit_flags, EX_LOCKED);
     act2 ("*Click*", "$n picks the lock on $d.",
         ch, NULL, pexit->keyword, 0, POS_RESTING);
-    check_improve (ch, gsn_pick_lock, TRUE, 2);
+    player_try_skill_improve (ch, SN(PICK_LOCK), TRUE, 2);
 
     /* unlock the other side */
     if ((pexit_rev = room_get_opposite_exit (ch->in_room, door, NULL)) != NULL)
@@ -371,7 +368,7 @@ void do_door (CHAR_T *ch, char *argument, char *verb,
     }
 
     find_continue_counting ();
-    if ((door = door_filter_find (ch, arg)) >= 0)
+    if ((door = do_door_filter_find (ch, arg)) >= 0)
         func_door (ch, door);
 }
 
@@ -444,7 +441,7 @@ DEFINE_DO_FUN (do_stand) {
         obj = find_obj_same_room (ch, argument);
         BAIL_IF (obj == NULL,
             "You don't see that here.\n\r", ch);
-        BAIL_IF (!obj_is_furniture(obj, STAND_BITS),
+        BAIL_IF (!item_can_position_at (obj, POS_STANDING),
             "You can't seem to find a place to stand.\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
                 obj->v.furniture.max_people,
@@ -477,7 +474,7 @@ DEFINE_DO_FUN (do_rest) {
         obj = ch->on;
 
     if (obj != NULL) {
-        BAIL_IF (!obj_is_furniture(obj, REST_BITS),
+        BAIL_IF (!item_can_position_at (obj, POS_RESTING),
             "You can't rest on that.\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
                 obj->v.furniture.max_people,
@@ -507,7 +504,7 @@ DEFINE_DO_FUN (do_sit) {
         obj = ch->on;
 
     if (obj != NULL) {
-        BAIL_IF (!obj_is_furniture(obj, SIT_BITS),
+        BAIL_IF (!item_can_position_at (obj, POS_SITTING),
             "You can't sit on that.\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
                 obj->v.furniture.max_people,
@@ -537,7 +534,7 @@ DEFINE_DO_FUN (do_sleep) {
         obj = ch->on;
 
     if (obj != NULL) {
-        BAIL_IF (!obj_is_furniture(obj, SLEEP_BITS),
+        BAIL_IF (!item_can_position_at (obj, POS_SLEEPING),
             "You can't sleep on that!\n\r", ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
                 obj->v.furniture.max_people,
@@ -578,17 +575,17 @@ DEFINE_DO_FUN (do_sneak) {
     AFFECT_T af;
 
     send_to_char ("You attempt to move silently.\n\r", ch);
-    affect_strip (ch, gsn_sneak);
+    affect_strip_char (ch, SN(SNEAK));
 
     if (IS_AFFECTED (ch, AFF_SNEAK))
         return;
-    if (number_percent () < get_skill (ch, gsn_sneak)) {
-        check_improve (ch, gsn_sneak, TRUE, 3);
-        affect_init (&af, AFF_TO_AFFECTS, gsn_sneak, ch->level, ch->level, APPLY_NONE, 0, AFF_SNEAK);
-        affect_to_char (ch, &af);
+    if (number_percent () < char_get_skill (ch, SN(SNEAK))) {
+        player_try_skill_improve (ch, SN(SNEAK), TRUE, 3);
+        affect_init (&af, AFF_TO_AFFECTS, SN(SNEAK), ch->level, ch->level, APPLY_NONE, 0, AFF_SNEAK);
+        affect_copy_to_char (&af, ch);
     }
     else
-        check_improve (ch, gsn_sneak, FALSE, 3);
+        player_try_skill_improve (ch, SN(SNEAK), FALSE, 3);
 }
 
 DEFINE_DO_FUN (do_hide) {
@@ -596,19 +593,19 @@ DEFINE_DO_FUN (do_hide) {
 
     if (IS_AFFECTED (ch, AFF_HIDE))
         REMOVE_BIT (ch->affected_by, AFF_HIDE);
-    if (number_percent () < get_skill (ch, gsn_hide)) {
+    if (number_percent () < char_get_skill (ch, SN(HIDE))) {
         SET_BIT (ch->affected_by, AFF_HIDE);
-        check_improve (ch, gsn_hide, TRUE, 3);
+        player_try_skill_improve (ch, SN(HIDE), TRUE, 3);
     }
     else
-        check_improve (ch, gsn_hide, FALSE, 3);
+        player_try_skill_improve (ch, SN(HIDE), FALSE, 3);
 }
 
 /* Contributed by Alander. */
 DEFINE_DO_FUN (do_visible) {
-    affect_strip (ch, gsn_invis);
-    affect_strip (ch, gsn_mass_invis);
-    affect_strip (ch, gsn_sneak);
+    affect_strip_char (ch, SN(INVIS));
+    affect_strip_char (ch, SN(MASS_INVIS));
+    affect_strip_char (ch, SN(SNEAK));
     REMOVE_BIT (ch->affected_by, AFF_HIDE);
     REMOVE_BIT (ch->affected_by, AFF_INVISIBLE);
     REMOVE_BIT (ch->affected_by, AFF_SNEAK);
@@ -623,7 +620,7 @@ DEFINE_DO_FUN (do_recall) {
         "Only players can recall.\n\r", ch);
 
     act ("$n prays for transportation!", ch, NULL, NULL, TO_NOTCHAR);
-    BAIL_IF ((location = get_room_index (ROOM_VNUM_TEMPLE)) == NULL,
+    BAIL_IF ((location = room_get_index (ROOM_VNUM_TEMPLE)) == NULL,
         "You are completely lost.\n\r", ch);
 #ifdef BASEMUD_NO_RECALL_TO_SAME_ROOM
     BAIL_IF (ch->in_room == location,
@@ -635,18 +632,18 @@ DEFINE_DO_FUN (do_recall) {
 
     if ((victim = ch->fighting) != NULL) {
         int lose, skill;
-        skill = get_skill (ch, gsn_recall);
+        skill = char_get_skill (ch, SN(RECALL));
 
         if (number_percent () < 80 * skill / 100) {
-            check_improve (ch, gsn_recall, FALSE, 6);
+            player_try_skill_improve (ch, SN(RECALL), FALSE, 6);
             WAIT_STATE (ch, 4);
             send_to_char ("You failed!\n\r", ch);
             return;
         }
 
         lose = (ch->desc != NULL) ? 25 : 50;
-        gain_exp (ch, 0 - lose);
-        check_improve (ch, gsn_recall, TRUE, 4);
+        player_gain_exp (ch, 0 - lose);
+        player_try_skill_improve (ch, SN(RECALL), TRUE, 4);
         printf_to_char (ch, "You recall from combat!  You lose %d exps.\n\r",
             lose);
         stop_fighting (ch, TRUE);
@@ -654,7 +651,6 @@ DEFINE_DO_FUN (do_recall) {
 
     ch->move /= 2;
     act ("$n disappears.", ch, NULL, NULL, TO_NOTCHAR);
-    char_from_room (ch);
     char_to_room (ch, location);
     act ("$n appears in the room.", ch, NULL, NULL, TO_NOTCHAR);
     do_function (ch, &do_look, "auto");
@@ -665,11 +661,7 @@ DEFINE_DO_FUN (do_recall) {
 
 /* RT Enter portals */
 DEFINE_DO_FUN (do_enter) {
-    ROOM_INDEX_T *location;
-    ROOM_INDEX_T *old_room;
     OBJ_T *portal;
-    CHAR_T *fch, *fch_next;
-    char *msg;
 
     /* Basic character / command checks. */
     BAIL_IF (ch->fighting != NULL,
@@ -681,111 +673,10 @@ DEFINE_DO_FUN (do_enter) {
     portal = find_obj_same_room (ch, argument);
     BAIL_IF (portal == NULL,
         "You don't see that here.\n\r", ch);
-    BAIL_IF (portal->item_type != ITEM_PORTAL ||
-            (IS_SET (portal->v.portal.exit_flags, EX_CLOSED) &&
-             !IS_TRUSTED (ch, ANGEL)),
+    BAIL_IF (!item_can_enter_as (portal, ch),
         "You can't seem to find a way in.\n\r", ch);
-    BAIL_IF (!IS_TRUSTED (ch, ANGEL) &&
-             !IS_SET (portal->v.portal.gate_flags, GATE_NOCURSE) &&
-             (IS_AFFECTED (ch, AFF_CURSE) ||
-              IS_SET (ch->in_room->room_flags, ROOM_NO_RECALL)),
-        "Something prevents you from leaving...\n\r", ch);
 
-    /* Determine the target room. */
-    if (IS_SET (portal->v.portal.gate_flags, GATE_RANDOM) ||
-            portal->v.portal.to_vnum == -1)
-    {
-        location = get_random_room (ch);
-        portal->v.portal.to_vnum = location->vnum; /* for record keeping :) */
-    }
-    else if (IS_SET (portal->v.portal.gate_flags, GATE_BUGGY) &&
-            (number_percent () < 5))
-        location = get_random_room (ch);
-    else
-        location = get_room_index (portal->v.portal.to_vnum);
-
-    /* Check if the target room if valid. */
-    BAIL_IF_ACT (location == NULL || location == ch->in_room ||
-            !char_can_see_room (ch, location) ||
-            (room_is_private (location) && !IS_TRUSTED (ch, IMPLEMENTOR)),
-        "$p doesn't seem to go anywhere.", ch, portal, NULL);
-    BAIL_IF (IS_NPC (ch) && IS_SET (ch->mob, MOB_AGGRESSIVE) &&
-             IS_SET (location->room_flags, ROOM_LAW),
-        "Something prevents you from leaving...\n\r", ch);
-
-    /* We're leaving! Outgoing message. */
-    msg = IS_SET (portal->v.portal.gate_flags, GATE_NORMAL_EXIT)
-        ? "You enter $p."
-        : "You walk through $p and find yourself somewhere else...";
-    act2 (msg, "$n steps into $p.", ch, portal, NULL, 0, POS_RESTING);
-
-    /* Leave, take the portal along if specified. */
-    old_room = ch->in_room;
-    char_from_room (ch);
-    char_to_room (ch, location);
-    if (IS_SET (portal->v.portal.gate_flags, GATE_GOWITH)) {
-        obj_take_from_room (portal);
-        obj_give_to_room (portal, location);
-    }
-
-    /* Arrival messages. */
-    msg = IS_SET (portal->v.portal.gate_flags, GATE_NORMAL_EXIT)
-        ? "$n has arrived."
-        : "$n has arrived through $p.";
-    act (msg, ch, portal, NULL, TO_NOTCHAR);
-    do_function (ch, &do_look, "auto");
-
-    /* Charges. Zero charges = infinite uses. */
-    if (portal->v.portal.charges > 0) {
-        portal->v.portal.charges--;
-        if (portal->v.portal.charges == 0)
-            portal->v.portal.charges = -1;
-    }
-
-    /* Perform follows. */
-    if (old_room != location) {
-        for (fch = old_room->people; fch != NULL; fch = fch_next) {
-            fch_next = fch->next_in_room;
-
-            /* no following through dead portals */
-            if (portal == NULL || portal->v.portal.charges == -1)
-                continue;
-
-            if (fch->master == ch && IS_AFFECTED (fch, AFF_CHARM)
-                && fch->position < POS_STANDING)
-                do_function (fch, &do_stand, "");
-
-            if (fch->master == ch && fch->position == POS_STANDING) {
-                if (IS_SET (ch->in_room->room_flags, ROOM_LAW)
-                    && (IS_NPC (fch) && IS_SET (fch->mob, MOB_AGGRESSIVE)))
-                {
-                    act ("You can't bring $N into the city.",
-                         ch, NULL, fch, TO_CHAR);
-                    act ("You aren't allowed in the city.",
-                         fch, NULL, NULL, TO_CHAR);
-                    continue;
-                }
-
-                act ("You follow $N.", fch, NULL, ch, TO_CHAR);
-                do_function (fch, &do_enter, argument);
-            }
-        }
-    }
-
-    /* If the portal is defunct, destroy it now. */
-    if (portal != NULL && portal->v.portal.charges == -1) {
-        act ("$p fades out of existence.", ch, portal, NULL, TO_CHAR);
-        if (ch->in_room == old_room)
-            act ("$p fades out of existence.", ch, portal, NULL, TO_NOTCHAR);
-        else if (old_room->people != NULL)
-            act ("$p fades out of existence.", old_room->people, portal, NULL, TO_ALL);
-        obj_extract (portal);
-    }
-
-    /* If someone is following the char, these triggers get activated
-     * for the followers before the char, but it's safer this way... */
-    if (IS_NPC (ch) && HAS_TRIGGER (ch, TRIG_ENTRY))
-        mp_percent_trigger (ch, NULL, NULL, NULL, TRIG_ENTRY);
-    if (!IS_NPC (ch))
-        mp_greet_trigger (ch);
+    /* Enter the portal. */
+    if (!item_enter_effect (portal, ch))
+        send_to_char ("You can't enter that.\n\r", ch);
 }

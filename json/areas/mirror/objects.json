@@ -14,7 +14,6 @@
     "level": 3,
     "weight": 50,
     "cost": 310,
-    "condition": 100,
     "wear_flags": "take neck"
   }},
   {"object": {
@@ -32,14 +31,11 @@
     "level": 20,
     "weight": 450,
     "cost": 3200,
-    "condition": 100,
     "wear_flags": "take body",
     "affects": [{
-      "apply": "hit roll",
       "level": 20,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -58,7 +54,6 @@
     "level": 7,
     "weight": 120,
     "cost": 2000,
-    "condition": 100,
     "extra_flags": "invis magic",
     "wear_flags": "take hold"
   }},
@@ -76,7 +71,6 @@
     "level": 8,
     "weight": 150,
     "cost": 1420,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -96,7 +90,6 @@
     "level": 0,
     "weight": 150,
     "cost": 800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -115,10 +108,11 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "fountain",
-      "description": "You see the most beautiful fountain in the world.  The white marble glistens\nas sunlight hits its wet surfaces.  Fish swim around in the inner fountain, and\nan exterior fountain is reserved just for drinking.\n"
+      "description": "You see the most beautiful fountain in the world.  The white marble glistens
+                     |as sunlight hits its wet surfaces.  Fish swim around in the inner fountain, and
+                     |an exterior fountain is reserved just for drinking."
     }]
   }},
   {"object": {
@@ -138,10 +132,10 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "desk",
-      "description": "The sea shell desk here is just gorgeous.  The creamy white of the table\nsurface makes you dream of being in a pool swimming among mermaids.\n"
+      "description": "The sea shell desk here is just gorgeous.  The creamy white of the table
+                     |surface makes you dream of being in a pool swimming among mermaids."
     }]
   }},
   {"object": {
@@ -161,10 +155,11 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "cabinet",
-      "description": "A cabinet made of oak and mahogany, this piece of woodmanship is just splendid \nto view.  The wood is varnished with a very strong stain that looks as if it\nwould last longer than the cabinet itself.\n"
+      "description": "A cabinet made of oak and mahogany, this piece of woodmanship is just splendid 
+                     |to view.  The wood is varnished with a very strong stain that looks as if it
+                     |would last longer than the cabinet itself."
     }]
   }},
   {"object": {
@@ -183,7 +178,6 @@
     "level": 10,
     "weight": 200,
     "cost": 2800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -203,15 +197,12 @@
     "level": 7,
     "weight": 1000,
     "cost": 3200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "affects": [{
-      "apply": "dexterity",
       "level": 7,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -230,15 +221,12 @@
     "level": 9,
     "weight": 60,
     "cost": 3900,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "affects": [{
-      "apply": "dexterity",
       "level": 9,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -255,7 +243,6 @@
     "level": 25,
     "weight": 50,
     "cost": 3000,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -272,7 +259,6 @@
     "level": 1,
     "weight": 10,
     "cost": 270,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -289,7 +275,6 @@
     "level": 0,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -307,7 +292,6 @@
     "level": 5,
     "weight": 10,
     "cost": 360,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -324,7 +308,6 @@
     "level": 0,
     "weight": 10,
     "cost": 150,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -343,27 +326,23 @@
     "level": 14,
     "weight": 50,
     "cost": 1420,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "sword",
-      "description": "You see a sword of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a sword of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 14,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 14,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -383,27 +362,23 @@
     "level": 15,
     "weight": 50,
     "cost": 1180,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "mace",
-      "description": "You see a mace of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a mace of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 15,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 15,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -422,11 +397,11 @@
     "level": 10,
     "weight": 50,
     "cost": 1450,
-    "condition": 100,
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "chest plate",
-      "description": "You see a chest plate of great craftsmanship.  Stamped on the side is:\nMerc Industries\n"
+      "description": "You see a chest plate of great craftsmanship.  Stamped on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -445,11 +420,11 @@
     "level": 10,
     "weight": 50,
     "cost": 1190,
-    "condition": 100,
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield",
-      "description": "You see a shield of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a shield of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -467,11 +442,11 @@
     "level": 10,
     "weight": 50,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take neck",
     "extra_description": [{
       "keyword": "cloak",
-      "description": "You see a cloak of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a cloak of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -489,11 +464,11 @@
     "level": 10,
     "weight": 50,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "helm",
-      "description": "You see a helm of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a helm of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -511,11 +486,11 @@
     "level": 10,
     "weight": 50,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "plate leggings",
-      "description": "You see plate leggings of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see plate leggings of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -533,11 +508,11 @@
     "level": 10,
     "weight": 50,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "plate boots",
-      "description": "You see plate boots of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see plate boots of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -555,11 +530,11 @@
     "level": 10,
     "weight": 50,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "plate gloves",
-      "description": "You see plate gloves of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see plate gloves of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -577,11 +552,11 @@
     "level": 10,
     "weight": 50,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take arms",
     "extra_description": [{
       "keyword": "plate sleeves",
-      "description": "You see plate sleeves of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see plate sleeves of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -599,11 +574,11 @@
     "level": 10,
     "weight": 50,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "cape",
-      "description": "You see a cape of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a cape of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -621,11 +596,11 @@
     "level": 10,
     "weight": 50,
     "cost": 730,
-    "condition": 100,
     "wear_flags": "take waist",
     "extra_description": [{
       "keyword": "belt",
-      "description": "You see a belt of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a belt of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -643,11 +618,11 @@
     "level": 5,
     "weight": 50,
     "cost": 550,
-    "condition": 100,
     "wear_flags": "take wrist",
     "extra_description": [{
       "keyword": "metal bracer",
-      "description": "You see a metal bracer of great craftsmanship.  Imprinted on the side is:\nMerc Industries\n"
+      "description": "You see a metal bracer of great craftsmanship.  Imprinted on the side is:
+                     |Merc Industries"
     }]
   }},
   {"object": {
@@ -661,23 +636,18 @@
     "level": 16,
     "weight": 10,
     "cost": 1280,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "saves",
         "level": 16,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -1
       },
       {
-        "apply": "armor class",
         "level": 16,
-        "modifier": -4,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -4
       }
     ]
   }},
@@ -692,27 +662,22 @@
     "level": 20,
     "weight": 10,
     "cost": 1440,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "banner",
-      "description": "This is the official Merc war banner to see you through the darkest realm!\n"
+      "description": "This is the official Merc war banner to see you through the darkest realm!"
     }],
     "affects": [
       {
-        "apply": "armor class",
         "level": 20,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       },
       {
-        "apply": "saves",
         "level": 20,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "saves",
+        "modifier": -2
       }
     ]
   }},
@@ -733,23 +698,18 @@
     "level": 34,
     "weight": 240,
     "cost": 4400,
-    "condition": 100,
     "extra_flags": "magic antievil",
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 34,
-        "modifier": 3,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 3
       },
       {
-        "apply": "hit roll",
         "level": 34,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }}

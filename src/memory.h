@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #ifndef __ROM_MEMORY_H
 #define __ROM_MEMORY_H
@@ -37,7 +37,18 @@ char *string_space_next (void);
 void str_replace_dup (char **old, const char *str);
 char *str_dup (const char *str);
 void str_free (char **pstr);
-char *str_register (const char *str, int len);
+char *str_register (const char *str);
+char *str_get_registered (const char *str, unsigned int hash_index,
+    unsigned int hash_value);
+int str_get_strings_allocated (void);
+
+/* Buffer functions. */
+int buf_get_size (int val);
+BUFFER_T *buf_new_size  (int size);
+bool buf_cat (BUFFER_T *buffer, char *string);
+void buf_clear (BUFFER_T *buffer);
+char *buf_string (BUFFER_T *buffer);
+void printf_to_buf (BUFFER_T *buffer, const char *fmt, ...);
 
 /* General memory functions. */
 void *mem_alloc (size_t size);

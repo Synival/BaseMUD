@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_comm.c,v 1.2 2000/12/01 10:48:33 ring0 Exp $ */
 
@@ -43,6 +43,8 @@
 #include "find.h"
 #include "chars.h"
 #include "globals.h"
+#include "players.h"
+#include "memory.h"
 
 #include "act_comm.h"
 
@@ -89,7 +91,7 @@ void do_comm_channel_global (CHAR_T *ch, char *argument, flag_t channel,
     REMOVE_BIT (ch->comm, channel);
 
     printf_to_char (ch, act_self, argument);
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
@@ -113,7 +115,7 @@ void do_comm_tell_to_buffer (CHAR_T *ch, CHAR_T *victim, char *msg) {
     char buf[MAX_STRING_LENGTH];
     sprintf (buf, "{k%s tells you '{K%s{k'{x\n\r", PERS_AW (ch, victim), msg);
     buf[2] = UPPER (buf[2]);
-    add_buf (victim->pcdata->buffer, buf);
+    buf_cat (victim->pcdata->buffer, buf);
 }
 
 bool do_comm_filter_tell_target_can_receive_tells(CHAR_T *ch,
@@ -193,7 +195,7 @@ DEFINE_DO_FUN (do_socials) {
     int col;
 
     col = 0;
-    for (soc = social_get_first(); soc != NULL; soc = social_get_next(soc)) {
+    for (soc = social_get_first(); soc != NULL; soc = social_get_next (soc)) {
         printf_to_char (ch, "%-12s", soc->name);
         if (++col % 6 == 0)
             send_to_char ("\n\r", ch);
@@ -273,7 +275,7 @@ DEFINE_DO_FUN (do_replay) {
     BAIL_IF (buf_string (ch->pcdata->buffer)[0] == '\0',
         "You have no tells to replay.\n\r", ch);
     page_to_char (buf_string (ch->pcdata->buffer), ch);
-    clear_buf (ch->pcdata->buffer);
+    buf_clear (ch->pcdata->buffer);
 }
 
 DEFINE_DO_FUN (do_auction) {
@@ -340,7 +342,7 @@ DEFINE_DO_FUN (do_music) {
 DEFINE_DO_FUN (do_clantalk) {
     DESCRIPTOR_T *d;
 
-    BAIL_IF (!char_has_clan (ch) || clan_table[ch->clan].independent,
+    BAIL_IF (player_is_independent (ch),
         "You aren't in a clan.\n\r", ch);
     if (do_comm_toggle_channel_if_blank (ch, argument, COMM_NOCLAN,
             "Clan channel is now ON\n\r",
@@ -351,13 +353,13 @@ DEFINE_DO_FUN (do_clantalk) {
     REMOVE_BIT (ch->comm, COMM_NOCLAN);
 
     printf_to_char (ch, "You clan '%s'{x\n\r", argument);
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
         if (IS_SET (victim->comm, COMM_NOCLAN) || IS_SET (victim->comm, COMM_QUIET))
             continue;
-        if (!char_in_same_clan (ch, d->character))
+        if (!player_in_same_clan (ch, d->character))
             continue;
         act_new ("$n clans '$t'{x", ch, argument, victim, TO_VICT, POS_DEAD);
     }
@@ -373,10 +375,10 @@ DEFINE_DO_FUN (do_say) {
 
     if (!IS_NPC (ch)) {
         CHAR_T *mob, *mob_next;
-        for (mob = ch->in_room->people; mob != NULL; mob = mob_next) {
-            mob_next = mob->next_in_room;
-            if (IS_NPC (mob) && HAS_TRIGGER (mob, TRIG_SPEECH)
-                && mob->position == mob->pIndexData->default_pos)
+        for (mob = ch->in_room->people_first; mob != NULL; mob = mob_next) {
+            mob_next = mob->room_next;
+            if (IS_NPC (mob) && HAS_TRIGGER (mob, TRIG_SPEECH) &&
+                mob->position == mob->mob_index->default_pos)
                 mp_act_trigger (argument, mob, ch, NULL, NULL, TRIG_SPEECH);
         }
     }
@@ -395,7 +397,7 @@ DEFINE_DO_FUN (do_shout) {
     WAIT_STATE (ch, 12);
 
     act ("You shout '$T'", ch, NULL, argument, TO_CHAR);
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
@@ -442,7 +444,7 @@ DEFINE_DO_FUN (do_yell) {
     act ("You yell '$t'", ch, argument, NULL, TO_CHAR);
     WAIT_STATE (ch, 12);
 
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
@@ -460,10 +462,10 @@ DEFINE_DO_FUN (do_emote) {
     if (do_comm_filter_emote (ch, argument))
         return;
 
-    MOBtrigger = FALSE;
+    trigger_mobs = FALSE;
     act ("$n $T", ch, NULL, argument, TO_CHAR);
     act ("$n $T", ch, NULL, argument, TO_NOTCHAR);
-    MOBtrigger = TRUE;
+    trigger_mobs = TRUE;
 }
 
 DEFINE_DO_FUN (do_pmote) {
@@ -476,14 +478,14 @@ DEFINE_DO_FUN (do_pmote) {
         return;
 
     act ("$n $t", ch, argument, NULL, TO_CHAR);
-    for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next) {
         if (vch->desc == NULL || vch == ch)
             continue;
 
         if ((letter = strstr (argument, vch->name)) == NULL) {
-            MOBtrigger = FALSE;
+            trigger_mobs = FALSE;
             act ("$N $t", vch, argument, ch, TO_CHAR);
-            MOBtrigger = TRUE;
+            trigger_mobs = TRUE;
             continue;
         }
 
@@ -524,24 +526,49 @@ DEFINE_DO_FUN (do_pmote) {
             name = vch->name;
         }
 
-        MOBtrigger = FALSE;
+        trigger_mobs = FALSE;
         act ("$N $t", vch, temp, ch, TO_CHAR);
-        MOBtrigger = TRUE;
+        trigger_mobs = TRUE;
     }
 }
 
 DEFINE_DO_FUN (do_pose) {
-    int level, pose, message;
+    const CLASS_T *ch_class, *pose_class;
+    const POSE_T *pose;
+    int i, top_pose, pose_num, message;
 
-    BAIL_IF (IS_NPC (ch) || ch->class < 0 || ch->class >= CLASS_MAX,
+    /* get the correct set of poses for your class. */
+    pose = NULL;
+    ch_class = class_get (ch->class);
+    if (!IS_NPC (ch) && ch_class != NULL) {
+        for (i = 0; pose_table[i].class_name != NULL; i++) {
+            if ((pose_class = class_get_by_name_exact (
+                    pose_table[i].class_name)) == NULL)
+                continue;
+            if (pose_class == ch_class) {
+                pose = &(pose_table[i]);
+                break;
+            }
+        }
+    }
+    BAIL_IF (pose == NULL,
         "You have no profession to demonstrate. Sorry!\n\r", ch);
 
-    level = UMIN (ch->level, POS_MAX - 1);
-    pose  = number_range (0, level);
-    message = 2 * ch->class;
+    /* get the number of messages for this class. */
+    for (i = 0; i < MAX_LEVEL; i++)
+        if (pose->message[i * 2] == NULL)
+            break;
+    top_pose = i - 1;
+    BAIL_IF (top_pose < 0,
+        "You don't have any poses for your profession. Bummer!\n\r", ch);
 
-    act2 (pose_table[pose].message[message + 0],
-          pose_table[pose].message[message + 1],
+    /* pick a random pose, from 0 to (level-1 or highest pose). */
+    /* TODO: scale based on MAX_LEVEL and the # of poses? */
+    pose_num = number_range (0, UMIN (ch->level - 1, top_pose));
+    message = 2 * pose_num;
+
+    /* strike a pose! */
+    act2 (pose->message[message + 0], pose->message[message + 1],
           ch, NULL, NULL, 0, POS_RESTING);
 }
 

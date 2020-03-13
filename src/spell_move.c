@@ -34,6 +34,9 @@
 #include "db.h"
 #include "fight.h"
 #include "objs.h"
+#include "items.h"
+#include "players.h"
+#include "rooms.h"
 
 #include "spell_move.h"
 
@@ -83,29 +86,34 @@ bool spell_filter_can_go_to (CHAR_T *ch, CHAR_T *victim,
         "You failed.\n\r", ch);
     FILTER (IS_SET (ch->in_room->room_flags, ROOM_NO_RECALL),
         "You failed.\n\r", ch);
-    FILTER (char_has_clan (victim) && !char_in_same_clan (ch, victim),
+    FILTER (player_has_clan (victim) && !player_in_same_clan (ch, victim),
         "You failed.\n\r", ch);
     return FALSE;
 }
 
 bool spell_filter_use_warp_stone (CHAR_T *ch) {
-    OBJ_T *stone = char_get_eq_by_wear_loc (ch, WEAR_HOLD);
-    FILTER (!IS_IMMORTAL (ch) && (
-            stone == NULL || stone->item_type != ITEM_WARP_STONE),
-        "You lack the proper component for this spell.\n\r", ch);
+    OBJ_T *stone;
 
-    if (stone != NULL && stone->item_type == ITEM_WARP_STONE) {
+    if (IS_IMMORTAL (ch))
+        stone = NULL;
+    else {
+        stone = char_get_eq_by_wear_loc (ch, WEAR_LOC_HOLD);
+        FILTER (stone == NULL || !item_is_warp_stone (stone),
+            "You lack the proper component for this spell.\n\r", ch);
+    }
+    if (stone != NULL) {
         act ("You draw upon the power of $p.",   ch, stone, NULL, TO_CHAR);
         act ("It flares brightly and vanishes!", ch, stone, NULL, TO_CHAR);
         obj_extract (stone);
     }
+
     return FALSE;
 }
 
 OBJ_T *spell_sub_create_portal (ROOM_INDEX_T *from_room,
     ROOM_INDEX_T *to_room, int duration)
 {
-    OBJ_T *portal = obj_create (get_obj_index (OBJ_VNUM_PORTAL), 0);
+    OBJ_T *portal = obj_create (obj_get_index (OBJ_VNUM_PORTAL), 0);
     portal->timer = duration;
     portal->v.portal.to_vnum = to_room->vnum;
     obj_give_to_room (portal, from_room);
@@ -115,7 +123,6 @@ OBJ_T *spell_sub_create_portal (ROOM_INDEX_T *from_room,
 void spell_do_gate_teleport (CHAR_T *ch, ROOM_INDEX_T *to_room) {
     send_to_char ("You step through a gate and vanish.\n\r", ch);
     act ("$n steps through a gate and vanishes.", ch, NULL, NULL, TO_NOTCHAR);
-    char_from_room (ch);
     char_to_room (ch, to_room);
     act ("$n has arrived through a gate.", ch, NULL, NULL, TO_NOTCHAR);
     do_function (ch, &do_look, "auto");
@@ -150,13 +157,13 @@ DEFINE_SPELL_FUN (spell_summon) {
             RES_SUMMON, DAM_OTHER))
         return;
 
-    BAIL_IF (!IS_NPC (victim) && IS_SET (victim->plr, PLR_NOSUMMON),
+    BAIL_IF (!IS_NPC (victim) && EXT_IS_SET (victim->ext_plr, PLR_NOSUMMON),
         "You failed.\n\r", ch);
     BAIL_IF (!IS_NPC (victim) && victim->level >= LEVEL_IMMORTAL,
         "You failed.\n\r", ch);
-    BAIL_IF (IS_NPC (victim) && IS_SET (victim->mob, MOB_AGGRESSIVE),
+    BAIL_IF (IS_NPC (victim) && EXT_IS_SET (victim->ext_mob, MOB_AGGRESSIVE),
         "You failed.\n\r", ch);
-    BAIL_IF (IS_NPC (victim) && victim->pIndexData->pShop != NULL,
+    BAIL_IF (IS_NPC (victim) && victim->mob_index->shop != NULL,
         "You failed.\n\r", ch);
     BAIL_IF (IS_SET (ch->in_room->room_flags, ROOM_SAFE),
         "You failed.\n\r", ch);
@@ -164,7 +171,6 @@ DEFINE_SPELL_FUN (spell_summon) {
         "You failed.\n\r", ch);
 
     act ("$n disappears suddenly.", victim, NULL, NULL, TO_NOTCHAR);
-    char_from_room (victim);
     char_to_room (victim, ch->in_room);
     act ("$n has summoned you!", ch, NULL, victim, TO_VICT);
     act ("$n arrives suddenly.", victim, NULL, NULL, TO_NOTCHAR);
@@ -174,7 +180,7 @@ DEFINE_SPELL_FUN (spell_summon) {
 
 DEFINE_SPELL_FUN (spell_teleport) {
     CHAR_T *victim = (CHAR_T *) vo;
-    ROOM_INDEX_T *pRoomIndex;
+    ROOM_INDEX_T *room_index;
 
     BAIL_IF (victim->in_room == NULL,
         "You failed.\n\r", ch);
@@ -187,13 +193,12 @@ DEFINE_SPELL_FUN (spell_teleport) {
     BAIL_IF (victim != ch && (saves_spell (level - 5, victim, DAM_OTHER)),
         "You failed.\n\r", ch);
 
-    pRoomIndex = get_random_room (victim);
+    room_index = room_get_random_index (victim);
     if (victim != ch)
         send_to_char ("You have been teleported!\n\r", victim);
 
     act ("$n vanishes!", victim, NULL, NULL, TO_NOTCHAR);
-    char_from_room (victim);
-    char_to_room (victim, pRoomIndex);
+    char_to_room (victim, room_index);
     act ("$n slowly fades into existence.", victim, NULL, NULL, TO_NOTCHAR);
     do_function (victim, &do_look, "auto");
 }
@@ -205,7 +210,7 @@ DEFINE_SPELL_FUN (spell_word_of_recall) {
 
     BAIL_IF_ACT (IS_NPC (victim),
         "Your spell ignores $N.", ch, NULL, victim);
-    BAIL_IF ((location = get_room_index (ROOM_VNUM_TEMPLE)) == NULL,
+    BAIL_IF ((location = room_get_index (ROOM_VNUM_TEMPLE)) == NULL,
         "You are completely lost.\n\r", victim);
     BAIL_IF (IS_SET (victim->in_room->room_flags, ROOM_NO_RECALL) ||
              IS_AFFECTED (victim, AFF_CURSE),
@@ -216,7 +221,6 @@ DEFINE_SPELL_FUN (spell_word_of_recall) {
 
     ch->move /= 2;
     act ("$n disappears.", victim, NULL, NULL, TO_NOTCHAR);
-    char_from_room (victim);
     char_to_room (victim, location);
     act ("$n appears in the room.", victim, NULL, NULL, TO_NOTCHAR);
     do_function (victim, &do_look, "auto");
@@ -269,7 +273,7 @@ DEFINE_SPELL_FUN (spell_nexus) {
 
     /* portal two */
     portal = spell_sub_create_portal (to_room, from_room, 1 + level / 10);
-    if (to_room->people != NULL)
-        act ("$p rises up from the ground.", to_room->people, portal, NULL,
-             TO_ALL);
+    if (to_room->people_first != NULL)
+        act ("$p rises up from the ground.", to_room->people_first, portal,
+            NULL, TO_ALL);
 }

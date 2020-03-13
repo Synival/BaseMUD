@@ -16,13 +16,13 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #ifndef __ROM_BOARD_H
@@ -35,40 +35,32 @@
 #define BOARD_NOACCESS -1
 #define BOARD_NOTFOUND -1
 
-/* Function prototypes. */
-void append_note (FILE *fp, NOTE_T *note);
-void finish_note (BOARD_T *board, NOTE_T *note);
+/* Board functions. */
 int board_number (const BOARD_T *board);
-void unlink_note (BOARD_T *board, NOTE_T *note);
-NOTE_T* find_note (CHAR_T *ch, BOARD_T *board, int num);
-void save_board (BOARD_T *board);
-void show_note_to_char (CHAR_T *ch, NOTE_T *note, int num);
-void save_notes ();
-void load_board (BOARD_T *board);
-void load_boards ();
-bool is_note_to (CHAR_T *ch, NOTE_T *note);
-int unread_notes (CHAR_T *ch, BOARD_T *board);
-void personal_message (const char *sender, const char *to, const char *subject,
-    const int expire_days, const char *text);
-void make_note (const char* board_name, const char *sender, const char *to,
+void board_save_all ();
+void board_load (BOARD_T *board);
+void board_load_all ();
+void board_save (BOARD_T *board);
+int board_get_unread_notes_for_char (BOARD_T *board, CHAR_T *ch);
+NOTE_T *board_find_note (BOARD_T *board, CHAR_T *ch, int num);
+
+/* Note functions. */
+void note_write (NOTE_T *note, FILE *fp);
+void note_finish (NOTE_T *note, BOARD_T *board);
+void note_unlink (NOTE_T *note, BOARD_T *board);
+bool note_is_for_char (NOTE_T *note, CHAR_T *ch);
+void note_show_to_char (NOTE_T *note, CHAR_T *ch, int num);
+NOTE_T *note_create_personal (const char *sender, const char *to,
     const char *subject, const int expire_days, const char *text);
-bool next_board (CHAR_T *ch);
+NOTE_T *note_create (const char *board_name, const char *sender, const char *to,
+    const char *subject, const int expire_days, const char *text);
+void note_to_board (NOTE_T *note, BOARD_T *board);
 
-/* for nanny */
-NANNY_FUN handle_con_note_to;
-NANNY_FUN handle_con_note_subject;
-NANNY_FUN handle_con_note_expire;
-NANNY_FUN handle_con_note_text;
-NANNY_FUN handle_con_note_finish;
-
-/* character commands */
-void do_nwrite (CHAR_T *ch, char *argument);
-void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note);
-void do_nread_number (CHAR_T *ch, char *argument, time_t *last_note,
-    int number);
-void do_nread (CHAR_T *ch, char *argument);
-void do_nremove (CHAR_T *ch, char *argument);
-void do_nlist (CHAR_T *ch, char *argument);
-void do_ncatchup (CHAR_T *ch, char *argument);
+/* For nanny */
+DECLARE_NANNY_FUN (handle_con_note_to);
+DECLARE_NANNY_FUN (handle_con_note_subject);
+DECLARE_NANNY_FUN (handle_con_note_expire);
+DECLARE_NANNY_FUN (handle_con_note_text);
+DECLARE_NANNY_FUN (handle_con_note_finish);
 
 #endif

@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include "db.h"
 #include "comm.h"
@@ -61,8 +61,8 @@ DEFINE_DO_FUN (do_force) {
         DESCRIPTOR_T *desc,*desc_next;
         BAIL_IF (char_get_trust(ch) < MAX_LEVEL - 3,
             "Not at your level!\n\r", ch);
-        for (desc = descriptor_list; desc != NULL; desc = desc_next) {
-            desc_next = desc->next;
+        for (desc = descriptor_first; desc != NULL; desc = desc_next) {
+            desc_next = desc->global_next;
             if (desc->connected == CON_PLAYING &&
                 char_get_trust (desc->character) < char_get_trust (ch))
             {
@@ -77,8 +77,8 @@ DEFINE_DO_FUN (do_force) {
 
         BAIL_IF (char_get_trust (ch) < MAX_LEVEL - 2,
             "Not at your level!\n\r", ch);
-        for (vch = char_list; vch != NULL; vch = vch_next) {
-            vch_next = vch->next;
+        for (vch = char_first; vch; vch = vch_next) {
+            vch_next = vch->global_next;
             if (!IS_NPC (vch) && char_get_trust (vch) < char_get_trust (ch)
                 && vch->level < LEVEL_HERO)
             {
@@ -93,8 +93,8 @@ DEFINE_DO_FUN (do_force) {
 
         BAIL_IF (char_get_trust (ch) < MAX_LEVEL - 2,
             "Not at your level!\n\r", ch);
-        for (vch = char_list; vch != NULL; vch = vch_next) {
-            vch_next = vch->next;
+        for (vch = char_first; vch; vch = vch_next) {
+            vch_next = vch->global_next;
             if (!IS_NPC (vch) && char_get_trust (vch) < char_get_trust (ch)
                 && vch->level >= LEVEL_HERO)
             {
@@ -153,9 +153,9 @@ DEFINE_DO_FUN (do_confiscate) {
     BAIL_IF (victim->level >= ch->level,
         "They are too high level for you to do that.\r\n", ch);
 
-    // Go through the victim's objects and find the first object that matches.
-    for (obj = victim->carrying; obj != NULL; obj = obj->next_content) {
-        if (is_name(arg1, obj->name)) {
+    /* Go through the victim's objects and find the first object that matches. */
+    for (obj = victim->content_first; obj != NULL; obj = obj->content_next) {
+        if (str_in_namelist (arg1, obj->name)) {
             found = TRUE;
             break;
         }

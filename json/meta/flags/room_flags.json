@@ -1,0 +1,106 @@
+{"flags": {
+  "name": "room_flags",
+  "description": "Room attributes.",
+  "values": [
+    {
+      "name": "dark",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "unused_room_1",
+      "value": 1,
+      "settable": false
+    },
+    {
+      "name": "no_mob",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "indoors",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "unused_room_2",
+      "value": 4,
+      "settable": false
+    },
+    {
+      "name": "unused_room_3",
+      "value": 5,
+      "settable": false
+    },
+    {
+      "name": "unused_room_4",
+      "value": 6,
+      "settable": false
+    },
+    {
+      "name": "unused_room_5",
+      "value": 7,
+      "settable": false
+    },
+    {
+      "name": "unused_room_6",
+      "value": 8,
+      "settable": false
+    },
+    {
+      "name": "private",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "safe",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "solitary",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "pet_shop",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "no_recall",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "imp_only",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "gods_only",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "heroes_only",
+      "value": 16,
+      "settable": true
+    },
+    {
+      "name": "newbies_only",
+      "value": 17,
+      "settable": true
+    },
+    {
+      "name": "law",
+      "value": 18,
+      "settable": true
+    },
+    {
+      "name": "nowhere",
+      "value": 19,
+      "settable": true
+    }
+  ]
+}}

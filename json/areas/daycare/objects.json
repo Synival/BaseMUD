@@ -20,7 +20,7 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "axe toy",
-      "description": "A small label says 'made in Taiwan'.\n"
+      "description": "A small label says 'made in Taiwan'."
     }]
   }},
   {"object": {
@@ -40,22 +40,19 @@
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring pink ice",
-      "description": "How strange...it's made of ice, but it doesn't melt. It feels pleasantly \ncool to the touch.\n"
+      "description": "How strange...it's made of ice, but it doesn't melt. It feels pleasantly 
+                     |cool to the touch."
     }],
     "affects": [
       {
-        "apply": "hp",
         "level": 3,
-        "modifier": 4,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hp",
+        "modifier": 4
       },
       {
-        "apply": "strength",
         "level": 3,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -82,22 +79,18 @@
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "robe linen",
-      "description": "It radiates an aura of peace and wisdom.  The perfect garb for a teacher.\n"
+      "description": "It radiates an aura of peace and wisdom.  The perfect garb for a teacher."
     }],
     "affects": [
       {
-        "apply": "mana",
         "level": 7,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "mana",
+        "modifier": 5
       },
       {
-        "apply": "wisdom",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 1
       }
     ]
   }},
@@ -123,22 +116,18 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "broom",
-      "description": "It's worn and tired, probably from swatting too many children.\n"
+      "description": "It's worn and tired, probably from swatting too many children."
     }],
     "affects": [
       {
-        "apply": "hit roll",
         "level": 4,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": -1
       },
       {
-        "apply": "armor class",
         "level": 4,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -1
       }
     ]
   }},
@@ -157,7 +146,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -199,7 +187,8 @@
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion",
-      "description": "It's a tight-stoppered glass bottle with a thick amber liquid inside. It\ntastes kind of like whiskey.\n"
+      "description": "It's a tight-stoppered glass bottle with a thick amber liquid inside. It
+                     |tastes kind of like whiskey."
     }]
   }},
   {"object": {
@@ -224,14 +213,13 @@
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "gun toy",
-      "description": "It's just a toy...but the point looks kind of sharp.\nYou'll put your eye out, kid!\n"
+      "description": "It's just a toy...but the point looks kind of sharp.
+                     |You'll put your eye out, kid!"
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 4,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -1
     }]
   }}
 ]

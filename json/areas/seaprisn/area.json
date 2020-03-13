@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "seaprisn",
+  "filename": "seaprisn.are",
+  "title": "Sea Prison",
+  "credits": "{?? ??} Synival Sea Prison",
+  "min_vnum": 11000,
+  "max_vnum": 11099,
+  "builders": "Synival",
+  "security": 9
+}}]

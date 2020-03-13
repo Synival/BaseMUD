@@ -19,30 +19,32 @@
 [X] "dump world json" and "dump world raw" wiz commands.
 [X] JSON-format world is confirmed to save->load->save->load without changes
 [X] All "TO-DOs" have been transferred to Github issues
-[ ] Code style documentation
-[ ] All functions are named and placed according to their objects
-[ ] OLC confirmed to behave as expected.
+[.] Code style documentation
+[.] All functions are named and placed according to their objects
+[.] OLC confirmed to behave as expected.
 [ ] Contribution guide
-[ ] Code can be easily deployed
+[?] Code can be easily deployed
 [ ] Dockerfile is back
-[ ] Mob progs behave as expected.
-[ ] Mob progs are imported/exported using JSON format.
+[?] Mob progs behave as expected.
+[?] Mob progs are imported/exported using JSON format.
 [ ] All gameplay changes that aren't bugfixes, obvious oversights, or
     quality-of-life upgrades are disabled by default.
 [ ] Documentation has been organized in a way that makes sense for _this_ project.
+[ ] Contribution patches are merged into main branch
 
 ### 0.2.0
 
-[ ] JSON code for database saving has been massively cleaned up...
-[ ] Tasks in Github organized into month-long sprints somehow
+[X] Extra features are highly customizable via `basemud.h`.
+[X] All files in "json/config/*" are read properly.
 [ ] All "TO-DOs" from 0.1.0 are accounted for
+[X] JSON code for database saving has been massively cleaned up...
+[ ] Tasks in GitHub organized into month-long sprints somehow
 [ ] JSON tools are extracted as standalone apps
-[ ] Special tables are exported to JSON objects
+[X] Special tables are exported to JSON objects
 [ ] Simple JSON world editor
-[ ] All bit flags replaced with more extendible system
+[X] ~~All~~ Some bit flags _can be_ replaced with more extendible system
 [ ] World state object that contains most global variables
 [ ] Code is testable, even if only some tests exist
-[ ] Extra features are highly customizable via `basemud.h`.
 [ ] Affects refactored to use affect tables
 [ ] (more tbd)
 

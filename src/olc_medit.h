@@ -17,7 +17,7 @@
 #include "merc.h"
 
 #define MEDIT(fun)        bool fun(CHAR_T *ch, char *argument)
-#define EDIT_MOB(ch, mob) (mob = (MOB_INDEX_T *) ch->desc->pEdit)
+#define EDIT_MOB(ch, mob) (mob = (MOB_INDEX_T *) ch->desc->olc_edit)
 
 /* Commands (mobiles). */
 MEDIT (medit_show);

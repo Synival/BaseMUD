@@ -16,13 +16,13 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #include <sys/types.h>
@@ -30,6 +30,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+
+#include "utils.h"
+#include "memory.h"
 
 #include "json.h"
 
@@ -65,7 +68,7 @@ JSON_T *json_get (const JSON_T *json, const char *name) {
     if (json == NULL || name == NULL || json->type != JSON_OBJECT)
         return NULL;
     for (j = json->first_child; j != NULL; j = j->next)
-        if (!strcmp (j->name, name))
+        if (j->name && !strcmp (j->name, name))
             return j;
     return NULL;
 }
@@ -80,6 +83,14 @@ JSON_T *json_new (const char *name, int type, void *value, size_t value_size) {
         new->value_size = value_size;
     }
     return new;
+}
+
+void json_attach_file (JSON_T *json, const char *filename, int line, int col) {
+    if (json->filename)
+        free (json->filename);
+    json->filename = strdup (filename);
+    json->line = line;
+    json->col  = col;
 }
 
 void json_attach_after (JSON_T *json, JSON_T *after, JSON_T *parent) {
@@ -133,10 +144,11 @@ void json_free (JSON_T *json) {
     while (json->first_child)
         json_free (json->first_child);
     json_detach (json);
-    if (json->name)
-        free (json->name);
-    if (json->value)
-        free (json->value);
+
+    if (json->name)     free (json->name);
+    if (json->value)    free (json->value);
+    if (json->filename) free (json->filename);
+
     free (json);
 }
 
@@ -204,7 +216,7 @@ JSON_T *json_new_dice (const char *name, const DICE_T *dice) {
     return json_new (name, JSON_DICE, strdup (buf), strlen (buf) + 1);
 }
 
-JSON_T *json_wrap_obj (JSON_T *json, char *inner_name) {
+JSON_T *json_wrap_obj (JSON_T *json, const char *inner_name) {
     char *outer_name;
     JSON_T *new;
 
@@ -267,10 +279,24 @@ char *json_value_as_string (const JSON_T *json, char *buf, size_t size) {
             snprintf (buf, size, "%s", (const char *) json->value);
             json_expand_newlines (buf, size);
             return buf;
+
+        case JSON_NUMBER: {
+            json_num *value = json->value;
+            snprintf (buf, size, "%g", *value);
+            return buf;
+        }
+
+        case JSON_INTEGER: {
+            json_int *value = json->value;
+            snprintf (buf, size, "%ld", *value);
+            return buf;
+        }
+
         case JSON_NULL:
             return NULL;
+
         default:
-            fprintf (stderr, "json_value_as_string(): Unhandled type '%d'.\n",
+            json_logf (json, "json_value_as_string(): Unhandled type '%d'.\n",
                 json->type);
             return NULL;
     }
@@ -300,7 +326,7 @@ json_int json_value_as_int (const JSON_T *json) {
             return 0;
 
         default:
-            fprintf (stderr, "json_value_as_int(): Unhandled type '%d'.\n",
+            json_logf (json, "json_value_as_int(): Unhandled type '%d'.\n",
                 json->type);
             return 0;
     }
@@ -330,7 +356,7 @@ bool json_value_as_bool (const JSON_T *json) {
             return FALSE;
 
         default:
-            fprintf (stderr, "json_value_as_bool(): Unhandled type '%d'.\n",
+            json_logf (json, "json_value_as_bool(): Unhandled type '%d'.\n",
                 json->type);
             return 0;
     }
@@ -372,12 +398,6 @@ DICE_T json_value_as_dice (const JSON_T *json) {
             if (num)   rval.number = atoi (num);
             if (size)  rval.size   = atoi (size);
             if (bonus) rval.bonus  = atoi (bonus) * bonus_sign;
-
-            if (bonus_sign != 1)
-            printf ("[%8d] [%8d] (%c) [%8d]\n",
-                rval.number, rval.size, bonus_sign == 1 ? '+' : '-',
-                rval.bonus / bonus_sign);
-
             return rval;
         }
 
@@ -397,8 +417,60 @@ DICE_T json_value_as_dice (const JSON_T *json) {
             return rval;
 
         default:
-            fprintf (stderr, "json_value_as_dice(): Unhandled type '%d'.\n",
+            json_logf (json, "json_value_as_dice(): Unhandled type '%d'.\n",
                 json->type);
             return rval;
     }
+}
+
+void json_logf (const JSON_T *json, const char *format, ...) {
+    char buf[2 * MSL];
+    va_list args;
+    va_start (args, format);
+    vsnprintf (buf, sizeof(buf), format, args);
+    va_end (args);
+    log_f ("%s, line %d, col %d: %s", json->filename,
+        json->line, json->col, buf);
+}
+
+const char *json_not_none (const char *value) {
+    return (value == NULL || !strcmp (value, "none"))
+        ? NULL : value;
+}
+
+const char *json_not_blank (const char *value) {
+    return (value == NULL || value[0] == '\0')
+        ? NULL : value;
+}
+
+char *json_string_without_last_newline (const char *name, const char *prop,
+    const char *value)
+{
+    static char buf[MAX_STRING_LENGTH];
+    int len;
+
+    if (value == NULL)
+        return NULL;
+
+    len = strlen (value);
+    while (len > 0 && value[len - 1] == '\r')
+        len--;
+    if (len < 1 || value[len - 1] != '\n') {
+        bugf ("json_string_without_last_newline(): %s, %s\n"
+            "    String should end with \\n, but doesn't:\n"
+            "    \"%s\"", name, prop, value);
+    }
+    else
+        len--;
+
+    strncpy (buf, value, len);
+    buf[len] = '\0';
+    return buf;
+}
+
+JSON_T *json_prop_string_without_last_newline (JSON_T *json, const char *prop,
+    const char *obj_name, const char *value)
+{
+    return json_prop_string (json, prop, json_string_without_last_newline (
+        obj_name, prop, JSTR (value)));
 }

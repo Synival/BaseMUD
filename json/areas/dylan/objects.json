@@ -14,28 +14,21 @@
     "level": 13,
     "weight": 100,
     "cost": 2800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take feet",
     "affects": [
       {
+        "level": 13,
         "apply": "saves",
-        "level": 13,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 1
       },
       {
+        "level": 13,
         "apply": "dexterity",
-        "level": 13,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
-        "apply": "none",
         "level": 13,
-        "modifier": 0,
         "bit_type": "affects",
         "bits": "flying"
       }
@@ -57,7 +50,6 @@
     "level": 10,
     "weight": 200,
     "cost": 820,
-    "condition": 100,
     "wear_flags": "take wrist"
   }},
   {"object": {
@@ -71,23 +63,18 @@
     "level": 7,
     "weight": 100,
     "cost": 1140,
-    "condition": 100,
     "extra_flags": "invis",
     "wear_flags": "take neck",
     "affects": [
       {
-        "apply": "wisdom",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 1
       },
       {
-        "apply": "intelligence",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": 1
       }
     ]
   }},
@@ -107,7 +94,6 @@
     "level": 3,
     "weight": 20,
     "cost": 320,
-    "condition": 100,
     "extra_flags": "antigood",
     "wear_flags": "take hold"
   }},
@@ -127,7 +113,6 @@
     "level": 12,
     "weight": 50,
     "cost": 1330,
-    "condition": 100,
     "extra_flags": "glow nodrop",
     "wear_flags": "take hold"
   }}

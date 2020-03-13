@@ -1,0 +1,21 @@
+{"flags": {
+  "name": "area_flags",
+  "description": "Area attributes.",
+  "values": [
+    {
+      "name": "changed",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "added",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "loading",
+      "value": 2,
+      "settable": false
+    }
+  ]
+}}

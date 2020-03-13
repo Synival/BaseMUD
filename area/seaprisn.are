@@ -1,0 +1,42 @@
+#AREADATA
+Name Sea Prison~
+Builders Synival~
+VNUMs 11000 11099
+Credits {?? ??} Synival Sea Prison~
+Security 9
+End
+
+#MOBILES
+#0
+
+#OBJECTS
+#0
+
+#ROOMS
+#11000
+Along a Rocky River~
+The Dragon Sea funnels into a river here, somehow. To the west is the
+Dragon Sea, to the north is a bend in this rocky, dangerous river.
+~
+0 [] 7
+D2
+~
+~
+0 -1 9788
+P seaprisn-south-1~
+S
+#0
+
+#RESETS
+S
+
+#SHOPS
+0
+
+#SPECIALS
+S
+
+#MOBPROGS
+#0
+
+#$

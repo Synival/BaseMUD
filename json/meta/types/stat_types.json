@@ -1,0 +1,31 @@
+{"types": {
+  "name": "stat_types",
+  "description": "Available stats for characters.",
+  "values": [
+    {
+      "name": "str",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "int",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "wis",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "dex",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "con",
+      "value": 4,
+      "settable": true
+    }
+  ]
+}}

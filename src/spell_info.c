@@ -39,22 +39,19 @@
 #include "affects.h"
 #include "objs.h"
 #include "globals.h"
+#include "items.h"
+#include "memory.h"
 
 #include "spell_info.h"
 
 DEFINE_SPELL_FUN (spell_detect_poison) {
-    int poisoned;
+    flag_t *pflag;
     OBJ_T *obj = (OBJ_T *) vo;
 
-    BAIL_IF (!(obj->item_type == ITEM_DRINK_CON || obj->item_type == ITEM_FOOD),
+    BAIL_IF ((pflag = item_get_poison_flag (obj)) == NULL,
         "It doesn't look poisoned.\n\r", ch);
 
-    poisoned =
-        (obj->item_type == ITEM_DRINK_CON) ? obj->v.drink_con.poisoned :
-        (obj->item_type == ITEM_FOOD)      ? obj->v.food.poisoned :
-        0;
-
-    send_to_char ((poisoned != 0)
+    send_to_char ((*pflag != 0)
         ? "You smell poisonous fumes.\n\r"
         : "It looks delicious.\n\r", ch);
 }
@@ -77,8 +74,8 @@ long int spell_identify_seed (CHAR_T *ch, OBJ_T *obj) {
         hash = ((hash << 5) + hash) + c;
     while ((c = *name2++) != '\0')
         hash = ((hash << 5) + hash) + c;
-    if (obj->pIndexData)
-        hash += obj->pIndexData->vnum;
+    if (obj->obj_index)
+        hash += obj->obj_index->vnum;
 
     srandom (hash);
     return next_seed;
@@ -223,13 +220,13 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
 
         case ITEM_WEAPON:
             if (KNOW_CHECK()) {
-                const FLAG_T *wtype = flag_get(
-                    obj->v.weapon.weapon_type, weapon_types);
+                const TYPE_T *wtype = type_get (
+                    weapon_types, obj->v.weapon.weapon_type);
                 printf_to_char (ch, "Weapon type is %s.\n\r",
                     (wtype == NULL) ? "unknown" : wtype->name);
             }
             if (KNOW_CHECK()) {
-                if (obj->pIndexData->new_format) {
+                if (obj->obj_index->new_format) {
                     printf_to_char (ch, "Damage is %ldd%ld (average %ld).\n\r",
                         obj->v.weapon.dice_num, obj->v.weapon.dice_size,
                        (obj->v.weapon.dice_size + 1) * obj->v.weapon.dice_num / 2);
@@ -274,7 +271,7 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
     }
 
     if (!obj->enchanted) {
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
+        for (paf = obj->obj_index->affect_first; paf; paf = paf->on_next) {
             if (!KNOW_CHECK())
                 continue;
             if (paf->apply == APPLY_NONE || paf->modifier == 0)
@@ -286,7 +283,7 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
         }
     }
 
-    for (paf = obj->affected; paf != NULL; paf = paf->next) {
+    for (paf = obj->affect_first; paf; paf = paf->on_next) {
         if (!KNOW_CHECK())
             continue;
         if (paf->apply != APPLY_NONE && paf->modifier != 0) {
@@ -337,10 +334,10 @@ DEFINE_SPELL_FUN (spell_locate_object) {
     max_found = IS_IMMORTAL (ch) ? 200 : 2 * level;
 
     buffer = buf_new ();
-    for (obj = object_list; obj != NULL; obj = obj->next) {
+    for (obj = object_first; obj != NULL; obj = obj->global_next) {
         if (!char_can_see_obj (ch, obj))
             continue;
-        if (!is_name (target_name, obj->name))
+        if (!str_in_namelist (target_name, obj->name))
             continue;
         if (IS_OBJ_STAT (obj, ITEM_NOLOCATE))
             continue;
@@ -370,7 +367,7 @@ DEFINE_SPELL_FUN (spell_locate_object) {
         }
 
         buf[0] = UPPER (buf[0]);
-        add_buf (buffer, buf);
+        buf_cat (buffer, buf);
 
         if (number >= max_found)
             break;

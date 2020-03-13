@@ -10,3 +10,9 @@
 /Dockerfile
 /docker-compose.yml
 Makefile.bak
+/src/TODO_count.sh
+/src/TODO_edit.sh
+/src/affects.txt
+/src/tests/tests
+/debug.sh
+/callgrind.sh

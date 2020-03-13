@@ -1,0 +1,294 @@
+[
+  {"pose": {
+    "class": "mage",
+    "poses": [
+      {
+        "msg_self": "You sizzle with energy.",
+        "msg_others": "$n sizzles with energy."
+      },
+      {
+        "msg_self": "You turn into a butterfly, then return to your normal shape.",
+        "msg_others": "$n turns into a butterfly, then returns to $s normal shape."
+      },
+      {
+        "msg_self": "Blue sparks fly from your fingers.",
+        "msg_others": "Blue sparks fly from $n's fingers."
+      },
+      {
+        "msg_self": "Little red lights dance in your eyes.",
+        "msg_others": "Little red lights dance in $n's eyes."
+      },
+      {
+        "msg_self": "A slimy green monster appears before you and bows.",
+        "msg_others": "A slimy green monster appears before $n and bows."
+      },
+      {
+        "msg_self": "You turn everybody into a little pink elephant.",
+        "msg_others": "You are turned into a little pink elephant by $n."
+      },
+      {
+        "msg_self": "A small ball of light dances on your fingertips.",
+        "msg_others": "A small ball of light dances on $n's fingertips."
+      },
+      {
+        "msg_self": "Smoke and fumes leak from your nostrils.",
+        "msg_others": "Smoke and fumes leak from $n's nostrils."
+      },
+      {
+        "msg_self": "The light flickers as you rap in magical languages.",
+        "msg_others": "The light flickers as $n raps in magical languages."
+      },
+      {
+        "msg_self": "Your head disappears.",
+        "msg_others": "$n's head disappears."
+      },
+      {
+        "msg_self": "A fire elemental singes your hair.",
+        "msg_others": "A fire elemental singes $n's hair."
+      },
+      {
+        "msg_self": "The sky changes colour to match your eyes.",
+        "msg_others": "The sky changes colour to match $n's eyes."
+      },
+      {
+        "msg_self": "The stones dance to your command.",
+        "msg_others": "The stones dance to $n's command."
+      },
+      {
+        "msg_self": "The heavens and grass change colour as you smile.",
+        "msg_others": "The heavens and grass change colour as $n smiles."
+      },
+      {
+        "msg_self": "Everyone's clothes are transparent, and you are laughing.",
+        "msg_others": "Your clothes are transparent, and $n is laughing."
+      },
+      {
+        "msg_self": "A black hole swallows you.",
+        "msg_others": "A black hole swallows $n."
+      },
+      {
+        "msg_self": "The world shimmers in time with your whistling.",
+        "msg_others": "The world shimmers in time with $n's whistling."
+      }
+    ]
+  }},
+  {"pose": {
+    "class": "cleric",
+    "poses": [
+      {
+        "msg_self": "You feel very holy.",
+        "msg_others": "$n looks very holy."
+      },
+      {
+        "msg_self": "You nonchalantly turn wine into water.",
+        "msg_others": "$n nonchalantly turns wine into water."
+      },
+      {
+        "msg_self": "A halo appears over your head.",
+        "msg_others": "A halo appears over $n's head."
+      },
+      {
+        "msg_self": "You recite words of wisdom.",
+        "msg_others": "$n recites words of wisdom."
+      },
+      {
+        "msg_self": "Deep in prayer, you levitate.",
+        "msg_others": "Deep in prayer, $n levitates."
+      },
+      {
+        "msg_self": "An angel consults you.",
+        "msg_others": "An angel consults $n."
+      },
+      {
+        "msg_self": "Your body glows with an unearthly light.",
+        "msg_others": "$n's body glows with an unearthly light."
+      },
+      {
+        "msg_self": "A spot light hits you.",
+        "msg_others": "A spot light hits $n."
+      },
+      {
+        "msg_self": "Everyone levitates as you pray.",
+        "msg_others": "You levitate as $n prays."
+      },
+      {
+        "msg_self": "A cool breeze refreshes you.",
+        "msg_others": "A cool breeze refreshes $n."
+      },
+      {
+        "msg_self": "The sun pierces through the clouds to illuminate you.",
+        "msg_others": "The sun pierces through the clouds to illuminate $n."
+      },
+      {
+        "msg_self": "The ocean parts before you.",
+        "msg_others": "The ocean parts before $n."
+      },
+      {
+        "msg_self": "A thunder cloud kneels to you.",
+        "msg_others": "A thunder cloud kneels to $n."
+      },
+      {
+        "msg_self": "The Burning Man speaks to you.",
+        "msg_others": "The Burning Man speaks to $n."
+      },
+      {
+        "msg_self": "An eye in a pyramid winks at you.",
+        "msg_others": "An eye in a pyramid winks at $n."
+      },
+      {
+        "msg_self": "Valentine Michael Smith offers you a glass of water.",
+        "msg_others": "Valentine Michael Smith offers $n a glass of water."
+      },
+      {
+        "msg_self": "The great god Mota gives you a staff.",
+        "msg_others": "The great god Mota gives $n a staff."
+      }
+    ]
+  }},
+  {"pose": {
+    "class": "thief",
+    "poses": [
+      {
+        "msg_self": "You perform a small card trick.",
+        "msg_others": "$n performs a small card trick."
+      },
+      {
+        "msg_self": "You wiggle your ears alternately.",
+        "msg_others": "$n wiggles $s ears alternately."
+      },
+      {
+        "msg_self": "You nimbly tie yourself into a knot.",
+        "msg_others": "$n nimbly ties $mself into a knot."
+      },
+      {
+        "msg_self": "You juggle with daggers, apples, and eyeballs.",
+        "msg_others": "$n juggles with daggers, apples, and eyeballs."
+      },
+      {
+        "msg_self": "You steal the underwear off every person in the room.",
+        "msg_others": "Your underwear is gone!  $n stole it!"
+      },
+      {
+        "msg_self": "The dice roll ... and you win again.",
+        "msg_others": "The dice roll ... and $n wins again."
+      },
+      {
+        "msg_self": "You count the money in everyone's pockets.",
+        "msg_others": "Check your money, $n is counting it."
+      },
+      {
+        "msg_self": "You balance a pocket knife on your tongue.",
+        "msg_others": "$n balances a pocket knife on your tongue."
+      },
+      {
+        "msg_self": "You produce a coin from everyone's ear.",
+        "msg_others": "$n produces a coin from your ear."
+      },
+      {
+        "msg_self": "You step behind your shadow.",
+        "msg_others": "$n steps behind $s shadow."
+      },
+      {
+        "msg_self": "Your eyes dance with greed.",
+        "msg_others": "$n's eyes dance with greed."
+      },
+      {
+        "msg_self": "You deftly steal everyone's weapon.",
+        "msg_others": "$n deftly steals your weapon."
+      },
+      {
+        "msg_self": "The Grey Mouser buys you a beer.",
+        "msg_others": "The Grey Mouser buys $n a beer."
+      },
+      {
+        "msg_self": "Everyone's pocket explodes with your fireworks.",
+        "msg_others": "Your pocket explodes with $n's fireworks."
+      },
+      {
+        "msg_self": "Everyone discovers your dagger a centimeter from their eye.",
+        "msg_others": "You discover $n's dagger a centimeter from your eye."
+      },
+      {
+        "msg_self": "Where did you go?",
+        "msg_others": "Where did $n go?"
+      },
+      {
+        "msg_self": "Click.",
+        "msg_others": "Click."
+      }
+    ]
+  }},
+  {"pose": {
+    "class": "warrior",
+    "poses": [
+      {
+        "msg_self": "You show your bulging muscles.",
+        "msg_others": "$n shows $s bulging muscles."
+      },
+      {
+        "msg_self": "You crack nuts between your fingers.",
+        "msg_others": "$n cracks nuts between $s fingers."
+      },
+      {
+        "msg_self": "You grizzle your teeth and look mean.",
+        "msg_others": "$n grizzles $s teeth and looks mean."
+      },
+      {
+        "msg_self": "You hit your head, and your eyes roll.",
+        "msg_others": "$n hits $s head, and $s eyes roll."
+      },
+      {
+        "msg_self": "Crunch, crunch -- you munch a bottle.",
+        "msg_others": "Crunch, crunch -- $n munches a bottle."
+      },
+      {
+        "msg_self": "... 98, 99, 100 ... you do pushups.",
+        "msg_others": "... 98, 99, 100 ... $n does pushups."
+      },
+      {
+        "msg_self": "Arnold Schwarzenegger admires your physique.",
+        "msg_others": "Arnold Schwarzenegger admires $n's physique."
+      },
+      {
+        "msg_self": "Watch your feet, you are juggling granite boulders.",
+        "msg_others": "Watch your feet, $n is juggling granite boulders."
+      },
+      {
+        "msg_self": "Oomph!  You squeeze water out of a granite boulder.",
+        "msg_others": "Oomph!  $n squeezes water out of a granite boulder."
+      },
+      {
+        "msg_self": "You pick your teeth with a spear.",
+        "msg_others": "$n picks $s teeth with a spear."
+      },
+      {
+        "msg_self": "Everyone is swept off their foot by your hug.",
+        "msg_others": "You are swept off your feet by $n's hug."
+      },
+      {
+        "msg_self": "Your karate chop splits a tree.",
+        "msg_others": "$n's karate chop splits a tree."
+      },
+      {
+        "msg_self": "A strap of your armor breaks over your mighty thews.",
+        "msg_others": "A strap of $n's armor breaks over $s mighty thews."
+      },
+      {
+        "msg_self": "A boulder cracks at your frown.",
+        "msg_others": "A boulder cracks at $n's frown."
+      },
+      {
+        "msg_self": "Mercenaries arrive to do your bidding.",
+        "msg_others": "Mercenaries arrive to do $n's bidding."
+      },
+      {
+        "msg_self": "Four matched Percherons bring in your chariot.",
+        "msg_others": "Four matched Percherons bring in $n's chariot."
+      },
+      {
+        "msg_self": "Atlas asks you to relieve him.",
+        "msg_others": "Atlas asks $n to relieve him."
+      }
+    ]
+  }}
+]

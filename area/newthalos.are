@@ -4519,8 +4519,7 @@ LIST : gives you a list of items for sale.
 VALUE : tells you how much an item is worth to Ahkeem
 SELL : sells an item to Akheem for a generous sum
 BUY : Akheem's FAVORITE command lets you have an item for his low low price.
-
-                                       ~
+~
 S
 #9615
 Vera's Veggies~
@@ -6715,6 +6714,10 @@ You are on the clear blue seas of the Dragon Sea.
  see a small dock to the south.
 ~
 0 0 7
+D0
+~
+~
+0 -1 11000
 D1
 ~
 ~
@@ -6732,6 +6735,10 @@ You are on the clear blue seas of the Dragon Sea.
  see a small dock to the west.
 ~
 0 0 7
+D0
+~
+~
+0 -1 9797
 D2
 ~
 ~

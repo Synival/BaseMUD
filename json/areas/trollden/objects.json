@@ -14,7 +14,6 @@
     "level": 0,
     "weight": 500,
     "cost": 1,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -31,8 +30,7 @@
     },
     "level": 0,
     "weight": 0,
-    "cost": 0,
-    "condition": 100
+    "cost": 0
   }},
   {"object": {
     "area": "trollden",
@@ -49,18 +47,16 @@
     "level": 12,
     "weight": 200,
     "cost": 1380,
-    "condition": 100,
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "troll skin",
-      "description": "This is the skin from a huge (and dead) beast.  It looks bad, smells bad,\nand feels bad.\n"
+      "description": "This is the skin from a huge (and dead) beast.  It looks bad, smells bad,
+                     |and feels bad."
     }],
     "affects": [{
-      "apply": "strength",
       "level": 12,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "strength",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -74,19 +70,16 @@
     "level": 20,
     "weight": 10,
     "cost": 1150,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "extra_description": [{
       "keyword": "ring opal",
-      "description": "It is a full circle of opal, smooth and simple.\n"
+      "description": "It is a full circle of opal, smooth and simple."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 20,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -104,12 +97,11 @@
     "level": 15,
     "weight": 50,
     "cost": 1050,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take waist",
     "extra_description": [{
       "keyword": "leather belt",
-      "description": "This old, smelly belt looks like it is barely better than rotting cloth.\n"
+      "description": "This old, smelly belt looks like it is barely better than rotting cloth."
     }]
   }},
   {"object": {
@@ -128,26 +120,22 @@
     "level": 6,
     "weight": 30,
     "cost": 350,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "bone",
-      "description": "This piece of bone looks sturdy enough to be used as a weapon, but you\nwouldn't want to entrust your life to it.\n"
+      "description": "This piece of bone looks sturdy enough to be used as a weapon, but you
+                     |wouldn't want to entrust your life to it."
     }],
     "affects": [
       {
-        "apply": "hit roll",
         "level": 6,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": -1
       },
       {
-        "apply": "damage roll",
         "level": 6,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": -1
       }
     ]
   }}

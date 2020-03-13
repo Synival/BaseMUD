@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 #include <stdlib.h>
@@ -44,6 +44,7 @@
 #include "affects.h"
 #include "globals.h"
 #include "memory.h"
+#include "mob_prog.h"
 
 #include "wiz_im.h"
 
@@ -65,7 +66,7 @@ DEFINE_DO_FUN (do_wizhelp) {
 }
 
 DEFINE_DO_FUN (do_holylight) {
-    do_flag_toggle (ch, TRUE, &(ch->plr), PLR_HOLYLIGHT,
+    do_ext_flag_toggle (ch, TRUE, &(ch->ext_plr), PLR_HOLYLIGHT,
         "Holy light mode off.\n\r",
         "Holy light mode on.\n\r");
 }
@@ -154,7 +155,7 @@ DEFINE_DO_FUN (do_mwhere) {
 
         /* show characters logged */
         buffer = buf_new ();
-        for (d = descriptor_list; d != NULL; d = d->next) {
+        for (d = descriptor_first; d != NULL; d = d->global_next) {
             if (d->connected != CON_PLAYING)
                 continue;
             if ((victim = d->character) == NULL)
@@ -176,7 +177,7 @@ DEFINE_DO_FUN (do_mwhere) {
                     victim->name, victim->in_room->name,
                     victim->in_room->vnum);
 
-            add_buf (buffer, buf);
+            buf_cat (buffer, buf);
         }
 
         page_to_char (buf_string (buffer), ch);
@@ -186,18 +187,18 @@ DEFINE_DO_FUN (do_mwhere) {
 
     found = FALSE;
     buffer = buf_new ();
-    for (victim = char_list; victim != NULL; victim = victim->next) {
+    for (victim = char_first; victim != NULL; victim = victim->global_next) {
         if (victim->in_room == NULL)
             continue;
-        if (!is_name (argument, victim->name))
+        if (!str_in_namelist (argument, victim->name))
             continue;
 
         found = TRUE;
         count++;
         sprintf (buf, "%3d) [%5d] %-28s [%5d] %s\n\r", count,
-            IS_NPC (victim) ? victim->pIndexData->vnum : 0,
-            PERS (victim), victim->in_room->vnum, victim->in_room->name);
-        add_buf (buffer, buf);
+            char_get_vnum (victim), PERS (victim), victim->in_room->vnum,
+            victim->in_room->name);
+        buf_cat (buffer, buf);
     }
 
     if (!found)
@@ -224,10 +225,10 @@ DEFINE_DO_FUN (do_owhere) {
     BAIL_IF (argument[0] == '\0',
         "Find what?\n\r", ch);
 
-    for (obj = object_list; obj != NULL; obj = obj->next) {
+    for (obj = object_first; obj != NULL; obj = obj->global_next) {
         if (!char_can_see_obj (ch, obj))
             continue;
-        if (!is_name (argument, obj->name))
+        if (!str_in_namelist (argument, obj->name))
             continue;
         if (ch->level < obj->level)
             continue;
@@ -251,7 +252,7 @@ DEFINE_DO_FUN (do_owhere) {
                 obj->short_descr);
 
         buf[0] = UPPER (buf[0]);
-        add_buf (buffer, buf);
+        buf_cat (buffer, buf);
 
         if (number >= max_found)
             break;
@@ -333,20 +334,20 @@ DEFINE_DO_FUN (do_rstat) {
     printf_to_char (ch, "Room flags: %ld.\n\rDescription:\n\r%s",
         location->room_flags, location->description);
 
-    if (location->extra_descr != NULL) {
+    if (location->extra_descr_first != NULL) {
         EXTRA_DESCR_T *ed;
 
         send_to_char ("Extra description keywords: '", ch);
-        for (ed = location->extra_descr; ed; ed = ed->next) {
+        for (ed = location->extra_descr_first; ed; ed = ed->on_next) {
             send_to_char (ed->keyword, ch);
-            if (ed->next != NULL)
+            if (ed->on_next != NULL)
                 send_to_char (" ", ch);
         }
         send_to_char ("'.\n\r", ch);
     }
 
     send_to_char ("Characters:", ch);
-    for (rch = location->people; rch; rch = rch->next_in_room) {
+    for (rch = location->people_first; rch; rch = rch->room_next) {
         if (!char_can_see_anywhere (ch, rch))
             continue;
         one_argument (rch->name, buf);
@@ -355,13 +356,13 @@ DEFINE_DO_FUN (do_rstat) {
     send_to_char (".\n\r", ch);
 
     send_to_char ("Objects:   ", ch);
-    for (obj = location->contents; obj; obj = obj->next_content) {
+    for (obj = location->content_first; obj; obj = obj->content_next) {
         one_argument (obj->name, buf);
         printf_to_char (ch, " %s", buf);
     }
     send_to_char (".\n\r", ch);
 
-    for (door = 0; door <= 5; door++) {
+    for (door = 0; door < DIR_MAX; door++) {
         EXIT_T *pexit;
         if ((pexit = location->exit[door]) == NULL)
             continue;
@@ -389,9 +390,8 @@ DEFINE_DO_FUN (do_ostat) {
     printf_to_char (ch, "Name(s): %s\n\r", obj->name);
 
     printf_to_char (ch, "Vnum: %d  Format: %s  Type: %s  Resets: %d\n\r",
-        obj->pIndexData->vnum,
-        obj->pIndexData->new_format ? "new" : "old",
-        item_get_name (obj->item_type), obj->pIndexData->reset_num);
+        obj->obj_index->vnum, obj->obj_index->new_format ? "new" : "old",
+        item_get_name (obj->item_type), obj->obj_index->reset_num);
 
     printf_to_char (ch, "Short description: %s\n\rLong description: %s\n\r",
         obj->short_descr, obj->description);
@@ -403,7 +403,7 @@ DEFINE_DO_FUN (do_ostat) {
         "Number: %d/%d  Weight: %d/%d/%d (10th pounds)  Material: %s\n\r",
         1, obj_get_carry_number (obj), obj->weight, obj_get_weight (obj),
         obj_get_true_weight (obj),
-        if_null_str ((char *) material_get_name (obj->material), "unknown"));
+        str_if_null ((char *) material_get_name (obj->material), "unknown"));
 
     printf_to_char (ch, "Level: %d  Cost: %d  Condition: %d  Timer: %d\n\r",
         obj->level, obj->cost, obj->condition, obj->timer);
@@ -454,9 +454,9 @@ DEFINE_DO_FUN (do_ostat) {
 
         case ITEM_WEAPON:
             printf_to_char (ch, "Weapon type is %s\n\r",
-                if_null_str (weapon_get_name (obj->v.weapon.weapon_type), "unknown"));
+                str_if_null (weapon_get_name (obj->v.weapon.weapon_type), "unknown"));
 
-            if (obj->pIndexData->new_format) {
+            if (obj->obj_index->new_format) {
                 printf_to_char (ch, "Damage is %ldd%ld (average %ld)\n\r",
                     obj->v.weapon.dice_num, obj->v.weapon.dice_size,
                    (obj->v.weapon.dice_size + 1) * obj->v.weapon.dice_num / 2);
@@ -498,24 +498,24 @@ DEFINE_DO_FUN (do_ostat) {
             break;
     }
 
-    if (obj->extra_descr != NULL || obj->pIndexData->extra_descr != NULL) {
+    if (obj->extra_descr_first || obj->obj_index->extra_descr_first) {
         EXTRA_DESCR_T *ed;
 
         send_to_char ("Extra description keywords: '", ch);
-        for (ed = obj->extra_descr; ed != NULL; ed = ed->next) {
+        for (ed = obj->extra_descr_first; ed; ed = ed->on_next) {
             send_to_char (ed->keyword, ch);
-            if (ed->next != NULL)
+            if (ed->on_next != NULL)
                 send_to_char (" ", ch);
         }
-        for (ed = obj->pIndexData->extra_descr; ed != NULL; ed = ed->next) {
+        for (ed = obj->obj_index->extra_descr_first; ed; ed = ed->on_next) {
             send_to_char (ed->keyword, ch);
-            if (ed->next != NULL)
+            if (ed->on_next != NULL)
                 send_to_char (" ", ch);
         }
         send_to_char ("'\n\r", ch);
     }
 
-    for (paf = obj->affected; paf != NULL; paf = paf->next) {
+    for (paf = obj->affect_first; paf; paf = paf->on_next) {
         printf_to_char (ch, "Affects %s by %d, level %d",
             affect_apply_name (paf->apply), paf->modifier, paf->level);
 
@@ -529,7 +529,7 @@ DEFINE_DO_FUN (do_ostat) {
     }
 
     if (!obj->enchanted) {
-        for (paf = obj->pIndexData->affected; paf != NULL; paf = paf->next) {
+        for (paf = obj->obj_index->affect_first; paf; paf = paf->on_next) {
             printf_to_char (ch, "Affects %s by %d, level %d.\n\r",
                 affect_apply_name (paf->apply), paf->modifier, paf->level);
             if (paf->bits)
@@ -551,15 +551,15 @@ DEFINE_DO_FUN (do_mstat) {
 
     printf_to_char (ch,
         "Vnum: %d  Format: %s  Race: %s  Group: %d  Sex: %s  Room: %d\n\r",
-        IS_NPC (victim) ? victim->pIndexData->vnum : 0,
-        IS_NPC (victim) ? victim->pIndexData->new_format ? "new" : "old" : "pc",
-        race_table[victim->race].name,
+        char_get_vnum (victim), IS_NPC (victim)
+            ? victim->mob_index->new_format ? "new" : "old" : "pc",
+        race_get_name (victim->race),
         IS_NPC (victim) ? victim->group : 0, sex_table[victim->sex].name,
         victim->in_room == NULL ? 0 : victim->in_room->vnum);
 
     if (IS_NPC (victim))
         printf_to_char (ch, "Count: %d  Killed: %d\n\r",
-            victim->pIndexData->count, victim->pIndexData->killed);
+            victim->mob_index->mob_count, victim->mob_index->killed);
 
     printf_to_char (ch,
         "Str: %d(%d)  Int: %d(%d)  Wis: %d(%d)  Dex: %d(%d)  Con: %d(%d)\n\r",
@@ -591,10 +591,10 @@ DEFINE_DO_FUN (do_mstat) {
         size_table[victim->size].name,
         position_table[victim->position].long_name, victim->wimpy);
 
-    if (IS_NPC (victim) && victim->pIndexData->new_format) {
+    if (IS_NPC (victim) && victim->mob_index->new_format) {
         printf_to_char (ch, "Damage: %dd%d  Message:  %s\n\r",
             victim->damage.number, victim->damage.size,
-            attack_table[victim->dam_type].noun);
+            attack_table[victim->attack_type].noun);
     }
 
     printf_to_char (ch, "Fighting: %s\n\r",
@@ -603,16 +603,16 @@ DEFINE_DO_FUN (do_mstat) {
     if (!IS_NPC (victim)) {
         printf_to_char (ch,
             "Thirst: %d  Hunger: %d  Full: %d  Drunk: %d\n\r",
-            victim->pcdata->condition[COND_THIRST],
-            victim->pcdata->condition[COND_HUNGER],
-            victim->pcdata->condition[COND_FULL],
-            victim->pcdata->condition[COND_DRUNK]);
+            victim->pcdata->cond_hours[COND_THIRST],
+            victim->pcdata->cond_hours[COND_HUNGER],
+            victim->pcdata->cond_hours[COND_FULL],
+            victim->pcdata->cond_hours[COND_DRUNK]);
     }
 
     printf_to_char (ch,
         "Carry number: %d  Carry weight: %ld  Material: %s\n\r",
         victim->carry_number, char_get_carry_weight (victim) / 10,
-        if_null_str ((char *) material_get_name (victim->material), "unknown"));
+        str_if_null ((char *) material_get_name (victim->material), "unknown"));
 
     if (!IS_NPC (victim)) {
         printf_to_char (ch,
@@ -622,8 +622,8 @@ DEFINE_DO_FUN (do_mstat) {
             victim->pcdata->last_level, victim->timer);
     }
 
-    printf_to_char (ch, "Mob: %s\n\r", mob_bit_name (victim->mob));
-    printf_to_char (ch, "Plr: %s\n\r", plr_bit_name (victim->plr));
+    printf_to_char (ch, "Mob: %s\n\r", mob_bit_name (victim->ext_mob));
+    printf_to_char (ch, "Plr: %s\n\r", plr_bit_name (victim->ext_plr));
 
     if (victim->comm)
         printf_to_char (ch, "Comm: %s\n\r",
@@ -664,7 +664,7 @@ DEFINE_DO_FUN (do_mstat) {
         printf_to_char (ch, "Mobile has special procedure %s.\n\r",
             spec_function_name (victim->spec_fun));
 
-    for (paf = victim->affected; paf != NULL; paf = paf->next) {
+    for (paf = victim->affect_first; paf != NULL; paf = paf->on_next) {
         printf_to_char (ch,
             "Spell: '%s' modifies %s by %d for %d hours with bits %s, level %d.\n\r",
             skill_table[(int) paf->type].name, affect_apply_name (paf->apply),
@@ -760,7 +760,7 @@ DEFINE_DO_FUN (do_immtalk) {
     REMOVE_BIT (ch->comm, COMM_NOWIZ);
 
     act_new ("{i[{I$n{i]: $t{x", ch, argument, NULL, TO_CHAR, POS_DEAD);
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *victim = CH(d);
         if (victim == ch || d->connected != CON_PLAYING)
             continue;
@@ -792,7 +792,7 @@ DEFINE_DO_FUN (do_smote) {
     send_to_char (argument, ch);
     send_to_char ("\n\r", ch);
 
-    for (vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room) {
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next) {
         if (vch->desc == NULL || vch == ch)
             continue;
 
@@ -872,7 +872,7 @@ DEFINE_DO_FUN (do_mpdump) {
     MPROG_CODE_T *mprg;
 
     one_argument (argument, buf);
-    BAIL_IF ((mprg = get_mprog_index (atoi (buf))) == NULL,
+    BAIL_IF ((mprg = mpcode_get_index (atoi (buf))) == NULL,
         "No such MOBprogram.\n\r", ch);
     page_to_char (mprg->code, ch);
 }
@@ -892,18 +892,18 @@ DEFINE_DO_FUN (do_mpstat) {
         "That is not a mobile.\n\r", ch);
 
     printf_to_char (ch, "Mobile #%-6d [%s]\n\r",
-        victim->pIndexData->vnum, victim->short_descr);
+        victim->mob_index->vnum, victim->short_descr);
 
     printf_to_char (ch, "Delay   %-6d [%s]\n\r",
         victim->mprog_delay,
         victim->mprog_target == NULL
             ? "No target" : victim->mprog_target->name);
 
-    BAIL_IF (!victim->pIndexData->mprog_flags,
+    BAIL_IF (!victim->mob_index->mprog_flags,
         "[No programs set]\n\r", ch);
 
-    for (i = 1, mprg = victim->pIndexData->mprogs; mprg != NULL;
-         mprg = mprg->next, i++)
+    for (i = 1, mprg = victim->mob_index->mprog_first; mprg != NULL;
+         mprg = mprg->mob_next, i++)
     {
         printf_to_char (ch,
             "[%2d] Trigger [%-8s] Program [%4d] Phrase [%s]\n\r",

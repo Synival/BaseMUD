@@ -1,0 +1,106 @@
+[
+  {"dex_app": {
+    "stat": 0,
+    "defense_bonus": 60
+  }},
+  {"dex_app": {
+    "stat": 1,
+    "defense_bonus": 50
+  }},
+  {"dex_app": {
+    "stat": 2,
+    "defense_bonus": 50
+  }},
+  {"dex_app": {
+    "stat": 3,
+    "defense_bonus": 40
+  }},
+  {"dex_app": {
+    "stat": 4,
+    "defense_bonus": 30
+  }},
+  {"dex_app": {
+    "stat": 5,
+    "defense_bonus": 20
+  }},
+  {"dex_app": {
+    "stat": 6,
+    "defense_bonus": 10
+  }},
+  {"dex_app": {
+    "stat": 7,
+    "defense_bonus": 0
+  }},
+  {"dex_app": {
+    "stat": 8,
+    "defense_bonus": 0
+  }},
+  {"dex_app": {
+    "stat": 9,
+    "defense_bonus": 0
+  }},
+  {"dex_app": {
+    "stat": 10,
+    "defense_bonus": 0
+  }},
+  {"dex_app": {
+    "stat": 11,
+    "defense_bonus": 0
+  }},
+  {"dex_app": {
+    "stat": 12,
+    "defense_bonus": 0
+  }},
+  {"dex_app": {
+    "stat": 13,
+    "defense_bonus": 0
+  }},
+  {"dex_app": {
+    "stat": 14,
+    "defense_bonus": 0
+  }},
+  {"dex_app": {
+    "stat": 15,
+    "defense_bonus": -10
+  }},
+  {"dex_app": {
+    "stat": 16,
+    "defense_bonus": -15
+  }},
+  {"dex_app": {
+    "stat": 17,
+    "defense_bonus": -20
+  }},
+  {"dex_app": {
+    "stat": 18,
+    "defense_bonus": -30
+  }},
+  {"dex_app": {
+    "stat": 19,
+    "defense_bonus": -40
+  }},
+  {"dex_app": {
+    "stat": 20,
+    "defense_bonus": -50
+  }},
+  {"dex_app": {
+    "stat": 21,
+    "defense_bonus": -60
+  }},
+  {"dex_app": {
+    "stat": 22,
+    "defense_bonus": -75
+  }},
+  {"dex_app": {
+    "stat": 23,
+    "defense_bonus": -90
+  }},
+  {"dex_app": {
+    "stat": 24,
+    "defense_bonus": -105
+  }},
+  {"dex_app": {
+    "stat": 25,
+    "defense_bonus": -120
+  }}
+]

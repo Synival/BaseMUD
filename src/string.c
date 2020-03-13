@@ -30,17 +30,17 @@
  Purpose:    Clears string and puts player into editing mode.
  Called by:  none
  ****************************************************************************/
-void string_edit (CHAR_T *ch, char **pString) {
+void string_edit (CHAR_T *ch, char **string_edit) {
     send_to_char ("-========- Entering EDIT Mode -=========-\n\r", ch);
     send_to_char ("    Type .h on a new line for help\n\r", ch);
     send_to_char (" Terminate with a ~ or @ on a blank line.\n\r", ch);
     send_to_char ("-=======================================-\n\r", ch);
 
-    if (*pString == NULL)
-        *pString = str_dup ("");
+    if (*string_edit == NULL)
+        *string_edit = str_dup ("");
     else
-        **pString = '\0';
-    ch->desc->pString = pString;
+        **string_edit = '\0';
+    ch->desc->string_edit = string_edit;
 }
 
 /*****************************************************************************
@@ -48,21 +48,21 @@ void string_edit (CHAR_T *ch, char **pString) {
  Purpose:    Puts player into append mode for given string.
  Called by:  (many)olc_act.c
  ****************************************************************************/
-void string_append (CHAR_T *ch, char **pString) {
+void string_append (CHAR_T *ch, char **string_edit) {
     send_to_char ("-=======- Entering APPEND Mode -========-\n\r", ch);
     send_to_char ("    Type .h on a new line for help\n\r", ch);
     send_to_char (" Terminate with a ~ or @ on a blank line.\n\r", ch);
     send_to_char ("-=======================================-\n\r", ch);
 
-    if (*pString == NULL)
-        *pString = str_dup ("");
-    send_to_char (numlines (*pString), ch);
+    if (*string_edit == NULL)
+        *string_edit = str_dup ("");
+    send_to_char (numlines (*string_edit), ch);
 
 /* numlines sends the string with \n\r */
-/*  if ( *(*pString + strlen( *pString ) - 1) != '\r' )
+/*  if ( *(*string_edit + strlen( *string_edit ) - 1) != '\r' )
     send_to_char( "\n\r", ch ); */
 
-    ch->desc->pString = pString;
+    ch->desc->string_edit = string_edit;
 }
 
 /*****************************************************************************
@@ -96,7 +96,7 @@ void string_add (CHAR_T *ch, char *argument) {
     char buf[MAX_STRING_LENGTH];
 
     /* Thanks to James Seng */
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     if (*argument == '.') {
         char arg1[MAX_INPUT_LENGTH];
         char arg2[MAX_INPUT_LENGTH];
@@ -110,12 +110,12 @@ void string_add (CHAR_T *ch, char *argument) {
 
         if (!str_cmp (arg1, ".c")) {
             send_to_char ("String cleared.\n\r", ch);
-            str_replace_dup (ch->desc->pString, "");
+            str_replace_dup (ch->desc->string_edit, "");
             return;
         }
         if (!str_cmp (arg1, ".s")) {
             send_to_char ("String so far:\n\r", ch);
-            send_to_char (numlines (*ch->desc->pString), ch);
+            send_to_char (numlines (*ch->desc->string_edit), ch);
             return;
         }
         if (!str_cmp (arg1, ".r")) {
@@ -124,33 +124,33 @@ void string_add (CHAR_T *ch, char *argument) {
                 return;
             }
 
-            *ch->desc->pString =
-                string_replace (*ch->desc->pString, arg2, arg3);
+            *ch->desc->string_edit =
+                string_replace (*ch->desc->string_edit, arg2, arg3);
             printf_to_char (ch, "'%s' replaced with '%s'.\n\r", arg2, arg3);
             return;
         }
         if (!str_cmp (arg1, ".f")) {
-            *ch->desc->pString = format_string (*ch->desc->pString);
+            *ch->desc->string_edit = format_string (*ch->desc->string_edit);
             send_to_char ("String formatted.\n\r", ch);
             return;
         }
         if (!str_cmp (arg1, ".ld")) {
-            *ch->desc->pString =
-                string_linedel (*ch->desc->pString, atoi (arg2));
+            *ch->desc->string_edit =
+                string_linedel (*ch->desc->string_edit, atoi (arg2));
             send_to_char ("Line deleted.\n\r", ch);
             return;
         }
         if (!str_cmp (arg1, ".li")) {
-            *ch->desc->pString =
-                string_lineadd (*ch->desc->pString, tmparg3, atoi (arg2));
+            *ch->desc->string_edit =
+                string_lineadd (*ch->desc->string_edit, tmparg3, atoi (arg2));
             send_to_char ("Line inserted.\n\r", ch);
             return;
         }
         if (!str_cmp (arg1, ".lr")) {
-            *ch->desc->pString =
-                string_linedel (*ch->desc->pString, atoi (arg2));
-            *ch->desc->pString =
-                string_lineadd (*ch->desc->pString, tmparg3, atoi (arg2));
+            *ch->desc->string_edit =
+                string_linedel (*ch->desc->string_edit, atoi (arg2));
+            *ch->desc->string_edit =
+                string_lineadd (*ch->desc->string_edit, tmparg3, atoi (arg2));
             send_to_char ("Line replaced.\n\r", ch);
             return;
         }
@@ -184,8 +184,8 @@ void string_add (CHAR_T *ch, char *argument) {
 
             if (mpc != NULL)
                 for (hash = 0; hash < MAX_KEY_HASH; hash++)
-                    for (mob = mob_index_hash[hash]; mob; mob = mob->next)
-                        for (mpl = mob->mprogs; mpl; mpl = mpl->next)
+                    for (mob = mob_index_hash[hash]; mob; mob = mob->hash_next)
+                        for (mpl = mob->mprog_first; mpl; mpl = mpl->mob_next)
                             if (mpl->vnum == mpc->vnum) {
                                 printf_to_char (ch, "Editting mob %d.\n\r",
                                     mob->vnum);
@@ -193,41 +193,41 @@ void string_add (CHAR_T *ch, char *argument) {
                             }
         }
 
-        ch->desc->pString = NULL;
+        ch->desc->string_edit = NULL;
         return;
     }
 
-    strcpy (buf, *ch->desc->pString);
+    strcpy (buf, *ch->desc->string_edit);
 
     /* Truncate strings to MAX_STRING_LENGTH.
      * --------------------------------------
      * Edwin strikes again! Fixed avoid adding to a too-long
      * note. JR -- 10/15/00 */
-    if (strlen ( *ch->desc->pString ) + strlen (argument) >= (MAX_STRING_LENGTH - 4)) {
+    if (strlen ( *ch->desc->string_edit ) + strlen (argument) >= (MAX_STRING_LENGTH - 4)) {
         send_to_char ("String too long, last line skipped.\n\r", ch);
 
         /* Force character out of editing mode. */
-        ch->desc->pString = NULL;
+        ch->desc->string_edit = NULL;
         return;
     }
 
     /* Ensure no tilde's inside string.
      * -------------------------------- */
-    smash_tilde (argument);
+    str_smash_tilde (argument);
 
     strcat (buf, argument);
     strcat (buf, "\n\r");
-    str_replace_dup (ch->desc->pString, buf);
+    str_replace_dup (ch->desc->string_edit, buf);
 }
 
 /* Thanks to Kalgen for the new procedure (no more bug!)
  * Original wordwrap() written by Surreality. */
 /*****************************************************************************
- Name:        format_string
+ Name:       format_string
  Purpose:    Special string formating and word-wrapping.
- Called by:    string_add(string.c) (many)olc_act.c
+ Called by:  string_add(string.c) (many)olc_act.c
  ****************************************************************************/
-char *format_string (char *oldstring /*, bool fSpace */ ) {
+char *format_string (char *oldstring /*, bool space */ ) {
     char xbuf[MAX_STRING_LENGTH];
     char xbuf2[MAX_STRING_LENGTH];
     char *rdesc;
@@ -356,7 +356,7 @@ char *format_string (char *oldstring /*, bool fSpace */ ) {
 }
 
 /* Used above in string_add.  Because this function does not
- * modify case if fCase is FALSE and because it understands
+ * modify case if mod_case is FALSE and because it understands
  * parenthesis, it would probably make a nice replacement
  * for one_argument. */
 
@@ -367,29 +367,29 @@ char *format_string (char *oldstring /*, bool fSpace */ ) {
           percentages.
  Called by:    string_add(string.c)
  ****************************************************************************/
-char *first_arg (char *argument, char *arg_first, bool fCase) {
-    char cEnd;
+char *first_arg (char *argument, char *arg_first, bool mod_case) {
+    char end;
 
     while (*argument == ' ')
         argument++;
 
-    cEnd = ' ';
+    end = ' ';
     if (*argument == '\'' || *argument == '"'
         || *argument == '%' || *argument == '(')
     {
         if (*argument == '(') {
-            cEnd = ')';
+            end = ')';
             argument++;
         }
         else
-            cEnd = *argument++;
+            end = *argument++;
     }
     while (*argument != '\0') {
-        if (*argument == cEnd) {
+        if (*argument == end) {
             argument++;
             break;
         }
-        if (fCase)
+        if (mod_case)
             *arg_first = LOWER (*argument);
         else
             *arg_first = *argument;

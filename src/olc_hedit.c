@@ -24,6 +24,7 @@
 #include "globals.h"
 #include "olc.h"
 #include "memory.h"
+#include "help.h"
 
 #include "olc_hedit.h"
 
@@ -84,22 +85,23 @@ HEDIT (hedit_new) {
     strcpy (fullarg, argument);
     argument = one_argument (argument, arg);
 
-    if (!(had = had_get_by_name (arg))) {
-        had = ch->in_room->area->helps;
+    if (!(had = had_get_by_name_exact (arg))) {
+        had = ch->in_room->area->had_first;
         argument = fullarg;
     }
-    RETURN_IF (help_get_by_name (argument),
+    RETURN_IF (help_get_by_name_exact (argument),
         "HEdit: Help already exists.\n\r", ch, FALSE);
 
     /* the area has no helps */
     if (!had) {
         had = had_new ();
         str_replace_dup (&had->filename, ch->in_room->area->filename);
-        str_replace_dup (&had->name, trim_extension (had->filename));
-        had->area = ch->in_room->area;
+        str_replace_dup (&had->name, str_without_extension (had->filename));
+        help_area_to_area (had, ch->in_room->area);
         had->changed = TRUE;
-        LISTB_BACK (had, next, had_first, had_last);
-        ch->in_room->area->helps = had;
+        LIST2_BACK (had, global_prev, global_next, had_first, had_last);
+        LIST2_BACK (had, area_prev, area_next,
+            ch->in_room->area->had_first, ch->in_room->area->had_last);
         SET_BIT (ch->in_room->area->area_flags, AREA_CHANGED);
     }
 
@@ -108,10 +110,10 @@ HEDIT (hedit_new) {
     help->keyword = str_dup (argument);
     help->text = str_dup ("");
 
-    LISTB_BACK (help, next, help_first, help_last);
-    LISTB_BACK (help, next_area, had->first, had->last);
+    help_to_help_area (help, had);
+    LIST2_BACK (help, global_prev, global_next, help_first, help_last);
 
-    ch->desc->pEdit = (HELP_T *) help;
+    ch->desc->olc_edit = (HELP_T *) help;
     ch->desc->editor = ED_HELP;
 
     send_to_char ("Help created.\n\r", ch);
@@ -130,32 +132,31 @@ HEDIT (hedit_text) {
 }
 
 HEDIT (hedit_delete) {
-    HELP_T *pHelp, *hlp, *phlp;
+    HELP_T *help, *hlp;
     HELP_AREA_T *had;
     DESCRIPTOR_T *d;
     bool found = FALSE;
 
-    EDIT_HELP (ch, pHelp);
-    for (d = descriptor_list; d; d = d->next)
-        if (d->editor == ED_HELP && pHelp == (HELP_T *) d->pEdit)
+    EDIT_HELP (ch, help);
+    for (d = descriptor_first; d; d = d->global_next)
+        if (d->editor == ED_HELP && help == (HELP_T *) d->olc_edit)
             edit_done (d->character);
 
-    /* Remove help from the global help list. Bail if this fails. */
-    LISTB_REMOVE (pHelp, next, help_first, help_last, HELP_T, return FALSE);
+    /* Remove help from the global help list. */
+    LIST2_REMOVE (help, global_prev, global_next, help_first, help_last);
 
     /* Find a help area with this help entry. If found, remove it. */
-    for (had = had_first; had; had = had->next) {
-        LIST_FIND_WITH_PREV (hlp == pHelp, next_area, had->first, hlp, phlp);
+    for (had = had_first; had; had = had->global_next) {
+        LIST_FIND (hlp == help, had_next, had->help_first, hlp);
         if (hlp) {
-            LISTB_REMOVE_WITH_PREV (hlp, phlp, next_area,
-                had->first, had->last);
+            help_to_help_area (hlp, NULL);
             found = TRUE;
             break;
         }
     }
     RETURN_IF_BUGF (!found, FALSE,
-        "HEdit delete: Help %s not found in had_list.", pHelp->keyword);
-    help_free (pHelp);
+        "HEdit delete: Help %s not found in had_list.", help->keyword);
+    help_free (help);
 
     send_to_char ("Help deleted.\n\r", ch);
     return TRUE;
@@ -164,42 +165,42 @@ HEDIT (hedit_delete) {
 HEDIT (hedit_list) {
     char buf[MIL];
     int cnt = 0;
-    HELP_T *pHelp;
+    HELP_T *help;
     BUFFER_T *buffer;
 
-    EDIT_HELP (ch, pHelp);
+    EDIT_HELP (ch, help);
 
     if (!str_cmp (argument, "all")) {
         buffer = buf_new ();
-        for (pHelp = help_first; pHelp; pHelp = pHelp->next) {
-            sprintf (buf, "%3d. %-14.14s%s", cnt, pHelp->keyword,
+        for (help = help_first; help; help = help->global_next) {
+            sprintf (buf, "%3d. %-14.14s%s", cnt, help->keyword,
                      cnt % 4 == 3 ? "\n\r" : " ");
-            add_buf (buffer, buf);
+            buf_cat (buffer, buf);
             cnt++;
         }
         if (cnt % 4)
-            add_buf (buffer, "\n\r");
+            buf_cat (buffer, "\n\r");
 
         page_to_char (buf_string (buffer), ch);
         return FALSE;
     }
 
     if (!str_cmp (argument, "area")) {
-        RETURN_IF (ch->in_room->area->helps == NULL,
+        RETURN_IF (ch->in_room->area->had_first == NULL,
             "No helps in this area.\n\r", ch, FALSE);
 
         buffer = buf_new ();
-        for (pHelp = ch->in_room->area->helps->first; pHelp;
-             pHelp = pHelp->next_area)
+        for (help = ch->in_room->area->had_first->help_first; help;
+             help = help->had_next)
         {
-            sprintf (buf, "%3d. %-14.14s%s", cnt, pHelp->keyword,
+            sprintf (buf, "%3d. %-14.14s%s", cnt, help->keyword,
                      cnt % 4 == 3 ? "\n\r" : " ");
-            add_buf (buffer, buf);
+            buf_cat (buffer, buf);
             cnt++;
         }
 
         if (cnt % 4)
-            add_buf (buffer, "\n\r");
+            buf_cat (buffer, "\n\r");
 
         page_to_char (buf_string (buffer), ch);
         return FALSE;

@@ -3,17 +3,15 @@
   "anum": 0,
   "name": "keeper",
   "short_descr": "the keeper",
-  "long_descr": "The keeper of the Morris equipment is here.\n",
-  "description": "Her job is to set the level for this equipment.\n",
+  "long_descr": "The keeper of the Morris equipment is here.",
+  "description": "Her job is to set the level for this equipment.",
   "race": "human",
   "alignment": 1000,
-  "group": 0,
   "level": 8,
   "hitroll": 0,
   "hit_dice": "2d7+96",
   "mana_dice": "4d9+100",
   "damage_dice": "1d7+2",
-  "dam_type": "none",
   "ac": {
     "pierce": 30,
     "bash": 30,
@@ -23,7 +21,5 @@
   "sex": "female",
   "wealth": 5,
   "size": "medium",
-  "shop": null,
-  "offense": "disarm dodge trip assist_vnum",
-  "spec_fun": null
+  "offense": "disarm dodge trip assist_vnum"
 }}]

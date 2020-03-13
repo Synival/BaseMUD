@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #ifndef __ROM_JSON_H
 #define __ROM_JSON_H
@@ -31,6 +31,9 @@
 #include "merc.h"
 
 #define JSON_DIR        "json/"
+#define JSON_CONFIG_DIR (JSON_DIR "config/")
+#define JSON_HELP_DIR   (JSON_DIR "help/")
+#define JSON_AREAS_DIR  (JSON_DIR "areas/")
 
 /* all valid types of json_t */
 #define JSON_STRING     0
@@ -80,6 +83,15 @@
         return new; \
     }
 
+#define JSON_PROP_FUN_OF(vname, fname, vptype) \
+    JSON_T *json_prop_ ## vname (JSON_T *parent, const char *name, \
+        vptype arg) \
+    { \
+        JSON_T *new = fname (name, arg); \
+        json_attach_under (new, parent); \
+        return new; \
+    }
+
 #define JSON_SIMPLE(jtype, ctype) \
     JSON_T *new; \
     ctype *ptr = calloc (1, sizeof (ctype)); \
@@ -93,6 +105,15 @@
 #define JSON_GET_BOOL(json, prop) \
     (json_value_as_bool (json_get ((json), (prop))))
 
+#define JBITS(val) \
+    json_not_none(val)
+#define JBITSF(array, bits) \
+    JBITS (flags_to_string ((array), (bits)))
+#define JBITSXF(array, bits) \
+    JBITS (ext_flags_to_string ((array), (bits)))
+#define JSTR(val) \
+    json_not_blank(val)
+
 /* data structures */
 struct json_t {
     int type;
@@ -101,6 +122,8 @@ struct json_t {
     size_t value_size;
     struct json_t *parent, *prev, *next, *first_child, *last_child;
     int child_count;
+    char *filename;
+    int line, col;
 };
 
 /* function declarations */
@@ -113,7 +136,8 @@ void    json_attach_after (JSON_T *json, JSON_T *after, JSON_T *parent);
 void    json_attach_under (JSON_T *json, JSON_T *ref);
 void    json_detach (JSON_T *json);
 void    json_free (JSON_T *json);
-JSON_T *json_wrap_obj (JSON_T *json, char *inner_name);
+JSON_T *json_wrap_obj (JSON_T *json, const char *inner_name);
+void    json_logf (const JSON_T *json, const char *format, ...);
 
 /* node creation. */
 JSON_T *json_new_string (const char *name, const char *value);
@@ -135,6 +159,8 @@ JSON_T *json_prop_object (JSON_T *parent, const char *name, int value);
 JSON_T *json_prop_array (JSON_T *parent, const char *name);
 JSON_T *json_prop_dice (JSON_T *parent, const char *name,
     const DICE_T *dice);
+JSON_T *json_prop_string_without_last_newline (JSON_T *json, const char *prop,
+    const char *obj_name, const char *value);
 
 /* data retrieval. */
 bool     json_expand_newlines (char *buf_in, size_t len);
@@ -142,5 +168,11 @@ char    *json_value_as_string (const JSON_T *json, char *buf, size_t size);
 json_int json_value_as_int (const JSON_T *json);
 bool     json_value_as_bool (const JSON_T *json);
 struct dice_type json_value_as_dice (const JSON_T *json);
+
+/* utility functions. */
+const char *json_not_none (const char *value);
+const char *json_not_blank (const char *value);
+char *json_string_without_last_newline (const char *name, const char *prop,
+    const char *value);
 
 #endif

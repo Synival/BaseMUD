@@ -1,0 +1,30 @@
+[
+  {"day": {
+    "index": 0,
+    "name": "the Moon"
+  }},
+  {"day": {
+    "index": 1,
+    "name": "the Bull"
+  }},
+  {"day": {
+    "index": 2,
+    "name": "Deception"
+  }},
+  {"day": {
+    "index": 3,
+    "name": "Thunder"
+  }},
+  {"day": {
+    "index": 4,
+    "name": "Freedom"
+  }},
+  {"day": {
+    "index": 5,
+    "name": "the Great Gods"
+  }},
+  {"day": {
+    "index": 6,
+    "name": "the Sun"
+  }}
+]

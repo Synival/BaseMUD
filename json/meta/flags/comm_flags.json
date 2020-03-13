@@ -1,0 +1,136 @@
+{"flags": {
+  "name": "comm_flags",
+  "description": "Communication channel flags.",
+  "values": [
+    {
+      "name": "quiet",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "deaf",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "nowiz",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "noclangossip",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "nogossip",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "noquestion",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "nomusic",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "noclan",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "noquote",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "shoutsoff",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "unused_comm_1",
+      "value": 10,
+      "settable": false
+    },
+    {
+      "name": "compact",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "brief",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "prompt",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "combine",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "telnet_ga",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "show_affects",
+      "value": 16,
+      "settable": true
+    },
+    {
+      "name": "nograts",
+      "value": 17,
+      "settable": true
+    },
+    {
+      "name": "unused_comm_2",
+      "value": 18,
+      "settable": false
+    },
+    {
+      "name": "noemote",
+      "value": 19,
+      "settable": false
+    },
+    {
+      "name": "noshout",
+      "value": 20,
+      "settable": false
+    },
+    {
+      "name": "notell",
+      "value": 21,
+      "settable": false
+    },
+    {
+      "name": "nochannels",
+      "value": 22,
+      "settable": false
+    },
+    {
+      "name": "unused_comm_3",
+      "value": 23,
+      "settable": false
+    },
+    {
+      "name": "snoop_proof",
+      "value": 24,
+      "settable": false
+    },
+    {
+      "name": "afk",
+      "value": 25,
+      "settable": true
+    }
+  ]
+}}

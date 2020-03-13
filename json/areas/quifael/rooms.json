@@ -3,43 +3,51 @@
     "area": "quifael",
     "anum": 0,
     "name": "Quifael's monster pen",
-    "description": "You are in a big, subterranean room with heavy massive stone walls and no\nwindows whatsoever.  A virtual ladder leads upwards.\n",
+    "description": "You are in a big, subterranean room with heavy massive stone walls and no
+                   |windows whatsoever.  A virtual ladder leads upwards.",
     "sector_type": "inside",
     "room_flags": "indoors private",
     "doors": [{
       "dir": "up",
       "to": 2,
-      "description": "The ladder leads to the laboratory.\n"
+      "description": "The ladder leads to the laboratory."
     }]
   }},
   {"room": {
     "area": "quifael",
     "anum": 1,
     "name": "Quifael's study",
-    "description": "You are in a small, comfortable study room.  The walls are lined with\nbookcases filled with dusty volumes of all sizes.  In the fireplace burns a\ncrackling fire that makes the room warm and cosy, and in front of an oakwood\nreading desk is a large old-fashioned chair.\n",
+    "description": "You are in a small, comfortable study room.  The walls are lined with
+                   |bookcases filled with dusty volumes of all sizes.  In the fireplace burns a
+                   |crackling fire that makes the room warm and cosy, and in front of an oakwood
+                   |reading desk is a large old-fashioned chair.",
     "sector_type": "inside",
     "room_flags": "no_mob indoors private",
     "doors": [{
       "dir": "south",
       "to": 4,
-      "description": "The corridor leads south to the hall.\n"
+      "description": "The corridor leads south to the hall."
     }],
     "extra_description": [
       {
         "keyword": "chair",
-        "description": "It is big and old-fashioned, but quite comfortable nevertheless.\n"
+        "description": "It is big and old-fashioned, but quite comfortable nevertheless."
       },
       {
         "keyword": "desk",
-        "description": "It is very massive and but seems worn from many years of use.\n"
+        "description": "It is very massive and but seems worn from many years of use."
       },
       {
         "keyword": "fireplace",
-        "description": "The fireplace isn't particularly big, but the fire crackles merrily in it.\n"
+        "description": "The fireplace isn't particularly big, but the fire crackles merrily in it."
       },
       {
         "keyword": "bookcase bookcases volume volumes book books",
-        "description": "Most of the books are heavy, leatherbound and covered in a thin layer of dust.\nThere are many titles on necromancy, conjuring and other spheres of Magick,\nbut also some on computer science (although these seem to be VERY dusty\nindeed) and a fair collection of horror literature, ranging from Bram Stoker\nand H. P. Lovecraft to Anne Rice and Stephen King.\n"
+        "description": "Most of the books are heavy, leatherbound and covered in a thin layer of dust.
+                       |There are many titles on necromancy, conjuring and other spheres of Magick,
+                       |but also some on computer science (although these seem to be VERY dusty
+                       |indeed) and a fair collection of horror literature, ranging from Bram Stoker
+                       |and H. P. Lovecraft to Anne Rice and Stephen King."
       }
     ]
   }},
@@ -47,34 +55,43 @@
     "area": "quifael",
     "anum": 2,
     "name": "Quifael's laboratory",
-    "description": "You are in a room filled with shelves containing all sorts of weird equipment.\nThe walls are lined with numerous shelves and a massive working desk is by\nthe north wall.  The air smells of rare chemicals and spices.\nA virtual ladder leads downwards.\nA magical portal is hovering in the air just in front of the east wall.\n",
+    "description": "You are in a room filled with shelves containing all sorts of weird equipment.
+                   |The walls are lined with numerous shelves and a massive working desk is by
+                   |the north wall.  The air smells of rare chemicals and spices.
+                   |A virtual ladder leads downwards.
+                   |A magical portal is hovering in the air just in front of the east wall.",
     "sector_type": "inside",
     "room_flags": "no_mob indoors private",
     "doors": [
       {
         "dir": "east",
         "to": 3,
-        "description": "To the east is the magical portal.\n"
+        "description": "To the east is the magical portal."
       },
       {
         "dir": "west",
         "to": 4,
-        "description": "To the west is the hall.\n"
+        "description": "To the west is the hall."
       },
       {
         "dir": "down",
         "to": 0,
-        "description": "The virtual ladder leads down to the monster pen.\n"
+        "description": "The virtual ladder leads down to the monster pen."
       }
     ],
     "extra_description": [
       {
         "keyword": "desk",
-        "description": "On the desk is a peculiar apparatus of glass bottles and globes connected by\nsmall pipelines.  The green liquid inside the apparatus' globes and pipelines\nis bubbling steadily.\n"
+        "description": "On the desk is a peculiar apparatus of glass bottles and globes connected by
+                       |small pipelines.  The green liquid inside the apparatus' globes and pipelines
+                       |is bubbling steadily."
       },
       {
         "keyword": "shelves",
-        "description": "The shelves contain a mass of bottles, jars and boxes of different shapes and\nsizes, of which some contain powders and liquids in various colours.  Others\ncontain dragon's claws, giant's eyes, rabbit's ears and other body parts of\ndifferent monsters.\n"
+        "description": "The shelves contain a mass of bottles, jars and boxes of different shapes and
+                       |sizes, of which some contain powders and liquids in various colours.  Others
+                       |contain dragon's claws, giant's eyes, rabbit's ears and other body parts of
+                       |different monsters."
       }
     ]
   }},
@@ -82,26 +99,46 @@
     "area": "quifael",
     "anum": 3,
     "name": "Quifael's virtual balcony",
-    "description": "You are on a transparent balcony hanging in mid-air.  You notice a faint blue\nglow surrounding everything, even yourself, making it seem as transparent as\nthe balcony itself.  From here, you have a terrific view of the whole Forest\nof Haon-Dor.\nA transparent bronze plate has been bolted to the balcony railing.\nA magical portal is hovering in the air to the west.\n",
+    "description": "You are on a transparent balcony hanging in mid-air.  You notice a faint blue
+                   |glow surrounding everything, even yourself, making it seem as transparent as
+                   |the balcony itself.  From here, you have a terrific view of the whole Forest
+                   |of Haon-Dor.
+                   |A transparent bronze plate has been bolted to the balcony railing.
+                   |A magical portal is hovering in the air to the west.",
     "sector_type": "inside",
     "room_flags": "indoors private",
     "doors": [{
       "dir": "west",
       "to": 2,
-      "description": "The magical portal is to the west.\n"
+      "description": "The magical portal is to the west."
     }],
     "extra_description": [
       {
         "keyword": "forest Haon-Dor view",
-        "description": "Through the tree crowns, you see fellow adventurers walking around in the\nforest, gathering mushrooms, eating blackberries, committing rabbit genocide\nand generally having a good time.\n"
+        "description": "Through the tree crowns, you see fellow adventurers walking around in the
+                       |forest, gathering mushrooms, eating blackberries, committing rabbit genocide
+                       |and generally having a good time."
       },
       {
         "keyword": "plate",
-        "description": "The transparent bronze plate looks quite strange, but the engraved letters are\nquite easy to read, nevertheless :-\n \n              Quifael's Virtual Balcony\n \n                   Do not lean out!\n \n  Please do not try to attract the attention of any\n      adventurers in the forest, as you are not\n         really in existence at the moment.\n \n        (This could possibly mess up Reality,\n      and we wouldn't want to do that, would we?)\n"
+        "description": "The transparent bronze plate looks quite strange, but the engraved letters are
+                       |quite easy to read, nevertheless :-
+                       | 
+                       |              Quifael's Virtual Balcony
+                       | 
+                       |                   Do not lean out!
+                       | 
+                       |  Please do not try to attract the attention of any
+                       |      adventurers in the forest, as you are not
+                       |         really in existence at the moment.
+                       | 
+                       |        (This could possibly mess up Reality,
+                       |      and we wouldn't want to do that, would we?)"
       },
       {
         "keyword": "balcony railing",
-        "description": "Quite transparent, but visible anyway, because of the blue glow that surrounds\nthe whole place.\n"
+        "description": "Quite transparent, but visible anyway, because of the blue glow that surrounds
+                       |the whole place."
       }
     ]
   }},
@@ -109,7 +146,9 @@
     "area": "quifael",
     "anum": 4,
     "name": "Quifael's hall",
-    "description": "You are in sparsely decorated and quite dusty hall.  Old wooden doors lead\nnorth, east and south and to the west is the front door.\nAn old mirror hangs on the wall.\n",
+    "description": "You are in sparsely decorated and quite dusty hall.  Old wooden doors lead
+                   |north, east and south and to the west is the front door.
+                   |An old mirror hangs on the wall.",
     "sector_type": "inside",
     "room_flags": "indoors private",
     "doors": [
@@ -130,7 +169,6 @@
       },
       {
         "dir": "west",
-        "to": null,
         "keyword": "door",
         "description": "The front door leads to Park Road.",
         "exit_flags": "door pickproof",
@@ -143,14 +181,14 @@
     ],
     "extra_description": [{
       "keyword": "mirror",
-      "description": "You see yourself looking back at you.\n"
+      "description": "You see yourself looking back at you."
     }]
   }},
   {"room": {
     "area": "quifael",
     "anum": 5,
     "name": "Quifael's kitchen",
-    "description": "You are in an old-fashioned kitchen.\n",
+    "description": "You are in an old-fashioned kitchen.",
     "sector_type": "inside",
     "room_flags": "indoors private",
     "doors": [{

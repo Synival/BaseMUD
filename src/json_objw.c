@@ -13,54 +13,43 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 
-#include "db.h"
 #include "lookup.h"
 #include "utils.h"
 
-#include "json_obj.h"
+#include "json_objw.h"
 
-#define JBITSF(array, bits) \
-    JBITS (flag_string ((array), (bits)))
-
-const char *json_not_none (const char *value) {
-    return (value == NULL || !strcmp (value, "none"))
-        ? NULL : value;
-}
-
-const char *json_not_blank (const char *value) {
-    return (value == NULL || value[0] == '\0')
-        ? NULL : value;
-}
-
-JSON_PROP_FUN (obj_room, const ROOM_INDEX_T *);
-JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room) {
+JSON_PROP_FUN_OF (obj_room, json_objw_room, const ROOM_INDEX_T *);
+JSON_T *json_objw_room (const char *name, const ROOM_INDEX_T *room) {
     JSON_T *new, *sub;
     EXTRA_DESCR_T *ed;
     RESET_T *r;
+    char obj_name[256];
     int i;
 
     if (room == NULL)
         return json_new_null (name);
+    snprintf (obj_name, sizeof (obj_name), "room #%d", room->vnum);
     new = json_new_object (name, JSON_OBJ_ROOM);
 
     json_prop_string  (new, "area",        room->area->name);
     json_prop_integer (new, "anum",        room->anum);
     json_prop_string  (new, "name",        JSTR (room->name));
-    json_prop_string  (new, "description", JSTR (room->description));
+    json_prop_string_without_last_newline (new, "description", obj_name,
+        room->description);
     json_prop_string  (new, "sector_type", sector_get_name(room->sector_type));
 
     if (json_not_blank (room->owner))
@@ -80,66 +69,77 @@ JSON_T *json_new_obj_room (const char *name, const ROOM_INDEX_T *room) {
         if (room->exit[i] != NULL)
             break;
     if (i < DIR_MAX) {
+        int j;
         sub = json_prop_array (new, "doors");
-        for (i = 0; i < DIR_MAX; i++)
-            if (room->exit[i] != NULL)
-                json_prop_obj_exit (sub, NULL, room, i, room->exit[i]);
+        for (i = 0; i < DIR_MAX; i++) {
+            for (j = 0; j < DIR_MAX; j++) {
+                if (room->exit[j] && room->exit[j]->orig_door == i)
+                    json_prop_obj_exit (sub, NULL, room, room->exit[j]);
+            }
+        }
     }
 
-    if (room->extra_descr) {
+    if (room->extra_descr_first) {
         sub = json_prop_array (new, "extra_description");
-        for (ed = room->extra_descr; ed != NULL; ed = ed->next)
+        for (ed = room->extra_descr_first; ed != NULL; ed = ed->on_next)
             json_prop_obj_extra_descr (sub, NULL, ed);
     }
 
     if (room->reset_first) {
         sub = json_prop_array (new, "resets");
-        for (r = room->reset_first; r != NULL; r = r->next)
+        for (r = room->reset_first; r != NULL; r = r->room_next)
             json_prop_obj_reset (sub, NULL, r);
     }
 
     return new;
 }
 
-JSON_PROP_FUN (obj_extra_descr, const EXTRA_DESCR_T *);
-JSON_T *json_new_obj_extra_descr (const char *name, const EXTRA_DESCR_T *ed) {
+JSON_PROP_FUN_OF (obj_extra_descr, json_objw_extra_descr, const EXTRA_DESCR_T *);
+JSON_T *json_objw_extra_descr (const char *name, const EXTRA_DESCR_T *ed) {
     JSON_T *new;
+    char obj_name[256];
+
     if (ed == NULL)
         return json_new_null (name);
+    snprintf (obj_name, sizeof (obj_name), "extra_descr");
     new = json_new_object (name, JSON_OBJ_EXTRA_DESCR);
 
-    json_prop_string (new, "keyword",     ed->keyword);
-    json_prop_string (new, "description", ed->description);
+    json_prop_string (new, "keyword",     JSTR (ed->keyword));
+    json_prop_string_without_last_newline (new, "description", obj_name,
+        ed->description);
 
     return new;
 }
 
 JSON_T *json_prop_obj_exit (JSON_T *parent, const char *name,
-    const ROOM_INDEX_T *from, int dir, const EXIT_T *ex)
+    const ROOM_INDEX_T *from, const EXIT_T *ex)
 {
-    JSON_T *new = json_new_obj_exit (name, from, dir, ex);
+    JSON_T *new = json_objw_exit (name, from, ex);
     json_attach_under (new, parent);
     return new;
 }
 
-JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from, int dir,
+JSON_T *json_objw_exit (const char *name, const ROOM_INDEX_T *from,
     const EXIT_T *ex)
 {
     JSON_T *new;
+    char obj_name[256];
+
     if (ex == NULL)
         return json_new_null (name);
+    snprintf (obj_name, sizeof (obj_name), "room #%d, exit #%d",
+        from->vnum, ex->orig_door);
     new = json_new_object (name, JSON_OBJ_EXIT);
 
-    json_prop_string  (new, "dir", door_get_name (dir));
-    if (ex->to_room == NULL || ex->to_room->area != from->area || ex->portal)
-        json_prop_null (new, "to");
-    else
+    json_prop_string (new, "dir", door_get_name (ex->orig_door));
+    if (ex->to_room != NULL && ex->to_room->area == from->area && !ex->portal)
         json_prop_integer (new, "to", ex->to_room->anum);
 
     if (json_not_blank (ex->keyword))
-        json_prop_string (new, "keyword",     JSTR (ex->keyword));
+        json_prop_string (new, "keyword", JSTR (ex->keyword));
     if (json_not_blank (ex->description))
-        json_prop_string (new, "description", JSTR (ex->description));
+        json_prop_string_without_last_newline (new, "description", obj_name,
+            ex->description);
 
     if (ex->rs_flags != 0)
         json_prop_string (new, "exit_flags", JBITSF (exit_flags, ex->rs_flags));
@@ -150,30 +150,19 @@ JSON_T *json_new_obj_exit (const char *name, const ROOM_INDEX_T *from, int dir,
             json_prop_obj_anum (new, "key", from->area, ex->key);
     }
     if (ex->portal && json_not_blank (ex->portal->name))
-        json_prop_string  (new, "portal",     ex->portal->name);
+        json_prop_string (new, "portal", ex->portal->name);
 
     return new;
 }
 
-JSON_PROP_FUN (obj_shop, const SHOP_T *);
-JSON_T *json_new_obj_shop (const char *name, const SHOP_T *shop) {
+JSON_PROP_FUN_OF (obj_shop, json_objw_shop, const SHOP_T *);
+JSON_T *json_objw_shop (const char *name, const SHOP_T *shop) {
     JSON_T *new, *sub;
-#if 0
-    MOB_INDEX_T *mob;
-#endif
     int i;
 
     if (shop == NULL)
         return json_new_null (name);
     new = json_new_object (name, JSON_OBJ_SHOP);
-
-#if 0
-    mob = get_mob_index (shop->keeper);
-    if (mob == NULL)
-        json_prop_string (new, "keeper", "unknown");
-    else
-        json_prop_obj_anum (new, "keeper", shop->area, mob->vnum);
-#endif
 
     sub = json_prop_array (new, "trades");
     for (i = 0; i < MAX_TRADE; i++) {
@@ -182,7 +171,7 @@ JSON_T *json_new_obj_shop (const char *name, const SHOP_T *shop) {
         if (name == NULL)
             continue;
         if (strcmp (name, "unknown") == 0) {
-            fprintf (stderr, "json_new_obj_stop(): Unknown item type '%d'.\n",
+            bugf ("json_objw_stop(): Unknown item type '%d'.",
                 shop->buy_type[i]);
             continue;
         }
@@ -197,39 +186,46 @@ JSON_T *json_new_obj_shop (const char *name, const SHOP_T *shop) {
     return new;
 }
 
-JSON_PROP_FUN (obj_mobile, const MOB_INDEX_T *);
-JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
+JSON_PROP_FUN_OF (obj_mobile, json_objw_mobile, const MOB_INDEX_T *);
+JSON_T *json_objw_mobile (const char *name, const MOB_INDEX_T *mob) {
     JSON_T *new, *sub;
     const char *spec_fun;
+    char obj_name[256];
     int i;
 
     if (mob == NULL)
         return json_new_null (name);
+    snprintf (obj_name, sizeof (obj_name), "mob #%d", mob->vnum);
     new = json_new_object (name, JSON_OBJ_MOBILE);
 
     json_prop_string  (new, "area",        mob->area->name);
     json_prop_integer (new, "anum",        mob->anum);
     json_prop_string  (new, "name",        JSTR (mob->name));
     json_prop_string  (new, "short_descr", JSTR (mob->short_descr));
-    json_prop_string  (new, "long_descr",  JSTR (mob->long_descr));
-    json_prop_string  (new, "description", JSTR (mob->description));
+    json_prop_string_without_last_newline (new, "long_descr", obj_name,
+        mob->long_descr);
+    json_prop_string_without_last_newline (new, "description", obj_name,
+        mob->description);
     json_prop_string  (new, "race",        JSTR (race_get_name (mob->race)));
 
     if (mob->material != MATERIAL_GENERIC)
         json_prop_string  (new, "material", JSTR (material_get_name (mob->material)));
 
     json_prop_integer (new, "alignment",   mob->alignment);
-    json_prop_integer (new, "group",       mob->group);
+    if (mob->group != 0)
+        json_prop_integer (new, "group", mob->group);
     json_prop_integer (new, "level",       mob->level);
     json_prop_integer (new, "hitroll",     mob->hitroll);
     json_prop_dice    (new, "hit_dice",    &(mob->hit));
     json_prop_dice    (new, "mana_dice",   &(mob->mana));
     json_prop_dice    (new, "damage_dice", &(mob->damage));
-    json_prop_string  (new, "dam_type",    JSTR (attack_get_name (mob->dam_type)));
+
+    if (mob->attack_type > 0)
+        json_prop_string (new, "attack_type", JSTR (attack_get_name (mob->attack_type)));
 
     sub = json_prop_object (new, "ac", JSON_OBJ_ANY);
     for (i = 0; i < AC_MAX; i++)
-        json_prop_integer (sub, ac_types[i].name, mob->ac[ac_types[i].bit]);
+        json_prop_integer (sub, ac_types[i].name, mob->ac[ac_types[i].type]);
 
     if (mob->start_pos != POS_STANDING)
         json_prop_string (new, "start_pos",
@@ -241,12 +237,13 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
         json_prop_string  (new, "sex",
             JSTR (sex_get_name (mob->sex)));
 
-    json_prop_integer (new, "wealth", mob->wealth);
-    json_prop_string  (new, "size",   JSTR (size_get_name (mob->size)));
-    json_prop_obj_shop(new, "shop",   mob->pShop);
+    json_prop_integer  (new, "wealth", mob->wealth);
+    json_prop_string   (new, "size",   JSTR (size_get_name (mob->size)));
+    if (mob->shop)
+        json_prop_obj_shop (new, "shop", mob->shop);
 
-    if (mob->mob_plus != 0)
-        json_prop_string (new, "mob_flags",   JBITSF (mob_flags, mob->mob_plus & ~MOB_IS_NPC));
+    if (EXT_IS_NONZERO (mob->ext_mob_plus))
+        json_prop_string (new, "mob_flags",   JBITSXF (mob_flags, EXT_WITHOUT (mob->ext_mob_plus, MOB_IS_NPC)));
     if (mob->affected_by_plus != 0)
         json_prop_string (new, "affected_by", JBITSF (affect_flags, mob->affected_by_plus));
     if (mob->off_flags_plus != 0)
@@ -262,8 +259,8 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
     if (mob->parts_plus != 0)
         json_prop_string (new, "parts",       JBITSF (part_flags, mob->parts_plus));
 
-    if (mob->mob_minus != 0)
-        json_prop_string (new, "mob_flags_minus",   JBITSF (mob_flags, mob->mob_minus));
+    if (EXT_IS_NONZERO (mob->ext_mob_minus))
+        json_prop_string (new, "mob_flags_minus",   JBITSXF (mob_flags, mob->ext_mob_minus));
     if (mob->affected_by_minus != 0)
         json_prop_string (new, "affected_by_minus", JBITSF (affect_flags, mob->affected_by_minus));
     if (mob->off_flags_minus != 0)
@@ -279,17 +276,18 @@ JSON_T *json_new_obj_mobile (const char *name, const MOB_INDEX_T *mob) {
     if (mob->parts_minus != 0)
         json_prop_string (new, "parts_minus",       JBITSF (part_flags, mob->parts_minus));
 
-    if (mob->mprogs)
-        printf ("*** Ignoring '%s' (#%d) mprogs ***\n", mob->short_descr, mob->vnum);
+    if (mob->mprog_first)
+        bugf ("*** Ignoring '%s' (#%d) mprogs ***", mob->short_descr, mob->vnum);
 
     spec_fun = spec_function_name (mob->spec_fun);
-    json_prop_string (new, "spec_fun", JSTR (spec_fun));
+    if (spec_fun != NULL && spec_fun[0] != '\0')
+        json_prop_string (new, "spec_fun", JSTR (spec_fun));
 
     return new;
 }
 
-JSON_PROP_FUN (obj_object, const OBJ_INDEX_T *);
-JSON_T *json_new_obj_object (const char *name, const OBJ_INDEX_T *obj) {
+JSON_PROP_FUN_OF (obj_object, json_objw_object, const OBJ_INDEX_T *);
+JSON_T *json_objw_object (const char *name, const OBJ_INDEX_T *obj) {
     JSON_T *new, *sub;
     const OBJ_MAP_T *map;
     EXTRA_DESCR_T *ed;
@@ -311,7 +309,7 @@ JSON_T *json_new_obj_object (const char *name, const OBJ_INDEX_T *obj) {
     sub = json_prop_object (new, "values", JSON_OBJ_ANY);
     map = obj_map_get (obj->item_type);
     if (map == NULL) {
-        bugf ("json_new_obj_object: No map for object '%s' (%d).",
+        bugf ("json_objw_object: No map for object '%s' (%d).",
             item_get_name (obj->item_type), obj->item_type);
     }
     else {
@@ -366,7 +364,7 @@ JSON_T *json_new_obj_object (const char *name, const OBJ_INDEX_T *obj) {
                 }
 
                 default:
-                    bugf ("json_new_obj_object: Cannot convert map type '%d' "
+                    bugf ("json_objw_object: Cannot convert map type '%d' "
                           "to JSON value", value->type);
                     continue;
             }
@@ -376,33 +374,34 @@ JSON_T *json_new_obj_object (const char *name, const OBJ_INDEX_T *obj) {
         }
     }
 
-    json_prop_integer (new, "level",     obj->level);
-    json_prop_integer (new, "weight",    obj->weight);
-    json_prop_integer (new, "cost",      obj->cost);
-    json_prop_integer (new, "condition", obj->condition);
+    json_prop_integer (new, "level",  obj->level);
+    json_prop_integer (new, "weight", obj->weight);
+    json_prop_integer (new, "cost",   obj->cost);
+    if (obj->condition != 100)
+        json_prop_integer (new, "condition", obj->condition);
 
     if (obj->extra_flags != 0)
         json_prop_string  (new, "extra_flags", JBITS (extra_bit_name (obj->extra_flags)));
     if (obj->wear_flags != 0)
         json_prop_string  (new, "wear_flags",  JBITS (wear_flag_name (obj->wear_flags)));
 
-    if (obj->extra_descr) {
+    if (obj->extra_descr_first) {
         sub = json_prop_array (new, "extra_description");
-        for (ed = obj->extra_descr; ed != NULL; ed = ed->next)
+        for (ed = obj->extra_descr_first; ed; ed = ed->on_next)
             json_prop_obj_extra_descr (sub, NULL, ed);
     }
 
-    if (obj->affected) {
+    if (obj->affect_first) {
         sub = json_prop_array (new, "affects");
-        for (aff = obj->affected; aff != NULL; aff = aff->next)
+        for (aff = obj->affect_first; aff; aff = aff->on_next)
             json_prop_obj_affect (sub, NULL, aff);
     }
 
     return new;
 }
 
-JSON_PROP_FUN (obj_affect, const AFFECT_T *);
-JSON_T *json_new_obj_affect (const char *name, const AFFECT_T *aff) {
+JSON_PROP_FUN_OF (obj_affect, json_objw_affect, const AFFECT_T *);
+JSON_T *json_objw_affect (const char *name, const AFFECT_T *aff) {
     JSON_T *new;
     const char *bv;
     const AFFECT_BIT_T *bits;
@@ -411,34 +410,41 @@ JSON_T *json_new_obj_affect (const char *name, const AFFECT_T *aff) {
         return json_new_null (name);
     new = json_new_object (name, JSON_OBJECT);
 
-    json_prop_string  (new, "apply",    flag_string (affect_apply_types, aff->apply));
     json_prop_integer (new, "level",    aff->level);
-    json_prop_integer (new, "modifier", aff->modifier);
-    json_prop_string  (new, "bit_type", affect_bit_get_name (aff->bit_type));
 
-    bv = NULL;
-    bits = affect_bit_get (aff->bit_type);
-    if (bits == NULL)
-        bugf ("json_new_obj_affect: Unhandled bit_type '%d'", aff->bit_type);
-    else {
-        bv = JBITSF (bits->flags, aff->bits);
-        if (bv != NULL && bv[0] == '\0')
-            bv = NULL;
+    if (aff->apply != TYPE_NONE && aff->apply != APPLY_NONE) {
+        json_prop_string  (new, "apply",    type_get_name (affect_apply_types,
+            aff->apply));
+        json_prop_integer (new, "modifier", aff->modifier);
     }
 
-    json_prop_string (new, "bits", bv);
+    if (aff->bits != FLAG_NONE) {
+        json_prop_string  (new, "bit_type", affect_bit_get_name (aff->bit_type));
+
+        bv = NULL;
+        bits = affect_bit_get (aff->bit_type);
+        if (bits == NULL)
+            bugf ("json_objw_affect: Unhandled bit_type '%d'", aff->bit_type);
+        else {
+            bv = JBITSF (bits->flags, aff->bits);
+            if (bv != NULL && bv[0] == '\0')
+                bv = NULL;
+        }
+        json_prop_string (new, "bits", bv);
+    }
+
     return new;
 }
 
 JSON_T *json_prop_obj_anum (JSON_T *parent, const char *name,
     AREA_T *area_from, int vnum)
 {
-    JSON_T *new = json_new_obj_anum (name, area_from, vnum);
+    JSON_T *new = json_objw_anum (name, area_from, vnum);
     json_attach_under (new, parent);
     return new;
 }
 
-JSON_T *json_new_obj_anum (const char *name, AREA_T *area_from, int vnum) {
+JSON_T *json_objw_anum (const char *name, AREA_T *area_from, int vnum) {
     if (vnum >= area_from->min_vnum && vnum <= area_from->max_vnum) {
         return json_new_integer (name, vnum - area_from->min_vnum);
     }
@@ -447,8 +453,7 @@ JSON_T *json_new_obj_anum (const char *name, AREA_T *area_from, int vnum) {
         JSON_T *new;
 
         if ((area = area_get_by_inner_vnum (vnum)) == NULL) {
-            fprintf (stderr, "json_new_obj_anum(): No area for "
-                "vnum '%d'\n", vnum);
+            bugf ("json_objw_anum(): No area for vnum '%d'", vnum);
             return json_new_null (name);
         }
 
@@ -459,8 +464,8 @@ JSON_T *json_new_obj_anum (const char *name, AREA_T *area_from, int vnum) {
     }
 }
 
-JSON_PROP_FUN (obj_reset, const RESET_T *);
-JSON_T *json_new_obj_reset (const char *name, const RESET_T *reset) {
+JSON_PROP_FUN_OF (obj_reset, json_objw_reset, const RESET_T *);
+JSON_T *json_objw_reset (const char *name, const RESET_T *reset) {
     JSON_T *new, *sub;
     const RESET_VALUE_T *v;
     char *command, letter_buf[2];
@@ -507,8 +512,8 @@ JSON_T *json_new_obj_reset (const char *name, const RESET_T *reset) {
 
         case 'E':
             json_prop_obj_anum (sub, "obj", reset->area, v->equip.obj_vnum);
-            json_prop_string   (sub, "wear_loc", flag_string (wear_loc_types,
-                v->equip.wear_loc));
+            json_prop_string   (sub, "wear_loc",
+                wear_loc_get_name (v->equip.wear_loc));
             json_prop_integer  (sub, "global_limit", v->equip.global_limit);
             break;
 
@@ -524,7 +529,7 @@ JSON_T *json_new_obj_reset (const char *name, const RESET_T *reset) {
             break;
 
         default:
-            bugf ("json_new_obj_reset: Unhandled command '%c'", reset->command);
+            bugf ("json_objw_reset: Unhandled command '%c'", reset->command);
             json_prop_integer (sub, "value0", reset->v.value[0]);
             json_prop_integer (sub, "value1", reset->v.value[1]);
             json_prop_integer (sub, "value2", reset->v.value[2]);
@@ -535,8 +540,8 @@ JSON_T *json_new_obj_reset (const char *name, const RESET_T *reset) {
     return new;
 }
 
-JSON_PROP_FUN (obj_area, const AREA_T *);
-JSON_T *json_new_obj_area (const char *name, const AREA_T *area) {
+JSON_PROP_FUN_OF (obj_area, json_objw_area, const AREA_T *);
+JSON_T *json_objw_area (const char *name, const AREA_T *area) {
     JSON_T *new;
     if (area == NULL)
         return json_new_null (name);
@@ -559,8 +564,8 @@ JSON_T *json_new_obj_area (const char *name, const AREA_T *area) {
     return new;
 }
 
-JSON_PROP_FUN (obj_social, const SOCIAL_T *);
-JSON_T *json_new_obj_social (const char *name, const SOCIAL_T *soc) {
+JSON_PROP_FUN_OF (obj_social, json_objw_social, const SOCIAL_T *);
+JSON_T *json_objw_social (const char *name, const SOCIAL_T *soc) {
     JSON_T *new;
     if (soc == NULL)
         return json_new_null (name);
@@ -583,60 +588,87 @@ JSON_T *json_new_obj_social (const char *name, const SOCIAL_T *soc) {
         json_prop_string (new, "char_auto",      soc->char_auto);
     if (soc->others_auto)
         json_prop_string (new, "others_auto",    soc->others_auto);
+    if (soc->min_pos != POS_RESTING)
+        json_prop_string (new, "min_pos",
+            JSTR (position_get_name (soc->min_pos)));
 
     return new;
 }
 
-JSON_PROP_FUN (obj_table, const TABLE_T *);
-JSON_T *json_new_obj_table (const char *name, const TABLE_T *table) {
+JSON_PROP_FUN_OF (obj_table, json_objw_table, const TABLE_T *);
+JSON_T *json_objw_table (const char *name, const TABLE_T *table) {
     JSON_T *new, *sub;
     char *type_str;
 
     if (table == NULL || table->json_write_func == NULL)
         return json_new_null (name);
-    new = json_new_object (name, JSON_OBJ_TABLE);
 
     type_str = NULL;
-    if (table->flags & TABLE_FLAG_TYPE)
-        type_str = (table->flags & TABLE_BITS) ? "flags" : "types";
-    else
-        type_str = "table";
+    switch (table->type) {
+        case TABLE_FLAGS:     type_str = "flags";     break;
+        case TABLE_EXT_FLAGS: type_str = "ext_flags"; break;
+        case TABLE_TYPES:     type_str = "types";     break;
+        case TABLE_UNIQUE:    type_str = "table";     break;
+        default:
+            bugf ("json_objw_table: Error: table '%s' is of unhandled "
+                "type %d", table->name, table->type);
+            return NULL;
+    }
 
-    json_prop_string (new, "name",        table->name);
-    json_prop_string (new, "description", table->description);
-    json_prop_string (new, "type",        type_str);
-
-    sub = json_prop_array (new, "values");
+    if (table->obj_name == NULL) {
+        new = json_new_object (name, JSON_OBJ_TABLE);
+        json_prop_string (new, "name",        table->name);
+        json_prop_string (new, "description", table->description);
+        sub = json_prop_array (new, "values");
+    }
+    else {
+        new = json_new_array (name, NULL);
+        sub = NULL;
+    }
 
     {
         const void *obj = table->table;
-        const FLAG_T *flag;
         JSON_T *json;
-        flag_t expected = (table->flags & TABLE_BITS) ? 1 : 0;
-        bool had_none = FALSE;
+        flag_t expected_flag = 0x01;
+        type_t expected_type = -999;
 
         do {
-            if ((json = table->json_write_func (obj)) == NULL)
+            if ((json = table->json_write_func (obj, table->obj_name)) == NULL)
                 break;
-            if (table->flags & TABLE_FLAG_TYPE) {
-                flag = obj;
-                if (had_none) {
-                    bugf ("json_new_obj_table: Warning: %s table '%s' row "
-                        "'%s' should not be after -1 bit", type_str,
-                        table->name, flag->name);
-                }
-                else if (flag->bit == -1 && !IS_SET(table->flags, TABLE_BITS))
-                    had_none = TRUE;
-                else if (flag->bit != expected) {
-                    bugf ("json_new_obj_table: Warning: %s table '%s' row "
-                        "'%s' should be %ld, but it's %ld", type_str,
-                        table->name, flag->name, expected, flag->bit);
-                }
+            if (table->obj_name)
+                sub = json_prop_object (new, NULL, JSON_OBJ_ANY);
 
-                if (table->flags & TABLE_BITS)
-                    expected <<= 1;
-                else
-                    ++expected;
+            if (table->type == TABLE_FLAGS) {
+                const FLAG_T *flag = obj;
+                if (flag->bit != expected_flag) {
+                    bugf ("json_objw_table: Warning: %s table '%s' row "
+                        "'%s' should be %ld, but it's %ld", type_str,
+                        table->name, flag->name, expected_flag, flag->bit);
+                }
+                expected_flag <<= 1;
+            }
+            else if (table->type == TABLE_EXT_FLAGS) {
+                const EXT_FLAG_DEF_T *ext_flag = obj;
+                if (expected_type == -999)
+                    expected_type = ext_flag->bit;
+                else if (ext_flag->bit != expected_type) {
+                    bugf ("json_objw_table: Warning: %s table '%s' row "
+                        "'%s' should be %ld, but it's %ld", type_str,
+                        table->name, ext_flag->name, expected_type,
+                        ext_flag->bit);
+                }
+                ++expected_type;
+            }
+            else if (table->type == TABLE_TYPES) {
+                const TYPE_T *type = obj;
+                if (expected_type == -999)
+                    expected_type = type->type;
+                else if (type->type != expected_type) {
+                    bugf ("json_objw_table: Warning: %s table '%s' row "
+                        "'%s' should be %ld, but it's %ld", type_str,
+                        table->name, type->name, expected_type, type->type);
+                }
+                ++expected_type;
             }
 
             json_attach_under (json, sub);
@@ -646,8 +678,8 @@ JSON_T *json_new_obj_table (const char *name, const TABLE_T *table) {
     return new;
 }
 
-JSON_PROP_FUN (obj_portal_exit, const PORTAL_EXIT_T *);
-JSON_T *json_new_obj_portal_exit (const char *name, const PORTAL_EXIT_T *pex) {
+JSON_PROP_FUN_OF (obj_portal_exit, json_objw_portal_exit, const PORTAL_EXIT_T *);
+JSON_T *json_objw_portal_exit (const char *name, const PORTAL_EXIT_T *pex) {
     JSON_T *new;
     if (pex == NULL)
         return json_new_null (name);
@@ -656,8 +688,8 @@ JSON_T *json_new_obj_portal_exit (const char *name, const PORTAL_EXIT_T *pex) {
     return new;
 }
 
-JSON_PROP_FUN (obj_portal, const PORTAL_T *);
-JSON_T *json_new_obj_portal (const char *name, const PORTAL_T *portal) {
+JSON_PROP_FUN_OF (obj_portal, json_objw_portal, const PORTAL_T *);
+JSON_T *json_objw_portal (const char *name, const PORTAL_T *portal) {
     JSON_T *new;
     if (portal == NULL)
         return json_new_null (name);
@@ -670,8 +702,8 @@ JSON_T *json_new_obj_portal (const char *name, const PORTAL_T *portal) {
     return new;
 }
 
-JSON_PROP_FUN (obj_help_area, const HELP_AREA_T *);
-JSON_T *json_new_obj_help_area (const char *name, const HELP_AREA_T *had) {
+JSON_PROP_FUN_OF (obj_help_area, json_objw_help_area, const HELP_AREA_T *);
+JSON_T *json_objw_help_area (const char *name, const HELP_AREA_T *had) {
     JSON_T *new, *sub;
     HELP_T *help;
     if (had == NULL)
@@ -687,22 +719,32 @@ JSON_T *json_new_obj_help_area (const char *name, const HELP_AREA_T *had) {
     json_prop_string (new, "filename", JSTR (had->filename));
 
     sub = json_prop_array (new, "pages");
-    for (help = had->first; help; help = help->next_area)
+    for (help = had->help_first; help; help = help->had_next)
         json_prop_obj_help (sub, NULL, help);
 
     return new;
 }
 
-JSON_PROP_FUN (obj_help, const HELP_T *);
-JSON_T *json_new_obj_help (const char *name, const HELP_T *help) {
+JSON_PROP_FUN_OF (obj_help, json_objw_help, const HELP_T *);
+JSON_T *json_objw_help (const char *name, const HELP_T *help) {
     JSON_T *new;
+
     if (help == NULL)
         return json_new_null (name);
     new = json_new_object (name, JSON_OBJ_HELP);
 
     json_prop_string  (new, "keyword", JSTR (help->keyword));
-    json_prop_integer (new, "level",   help->level);
     json_prop_string  (new, "text",    JSTR (help->text));
+
+    if (help->level >= 0) {
+        if (help->level != 0)
+            json_prop_integer (new, "level", help->level);
+    }
+    else {
+        if (help->level != -1)
+            json_prop_integer (new, "level", -1 - help->level);
+        json_prop_boolean (new, "hide_keywords", TRUE);
+    }
 
     return new;
 }

@@ -1,0 +1,21 @@
+{"types": {
+  "name": "board_def_types",
+  "description": "Types of boards.",
+  "values": [
+    {
+      "name": "normal",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "include",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "exclude",
+      "value": 2,
+      "settable": true
+    }
+  ]
+}}

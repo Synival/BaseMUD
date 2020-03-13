@@ -16,13 +16,13 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #include <sys/stat.h>
@@ -65,11 +65,11 @@ static void json_print_indent (FILE *fp) {
 }
 
 static void json_next_line (FILE *fp) {
-    fwrite ("\n", sizeof(char), 1, fp);
+    fputc ('\n', fp);
     json_indented = 0;
 }
 
-const char *json_escaped_string (const char *value) {
+const char *json_escaped_string (const char *value, int newline_pos) {
     static char buf[MAX_STRING_LENGTH * 4];
     char *pos = buf;
 
@@ -78,13 +78,29 @@ const char *json_escaped_string (const char *value) {
         switch (*value) {
             case '\b': strcat (pos, "\\b");  pos += 2; break;
             case '\f': strcat (pos, "\\f");  pos += 2; break;
-            case '\n': strcat (pos, "\\n");  pos += 2; break;
             case '\t': strcat (pos, "\\t");  pos += 2; break;
             case '"':  strcat (pos, "\\\""); pos += 2; break;
             case '\\': strcat (pos, "\\\\"); pos += 2; break;
 
-            case '\r': break;
-            default:   *(pos++) = *value; *pos = '\0'; break;
+            case '\n': {
+#ifdef BASEMUD_WRITE_EXTENDED_JSON
+                const char *next_ch = value + 1;
+                while (*next_ch == '\r' && *next_ch != '\0')
+                    next_ch++;
+                pos += sprintf (pos, "\n%*c", newline_pos + 1, '|');
+#else
+                strcat (pos, "\\n");
+                pos += 2;
+#endif
+                break;
+            }
+
+            case '\r':
+                break;
+            default:
+                *(pos++) = *value;
+                *pos = '\0';
+                break;
         }
         ++value;
     }
@@ -92,16 +108,27 @@ const char *json_escaped_string (const char *value) {
 }
 
 void json_print_real (JSON_T *json, FILE *fp, int new_line) {
+    int newline_pos;
+
     json_print_indent (fp);
-    if (json_nest_level > 0 && json->parent->type != JSON_ARRAY)
-        fprintf (fp, "\"%s\": ", json->name
-            ? json_escaped_string (json->name)
-            : "NULL");
+    newline_pos = INDENT_SIZE * json_indent_level;
+
+    if (json_nest_level > 0 && json->parent->type != JSON_ARRAY) {
+        const char *json_name = json->name
+            ? json_escaped_string (json->name, newline_pos) : "NULL";
+        fputc ('"', fp);
+        fputs (json_name, fp);
+        fputs ("\": ", fp);
+        newline_pos += 4 + strlen (json_name);
+    }
+
     switch (json->type) {
         case JSON_DICE:
         case JSON_STRING: {
             char *value = (char *) json->value;
-            fprintf (fp, "\"%s\"", json_escaped_string (value));
+            fputc ('"', fp);
+            fputs (json_escaped_string (value, newline_pos), fp);
+            fputc ('"', fp);
             break;
         }
         case JSON_NUMBER: {
@@ -116,11 +143,11 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
         }
         case JSON_BOOLEAN: {
             bool *value = (bool *) json->value;
-            fprintf (fp, "%s", *value ? "true" : "false");
+            fputs (*value ? "true" : "false", fp);
             break;
         }
         case JSON_NULL:
-            fprintf (fp, "null");
+            fputs ("null", fp);
             break;
 
         case JSON_OBJECT:
@@ -129,17 +156,19 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
             char pleft  = (json->type == JSON_OBJECT) ? '{' : '[';
             char pright = (json->type == JSON_OBJECT) ? '}' : ']';
 
-            if (json->first_child == NULL)
-                fprintf (fp, "%c%c", pleft, pright);
+            if (json->first_child == NULL) {
+                fputc (pleft, fp);
+                fputc (pright, fp);
+            }
             else if (json->child_count == 1) {
-                fprintf (fp, "%c", pleft);
+                fputc (pleft, fp);
                 json_nest_level++;
                 json_print_real (json->first_child, fp, 0);
                 json_nest_level--;
-                fprintf (fp, "%c", pright);
+                fputc (pright, fp);
             }
             else {
-                fprintf (fp, "%c", pleft);
+                fputc (pleft, fp);
                 json_next_line (fp);
                 json_indent_level++;
                 json_nest_level++;
@@ -148,18 +177,18 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
                 json_nest_level--;
                 json_indent_level--;
                 json_print_indent (fp);
-                fprintf (fp, "%c", pright);
+                fputc (pright, fp);
             }
             break;
         }
 
         default:
-            bugf ("json_print: Unhandled type %d", json->type);
-            fprintf (fp, "BAD-TYPE");
+            bugf ("json_print(): Unhandled type %d", json->type);
+            fputs ("BAD-TYPE", fp);
             break;
     }
     if (json->next)
-        fprintf (fp, ",");
+        fputc (',', fp);
 
     #define IS_SIMPLE_TYPE(x) \
         ((x)->type == JSON_NULL || (x)->type == JSON_NUMBER || \
@@ -169,7 +198,7 @@ void json_print_real (JSON_T *json, FILE *fp, int new_line) {
     if (new_line) {
         if (json->parent && json->parent->type == JSON_ARRAY && json->next &&
               IS_SIMPLE_TYPE(json) && IS_SIMPLE_TYPE(json->next))
-            fwrite (" ", sizeof(char), 1, fp);
+            fputc (' ', fp);
         else
             json_next_line (fp);
     }
@@ -181,10 +210,10 @@ void json_print (JSON_T *json, FILE *fp) {
     json_print_real (json, fp, 1);
 }
 
-void json_write_to_file (JSON_T *json, const char *filename) {
+void json_fwrite (JSON_T *json, const char *filename) {
     FILE *fp = fopen (filename, "w");
     BAIL_IF_BUGF (fp == NULL,
-        "json_write_to_file: Couldn't open '%s' for writing", filename);
+        "json_fwrite(): Couldn't open '%s' for writing", filename);
     json_print (json, fp);
     fclose (fp);
 }

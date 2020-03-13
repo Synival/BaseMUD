@@ -1,0 +1,256 @@
+[
+  {"skill_group": {
+    "name": "rom basics",
+    "classes": {
+      "mage": {"cost": 0},
+      "cleric": {"cost": 0},
+      "thief": {"cost": 0},
+      "warrior": {"cost": 0}
+    },
+    "skills": [
+      "scrolls", "staves", "wands", "recall"
+    ]
+  }},
+  {"skill_group": {
+    "name": "mage basics",
+    "classes": {"mage": {"cost": 0}},
+    "skills": ["dagger"]
+  }},
+  {"skill_group": {
+    "name": "cleric basics",
+    "classes": {"cleric": {"cost": 0}},
+    "skills": ["mace"]
+  }},
+  {"skill_group": {
+    "name": "thief basics",
+    "classes": {"thief": {"cost": 0}},
+    "skills": [
+      "dagger", "steal"
+    ]
+  }},
+  {"skill_group": {
+    "name": "warrior basics",
+    "classes": {"warrior": {"cost": 0}},
+    "skills": [
+      "sword", "second attack"
+    ]
+  }},
+  {"skill_group": {
+    "name": "mage default",
+    "classes": {"mage": {"cost": 40}},
+    "skills": [
+      "lore", "beguiling", "combat", "detection", "enhancement", "illusion", "maladictions", "protective", "transportation", "weather"
+    ]
+  }},
+  {"skill_group": {
+    "name": "cleric default",
+    "classes": {"cleric": {"cost": 40}},
+    "skills": [
+      "flail", "attack", "creation", "curative", "benedictions", "detection", "healing", "maladictions", "protective", "shield block", "transportation", "weather"
+    ]
+  }},
+  {"skill_group": {
+    "name": "thief default",
+    "classes": {"thief": {"cost": 40}},
+    "skills": [
+      "mace", "sword", "backstab", "disarm", "dodge", "second attack", "trip", "hide", "peek", "pick lock", "sneak"
+    ]
+  }},
+  {"skill_group": {
+    "name": "warrior default",
+    "classes": {"warrior": {"cost": 40}},
+    "skills": [
+      "weaponsmaster", "shield block", "bash", "disarm", "enhanced damage", "parry", "rescue", "third attack"
+    ]
+  }},
+  {"skill_group": {
+    "name": "weaponsmaster",
+    "classes": {
+      "mage": {"cost": 40},
+      "cleric": {"cost": 40},
+      "thief": {"cost": 40},
+      "warrior": {"cost": 20}
+    },
+    "skills": [
+      "axe", "dagger", "flail", "mace", "polearm", "spear", "sword", "whip"
+    ]
+  }},
+  {"skill_group": {
+    "name": "attack",
+    "classes": {
+      "cleric": {"cost": 5},
+      "warrior": {"cost": 8}
+    },
+    "skills": [
+      "demonfire", "dispel evil", "dispel good", "earthquake", "flamestrike", "heat metal", "ray of truth"
+    ]
+  }},
+  {"skill_group": {
+    "name": "beguiling",
+    "classes": {
+      "mage": {"cost": 4},
+      "thief": {"cost": 6}
+    },
+    "skills": [
+      "calm", "charm person", "sleep"
+    ]
+  }},
+  {"skill_group": {
+    "name": "benedictions",
+    "classes": {
+      "cleric": {"cost": 4},
+      "warrior": {"cost": 8}
+    },
+    "skills": [
+      "bless", "calm", "frenzy", "holy word", "remove curse"
+    ]
+  }},
+  {"skill_group": {
+    "name": "combat",
+    "classes": {
+      "mage": {"cost": 6},
+      "thief": {"cost": 10},
+      "warrior": {"cost": 9}
+    },
+    "skills": [
+      "acid blast", "burning hands", "chain lightning", "chill touch", "colour spray", "fireball", "lightning bolt", "magic missile", "shocking grasp"
+    ]
+  }},
+  {"skill_group": {
+    "name": "creation",
+    "classes": {
+      "mage": {"cost": 4},
+      "cleric": {"cost": 4},
+      "thief": {"cost": 8},
+      "warrior": {"cost": 8}
+    },
+    "skills": [
+      "continual light", "create food", "create spring", "create water", "create rose", "floating disc"
+    ]
+  }},
+  {"skill_group": {
+    "name": "curative",
+    "classes": {
+      "cleric": {"cost": 4},
+      "warrior": {"cost": 8}
+    },
+    "skills": [
+      "cure blindness", "cure disease", "cure poison"
+    ]
+  }},
+  {"skill_group": {
+    "name": "detection",
+    "classes": {
+      "mage": {"cost": 4},
+      "cleric": {"cost": 3},
+      "thief": {"cost": 6}
+    },
+    "skills": [
+      "detect evil", "detect good", "detect hidden", "detect invis", "detect magic", "detect poison", "farsight", "identify", "know alignment", "locate object"
+    ]
+  }},
+  {"skill_group": {
+    "name": "draconian",
+    "classes": {"mage": {"cost": 8}},
+    "skills": [
+      "acid breath", "fire breath", "frost breath", "gas breath",
+      "lightning breath"
+    ]
+  }},
+  {"skill_group": {
+    "name": "enchantment",
+    "classes": {"mage": {"cost": 6}},
+    "skills": [
+      "enchant armor", "enchant weapon", "fireproof", "recharge"
+    ]
+  }},
+  {"skill_group": {
+    "name": "enhancement",
+    "classes": {
+      "mage": {"cost": 5},
+      "thief": {"cost": 9},
+      "warrior": {"cost": 9}
+    },
+    "skills": [
+      "giant strength", "haste", "infravision", "refresh"
+    ]
+  }},
+  {"skill_group": {
+    "name": "harmful",
+    "classes": {
+      "cleric": {"cost": 3},
+      "warrior": {"cost": 6}
+    },
+    "skills": [
+      "cause critical", "cause light", "cause serious", "harm"
+    ]
+  }},
+  {"skill_group": {
+    "name": "healing",
+    "classes": {
+      "cleric": {"cost": 3},
+      "warrior": {"cost": 6}
+    },
+    "skills": [
+      "cure critical", "cure light", "cure serious", "heal", "mass healing", "refresh"
+    ]
+  }},
+  {"skill_group": {
+    "name": "illusion",
+    "classes": {
+      "mage": {"cost": 4},
+      "thief": {"cost": 7}
+    },
+    "skills": [
+      "invisibility", "mass invis", "ventriloquate"
+    ]
+  }},
+  {"skill_group": {
+    "name": "maladictions",
+    "classes": {
+      "mage": {"cost": 5},
+      "cleric": {"cost": 5},
+      "thief": {"cost": 9},
+      "warrior": {"cost": 9}
+    },
+    "skills": [
+      "blindness", "change sex", "curse", "energy drain", "plague", "poison", "slow", "weaken"
+    ]
+  }},
+  {"skill_group": {
+    "name": "protective",
+    "classes": {
+      "mage": {"cost": 4},
+      "cleric": {"cost": 4},
+      "thief": {"cost": 7},
+      "warrior": {"cost": 8}
+    },
+    "skills": [
+      "armor", "cancellation", "dispel magic", "fireproof", "protection evil", "protection good", "sanctuary", "shield", "stone skin"
+    ]
+  }},
+  {"skill_group": {
+    "name": "transportation",
+    "classes": {
+      "mage": {"cost": 4},
+      "cleric": {"cost": 4},
+      "thief": {"cost": 8},
+      "warrior": {"cost": 9}
+    },
+    "skills": [
+      "fly", "gate", "nexus", "pass door", "portal", "summon", "teleport", "word of recall"
+    ]
+  }},
+  {"skill_group": {
+    "name": "weather",
+    "classes": {
+      "mage": {"cost": 4},
+      "cleric": {"cost": 4},
+      "thief": {"cost": 8},
+      "warrior": {"cost": 8}
+    },
+    "skills": [
+      "call lightning", "control weather", "faerie fire", "faerie fog", "lightning bolt"
+    ]
+  }}
+]

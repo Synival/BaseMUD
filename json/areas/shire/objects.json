@@ -10,15 +10,12 @@
     "level": 5,
     "weight": 80,
     "cost": 550,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take",
     "affects": [{
-      "apply": "wisdom",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -38,15 +35,12 @@
     "level": 17,
     "weight": 10,
     "cost": 3500,
-    "condition": 100,
     "extra_flags": "glow hum antievil",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "dexterity",
       "level": 17,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -63,10 +57,17 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_description": [{
       "keyword": "sign",
-      "description": "Welcome to the Shire.  As you enter the Shire from Haon-Dor you come under\nthe jurisdiction of the Thain, the peacekeeper of the Shire.  Consequently,\nby entering these lands you agree to obey our laws.  If you break these laws,\nyou will be severely punished.  We do not like riff raff in our peaceful\ntown.\n\n\t\t\t\t\tThe Thain\n\t\t\t\t\tPeacekeeper of the Shire\n\n"
+      "description": "Welcome to the Shire.  As you enter the Shire from Haon-Dor you come under
+                     |the jurisdiction of the Thain, the peacekeeper of the Shire.  Consequently,
+                     |by entering these lands you agree to obey our laws.  If you break these laws,
+                     |you will be severely punished.  We do not like riff raff in our peaceful
+                     |town.
+                     |
+                     |\t\t\t\t\tThe Thain
+                     |\t\t\t\t\tPeacekeeper of the Shire
+                     |"
     }]
   }},
   {"object": {
@@ -83,7 +84,6 @@
     "level": 0,
     "weight": 10,
     "cost": 15,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -102,15 +102,12 @@
     "level": 15,
     "weight": 30,
     "cost": 1320,
-    "condition": 100,
     "extra_flags": "magic antievil",
     "wear_flags": "take about",
     "affects": [{
-      "apply": "saves",
       "level": 15,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -124,23 +121,18 @@
     "level": 20,
     "weight": 30,
     "cost": 1660,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "none",
         "level": 20,
-        "modifier": 0,
         "bit_type": "affects",
         "bits": "invisible"
       },
       {
-        "apply": "strength",
         "level": 20,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": -1
       }
     ]
   }},
@@ -161,15 +153,12 @@
     "level": 16,
     "weight": 50,
     "cost": 500,
-    "condition": 100,
     "extra_flags": "hum magic antievil",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 16,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -189,15 +178,12 @@
     "level": 17,
     "weight": 120,
     "cost": 1440,
-    "condition": 100,
     "extra_flags": "glow dark noremove nopurge",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "damage roll",
       "level": 17,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -215,14 +201,11 @@
     "level": 17,
     "weight": 40,
     "cost": 3600,
-    "condition": 100,
     "wear_flags": "take waist",
     "affects": [{
-      "apply": "wisdom",
       "level": 17,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -241,7 +224,6 @@
     "level": 1,
     "weight": 30,
     "cost": 230,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -258,7 +240,6 @@
     "level": 0,
     "weight": 10,
     "cost": 2,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -276,7 +257,6 @@
     "level": 0,
     "weight": 10,
     "cost": 11,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -290,7 +270,6 @@
     "level": 0,
     "weight": 40,
     "cost": 60,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -311,14 +290,11 @@
     "level": 21,
     "weight": 100,
     "cost": 1810,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 21,
-      "modifier": 4,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 4
     }]
   }},
   {"object": {
@@ -338,7 +314,6 @@
     "level": 5,
     "weight": 80,
     "cost": 390,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -359,14 +334,11 @@
     "level": 3,
     "weight": 100,
     "cost": 980,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 3,
-      "modifier": 4,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 4
     }]
   }},
   {"object": {
@@ -386,22 +358,17 @@
     "level": 6,
     "weight": 10,
     "cost": 480,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 6,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 6,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -422,7 +389,6 @@
     "level": 12,
     "weight": 30,
     "cost": 620,
-    "condition": 100,
     "wear_flags": "take wield"
   }}
 ]

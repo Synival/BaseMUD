@@ -16,14 +16,14 @@
  ***************************************************************************/
 
 /***************************************************************************
-*    ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
-*    ROM has been brought to you by the ROM consortium                      *
-*        Russ Taylor (rtaylor@hypercube.org)                                *
-*        Gabrielle Taylor (gtaylor@hypercube.org)                           *
-*        Brian Moore (zump@rom.org)                                         *
-*    By using this code, you have agreed to follow the terms of the         *
-*    ROM license, in the file Rom24/doc/rom.license                         *
-****************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #ifndef __ROM_FIGHT_H
 #define __ROM_FIGHT_H
@@ -31,17 +31,10 @@
 #include "merc.h"
 
 /* Function prototypes. */
-void advance_level (CHAR_T *ch, bool hide);
-void gain_exp (CHAR_T *ch, int gain);
 int should_assist_group (CHAR_T *bystander, CHAR_T *attacker, CHAR_T *victim);
-int npc_should_assist_player (CHAR_T *bystander, CHAR_T *player,
-    CHAR_T *victim);
-bool npc_should_assist_attacker (CHAR_T *bystander, CHAR_T *attacker,
-    CHAR_T *victim);
 CHAR_T *random_group_target_in_room (CHAR_T *bystander, CHAR_T *ch);
 void check_assist (CHAR_T *ch, CHAR_T *victim);
 void multi_hit (CHAR_T *ch, CHAR_T *victim, int dt);
-void mob_hit (CHAR_T *ch, CHAR_T *victim, int dt);
 void one_hit (CHAR_T *ch, CHAR_T *victim, int dt);
 bool damage_quiet (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type);
 bool damage_visible (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
@@ -63,16 +56,13 @@ void update_pos (CHAR_T *victim);
 void set_fighting_both (CHAR_T *ch, CHAR_T *victim);
 void set_fighting_one (CHAR_T *ch, CHAR_T *victim);
 void stop_fighting_one (CHAR_T *ch);
-void stop_fighting (CHAR_T *ch, bool fBoth);
-void make_corpse (CHAR_T *ch);
+void stop_fighting (CHAR_T *ch, bool both);
+OBJ_T *make_corpse (CHAR_T *ch);
 void death_cry (CHAR_T *ch);
-void raw_kill (CHAR_T *victim);
 void group_gain (CHAR_T *ch, CHAR_T *victim);
-int xp_compute (CHAR_T *gch, CHAR_T *victim, int total_levels);
+int fight_compute_kill_exp (CHAR_T *gch, CHAR_T *victim, int total_levels);
 void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt, bool immune,
     int orig_dam, const char *damage_adj);
 void disarm (CHAR_T *ch, CHAR_T *victim);
-int get_exp_to_level (CHAR_T *ch);
-int exp_per_level (CHAR_T *ch, int points);
 
 #endif

@@ -13,34 +13,60 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #ifndef __ROM_ROOMS_H
 #define __ROM_ROOMS_H
 
 #include "merc.h"
 
-/* Room functions. */
-bool room_is_dark (ROOM_INDEX_T *pRoomIndex);
-bool room_is_private (ROOM_INDEX_T *pRoomIndex);
-char room_colour_char (ROOM_INDEX_T *room);
-void room_add_money (ROOM_INDEX_T *room, int gold, int silver);
-bool room_is_owner (ROOM_INDEX_T *room, CHAR_T *ch);
-EXIT_T *room_get_opposite_exit (ROOM_INDEX_T *from_room, int dir,
-    ROOM_INDEX_T **out_room);
-void room_take_reset (ROOM_INDEX_T *pR, RESET_T *pReset);
+/* Is/can functions. */
+bool room_is_dark (const ROOM_INDEX_T *room_index);
+bool room_is_private (const ROOM_INDEX_T *room_index);
+bool room_is_owner (const ROOM_INDEX_T *room, const CHAR_T *ch);
 
-/* Utilities. */
-char *door_keyword_to_name (const char *keyword, char *out_buf, size_t size);
+/* Get functions. */
+char room_colour_char (const ROOM_INDEX_T *room);
+EXIT_T *room_get_opposite_exit (const ROOM_INDEX_T *from_room, int dir,
+    ROOM_INDEX_T **out_room);
+char *room_get_door_name (const char *keyword, char *out_buf, size_t size);
+OBJ_T *room_get_obj_of_type (const ROOM_INDEX_T *room, const CHAR_T *ch,
+    int type);
+OBJ_T *room_get_obj_with_condition (const ROOM_INDEX_T *room, const CHAR_T *ch,
+    bool (*cond) (const OBJ_T *obj));
+ROOM_INDEX_T *room_get_index (int vnum);
+ROOM_INDEX_T *room_get_random_index (CHAR_T *ch);
+EXIT_T *room_get_orig_exit (const ROOM_INDEX_T *room, int dir);
+
+/* Action functions. */
+void room_add_money (ROOM_INDEX_T *room, int gold, int silver);
+void room_reset (ROOM_INDEX_T *room);
+void room_reset_exits (ROOM_INDEX_T *room);
+void room_to_area (ROOM_INDEX_T *room, AREA_T *area);
+void room_index_to_hash (ROOM_INDEX_T *room);
+void room_index_from_hash (ROOM_INDEX_T *room);
+void room_link_exits_by_vnum_all (void);
+void room_link_exits_by_vnum (ROOM_INDEX_T *room);
+void room_fix_two_way_exits_all (void);
+void room_fix_two_way_exits (ROOM_INDEX_T *room);
+void room_fix_two_way_exit_doors (ROOM_INDEX_T *room_from, int dir_from,
+                                  ROOM_INDEX_T *room_to,   int dir_to);
+int room_check_resets_all (void);
+int room_check_resets (ROOM_INDEX_T *room);
+EXIT_T *room_create_exit (ROOM_INDEX_T *room_index, int dir);
+
+/* Exit linking functions. */
+void exit_to_room_index_from (EXIT_T *exit, ROOM_INDEX_T *room, int dir);
+void exit_to_room_index_to (EXIT_T *exit, ROOM_INDEX_T *room);
 
 #endif

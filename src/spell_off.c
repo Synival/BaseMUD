@@ -33,10 +33,11 @@
 #include "lookup.h"
 #include "db.h"
 #include "spell_aff.h"
-#include "skills.h"
 #include "chars.h"
 #include "objs.h"
 #include "globals.h"
+#include "items.h"
+#include "players.h"
 
 #include "spell_off.h"
 
@@ -85,8 +86,8 @@ DEFINE_SPELL_FUN (spell_call_lightning) {
     act ("$n calls Mota's lightning to strike $s foes!",
          ch, NULL, NULL, TO_NOTCHAR);
 
-    for (vch = char_list; vch != NULL; vch = vch_next) {
-        vch_next = vch->next;
+    for (vch = char_first; vch != NULL; vch = vch_next) {
+        vch_next = vch->global_next;
         if (vch->in_room == NULL)
             continue;
         if (vch->in_room == ch->in_room) {
@@ -140,10 +141,10 @@ DEFINE_SPELL_FUN (spell_chain_lightning) {
     /* new targets */
     while (level > 0) {
         found = FALSE;
-        for (tmp_vict = ch->in_room->people;
+        for (tmp_vict = ch->in_room->people_first;
              tmp_vict != NULL; tmp_vict = next_vict)
         {
-            next_vict = tmp_vict->next_in_room;
+            next_vict = tmp_vict->room_next;
             if (tmp_vict == last_vict || !can_attack_spell (ch, tmp_vict, TRUE))
                 continue;
 
@@ -206,7 +207,7 @@ DEFINE_SPELL_FUN (spell_chill_touch) {
               "$n turns blue and shivers.", victim, NULL, NULL,
             0, POS_RESTING);
         affect_init (&af, AFF_TO_AFFECTS, sn, level, 6, APPLY_STR, -1, 0);
-        affect_join (victim, &af);
+        affect_join_char (&af, victim);
     }
     else
         dam /= 2;
@@ -231,7 +232,7 @@ DEFINE_SPELL_FUN (spell_colour_spray) {
     if (saves_spell (level, victim, DAM_LIGHT))
         dam /= 2;
     else
-        spell_blindness_quiet (gsn_blindness, level / 2, ch,
+        spell_blindness_quiet (SN(BLINDNESS), level / 2, ch,
             (void *) victim, TARGET_CHAR, target_name);
 
     damage_visible (ch, victim, dam, sn, DAM_LIGHT, NULL);
@@ -259,7 +260,7 @@ DEFINE_SPELL_FUN (spell_demonfire) {
     if (saves_spell (level, victim, DAM_NEGATIVE))
         dam /= 2;
     damage_visible (ch, victim, dam, sn, DAM_NEGATIVE, NULL);
-    spell_curse_char_quiet (gsn_curse, 3 * level / 4, ch, (void *) victim,
+    spell_curse_char_quiet (SN(CURSE), 3 * level / 4, ch, (void *) victim,
         TARGET_CHAR, target_name);
 }
 
@@ -323,8 +324,8 @@ DEFINE_SPELL_FUN (spell_earthquake) {
     send_to_char ("The earth trembles beneath your feet!\n\r", ch);
     act ("$n makes the earth tremble and shiver.", ch, NULL, NULL, TO_NOTCHAR);
 
-    for (vch = char_list; vch != NULL; vch = vch_next) {
-        vch_next = vch->next;
+    for (vch = char_first; vch != NULL; vch = vch_next) {
+        vch_next = vch->global_next;
         if (vch->in_room == NULL)
             continue;
         if (vch->in_room == ch->in_room) {
@@ -360,7 +361,7 @@ DEFINE_SPELL_FUN (spell_energy_drain) {
     if (victim->level <= 2)
         dam = ch->hit + 1;
     else {
-        gain_exp (victim, 0 - number_range (level / 2, 3 * level / 2));
+        player_gain_exp (victim, 0 - number_range (level / 2, 3 * level / 2));
         victim->mana /= 2;
         victim->move /= 2;
         dam = dice (1, level);
@@ -418,7 +419,7 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
     OBJ_T *obj_lose, *obj_next;
     int dam = 0;
     bool success = FALSE;
-    bool is_weapon, is_worn, can_drop;
+    bool is_weapon, is_armor, is_worn, can_drop;
     bool fumbled, drop_item;
 
     if (saves_spell (level + 2, victim, DAM_FIRE)
@@ -429,8 +430,8 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
         return;
     }
 
-    for (obj_lose = victim->carrying; obj_lose != NULL; obj_lose = obj_next) {
-        obj_next = obj_lose->next_content;
+    for (obj_lose = victim->content_first; obj_lose != NULL; obj_lose = obj_next) {
+        obj_next = obj_lose->content_next;
         if (number_range (1, 2 * level) <= obj_lose->level)
             continue;
         if (saves_spell (level, victim, DAM_FIRE))
@@ -441,13 +442,13 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
             continue;
 
         /* Only heat weapons and armor. */
-        if (obj_lose->item_type != ITEM_ARMOR &&
-            obj_lose->item_type != ITEM_WEAPON)
+        is_weapon = item_is_weapon (obj_lose);
+        is_armor  = item_is_armor  (obj_lose);
+        if (!(is_weapon || is_armor))
             continue;
 
         /* Flaming weapons being wielded are ignored. */
-        is_weapon = (obj_lose->item_type == ITEM_WEAPON);
-        is_worn   = (obj_lose->wear_loc != -1);
+        is_worn   = (obj_lose->wear_loc != WEAR_LOC_NONE);
         if (is_worn && is_weapon && IS_WEAPON_STAT (obj_lose, WEAPON_FLAMING))
             continue;
 
@@ -510,10 +511,8 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
         }
 
         /* Checks passed to drop item - so drop it! */
-        if (drop_item) {
-            obj_take_from_char (obj_lose);
+        if (drop_item)
             obj_give_to_room (obj_lose, victim->in_room);
-        }
     }
 
     if (!success) {
@@ -542,8 +541,8 @@ DEFINE_SPELL_FUN (spell_holy_word) {
     send_to_char ("You utter a word of divine power.\n\r", ch);
     act ("$n utters a word of divine power!", ch, NULL, NULL, TO_NOTCHAR);
 
-    for (vch = ch->in_room->people; vch != NULL; vch = vch_next) {
-        vch_next = vch->next_in_room;
+    for (vch = ch->in_room->people_first; vch != NULL; vch = vch_next) {
+        vch_next = vch->room_next;
 
         if (IS_SAME_ALIGN (ch, vch)) {
             send_to_char ("You feel even more powerful.\n\r", vch);
@@ -652,7 +651,7 @@ DEFINE_SPELL_FUN (spell_ray_of_truth) {
     dam = (dam * align * align) / 1000000;
 
     damage_visible (ch, victim, dam, sn, DAM_HOLY, NULL);
-    spell_blindness_quiet (gsn_blindness, 3 * level / 4, ch, (void *) victim,
+    spell_blindness_quiet (SN(BLINDNESS), 3 * level / 4, ch, (void *) victim,
         TARGET_CHAR, target_name);
 }
 

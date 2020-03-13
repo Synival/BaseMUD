@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #ifndef __ROM_ACT_MOVE_H
 #define __ROM_ACT_MOVE_H
@@ -31,14 +31,14 @@
 #include "merc.h"
 
 /* Sub-routines and filters. */
-int door_filter_find (CHAR_T *ch, char *argument);
-bool door_filter_is_door (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj,
+int do_door_filter_find (CHAR_T *ch, char *argument);
+bool do_door_filter_is_door (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj,
     flag_t *out_flags, bool *out_container, int *out_key);
-bool door_filter_can_open   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
-bool door_filter_can_close  (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
-bool door_filter_can_lock   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
-bool door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
-bool door_filter_can_pick   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool do_door_filter_can_open   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool do_door_filter_can_close  (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool do_door_filter_can_lock   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool do_door_filter_can_unlock (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
+bool do_door_filter_can_pick   (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj);
 void do_open_object   (CHAR_T *ch, OBJ_T *obj);
 void do_close_object  (CHAR_T *ch, OBJ_T *obj);
 void do_unlock_object (CHAR_T *ch, OBJ_T *obj);

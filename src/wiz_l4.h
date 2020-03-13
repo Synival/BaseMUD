@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #ifndef __ROM_WIZ_L4_H
 #define __ROM_WIZ_L4_H
@@ -32,6 +32,10 @@
 
 /* Sub-routines and filters. */
 void do_restore_single (CHAR_T *ch, CHAR_T *vch);
+void do_flag_ext (CHAR_T *ch, CHAR_T *victim, char type,
+    const EXT_FLAG_DEF_T *flag_table, EXT_FLAGS_T *flags, char *argument);
+void do_flag_simple (CHAR_T *ch, CHAR_T *victim, char type,
+    const FLAG_T *flag_table, flag_t *flags, char *argument);
 
 /* Commands. */
 DECLARE_DO_FUN (do_guild);

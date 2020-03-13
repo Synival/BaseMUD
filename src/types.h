@@ -16,13 +16,13 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #ifndef __ROM_TYPES_H
@@ -123,34 +123,34 @@
 #define SECT_MAX           11
 
 /* Equpiment wear locations. */
-#define WEAR_NONE     -1
-#define WEAR_LIGHT     0
-#define WEAR_FINGER_L  1
-#define WEAR_FINGER_R  2
-#define WEAR_NECK_1    3
-#define WEAR_NECK_2    4
-#define WEAR_BODY      5
-#define WEAR_HEAD      6
-#define WEAR_LEGS      7
-#define WEAR_FEET      8
-#define WEAR_HANDS     9
-#define WEAR_ARMS     10
-#define WEAR_SHIELD   11
-#define WEAR_ABOUT    12
-#define WEAR_WAIST    13
-#define WEAR_WRIST_L  14
-#define WEAR_WRIST_R  15
-#define WEAR_WIELD    16
-#define WEAR_HOLD     17
-#define WEAR_FLOAT    18
-#define WEAR_LOC_MAX  19
+#define WEAR_LOC_NONE     -1
+#define WEAR_LOC_LIGHT     0
+#define WEAR_LOC_FINGER_L  1
+#define WEAR_LOC_FINGER_R  2
+#define WEAR_LOC_NECK_1    3
+#define WEAR_LOC_NECK_2    4
+#define WEAR_LOC_BODY      5
+#define WEAR_LOC_HEAD      6
+#define WEAR_LOC_LEGS      7
+#define WEAR_LOC_FEET      8
+#define WEAR_LOC_HANDS     9
+#define WEAR_LOC_ARMS     10
+#define WEAR_LOC_SHIELD   11
+#define WEAR_LOC_ABOUT    12
+#define WEAR_LOC_WAIST    13
+#define WEAR_LOC_WRIST_L  14
+#define WEAR_LOC_WRIST_R  15
+#define WEAR_LOC_WIELD    16
+#define WEAR_LOC_HOLD     17
+#define WEAR_LOC_FLOAT    18
+#define WEAR_LOC_MAX      19
 
 /* AC types */
 #define AC_PIERCE    0
 #define AC_BASH      1
 #define AC_SLASH     2
 #define AC_EXOTIC    3
-#define AC_MAX       4
+/* (AX_MAX declared in 'defs.h' to it can be included in structs.h) */
 
 /* Apply types (for affects).
  * Used in #OBJECTS. */
@@ -225,21 +225,35 @@
 #define MATERIAL_MAX        38
 
 /* Door resets. */
-#define RESET_OPEN      0
-#define RESET_CLOSED    1
-#define RESET_LOCKED    2
-#define RESET_MAX       3
+#define DOOR_RESET_OPEN      0
+#define DOOR_RESET_CLOSED    1
+#define DOOR_RESET_LOCKED    2
+#define DOOR_RESET_MAX       3
 
 /* Type tables. */
-extern const FLAG_T sex_types[SEX_MAX + 1];
-extern const FLAG_T wear_loc_phrases[WEAR_LOC_MAX + 2];
-extern const FLAG_T wear_loc_types[WEAR_LOC_MAX + 2];
-extern const FLAG_T ac_types[AC_MAX + 1];
-extern const FLAG_T size_types[SIZE_MAX_R + 1];
-extern const FLAG_T weapon_types[WEAPON_MAX + 1];
-extern const FLAG_T position_types[POS_MAX + 1];
-extern const FLAG_T affect_apply_types[APPLY_MAX + 1];
-extern const FLAG_T sector_types[SECT_MAX + 1];
-extern const FLAG_T item_types[ITEM_MAX + 1];
+extern const TYPE_T sex_types[SEX_MAX + 1];
+extern const TYPE_T ac_types[AC_MAX + 1];
+extern const TYPE_T size_types[SIZE_MAX_R + 1];
+extern const TYPE_T weapon_types[WEAPON_MAX + 1];
+extern const TYPE_T position_types[POS_MAX + 1];
+extern const TYPE_T affect_apply_types[APPLY_MAX + 1];
+extern const TYPE_T sector_types[SECT_MAX + 1];
+extern const TYPE_T item_types[ITEM_MAX + 1];
+extern const TYPE_T door_reset_types[DOOR_RESET_MAX + 1];
+extern const TYPE_T stat_types[STAT_MAX + 1];
+extern const TYPE_T target_types[SKILL_TARGET_MAX + 1];
+extern const TYPE_T skill_target_types[SKILL_TARGET_MAX + 1];
+extern const TYPE_T board_def_types[DEF_MAX + 1];
+
+/* Function prototypes for type management. */
+type_t type_lookup (const TYPE_T *type_table, const char *name);
+type_t type_lookup_exact (const TYPE_T *type_table, const char *name);
+const TYPE_T *type_get_by_name (const TYPE_T *type_table, const char *name);
+const TYPE_T *type_get_by_name_exact (const TYPE_T *type_table,
+    const char *name);
+const TYPE_T *type_get (const TYPE_T *type_table, type_t type);
+const char *type_get_name (const TYPE_T *type_table, type_t type);
+type_t type_lookup_exact_backup (const TYPE_T *type_table, const char *str,
+    const char *errf, type_t backup);
 
 #endif

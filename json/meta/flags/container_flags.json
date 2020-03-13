@@ -1,0 +1,31 @@
+{"flags": {
+  "name": "container_flags",
+  "description": "Container status.",
+  "values": [
+    {
+      "name": "closeable",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "pickproof",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "closed",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "locked",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "puton",
+      "value": 4,
+      "settable": true
+    }
+  ]
+}}

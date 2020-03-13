@@ -30,16 +30,6 @@
 
 #include "merc.h"
 
-/* Stuff for providing a crash-proof buffer */
-#define MAX_BUF          16384
-#define MAX_BUF_LIST     10
-#define BASE_BUF         1024
-
-/* valid states */
-#define BUFFER_SAFE      0
-#define BUFFER_OVERFLOW  1
-#define BUFFER_FREED     2
-
 /* Some handy macros. */
 #define RECYCLE_BUNDLE(type, name, vtype)   \
     vtype * name ## _get_first (void)        \
@@ -92,50 +82,48 @@ int recycle_free_all_type (int type);
 void *recycle_get_first_obj (int type);
 
 /* Initialization / disposal functions. */
-void ban_init (void *obj);
-void ban_dispose (void *obj);
-void descriptor_init (void *obj);
-void descriptor_dispose (void *obj);
-void extra_descr_init (void *obj);
-void extra_descr_dispose (void *obj);
-void obj_dispose (void *vobj);
-void char_init (void *obj);
-void char_dispose (void *vobj);
-void pcdata_init (void *obj);
-void pcdata_dispose (void *obj);
-void buf_dispose (void *obj);
-void mprog_init (void *obj);
-void mprog_dispose (void *obj);
-void had_dispose (void *obj);
-void help_dispose (void *obj);
-void reset_data_init (void *obj);
-void area_init (void *obj);
-void area_dispose (void *obj);
-void exit_init (void *obj);
-void exit_dispose (void *obj);
-void room_index_init (void *obj);
-void room_index_dispose (void *obj);
-void shop_init (void *obj);
-void obj_index_init (void *vobj);
-void obj_index_dispose (void *vobj);
-void mob_index_init (void *obj);
-void mob_index_dispose (void *obj);
-void mpcode_init (void *obj);
-void mpcode_dispose (void *obj);
-void buf_init (void *obj);
-void note_dispose (void *obj);
-void social_dispose (void *obj);
-void portal_exit_dispose (void *obj);
-void portal_dispose (void *obj);
+DECLARE_INIT_FUN    (ban_init);
+DECLARE_DISPOSE_FUN (ban_dispose);
+DECLARE_INIT_FUN    (descriptor_init);
+DECLARE_DISPOSE_FUN (descriptor_dispose);
+DECLARE_INIT_FUN    (extra_descr_init);
+DECLARE_DISPOSE_FUN (extra_descr_dispose);
+DECLARE_DISPOSE_FUN (obj_dispose);
+DECLARE_INIT_FUN    (char_init);
+DECLARE_DISPOSE_FUN (char_dispose);
+DECLARE_INIT_FUN    (pcdata_init);
+DECLARE_DISPOSE_FUN (pcdata_dispose);
+DECLARE_DISPOSE_FUN (buf_dispose);
+DECLARE_INIT_FUN    (mprog_init);
+DECLARE_DISPOSE_FUN (mprog_dispose);
+DECLARE_DISPOSE_FUN (had_dispose);
+DECLARE_DISPOSE_FUN (help_dispose);
+DECLARE_INIT_FUN    (reset_data_init);
+DECLARE_DISPOSE_FUN (reset_data_dispose);
+DECLARE_INIT_FUN    (area_init);
+DECLARE_DISPOSE_FUN (area_dispose);
+DECLARE_INIT_FUN    (exit_init);
+DECLARE_DISPOSE_FUN (exit_dispose);
+DECLARE_INIT_FUN    (room_index_init);
+DECLARE_DISPOSE_FUN (room_index_dispose);
+DECLARE_INIT_FUN    (shop_init);
+DECLARE_DISPOSE_FUN (shop_dispose);
+DECLARE_INIT_FUN    (obj_index_init);
+DECLARE_DISPOSE_FUN (obj_index_dispose);
+DECLARE_INIT_FUN    (mob_index_init);
+DECLARE_DISPOSE_FUN (mob_index_dispose);
+DECLARE_INIT_FUN    (mpcode_init);
+DECLARE_DISPOSE_FUN (mpcode_dispose);
+DECLARE_INIT_FUN    (buf_init);
+DECLARE_DISPOSE_FUN (note_dispose);
+DECLARE_INIT_FUN    (social_init);
+DECLARE_DISPOSE_FUN (social_dispose);
+DECLARE_DISPOSE_FUN (portal_exit_dispose);
+DECLARE_INIT_FUN    (portal_dispose);
+DECLARE_DISPOSE_FUN (affect_dispose);
 
 /* Functions related to specific recycleable objects. */
-int       get_size      (int val);
-BUFFER_T *new_buf_size  (int size);
-bool      add_buf       (BUFFER_T *buffer, char *string);
-void      clear_buf     (BUFFER_T *buffer);
-char     *buf_string    (BUFFER_T *buffer);
-MEM_T    *find_memory   (MEM_T *memory, long id);
-long      get_pc_id     (void);
-long      get_mob_id    (void);
+long get_pc_id (void);
+long get_mob_id (void);
 
 #endif

@@ -27,7 +27,35 @@
 
 #include "merc.h"
 
-const FLAG_T sex_types[SEX_MAX + 1] = {
+#include "lookup.h"
+#include "utils.h"
+
+#include "types.h"
+
+type_t type_lookup (const TYPE_T *type_table, const char *name)
+    { SIMPLE_LOOKUP_PROP (type_table, type, name, TYPE_NONE, 0); }
+type_t type_lookup_exact (const TYPE_T *type_table, const char *name)
+    { SIMPLE_LOOKUP_PROP_EXACT (type_table, type, name, TYPE_NONE, 0); }
+const TYPE_T *type_get_by_name (const TYPE_T *type_table, const char *name)
+    { SIMPLE_GET_BY_NAME (type_table, name, 0); }
+const TYPE_T *type_get_by_name_exact (const TYPE_T *type_table, const char *name)
+    { SIMPLE_GET_BY_NAME_EXACT (type_table, name, 0); }
+const TYPE_T *type_get (const TYPE_T *type_table, type_t type)
+    { SIMPLE_GET (type_table, type, name, NULL, 0); }
+const char *type_get_name (const TYPE_T *type_table, type_t type)
+    { SIMPLE_GET_NAME_FROM_ELEMENT (TYPE_T, type_get (type_table, type), name); }
+
+type_t type_lookup_exact_backup (const TYPE_T *type_table, const char *str,
+    const char *errf, type_t backup)
+{
+    type_t num = type_lookup_exact (type_table, str);
+    if (num != TYPE_NONE)
+        return num;
+    bugf (errf, str);
+    return backup;
+}
+
+const TYPE_T sex_types[SEX_MAX + 1] = {
     {"neutral", SEX_NEUTRAL, TRUE},
     {"male",    SEX_MALE,    TRUE},
     {"female",  SEX_FEMALE,  TRUE},
@@ -35,7 +63,7 @@ const FLAG_T sex_types[SEX_MAX + 1] = {
     {0}
 };
 
-const FLAG_T affect_apply_types[APPLY_MAX + 1] = {
+const TYPE_T affect_apply_types[APPLY_MAX + 1] = {
     {"none",                  APPLY_NONE,          TRUE},
     {"strength",              APPLY_STR,           TRUE},
     {"dexterity",             APPLY_DEX,           TRUE},
@@ -65,59 +93,7 @@ const FLAG_T affect_apply_types[APPLY_MAX + 1] = {
     {0}
 };
 
-/* NOTE: This has TWO extra loc_types because of WEAR_NONE (-1)
- *       at the bottom. */
-const FLAG_T wear_loc_phrases[WEAR_LOC_MAX + 2] = {
-    {"as a light",          WEAR_LIGHT,    TRUE},
-    {"on the left finger",  WEAR_FINGER_L, TRUE},
-    {"on the right finger", WEAR_FINGER_R, TRUE},
-    {"around the neck (1)", WEAR_NECK_1,   TRUE},
-    {"around the neck (2)", WEAR_NECK_2,   TRUE},
-    {"on the body",         WEAR_BODY,     TRUE},
-    {"over the head",       WEAR_HEAD,     TRUE},
-    {"on the legs",         WEAR_LEGS,     TRUE},
-    {"on the feet",         WEAR_FEET,     TRUE},
-    {"on the hands",        WEAR_HANDS,    TRUE},
-    {"on the arms",         WEAR_ARMS,     TRUE},
-    {"as a shield",         WEAR_SHIELD,   TRUE},
-    {"about the shoulders", WEAR_ABOUT,    TRUE},
-    {"around the waist",    WEAR_WAIST,    TRUE},
-    {"on the left wrist",   WEAR_WRIST_L,  TRUE},
-    {"on the right wrist",  WEAR_WRIST_R,  TRUE},
-    {"wielded",             WEAR_WIELD,    TRUE},
-    {"held in the hands",   WEAR_HOLD,     TRUE},
-    {"floating nearby",     WEAR_FLOAT,    TRUE},
-    {"in the inventory",    WEAR_NONE,     TRUE},
-    {0}
-};
-
-/* NOTE: This has TWO extra loc_types because of WEAR_NONE (-1)
- *       at the bottom. */
-const FLAG_T wear_loc_types[WEAR_LOC_MAX + 2] = {
-    {"light",    WEAR_LIGHT,    TRUE},
-    {"lfinger",  WEAR_FINGER_L, TRUE},
-    {"rfinger",  WEAR_FINGER_R, TRUE},
-    {"neck1",    WEAR_NECK_1,   TRUE},
-    {"neck2",    WEAR_NECK_2,   TRUE},
-    {"body",     WEAR_BODY,     TRUE},
-    {"head",     WEAR_HEAD,     TRUE},
-    {"legs",     WEAR_LEGS,     TRUE},
-    {"feet",     WEAR_FEET,     TRUE},
-    {"hands",    WEAR_HANDS,    TRUE},
-    {"arms",     WEAR_ARMS,     TRUE},
-    {"shield",   WEAR_SHIELD,   TRUE},
-    {"about",    WEAR_ABOUT,    TRUE},
-    {"waist",    WEAR_WAIST,    TRUE},
-    {"lwrist",   WEAR_WRIST_L,  TRUE},
-    {"rwrist",   WEAR_WRIST_R,  TRUE},
-    {"wielded",  WEAR_WIELD,    TRUE},
-    {"hold",     WEAR_HOLD,     TRUE},
-    {"floating", WEAR_FLOAT,    TRUE},
-    {"none",     WEAR_NONE,     TRUE},
-    {0}
-};
-
-const FLAG_T ac_types[AC_MAX + 1] = {
+const TYPE_T ac_types[AC_MAX + 1] = {
     {"pierce", AC_PIERCE, TRUE},
     {"bash",   AC_BASH,   TRUE},
     {"slash",  AC_SLASH,  TRUE},
@@ -125,7 +101,7 @@ const FLAG_T ac_types[AC_MAX + 1] = {
     {0}
 };
 
-const FLAG_T size_types[SIZE_MAX_R + 1] = {
+const TYPE_T size_types[SIZE_MAX_R + 1] = {
     {"tiny",   SIZE_TINY,   TRUE},
     {"small",  SIZE_SMALL,  TRUE},
     {"medium", SIZE_MEDIUM, TRUE},
@@ -135,7 +111,7 @@ const FLAG_T size_types[SIZE_MAX_R + 1] = {
     {0}
 };
 
-const FLAG_T weapon_types[WEAPON_MAX + 1] = {
+const TYPE_T weapon_types[WEAPON_MAX + 1] = {
     {"exotic",  WEAPON_EXOTIC,  TRUE},
     {"sword",   WEAPON_SWORD,   TRUE},
     {"dagger",  WEAPON_DAGGER,  TRUE},
@@ -148,7 +124,7 @@ const FLAG_T weapon_types[WEAPON_MAX + 1] = {
     {0}
 };
 
-const FLAG_T position_types[POS_MAX + 1] = {
+const TYPE_T position_types[POS_MAX + 1] = {
     {"dead",     POS_DEAD,     FALSE},
     {"mortal",   POS_MORTAL,   FALSE},
     {"incap",    POS_INCAP,    FALSE},
@@ -161,7 +137,7 @@ const FLAG_T position_types[POS_MAX + 1] = {
     {0}
 };
 
-const FLAG_T sector_types[SECT_MAX + 1] = {
+const TYPE_T sector_types[SECT_MAX + 1] = {
     {"inside",   SECT_INSIDE,       TRUE},
     {"city",     SECT_CITY,         TRUE},
     {"field",    SECT_FIELD,        TRUE},
@@ -176,48 +152,75 @@ const FLAG_T sector_types[SECT_MAX + 1] = {
     {0}
 };
 
-const FLAG_T item_types[ITEM_MAX + 1] = {
-    {"none",       ITEM_NONE,       FALSE},
-    {"light",      ITEM_LIGHT,      TRUE},
-    {"scroll",     ITEM_SCROLL,     TRUE},
-    {"wand",       ITEM_WAND,       TRUE},
-    {"staff",      ITEM_STAFF,      TRUE},
-    {"weapon",     ITEM_WEAPON,     TRUE},
-    {"unused_item_1",ITEM_UNUSED_1, FALSE},
-    {"unused_item_2",ITEM_UNUSED_2, FALSE},
-    {"treasure",   ITEM_TREASURE,   TRUE},
-    {"armor",      ITEM_ARMOR,      TRUE},
-    {"potion",     ITEM_POTION,     TRUE},
-    {"clothing",   ITEM_CLOTHING,   TRUE},
-    {"furniture",  ITEM_FURNITURE,  TRUE},
-    {"trash",      ITEM_TRASH,      TRUE},
-    {"unused_item_3",ITEM_UNUSED_3, FALSE},
-    {"container",  ITEM_CONTAINER,  TRUE},
-    {"unused_item_4",ITEM_UNUSED_4, FALSE},
-    {"drink",      ITEM_DRINK_CON,  TRUE},
-    {"key",        ITEM_KEY,        TRUE},
-    {"food",       ITEM_FOOD,       TRUE},
-    {"money",      ITEM_MONEY,      TRUE},
-    {"unused_item_5",ITEM_UNUSED_5, FALSE},
-    {"boat",       ITEM_BOAT,       TRUE},
-    {"npc_corpse", ITEM_CORPSE_NPC, TRUE},
-    {"pc_corpse",  ITEM_CORPSE_PC,  TRUE},
-    {"fountain",   ITEM_FOUNTAIN,   TRUE},
-    {"pill",       ITEM_PILL,       TRUE},
-    {"protect",    ITEM_PROTECT,    TRUE},
-    {"map",        ITEM_MAP,        TRUE},
-    {"portal",     ITEM_PORTAL,     TRUE},
-    {"warp_stone", ITEM_WARP_STONE, TRUE},
-    {"room_key",   ITEM_ROOM_KEY,   TRUE},
-    {"gem",        ITEM_GEM,        TRUE},
-    {"jewelry",    ITEM_JEWELRY,    TRUE},
-    {"jukebox",    ITEM_JUKEBOX,    TRUE},
+const TYPE_T item_types[ITEM_MAX + 1] = {
+    {"none",          ITEM_NONE,       FALSE},
+    {"light",         ITEM_LIGHT,      TRUE},
+    {"scroll",        ITEM_SCROLL,     TRUE},
+    {"wand",          ITEM_WAND,       TRUE},
+    {"staff",         ITEM_STAFF,      TRUE},
+    {"weapon",        ITEM_WEAPON,     TRUE},
+    {"unused_item_1", ITEM_UNUSED_1,   FALSE},
+    {"unused_item_2", ITEM_UNUSED_2,   FALSE},
+    {"treasure",      ITEM_TREASURE,   TRUE},
+    {"armor",         ITEM_ARMOR,      TRUE},
+    {"potion",        ITEM_POTION,     TRUE},
+    {"clothing",      ITEM_CLOTHING,   TRUE},
+    {"furniture",     ITEM_FURNITURE,  TRUE},
+    {"trash",         ITEM_TRASH,      TRUE},
+    {"unused_item_3", ITEM_UNUSED_3,   FALSE},
+    {"container",     ITEM_CONTAINER,  TRUE},
+    {"unused_item_4", ITEM_UNUSED_4,   FALSE},
+    {"drink",         ITEM_DRINK_CON,  TRUE},
+    {"key",           ITEM_KEY,        TRUE},
+    {"food",          ITEM_FOOD,       TRUE},
+    {"money",         ITEM_MONEY,      TRUE},
+    {"unused_item_5", ITEM_UNUSED_5,   FALSE},
+    {"boat",          ITEM_BOAT,       TRUE},
+    {"npc_corpse",    ITEM_CORPSE_NPC, TRUE},
+    {"pc_corpse",     ITEM_CORPSE_PC,  TRUE},
+    {"fountain",      ITEM_FOUNTAIN,   TRUE},
+    {"pill",          ITEM_PILL,       TRUE},
+    {"protect",       ITEM_PROTECT,    TRUE},
+    {"map",           ITEM_MAP,        TRUE},
+    {"portal",        ITEM_PORTAL,     TRUE},
+    {"warp_stone",    ITEM_WARP_STONE, TRUE},
+    {"room_key",      ITEM_ROOM_KEY,   TRUE},
+    {"gem",           ITEM_GEM,        TRUE},
+    {"jewelry",       ITEM_JEWELRY,    TRUE},
+    {"jukebox",       ITEM_JUKEBOX,    TRUE},
     {0}
 };
 
-const FLAG_T door_resets[RESET_MAX + 1] = {
-    {"open and unlocked",   RESET_OPEN,   TRUE},
-    {"closed and unlocked", RESET_CLOSED, TRUE},
-    {"closed and locked",   RESET_LOCKED, TRUE},
+const TYPE_T door_reset_types[DOOR_RESET_MAX + 1] = {
+    {"open and unlocked",   DOOR_RESET_OPEN,   TRUE},
+    {"closed and unlocked", DOOR_RESET_CLOSED, TRUE},
+    {"closed and locked",   DOOR_RESET_LOCKED, TRUE},
+    {0}
+};
+
+const TYPE_T stat_types[STAT_MAX + 1] = {
+    {"str", STAT_STR, TRUE},
+    {"int", STAT_INT, TRUE},
+    {"wis", STAT_WIS, TRUE},
+    {"dex", STAT_DEX, TRUE},
+    {"con", STAT_CON, TRUE},
+    {0}
+};
+
+const TYPE_T skill_target_types[SKILL_TARGET_MAX + 1] = {
+    {"ignore",             SKILL_TARGET_IGNORE,         TRUE},
+    {"char_offensive",     SKILL_TARGET_CHAR_OFFENSIVE, TRUE},
+    {"char_defensive",     SKILL_TARGET_CHAR_DEFENSIVE, TRUE},
+    {"char_self",          SKILL_TARGET_CHAR_SELF,      TRUE},
+    {"obj_inventory",      SKILL_TARGET_OBJ_INV,        TRUE},
+    {"obj_char_defensive", SKILL_TARGET_OBJ_CHAR_DEF,   TRUE},
+    {"obj_char_offensive", SKILL_TARGET_OBJ_CHAR_OFF,   TRUE},
+    {0}
+};
+
+const TYPE_T board_def_types[DEF_MAX + 1] = {
+    {"normal",  DEF_NORMAL,  TRUE},
+    {"include", DEF_INCLUDE, TRUE},
+    {"exclude", DEF_EXCLUDE, TRUE},
     {0}
 };

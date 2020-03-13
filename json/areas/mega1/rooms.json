@@ -3,19 +3,19 @@
     "area": "mega1",
     "anum": 1,
     "name": "Entrance to Mega-City One",
-    "description": "A road begins here in the glowing sands.  You follow it through a gate\nin a Plasteen wall onto the Megway of Mega-City One.\n",
+    "description": "A road begins here in the glowing sands.  You follow it through a gate
+                   |in a Plasteen wall onto the Megway of Mega-City One.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
-        "to": null,
-        "description": "You see the glowing sand of the badlands.\n",
+        "description": "You see the glowing sand of the badlands.",
         "portal": "mega1-north-1"
       },
       {
         "dir": "south",
         "to": 2,
-        "description": "The Megway continues in this direction.\n"
+        "description": "The Megway continues in this direction."
       }
     ]
   }},
@@ -23,18 +23,19 @@
     "area": "mega1",
     "anum": 2,
     "name": "Mahmount Allesh Megway",
-    "description": "You are on one mile of over 13 and a half billion kilometers of\nroadway in Mega-City One.  The Megway continues north and south.\n",
+    "description": "You are on one mile of over 13 and a half billion kilometers of
+                   |roadway in Mega-City One.  The Megway continues north and south.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 1,
-        "description": "The entrance to Mega-City One is in this direction.\n"
+        "description": "The entrance to Mega-City One is in this direction."
       },
       {
         "dir": "south",
         "to": 3,
-        "description": "There is an intersection ahead.\n"
+        "description": "There is an intersection ahead."
       }
     ]
   }},
@@ -42,28 +43,30 @@
     "area": "mega1",
     "anum": 3,
     "name": "Intersection of Junket Way and Megway",
-    "description": "The Megway intersects with Junket Way here.  Junket Way is to the east,\nthe Megway continues north and south, and the Pustule Palace Cafe is\nto the west.\n",
+    "description": "The Megway intersects with Junket Way here.  Junket Way is to the east,
+                   |the Megway continues north and south, and the Pustule Palace Cafe is
+                   |to the west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 2,
-        "description": "The Megway continues in this direction.\n"
+        "description": "The Megway continues in this direction."
       },
       {
         "dir": "east",
         "to": 10,
-        "description": "Junket way continues in this direction.\n"
+        "description": "Junket way continues in this direction."
       },
       {
         "dir": "south",
         "to": 4,
-        "description": "The Megway continues in this direction.\n"
+        "description": "The Megway continues in this direction."
       },
       {
         "dir": "west",
         "to": 21,
-        "description": "The Pustule Palace Cafe is in this direction.\n"
+        "description": "The Pustule Palace Cafe is in this direction."
       }
     ],
     "resets": [{
@@ -79,18 +82,21 @@
     "area": "mega1",
     "anum": 4,
     "name": "Mahmount Allesh Megway",
-    "description": "The traffic here is really congested due in part to the over 11 million\npeople driving Mo-Pads, the mobile homes which are constantly on the\nmove until their owners can find an apartment in one of the City-blocks.\nThe Megway continues north and south.\n",
+    "description": "The traffic here is really congested due in part to the over 11 million
+                   |people driving Mo-Pads, the mobile homes which are constantly on the
+                   |move until their owners can find an apartment in one of the City-blocks.
+                   |The Megway continues north and south.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 3,
-        "description": "An intersection lies in this direction.\n"
+        "description": "An intersection lies in this direction."
       },
       {
         "dir": "south",
         "to": 5,
-        "description": "The Megway continues in this direction.\n"
+        "description": "The Megway continues in this direction."
       }
     ],
     "resets": [
@@ -132,28 +138,33 @@
     "area": "mega1",
     "anum": 5,
     "name": "Mahmount Allesh Megway",
-    "description": "The Megway continues north and south.  On the off-ramps here you see\nmany of the citizens of Mega-City One doing nothing.  You see of\nevery hundred citizens, it can be guaranteed that 87 of them will\nbe totally unemployed, and that a further five will not work more\nthan ten hours a week.  To the east there is a dark alley and to the\nwest is Rietzik's Shuggy Hall.\n",
+    "description": "The Megway continues north and south.  On the off-ramps here you see
+                   |many of the citizens of Mega-City One doing nothing.  You see of
+                   |every hundred citizens, it can be guaranteed that 87 of them will
+                   |be totally unemployed, and that a further five will not work more
+                   |than ten hours a week.  To the east there is a dark alley and to the
+                   |west is Rietzik's Shuggy Hall.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 4,
-        "description": "The Megway continues in this direction.\n"
+        "description": "The Megway continues in this direction."
       },
       {
         "dir": "east",
         "to": 11,
-        "description": "A dark alley lies to the east.\n"
+        "description": "A dark alley lies to the east."
       },
       {
         "dir": "south",
         "to": 6,
-        "description": "A large plaza is in this direction.\n"
+        "description": "A large plaza is in this direction."
       },
       {
         "dir": "west",
         "to": 22,
-        "description": "A building is in this direction.\n"
+        "description": "A building is in this direction."
       }
     ],
     "resets": [{
@@ -169,28 +180,31 @@
     "area": "mega1",
     "anum": 6,
     "name": "Central Plaza",
-    "description": "You are at the Central Plaza of the downtown district.  There are a couple\nof juves Boingging (tm) in the air above you.  Max Jaffa Boulevard goes\neast, the Megway continues north and south, and Bazza's Home for the\nTerminally Sarky is to the west.\n",
+    "description": "You are at the Central Plaza of the downtown district.  There are a couple
+                   |of juves Boingging (tm) in the air above you.  Max Jaffa Boulevard goes
+                   |east, the Megway continues north and south, and Bazza's Home for the
+                   |Terminally Sarky is to the west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 5,
-        "description": "The Megway continues in this direction.\n"
+        "description": "The Megway continues in this direction."
       },
       {
         "dir": "east",
         "to": 12,
-        "description": "Max Jaffa Boulevard goes in this direction.\n"
+        "description": "Max Jaffa Boulevard goes in this direction."
       },
       {
         "dir": "south",
         "to": 7,
-        "description": "The Megway continues in this direction.\n"
+        "description": "The Megway continues in this direction."
       },
       {
         "dir": "west",
         "to": 23,
-        "description": "A home for Sarky people is to the west.\n"
+        "description": "A home for Sarky people is to the west."
       }
     ],
     "resets": [
@@ -240,28 +254,31 @@
     "area": "mega1",
     "anum": 7,
     "name": "Corner of Ed Hilldreth Memorial Parkway and Megway",
-    "description": "Another major intersection which is being negotiated by vehicles that\nare bound to minimum speed limits.  Many Slow Driving offenses are being\nhanded out by the Judges.  The Megway goes north and south, a Parkway\ngoes east, and Nu Phisog Parlour is west.\n",
+    "description": "Another major intersection which is being negotiated by vehicles that
+                   |are bound to minimum speed limits.  Many Slow Driving offenses are being
+                   |handed out by the Judges.  The Megway goes north and south, a Parkway
+                   |goes east, and Nu Phisog Parlour is west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 6,
-        "description": "A plaza is to the north.\n"
+        "description": "A plaza is to the north."
       },
       {
         "dir": "east",
         "to": 13,
-        "description": "Ed Hilldreth Mem. Parkwy is to the east.\n"
+        "description": "Ed Hilldreth Mem. Parkwy is to the east."
       },
       {
         "dir": "south",
         "to": 8,
-        "description": "The Megway continues in this direction.\n"
+        "description": "The Megway continues in this direction."
       },
       {
         "dir": "west",
         "to": 24,
-        "description": "A City Block lies to the west.\n"
+        "description": "A City Block lies to the west."
       }
     ],
     "resets": [
@@ -294,18 +311,21 @@
     "area": "mega1",
     "anum": 8,
     "name": "Mahmount Allesh Megway",
-    "description": "As you travel the Megway you notice many citizens participating in their\nfavorite hobbies such as spot welding and metalwork, scratch building\nfashion Kneepads, giving blood, or just looking out the window.  The\nMegway continues north and south.\n",
+    "description": "As you travel the Megway you notice many citizens participating in their
+                   |favorite hobbies such as spot welding and metalwork, scratch building
+                   |fashion Kneepads, giving blood, or just looking out the window.  The
+                   |Megway continues north and south.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 7,
-        "description": "The Megway continues in this direction.\n"
+        "description": "The Megway continues in this direction."
       },
       {
         "dir": "south",
         "to": 9,
-        "description": "The Megway continues in this direction.\n"
+        "description": "The Megway continues in this direction."
       }
     ]
   }},
@@ -313,28 +333,30 @@
     "area": "mega1",
     "anum": 9,
     "name": "Mahmount Allesh Megway",
-    "description": "The Megway ends here.  To the west is Ziggi Piggi's Home for the\nSemi-Stiff, to the east and south are construction areas, and the\nMegway goes north.\n",
+    "description": "The Megway ends here.  To the west is Ziggi Piggi's Home for the
+                   |Semi-Stiff, to the east and south are construction areas, and the
+                   |Megway goes north.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 8,
-        "description": "The Megway is ahead.\n"
+        "description": "The Megway is ahead."
       },
       {
         "dir": "east",
         "to": 14,
-        "description": "There is construction this way.\n"
+        "description": "There is construction this way."
       },
       {
         "dir": "south",
         "to": 20,
-        "description": "There is construction ahead.\n"
+        "description": "There is construction ahead."
       },
       {
         "dir": "west",
         "to": 25,
-        "description": "Ziggi Piggi's Home the Semi-Stiff is ahead.\n"
+        "description": "Ziggi Piggi's Home the Semi-Stiff is ahead."
       }
     ],
     "resets": [
@@ -391,18 +413,18 @@
     "area": "mega1",
     "anum": 10,
     "name": "Junket Way",
-    "description": "Junket Way a small Skedway continues east and west.\n",
+    "description": "Junket Way a small Skedway continues east and west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "east",
         "to": 15,
-        "description": "An intersection is ahead.\n"
+        "description": "An intersection is ahead."
       },
       {
         "dir": "west",
         "to": 3,
-        "description": "An intersection is ahead.\n"
+        "description": "An intersection is ahead."
       }
     ],
     "resets": [
@@ -428,19 +450,21 @@
     "area": "mega1",
     "anum": 11,
     "name": "Davies Alley",
-    "description": "You are in a very dark and seedy alley.  This is just the right place for\na bite fight.  Bite fighting is an illegal activity where both combatants\ncan only use their sharpened teeth as weapons.\n",
+    "description": "You are in a very dark and seedy alley.  This is just the right place for
+                   |a bite fight.  Bite fighting is an illegal activity where both combatants
+                   |can only use their sharpened teeth as weapons.",
     "sector_type": "city",
     "room_flags": "dark",
     "doors": [
       {
         "dir": "east",
         "to": 17,
-        "description": "An intersection is ahead.\n"
+        "description": "An intersection is ahead."
       },
       {
         "dir": "west",
         "to": 5,
-        "description": "An intersection is ahead.\n"
+        "description": "An intersection is ahead."
       }
     ],
     "resets": [
@@ -482,18 +506,18 @@
     "area": "mega1",
     "anum": 12,
     "name": "Max Jaffa Boulevard",
-    "description": "Max Jaffa Boulevard continues east and west.\n",
+    "description": "Max Jaffa Boulevard continues east and west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "east",
         "to": 18,
-        "description": "An intersection is ahead.\n"
+        "description": "An intersection is ahead."
       },
       {
         "dir": "west",
         "to": 6,
-        "description": "A large plaza is to the west.\n"
+        "description": "A large plaza is to the west."
       }
     ],
     "resets": [
@@ -519,18 +543,18 @@
     "area": "mega1",
     "anum": 13,
     "name": "Ed Hilldreth Memorial Parkway ",
-    "description": "The Parkway goes east and west.\n",
+    "description": "The Parkway goes east and west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "east",
         "to": 19,
-        "description": "An intersection is ahead.\n"
+        "description": "An intersection is ahead."
       },
       {
         "dir": "west",
         "to": 7,
-        "description": "An intersection is ahead.\n"
+        "description": "An intersection is ahead."
       }
     ],
     "resets": [
@@ -556,12 +580,14 @@
     "area": "mega1",
     "anum": 14,
     "name": "Construction site of the Harold Finkelbaum Block.",
-    "description": "A Mega-City One City Block is being constructed at this site.  A\ntypical block is from 100 to 1000 stories high with hundreds of\nthousands inhabitants.\n",
+    "description": "A Mega-City One City Block is being constructed at this site.  A
+                   |typical block is from 100 to 1000 stories high with hundreds of
+                   |thousands inhabitants.",
     "sector_type": "city",
     "doors": [{
       "dir": "west",
       "to": 9,
-      "description": "An intersection is ahead.\n"
+      "description": "An intersection is ahead."
     }],
     "resets": [
       {
@@ -585,18 +611,20 @@
     "area": "mega1",
     "anum": 15,
     "name": "Corner of Junket Way and Threep Lane",
-    "description": "There is a second-hand kneepad stall is doing a brisk business with a\ngroup of juves on their way to school.  Junket Way goes west and Threep\nLane travels south.\n",
+    "description": "There is a second-hand kneepad stall is doing a brisk business with a
+                   |group of juves on their way to school.  Junket Way goes west and Threep
+                   |Lane travels south.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "south",
         "to": 16,
-        "description": "Threep Lane continues ahead.\n"
+        "description": "Threep Lane continues ahead."
       },
       {
         "dir": "west",
         "to": 10,
-        "description": "Junket Way is ahead.\n"
+        "description": "Junket Way is ahead."
       }
     ],
     "resets": [
@@ -630,54 +658,55 @@
     "area": "mega1",
     "anum": 16,
     "name": "Threep Lane",
-    "description": "Threep Lane continues north and south.  There is a building to the east\nwith a sign next to the door.\n",
+    "description": "Threep Lane continues north and south.  There is a building to the east
+                   |with a sign next to the door.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 15,
-        "description": "An intersection is ahead.\n"
+        "description": "An intersection is ahead."
       },
       {
         "dir": "east",
         "to": 26,
         "keyword": "door",
-        "description": "A door to the east bodes ill.\n",
+        "description": "A door to the east bodes ill.",
         "exit_flags": "door closed",
         "key": "nokey"
       },
       {
         "dir": "south",
         "to": 17,
-        "description": "Threep Lane continues south.\n"
+        "description": "Threep Lane continues south."
       }
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "Throt and Gleep's Megger Store est. 2107\n"
+      "description": "Throt and Gleep's Megger Store est. 2107"
     }]
   }},
   {"room": {
     "area": "mega1",
     "anum": 17,
     "name": "Threep Lane",
-    "description": "Threep Lane continues north and south.  There is a dark alley to the west.\n",
+    "description": "Threep Lane continues north and south.  There is a dark alley to the west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 16,
-        "description": "Threep Lane continues north.\n"
+        "description": "Threep Lane continues north."
       },
       {
         "dir": "south",
         "to": 18,
-        "description": "An intersection is ahead.\n"
+        "description": "An intersection is ahead."
       },
       {
         "dir": "west",
         "to": 11,
-        "description": "A dark alley is west.\n"
+        "description": "A dark alley is west."
       }
     ],
     "resets": [
@@ -703,23 +732,24 @@
     "area": "mega1",
     "anum": 18,
     "name": "Corner of Max Jaffa Blvd and Threep Way",
-    "description": "A proprietor of Uncle Sumpty's Ugly Emporium meanders by.  Threep Lane\ncontinues north and south while Max Jaffa Boulevard goes west.\n",
+    "description": "A proprietor of Uncle Sumpty's Ugly Emporium meanders by.  Threep Lane
+                   |continues north and south while Max Jaffa Boulevard goes west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 17,
-        "description": "Threep Lane continues north.\n"
+        "description": "Threep Lane continues north."
       },
       {
         "dir": "south",
         "to": 19,
-        "description": "Threep Lane continues south.\n"
+        "description": "Threep Lane continues south."
       },
       {
         "dir": "west",
         "to": 12,
-        "description": "Max Jaffa Blvd continues west\n"
+        "description": "Max Jaffa Blvd continues west"
       }
     ],
     "resets": [
@@ -745,18 +775,19 @@
     "area": "mega1",
     "anum": 19,
     "name": "Corner of Ed Hilldreth Mem. Prkwy and Threep Lane",
-    "description": "Threep Lane goes north from here while Ed Hilldreth Memorial Parkway goes\nwest.\n",
+    "description": "Threep Lane goes north from here while Ed Hilldreth Memorial Parkway goes
+                   |west.",
     "sector_type": "city",
     "doors": [
       {
         "dir": "north",
         "to": 18,
-        "description": "Threep Lane continues north.\n"
+        "description": "Threep Lane continues north."
       },
       {
         "dir": "west",
         "to": 13,
-        "description": "Ed Hilldreth continues west.\n"
+        "description": "Ed Hilldreth continues west."
       }
     ],
     "resets": [{
@@ -772,25 +803,27 @@
     "area": "mega1",
     "anum": 20,
     "name": "Construction Site for the Brit-Cit One tunnel.",
-    "description": "Construction is under way for the Black Atlantic Tunnel to connect\nMega-City One and Brit-Cit One.\n",
+    "description": "Construction is under way for the Black Atlantic Tunnel to connect
+                   |Mega-City One and Brit-Cit One.",
     "sector_type": "city",
     "doors": [{
       "dir": "north",
       "to": 9,
-      "description": "An intersection lies north.\n"
+      "description": "An intersection lies north."
     }]
   }},
   {"room": {
     "area": "mega1",
     "anum": 21,
     "name": "Pustule Palace Cafe",
-    "description": "A scabrous hole.  Run by Ernie Ramirez, an ex-perp, it is a meeting place\nfor the low-life in the area.\n",
+    "description": "A scabrous hole.  Run by Ernie Ramirez, an ex-perp, it is a meeting place
+                   |for the low-life in the area.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 3,
-      "description": "An intersection lies east.\n"
+      "description": "An intersection lies east."
     }],
     "resets": [
       {
@@ -829,26 +862,30 @@
     "area": "mega1",
     "anum": 22,
     "name": "Rietzik's Shuggy Hall",
-    "description": "A sleazy dive and the meeting place of a lot of perps.  Shuggy is a\ntwenty-second Century version of pool, played on a hilly table, usually\nwith large side bets.\n",
+    "description": "A sleazy dive and the meeting place of a lot of perps.  Shuggy is a
+                   |twenty-second Century version of pool, played on a hilly table, usually
+                   |with large side bets.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 5,
-      "description": "An intersection lies east.\n"
+      "description": "An intersection lies east."
     }]
   }},
   {"room": {
     "area": "mega1",
     "anum": 23,
     "name": "Bazza's Home for the Terminally Sarky",
-    "description": "This is an experimental psychiatric home.  Named after a 20th Century\nvid-critic, the home attempts, by various methods, to readjust the\nsocially unacceptable attitudes of the inmates.\n",
+    "description": "This is an experimental psychiatric home.  Named after a 20th Century
+                   |vid-critic, the home attempts, by various methods, to readjust the
+                   |socially unacceptable attitudes of the inmates.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 6,
-      "description": "A large plaza lies east.\n"
+      "description": "A large plaza lies east."
     }],
     "resets": [
       {
@@ -873,13 +910,16 @@
     "area": "mega1",
     "anum": 24,
     "name": "Nu Phisog Parlour",
-    "description": "Opened as a direct rival to the New You Face Parlour chain to offer quick\nand cheap face-changing facilities to the general public.  However,\nsince the closure of Sump's Ugly clinics, the craze for face-changing has\ndied down.\n",
+    "description": "Opened as a direct rival to the New You Face Parlour chain to offer quick
+                   |and cheap face-changing facilities to the general public.  However,
+                   |since the closure of Sump's Ugly clinics, the craze for face-changing has
+                   |died down.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 7,
-      "description": "An intersection lies east.\n"
+      "description": "An intersection lies east."
     }],
     "resets": [
       {
@@ -904,13 +944,15 @@
     "area": "mega1",
     "anum": 25,
     "name": "Ziggi Piggi's Home for the Semi-Stiff",
-    "description": "The only suspended animation parlour in the area.  It has a high turnover\nrate.  It is rumored that the patrons are being used in body sharking and\norgan legging activities.\n",
+    "description": "The only suspended animation parlour in the area.  It has a high turnover
+                   |rate.  It is rumored that the patrons are being used in body sharking and
+                   |organ legging activities.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
       "dir": "east",
       "to": 9,
-      "description": "An intersection lies east.\n"
+      "description": "An intersection lies east."
     }],
     "resets": [
       {
@@ -935,7 +977,10 @@
     "area": "mega1",
     "anum": 26,
     "name": "Throt & Gleep's Megger Store",
-    "description": "This place promises to provide everything that the citizens don't need,\nwith the utmost discourtesy.  Of course, something as crazy as this was\nbound to succeed.  There is a door to the north with a slot next to it.\nThere is also a sign next to the slot.\n",
+    "description": "This place promises to provide everything that the citizens don't need,
+                   |with the utmost discourtesy.  Of course, something as crazy as this was
+                   |bound to succeed.  There is a door to the north with a slot next to it.
+                   |There is also a sign next to the slot.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -956,14 +1001,15 @@
     ],
     "extra_description": [{
       "keyword": "sign",
-      "description": "To open insert card.\n"
+      "description": "To open insert card."
     }]
   }},
   {"room": {
     "area": "mega1",
     "anum": 27,
     "name": "Stockroom of Throt & Gleep's Megger Store",
-    "description": "Many useless items stock the shelves of this stockroom.  A door leads\nsouth and large vault door is to the north.\n",
+    "description": "Many useless items stock the shelves of this stockroom.  A door leads
+                   |south and large vault door is to the north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -984,7 +1030,8 @@
     ],
     "extra_description": [{
       "keyword": "vault door",
-      "description": "This vault seems impervious to breaking.  There is a keyhole in the lock\nhowever.\n"
+      "description": "This vault seems impervious to breaking.  There is a keyhole in the lock
+                     |however."
     }],
     "resets": [
       {
@@ -1016,7 +1063,7 @@
     "area": "mega1",
     "anum": 28,
     "name": "Throt & Gleep's Vault",
-    "description": "The vault is musty with a slight smell of ozone in the air.\n",
+    "description": "The vault is musty with a slight smell of ozone in the air.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{

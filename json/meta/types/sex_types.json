@@ -1,0 +1,26 @@
+{"types": {
+  "name": "sex_types",
+  "description": "Sexes.",
+  "values": [
+    {
+      "name": "neutral",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "male",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "female",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "random",
+      "value": 3,
+      "settable": true
+    }
+  ]
+}}

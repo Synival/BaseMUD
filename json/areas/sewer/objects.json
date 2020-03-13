@@ -10,23 +10,18 @@
     "level": 7,
     "weight": 10,
     "cost": 468,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       },
       {
-        "apply": "armor class",
         "level": 7,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -1
       }
     ]
   }},
@@ -46,27 +41,23 @@
     "level": 15,
     "weight": 60,
     "cost": 2300,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "devil rod",
-      "description": "This is indeed a mysterious rod.  It is dark black at the base but has four\nvery sharp purple tentacles at the end.\n"
+      "description": "This is indeed a mysterious rod.  It is dark black at the base but has four
+                     |very sharp purple tentacles at the end."
     }],
     "affects": [
       {
-        "apply": "strength",
         "level": 15,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 15,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -86,19 +77,17 @@
     "level": 8,
     "weight": 100,
     "cost": 610,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "large mace",
-      "description": "The mace is pretty large with a weight of 10 lbs.  The head is actually four\npurple tentacles tied together.\n"
+      "description": "The mace is pretty large with a weight of 10 lbs.  The head is actually four
+                     |purple tentacles tied together."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 8,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -117,19 +106,17 @@
     "level": 8,
     "weight": 60,
     "cost": 480,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "small mace",
-      "description": "This weapon doesn't look like it does a lot of damage, but then you never know.\nIt consists of a black handle and a purple head.\n"
+      "description": "This weapon doesn't look like it does a lot of damage, but then you never know.
+                     |It consists of a black handle and a purple head."
     }],
     "affects": [{
-      "apply": "damage roll",
       "level": 8,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -147,15 +134,12 @@
     "level": 15,
     "weight": 200,
     "cost": 1250,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take neck",
     "affects": [{
-      "apply": "saves",
       "level": 15,
-      "modifier": -1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -1
     }]
   }},
   {"object": {
@@ -174,7 +158,6 @@
     "level": 17,
     "weight": 40,
     "cost": 1490,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take"
   }},
@@ -189,7 +172,6 @@
     "level": 0,
     "weight": 20,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -207,25 +189,23 @@
     "level": 0,
     "weight": 300,
     "cost": 10,
-    "condition": 100,
     "extra_flags": "magic nodrop",
     "wear_flags": "take head",
     "extra_description": [
       {
         "keyword": "writing text",
-        "description": "You read the number '666'.\n"
+        "description": "You read the number '666'."
       },
       {
         "keyword": "white skull",
-        "description": "The skull has two small horns in the forehead. You notice some writing on\nthe inside.\n"
+        "description": "The skull has two small horns in the forehead. You notice some writing on
+                       |the inside."
       }
     ],
     "affects": [{
-      "apply": "dexterity",
       "level": 0,
-      "modifier": -4,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": -4
     }]
   }},
   {"object": {
@@ -239,16 +219,16 @@
     "level": 0,
     "weight": 10,
     "cost": 5,
-    "condition": 100,
     "wear_flags": "take hold",
     "extra_description": [
       {
         "keyword": "letters letter",
-        "description": "It reads 'Hold me'.\n"
+        "description": "It reads 'Hold me'."
       },
       {
         "keyword": "small stick",
-        "description": "The small stick does not look interesting at all.  But just as you are going\nto throw it away you notice some small letters.\n"
+        "description": "The small stick does not look interesting at all.  But just as you are going
+                       |to throw it away you notice some small letters."
       }
     ]
   }},
@@ -267,19 +247,16 @@
     "level": 7,
     "weight": 200,
     "cost": 900,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "The boots are muddy and they look well worn, but also very comfortable.",
-      "description": ""
+      "description": null
     }],
     "affects": [{
-      "apply": "dexterity",
       "level": 7,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -296,11 +273,10 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "treasure",
-      "description": "This looks like a whole lot of coins.\n"
+      "description": "This looks like a whole lot of coins."
     }]
   }},
   {"object": {
@@ -319,14 +295,11 @@
     "level": 5,
     "weight": 40,
     "cost": 540,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -344,27 +317,22 @@
     "level": 31,
     "weight": 190,
     "cost": 5800,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "claw red redclaw",
-      "description": "This big claw looks like a part of a dragon.\n"
+      "description": "This big claw looks like a part of a dragon."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 31,
-        "modifier": 5,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 5
       },
       {
-        "apply": "armor class",
         "level": 31,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": 2
       }
     ]
   }},
@@ -384,19 +352,17 @@
     "level": 32,
     "weight": 400,
     "cost": 12400,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take body",
     "extra_description": [{
       "keyword": "plate breast silvery",
-      "description": "On the breast plate you notice a relief of large rose. The metal seems to be \nsome kind of silver or platinum.\n"
+      "description": "On the breast plate you notice a relief of large rose. The metal seems to be 
+                     |some kind of silver or platinum."
     }],
     "affects": [{
-      "apply": "strength",
       "level": 32,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "strength",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -415,19 +381,16 @@
     "level": 32,
     "weight": 200,
     "cost": 10100,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take legs",
     "extra_description": [{
       "keyword": "leg plates silvery",
-      "description": "They seem to be made from silver or platinum.  You see the outline of a rose.\n"
+      "description": "They seem to be made from silver or platinum.  You see the outline of a rose."
     }],
     "affects": [{
-      "apply": "intelligence",
       "level": 32,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "intelligence",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -446,27 +409,22 @@
     "level": 27,
     "weight": 140,
     "cost": 3700,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take hands",
     "extra_description": [{
       "keyword": "gloves silvery",
-      "description": "The gloves are made of silver threads.\n"
+      "description": "The gloves are made of silver threads."
     }],
     "affects": [
       {
-        "apply": "damage roll",
         "level": 27,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 27,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -486,19 +444,17 @@
     "level": 32,
     "weight": 350,
     "cost": 10600,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take head",
     "extra_description": [{
       "keyword": "helmet silvery",
-      "description": "The helmet is made from platinum or silver and has a white fur brush attached\non the top.\n"
+      "description": "The helmet is made from platinum or silver and has a white fur brush attached
+                     |on the top."
     }],
     "affects": [{
-      "apply": "wisdom",
       "level": 32,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "wisdom",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -517,19 +473,17 @@
     "level": 30,
     "weight": 600,
     "cost": 5800,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take shield",
     "extra_description": [{
       "keyword": "shield",
-      "description": "On the shield you see a clear and perfect painting of a dark red rose on a white\nbackground. You also notice the inscription :'Pax Est Sanctuum'.\n"
+      "description": "On the shield you see a clear and perfect painting of a dark red rose on a white
+                     |background. You also notice the inscription :'Pax Est Sanctuum'."
     }],
     "affects": [{
-      "apply": "armor class",
       "level": 30,
-      "modifier": -7,
-      "bit_type": "object",
-      "bits": null
+      "apply": "armor class",
+      "modifier": -7
     }]
   }},
   {"object": {
@@ -548,19 +502,16 @@
     "level": 32,
     "weight": 400,
     "cost": 10100,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take feet",
     "extra_description": [{
       "keyword": "boots silvery",
-      "description": "The boots are made from a silvery metal.\n"
+      "description": "The boots are made from a silvery metal."
     }],
     "affects": [{
-      "apply": "dexterity",
       "level": 32,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "dexterity",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -579,19 +530,16 @@
     "level": 32,
     "weight": 400,
     "cost": 10100,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take arms",
     "extra_description": [{
       "keyword": "plates arm silvery",
-      "description": "They seem to be made from silver or platinum. You see the outline of a rose.\n"
+      "description": "They seem to be made from silver or platinum. You see the outline of a rose."
     }],
     "affects": [{
-      "apply": "constitution",
       "level": 32,
-      "modifier": 3,
-      "bit_type": "object",
-      "bits": null
+      "apply": "constitution",
+      "modifier": 3
     }]
   }},
   {"object": {
@@ -610,19 +558,17 @@
     "level": 31,
     "weight": 200,
     "cost": 3700,
-    "condition": 100,
     "extra_flags": "magic bless antievil antineutral",
     "wear_flags": "take about",
     "extra_description": [{
       "keyword": "cloak white",
-      "description": "This is a very fine made cloak from an unknown material, in a bright white\ncolor.\n"
+      "description": "This is a very fine made cloak from an unknown material, in a bright white
+                     |color."
     }],
     "affects": [{
-      "apply": "saves",
       "level": 31,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "saves",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -639,11 +585,10 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "treasure",
-      "description": "Looks like a LOT of coins.\n"
+      "description": "Looks like a LOT of coins."
     }]
   }},
   {"object": {
@@ -662,11 +607,10 @@
     "level": 7,
     "weight": 40,
     "cost": 610,
-    "condition": 100,
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "short sword",
-      "description": "This is a very nice little weapon.\n"
+      "description": "This is a very nice little weapon."
     }]
   }},
   {"object": {
@@ -685,7 +629,6 @@
     "level": 0,
     "weight": 20,
     "cost": 100,
-    "condition": 100,
     "wear_flags": "take about"
   }},
   {"object": {
@@ -704,7 +647,6 @@
     "level": 0,
     "weight": 10,
     "cost": 20,
-    "condition": 100,
     "wear_flags": "take waist"
   }},
   {"object": {
@@ -723,23 +665,18 @@
     "level": 21,
     "weight": 50,
     "cost": 18600,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take hold",
     "affects": [
       {
-        "apply": "wisdom",
         "level": 21,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 2
       },
       {
-        "apply": "intelligence",
         "level": 21,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "intelligence",
+        "modifier": 2
       }
     ]
   }},
@@ -759,23 +696,18 @@
     "level": 29,
     "weight": 300,
     "cost": 6400,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take body",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "dexterity",
         "level": 29,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       }
     ]
   }},
@@ -795,23 +727,18 @@
     "level": 29,
     "weight": 170,
     "cost": 3700,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take legs",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       },
       {
-        "apply": "dexterity",
         "level": 29,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       }
     ]
   }},
@@ -830,15 +757,12 @@
     "level": 20,
     "weight": 40,
     "cost": 1150,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take hands",
     "affects": [{
-      "apply": "damage roll",
       "level": 20,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -857,30 +781,23 @@
     "level": 29,
     "weight": 150,
     "cost": 7000,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take head",
     "affects": [
       {
+        "level": 29,
         "apply": "wisdom",
-        "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
+        "level": 29,
         "apply": "damage roll",
-        "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "modifier": 2
       },
       {
-        "apply": "dexterity",
         "level": 29,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       }
     ]
   }},
@@ -900,15 +817,12 @@
     "level": 35,
     "weight": 100,
     "cost": 6900,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take shield",
     "affects": [{
-      "apply": "damage roll",
       "level": 35,
-      "modifier": 2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "damage roll",
+      "modifier": 2
     }]
   }},
   {"object": {
@@ -927,23 +841,18 @@
     "level": 29,
     "weight": 400,
     "cost": 3700,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take feet",
     "affects": [
       {
-        "apply": "dexterity",
         "level": 29,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       },
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       }
     ]
   }},
@@ -963,23 +872,18 @@
     "level": 29,
     "weight": 400,
     "cost": 3700,
-    "condition": 100,
     "extra_flags": "magic antigood",
     "wear_flags": "take arms",
     "affects": [
       {
-        "apply": "dexterity",
         "level": 29,
-        "modifier": -1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": -1
       },
       {
-        "apply": "damage roll",
         "level": 29,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       }
     ]
   }}

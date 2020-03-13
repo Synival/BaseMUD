@@ -1,0 +1,136 @@
+{"types": {
+  "name": "affect_apply_types",
+  "description": "Affect apply types.",
+  "values": [
+    {
+      "name": "none",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "strength",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "dexterity",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "intelligence",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "wisdom",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "constitution",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "sex",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "class",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "level",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "age",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "height",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "weight",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "mana",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "hp",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "moves",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "gold",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "experience",
+      "value": 16,
+      "settable": true
+    },
+    {
+      "name": "armor class",
+      "value": 17,
+      "settable": true
+    },
+    {
+      "name": "hit roll",
+      "value": 18,
+      "settable": true
+    },
+    {
+      "name": "damage roll",
+      "value": 19,
+      "settable": true
+    },
+    {
+      "name": "saves",
+      "value": 20,
+      "settable": true
+    },
+    {
+      "name": "save vs rod",
+      "value": 21,
+      "settable": true
+    },
+    {
+      "name": "save vs petrification",
+      "value": 22,
+      "settable": true
+    },
+    {
+      "name": "save vs breath",
+      "value": 23,
+      "settable": true
+    },
+    {
+      "name": "save vs spell",
+      "value": 24,
+      "settable": true
+    },
+    {
+      "name": "spell affect",
+      "value": 25,
+      "settable": false
+    }
+  ]
+}}

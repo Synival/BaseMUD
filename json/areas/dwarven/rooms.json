@@ -3,24 +3,26 @@
     "area": "dwarven",
     "anum": 0,
     "name": "Path to Dwarven Village",
-    "description": "All around you are the mountains of the southern range, home of dwarves and \ngiants.  You can climb back down the mountains to the west and leave these \nrealms, or seek riches in the northern mineshafts.  A dirt road leads south, \ntowards a small building.  You can hear crying and shrieking coming from it.\n",
+    "description": "All around you are the mountains of the southern range, home of dwarves and 
+                   |giants.  You can climb back down the mountains to the west and leave these 
+                   |realms, or seek riches in the northern mineshafts.  A dirt road leads south, 
+                   |towards a small building.  You can hear crying and shrieking coming from it.",
     "sector_type": "field",
     "doors": [
       {
         "dir": "north",
         "to": 1,
-        "description": "The path continues.\n"
+        "description": "The path continues."
       },
       {
         "dir": "south",
-        "to": null,
-        "description": "You hear the patter of little feet.\n",
+        "description": "You hear the patter of little feet.",
         "portal": "dwarven-south-1"
       },
       {
         "dir": "west",
         "to": 62,
-        "description": "A rocky road leads back to Midgaard and the mines of Moria.\n"
+        "description": "A rocky road leads back to Midgaard and the mines of Moria."
       }
     ]
   }},
@@ -28,18 +30,19 @@
     "area": "dwarven",
     "anum": 1,
     "name": "Path, base of mountain",
-    "description": "Now you are at the bottom of a rugged mountain.  The forest around you is\nvery dense, and it seems very dark to the north.\n",
+    "description": "Now you are at the bottom of a rugged mountain.  The forest around you is
+                   |very dense, and it seems very dark to the north.",
     "sector_type": "hills",
     "doors": [
       {
         "dir": "north",
         "to": 2,
-        "description": "The path continues up the mountain.\n"
+        "description": "The path continues up the mountain."
       },
       {
         "dir": "south",
         "to": 0,
-        "description": "The path heads toward the main city.\n"
+        "description": "The path heads toward the main city."
       }
     ],
     "resets": [{
@@ -55,18 +58,19 @@
     "area": "dwarven",
     "anum": 2,
     "name": "Path, middle of mountain",
-    "description": "Standing on the middle of the mountain, you can easily see the turning\npoint to the south, and the top of the mountain is very near to the north.\n",
+    "description": "Standing on the middle of the mountain, you can easily see the turning
+                   |point to the south, and the top of the mountain is very near to the north.",
     "sector_type": "mountain",
     "doors": [
       {
         "dir": "north",
         "to": 3,
-        "description": "The top of the mountain is easily seen from here.\n"
+        "description": "The top of the mountain is easily seen from here."
       },
       {
         "dir": "south",
         "to": 1,
-        "description": "The base of the mountain is near.\n"
+        "description": "The base of the mountain is near."
       }
     ],
     "resets": [{
@@ -82,23 +86,25 @@
     "area": "dwarven",
     "anum": 3,
     "name": "Top of mountain",
-    "description": "You are now on the top of the mountain.  To the south you see a path\nleading down the mountain.  To the east and west you see entrances to\nwhat seems like mines.\n",
+    "description": "You are now on the top of the mountain.  To the south you see a path
+                   |leading down the mountain.  To the east and west you see entrances to
+                   |what seems like mines.",
     "sector_type": "hills",
     "doors": [
       {
         "dir": "east",
         "to": 40,
-        "description": "An entrance to the mountain which seems to lead underground.\n"
+        "description": "An entrance to the mountain which seems to lead underground."
       },
       {
         "dir": "south",
         "to": 2,
-        "description": "The path leads down the mountain to the main city.\n"
+        "description": "The path leads down the mountain to the main city."
       },
       {
         "dir": "west",
         "to": 5,
-        "description": "There is an entrance to the mountain.\n"
+        "description": "There is an entrance to the mountain."
       }
     ],
     "resets": [
@@ -124,7 +130,9 @@
     "area": "dwarven",
     "anum": 4,
     "name": "Narrow Path",
-    "description": "This is a narrow path leading to the Dwarven Kingdom.  It looks less\ntravelled than the others, and it is very creepy.  The path opens up\nto the south, and continues to the north.\n",
+    "description": "This is a narrow path leading to the Dwarven Kingdom.  It looks less
+                   |travelled than the others, and it is very creepy.  The path opens up
+                   |to the south, and continues to the north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -142,7 +150,8 @@
     "area": "dwarven",
     "anum": 5,
     "name": "Entrance to Mountain",
-    "description": "Here is an entrance to the mountain.  The door looks very well built,\nand you can hear noise coming from within.\n",
+    "description": "Here is an entrance to the mountain.  The door looks very well built,
+                   |and you can hear noise coming from within.",
     "sector_type": "field",
     "doors": [
       {
@@ -227,7 +236,9 @@
     "area": "dwarven",
     "anum": 6,
     "name": "Bend in Narrow Path",
-    "description": "This is a narrow path that bends to the east here.  The trees hang over\nthe path, and it is very overgrown.  The narrow path continues to the\nsouth and to the east.\n",
+    "description": "This is a narrow path that bends to the east here.  The trees hang over
+                   |the path, and it is very overgrown.  The narrow path continues to the
+                   |south and to the east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -242,14 +253,14 @@
     ],
     "extra_description": [{
       "keyword": "tree trees",
-      "description": "They hang over the road in the most ominous of ways.\n"
+      "description": "They hang over the road in the most ominous of ways."
     }]
   }},
   {"room": {
     "area": "dwarven",
     "anum": 7,
     "name": "Narrow path",
-    "description": "This path is very narrow, and it continues to the north and west.\n",
+    "description": "This path is very narrow, and it continues to the north and west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -267,7 +278,8 @@
     "area": "dwarven",
     "anum": 8,
     "name": "Narrow north-south path",
-    "description": "This path leads to the north and south.  To the north you can see a\ndoor, and to the south the path continues.\n",
+    "description": "This path leads to the north and south.  To the north you can see a
+                   |door, and to the south the path continues.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -293,7 +305,8 @@
     "area": "dwarven",
     "anum": 9,
     "name": "Door to Kingdom",
-    "description": "Here the path turns to the west.  You can see a door in front of you,\nand the path continues to the west and south.\n",
+    "description": "Here the path turns to the west.  You can see a door in front of you,
+                   |and the path continues to the west and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -384,7 +397,8 @@
     "area": "dwarven",
     "anum": 10,
     "name": "Path to the Castle",
-    "description": "You are on a path that will eventually lead to the castle.  It\ncontinues north to the castle, and there is a door on the western wall.\n",
+    "description": "You are on a path that will eventually lead to the castle.  It
+                   |continues north to the castle, and there is a door on the western wall.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -405,7 +419,9 @@
     "area": "dwarven",
     "anum": 11,
     "name": "Still on the path to the Castle",
-    "description": "You are still on the path to the castle, or back to the\nDwarven village, whichever way you wish to go.  The path\ncontinues to the north and south.\n",
+    "description": "You are still on the path to the castle, or back to the
+                   |Dwarven village, whichever way you wish to go.  The path
+                   |continues to the north and south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -423,7 +439,14 @@
     "area": "dwarven",
     "anum": 12,
     "name": "Door to Castle",
-    "description": "Here there is a door to the castle to the east.  The castle\nis elegantly designed, and looks much like a roll of toilet paper\nstanding on end.  A sign says:\n\n              ******************************************\n              *  WELCOME TO THE CASTLE OF STRANGELOVE  *\n              *      Here, celibacy is uninvited       *\n              ******************************************\n",
+    "description": "Here there is a door to the castle to the east.  The castle
+                   |is elegantly designed, and looks much like a roll of toilet paper
+                   |standing on end.  A sign says:
+                   |
+                   |              ******************************************
+                   |              *  WELCOME TO THE CASTLE OF STRANGELOVE  *
+                   |              *      Here, celibacy is uninvited       *
+                   |              ******************************************",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -478,27 +501,28 @@
     "area": "dwarven",
     "anum": 13,
     "name": "Inside the entrance",
-    "description": "Everything here is covered in soot and very grimy.  The path continues\nto the east and north, and there is a door to the west.\n",
+    "description": "Everything here is covered in soot and very grimy.  The path continues
+                   |to the east and north, and there is a door to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
       {
         "dir": "north",
         "to": 14,
-        "description": "The little underground path continues to the north.\n"
+        "description": "The little underground path continues to the north."
       },
       {
         "dir": "east",
         "to": 5,
         "keyword": "door",
-        "description": "The path leads outside the entrance.\n",
+        "description": "The path leads outside the entrance.",
         "exit_flags": "door closed locked pickproof",
         "key": 2
       },
       {
         "dir": "west",
         "to": 26,
-        "description": "This looks like an entrance to some type of store room.\n"
+        "description": "This looks like an entrance to some type of store room."
       }
     ],
     "resets": [{
@@ -514,7 +538,8 @@
     "area": "dwarven",
     "anum": 14,
     "name": "Path",
-    "description": "You are on a path in the dwarven village which leads north to the shops\nand south to the corner of the area.\n",
+    "description": "You are on a path in the dwarven village which leads north to the shops
+                   |and south to the corner of the area.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -532,7 +557,8 @@
     "area": "dwarven",
     "anum": 15,
     "name": "Turn in road",
-    "description": "You are on a path that leads to a Hide & Tooth shop to the west, and the\npath continues to the south.\n",
+    "description": "You are on a path that leads to a Hide & Tooth shop to the west, and the
+                   |path continues to the south.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -543,7 +569,7 @@
       {
         "dir": "west",
         "to": 16,
-        "description": "The Hide & Tooth shop is seen to the west.\n"
+        "description": "The Hide & Tooth shop is seen to the west."
       }
     ],
     "resets": [{
@@ -559,7 +585,8 @@
     "area": "dwarven",
     "anum": 16,
     "name": "Hide & Tooth Shop",
-    "description": "You are in the Hide & Tooth shop.  Here you may buy the finest in Dwarven\nweapons and armors. The path continues to the north and east.\n",
+    "description": "You are in the Hide & Tooth shop.  Here you may buy the finest in Dwarven
+                   |weapons and armors. The path continues to the north and east.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -630,7 +657,8 @@
     "area": "dwarven",
     "anum": 17,
     "name": "Path to the north of shop",
-    "description": "You are on a path to the north of the Hide & Tooth shop.  The path continues\nto the north, and there is Granite Head's bakery to the west.\n",
+    "description": "You are on a path to the north of the Hide & Tooth shop.  The path continues
+                   |to the north, and there is Granite Head's bakery to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -652,7 +680,8 @@
     "area": "dwarven",
     "anum": 18,
     "name": "North of Shops",
-    "description": "Here the path bends to the east towards the barracks. To the\nsouth you can see the shops.\n",
+    "description": "Here the path bends to the east towards the barracks. To the
+                   |south you can see the shops.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -670,7 +699,8 @@
     "area": "dwarven",
     "anum": 19,
     "name": "Path by Hospital",
-    "description": "Here the path passes by the Hospital to the north.  It continues\nto the east to the barracks, and to the west.\n",
+    "description": "Here the path passes by the Hospital to the north.  It continues
+                   |to the east to the barracks, and to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -692,7 +722,7 @@
     "area": "dwarven",
     "anum": 20,
     "name": "Path next to barracks",
-    "description": "Here the path continues west, and east to the barracks.\n",
+    "description": "Here the path continues west, and east to the barracks.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -718,7 +748,8 @@
     "area": "dwarven",
     "anum": 21,
     "name": "Entrance to barracks",
-    "description": "Here there is an entrance to the barracks to the south, and\nthe path continues to the west.\n",
+    "description": "Here there is an entrance to the barracks to the south, and
+                   |the path continues to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -788,7 +819,8 @@
     "area": "dwarven",
     "anum": 22,
     "name": "Guard House",
-    "description": "You are in the guard house to the west of the entrance\nto the castle.  There are nude posters covering the walls.\n",
+    "description": "You are in the guard house to the west of the entrance
+                   |to the castle.  There are nude posters covering the walls.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -797,14 +829,16 @@
     }],
     "extra_description": [{
       "keyword": "poster",
-      "description": "There is a wall poster of a nude Minne Pearl.\n"
+      "description": "There is a wall poster of a nude Minne Pearl."
     }]
   }},
   {"room": {
     "area": "dwarven",
     "anum": 23,
     "name": "First Barrack room",
-    "description": "Here is the first of two main rooms of barracks.  The\nbarracks continue to the south, and you can leave the room\nto the north.\n",
+    "description": "Here is the first of two main rooms of barracks.  The
+                   |barracks continue to the south, and you can leave the room
+                   |to the north.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -874,7 +908,8 @@
     "area": "dwarven",
     "anum": 24,
     "name": "Back of Barracks",
-    "description": "Here is the back of the dwarven barracks.  There are rows\nof beds here, and there is a stench that is unbearable.\n",
+    "description": "Here is the back of the dwarven barracks.  There are rows
+                   |of beds here, and there is a stench that is unbearable.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -884,7 +919,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "keyword": "floorboards boards",
         "exit_flags": "door closed",
         "portal": "dwarven-down-1"
@@ -936,7 +970,9 @@
     "area": "dwarven",
     "anum": 25,
     "name": "Inside of Castle Strangelove",
-    "description": "You are just inside the castle.  It is very tubular in shape,\nand it is very featureless.  There is a set of stairs that lead\nup, and the door leads out of the castle to the west.\n",
+    "description": "You are just inside the castle.  It is very tubular in shape,
+                   |and it is very featureless.  There is a set of stairs that lead
+                   |up, and the door leads out of the castle to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -957,14 +993,15 @@
     "area": "dwarven",
     "anum": 26,
     "name": "A store room",
-    "description": "There is a layer of dust on the floor at least 3 inches thick!  It is\nprobable that not many people have been in here for many months.\n",
+    "description": "There is a layer of dust on the floor at least 3 inches thick!  It is
+                   |probable that not many people have been in here for many months.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
       {
         "dir": "east",
         "to": 13,
-        "description": "A lighted area that looks like a well worn path.\n"
+        "description": "A lighted area that looks like a well worn path."
       },
       {
         "dir": "down",
@@ -976,14 +1013,15 @@
     ],
     "extra_description": [{
       "keyword": "floor dust",
-      "description": "After blowing all the dust off the floor, you notice a trapdoor!\n"
+      "description": "After blowing all the dust off the floor, you notice a trapdoor!"
     }]
   }},
   {"room": {
     "area": "dwarven",
     "anum": 27,
     "name": "Wine cellar",
-    "description": "This room smells like wine, and you can only assume it used to be\na wine cellar at one time.\n",
+    "description": "This room smells like wine, and you can only assume it used to be
+                   |a wine cellar at one time.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -994,7 +1032,6 @@
       },
       {
         "dir": "down",
-        "to": null,
         "keyword": "floorboards boards",
         "exit_flags": "door closed",
         "portal": "dwarven-down-2"
@@ -1022,7 +1059,7 @@
     "area": "dwarven",
     "anum": 28,
     "name": "Stairs in castle",
-    "description": "The stairs continue to circle up and down here.\n",
+    "description": "The stairs continue to circle up and down here.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1048,7 +1085,9 @@
     "area": "dwarven",
     "anum": 29,
     "name": "Stairs",
-    "description": "You are still circling around on the stairs.  You are starting to\nget dizzy from going around and around and around and around and\naround.  The stairs continue up and down.\n",
+    "description": "You are still circling around on the stairs.  You are starting to
+                   |get dizzy from going around and around and around and around and
+                   |around.  The stairs continue up and down.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1084,7 +1123,8 @@
     "area": "dwarven",
     "anum": 30,
     "name": "Top of stairs",
-    "description": "You are at the top of the stairs in the castle.  There is an exit\nto the east, and the stairs lead down.\n",
+    "description": "You are at the top of the stairs in the castle.  There is an exit
+                   |to the east, and the stairs lead down.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1110,7 +1150,10 @@
     "area": "dwarven",
     "anum": 31,
     "name": "Queen's waiting room",
-    "description": "This is the Queen's waiting room.  Here the men literally\n'wait' for the queen.  You've heard that the queen really likes\nto get to 'know' her people, in the biblical sense.  The queen's\nbedroom is to the north, and you can see stairs to the west.\n",
+    "description": "This is the Queen's waiting room.  Here the men literally
+                   |'wait' for the queen.  You've heard that the queen really likes
+                   |to get to 'know' her people, in the biblical sense.  The queen's
+                   |bedroom is to the north, and you can see stairs to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1149,7 +1192,13 @@
     "area": "dwarven",
     "anum": 32,
     "name": "Bedroom",
-    "description": "This is the Queen's bedroom.  The bed is all ruffled, and there\nis a stack of dirty sheets piled in the corner.\n\nA note has been scrawled in lipstick on the mirror:\n\n    I'm out looking for my birth control pills.\n    Why don't you slip into something comfortable while you're waiting?\n",
+    "description": "This is the Queen's bedroom.  The bed is all ruffled, and there
+                   |is a stack of dirty sheets piled in the corner.
+                   |
+                   |A note has been scrawled in lipstick on the mirror:
+                   |
+                   |    I'm out looking for my birth control pills.
+                   |    Why don't you slip into something comfortable while you're waiting?",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -1172,7 +1221,8 @@
     "area": "dwarven",
     "anum": 34,
     "name": "Hospital",
-    "description": "You are inside the Dwarven Hospital.  It smells like rubbing\nalcohol, and there is blood all over the walls.\n",
+    "description": "You are inside the Dwarven Hospital.  It smells like rubbing
+                   |alcohol, and there is blood all over the walls.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -1233,7 +1283,8 @@
     "area": "dwarven",
     "anum": 35,
     "name": "Granite Head's Bakery",
-    "description": "The aroma coming from this room is sensuous.  You can almost taste\nthe pastries dissolving in your mouth.\n",
+    "description": "The aroma coming from this room is sensuous.  You can almost taste
+                   |the pastries dissolving in your mouth.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [{
@@ -1303,7 +1354,8 @@
     "area": "dwarven",
     "anum": 40,
     "name": "Dark path",
-    "description": "This path is very well worn, and there is an entrance to the mines to the\neast, while the path continues to the north and west.\n",
+    "description": "This path is very well worn, and there is an entrance to the mines to the
+                   |east, while the path continues to the north and west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1393,7 +1445,8 @@
     "area": "dwarven",
     "anum": 41,
     "name": "Mine entrance",
-    "description": "The little path here leads down toward the mines, while the worn path\ncontinues to the west.\n",
+    "description": "The little path here leads down toward the mines, while the worn path
+                   |continues to the west.",
     "sector_type": "inside",
     "room_flags": "indoors",
     "doors": [
@@ -1414,7 +1467,9 @@
     "area": "dwarven",
     "anum": 42,
     "name": "Inside the mine",
-    "description": "There are holes everywhere from the places that the workers blew\naway the rock to get to whatever they were looking for.  A path leads\ndown and up.\n",
+    "description": "There are holes everywhere from the places that the workers blew
+                   |away the rock to get to whatever they were looking for.  A path leads
+                   |down and up.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1450,7 +1505,8 @@
     "area": "dwarven",
     "anum": 43,
     "name": "Path in the mine",
-    "description": "You are deep inside the mine, and you feel very uncomfortable.  The\npath continues to the east, and leads to the mineshaft to the west.\n",
+    "description": "You are deep inside the mine, and you feel very uncomfortable.  The
+                   |path continues to the east, and leads to the mineshaft to the west.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1526,7 +1582,8 @@
     "area": "dwarven",
     "anum": 44,
     "name": "Mine crossroad",
-    "description": "You are at a crossroad in the mine.  There is a door to the north,\nand the path continues to the south, east, and west.\n",
+    "description": "You are at a crossroad in the mine.  There is a door to the north,
+                   |and the path continues to the south, east, and west.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1555,7 +1612,9 @@
     "area": "dwarven",
     "anum": 45,
     "name": "Coal Room",
-    "description": "You are inside the storage area for the raw materials\nthat are found down here.  The room is very unsturdy as the\nsupports are very rickety.\n",
+    "description": "You are inside the storage area for the raw materials
+                   |that are found down here.  The room is very unsturdy as the
+                   |supports are very rickety.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -1575,7 +1634,8 @@
     "area": "dwarven",
     "anum": 46,
     "name": "Mine Maze",
-    "description": "You have entered the maze of the mines.  To the east you\ncan see some inscriptions, and you can exit to the south.\n",
+    "description": "You have entered the maze of the mines.  To the east you
+                   |can see some inscriptions, and you can exit to the south.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1596,7 +1656,7 @@
     "area": "dwarven",
     "anum": 47,
     "name": "Maze inscription",
-    "description": "You are inside the maze, but not far enough in that you could get lost.\n",
+    "description": "You are inside the maze, but not far enough in that you could get lost.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1614,7 +1674,7 @@
     "area": "dwarven",
     "anum": 48,
     "name": "Maze",
-    "description": "You are in a maze.\n",
+    "description": "You are in a maze.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1640,7 +1700,7 @@
     "area": "dwarven",
     "anum": 49,
     "name": "Maze",
-    "description": "You are in a maze.\n",
+    "description": "You are in a maze.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1666,7 +1726,7 @@
     "area": "dwarven",
     "anum": 50,
     "name": "Maze",
-    "description": "You are in a maze.\n",
+    "description": "You are in a maze.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1684,7 +1744,9 @@
     "area": "dwarven",
     "anum": 51,
     "name": "Mining equipment room",
-    "description": "This is the storage room for equipment used by the\nDwarven miners.  It is very small, and you can tell that\nnot many miners actually use any equipment.\n",
+    "description": "This is the storage room for equipment used by the
+                   |Dwarven miners.  It is very small, and you can tell that
+                   |not many miners actually use any equipment.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -1704,7 +1766,13 @@
     "area": "dwarven",
     "anum": 52,
     "name": "Solved the Maze.",
-    "description": "You have solved the maze.  You can tell by the last few moves\nthat there is no way that a dumb worker could have figured that\nout.  It seems pretty desolate here.  To the south is a bleak room.\nTo the north, you see the maze.  There is a sign above the south exit:\n\n    Those who enter, plan on a timely death.\n    Especially if you're loyal to the queen.\n",
+    "description": "You have solved the maze.  You can tell by the last few moves
+                   |that there is no way that a dumb worker could have figured that
+                   |out.  It seems pretty desolate here.  To the south is a bleak room.
+                   |To the north, you see the maze.  There is a sign above the south exit:
+                   |
+                   |    Those who enter, plan on a timely death.
+                   |    Especially if you're loyal to the queen.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1722,7 +1790,9 @@
     "area": "dwarven",
     "anum": 53,
     "name": "The Mazekeeper's Room",
-    "description": "You have entered the Mazekeeper's room.  There are pictures of\nthe Queen with darts thrown in it.  Spray-painted on the wall are\nthings like 'the queen shall suffer' and 'Catholics Rule'.\n",
+    "description": "You have entered the Mazekeeper's room.  There are pictures of
+                   |the Queen with darts thrown in it.  Spray-painted on the wall are
+                   |things like 'the queen shall suffer' and 'Catholics Rule'.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [{
@@ -1751,7 +1821,8 @@
     "area": "dwarven",
     "anum": 54,
     "name": "Bottom of mineshaft",
-    "description": "You are at the bottom of the mineshaft.  The air here is very sooty, and\nit is very hard to breath.  The mineshaft leads up and east.\n",
+    "description": "You are at the bottom of the mineshaft.  The air here is very sooty, and
+                   |it is very hard to breath.  The mineshaft leads up and east.",
     "sector_type": "inside",
     "room_flags": "dark indoors",
     "doors": [
@@ -1769,18 +1840,21 @@
     "area": "dwarven",
     "anum": 62,
     "name": "The mountains of the dwarven kingdom",
-    "description": "You are standing at the foot of the mountains of the dwarven kingdom, where\ndwarves and giants toil endlessly to pry gems and mithril from the mother \nearth.  Here lies the palace of the dwarven queen, and untold riches.\nBut beware, for the mines are said to be haunted by demon and spirit alike.\nThe dwarven kingdom lies to the east.\n",
+    "description": "You are standing at the foot of the mountains of the dwarven kingdom, where
+                   |dwarves and giants toil endlessly to pry gems and mithril from the mother 
+                   |earth.  Here lies the palace of the dwarven queen, and untold riches.
+                   |But beware, for the mines are said to be haunted by demon and spirit alike.
+                   |The dwarven kingdom lies to the east.",
     "sector_type": "mountain",
     "doors": [
       {
         "dir": "east",
         "to": 0,
-        "description": "The dwarven kingdom awaits!\n"
+        "description": "The dwarven kingdom awaits!"
       },
       {
         "dir": "west",
-        "to": null,
-        "description": "You see the foothills of this mighty mountain range.\n",
+        "description": "You see the foothills of this mighty mountain range.",
         "portal": "dwarven-west-1"
       }
     ]

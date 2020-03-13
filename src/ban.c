@@ -13,56 +13,56 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <string.h>
 
 #include "recycle.h"
 #include "utils.h"
-#include "db.h"
-#include "save.h"
+#include "fread.h"
 #include "interp.h"
 #include "comm.h"
 #include "chars.h"
 #include "globals.h"
 #include "memory.h"
+#include "fwrite.h"
 
 #include "ban.h"
 
-void save_bans (void) {
+void ban_save_all (void) {
     BAN_T *pban;
     FILE *fp;
     bool found = FALSE;
 
-    fclose (fpReserve);
+    fclose (reserve_file);
     if ((fp = fopen (BAN_FILE, "w")) == NULL)
         perror (BAN_FILE);
 
-    for (pban = ban_first; pban != NULL; pban = pban->next) {
+    for (pban = ban_first; pban != NULL; pban = pban->global_next) {
         if (IS_SET (pban->ban_flags, BAN_PERMANENT)) {
             found = TRUE;
             fprintf (fp, "%-20s %-2d %s\n", pban->name, pban->level,
-                     print_flags (pban->ban_flags));
+                     fwrite_flags_static (ban_flags, pban->ban_flags));
         }
     }
 
     fclose (fp);
-    fpReserve = fopen (NULL_FILE, "r");
+    reserve_file = fopen (NULL_FILE, "r");
     if (!found)
         unlink (BAN_FILE);
 }
 
-void load_bans (void) {
+void ban_load_all (void) {
     FILE *fp;
 
     if ((fp = fopen (BAN_FILE, "r")) == NULL)
@@ -76,23 +76,23 @@ void load_bans (void) {
         }
 
         pban = ban_new ();
-        str_replace_dup (&pban->name, fread_word (fp));
+        str_replace_dup (&pban->name, fread_word_static (fp));
         pban->level = fread_number (fp);
-        pban->ban_flags = fread_flag (fp);
+        pban->ban_flags = fread_flag (fp, ban_flags);
         fread_to_eol (fp);
 
-        LISTB_BACK (pban, next, ban_first, ban_last);
+        LIST2_BACK (pban, global_prev, global_next, ban_first, ban_last);
     }
 }
 
-bool check_ban (char *site, int type) {
+bool ban_check (char *site, int type) {
     BAN_T *pban;
     char host[MAX_STRING_LENGTH];
 
-    strcpy (host, capitalize (site));
+    strcpy (host, str_capitalized (site));
     host[0] = LOWER (host[0]);
 
-    for (pban = ban_first; pban != NULL; pban = pban->next) {
+    for (pban = ban_first; pban != NULL; pban = pban->global_next) {
         if (!IS_SET (pban->ban_flags, type))
             continue;
 
@@ -113,12 +113,12 @@ bool check_ban (char *site, int type) {
     return FALSE;
 }
 
-void ban_site (CHAR_T *ch, char *argument, bool fPerm) {
+void ban_site (CHAR_T *ch, char *argument, bool perm) {
     char buf[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH];
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     char *name;
     BUFFER_T *buffer;
-    BAN_T *pban, *prev, *pban_next;
+    BAN_T *pban, *pban_next;
     bool prefix = FALSE, suffix = FALSE;
     int type;
 
@@ -130,8 +130,8 @@ void ban_site (CHAR_T *ch, char *argument, bool fPerm) {
             "No sites banned at this time.\n\r", ch);
         buffer = buf_new ();
 
-        add_buf (buffer, "Banned sites  level  type     status\n\r");
-        for (pban = ban_first; pban != NULL; pban = pban->next) {
+        buf_cat (buffer, "Banned sites  level  type     status\n\r");
+        for (pban = ban_first; pban != NULL; pban = pban->global_next) {
             sprintf (buf2, "%s%s%s",
                      IS_SET (pban->ban_flags, BAN_PREFIX) ? "*" : "",
                      pban->name,
@@ -143,7 +143,7 @@ void ban_site (CHAR_T *ch, char *argument, bool fPerm) {
                      IS_SET (pban->ban_flags, BAN_ALL) ? "all" : "",
                      IS_SET (pban->ban_flags,
                              BAN_PERMANENT) ? "perm" : "temp");
-            add_buf (buffer, buf);
+            buf_cat (buffer, buf);
         }
 
         page_to_char (buf_string (buffer), ch);
@@ -177,15 +177,12 @@ void ban_site (CHAR_T *ch, char *argument, bool fPerm) {
     BAIL_IF (strlen (name) == 0,
         "You have to ban SOMETHING.\n\r", ch);
 
-    prev = NULL;
-    for (pban = ban_first; pban != NULL; prev = pban, pban = pban_next) {
-        pban_next = pban->next;
+    for (pban = ban_first; pban != NULL; pban = pban_next) {
+        pban_next = pban->global_next;
         if (str_cmp (name, pban->name))
             continue;
         BAIL_IF (pban->level > char_get_trust (ch),
             "That ban was set by a higher power.\n\r", ch);
-
-        LISTB_REMOVE_WITH_PREV (pban, prev, next, ban_first, ban_last);
         ban_free (pban);
     }
 
@@ -200,11 +197,11 @@ void ban_site (CHAR_T *ch, char *argument, bool fPerm) {
         SET_BIT (pban->ban_flags, BAN_PREFIX);
     if (suffix)
         SET_BIT (pban->ban_flags, BAN_SUFFIX);
-    if (fPerm)
+    if (perm)
         SET_BIT (pban->ban_flags, BAN_PERMANENT);
 
-    LISTB_FRONT (pban, next, ban_first, ban_last);
-    save_bans ();
+    LIST2_FRONT (pban, global_prev, global_next, ban_first, ban_last);
+    ban_save_all ();
 
     printf_to_char (ch, "%s has been banned.\n\r", pban->name);
 }

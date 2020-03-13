@@ -1,0 +1,31 @@
+{"flags": {
+  "name": "gate_flags",
+  "description": "Portal gate flags.",
+  "values": [
+    {
+      "name": "normal_exit",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "no_curse",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "go_with",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "buggy",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "random",
+      "value": 4,
+      "settable": true
+    }
+  ]
+}}

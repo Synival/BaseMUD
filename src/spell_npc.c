@@ -46,14 +46,14 @@ void perform_breath_attack (CHAR_T *ch, ROOM_INDEX_T *room,
 
     /* get damage-type specific information. */
     damt = dam_get (dam_type);
-    effect = (damt && damt->effect) ? damt->effect : empty_effect;
+    effect = damt ? effect_get (damt->effect)->effect_fun : effect_empty;
 
     /* effect and partial damage to room. */
     is_area_spell = (room != NULL) ? TRUE : FALSE;
     if (is_area_spell) {
         effect (room, level, dam / 2, TARGET_ROOM);
-        for (vch = room->people; vch != NULL; vch = vch_next) {
-            vch_next = vch->next_in_room;
+        for (vch = room->people_first; vch != NULL; vch = vch_next) {
+            vch_next = vch->room_next;
             if (vch == victim)
                 continue;
 

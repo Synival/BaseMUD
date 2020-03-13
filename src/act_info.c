@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_info.c,v 1.3 2000/12/01 10:48:33 ring0 Exp $ */
 
@@ -37,7 +37,6 @@
 #include "recycle.h"
 #include "lookup.h"
 #include "utils.h"
-#include "skills.h"
 #include "groups.h"
 #include "db.h"
 #include "fight.h"
@@ -54,13 +53,16 @@
 #include "spell_info.h"
 #include "globals.h"
 #include "memory.h"
+#include "items.h"
+#include "players.h"
+#include "extra_descrs.h"
 
 #include "act_info.h"
 
 #define SCAN_ALL_DIRS -2
 
 bool do_filter_blind (CHAR_T *ch) {
-    if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_HOLYLIGHT))
+    if (!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT))
         return FALSE;
     FILTER (IS_AFFECTED (ch, AFF_BLIND),
         "You can't see a thing!\n\r", ch);
@@ -74,7 +76,7 @@ void do_scan_list (ROOM_INDEX_T *scan_room, CHAR_T *ch,
 
     if (scan_room == NULL)
         return;
-    for (rch = scan_room->people; rch != NULL; rch = rch->next_in_room) {
+    for (rch = scan_room->people_first; rch != NULL; rch = rch->room_next) {
         if (rch == ch)
             continue;
         if (!IS_NPC (rch) && rch->invis_level > char_get_trust (ch))
@@ -112,7 +114,7 @@ void do_scan_real (CHAR_T *ch, char *argument, int max_depth) {
     char arg1[MAX_INPUT_LENGTH], buf[MAX_INPUT_LENGTH];
     int min_depth, i;
     ROOM_INDEX_T *scan_room;
-    EXIT_T *pExit;
+    EXIT_T *ex;
     sh_int door, depth;
 
     argument = one_argument (argument, arg1);
@@ -145,11 +147,11 @@ void do_scan_real (CHAR_T *ch, char *argument, int max_depth) {
         for (depth = 1; depth <= max_depth; depth++) {
             if (depth < min_depth)
                 continue;
-            if ((pExit = scan_room->exit[i]) == NULL)
+            if ((ex = scan_room->exit[i]) == NULL)
                 break;
-            if (IS_SET (pExit->exit_flags, EX_CLOSED))
+            if (IS_SET (ex->exit_flags, EX_CLOSED))
                 break;
-            if ((scan_room = pExit->to_room) == NULL)
+            if ((scan_room = ex->to_room) == NULL)
                 break;
             if (!char_can_see_room (ch, scan_room))
                 break;
@@ -162,7 +164,7 @@ void do_look_room (CHAR_T *ch, int is_auto) {
     char sect_char = room_colour_char (ch->in_room);
     printf_to_char (ch, "{%c%s{x", sect_char, ch->in_room->name);
 
-    if ((IS_IMMORTAL (ch) && (IS_NPC (ch) || IS_SET (ch->plr, PLR_HOLYLIGHT)))
+    if ((IS_IMMORTAL (ch) && (IS_NPC (ch) || EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT)))
         || IS_BUILDER (ch, ch->in_room->area))
         printf_to_char (ch, "{r [{RRoom %d{r]{x", ch->in_room->vnum);
     send_to_char ("\n\r", ch);
@@ -170,11 +172,11 @@ void do_look_room (CHAR_T *ch, int is_auto) {
     if (!is_auto || (!IS_NPC (ch) && !IS_SET (ch->comm, COMM_BRIEF)))
         printf_to_char(ch, "  {S%s{x", ch->in_room->description);
 
-    if (!IS_NPC (ch) && IS_SET (ch->plr, PLR_AUTOEXIT))
+    if (!IS_NPC (ch) && EXT_IS_SET (ch->ext_plr, PLR_AUTOEXIT))
         do_function (ch, &do_exits, "auto");
 
-    obj_list_show_to_char (ch->in_room->contents, ch, FALSE, FALSE);
-    char_list_show_to_char (ch->in_room->people, ch);
+    obj_list_show_to_char (ch->in_room->content_first, ch, FALSE, FALSE);
+    char_list_show_to_char (ch->in_room->people_first, ch);
 }
 
 void do_look_in (CHAR_T *ch, char *argument) {
@@ -184,47 +186,8 @@ void do_look_in (CHAR_T *ch, char *argument) {
         "Look in what?\n\r", ch);
     BAIL_IF ((obj = find_obj_here (ch, argument)) == NULL,
         "You do not see that here.\n\r", ch);
-
-    switch (obj->item_type) {
-        case ITEM_DRINK_CON:
-            if (obj->v.drink_con.filled <= 0)
-                send_to_char ("It is empty.\n\r", ch);
-            else if (obj->v.drink_con.filled >= obj->v.drink_con.capacity) {
-                printf_to_char (ch,
-                    "It's completely filled with a %s liquid.\n\r",
-                    liq_table[obj->v.drink_con.liquid].color);
-            }
-            else {
-                int percent;
-                char *fullness;
-
-                percent = (obj->v.drink_con.filled * 100)
-                    / obj->v.drink_con.capacity;
-
-                     if (percent >= 66) fullness = "more than half-filled";
-                else if (percent >= 33) fullness = "about half-filled";
-                else                    fullness = "less than half-filled";
-
-                printf_to_char (ch, "It's %s with a %s liquid.\n\r",
-                    fullness, liq_table[obj->v.drink_con.liquid].color);
-            }
-            break;
-
-        case ITEM_CONTAINER:
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-            if (IS_SET (obj->v.container.flags, CONT_CLOSED))
-                send_to_char ("It is closed.\n\r", ch);
-            else {
-                act ("$p holds:", ch, obj, NULL, TO_CHAR);
-                obj_list_show_to_char (obj->contains, ch, TRUE, TRUE);
-            }
-            break;
-
-        default:
-            send_to_char ("That is not a container.\n\r", ch);
-            break;
-    }
+    BAIL_IF (!item_look_in (obj, ch),
+        "That is not a container.\n\r", ch);
 }
 
 void do_look_direction (CHAR_T *ch, int door) {
@@ -305,7 +268,7 @@ bool do_filter_description_append (CHAR_T *ch, char *argument) {
 }
 
 bool do_filter_description_alter (CHAR_T *ch, char *argument) {
-    smash_tilde (argument);
+    str_smash_tilde (argument);
     if (argument[0] == '-')
         return do_filter_description_remove_line (ch);
     else
@@ -346,11 +309,11 @@ DEFINE_DO_FUN (do_look) {
     if (do_filter_blind (ch))
         return;
 
-    if (!IS_NPC (ch) && !IS_SET (ch->plr, PLR_HOLYLIGHT) &&
+    if (!IS_NPC (ch) && !EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT) &&
         room_is_dark (ch->in_room))
     {
         send_to_char ("{DIt is pitch black ... {x\n\r", ch);
-        char_list_show_to_char (ch->in_room->people, ch);
+        char_list_show_to_char (ch->in_room->people_first, ch);
         return;
     }
 
@@ -391,24 +354,28 @@ DEFINE_DO_FUN (do_look) {
     /* Looking at any obj extra descriptions? */
     for (i = 0; i < 2; i++) {
         switch (i) {
-            case 0:  obj_list = ch->carrying;          break;
-            case 1:  obj_list = ch->in_room->contents; break;
+            case 0:  obj_list = ch->content_first;          break;
+            case 1:  obj_list = ch->in_room->content_first; break;
             default: obj_list = NULL;
         }
-        for (obj = obj_list; obj != NULL; obj = obj->next_content) {
+        for (obj = obj_list; obj != NULL; obj = obj->content_next) {
             if (!char_can_see_obj (ch, obj))
                 continue;
-            pdesc1 = get_extra_descr (arg3, obj->extra_descr);
-            pdesc2 = get_extra_descr (arg3, obj->pIndexData->extra_descr);
+            pdesc1 = extra_descr_get_description (
+                obj->extra_descr_first, arg3);
+            pdesc2 = extra_descr_get_description (
+                obj->obj_index->extra_descr_first, arg3);
 
             CHECK_LOOK (pdesc1 != NULL, pdesc1, FALSE);
             CHECK_LOOK (pdesc2 != NULL, pdesc2, FALSE);
-            CHECK_LOOK (is_name (arg3, obj->name), obj->description, TRUE);
+            CHECK_LOOK (str_in_namelist (arg3, obj->name),
+                        obj->description, TRUE);
         }
     }
 
     do {
-        pdesc1 = get_extra_descr (arg3, ch->in_room->extra_descr);
+        pdesc1 = extra_descr_get_description (
+            ch->in_room->extra_descr_first, arg3);
         CHECK_LOOK (pdesc1 != NULL, pdesc1, FALSE);
     } while (0);
 
@@ -436,58 +403,21 @@ DEFINE_DO_FUN (do_read)
     { do_function (ch, &do_look, argument); }
 
 DEFINE_DO_FUN (do_examine) {
-    char *full_arg;
-    char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     OBJ_T *obj;
 
-    full_arg = argument;
     DO_REQUIRE_ARG (arg, "Examine what?\n\r");
 
     do_function (ch, &do_look, arg);
     if ((obj = find_obj_here (ch, arg)) == NULL)
         return;
 
-    switch (obj->item_type) {
-        case ITEM_JUKEBOX:
-            do_function (ch, &do_play, "list");
-            break;
-
-        case ITEM_MONEY:
-            if (obj->v.money.silver == 0) {
-                if (obj->v.money.gold == 0)
-                    sprintf (buf, "Odd...there's no coins in the pile.\n\r");
-                else if (obj->v.money.gold == 1)
-                    sprintf (buf, "Wow. One gold coin.\n\r");
-                else
-                    sprintf (buf, "There are %ld gold coins in the pile.\n\r",
-                        obj->v.money.gold);
-            }
-            else if (obj->v.money.gold == 0) {
-                if (obj->v.money.silver == 1)
-                    sprintf (buf, "Wow. One silver coin.\n\r");
-                else
-                    sprintf (buf, "There are %ld silver coins in the pile.\n\r",
-                        obj->v.money.silver);
-            }
-            else
-                sprintf (buf, "There are %ld gold and %ld silver coins in the pile.\n\r",
-                    obj->v.money.gold, obj->v.money.silver);
-            send_to_char (buf, ch);
-            break;
-
-        case ITEM_DRINK_CON:
-        case ITEM_CONTAINER:
-        case ITEM_CORPSE_NPC:
-        case ITEM_CORPSE_PC:
-            sprintf (buf, "in %s", full_arg);
-            do_function (ch, &do_look, buf);
-    }
+    item_examine (obj, ch);
 }
 
 DEFINE_DO_FUN (do_lore) {
     OBJ_T *obj;
-    int skill = get_skill (ch, gsn_lore);
+    int skill = char_get_skill (ch, SN(LORE));
 
     BAIL_IF (skill == 0,
         "You haven't studied any lore.\n\r", ch);
@@ -501,14 +431,14 @@ DEFINE_DO_FUN (do_lore) {
 /* Thanks to Zrin for auto-exit part. */
 DEFINE_DO_FUN (do_exits) {
     char buf[MAX_STRING_LENGTH];
-    bool fAuto;
+    bool auto_exits;
     int mode;
 
-    fAuto = !str_cmp (argument, "auto");
+    auto_exits = !str_cmp (argument, "auto");
     if (do_filter_blind (ch))
         return;
 
-    if (fAuto)
+    if (auto_exits)
         sprintf (buf, "{o[Exits: ");
     else if (IS_IMMORTAL (ch))
         sprintf (buf, "Obvious exits from room %d:\n\r", ch->in_room->vnum);
@@ -516,9 +446,9 @@ DEFINE_DO_FUN (do_exits) {
         sprintf (buf, "Obvious exits:\n\r");
     send_to_char (buf, ch);
 
-    mode = fAuto ? EXITS_AUTO : EXITS_LONG;
-    char_exit_string (ch, ch->in_room, mode, buf, sizeof (buf));
-    if (fAuto)
+    mode = auto_exits ? EXITS_AUTO : EXITS_LONG;
+    char_format_exit_string (ch, ch->in_room, mode, buf, sizeof (buf));
+    if (auto_exits)
         printf_to_char (ch, "%s]{x\n\r", buf);
     else
         printf_to_char (ch, "%s", buf);
@@ -532,7 +462,7 @@ DEFINE_DO_FUN (do_worth) {
     }
     printf_to_char (ch,
         "You have %ld gold, %ld silver, and %d experience (%d exp to level).\n\r",
-        ch->gold, ch->silver, ch->exp, get_exp_to_level(ch));
+        ch->gold, ch->silver, ch->exp, player_get_exp_to_next_level(ch));
 }
 
 DEFINE_DO_FUN (do_score) {
@@ -547,8 +477,7 @@ DEFINE_DO_FUN (do_score) {
             char_get_trust (ch));
 
     printf_to_char (ch, "Race: %s  Sex: %s  Class: %s\n\r",
-        race_table[ch->race].name, sex_name(ch->sex),
-        char_get_class_name (ch));
+        race_get_name (ch->race), sex_name (ch->sex), char_get_class_name (ch));
 
     printf_to_char (ch, "You have %d/%d hit, %d/%d mana, %d/%d movement.\n\r",
         ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move);
@@ -578,7 +507,7 @@ DEFINE_DO_FUN (do_score) {
     /* RT shows exp to level */
     if (!IS_NPC (ch) && ch->level < LEVEL_HERO)
         printf_to_char (ch, "You need %d exp to level.\n\r",
-            get_exp_to_level(ch));
+            player_get_exp_to_next_level (ch));
 
     printf_to_char (ch, "Wimpy set to %d hit points.\n\r", ch->wimpy);
 
@@ -614,7 +543,7 @@ DEFINE_DO_FUN (do_score) {
     /* wizinvis and holy light */
     if (IS_IMMORTAL (ch)) {
         printf_to_char (ch, "Holy Light: %s",
-            IS_SET (ch->plr, PLR_HOLYLIGHT) ? "ON" : "OFF");
+            EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT) ? "ON" : "OFF");
         if (ch->invis_level)
             printf_to_char (ch, "  Invisible: level %d", ch->invis_level);
         if (ch->incog_level)
@@ -629,11 +558,11 @@ DEFINE_DO_FUN (do_score) {
 DEFINE_DO_FUN (do_affects) {
     AFFECT_T *paf, *paf_last = NULL;
 
-    BAIL_IF (ch->affected == NULL,
+    BAIL_IF (ch->affect_first == NULL,
         "You are not affected by any spells.\n\r", ch);
 
     send_to_char ("You are affected by the following spells:\n\r", ch);
-    for (paf = ch->affected; paf != NULL; paf = paf->next) {
+    for (paf = ch->affect_first; paf != NULL; paf = paf->on_next) {
         if (paf_last == NULL || paf->type != paf_last->type)
             printf_to_char (ch, "Spell: %-15s\n\r", skill_table[paf->type].name);
         else if (ch->level < 20)
@@ -657,7 +586,6 @@ DEFINE_DO_FUN (do_affects) {
 DEFINE_DO_FUN (do_time) {
     const DAY_T *day_obj;
     const MONTH_T *month_obj;
-    extern char str_boot_time[];
     char *suf;
     int day = time_info.day + 1;
 
@@ -677,8 +605,8 @@ DEFINE_DO_FUN (do_time) {
         time_info.hour >= 12 ? "pm" : "am",
         day_obj->name, day, suf, month_obj->name);
 
-    printf_to_char (ch, "ROM started up at %s\n\rThe system time is %s.\n\r",
-        str_boot_time, (char *) ctime (&current_time));
+    printf_to_char (ch, "ROM started up at %s.\n\rThe system time is %s.\n\r",
+        str_boot_time, (char *) ctime_fixed (&current_time));
 }
 
 DEFINE_DO_FUN (do_weather) {
@@ -697,11 +625,11 @@ DEFINE_DO_FUN (do_weather) {
 }
 
 DEFINE_DO_FUN (do_help) {
-    HELP_T *pHelp;
+    HELP_T *help;
     BUFFER_T *output;
     bool found = FALSE;
     char argall[MAX_INPUT_LENGTH], argone[MAX_INPUT_LENGTH];
-    int level;
+    int level, trust;
 
     output = buf_new ();
     if (argument[0] == '\0')
@@ -716,26 +644,27 @@ DEFINE_DO_FUN (do_help) {
         strcat (argall, argone);
     }
 
-    for (pHelp = help_first; pHelp != NULL; pHelp = pHelp->next) {
-        level = (pHelp->level < 0) ? -1 * pHelp->level - 1 : pHelp->level;
-        if (level > char_get_trust (ch))
+    trust = char_get_trust (ch);
+    for (help = help_first; help != NULL; help = help->global_next) {
+        level = (help->level < 0) ? -1 * help->level - 1 : help->level;
+        if (level > trust)
             continue;
 
-        if (is_name (argall, pHelp->keyword)) {
+        if (str_in_namelist (argall, help->keyword)) {
             /* add seperator if found */
             if (found)
-                add_buf (output,
+                buf_cat (output,
                     "\n\r============================================================\n\r\n\r");
-            if (pHelp->level >= 0 && str_cmp (argall, "imotd")) {
-                add_buf (output, pHelp->keyword);
-                add_buf (output, "\n\r");
+            if (help->level >= 0 && str_cmp (argall, "imotd")) {
+                buf_cat (output, help->keyword);
+                buf_cat (output, "\n\r");
             }
 
             /* Strip leading '.' to allow initial blanks. */
-            if (pHelp->text[0] == '.')
-                add_buf (output, pHelp->text + 1);
+            if (help->text[0] == '.')
+                buf_cat (output, help->text + 1);
             else
-                add_buf (output, pHelp->text);
+                buf_cat (output, help->text);
             found = TRUE;
 
             /* small hack :) */
@@ -776,7 +705,7 @@ DEFINE_DO_FUN (do_whois) {
     DO_REQUIRE_ARG (arg, "You must provide a name.\n\r");
 
     output = buf_new ();
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *wch = CH(d);
         if (d->connected != CON_PLAYING)
             continue;
@@ -789,7 +718,7 @@ DEFINE_DO_FUN (do_whois) {
 
         found = TRUE;
         char_get_who_string (ch, wch, buf, sizeof(buf));
-        add_buf (output, buf);
+        buf_cat (output, buf);
     }
 
     BAIL_IF (!found,
@@ -805,29 +734,29 @@ DEFINE_DO_FUN (do_who) {
     char buf2[MAX_STRING_LENGTH];
     BUFFER_T *output;
     DESCRIPTOR_T *d;
-    int iClass, iRace, iClan, iLevelLower, iLevelUpper;
-    int nNumber, nMatch;
-    bool rgfClass[CLASS_MAX];
-    bool rgfRace[PC_RACE_MAX];
-    bool rgfClan[CLAN_MAX];
-    bool fClassRestrict = FALSE;
-    bool fClanRestrict = FALSE;
-    bool fClan = FALSE;
-    bool fRaceRestrict = FALSE;
-    bool fImmortalOnly = FALSE;
+    int i, level_lower, level_upper;
+    int current_number, matches;
+    bool restrict_class = FALSE;
+    bool restrict_clan = FALSE;
+    bool only_clan = FALSE;
+    bool restrict_race = FALSE;
+    bool only_immortal = FALSE;
+    bool show_class[CLASS_MAX];
+    bool show_race[RACE_MAX];
+    bool show_clan[CLAN_MAX];
 
     /* Set default arguments. */
-    iLevelLower = 0;
-    iLevelUpper = MAX_LEVEL;
-    for (iClass = 0; iClass < CLASS_MAX; iClass++)
-        rgfClass[iClass] = FALSE;
-    for (iRace = 0; iRace < PC_RACE_MAX; iRace++)
-        rgfRace[iRace] = FALSE;
-    for (iClan = 0; iClan < CLAN_MAX; iClan++)
-        rgfClan[iClan] = FALSE;
+    level_lower = 0;
+    level_upper = MAX_LEVEL;
+    for (i = 0; i < CLASS_MAX; i++)
+        show_class[i] = FALSE;
+    for (i = 0; i < RACE_MAX; i++)
+        show_race[i] = FALSE;
+    for (i = 0; i < CLAN_MAX; i++)
+        show_clan[i] = FALSE;
 
     /* Parse arguments. */
-    nNumber = 0;
+    current_number = 0;
     while (1) {
         char arg[MAX_STRING_LENGTH];
         argument = one_argument (argument, arg);
@@ -836,9 +765,9 @@ DEFINE_DO_FUN (do_who) {
 
         /* Check for level arguments. */
         if (is_number (arg)) {
-            switch (++nNumber) {
-                case 1: iLevelLower = atoi (arg); break;
-                case 2: iLevelUpper = atoi (arg); break;
+            switch (++current_number) {
+                case 1: level_lower = atoi (arg); break;
+                case 2: level_upper = atoi (arg); break;
                 default:
                     send_to_char ("Only two level numbers allowed.\n\r", ch);
                     return;
@@ -848,37 +777,38 @@ DEFINE_DO_FUN (do_who) {
 
         /* Look for classes to turn on. */
         if (!str_prefix (arg, "immortals")) {
-            fImmortalOnly = TRUE;
+            only_immortal = TRUE;
             continue;
         }
 
         /* Check for explicit classes. */
-        iClass = class_lookup (arg);
-        if (iClass >= 0) {
-            fClassRestrict = TRUE;
-            rgfClass[iClass] = TRUE;
+        if ((i = class_lookup (arg)) >= 0) {
+            restrict_class = TRUE;
+            show_class[i] = TRUE;
             continue;
         }
 
         /* Check for explicit races. */
-        iRace = race_lookup (arg);
-        if (iRace > 0 && iRace < PC_RACE_MAX) {
-            fRaceRestrict = TRUE;
-            rgfRace[iRace] = TRUE;
-            continue;
+        i = pc_race_lookup (arg);
+        if (i >= 1) {
+            const PC_RACE_T *pc_race = pc_race_get (i);
+            if ((i = race_lookup_exact (pc_race->name)) >= 1) {
+                restrict_race = TRUE;
+                show_race[i] = TRUE;
+                continue;
+            }
         }
 
         /* Check for anyone with a clan. */
         if (!str_prefix (arg, "clan")) {
-            fClan = TRUE;
+            only_clan = TRUE;
             continue;
         }
 
         /* Check for specific clans. */
-        iClan = clan_lookup (arg);
-        if (iClan) {
-            fClanRestrict = TRUE;
-            rgfClan[iClan] = TRUE;
+        if ((i = clan_lookup (arg)) >= 0) {
+            restrict_clan = TRUE;
+            show_clan[i] = TRUE;
             continue;
         }
 
@@ -888,10 +818,10 @@ DEFINE_DO_FUN (do_who) {
     }
 
     /* Now show matching chars.  */
-    nMatch = 0;
+    matches = 0;
     buf[0] = '\0';
     output = buf_new ();
-    for (d = descriptor_list; d != NULL; d = d->next) {
+    for (d = descriptor_first; d != NULL; d = d->global_next) {
         CHAR_T *wch = CH(d);
 
         /* Check for match against restrictions.
@@ -902,22 +832,26 @@ DEFINE_DO_FUN (do_who) {
             continue;
         if (!char_can_see_anywhere (ch, wch))
             continue;
-        if (wch->level < iLevelLower
-            || wch->level > iLevelUpper
-            || (fImmortalOnly && wch->level < LEVEL_IMMORTAL)
-            || (fClassRestrict && !rgfClass[wch->class])
-            || (fRaceRestrict && !rgfRace[wch->race])
-            || (fClan && !char_has_clan (wch))
-            || (fClanRestrict && !rgfClan[wch->clan]))
+        if (wch->level < level_lower || wch->level > level_upper)
+            continue;
+        if (only_immortal && wch->level < LEVEL_IMMORTAL)
+            continue;
+        if (restrict_class && !show_class[wch->class])
+            continue;
+        if (restrict_race && !show_race[wch->race])
+            continue;
+        if (only_clan && !player_has_clan (wch))
+            continue;
+        if (restrict_clan && !show_clan[wch->clan])
             continue;
 
-        nMatch++;
+        matches++;
         char_get_who_string (ch, wch, buf, sizeof(buf));
-        add_buf (output, buf);
+        buf_cat (output, buf);
     }
 
-    sprintf (buf2, "\n\rPlayers found: %d\n\r", nMatch);
-    add_buf (output, buf2);
+    sprintf (buf2, "\n\rPlayers found: %d\n\r", matches);
+    buf_cat (output, buf2);
     page_to_char (buf_string (output), ch);
     buf_free (output);
 }
@@ -929,7 +863,7 @@ DEFINE_DO_FUN (do_count) {
     DESCRIPTOR_T *d;
 
     count = 0;
-    for (d = descriptor_list; d != NULL; d = d->next)
+    for (d = descriptor_first; d != NULL; d = d->global_next)
         if (d->connected == CON_PLAYING && char_can_see_anywhere (ch, d->character))
             count++;
     max_on = UMAX (count, max_on);
@@ -948,28 +882,26 @@ DEFINE_DO_FUN (do_count) {
 
 DEFINE_DO_FUN (do_inventory) {
     send_to_char ("You are carrying:\n\r", ch);
-    obj_list_show_to_char (ch->carrying, ch, TRUE, TRUE);
+    obj_list_show_to_char (ch->content_first, ch, TRUE, TRUE);
 }
 
 DEFINE_DO_FUN (do_equipment) {
     const WEAR_LOC_T *wear;
     OBJ_T *obj;
-    int iWear;
+    int wear_loc;
     bool found;
 
     send_to_char ("You are using:\n\r", ch);
     found = FALSE;
-    for (iWear = 0; iWear < WEAR_LOC_MAX; iWear++) {
-        if ((obj = char_get_eq_by_wear_loc (ch, iWear)) == NULL)
+    for (wear_loc = 0; wear_loc < WEAR_LOC_MAX; wear_loc++) {
+        if ((obj = char_get_eq_by_wear_loc (ch, wear_loc)) == NULL)
             continue;
-        if ((wear = wear_loc_get (iWear)) == NULL)
+        if ((wear = wear_loc_get (wear_loc)) == NULL)
             continue;
 
-        send_to_char (wear->look_msg, ch);
-        if (char_can_see_obj (ch, obj)) {
-            send_to_char (obj_format_to_char (obj, ch, TRUE), ch);
-            send_to_char ("\n\r", ch);
-        }
+        printf_to_char (ch, "%-21s ", wear->look_msg);
+        if (char_can_see_obj (ch, obj))
+            printf_to_char (ch, "%s\n\r", obj_format_to_char (obj, ch, TRUE));
         else
             send_to_char ("something.\n\r", ch);
         found = TRUE;
@@ -996,8 +928,8 @@ DEFINE_DO_FUN (do_compare) {
 
     argument = one_argument (argument, arg2);
     if (arg2[0] == '\0') {
-        for (obj2 = ch->carrying; obj2 != NULL; obj2 = obj2->next_content) {
-            if (obj2->wear_loc == WEAR_NONE)
+        for (obj2 = ch->content_first; obj2 != NULL; obj2 = obj2->content_next) {
+            if (obj2->wear_loc == WEAR_LOC_NONE)
                 continue;
             if (!char_can_see_obj (ch, obj2))
                 continue;
@@ -1023,32 +955,11 @@ DEFINE_DO_FUN (do_compare) {
         msg = "You compare $p to itself.  It looks about the same.";
     else if (obj1->item_type != obj2->item_type)
         msg = "You can't compare $p and $P.";
+    else if (!item_is_comparable (obj1))
+        msg = "You can't compare $p and $P.";
     else {
-        switch (obj1->item_type) {
-            default:
-                msg = "You can't compare $p and $P.";
-                break;
-
-            case ITEM_ARMOR:
-                value1 = obj1->v.armor.vs_pierce +
-                         obj1->v.armor.vs_bash +
-                         obj1->v.armor.vs_slash;
-                value2 = obj2->v.armor.vs_pierce +
-                         obj2->v.armor.vs_bash +
-                         obj2->v.armor.vs_slash;
-                break;
-
-            case ITEM_WEAPON:
-                if (obj1->pIndexData->new_format) {
-                    value1 = (1 + obj1->v.weapon.dice_size) * obj1->v.weapon.dice_num;
-                    value2 = (1 + obj2->v.weapon.dice_size) * obj2->v.weapon.dice_num;
-                }
-                else {
-                    value1 = (obj1->v.weapon.dice_size) * obj1->v.weapon.dice_num;
-                    value2 = (obj2->v.weapon.dice_size) * obj2->v.weapon.dice_num;
-                }
-                break;
-        }
+        value1 = item_get_compare_value (obj1);
+        value2 = item_get_compare_value (obj2);
     }
 
     if (msg == NULL) {
@@ -1071,7 +982,7 @@ DEFINE_DO_FUN (do_where) {
     if (arg[0] == '\0') {
         send_to_char ("Players near you:\n\r", ch);
         found = FALSE;
-        for (d = descriptor_list; d; d = d->next) {
+        for (d = descriptor_first; d; d = d->global_next) {
             if (d->connected == CON_PLAYING
                 && (victim = d->character) != NULL && !IS_NPC (victim)
                 && victim->in_room != NULL
@@ -1091,12 +1002,13 @@ DEFINE_DO_FUN (do_where) {
     }
     else {
         found = FALSE;
-        for (victim = char_list; victim != NULL; victim = victim->next) {
+        for (victim = char_first; victim != NULL; victim = victim->global_next) {
             if (victim->in_room != NULL
                 && victim->in_room->area == ch->in_room->area
                 && !IS_AFFECTED (victim, AFF_HIDE)
                 && !IS_AFFECTED (victim, AFF_SNEAK)
-                && char_can_see_anywhere (ch, victim) && is_name (arg, victim->name))
+                && char_can_see_anywhere (ch, victim)
+                && str_in_namelist (arg, victim->name))
             {
                 found = TRUE;
                 printf_to_char (ch, "%-28s %s\n\r",
@@ -1130,8 +1042,8 @@ DEFINE_DO_FUN (do_title) {
     BAIL_IF (argument[0] == '\0',
         "Change your title to what?\n\r", ch);
 
-    smash_tilde (argument);
-    char_set_title (ch, argument);
+    str_smash_tilde (argument);
+    player_set_title (ch, argument);
     printf_to_char(ch, "Your title is now:%s.\n\r", ch->pcdata->title);
 }
 
@@ -1173,27 +1085,25 @@ DEFINE_DO_FUN (do_commands) {
 
 DEFINE_DO_FUN (do_areas) {
     char buf[MAX_STRING_LENGTH];
-    AREA_T *pArea1;
-    AREA_T *pArea2;
-    int iArea;
-    int iAreaHalf;
+    AREA_T *area1, *area2;
+    int i, areas_half;
 
     BAIL_IF (argument[0] != '\0',
         "No argument is used with this command.\n\r", ch);
 
-    iAreaHalf = (TOP(RECYCLE_AREA_T) + 1) / 2;
-    pArea1 = area_first;
-    pArea2 = area_first;
-    for (iArea = 0; iArea < iAreaHalf; iArea++)
-        pArea2 = pArea2->next;
+    areas_half = (TOP(RECYCLE_AREA_T) + 1) / 2;
+    area1 = area_first;
+    area2 = area_first;
+    for (i = 0; i < areas_half; i++)
+        area2 = area2->global_next;
 
-    for (iArea = 0; iArea < iAreaHalf; iArea++) {
+    for (i = 0; i < areas_half; i++) {
         sprintf (buf, "%-39s%-39s\n\r",
-                 pArea1->credits, (pArea2 != NULL) ? pArea2->credits : "");
+                 area1->credits, (area2 != NULL) ? area2->credits : "");
         send_to_char_bw (buf, ch);
-        pArea1 = pArea1->next;
-        if (pArea2 != NULL)
-            pArea2 = pArea2->next;
+        area1 = area1->global_next;
+        if (area2 != NULL)
+            area2 = area2->global_next;
     }
 }
 

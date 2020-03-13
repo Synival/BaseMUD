@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include "db.h"
 #include "comm.h"
@@ -54,15 +54,13 @@ DEFINE_DO_FUN (do_at) {
 
     original = ch->in_room;
     on = ch->on;
-    char_from_room (ch);
     char_to_room (ch, location);
     interpret (ch, argument);
 
     /* See if 'ch' still exists before continuing!
      * Handles 'at XXXX quit' case. */
-    for (wch = char_list; wch != NULL; wch = wch->next) {
+    for (wch = char_first; wch; wch = wch->global_next) {
         if (wch == ch) {
-            char_from_room (ch);
             char_to_room (ch, original);
             ch->on = on;
             break;
@@ -76,7 +74,7 @@ DEFINE_DO_FUN (do_recho) {
     BAIL_IF (argument[0] == '\0',
         "Local echo what?\n\r", ch);
 
-    for (d = descriptor_list; d; d = d->next) {
+    for (d = descriptor_first; d; d = d->global_next) {
         if (d->connected != CON_PLAYING)
             continue;
         if (d->character->in_room != ch->in_room)

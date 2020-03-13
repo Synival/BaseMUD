@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #include <stdlib.h>
 
@@ -45,13 +45,13 @@ void do_group_show (CHAR_T *ch) {
     leader = (ch->leader != NULL) ? ch->leader : ch;
     printf_to_char (ch, "%s's group:\n\r", PERS_AW (leader, ch));
 
-    for (gch = char_list; gch != NULL; gch = gch->next) {
+    for (gch = char_first; gch != NULL; gch = gch->global_next) {
         if (!is_same_group (gch, ch))
             continue;
         printf_to_char (ch,
             "[%2d %s] %-16s %4d/%4d hp %4d/%4d mana %4d/%4d mv %5d xp\n\r",
             gch->level, IS_NPC (gch) ? "Mob" : class_table[gch->class].who_name,
-            capitalize (PERS_AW (gch, ch)), gch->hit, gch->max_hit,
+            str_capitalized (PERS_AW (gch, ch)), gch->hit, gch->max_hit,
             gch->mana, gch->max_mana, gch->move, gch->max_move, gch->exp);
     }
 }
@@ -65,8 +65,7 @@ DEFINE_DO_FUN (do_order_all) {
 DEFINE_DO_FUN (do_order) {
     char arg[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     CHAR_T *victim, *och, *och_next;
-    bool found;
-    bool fAll;
+    bool found, all;
 
     argument = one_argument (argument, arg);
     one_argument (argument, arg2);
@@ -79,11 +78,11 @@ DEFINE_DO_FUN (do_order) {
         "You feel like taking, not giving, orders.\n\r", ch);
 
     if (!str_cmp (arg, "all")) {
-        fAll = TRUE;
+        all = TRUE;
         victim = NULL;
     }
     else {
-        fAll = FALSE;
+        all = FALSE;
         BAIL_IF ((victim = find_char_same_room (ch, arg)) == NULL,
             "They aren't here.\n\r", ch);
         BAIL_IF (victim == ch,
@@ -94,10 +93,10 @@ DEFINE_DO_FUN (do_order) {
     }
 
     found = FALSE;
-    for (och = ch->in_room->people; och != NULL; och = och_next) {
-        och_next = och->next_in_room;
+    for (och = ch->in_room->people_first; och != NULL; och = och_next) {
+        och_next = och->room_next;
         if (!(IS_AFFECTED (och, AFF_CHARM) &&
-              och->master == ch && (fAll || och == victim)))
+              och->master == ch && (all || och == victim)))
             continue;
 
         found = TRUE;
@@ -175,7 +174,7 @@ DEFINE_DO_FUN (do_split) {
         "You don't have that much to split.\n\r", ch);
 
     members = 0;
-    for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room)
+    for (gch = ch->in_room->people_first; gch != NULL; gch = gch->room_next)
         if (is_same_group (gch, ch) && !IS_AFFECTED (gch, AFF_CHARM))
             members++;
 
@@ -218,7 +217,7 @@ DEFINE_DO_FUN (do_split) {
             amount_silver, amount_gold, share_silver, share_gold);
     }
 
-    for (gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room) {
+    for (gch = ch->in_room->people_first; gch != NULL; gch = gch->room_next) {
         if (gch != ch && is_same_group (gch, ch)
             && !IS_AFFECTED (gch, AFF_CHARM))
         {
@@ -237,7 +236,7 @@ DEFINE_DO_FUN (do_gtell) {
     BAIL_IF (IS_SET (ch->comm, COMM_NOTELL),
         "Your message didn't get through!\n\r", ch);
 
-    for (gch = char_list; gch != NULL; gch = gch->next)
+    for (gch = char_first; gch != NULL; gch = gch->global_next)
         if (is_same_group (gch, ch))
             act_new ("$n tells the group '$t'",
                      ch, argument, gch, TO_VICT, POS_SLEEPING);
@@ -261,11 +260,11 @@ DEFINE_DO_FUN (do_follow) {
         return;
     }
 
-    BAIL_IF_ACT (!IS_NPC (victim) && IS_SET (victim->plr, PLR_NOFOLLOW) &&
+    BAIL_IF_ACT (!IS_NPC (victim) && EXT_IS_SET (victim->ext_plr, PLR_NOFOLLOW) &&
                  !IS_IMMORTAL (ch),
         "$N doesn't seem to want any followers.\n\r", ch, NULL, victim);
 
-    REMOVE_BIT (ch->plr, PLR_NOFOLLOW);
+    EXT_UNSET (ch->ext_plr, PLR_NOFOLLOW);
     if (ch->master != NULL)
         stop_follower (ch);
 

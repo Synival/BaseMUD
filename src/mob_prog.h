@@ -107,10 +107,10 @@
 int keyword_lookup (const char **table, char *keyword);
 int num_eval (int lval, int oper, int rval);
 CHAR_T *get_random_char (CHAR_T *mob);
-bool count_people_room_check (CHAR_T *mob, CHAR_T *vch, int iFlag);
-int count_people_room (CHAR_T *mob, int iFlag);
+bool count_people_room_check (CHAR_T *mob, CHAR_T *vch, int flag);
+int count_people_room (CHAR_T *mob, int flag);
 int get_order (CHAR_T *ch);
-bool has_item (CHAR_T *ch, sh_int vnum, sh_int item_type, bool fWear);
+bool has_item (CHAR_T *ch, sh_int vnum, sh_int item_type, bool wear);
 bool get_mob_vnum_room (CHAR_T *ch, sh_int vnum);
 bool get_obj_vnum_room (CHAR_T *ch, sh_int vnum);
 int cmd_eval (sh_int vnum, char *line, int check, CHAR_T *mob, CHAR_T *ch,
@@ -130,5 +130,8 @@ bool mp_exit_trigger (CHAR_T *ch, int dir);
 bool mp_give_trigger (CHAR_T *mob, CHAR_T *ch, OBJ_T *obj);
 bool mp_greet_trigger (CHAR_T *ch);
 bool mp_hprct_trigger (CHAR_T *mob, CHAR_T *ch);
+void mprog_to_area (MPROG_LIST_T *mprog, AREA_T *area);
+void mpcode_to_area (MPROG_CODE_T *mpcode, AREA_T *area);
+MPROG_CODE_T *mpcode_get_index (int vnum);
 
 #endif

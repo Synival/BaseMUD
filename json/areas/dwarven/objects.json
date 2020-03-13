@@ -10,7 +10,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -29,7 +28,6 @@
     "level": 17,
     "weight": 30,
     "cost": 880,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -47,7 +45,6 @@
     "level": 20,
     "weight": 40,
     "cost": 2900,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -66,7 +63,6 @@
     "level": 11,
     "weight": 10,
     "cost": 4800,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -80,7 +76,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -99,7 +94,6 @@
     "level": 10,
     "weight": 10,
     "cost": 510,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -119,22 +113,17 @@
     "level": 17,
     "weight": 50,
     "cost": 4100,
-    "condition": 100,
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "strength",
         "level": 17,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 2
       },
       {
-        "apply": "hit roll",
         "level": 17,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       }
     ]
   }},
@@ -153,7 +142,6 @@
     "level": 20,
     "weight": 40,
     "cost": 1450,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -167,23 +155,18 @@
     "level": 7,
     "weight": 10,
     "cost": 460,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take finger",
     "affects": [
       {
-        "apply": "damage roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 1
       },
       {
-        "apply": "hit roll",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 1
       }
     ]
   }},
@@ -202,22 +185,17 @@
     "level": 13,
     "weight": 20,
     "cost": 2000,
-    "condition": 100,
     "wear_flags": "take hands",
     "affects": [
       {
-        "apply": "dexterity",
         "level": 13,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       },
       {
-        "apply": "strength",
         "level": 13,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -235,11 +213,11 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "note letter letters",
-      "description": "It seems to be a hot love letter from the Queen.  Unfortunately,\nit's not suitable for transmission across a public data network.\n"
+      "description": "It seems to be a hot love letter from the Queen.  Unfortunately,
+                     |it's not suitable for transmission across a public data network."
     }]
   }},
   {"object": {
@@ -253,7 +231,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -267,7 +244,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -281,7 +257,6 @@
     "level": 0,
     "weight": 10,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "nolocate",
     "wear_flags": "take hold"
   }},
@@ -301,7 +276,6 @@
     "level": 3,
     "weight": 10,
     "cost": 240,
-    "condition": 100,
     "extra_flags": "bless",
     "wear_flags": "take wield"
   }},
@@ -319,11 +293,12 @@
     "level": 0,
     "weight": 10,
     "cost": 300,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "birth control pills pill",
-      "description": "They are in a circular container, and there are numbers corresponding\nto the day that they are to be taken.  You can tell they haven't been\nused for a while.\n"
+      "description": "They are in a circular container, and there are numbers corresponding
+                     |to the day that they are to be taken.  You can tell they haven't been
+                     |used for a while."
     }]
   }},
   {"object": {
@@ -337,11 +312,47 @@
     "level": 0,
     "weight": 10,
     "cost": 500,
-    "condition": 100,
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "map castle strangelove",
-      "description": ".\n* * * Castle Strangelove * * *       __________\n = = ==================== = =        \\ Queen's \\\n      \t\t\t              \\ Bedroom \\\n                                       \\_________\\\n                                                *\n                               __________    ____\\_____\n     North  Up                 \\  Top of \\    \\ Waiting \\\n        \\   |                   \\ Stairs  \\----\\  Room   \\\n          \\ |                    \\_________\\    \\_________\\\n  West ---- + ---- East             |\n            | \\                _____|____\n            |   \\              \\         \\\n          Down  South           \\ Stairs  \\    [] - You need the Castle Key\n                                 \\_________\\        to get beyond this point.\n                                    |               The Castle Key can be\n                               _____|____           found on the Grinning\n                               \\         \\          Dwarves in the Barracks.\n                                \\ Stairs  \\\n                                 \\_________\\    * - You need the Deep Green\n                                    |               Key to get beyond this\n                __________     _____|____           point.  This key can be\n                \\ Door to \\    \\ Inside  \\          found on the Wraith in\n                 \\ Castle  \\-[]-\\ Castle  \\         the wine cellar or on one\n                  \\_________\\    \\_________\\        of the Dwarven Guards on\n                           \\                        the Dark path.\n                         ____\\_____\n                         \\ Path to \\\n                          \\ Castle  \\\n                           \\_________\\\n                                    \\\n                   __________     ____\\_____\n                   \\ Door to \\    \\ Path to \\\n                    \\ Kingdom \\----\\ Castle  \\\n                     \\_________\\    \\_________\\\n                              \\\n                           To Dwarven\n                             Kingdom\n"
+      "description": ".
+                     |* * * Castle Strangelove * * *       __________
+                     | = = ==================== = =        \\ Queen's \\
+                     |      \t\t\t              \\ Bedroom \\
+                     |                                       \\_________\\
+                     |                                                *
+                     |                               __________    ____\\_____
+                     |     North  Up                 \\  Top of \\    \\ Waiting \\
+                     |        \\   |                   \\ Stairs  \\----\\  Room   \\
+                     |          \\ |                    \\_________\\    \\_________\\
+                     |  West ---- + ---- East             |
+                     |            | \\                _____|____
+                     |            |   \\              \\         \\
+                     |          Down  South           \\ Stairs  \\    [] - You need the Castle Key
+                     |                                 \\_________\\        to get beyond this point.
+                     |                                    |               The Castle Key can be
+                     |                               _____|____           found on the Grinning
+                     |                               \\         \\          Dwarves in the Barracks.
+                     |                                \\ Stairs  \\
+                     |                                 \\_________\\    * - You need the Deep Green
+                     |                                    |               Key to get beyond this
+                     |                __________     _____|____           point.  This key can be
+                     |                \\ Door to \\    \\ Inside  \\          found on the Wraith in
+                     |                 \\ Castle  \\-[]-\\ Castle  \\         the wine cellar or on one
+                     |                  \\_________\\    \\_________\\        of the Dwarven Guards on
+                     |                           \\                        the Dark path.
+                     |                         ____\\_____
+                     |                         \\ Path to \\
+                     |                          \\ Castle  \\
+                     |                           \\_________\\
+                     |                                    \\
+                     |                   __________     ____\\_____
+                     |                   \\ Door to \\    \\ Path to \\
+                     |                    \\ Kingdom \\----\\ Castle  \\
+                     |                     \\_________\\    \\_________\\
+                     |                              \\
+                     |                           To Dwarven
+                     |                             Kingdom"
     }]
   }}
 ]

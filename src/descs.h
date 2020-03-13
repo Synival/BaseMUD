@@ -10,19 +10,22 @@
  *  license in 'license.txt'.  In particular, you may not remove either of *
  *  these copyright notices.                                               *
  *                                                                         *
+ *  Thanks to abaddon for proof-reading our comm.c and pointing out bugs.  *
+ *  Any remaining bugs are, of course, our work, not his.  :)              *
+ *                                                                         *
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #ifndef __ROM_DESCS_H
@@ -45,10 +48,10 @@
 
 void close_socket (DESCRIPTOR_T *dclose);
 void read_from_buffer (DESCRIPTOR_T *d);
-bool process_output (DESCRIPTOR_T *d, bool fPrompt);
+bool process_output (DESCRIPTOR_T *d, bool prompt);
 bool desc_flush_output (DESCRIPTOR_T *d);
 void write_to_buffer (DESCRIPTOR_T *d, const char *txt, int length);
-bool check_reconnect (DESCRIPTOR_T *d, char *name, bool fConn);
+bool check_reconnect (DESCRIPTOR_T *d, char *name, bool conn);
 bool check_playing (DESCRIPTOR_T *d, char *name);
 void send_to_desc (const char *txt, DESCRIPTOR_T *d);
 void clear_page (DESCRIPTOR_T *d);

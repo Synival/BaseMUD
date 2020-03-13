@@ -10,7 +10,6 @@
     "level": 0,
     "weight": 30,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -24,7 +23,6 @@
     "level": 0,
     "weight": 30,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take neck hold"
   }},
   {"object": {
@@ -43,7 +41,6 @@
     "level": 10,
     "weight": 50,
     "cost": 620,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -62,7 +59,6 @@
     "level": 6,
     "weight": 30,
     "cost": 108,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -82,7 +78,6 @@
     "level": 8,
     "weight": 40,
     "cost": 270,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -102,7 +97,6 @@
     "level": 2,
     "weight": 30,
     "cost": 148,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -122,7 +116,6 @@
     "level": 2,
     "weight": 30,
     "cost": 148,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -142,7 +135,6 @@
     "level": 2,
     "weight": 30,
     "cost": 148,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -162,7 +154,6 @@
     "level": 4,
     "weight": 30,
     "cost": 192,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -182,7 +173,6 @@
     "level": 3,
     "weight": 40,
     "cost": 169,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -201,7 +191,6 @@
     "level": 0,
     "weight": 10,
     "cost": 210,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -221,7 +210,6 @@
     "level": 13,
     "weight": 160,
     "cost": 1190,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -240,7 +228,6 @@
     "level": 5,
     "weight": 100,
     "cost": 490,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -259,7 +246,6 @@
     "level": 11,
     "weight": 100,
     "cost": 850,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -277,7 +263,6 @@
     "level": 20,
     "weight": 250,
     "cost": 2900,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -295,7 +280,6 @@
     "level": 20,
     "weight": 200,
     "cost": 2900,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -313,7 +297,6 @@
     "level": 25,
     "weight": 280,
     "cost": 3900,
-    "condition": 100,
     "extra_flags": "invis magic bless antievil antineutral",
     "wear_flags": "take body"
   }},
@@ -332,14 +315,11 @@
     "level": 0,
     "weight": 360,
     "cost": 176,
-    "condition": 100,
     "wear_flags": "take body",
     "affects": [{
-      "apply": "mana",
       "level": 0,
-      "modifier": -20,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": -20
     }]
   }},
   {"object": {
@@ -357,14 +337,11 @@
     "level": 8,
     "weight": 450,
     "cost": 1280,
-    "condition": 100,
     "wear_flags": "take body",
     "affects": [{
-      "apply": "mana",
       "level": 8,
-      "modifier": -10,
-      "bit_type": "object",
-      "bits": null
+      "apply": "mana",
+      "modifier": -10
     }]
   }},
   {"object": {
@@ -382,7 +359,6 @@
     "level": 0,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "wear_flags": "take shield"
   }},
   {"object": {
@@ -400,7 +376,6 @@
     "level": 5,
     "weight": 80,
     "cost": 710,
-    "condition": 100,
     "wear_flags": "take shield"
   }},
   {"object": {
@@ -418,7 +393,6 @@
     "level": 0,
     "weight": 60,
     "cost": 108,
-    "condition": 100,
     "wear_flags": "take shield"
   }},
   {"object": {
@@ -436,7 +410,6 @@
     "level": 0,
     "weight": 60,
     "cost": 144,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -454,7 +427,6 @@
     "level": 0,
     "weight": 20,
     "cost": 72,
-    "condition": 100,
     "wear_flags": "take arms"
   }},
   {"object": {
@@ -472,7 +444,6 @@
     "level": 0,
     "weight": 20,
     "cost": 72,
-    "condition": 100,
     "wear_flags": "take head"
   }},
   {"object": {
@@ -490,7 +461,6 @@
     "level": 0,
     "weight": 20,
     "cost": 72,
-    "condition": 100,
     "wear_flags": "take legs"
   }},
   {"object": {
@@ -508,7 +478,6 @@
     "level": 0,
     "weight": 20,
     "cost": 72,
-    "condition": 100,
     "wear_flags": "take hands"
   }},
   {"object": {
@@ -526,7 +495,6 @@
     "level": 0,
     "weight": 20,
     "cost": 72,
-    "condition": 100,
     "wear_flags": "take feet"
   }},
   {"object": {
@@ -544,7 +512,6 @@
     "level": 0,
     "weight": 100,
     "cost": 340,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -562,7 +529,6 @@
     "level": 0,
     "weight": 30,
     "cost": 168,
-    "condition": 100,
     "wear_flags": "take arms"
   }},
   {"object": {
@@ -580,7 +546,6 @@
     "level": 0,
     "weight": 30,
     "cost": 168,
-    "condition": 100,
     "wear_flags": "take legs"
   }},
   {"object": {
@@ -598,7 +563,6 @@
     "level": 0,
     "weight": 30,
     "cost": 168,
-    "condition": 100,
     "wear_flags": "take hands"
   }},
   {"object": {
@@ -616,7 +580,6 @@
     "level": 0,
     "weight": 30,
     "cost": 250,
-    "condition": 100,
     "wear_flags": "take shield"
   }},
   {"object": {
@@ -634,7 +597,6 @@
     "level": 0,
     "weight": 10,
     "cost": 12,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -648,7 +610,6 @@
     "level": 0,
     "weight": 10,
     "cost": 50,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -667,7 +628,6 @@
     "level": 0,
     "weight": 40,
     "cost": 50,
-    "condition": 100,
     "wear_flags": "take about"
   }},
   {"object": {
@@ -685,7 +645,6 @@
     "level": 0,
     "weight": 40,
     "cost": 8,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -703,7 +662,6 @@
     "level": 0,
     "weight": 10,
     "cost": 27,
-    "condition": 100,
     "wear_flags": "take waist"
   }},
   {"object": {
@@ -717,7 +675,6 @@
     "level": 0,
     "weight": 10,
     "cost": 4,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -734,7 +691,6 @@
     "level": 0,
     "weight": 10,
     "cost": 4,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -751,7 +707,6 @@
     "level": 0,
     "weight": 10,
     "cost": 6,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -768,7 +723,6 @@
     "level": 0,
     "weight": 20,
     "cost": 24,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -785,7 +739,6 @@
     "level": 0,
     "weight": 10,
     "cost": 50,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -802,7 +755,6 @@
     "level": 0,
     "weight": 10,
     "cost": 3,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -816,7 +768,6 @@
     "level": 0,
     "weight": 20,
     "cost": 8,
-    "condition": 100,
     "wear_flags": "take wrist"
   }},
   {"object": {
@@ -830,7 +781,6 @@
     "level": 0,
     "weight": 30,
     "cost": 12,
-    "condition": 100,
     "wear_flags": "take feet"
   }},
   {"object": {
@@ -844,7 +794,6 @@
     "level": 0,
     "weight": 20,
     "cost": 200,
-    "condition": 100,
     "wear_flags": "take about"
   }},
   {"object": {
@@ -858,7 +807,6 @@
     "level": 0,
     "weight": 10,
     "cost": 12,
-    "condition": 100,
     "wear_flags": "take waist"
   }},
   {"object": {
@@ -872,7 +820,6 @@
     "level": 0,
     "weight": 10,
     "cost": 8,
-    "condition": 100,
     "wear_flags": "take legs"
   }},
   {"object": {
@@ -886,7 +833,6 @@
     "level": 0,
     "weight": 20,
     "cost": 36,
-    "condition": 100,
     "wear_flags": "take body"
   }},
   {"object": {
@@ -900,7 +846,6 @@
     "level": 0,
     "weight": 20,
     "cost": 200,
-    "condition": 100,
     "wear_flags": "take body about"
   }},
   {"object": {
@@ -914,7 +859,6 @@
     "level": 0,
     "weight": 10,
     "cost": 20,
-    "condition": 100,
     "wear_flags": "take feet"
   }},
   {"object": {
@@ -928,7 +872,6 @@
     "level": 0,
     "weight": 10,
     "cost": 8,
-    "condition": 100,
     "wear_flags": "take waist"
   }},
   {"object": {
@@ -942,7 +885,6 @@
     "level": 0,
     "weight": 10,
     "cost": 320,
-    "condition": 100,
     "wear_flags": "take about"
   }},
   {"object": {
@@ -959,7 +901,6 @@
     "level": 0,
     "weight": 10,
     "cost": 4,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -976,7 +917,6 @@
     "level": 0,
     "weight": 10,
     "cost": 6,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -993,7 +933,6 @@
     "level": 0,
     "weight": 10,
     "cost": 12,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1010,7 +949,6 @@
     "level": 0,
     "weight": 10,
     "cost": 3,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1027,7 +965,6 @@
     "level": 0,
     "weight": 10,
     "cost": 6,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1044,7 +981,6 @@
     "level": 0,
     "weight": 20,
     "cost": 10,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1061,7 +997,6 @@
     "level": 0,
     "weight": 50,
     "cost": 20,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1078,7 +1013,6 @@
     "level": 0,
     "weight": 30,
     "cost": 12,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1095,7 +1029,6 @@
     "level": 0,
     "weight": 10,
     "cost": 8,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1112,7 +1045,6 @@
     "level": 0,
     "weight": 10,
     "cost": 4,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1130,7 +1062,6 @@
     "level": 0,
     "weight": 10,
     "cost": 10,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1148,7 +1079,6 @@
     "level": 0,
     "weight": 10,
     "cost": 13,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1166,7 +1096,6 @@
     "level": 0,
     "weight": 10,
     "cost": 8,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1183,7 +1112,6 @@
     "level": 1,
     "weight": 10,
     "cost": 270,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold"
   }},
@@ -1202,7 +1130,6 @@
     "level": 12,
     "weight": 10,
     "cost": 950,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1220,7 +1147,6 @@
     "level": 0,
     "weight": 10,
     "cost": 200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1238,7 +1164,6 @@
     "level": 11,
     "weight": 10,
     "cost": 820,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1257,7 +1182,6 @@
     "level": 0,
     "weight": 10,
     "cost": 200,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1276,7 +1200,6 @@
     "level": 0,
     "weight": 10,
     "cost": 6,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1294,7 +1217,6 @@
     "level": 0,
     "weight": 80,
     "cost": 120,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1312,7 +1234,6 @@
     "level": 0,
     "weight": 10,
     "cost": 12,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1329,7 +1250,6 @@
     "level": 17,
     "weight": 40,
     "cost": 2700,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1349,12 +1269,11 @@
     "level": 13,
     "weight": 10,
     "cost": 2800,
-    "condition": 100,
     "extra_flags": "glow magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "wand",
-      "description": "You see a small engraved storm cloud at the base of this wand.\n"
+      "description": "You see a small engraved storm cloud at the base of this wand."
     }]
   }},
   {"object": {
@@ -1373,12 +1292,11 @@
     "level": 5,
     "weight": 10,
     "cost": 580,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "wand",
-      "description": "You see a shape slowly fading into exsistance at the base of this wand.\n"
+      "description": "You see a shape slowly fading into exsistance at the base of this wand."
     }]
   }},
   {"object": {
@@ -1397,7 +1315,6 @@
     "level": 3,
     "weight": 10,
     "cost": 410,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1417,7 +1334,6 @@
     "level": 2,
     "weight": 10,
     "cost": 250,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take hold"
   }},
@@ -1437,7 +1353,6 @@
     "level": 5,
     "weight": 20,
     "cost": 360,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -1456,7 +1371,6 @@
     "level": 0,
     "weight": 50,
     "cost": 190,
-    "condition": 100,
     "extra_flags": "antievil antineutral",
     "wear_flags": "take wield"
   }},
@@ -1476,12 +1390,11 @@
     "level": 11,
     "weight": 10,
     "cost": 640,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take wield",
     "extra_description": [{
       "keyword": "fountain pen",
-      "description": "Well, then pen IS mightier than the sword...\n"
+      "description": "Well, then pen IS mightier than the sword..."
     }]
   }},
   {"object": {
@@ -1501,7 +1414,6 @@
     "level": 10,
     "weight": 240,
     "cost": 660,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -1519,15 +1431,12 @@
     "level": 5,
     "weight": 20,
     "cost": 300,
-    "condition": 100,
     "extra_flags": "hum magic",
     "wear_flags": "take neck hold",
     "affects": [{
-      "apply": "hit roll",
       "level": 5,
-      "modifier": 1,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": 1
     }]
   }},
   {"object": {
@@ -1544,7 +1453,6 @@
     "level": 0,
     "weight": 40,
     "cost": 600,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -1563,7 +1471,6 @@
     "level": 0,
     "weight": 10,
     "cost": 105,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -1581,7 +1488,6 @@
     "level": 0,
     "weight": 100,
     "cost": 380,
-    "condition": 100,
     "wear_flags": "take wield"
   }},
   {"object": {
@@ -1595,7 +1501,6 @@
     "level": 0,
     "weight": 30,
     "cost": 1,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -1613,7 +1518,6 @@
     "level": 7,
     "weight": 0,
     "cost": 920,
-    "condition": 100,
     "wear_flags": "wield"
   }},
   {"object": {
@@ -1627,7 +1531,6 @@
     "level": 0,
     "weight": 30,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -1641,7 +1544,6 @@
     "level": 0,
     "weight": 30,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take hold"
   }},
   {"object": {
@@ -1659,7 +1561,6 @@
     "level": 20,
     "weight": 10,
     "cost": 2900,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take body"
   }},
@@ -1678,7 +1579,6 @@
     "level": 10,
     "weight": 10,
     "cost": 730,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take legs"
   }},
@@ -1697,23 +1597,18 @@
     "level": 7,
     "weight": 10,
     "cost": 770,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take feet",
     "affects": [
       {
-        "apply": "dexterity",
         "level": 7,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "dexterity",
+        "modifier": 1
       },
       {
-        "apply": "moves",
         "level": 7,
-        "modifier": 10,
-        "bit_type": "object",
-        "bits": null
+        "apply": "moves",
+        "modifier": 10
       }
     ]
   }},
@@ -1732,15 +1627,12 @@
     "level": 14,
     "weight": 200,
     "cost": 1520,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take wield",
     "affects": [{
-      "apply": "hit roll",
       "level": 14,
-      "modifier": -2,
-      "bit_type": "object",
-      "bits": null
+      "apply": "hit roll",
+      "modifier": -2
     }]
   }},
   {"object": {
@@ -1758,7 +1650,6 @@
     "level": 15,
     "weight": 200,
     "cost": 1680,
-    "condition": 100,
     "extra_flags": "hum",
     "wear_flags": "take wield"
   }},
@@ -1779,23 +1670,18 @@
     "level": 22,
     "weight": 160,
     "cost": 1240,
-    "condition": 100,
     "extra_flags": "magic bless",
     "wear_flags": "take wield",
     "affects": [
       {
-        "apply": "hit roll",
         "level": 22,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "hit roll",
+        "modifier": 2
       },
       {
-        "apply": "damage roll",
         "level": 22,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "damage roll",
+        "modifier": 2
       }
     ]
   }},
@@ -1814,7 +1700,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "extra_flags": "magic"
   }},
   {"object": {
@@ -1828,12 +1713,12 @@
     "level": 0,
     "weight": 10,
     "cost": 1000,
-    "condition": 100,
     "extra_flags": "nolocate",
     "wear_flags": "take hold",
     "extra_description": [{
       "keyword": "pearl",
-      "description": "It's a nicely-formed pearl, should be worth a fair amount at the jewellers.\nYou look around to see if there are any others nearby.\n"
+      "description": "It's a nicely-formed pearl, should be worth a fair amount at the jewellers.
+                     |You look around to see if there are any others nearby."
     }]
   }}
 ]

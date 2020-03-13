@@ -16,13 +16,13 @@
  ***************************************************************************/
 
 /***************************************************************************
- *    ROM 2.4 is copyright 1993-1998 Russ Taylor                           *
- *    ROM has been brought to you by the ROM consortium                    *
- *        Russ Taylor (rtaylor@hypercube.org)                              *
- *        Gabrielle Taylor (gtaylor@hypercube.org)                         *
- *        Brian Moore (zump@rom.org)                                       *
- *    By using this code, you have agreed to follow the terms of the       *
- *    ROM license, in the file Rom24/doc/rom.license                       *
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
 #ifndef __ROM_TYPEDEFS_H
@@ -32,6 +32,7 @@
 
 /* Simple types. */
 typedef long int flag_t;
+typedef int type_t;
 
 /* Structure types. */
 typedef struct affect_data      AFFECT_T;
@@ -68,12 +69,18 @@ typedef struct colour_setting_type COLOUR_SETTING_T;
 typedef struct map_lookup_table MAP_LOOKUP_TABLE_T;
 typedef struct liq_type         LIQ_T;
 typedef struct skill_type       SKILL_T;
+typedef struct skill_class_type SKILL_CLASS_T;
+typedef struct skill_group_type SKILL_GROUP_T;
+typedef struct skill_map_type   SKILL_MAP_T;
+typedef struct skill_group_class_type SKILL_GROUP_CLASS_T;
 typedef struct weapon_type      WEAPON_T;
 typedef struct item_type        ITEM_T;
+typedef struct effect_type      EFFECT_T;
 typedef struct dam_type         DAM_T;
 typedef struct attack_type      ATTACK_T;
 typedef struct wiznet_type      WIZNET_T;
 typedef struct clan_type        CLAN_T;
+typedef struct hp_cond_type     HP_COND_T;
 typedef struct position_type    POSITION_T;
 typedef struct sex_type         SEX_T;
 typedef struct size_type        SIZE_T;
@@ -83,8 +90,9 @@ typedef struct pc_race_type     PC_RACE_T;
 typedef struct class_type       CLASS_T;
 typedef struct skill_type       SKILL_T;
 typedef struct spec_type        SPEC_T;
-typedef struct group_type       GROUP_T;
 typedef struct flag_type        FLAG_T;
+typedef struct ext_flag_def_type EXT_FLAG_DEF_T;
+typedef struct type_type        TYPE_T;
 typedef struct door_type        DOOR_T;
 typedef struct str_app_type     STR_APP_T;
 typedef struct int_app_type     INT_APP_T;
@@ -114,9 +122,13 @@ typedef struct olc_cmd_type     OLC_CMD_T;
 typedef struct editor_cmd_type  EDITOR_CMD_T;
 typedef struct pose_type        POSE_T;
 typedef struct song_type        SONG_T;
+typedef struct ext_flags_type   EXT_FLAGS_T;
+typedef struct ext_init_flags_type EXT_INIT_FLAGS_T;
+typedef struct cond_type        COND_T;
 
 /* JSON typedefs. */
 typedef struct json_t JSON_T;
+typedef struct json_read_t JSON_READ_T;
 typedef double json_num;
 typedef long int json_int;
 
@@ -131,11 +143,13 @@ typedef void SPELL_FUN  (int sn, int level, CHAR_T *ch, void *vo, int target,
                          const char *target_name);
 typedef void EFFECT_FUN (void *vo, int level, int dam, int target);
 typedef void NANNY_FUN  (DESCRIPTOR_T *d, char *argument);
-typedef JSON_T *TABLE_JSON_FUN (const void *obj);
+typedef void *JSON_READ_FUN (const JSON_T *json, const char *obj_name);
+typedef JSON_T *JSON_WRITE_FUN (const void *obj, const char *obj_name);
 typedef bool OLC_FUN    (CHAR_T *ch, char *argument);
-
-typedef void RECYCLE_INIT_FUN (void *obj);
-typedef void RECYCLE_DISPOSE_FUN (void *obj);
+typedef int LOOKUP_FUN  (const char *name);
+typedef void INIT_FUN (void *obj);
+typedef void DISPOSE_FUN (void *obj);
+typedef bool COND_FUN (const CHAR_T *ch);
 
 /* Accommodate old non-Ansi compilers. */
 #if defined(TRADITIONAL)
@@ -144,13 +158,29 @@ typedef void RECYCLE_DISPOSE_FUN (void *obj);
     #define DECLARE_DO_FUN(fun)     void fun()
     #define DECLARE_SPEC_FUN(fun)   bool fun()
     #define DECLARE_SPELL_FUN(fun)  void fun()
+    #define DECLARE_EFFECT_FUN(fun) void fun()
+    #define DECLARE_NANNY_FUN(fun)  void fun()
     #define DECLARE_OLC_FUN(fun)    bool fun()
+    #define DECLARE_JSON_READ_FUN(fun) void *fun()
+    #define DECLARE_JSON_WRITE_FUN(fun) JSON_T *fun()
+    #define DECLARE_LOOKUP_FUN(fun) int fun()
+    #define DECLARE_INIT_FUN(fun)   void fun()
+    #define DECLARE_DISPOSE_FUN(fun) void fun()
+    #define DECLARE_COND_FUN(fun)   bool fun()
 #else
     #define args(list)              list
-    #define DECLARE_DO_FUN(fun)     DO_FUN    fun
-    #define DECLARE_SPEC_FUN(fun)   SPEC_FUN  fun
-    #define DECLARE_SPELL_FUN(fun)  SPELL_FUN fun
-    #define DECLARE_OLC_FUN(fun)    OLC_FUN   fun
+    #define DECLARE_DO_FUN(fun)     DO_FUN     fun
+    #define DECLARE_SPEC_FUN(fun)   SPEC_FUN   fun
+    #define DECLARE_SPELL_FUN(fun)  SPELL_FUN  fun
+    #define DECLARE_EFFECT_FUN(fun) EFFECT_FUN fun
+    #define DECLARE_NANNY_FUN(fun)  NANNY_FUN  fun
+    #define DECLARE_OLC_FUN(fun)    OLC_FUN    fun
+    #define DECLARE_JSON_READ_FUN(fun)  JSON_READ_FUN  fun
+    #define DECLARE_JSON_WRITE_FUN(fun) JSON_WRITE_FUN fun
+    #define DECLARE_LOOKUP_FUN(fun) LOOKUP_FUN fun
+    #define DECLARE_INIT_FUN(fun)   INIT_FUN fun
+    #define DECLARE_DISPOSE_FUN(fun) DISPOSE_FUN fun
+    #define DECLARE_COND_FUN(fun)   COND_FUN fun
 #endif
 
 #endif

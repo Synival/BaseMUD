@@ -13,28 +13,30 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
-#ifndef __ROM_JSON_TBL_H
-#define __ROM_JSON_TBL_H
+#ifndef __ROM_EXTRA_DESCRS_H
+#define __ROM_EXTRA_DESCRS_H
 
 #include "merc.h"
 
-/* dead-simple functions for creating JSON objects. */
-TABLE_JSON_FUN (json_tblw_flag);
-TABLE_JSON_FUN (json_tblw_clan);
-TABLE_JSON_FUN (json_tblw_sex);
-TABLE_JSON_FUN (json_tblw_position);
-TABLE_JSON_FUN (json_tblw_size);
+/* Link management */
+void extra_descr_to_room_index_front (EXTRA_DESCR_T *ed, ROOM_INDEX_T *room);
+void extra_descr_to_room_index_back (EXTRA_DESCR_T *ed, ROOM_INDEX_T *room);
+void extra_descr_to_obj_front (EXTRA_DESCR_T *ed, OBJ_T *obj);
+void extra_descr_to_obj_back (EXTRA_DESCR_T *ed, OBJ_T *obj);
+void extra_descr_to_obj_index_back (EXTRA_DESCR_T *ed, OBJ_INDEX_T *obj_index);
+void extra_descr_unlink (EXTRA_DESCR_T *ed);
+char *extra_descr_get_description (EXTRA_DESCR_T *list, const char *name);
 
 #endif

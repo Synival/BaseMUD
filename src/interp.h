@@ -16,14 +16,14 @@
  ***************************************************************************/
 
 /***************************************************************************
-*    ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
-*    ROM has been brought to you by the ROM consortium                      *
-*        Russ Taylor (rtaylor@hypercube.org)                                *
-*        Gabrielle Taylor (gtaylor@hypercube.org)                           *
-*        Brian Moore (zump@rom.org)                                         *
-*    By using this code, you have agreed to follow the terms of the         *
-*    ROM license, in the file Rom24/doc/rom.license                         *
-****************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 #ifndef __ROM_INTERP_H
 #define __ROM_INTERP_H
@@ -34,6 +34,7 @@ extern const CMD_T cmd_table[];
 
 /* Function prototpyes. */
 void interpret (CHAR_T *ch, char *argument);
+const char *interpret_pos_message (int pos);
 void do_function (CHAR_T *ch, DO_FUN *do_fun, char *argument);
 bool check_social (CHAR_T *ch, char *command, char *argument);
 bool is_number (const char *arg);

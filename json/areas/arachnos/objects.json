@@ -15,23 +15,18 @@
     "level": 18,
     "weight": 50,
     "cost": 4600,
-    "condition": 100,
     "extra_flags": "invis magic",
     "wear_flags": "take head",
     "affects": [
       {
-        "apply": "armor class",
         "level": 18,
-        "modifier": -2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "armor class",
+        "modifier": -2
       },
       {
-        "apply": "wisdom",
         "level": 18,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "wisdom",
+        "modifier": 2
       }
     ]
   }},
@@ -51,23 +46,18 @@
     "level": 17,
     "weight": 50,
     "cost": 4600,
-    "condition": 100,
     "extra_flags": "invis magic",
     "wear_flags": "take head",
     "affects": [
       {
-        "apply": "constitution",
         "level": 17,
-        "modifier": 2,
-        "bit_type": "object",
-        "bits": null
+        "apply": "constitution",
+        "modifier": 2
       },
       {
-        "apply": "strength",
         "level": 17,
-        "modifier": 1,
-        "bit_type": "object",
-        "bits": null
+        "apply": "strength",
+        "modifier": 1
       }
     ]
   }},
@@ -85,7 +75,6 @@
     "level": 0,
     "weight": 0,
     "cost": 0,
-    "condition": 100,
     "wear_flags": "take"
   }},
   {"object": {
@@ -104,12 +93,11 @@
     "level": 10,
     "weight": 20,
     "cost": 700,
-    "condition": 100,
     "extra_flags": "magic",
     "wear_flags": "take",
     "extra_description": [{
       "keyword": "potion blue",
-      "description": "It has a nice sky blue colour and a smell like peppermint.\n"
+      "description": "It has a nice sky blue colour and a smell like peppermint."
     }]
   }}
 ]

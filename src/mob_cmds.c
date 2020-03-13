@@ -49,6 +49,7 @@
 #include "find.h"
 #include "act_info.h"
 #include "globals.h"
+#include "mobiles.h"
 
 #include "mob_cmds.h"
 
@@ -145,7 +146,7 @@ DEFINE_DO_FUN (do_mpgecho) {
     BAIL_IF_BUG (argument[0] == '\0',
         "do_mpgecho: missing argument from vnum %d", CH_VNUM (ch));
 
-    for (d = descriptor_list; d; d = d->next) {
+    for (d = descriptor_first; d; d = d->global_next) {
         if (d->connected == CON_PLAYING) {
             if (IS_IMMORTAL (d->character))
                 send_to_char ("Mob echo> ", d->character);
@@ -166,7 +167,7 @@ DEFINE_DO_FUN (do_mpzecho) {
     if (ch->in_room == NULL)
         return;
 
-    for (d = descriptor_list; d; d = d->next) {
+    for (d = descriptor_first; d; d = d->global_next) {
         if (d->connected == CON_PLAYING
             && d->character->in_room != NULL
             && d->character->in_room->area == ch->in_room->area)
@@ -196,9 +197,9 @@ DEFINE_DO_FUN (do_mpasound) {
             && pexit->to_room != NULL && pexit->to_room != was_in_room)
         {
             ch->in_room = pexit->to_room;
-            MOBtrigger = FALSE;
+            trigger_mobs = FALSE;
             act (argument, ch, NULL, NULL, TO_NOTCHAR);
-            MOBtrigger = TRUE;
+            trigger_mobs = TRUE;
         }
     }
     ch->in_room = was_in_room;
@@ -222,7 +223,7 @@ DEFINE_DO_FUN (do_mpkill) {
     BAIL_IF_BUG (IS_AFFECTED (ch, AFF_CHARM) && ch->master == victim,
         "MpKill - Charmed mob attacking master from vnum %d.", CH_VNUM (ch));
 
-    multi_hit (ch, victim, TYPE_UNDEFINED);
+    multi_hit (ch, victim, ATTACK_DEFAULT);
 }
 
 /* Lets the mobile assist another mob or player
@@ -240,7 +241,7 @@ DEFINE_DO_FUN (do_mpassist) {
     if (victim == ch || ch->fighting != NULL || victim->fighting == NULL)
         return;
 
-    multi_hit (ch, victim->fighting, TYPE_UNDEFINED);
+    multi_hit (ch, victim->fighting, ATTACK_DEFAULT);
 }
 
 
@@ -269,10 +270,10 @@ DEFINE_DO_FUN (do_mpjunk) {
         obj_extract (obj);
     }
     else {
-        for (obj = ch->carrying; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
-            if (arg[3] == '\0' || is_name (&arg[4], obj->name)) {
-                if (obj->wear_loc != WEAR_NONE)
+        for (obj = ch->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_first;
+            if (arg[3] == '\0' || str_in_namelist (&arg[4], obj->name)) {
+                if (obj->wear_loc != WEAR_LOC_NONE)
                     char_unequip_obj (ch, obj);
                 obj_extract (obj);
             }
@@ -320,7 +321,7 @@ DEFINE_DO_FUN (do_mpecho) {
  * Syntax: mob mload [vnum] */
 DEFINE_DO_FUN (do_mpmload) {
     char arg[MAX_INPUT_LENGTH];
-    MOB_INDEX_T *pMobIndex;
+    MOB_INDEX_T *mob_index;
     CHAR_T *victim;
     int vnum;
 
@@ -329,10 +330,10 @@ DEFINE_DO_FUN (do_mpmload) {
         return;
 
     vnum = atoi (arg);
-    BAIL_IF_BUGF ((pMobIndex = get_mob_index (vnum)) == NULL,
+    BAIL_IF_BUGF ((mob_index = mobile_get_index (vnum)) == NULL,
         "Mpmload: bad mob index (%d) from mob %d", vnum, CH_VNUM (ch));
 
-    victim = char_create_mobile (pMobIndex);
+    victim = mobile_create (mob_index);
     char_to_room (victim, ch->in_room);
 }
 
@@ -342,10 +343,10 @@ DEFINE_DO_FUN (do_mpoload) {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
-    OBJ_INDEX_T *pObjIndex;
+    OBJ_INDEX_T *obj_index;
     OBJ_T *obj;
     int level;
-    bool fToroom = FALSE, fWear = FALSE;
+    bool to_room = FALSE, wear = FALSE;
 
     argument = one_argument (argument, arg1);
     argument = one_argument (argument, arg2);
@@ -371,17 +372,17 @@ DEFINE_DO_FUN (do_mpoload) {
      * 'R'     - load to room
      * 'W'     - load to mobile and force wear */
     if (arg3[0] == 'R' || arg3[0] == 'r')
-        fToroom = TRUE;
+        to_room = TRUE;
     else if (arg3[0] == 'W' || arg3[0] == 'w')
-        fWear = TRUE;
+        wear = TRUE;
 
-    BAIL_IF_BUG ((pObjIndex = get_obj_index (atoi (arg1))) == NULL,
+    BAIL_IF_BUG ((obj_index = obj_get_index (atoi (arg1))) == NULL,
         "Mpoload - Bad vnum arg from vnum %d.", CH_VNUM (ch));
 
-    obj = obj_create (pObjIndex, level);
-    if ((fWear || !fToroom) && CAN_WEAR_FLAG (obj, ITEM_TAKE)) {
+    obj = obj_create (obj_index, level);
+    if ((wear || !to_room) && obj_can_wear_flag (obj, ITEM_TAKE)) {
         obj_give_to_char (obj, ch);
-        if (fWear)
+        if (wear)
             char_wear_obj (ch, obj, TRUE);
     }
     else
@@ -404,14 +405,14 @@ DEFINE_DO_FUN (do_mppurge) {
         CHAR_T *vnext;
         OBJ_T *obj_next;
 
-        for (victim = ch->in_room->people; victim != NULL; victim = vnext) {
-            vnext = victim->next_in_room;
+        for (victim = ch->in_room->people_first; victim != NULL; victim = vnext) {
+            vnext = victim->room_next;
             if (IS_NPC (victim) && victim != ch
-                && !IS_SET (victim->mob, MOB_NOPURGE))
-                char_extract (victim, TRUE);
+                && !EXT_IS_SET (victim->ext_mob, MOB_NOPURGE))
+                char_extract (victim);
         }
-        for (obj = ch->in_room->contents; obj != NULL; obj = obj_next) {
-            obj_next = obj->next_content;
+        for (obj = ch->in_room->content_first; obj != NULL; obj = obj_next) {
+            obj_next = obj->content_next;
             if (!IS_SET (obj->extra_flags, ITEM_NOPURGE))
                 obj_extract (obj);
         }
@@ -426,7 +427,7 @@ DEFINE_DO_FUN (do_mppurge) {
 
     BAIL_IF_BUG (!IS_NPC (victim),
         "Mppurge - Purging a PC from vnum %d.", CH_VNUM (ch));
-    char_extract (victim, TRUE);
+    char_extract (victim);
 }
 
 /* Lets the mobile goto any location it wishes that is not private.
@@ -444,7 +445,6 @@ DEFINE_DO_FUN (do_mpgoto) {
     if (ch->fighting != NULL)
         stop_fighting (ch, TRUE);
 
-    char_from_room (ch);
     char_to_room (ch, location);
 }
 
@@ -465,15 +465,13 @@ DEFINE_DO_FUN (do_mpat) {
 
     original = ch->in_room;
     on = ch->on;
-    char_from_room (ch);
     char_to_room (ch, location);
     interpret (ch, argument);
 
     /* See if 'ch' still exists before continuing!
      * Handles 'at XXXX quit' case. */
-    for (wch = char_list; wch != NULL; wch = wch->next) {
+    for (wch = char_first; wch != NULL; wch = wch->global_next) {
         if (wch == ch) {
-            char_from_room (ch);
             char_to_room (ch, original);
             ch->on = on;
             break;
@@ -501,10 +499,10 @@ DEFINE_DO_FUN (do_mptransfer) {
     if (!str_cmp (arg1, "all")) {
         CHAR_T *victim_next;
 
-        for (victim = ch->in_room->people; victim != NULL;
+        for (victim = ch->in_room->people_first; victim != NULL;
              victim = victim_next)
         {
-            victim_next = victim->next_in_room;
+            victim_next = victim->room_next;
             if (!IS_NPC (victim)) {
                 sprintf (buf, "%s %s", victim->name, arg2);
                 do_mptransfer (ch, buf);
@@ -530,7 +528,6 @@ DEFINE_DO_FUN (do_mptransfer) {
 
     if (victim->fighting != NULL)
         stop_fighting (victim, TRUE);
-    char_from_room (victim);
     char_to_room (victim, location);
     do_look (victim, "auto");
 }
@@ -551,8 +548,8 @@ DEFINE_DO_FUN (do_mpgtransfer) {
     if ((who = find_char_same_room (ch, arg1)) == NULL)
         return;
 
-    for (victim = ch->in_room->people; victim; victim = victim_next) {
-        victim_next = victim->next_in_room;
+    for (victim = ch->in_room->people_first; victim; victim = victim_next) {
+        victim_next = victim->room_next;
         if (is_same_group (who, victim)) {
             sprintf (buf, "%s %s", victim->name, arg2);
             do_mptransfer (ch, buf);
@@ -574,8 +571,8 @@ DEFINE_DO_FUN (do_mpforce) {
     if (!str_cmp (arg, "all")) {
         CHAR_T *vch;
         CHAR_T *vch_next;
-        for (vch = char_list; vch != NULL; vch = vch_next) {
-            vch_next = vch->next;
+        for (vch = char_first; vch != NULL; vch = vch_next) {
+            vch_next = vch->global_next;
             if (char_get_trust (vch) < char_get_trust (ch) &&
                     char_can_see_in_room (ch, vch))
                 interpret (vch, argument);
@@ -606,8 +603,8 @@ DEFINE_DO_FUN (do_mpgforce) {
     if (victim == ch)
         return;
 
-    for (vch = victim->in_room->people; vch != NULL; vch = vch_next) {
-        vch_next = vch->next_in_room;
+    for (vch = victim->in_room->people_first; vch != NULL; vch = vch_next) {
+        vch_next = vch->room_next;
         if (is_same_group (victim, vch))
             interpret (vch, argument);
     }
@@ -627,9 +624,9 @@ DEFINE_DO_FUN (do_mpvforce) {
         "MpVforce - Non-number argument vnum %d.", CH_VNUM (ch));
     vnum = atoi (arg);
 
-    for (victim = char_list; victim; victim = victim_next) {
-        victim_next = victim->next;
-        if (IS_NPC (victim) && victim->pIndexData->vnum == vnum &&
+    for (victim = char_first; victim; victim = victim_next) {
+        victim_next = victim->global_next;
+        if (IS_NPC (victim) && victim->mob_index->vnum == vnum &&
                 ch != victim && victim->fighting == NULL)
             interpret (victim, argument);
     }
@@ -661,26 +658,26 @@ DEFINE_DO_FUN (do_mpcast) {
     obj = find_obj_here (ch, target);
 
     switch (skill_table[sn].target) {
-        case TAR_IGNORE:
+        case SKILL_TARGET_IGNORE:
             break;
 
-        case TAR_CHAR_OFFENSIVE:
+        case SKILL_TARGET_CHAR_OFFENSIVE:
             if (vch == NULL || vch == ch)
                 return;
             victim = (void *) vch;
             break;
 
-        case TAR_CHAR_DEFENSIVE:
+        case SKILL_TARGET_CHAR_DEFENSIVE:
             victim = vch == NULL ? (void *) ch : (void *) vch;
             break;
 
-        case TAR_CHAR_SELF:
+        case SKILL_TARGET_CHAR_SELF:
             victim = (void *) ch;
             break;
 
-        case TAR_OBJ_CHAR_DEF:
-        case TAR_OBJ_CHAR_OFF:
-        case TAR_OBJ_INV:
+        case SKILL_TARGET_OBJ_CHAR_DEF:
+        case SKILL_TARGET_OBJ_CHAR_OFF:
+        case SKILL_TARGET_OBJ_INV:
             if (obj == NULL)
                 return;
             victim = (void *) obj;
@@ -702,7 +699,7 @@ DEFINE_DO_FUN (do_mpdamage) {
     char target[MAX_INPUT_LENGTH],
         min[MAX_INPUT_LENGTH], max[MAX_INPUT_LENGTH];
     int low, high;
-    bool fAll = FALSE, fKill = FALSE;
+    bool all = FALSE, kill = FALSE;
 
     argument = one_argument (argument, target);
     argument = one_argument (argument, min);
@@ -712,7 +709,7 @@ DEFINE_DO_FUN (do_mpdamage) {
         "MpDamage - Bad syntax from vnum %d.", CH_VNUM (ch));
 
     if (!str_cmp (target, "all"))
-        fAll = TRUE;
+        all = TRUE;
     else if ((victim = find_char_same_room (ch, target)) == NULL)
         return;
 
@@ -729,23 +726,23 @@ DEFINE_DO_FUN (do_mpdamage) {
     /* If kill parameter is omitted, this command is "safe" and will not
      * kill the victim.  */
     if (target[0] != '\0')
-        fKill = TRUE;
-    if (fAll) {
-        for (victim = ch->in_room->people; victim; victim = victim_next) {
-            victim_next = victim->next_in_room;
+        kill = TRUE;
+    if (all) {
+        for (victim = ch->in_room->people_first; victim; victim = victim_next) {
+            victim_next = victim->room_next;
             if (victim != ch) {
                 damage_quiet (victim, victim,
-                    fKill ? number_range (low, high)
+                    kill ? number_range (low, high)
                           : UMIN (victim->hit, number_range (low, high)),
-                    TYPE_UNDEFINED, DAM_NONE);
+                    ATTACK_DEFAULT, DAM_NONE);
             }
         }
     }
     else {
         damage_quiet (victim, victim,
-            fKill ? number_range (low, high)
+            kill ? number_range (low, high)
                   : UMIN (victim->hit, number_range (low, high)),
-            TYPE_UNDEFINED, DAM_NONE);
+            ATTACK_DEFAULT, DAM_NONE);
     }
 }
 
@@ -804,7 +801,7 @@ DEFINE_DO_FUN (do_mpcall) {
     argument = one_argument (argument, arg);
     BAIL_IF_BUG (arg[0] == '\0',
         "do_mpcall: missing arguments from vnum %d.", CH_VNUM (ch));
-    BAIL_IF_BUG ((prg = get_mprog_index (atoi (arg))) == NULL,
+    BAIL_IF_BUG ((prg = mpcode_get_index (atoi (arg))) == NULL,
         "do_mpcall: invalid prog from vnum %d.", CH_VNUM (ch));
 
     vch = NULL;
@@ -869,12 +866,9 @@ DEFINE_DO_FUN (do_mpotransfer) {
 
     if ((obj = find_obj_here (ch, arg)) == NULL)
         return;
-    if (obj->carried_by == NULL)
-        obj_take_from_room (obj);
-    else {
-        if (obj->wear_loc != WEAR_NONE)
+    if (obj->carried_by != NULL) {
+        if (obj->wear_loc != WEAR_LOC_NONE)
             char_unequip_obj (ch, obj);
-        obj_take_from_char (obj);
     }
     obj_give_to_room (obj, location);
 }
@@ -887,7 +881,7 @@ DEFINE_DO_FUN (do_mpremove) {
     CHAR_T *victim;
     OBJ_T *obj, *obj_next;
     sh_int vnum = 0;
-    bool fAll = FALSE;
+    bool all = FALSE;
     char arg[MAX_INPUT_LENGTH];
 
     argument = one_argument (argument, arg);
@@ -896,18 +890,17 @@ DEFINE_DO_FUN (do_mpremove) {
 
     one_argument (argument, arg);
     if (!str_cmp (arg, "all"))
-        fAll = TRUE;
+        all = TRUE;
     else {
         BAIL_IF_BUG (!is_number (arg),
             "do_mpremove: Invalid object from vnum %d.", CH_VNUM (ch));
         vnum = atoi (arg);
     }
 
-    for (obj = victim->carrying; obj; obj = obj_next) {
-        obj_next = obj->next_content;
-        if (fAll || obj->pIndexData->vnum == vnum) {
+    for (obj = victim->content_first; obj; obj = obj_next) {
+        obj_next = obj->content_next;
+        if (all || obj->obj_index->vnum == vnum) {
             char_unequip_obj (ch, obj);
-            obj_take_from_char (obj);
             obj_extract (obj);
         }
     }

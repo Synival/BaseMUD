@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_comm.c,v 1.2 2000/12/01 10:48:33 ring0 Exp $ */
 
@@ -82,13 +82,13 @@ int colour_to_ansi (flag_t colour, char *buf_out, size_t size) {
         flag_str, fg_str, bg_str, beep_str);
 }
 
-int colour_code_to_ansi (CHAR_T *ch, int use_colour,
+int colour_code_to_ansi (CHAR_T *ch, bool use_colour,
     char type, char *buf_out, size_t size)
 {
     char code[32];
     if (ch != NULL) {
         ch = REAL_CH (ch);
-        use_colour = IS_SET(ch->plr, PLR_COLOUR) ? 1 : 0;
+        use_colour = EXT_IS_SET (ch->ext_plr, PLR_COLOUR) ? TRUE : FALSE;
     }
 
     /* Look for a hard-coded colour code. */
@@ -148,7 +148,7 @@ int colour_puts (CHAR_T *ch, bool use_colour, const char *buf_in,
         return 0;
     if (ch != NULL) {
         ch = REAL_CH (ch);
-        use_colour = IS_SET(ch->plr, PLR_COLOUR) ? 1 : 0;
+        use_colour = EXT_IS_SET (ch->ext_plr, PLR_COLOUR) ? TRUE : FALSE;
     }
 
     buf_start = buf_out;
@@ -196,7 +196,7 @@ int colour_to_full_name (flag_t colour, char *buf_out, size_t size) {
 
 const COLOUR_SETTING_T *colour_setting_get_by_char (char ch) {
     int i;
-    for (i = 0; i < COLOUR_MAX; i++)
+    for (i = 0; i < COLOUR_SETTING_MAX; i++)
         if (colour_setting_table[i].act_char == ch)
             return &(colour_setting_table[i]);
     return NULL;

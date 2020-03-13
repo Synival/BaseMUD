@@ -3,7 +3,7 @@
     "area": "limbo",
     "anum": 1,
     "name": "The Void",
-    "description": "You are floating in nothing.\n",
+    "description": "You are floating in nothing.",
     "sector_type": "city",
     "room_flags": "no_mob indoors",
     "portal": "limbo-room-1"
@@ -12,13 +12,15 @@
     "area": "limbo",
     "anum": 2,
     "name": "Limbo",
-    "description": "You are floating in a formless void, detached from all sensation of physical\nmatter, surrounded by swirling glowing light, which fades into the relative\ndarkness around you without any trace of edges or shadow.\n   There is a \"No Tipping\" notice pinned to the darkness.\n",
+    "description": "You are floating in a formless void, detached from all sensation of physical
+                   |matter, surrounded by swirling glowing light, which fades into the relative
+                   |darkness around you without any trace of edges or shadow.
+                   |   There is a \"No Tipping\" notice pinned to the darkness.",
     "sector_type": "city",
     "room_flags": "indoors",
     "portal": "limbo-room-2",
     "doors": [{
       "dir": "up",
-      "to": null,
       "portal": "limbo-up-1"
     }]
   }}

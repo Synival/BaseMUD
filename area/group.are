@@ -65,13 +65,13 @@ Magical items require training to use properly.  If your character lacks the
 necessary skill to use an item, he will fail, possibly destroying it.  The
 item skills are as follows:
 
-scrolls		The reading of magical scrolls and books (see 'help recite')
-staves		The use of staves and similar devices (see 'help brandish')
-wands		The use of wands and similar items (see 'help zap') 
+scrolls         The reading of magical scrolls and books (see 'help recite')
+staves          The use of staves and similar devices (see 'help brandish')
+wands           The use of wands and similar items (see 'help zap') 
 ~
  
 -1 'GROUP HEADER'~
-The following skills and groups are available to your chacter:
+The following skills and groups are available to your character:
 (this list may be seen again by typing 'list')
 ~
 
@@ -79,16 +79,17 @@ The following skills and groups are available to your chacter:
 The following commands are available:
 list         display all groups and skills not yet bought
 learned      show all groups and skills bought 
+abilities    show all skills and spells and the level they are learned
 premise      brief explanation of creation points and skill groups
 add <name>   buy a skill or group
 drop <name>  discard a skill or group
 info <name>  list the skills or spells contained within a group
 help <name>  help on skills and groups, or other help topics
-done	     exit the character generation process
+done         exit the character generation process
 ~
 
 -1 'MENU CHOICE'~
-Command? (list, learned, premise, add, drop, info, help, done)
+Command? (list, learned, abilities, premise, add, drop, info, help, done)
 > ~
 
 -1 'GROUPS' 'INFO' 'PREMISE'~
@@ -106,11 +107,11 @@ selection of skills at a somewhat reduced cost.
 
 The experience breakdown is as follows: 
 points   exp/level     points   exp/level
-40        1000         90        6000
-50        1500         100       8000
-60	  2000         110      12000
-70        3000         120      16000 
-80        4000         130      24000
+40       1000           90       6000
+50       1500          100       8000
+60       2000          110      12000
+70       3000          120      16000 
+80       4000          130      24000
 The table continues in a similar manner for higher point totals.
 ~
 
@@ -120,10 +121,10 @@ The basic skills:
 Every character starts with two skill groups, one for their class and a default
 set that all characters receive.  The default skills are:
 
-recall  	essential escape skill (see help recall)
-scrolls		reading of scrolls and other magical volumes
-staves		use of magical staves
-wands		use of magical wands
+recall   essential escape skill (see help recall)
+scrolls  reading of scrolls and other magical volumes
+staves   use of magical staves
+wands    use of magical wands
 
 for class defaults, check the classes themselves.
 ~
@@ -140,18 +141,18 @@ purchased, at a very high rate.  The default skill selection for mages is
 as follows:
 
 skills:
-lore		the lore of magical items
+lore            the lore of magical items
 
 spell groups:
-beguiling	spells that control the mind
-combat		offensive magics, such as fireball and chill touch
-detection	informational magics, such as detect magic and identify
-enhancement	spells that maximize physical potential, such as haste
-illusion	magics for concealing and deceiving
-maladictions	a selection of curses fit for any witch
-protective	defensive magics, ranging from armor to stone skin
-transporation	spells for getting from here to there
-weather		spells for conjuring and mastering the elements
+beguiling       spells that control the mind
+combat          offensive magics, such as fireball and chill touch
+detection       informational magics, such as detect magic and identify
+enhancement     spells that maximize physical potential, such as haste
+illusion        magics for concealing and deceiving
+maladictions    a selection of curses fit for any witch
+protective      defensive magics, ranging from armor to stone skin
+transporation   spells for getting from here to there
+weather         spells for conjuring and mastering the elements
 ~
 
 -1 CLERIC 'CLERIC BASICS' 'CLERIC DEFAULT'~
@@ -166,18 +167,18 @@ be purchased, many at a very dear cost.  The default skill selection for
 clerics is as follows:
 
 skills:
-flail		the proper use of flails
+flail           the proper use of flails
 
 spell groups:
-attack		a selection of offensive magics
-creation	the making of physical objects, such as food and water
-curative	spells that cure the sick and feeble of their ailments
-benedictions	powerful magics that grant the blessings of the gods
-detection	informational magics, such as detect magic and identify
-healing		spells for treating wounds, from scratches to death blows
-maladictions	an assortment of curses
-protective	defensive magics, including the powerful sanctuary spell
-transportation	spells for getting from here to there
+attack          a selection of offensive magics
+creation        the making of physical objects, such as food and water
+curative        spells that cure the sick and feeble of their ailments
+benedictions    powerful magics that grant the blessings of the gods
+detection       informational magics, such as detect magic and identify
+healing         spells for treating wounds, from scratches to death blows
+maladictions    an assortment of curses
+protective      defensive magics, including the powerful sanctuary spell
+transportation  spells for getting from here to there
 weather         spells for conjuring and mastering the elements
 ~
 
@@ -193,17 +194,17 @@ well.  Any other weapon skills must be purchased, unless the default selection
 is chosen.  This default skill package includes:
 
 skills:
-mace		the use of maces and other blunt weapons
-sword		swordplay and fencing
-backstab	the art of hitting your opponent by surprise
-disarm		used to deprive your opponent of his weapon
-dodge		the best way to take a punch is not to be there
-second attack	with training, the skilled thief can hit twice as fast
-trip		a good way to introduce an opponent to the floor
-hide		the art of remaining undetected in a room
-peek		used to look into a person's belongings
-pick lock	a useful skill for breaking and entering
-sneak		with this skill, a thief can walk into a room undetected
+mace            the use of maces and other blunt weapons
+sword           swordplay and fencing
+backstab        the art of hitting your opponent by surprise
+disarm          used to deprive your opponent of his weapon
+dodge           the best way to take a punch is not to be there
+second attack   with training, the skilled thief can hit twice as fast
+trip            a good way to introduce an opponent to the floor
+hide            the art of remaining undetected in a room
+peek            used to look into a person's belongings
+pick lock       a useful skill for breaking and entering
+sneak           with this skill, a thief can walk into a room undetected
 ~
 
 -1 WARRIOR 'WARRIOR BASICS' 'WARRIOR DEFAULT'~
@@ -217,13 +218,13 @@ Other weapon skills may be purchased cheaply, or gained in the default skill
 package, which includes the following:
 
 skills:
-weaponsmaster	this group provides knowledge of all weapon types
-shield block	the art of parrying with a shield
-bash		a forceful rush with the body, designed to flatten your foes
-enhanced damage	this skill multiplies your damage in battle
-parry		the art of parrying with weapons
-rescue		allows you to take the blows aimed for a companion
-third attack	allows the skilled warrior to land three blows in one round
+weaponsmaster   this group provides knowledge of all weapon types
+shield block    the art of parrying with a shield
+bash            a forceful rush with the body, designed to flatten your foes
+enhanced damage this skill multiplies your damage in battle
+parry           the art of parrying with weapons
+rescue          allows you to take the blows aimed for a companion
+third attack    allows the skilled warrior to land three blows in one round
 ~
 
 -1 EXOTIC WEAPONS WEAPON WEAPONSMASTER AXE DAGGER FLAIL MACE POLEARM SPEAR SWORD WHIP~
@@ -236,16 +237,16 @@ both his weapon and his opponent's.
 
 The weapon skills consist of the following:
 
-weaponsmaster	skill group of all weapons listed below (save exotic weaponry)
-axe		the use of axes, ranging from hand to great (but not halberds)
-dagger		the use of knives and daggers, and other stabbing weapons
-flail		skill in ball-and-chain type weapons
-mace		this skill includes clubs and hammers as well as maces
-polearm		the use of pole weapons (except spears), including halberds
-spear		this skill covers both spears and staves, but not polearms
-sword		the warrior's standby, from rapier to claymore
-whip		the use of whips, chains, and bullwhips
-exotic		the use of strange magical weapons
+weaponsmaster   skill group of all weapons listed below (save exotic weaponry)
+axe             the use of axes, ranging from hand to great (but not halberds)
+dagger          the use of knives and daggers, and other stabbing weapons
+flail           skill in ball-and-chain type weapons
+mace            this skill includes clubs and hammers as well as maces
+polearm         the use of pole weapons (except spears), including halberds
+spear           this skill covers both spears and staves, but not polearms
+sword           the warrior's standby, from rapier to claymore
+whip            the use of whips, chains, and bullwhips
+exotic          the use of strange magical weapons
 
 The exotic skill cannot be purchased, and is dependent solely upon level.
 ~
@@ -265,13 +266,13 @@ than the combat spells, but can still deal out a stinging blow.  Mages and
 thieves cannot use this group.  The attack spell group consists of the 
 following spells:
 
-demonfire	a powerful, but very evil, spell
-dispel evil	torments evil foes
-dispel good	calls down unholy power on good creatures
-earthquake	brings the power of earth to bear against your foes
-flamestrike	sends a column of flame from the heavens
-heat metal	heats metal equipment to searing tempatures
-ray of truth	sends forth a blinding ray of holy energy
+demonfire       a powerful, but very evil, spell
+dispel evil     torments evil foes
+dispel good     calls down unholy power on good creatures
+earthquake      brings the power of earth to bear against your foes
+flamestrike     sends a column of flame from the heavens
+heat metal      heats metal equipment to searing tempatures
+ray of truth    sends forth a blinding ray of holy energy
 ~
 
 -1 BEGUILING~
@@ -281,8 +282,8 @@ Only mages and thieves have access to the beguiling magics, which consist of
 the following:
 
 calm            if successful, stops all fighting in the room
-charm person	turns an enemy into a trusted friend
-sleep		puts a foe into enchanted slumber
+charm person    turns an enemy into a trusted friend
+sleep           puts a foe into enchanted slumber
 ~
 
 -1 BENEDICTIONS~
@@ -291,11 +292,11 @@ They are often restricted to those of like alignment.  Only clerics and
 warriors may use these spells.  The benedictions spell group consists of the
 following:
 
-bless		bestows divine favor upon the target
-calm		if successful, stops all fighting in the room
-frenzy		puts the recipient into beserker rage
-holy word	aids your allies while calling divine wrath upon your foes
-remove curse	removes malevolent magic from players and items
+bless           bestows divine favor upon the target
+calm            if successful, stops all fighting in the room
+frenzy          puts the recipient into beserker rage
+holy word       aids your allies while calling divine wrath upon your foes
+remove curse    removes malevolent magic from players and items
 ~
 
 -1 COMBAT~
@@ -305,15 +306,15 @@ considered an essential part of most wizards' collections. Clerics and thieves
 do not have access to these spells.  In order of power, the combat spell group
 contains the following magics:
 
-magic missile	send a weak energy bolt into a foe
-chill touch	weakens your enemy with a frigid grasp
-burning hands	sends a blast of fire into your foe
-shocking grasp	sends a powerful jolt into a foe
-lightning bolt	sends forth a single bolt of lightning into an enemy
-colour spray	blasts your opponent with a rainbow spray, which may blind him
-fireball	a powerful spell, great for burning your enemy to ashes
-acid blast	sends forth a stream of acid to eradicate your foes
-chain lightning	sends lightning bolts arcing through foes 
+magic missile   send a weak energy bolt into a foe
+chill touch     weakens your enemy with a frigid grasp
+burning hands   sends a blast of fire into your foe
+shocking grasp  sends a powerful jolt into a foe
+lightning bolt  sends forth a single bolt of lightning into an enemy
+colour spray    blasts your opponent with a rainbow spray, which may blind him
+fireball        a powerful spell, great for burning your enemy to ashes
+acid blast      sends forth a stream of acid to eradicate your foes
+chain lightning sends lightning bolts arcing through foes 
 ~
 
 -1 CREATION~
@@ -322,12 +323,12 @@ duration.  Skill creators can travel without food or drink, and use their
 powers to create nourishment as required.  All classes may become learned in
 this group, which contains these spells:
 
-continual light	creates an eternal light source
-create food	produces a nourishing mushroom
-create rose	creates a beautiful red rose
-create spring	calls forth a small but pure spring from the ground
-create water	fills any available container with water
-floating disc	creates a floating disc of force perfect for hauling treasure
+continual light creates an eternal light source
+create food     produces a nourishing mushroom
+create rose     creates a beautiful red rose
+create spring   calls forth a small but pure spring from the ground
+create water    fills any available container with water
+floating disc   creates a floating disc of force perfect for hauling treasure
 ~
 
 -1 CURATIVE~
@@ -335,9 +336,9 @@ The curative spells are used to heal various unpleasant conditions that can
 befall an adventurer.   For healing of damage, see the healing spell group.
 Curative spells cannot be used by mages or thieves.
 
-cure blindness	restored sight to the blind
-cure disease	heals the plague
-cure poison	removes the harmful effects of poison
+cure blindness  restored sight to the blind
+cure disease    heals the plague
+cure poison     removes the harmful effects of poison
 ~
 
 -1 DETECTION~
@@ -346,16 +347,16 @@ can be used to see hidden objects, give information about treasure, or even
 scry out the true nature of your foe.  All classes except warriors can use 
 detection spells.
 
-detect evil	reveals the aura of evil monsters
-detect good	similar to above, only for good monsters
-detect hidden	shows the whereabouts of hidden foes
-detect invis	allows the caster to see the unseeable
-detect magic	reveals magical auras to the caster
-detect poison	determines if food is safe to eat
-farsight	searches for living beings near the caster
-identify	gives information about the nature of an object
-know alignment	determines the moral character of a monster or person
-locate object	finds a specific item
+detect evil     reveals the aura of evil monsters
+detect good     similar to above, only for good monsters
+detect hidden   shows the whereabouts of hidden foes
+detect invis    allows the caster to see the unseeable
+detect magic    reveals magical auras to the caster
+detect poison   determines if food is safe to eat
+farsight        searches for living beings near the caster
+identify        gives information about the nature of an object
+know alignment  determines the moral character of a monster or person
+locate object   finds a specific item
 ~
 
 -1 DRACONIAN~
@@ -364,10 +365,10 @@ bringing forth the devastating power of their breath weapons upon your foes.
 Only mages have the mental training necessary to cast these spells, and few
 of them ever reach the level of mastery required to use them.
 
-acid breath	 uses the black dragon's attack upon an enemy
-fire breath	 calls forth the flames of a red dragon
-frost breath	 drains the life from a foe with the power a white dragon
-gas breath	 suffocates your enemies with poison gas
+acid breath      uses the black dragon's attack upon an enemy
+fire breath      calls forth the flames of a red dragon
+frost breath     drains the life from a foe with the power a white dragon
+gas breath       suffocates your enemies with poison gas
 lightning breath summons the electrical fury of a blue dragon 
 ~
 
@@ -376,10 +377,10 @@ The enchantment spell group is used to imbue items with magical properties.
 Currently, this spell group consists of enchant weapon and enchant armor, 
 although more will be added in the future.  Only mages may enchant.
 
-enchant weapon	increases the hit and damage bonuses of a weapon
-enchant armor	increases the protective value of armor
+enchant weapon  increases the hit and damage bonuses of a weapon
+enchant armor   increases the protective value of armor
 fireproof       shields items from the harmful effects of fire and acid
-recharge	restores power to a depleted wand or staff
+recharge        restores power to a depleted wand or staff
 ~
 
 -1 ENHANCEMENT~
@@ -387,10 +388,10 @@ The enhancement spells improve upon the body's pontential, allowing feats of
 superhuman strength and speed.  However, these spells may often have harmful
 effects upon the recipient.
 
-giant strength	grants increased strength
-haste		doubles the speed of the target, but slows down healing
-infravision	allows monsters to be seen in the dark
-refresh		restores energy to tired adventurers
+giant strength  grants increased strength
+haste           doubles the speed of the target, but slows down healing
+infravision     allows monsters to be seen in the dark
+refresh         restores energy to tired adventurers
 ~
 
 
@@ -400,10 +401,10 @@ to tear flesh from bone, rupture arteries, and generally turn the body against
 itself.  Only priests and warriors may use this spell group.
 In order of power, the harmful spells are:
 
-cause light	inflicts minor wounds on an enemy
-cause serious	inflicts wounds on a foe
+cause light     inflicts minor wounds on an enemy
+cause serious   inflicts wounds on a foe
 cause critical  causes major damage to the target
-harm		the most deadly harmful spell
+harm            the most deadly harmful spell
 ~
 
 -1 HEALING~
@@ -412,12 +413,12 @@ suffer in battle.  For curing other conditions, such as poison, see the
 curative spell group.  Only warriors and priests have access to this group.
 In order of power, the healing spells are:
 
-cure light	heals minor wounds
-refresh		restores vigor to a tired adventurer
-cure serious	heals wounds
-cure critical	closes all but the worst wounds
-heal		the most powerful healing spell
-mass healing	casts a heal spell on each player in the room
+cure light      heals minor wounds
+refresh         restores vigor to a tired adventurer
+cure serious    heals wounds
+cure critical   closes all but the worst wounds
+heal            the most powerful healing spell
+mass healing    casts a heal spell on each player in the room
 ~
 
 -1 ILLUSION~
@@ -427,9 +428,9 @@ the illusion group is very small, but it will be expanded in the future.
 Only thieves and mages can cast illusion spells, which consist of the 
 following:
 
-invis		turns the target invisible
-mass invis	turns the caster's group invisible
-ventriloquate	allows the caster to put words in someone's mouth
+invis           turns the target invisible
+mass invis      turns the caster's group invisible
+ventriloquate   allows the caster to put words in someone's mouth
 ~
 
 -1 MALADICTIONS~
@@ -437,13 +438,13 @@ Maladictions are a group of curses and other baneful spells, designed to
 cripple, inconvenience, or torture, rather than kill outright.  These spells
 may be cast by any class.
 
-blindess	strikes the target blind
-curse		prevents recalling and weakens the target in combat
-energy drain	drains experience and mana, while strengthening the caster
-plague		causes the target to suffer a slow, painful death from plague
-poison		weaker than plague, but often fatal
-slow		slows your enemies down, reducing their rate of attack	
-weaken		drains the strength of the target
+blindess        strikes the target blind
+curse           prevents recalling and weakens the target in combat
+energy drain    drains experience and mana, while strengthening the caster
+plague          causes the target to suffer a slow, painful death from plague
+poison          weaker than plague, but often fatal
+slow            slows your enemies down, reducing their rate of attack
+weaken          drains the strength of the target
 ~
 
 -1 PROTECTIVE~
@@ -453,15 +454,15 @@ sanctuary charm.  Also included in this group are several spells for dispeling
 hostile magics. Any class may use this group, which consists of the following 
 spells:
 
-armor		provides the target with an extra layer of defense
-cancellation	a powerful dispel, used for removing spells from friends
-dispel magic	removes spells from enemies, not as effective as cancel
-fireproof	shields items from the harmful effects of fire and acid
-protection evil	provides defense from the attacks of evil creatures
+armor           provides the target with an extra layer of defense
+cancellation    a powerful dispel, used for removing spells from friends
+dispel magic    removes spells from enemies, not as effective as cancel
+fireproof       shields items from the harmful effects of fire and acid
+protection evil provides defense from the attacks of evil creatures
 protection good protects from the attacks of good beings
-sanctuary	reduces all damage taken by the recipient by half
-shield		puts a shimmering shield between you and your enemies
-stoneskin	turns skin hard as stone, providing a huge armor boost
+sanctuary       reduces all damage taken by the recipient by half
+shield          puts a shimmering shield between you and your enemies
+stoneskin       turns skin hard as stone, providing a huge armor boost
 ~
 
 -1 TRANSPORTATION~
@@ -469,14 +470,14 @@ The transportation group is used for travel, whether by flight, magical
 teleportation, or walking through walls.  All classes may learn these spells,
 which are among the most useful in the game.
 
-fly		allows the target to fly over nearly all obstacles
-gate		transports the caster to the target
-nexus		forms a two-way portal to a far off destination
-pass door	allows the caster to walk through walls
-portal		creates a one-way portal to a destination
-summon		transports the target to the caster
-teleport	sends the target to a random location
-word of recall	transports the caster to safety in Midgaard
+fly             allows the target to fly over nearly all obstacles
+gate            transports the caster to the target
+nexus           forms a two-way portal to a far off destination
+pass door       allows the caster to walk through walls
+portal          creates a one-way portal to a destination
+summon          transports the target to the caster
+teleport        sends the target to a random location
+word of recall  transports the caster to safety in Midgaard
 ~
 
 -1 WEATHER~
@@ -484,11 +485,11 @@ These spells allow the caster to manipulate local weather conditions, as well
 as summon fog clouds, lightning, or even electrical glows.  This group is
 usable by all classes.
 
-call lightning	summons a huge bolt from the heavens, if the weather is right
-control weather	changes the weather in the manner desired by the caster
-faerie fire	surrounds the target in a glowing aura
-faerie fog	reveals all hidden creatures in the room
-lightning bolt	sends a bolt of electricity into the target
+call lightning  summons a huge bolt from the heavens, if the weather is right
+control weather changes the weather in the manner desired by the caster
+faerie fire     surrounds the target in a glowing aura
+faerie fog      reveals all hidden creatures in the room
+lightning bolt  sends a bolt of electricity into the target
 
 (the weather command, unrelated to this group, shows local weather conditions)
 ~
@@ -822,7 +823,7 @@ use whatsoever.
 
 -1 'PROTECTION GOOD' 'PROTECTION EVIL'~
 Syntax: cast 'protection evil' <target>
-	cast 'protection good' <target>
+        cast 'protection good' <target>
 
 The protection spells reduce damage taken from attackers of the appropriate
 ethos, and improve saving throws against all forms of magic. They may not
@@ -848,7 +849,7 @@ groups of creatures.
 
 -1 FARSIGHT~
 Syntax: cast 'farsight'
-	cast 'farsight' <direction>
+        cast 'farsight' <direction>
 
 The farsight spell expands the caster's consciousness, allowing him or her
 to see far away beings like they were in the same room.  It takes intense
@@ -890,9 +891,9 @@ for protecting large numbers of objects.
 
 -1 ALIAS UNALIAS~
 Syntax: alias
-	alias <word>
-	alias <word> <substitution>
-	unalias <word>
+        alias <word>
+        alias <word> <substitution>
+        unalias <word>
 
 The alias command allows limited shortening of command names.  At this time,
 aliases cannot call other aliases, and cannot generate more than one command.

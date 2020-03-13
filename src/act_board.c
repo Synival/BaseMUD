@@ -13,17 +13,17 @@
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
- **************************************************************************/
+ ***************************************************************************/
 
 /***************************************************************************
- *   ROM 2.4 is copyright 1993-1998 Russ Taylor                            *
- *   ROM has been brought to you by the ROM consortium                     *
- *       Russ Taylor (rtaylor@hypercube.org)                               *
- *       Gabrielle Taylor (gtaylor@hypercube.org)                          *
- *       Brian Moore (zump@rom.org)                                        *
- *   By using this code, you have agreed to follow the terms of the        *
- *   ROM license, in the file Rom24/doc/rom.license                        *
- **************************************************************************/
+ *  ROM 2.4 is copyright 1993-1998 Russ Taylor                             *
+ *  ROM has been brought to you by the ROM consortium                      *
+ *      Russ Taylor (rtaylor@hypercube.org)                                *
+ *      Gabrielle Taylor (gtaylor@hypercube.org)                           *
+ *      Brian Moore (zump@rom.org)                                         *
+ *  By using this code, you have agreed to follow the terms of the         *
+ *  ROM license, in the file Rom24/doc/rom.license                         *
+ ***************************************************************************/
 
 /* NOTE
  * ----
@@ -53,9 +53,9 @@ void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note) {
     char buf[200];
     int count = 1;
 
-    for (p = ch->pcdata->board->note_first; p ; p = p->next, count++) {
-        if ((p->date_stamp > *last_note) && is_note_to(ch, p)) {
-            show_note_to_char (ch, p, count);
+    for (p = ch->pcdata->board->note_first; p ; p = p->board_next, count++) {
+        if ((p->date_stamp > *last_note) && note_is_for_char (p, ch)) {
+            note_show_to_char (p, ch, count);
             /* Advance if new note is newer than the currently newest for that char */
             *last_note = UMAX (*last_note, p->date_stamp);
             return;
@@ -63,7 +63,7 @@ void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note) {
     }
 
     send_to_char ("No new notes in this board.\n\r", ch);
-    if (next_board (ch))
+    if (char_change_to_next_board (ch))
         sprintf (buf, "Changed to next board, %s.\n\r", ch->pcdata->board->name);
     else
         sprintf (buf, "There are no more boards.\n\r");
@@ -77,13 +77,13 @@ void do_nread_number (CHAR_T *ch, char *argument, time_t *last_note,
     NOTE_T *p;
     number = atoi(argument);
 
-    for (p = ch->pcdata->board->note_first; p; p = p->next)
+    for (p = ch->pcdata->board->note_first; p; p = p->board_next)
         if (++count == number)
             break;
-    BAIL_IF (!p || !is_note_to(ch, p),
+    BAIL_IF (!p || !note_is_for_char (p, ch),
         "No such note.\n\r", ch);
 
-    show_note_to_char (ch, p, count);
+    note_show_to_char (p, ch, count);
     *last_note = UMAX (*last_note, p->date_stamp);
 }
 
@@ -110,10 +110,8 @@ DEFINE_DO_FUN (do_nwrite) {
         ch->pcdata->in_progress = note_new ();
         ch->pcdata->in_progress->sender = str_dup (ch->name);
 
-        /* convert to ascii. ctime returns a string which last character is \n, so remove that */
-        strtime = ctime (&current_time);
-        strtime[strlen(strtime)-1] = '\0';
-
+        /* convert to ascii. */
+        strtime = ctime_fixed (&current_time);
         ch->pcdata->in_progress->date = str_dup (strtime);
     }
 
@@ -155,7 +153,7 @@ DEFINE_DO_FUN (do_nwrite) {
                       "{YExpires{x: %s\n\r"
                       "{YSubject{x: %s\n\r",
                        ch->pcdata->in_progress->to_list,
-                       ctime(&ch->pcdata->in_progress->expire),
+                       ctime_fixed (&ch->pcdata->in_progress->expire),
                        ch->pcdata->in_progress->subject);
         send_to_char ("{GYour note so far:{x\n\r", ch);
         send_to_char (ch->pcdata->in_progress->text, ch);
@@ -189,16 +187,16 @@ DEFINE_DO_FUN (do_nremove) {
     BAIL_IF (!is_number(argument),
         "Remove which note?\n\r", ch);
 
-    p = find_note (ch, ch->pcdata->board, atoi(argument));
+    p = board_find_note (ch->pcdata->board, ch, atoi(argument));
     BAIL_IF (!p,
         "No such note.\n\r", ch);
     BAIL_IF (str_cmp(ch->name, p->sender) && (char_get_trust(ch) < MAX_LEVEL),
         "You are not authorized to remove this note.\n\r", ch);
 
-    unlink_note (ch->pcdata->board, p);
+    note_unlink (p, ch->pcdata->board);
     note_free (p);
     send_to_char ("Note removed!\n\r", ch);
-    save_board(ch->pcdata->board);
+    board_save (ch->pcdata->board);
 }
 
 
@@ -209,10 +207,11 @@ DEFINE_DO_FUN (do_nlist) {
     time_t last_note;
     NOTE_T *p;
 
-    if (is_number(argument)) { /* first, count the number of notes */
+    /* first, count the number of notes */
+    if (is_number(argument)) {
         show = atoi(argument);
-        for (p = ch->pcdata->board->note_first; p; p = p->next)
-            if (is_note_to (ch, p))
+        for (p = ch->pcdata->board->note_first; p; p = p->board_next)
+            if (note_is_for_char (p, ch))
                 count++;
     }
 
@@ -220,9 +219,9 @@ DEFINE_DO_FUN (do_nlist) {
                   "{rNum> Author        Subject{x\n\r", ch);
 
     last_note = ch->pcdata->last_note[board_number (ch->pcdata->board)];
-    for (p = ch->pcdata->board->note_first; p; p = p->next) {
+    for (p = ch->pcdata->board->note_first; p; p = p->board_next) {
         num++;
-        if (is_note_to(ch, p)) {
+        if (note_is_for_char (p, ch)) {
             has_shown++; /* note that we want to see X VISIBLE note, not just last X */
             if (!show || ((count-show) < has_shown)) {
                 printf_to_char (ch, "{W%3d{x>{B%c{x{Y%-13s{x{y%s{x\n\r",
@@ -238,7 +237,7 @@ DEFINE_DO_FUN (do_ncatchup) {
     NOTE_T *p;
 
     /* Find last note */
-    for (p = ch->pcdata->board->note_first; p && p->next; p = p->next)
+    for (p = ch->pcdata->board->note_first; p && p->board_next; p = p->board_next)
         ; /* empty */
     BAIL_IF (!p,
         "Alas, there are no notes in that board.\n\r", ch);
@@ -263,7 +262,7 @@ DEFINE_DO_FUN (do_board) {
         send_to_char ("{RNum          Name Unread Description{x\n\r"
                       "{R==== ============ ====== ============================={x\n\r", ch);
         for (i = 0; i < BOARD_MAX; i++) {
-            unread = unread_notes (ch, &board_table[i]); /* how many unread notes? */
+            unread = board_get_unread_notes_for_char (&board_table[i], ch);
             if (unread != BOARD_NOACCESS) {
                 printf_to_char (ch, "({W%2d{x) {g%12s{x [%s%4d{x] {y%s{x\n\r",
                     count, board_table[i].name, unread ? "{G" : "{g",
@@ -272,7 +271,8 @@ DEFINE_DO_FUN (do_board) {
             }
         }
 
-        printf_to_char (ch, "\n\rYou current board is {W%s{x.\n\r", ch->pcdata->board->name);
+        printf_to_char (ch, "\n\rYou current board is {W%s{x.\n\r",
+            ch->pcdata->board->name);
 
         /* Inform of rights */
         if (ch->pcdata->board->read_level > char_get_trust(ch))
@@ -292,7 +292,7 @@ DEFINE_DO_FUN (do_board) {
         count = 0;
         number = atoi(argument);
         for (i = 0; i < BOARD_MAX; i++)
-            if (unread_notes(ch, &board_table[i]) != BOARD_NOACCESS)
+            if (board_get_unread_notes_for_char (&board_table[i], ch) != BOARD_NOACCESS)
                 if (++count == number)
                     break;
 
@@ -317,7 +317,7 @@ DEFINE_DO_FUN (do_board) {
         "No such board.\n\r", ch);
 
     /* Does ch have access to this board? */
-    BAIL_IF (unread_notes (ch, &board_table[i]) == BOARD_NOACCESS,
+    BAIL_IF (board_get_unread_notes_for_char (&board_table[i], ch) == BOARD_NOACCESS,
         "No such board.\n\r", ch);
 
     ch->pcdata->board = &board_table[i];
