@@ -83,7 +83,7 @@ DEFINE_SPELL_FUN (spell_cancellation) {
     found += check_dispel_quick (level, victim, "stone skin",      "$n's skin regains its normal texture.");
     found += check_dispel_quick (level, victim, "weaken",          "$n looks stronger.");
 
-    send_to_char (found ? "Ok.\n\r" : "Spell failed.\n\r", ch);
+    printf_to_char(ch, found ? "Success!\n\r" : "Spell failed.\n\r");
 }
 
 DEFINE_SPELL_FUN (spell_control_weather) {
@@ -152,7 +152,7 @@ DEFINE_SPELL_FUN (spell_dispel_magic) {
         found = TRUE;
     }
 
-    send_to_char (found ? "Ok.\n\r" : "Spell failed.\n\r", ch);
+    printf_to_char(ch, found ? "Success!\n\r" : "Spell failed.\n\r");
 }
 
 DEFINE_SPELL_FUN (spell_recharge) {

@@ -246,7 +246,7 @@ DEFINE_DO_FUN (do_transfer) {
     if (ch != victim)
         act ("$n has transferred you.", ch, NULL, victim, TO_VICT);
     do_function (victim, &do_look, "auto");
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "You have transferred %s.\n\r", victim->short_descr);
 }
 
 DEFINE_DO_FUN (do_peace) {
@@ -258,7 +258,7 @@ DEFINE_DO_FUN (do_peace) {
         if (IS_NPC (rch) && IS_SET (rch->mob, MOB_AGGRESSIVE))
             REMOVE_BIT (rch->mob, MOB_AGGRESSIVE);
     }
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "You have calmed the area.\n\r");
 }
 
 DEFINE_DO_FUN (do_snoop) {
@@ -304,7 +304,7 @@ DEFINE_DO_FUN (do_snoop) {
     victim->desc->snoop_by = ch->desc;
     wiznetf (ch, NULL, WIZ_SNOOPS, WIZ_SECURE, char_get_trust (ch),
         "$N starts snooping on %s", PERS (victim));
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "You are now snooping %s.\n\r", victim->name);
 }
 
 DEFINE_DO_FUN (do_string) {

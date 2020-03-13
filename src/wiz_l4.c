@@ -326,7 +326,7 @@ DEFINE_DO_FUN (do_mload) {
     act ("$n has created $N!", ch, NULL, victim, TO_NOTCHAR);
     wiznetf (ch, NULL, WIZ_LOAD, WIZ_SECURE, char_get_trust (ch),
         "$N loads %s.", victim->short_descr);
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "You have loaded %s.\n\r", victim->short_descr);
 }
 
 DEFINE_DO_FUN (do_oload) {
@@ -359,7 +359,7 @@ DEFINE_DO_FUN (do_oload) {
         obj_give_to_char (obj, ch);
     else
         obj_give_to_room (obj, ch->in_room);
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "You created %s!\n\r", obj->short_descr); 
     act ("$n has created $p!", ch, obj, NULL, TO_NOTCHAR);
     wiznet ("$N loads $p.", ch, obj, WIZ_LOAD, WIZ_SECURE, char_get_trust (ch));
 }
@@ -407,7 +407,7 @@ DEFINE_DO_FUN (do_purge) {
                 obj_extract (obj);
         }
 
-        send_to_char ("Ok.\n\r", ch);
+        printf_to_char(ch, "You have purged the room!\n\r");
         act ("$n purges the room!", ch, NULL, NULL, TO_NOTCHAR);
         return;
     }

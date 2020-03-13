@@ -58,10 +58,10 @@ DEFINE_DO_FUN (do_deny) {
         "You failed.\n\r", ch);
 
     SET_BIT (victim->plr, PLR_DENY);
-    send_to_char ("You are denied access!\n\r", victim);
+    printf_to_char(victim, "You have been denied access!\n\r");
     wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
         "$N denies access to %s", victim->name);
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "%s has been denied and will be escorted out.\n\r", victim->name);
 
     save_char_obj (victim);
     stop_fighting (victim, TRUE);

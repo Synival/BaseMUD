@@ -124,7 +124,7 @@ DEFINE_DO_FUN (do_force) {
         act (buf, ch, NULL, victim, TO_VICT);
         interpret (victim, argument);
     }
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "You forced %s to %s.\n\r", arg, argument);
 }
 
 /*

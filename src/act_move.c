@@ -612,7 +612,7 @@ DEFINE_DO_FUN (do_visible) {
     REMOVE_BIT (ch->affected_by, AFF_HIDE);
     REMOVE_BIT (ch->affected_by, AFF_INVISIBLE);
     REMOVE_BIT (ch->affected_by, AFF_SNEAK);
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "You are now visible.\n\r");
 }
 
 DEFINE_DO_FUN (do_recall) {

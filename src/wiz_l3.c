@@ -55,7 +55,7 @@ DEFINE_DO_FUN (do_disconnect) {
         for (d = descriptor_list; d != NULL; d = d->next) {
             if (d->descriptor == desc) {
                 close_socket (d);
-                send_to_char ("Ok.\n\r", ch);
+                printf_to_char (ch, "Connection #%d has been disconnected.\n\r", d->descriptor);
                 return;
             }
         }
@@ -69,13 +69,13 @@ DEFINE_DO_FUN (do_disconnect) {
     for (d = descriptor_list; d != NULL; d = d->next) {
         if (d == victim->desc) {
             close_socket (d);
-            send_to_char ("Ok.\n\r", ch);
+            printf_to_char(ch, "%s has been disconnected.\n\r", victim->name);
             return;
         }
     }
 
-    bug ("do_disconnect: desc not found.", 0);
-    send_to_char ("Descriptor not found!\n\r", ch);
+    bugf("do_disconnect: desc not found.");
+    printf_to_char(ch, "Descriptor not found!\n\r");
 }
 
 DEFINE_DO_FUN (do_pardon) {

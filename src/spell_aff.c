@@ -330,9 +330,9 @@ DEFINE_SPELL_FUN (spell_detect_evil) {
     affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_EVIL);
     affect_to_char (victim, &af);
 
-    send_to_char ("Your eyes tingle.\n\r", victim);
+    printf_to_char(victim, "Your eyes tingle.\n\r");
     if (ch != victim)
-        send_to_char ("Ok.\n\r", ch);
+        act("$N's eyes begin to glow.", ch, NULL, victim, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_detect_good) {
@@ -347,9 +347,9 @@ DEFINE_SPELL_FUN (spell_detect_good) {
     affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_GOOD);
     affect_to_char (victim, &af);
 
-    send_to_char ("Your eyes tingle.\n\r", victim);
+    printf_to_char(victim, "Your eyes tingle.\n\r");
     if (ch != victim)
-        send_to_char ("Ok.\n\r", ch);
+        act("$N's eyes begin to glow.", ch, NULL, victim, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_detect_hidden) {
@@ -364,9 +364,9 @@ DEFINE_SPELL_FUN (spell_detect_hidden) {
     affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_HIDDEN);
     affect_to_char (victim, &af);
 
-    send_to_char ("Your awareness improves.\n\r", victim);
+    printf_to_char(victim, "Your awareness improves.\n\r");
     if (ch != victim)
-        send_to_char ("Ok.\n\r", ch);
+        act("$N's eyes grow dark.", ch, NULL, victim, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_detect_invis) {
@@ -381,9 +381,9 @@ DEFINE_SPELL_FUN (spell_detect_invis) {
     affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_INVIS);
     affect_to_char (victim, &af);
 
-    send_to_char ("Your eyes tingle.\n\r", victim);
+    printf_to_char(victim, "Your eyes tingle.\n\r");
     if (ch != victim)
-        send_to_char ("Ok.\n\r", ch);
+        act("$N's eyes begin to glow.", ch, NULL, victim, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_detect_magic) {
@@ -398,9 +398,9 @@ DEFINE_SPELL_FUN (spell_detect_magic) {
     affect_init (&af, AFF_TO_AFFECTS, sn, level, level, APPLY_NONE, 0, AFF_DETECT_MAGIC);
     affect_to_char (victim, &af);
 
-    send_to_char ("Your eyes tingle.\n\r", victim);
+    printf_to_char(victim, "Your eyes tingle.\n\r");
     if (ch != victim)
-        send_to_char ("Ok.\n\r", ch);
+        act("$N's eyes begin to glow.", ch, NULL, victim, TO_CHAR);
 }
 
 DEFINE_SPELL_FUN (spell_enchant_armor) {

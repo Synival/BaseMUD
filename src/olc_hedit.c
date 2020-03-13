@@ -55,7 +55,7 @@ HEDIT (hedit_level) {
     }
 
     help->level = lev;
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "Level set.\n\r");
     return TRUE;
 }
 
@@ -67,7 +67,7 @@ HEDIT (hedit_keyword) {
         "Syntax: keyword [keywords]\n\r", ch, FALSE);
 
     str_replace_dup (&(help->keyword), argument);
-    send_to_char ("Ok.\n\r", ch);
+    printf_to_char(ch, "Keywords set.\n\r");
     return TRUE;
 }
 
