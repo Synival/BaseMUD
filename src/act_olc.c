@@ -705,6 +705,15 @@ DEFINE_DO_FUN (do_alist) {
  Purpose:   Entry point for saving area data.
  Called by: interpreter(interp.c)
  ****************************************************************************/
+#define DO_ASAVE_SYNTAX \
+    "Syntax:\n\r" \
+    "  asave <vnum>   - saves a particular area\n\r" \
+    "  asave list     - saves the area.lst file\n\r" \
+    "  asave portals  - saves config/portals.json\n\r" \
+    "  asave area     - saves the area being edited\n\r" \
+    "  asave changed  - saves all changed zones\n\r" \
+    "  asave world    - saves the world! (db dump)\n\r"
+
 DEFINE_DO_FUN (do_asave) {
     char arg1[MAX_INPUT_LENGTH];
     AREA_T *area;
@@ -713,18 +722,8 @@ DEFINE_DO_FUN (do_asave) {
     str_smash_tilde (argument);
     strcpy (arg1, argument);
 
-    if (arg1[0] == '\0') {
-        if (ch) {
-            send_to_char ("Syntax:\n\r", ch);
-            send_to_char ("  asave <vnum>   - saves a particular area\n\r", ch);
-            send_to_char ("  asave list     - saves the area.lst file\n\r", ch);
-            send_to_char ("  asave portals  - saves config/portals.json\n\r", ch);
-            send_to_char ("  asave area     - saves the area being edited\n\r", ch);
-            send_to_char ("  asave changed  - saves all changed zones\n\r", ch);
-            send_to_char ("  asave world    - saves the world! (db dump)\n\r", ch);
-        }
-        return;
-    }
+    BAIL_IF (arg1[0] == '\0',
+        DO_ASAVE_SYNTAX, ch);
 
     /* Snarf the value (which need not be numeric). */
     value = atoi (arg1);

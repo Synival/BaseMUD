@@ -55,6 +55,7 @@ void json_export_recycleable (const char *objname, const char *filename,
     JSON_EXPORT_REC_NEXT_FUNC next_func,
     JSON_EXPORT_REC_WRITE_FUNC write_func,
     int mode);
+bool json_can_export_table (const TABLE_T *table);
 void json_export_table (const TABLE_T *table, int mode);
 void json_export_help_area (const HELP_AREA_T *had, int mode);
 

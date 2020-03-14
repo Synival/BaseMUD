@@ -1,0 +1,181 @@
+{"types": {
+  "name": "item_types",
+  "description": "Types of objects.",
+  "values": [
+    {
+      "name": "none",
+      "value": 0,
+      "settable": false
+    },
+    {
+      "name": "light",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "scroll",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "wand",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "staff",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "weapon",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "unused_item_1",
+      "value": 6,
+      "settable": false
+    },
+    {
+      "name": "unused_item_2",
+      "value": 7,
+      "settable": false
+    },
+    {
+      "name": "treasure",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "armor",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "potion",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "clothing",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "furniture",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "trash",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "unused_item_3",
+      "value": 14,
+      "settable": false
+    },
+    {
+      "name": "container",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "unused_item_4",
+      "value": 16,
+      "settable": false
+    },
+    {
+      "name": "drink",
+      "value": 17,
+      "settable": true
+    },
+    {
+      "name": "key",
+      "value": 18,
+      "settable": true
+    },
+    {
+      "name": "food",
+      "value": 19,
+      "settable": true
+    },
+    {
+      "name": "money",
+      "value": 20,
+      "settable": true
+    },
+    {
+      "name": "unused_item_5",
+      "value": 21,
+      "settable": false
+    },
+    {
+      "name": "boat",
+      "value": 22,
+      "settable": true
+    },
+    {
+      "name": "npc_corpse",
+      "value": 23,
+      "settable": true
+    },
+    {
+      "name": "pc_corpse",
+      "value": 24,
+      "settable": true
+    },
+    {
+      "name": "fountain",
+      "value": 25,
+      "settable": true
+    },
+    {
+      "name": "pill",
+      "value": 26,
+      "settable": true
+    },
+    {
+      "name": "protect",
+      "value": 27,
+      "settable": true
+    },
+    {
+      "name": "map",
+      "value": 28,
+      "settable": true
+    },
+    {
+      "name": "portal",
+      "value": 29,
+      "settable": true
+    },
+    {
+      "name": "warp_stone",
+      "value": 30,
+      "settable": true
+    },
+    {
+      "name": "room_key",
+      "value": 31,
+      "settable": true
+    },
+    {
+      "name": "gem",
+      "value": 32,
+      "settable": true
+    },
+    {
+      "name": "jewelry",
+      "value": 33,
+      "settable": true
+    },
+    {
+      "name": "jukebox",
+      "value": 34,
+      "settable": true
+    }
+  ]
+}}

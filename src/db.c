@@ -203,13 +203,13 @@ void init_areas (void) {
         else {
             snprintf (fname, sizeof (fname), "%s%s", AREA_DIR,
                 current_area_filename);
-            if (area_get_by_filename (current_area_filename) != NULL) {
+            if (area_get_by_filename_exact (current_area_filename) != NULL) {
 #ifdef BASEMUD_LOG_FILES_LOADED
                 log_f ("Ignoring loaded area '%s'", fname);
 #endif
                 continue;
             }
-            if (help_area_get_by_filename (current_area_filename) != NULL) {
+            if (help_area_get_by_filename_exact (current_area_filename) != NULL) {
 #ifdef BASEMUD_LOG_FILES_LOADED
                 log_f ("Ignoring loaded help area '%s'", fname);
 #endif
@@ -269,9 +269,9 @@ void load_area (FILE *fp) {
         REMOVE_BIT (area_last->area_flags, AREA_LOADING); /* OLC */
 
     area = area_new ();
-    area->vnum     = TOP (RECYCLE_AREA_T); /* OLC */
-    area->age      = AREA_RESET_ALWAYS_AGE;
-    area->security = 9;              /* OLC 9 -- Hugin */
+    area->vnum       = TOP (RECYCLE_AREA_T); /* OLC */
+    area->age        = AREA_RESET_ALWAYS_AGE;
+    area->security   = 9;              /* OLC 9 -- Hugin */
     area->area_flags = AREA_LOADING; /* OLC */
 
     fread_string_replace (fp, &area->filename);

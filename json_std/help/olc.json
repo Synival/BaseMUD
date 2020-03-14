@@ -1,0 +1,96 @@
+[{"help": {
+  "area": null,
+  "name": "olc",
+  "filename": "olc.hlp",
+  "pages": [
+    {
+      "keyword": "OLC EDIT",
+      "text": "Syntax: EDIT AREA [create/reset] [vnum]     - Area Creation and Repoping.\nSyntax: EDIT ROOM ( [create] [vnum] )       - Room Creation and Editing.\nSyntax: EDIT OBJ  [create] <vnum>           - Object Creation and Editing.\nSyntax: EDIT MOB  [create] <vnum>           - Mobile Creation and Editing.\nSyntax: EDIT MP   [create] <vnum>           - MobProg Creation/Editing.\n\nSyntax: ASAVE  <world/area/changed/list>    - Save Editing to Disk.\nSyntax: ALIST                               - Listing of Areas.\nSyntax: RESET  See Help Resets.             - Set Game Resets.\n\nDefinition: [optional]  <required>  (combined arguments)\n\n     The above commands are used to expand the game world.  The original\ncode is based on was written by Surreality and installed in The Isles by Locke.\nIt was then converted to work with Envy by Jason Dinkel, and ported to ROM\n2.3 by Hans Birkeland (Hugin). Port to Rom 2.4 by Ivan Toledo (ver 1.7).\n\n     Inside an editor, typing COMMANDS lists working commands and ? gives\nhelp. AEDIT and REDIT default to the current area or room. EDIT ROOM RESET\nresets the current room.  Most commands with no arguments display syntax.\nSee also help: AEDIT REDIT MEDIT OEDIT\n",
+      "hide_keywords": true
+    },
+    {
+      "keyword": "ALIST",
+      "text": "Syntax: ALIST\n\nThis command gives you a listing of all the areas along with their\nvnum assignments and the builder(s) assigned to editing them.\n"
+    },
+    {
+      "keyword": "AEDIT",
+      "text": "Syntax: edit area\t -Enters the editor for the current area.\nSyntax: edit area <vnum> -Enters the editor for the selected area.\n\nThe follow commands are available from within the AEDITOR:\n\nage <number>        - set the age of the area\nbuilder <player>    - toggle that builder's access\ncommands            - prints a list of possible commands\ncreate              - create a brand new area and switch to it\ndone                - exits the area editor and returns to normal play\nfilename <filename> - change the file name for the area (be careful)\nname <name>         - change the 'AREAS' name of this area\nreset               - resets the current area\nsecurity <rating>   - set the security rating for this area\nshow                - hitting return, or 'show' shows the area stats\nvnum <lower> <upper>- set the lower and upper vnum's\nlvnum <lower>       - set the lower vnum\nuvnum <upper>       - set the upper vnum\n<flags>             - area flags, type ? AREA for a list\n"
+    },
+    {
+      "keyword": "REDIT",
+      "text": "Syntax: edit room\t\t-Enters the editor for the current room.\n\nThe following commands are available from within the REDITOR:\n\ncommands            - prints a list of possible commands\ncreate <vnum>       - creates a room with a certain vnum\ndesc                - edit description of room\ndone                - exists the room editor and returns to normal play\ned                  - type this command for additonal extra-description help\nformat              - format(wordwrap) the room description\nname <room title>   - changes the room title\nshow                - hitting return, or 'show' shows the room stats\noshow <vnum>        - shows an object with given vnum\nolist               - lists objects in this area.\nmshow <vnum>        - shows a mobile with given vnum\nmlist               - lists mobiles in this area.\nroom <flags>        - room attributes, type ? ROOM for a list\nsector <type>       - terrain of room, type ? SECTOR for a list\n<direction>         - see help EXIT, or type <dir> ?\n"
+    },
+    {
+      "keyword": "EXIT",
+      "text": "For exits, type the direction (north/s/e/w) followed by:\n\ndig <vnum>         - creates the room and makes a two way link\nlink <room vnum>   - make a two way link\nroom <room vnum>   - make a one way link (use with caution)\nkey <object vnum>  - makes specified object the vnum of the key required\nname <door name>   - makes the door's name/keywords = to the given name\ndesc               - edit the description of the exit\ndelete             - delete this exit\n<exit-flags>       - type ? EXIT for a list(make exit door, locked etc.)\n\nThe exit flags are presented in the following manner.  The capitalized\nflags are ones not included in the reset info.  i.e. closed is due to\na player closing the door and not due to the door being set to be closed.\n\n-South to [ 3744] Key: [   -1] Exit flags: [door CLOSED bashed pickproof]\n"
+    },
+    {
+      "keyword": "OEDIT",
+      "text": "Syntax: edit object <vnum>\t-Enters the editor for the selected object.\n\nThe following commands are available from within the OEDITOR:\n\naddaffect           - applies an affect to an object, no args for help\ndelaffect           - removes an affect to an object, no args for help\ncommands            - prints a list of possible commands\ncost <gold>         - sets the gold value of the object\ncreate <vnum>       - creates object with specified vnum\ndone                - exits the object editor and returns to normal play\ned                  - type this for info on adding/editing extended descripts\nlong                - edit long description (the one in the room)\nname <keywords>     - sets the keywords on an object\nshort <desc>        - sets the 'name' of an object (a sword, a fish etc)\nshow                - hitting return, or 'show' shows the object stats\nv0 <num>            - sets the value '0' on the object\nv1 <num>            - sets the value '1' on the object\nv2 <num>            - sets the value '2' on the object\nv3 <num>            - sets the value '3' on the object\nv4 <num>            - sets the value '4' on the objcet\nweight <num>        - sets the weight of the object\ntype         \t    - type of object, type ? TYPE for a list\nextra\t\t    - attributes of object, type ? EXTRA for a list\nwear                - where object is worn, type ? WEAR for a list\nmaterial            - material the object is made from\n"
+    },
+    {
+      "keyword": "MEDIT",
+      "text": "Syntax: medit <vnum>\t\t-Enters the editor for the selected mobile.\n\nThe following commands are available from within the MEDITOR:\n\nalignment <value>   - set the mobile's alignment\ncommands            - prints a list of possible commands\ncreate <vnum>       - creates mobile with specified vnum\ndesc                - edit the mobile's description (when looked at)\ndone                - exits the mobile editor and returns to normal play\nlevel <level>       - set the mobile's level\nlong                - edit long description (the one in the room)\nname <keywords>     - sets the keywords on an mobile\nshop                - type this command for further information\nshort <desc>        - sets the 'name' of an mobile (a sword, a fish etc)\nshow                - hitting return, or 'show' shows the mobile stats\nspec                - sets a mobiles spec proc, type ? SPEC for a list\nsex                 - set the mobile's sex, type ? SEX for a list\nact                 - mobiles actions, type ? ACT for a list\naffect              - mobile affects, type ? AFFECT for a list\nac\t\t    - set the mobile's ac, type ? AC for a list\nform\t\t    - mobiles body-form, type ? FORM for a list\npart\t\t    - mobiles bodyparts, type ? PART for a list\nimm\t\t    - mobile is immune to, type ? IMM for a list\nres\t\t    - mobile is resistant to, type ? RES for a list\nvuln\t\t    - mobile is vulnerable to, type ? VULN for a list\nmaterial\t    - material mobile is made from, type ? MATERIAL for a list\noff\t\t    - offensive behaviour, type ? OFF for a list\nsize\t\t    - size, type ? SIZE for a list\nhitdice\t\t    - dice to toss to get mobile's hitpoints\nmanadice\t    - dice to toss to get mobile's mana\ndamdice\t\t    - dice to toss to get mobile's hand to hand damage\n\ntype 'help HITDICE', 'help MANADICE', 'help DAMDICE' for lists of reasonable dice \ncombinations on different levels.\n"
+    },
+    {
+      "keyword": "HITDICE",
+      "text": "A high number of dice makes for less variance in mobiles hitpoints.\nSuggested values are:\n\n       level:     dice         min         max        mean\n         1:       1d2+6       7(  7)     8(   8)     8(   8)\n\t 2:       1d3+15     16( 15)    18(  18)    17(  17)\n\t 3:       1d6+24     25( 24)    30(  30)    27(  27)\n\t 5:      1d17+42     43( 42)    59(  59)    51(  51)\n\t10:      3d22+96     99( 95)   162( 162)   131( 129)\n\t15:      5d30+161   166(159)   311( 311)   239( 235)\n\t30:     10d61+416   426(419)  1026(1026)   726( 723)\n\t50:    10d169+920   930(923)  2610(2610)  1770(1767)\n\nDiff = max - min.  Mean is the arithmetic mean.\nThe values in parenthesis are the the standard merc values.\n"
+    },
+    {
+      "keyword": "MANADICE",
+      "text": "A high number of dice makes for less variance in mobiles mana.\nThe values the server generates for merc-type mobs is\n\n  <level> d 10 + 100\n\nwhere level is the level of the mobile.\n"
+    },
+    {
+      "keyword": "DAMDICE",
+      "text": "A high number of dice makes for less variance in mobiles hitpoints.\nSuggested values are:\n\n       Level      dice       min      min    mean\n        1         1d2+0       1        2       2\n        2         1d2+1       2        3       3\n        3         1d3+2       3        5       4\n        5         2d3+2       4        8       6\n       10         2d5+5       7       15      11\n       15         3d5+8      11       23      17\n       20         4d5+10     14       30      22\n       30         5d6+15     20       45      33\n       50         5d10+25    30       75      53\n\nMean is the arithmetic mean.  The values in parenthesis are the the\nstandard merc values.  (Will be put in when there's time to calculate\nthem...)\n"
+    },
+    {
+      "keyword": "RESETS",
+      "text": "Syntax: RESET <number> OBJ <vnum> <location on body>    - equips last mobile\n        RESET <number> OBJ <vnum> inside <obj vnum>     - store in container\n        RESET <number> OBJ <vnum> room                  - store in room\n        RESET <number> MOB <vnum> [<max #>]             - load a mobile\n        RESET <number> DELETE                           - delete a reset\n\nRESET alone will display the resets in the current room.  The <number> will\nbe displayed with this list.  Typing ? WEAR-LOC will list possible locations\nthat an object can be loaded to.  The [<max #>] is the maximum number of\nmobiles allowed in this room and will default to 1 if no number is entered.\n\nFor resets to be successful make sure that you add them in a logical order.\nFor example if you are equiping a mobile don't load a container in the room\nand fill it with some objects and then continue equiping the mobile.  It is\nlikely that resets will backfire if they are not carefully entered.\n\nIf you wish to reset the room then use EDIT ROOM RESET.  \n"
+    },
+    {
+      "keyword": "MOB_AC",
+      "text": "The values ROM generates for a merc format mob is:\n\n   level      pierce    bash    slash   exotic\n     1          95       95       95      95\n     5          70       70       70      85\n    10          40       40       40      70\n    15           5        5        5      55\n    20         -25      -25      -25      40\n    25         -55      -55      -55      20\n    30         -90      -90      -90       5\n    35        -120     -120     -120     -10\n    40        -150     -150     -150     -25\n    45        -180     -180     -180     -40\n    50        -215     -215     -215     -55\n    55        -245     -245     -245     -70\n    60        -275     -275     -275     -90\n    65        -305     -305     -305    -105\n    70        -340     -340     -340    -120\n    80        -400     -400     -400    -150\n\nThese values are 10 times what you would put in an area file. This\nis because the server multiplies what it reads from file with 10.\n"
+    },
+    {
+      "keyword": "ITEM_LIGHT",
+      "text": ".   value 0    unused\n   value 1    unused\n   value 2    hours of light available, 0 is dead, -1 or 999 is infinite            \n   value 3    unused\n   value 4    unused\n"
+    },
+    {
+      "keyword": "ITEM_STAFF_WAND",
+      "text": ".   value 0    level\n   value 1    max charges\n   value 2    current charges\n   value 3    spell name\n   value 4    unused\n\n\nAn up-to-date list of spells can be obtained by typing:\n? SPELLS [ignore/attack/defend/self/object/all]\n"
+    },
+    {
+      "keyword": "ITEM_SCROLL_POTION_PILL",
+      "text": ".   value 0    level\n   value 1    spell name 1\n   value 2    spell name 2\n   value 3    spell name 3\n   value 4    unused\n\nAn up-to-date list of spells can be obtained by typing:\n? SPELLS [ignore/attack/defend/self/object/all]\n"
+    },
+    {
+      "keyword": "ITEM_ARMOR",
+      "text": ".   value 0    ac pierce\n   value 1    ac bash\n   value 2    ac slash\n   value 3    ac exotic (magic)\n   value 4    unused\n"
+    },
+    {
+      "keyword": "ITEM_WEAPON",
+      "text": ".   value 0    weapon class.\n   value 1    number of dice to roll.\n   value 2    type of dice to roll.\n   value 3    weapon type.\n   value 4    special weapon type.\n\nAn up-to-date list of values can be obtained by typing\n? WCLASS\nhelp WEAPON_DICE\n? WEAPON\n? WTYPE\n"
+    },
+    {
+      "keyword": "WEAPON_DICE",
+      "text": "These are the values the server generates automatically when\nconverting a merc-format mobile to ROM format.  A higher\nnumber of dice gives less variance in damage.  There is no\ndice-bonus on weapon dice.\n\n      level:   dice \n        1:     1d8\n        2:     2d5\n        3:     2d5\n        5:     2d6\n       10:     4d5\n       20:     5d5\n       30:     5d7\n       50:     5d11\n"
+    },
+    {
+      "keyword": "ITEM_CONTAINER",
+      "text": ".   value 0    weight capacity\n   value 1    flags: closeable, pickproof, closed, locked            \n   value 2    key vnum\n   value 3    unused\n   value 4    unused\n\nAn up-to-date list of flags can be obtained by typing\n? CONTAINTER\n"
+    },
+    {
+      "keyword": "ITEM_DRINK",
+      "text": ".   value0    capacity\n   value 1    current quantity\n   value 2    liquid type\n   value 3    poisoned?\n   value 4    unused\n\nAn up-to-date list of liquid types can be obtained by typing\n? LIQUID\n"
+    },
+    {
+      "keyword": "ITEM_FOOD",
+      "text": ".   value 0    hours of food value\n   value 1    unused\n   value 2    unused\n   value 3    poisoned?\n   value 4    unused\n"
+    },
+    {
+      "keyword": "ITEM_MONEY",
+      "text": ".   value 0    value in gold pieces\n   value 1    unused\n   value 2    unused\n   value 3    unused\n   value 4    unused\n"
+    }
+  ]
+}}]

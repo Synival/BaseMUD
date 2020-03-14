@@ -1,0 +1,156 @@
+{"ext_flags": {
+  "name": "mob_flags",
+  "description": "Mobile flags.",
+  "values": [
+    {
+      "name": "npc",
+      "value": 0,
+      "settable": false
+    },
+    {
+      "name": "sentinel",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "scavenger",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "unused_act_1",
+      "value": 3,
+      "settable": false
+    },
+    {
+      "name": "unused_act_2",
+      "value": 4,
+      "settable": false
+    },
+    {
+      "name": "aggressive",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "stay_area",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "wimpy",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "pet",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "train",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "practice",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "unused_act_3",
+      "value": 11,
+      "settable": false
+    },
+    {
+      "name": "unused_act_4",
+      "value": 12,
+      "settable": false
+    },
+    {
+      "name": "unused_act_5",
+      "value": 13,
+      "settable": false
+    },
+    {
+      "name": "undead",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "unused_act_6",
+      "value": 15,
+      "settable": false
+    },
+    {
+      "name": "cleric",
+      "value": 16,
+      "settable": true
+    },
+    {
+      "name": "mage",
+      "value": 17,
+      "settable": true
+    },
+    {
+      "name": "thief",
+      "value": 18,
+      "settable": true
+    },
+    {
+      "name": "warrior",
+      "value": 19,
+      "settable": true
+    },
+    {
+      "name": "noalign",
+      "value": 20,
+      "settable": true
+    },
+    {
+      "name": "nopurge",
+      "value": 21,
+      "settable": true
+    },
+    {
+      "name": "outdoors",
+      "value": 22,
+      "settable": true
+    },
+    {
+      "name": "unused_act_7",
+      "value": 23,
+      "settable": false
+    },
+    {
+      "name": "indoors",
+      "value": 24,
+      "settable": true
+    },
+    {
+      "name": "unused_act_8",
+      "value": 25,
+      "settable": false
+    },
+    {
+      "name": "healer",
+      "value": 26,
+      "settable": true
+    },
+    {
+      "name": "gain",
+      "value": 27,
+      "settable": true
+    },
+    {
+      "name": "update_always",
+      "value": 28,
+      "settable": true
+    },
+    {
+      "name": "changer",
+      "value": 29,
+      "settable": true
+    }
+  ]
+}}

@@ -1,0 +1,175 @@
+[
+  {"object": {
+    "area": "smurf",
+    "anum": 0,
+    "name": "bunch berries smurfberries",
+    "short_descr": "a bunch of smurfberries",
+    "description": "A bunch of delicious looking smurfberries lie here.",
+    "item_type": "pill",
+    "values": {
+      "level": 8,
+      "skill3": "change sex"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 180,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "smurf",
+    "anum": 1,
+    "name": "glasses",
+    "short_descr": "a pair of glasses",
+    "description": "An odd pair of glasses has been left here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 3,
+    "weight": 20,
+    "cost": 270,
+    "extra_flags": "glow",
+    "wear_flags": "take head",
+    "affects": [
+      {
+        "level": 3,
+        "apply": "wisdom",
+        "modifier": 1
+      },
+      {
+        "level": 3,
+        "apply": "dexterity",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "smurf",
+    "anum": 2,
+    "name": "smurf hat",
+    "short_descr": "a smurf hat",
+    "description": "A smurf hat has been left here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 3,
+      "vs_slash": 3
+    },
+    "level": 3,
+    "weight": 20,
+    "cost": 310,
+    "wear_flags": "take head"
+  }},
+  {"object": {
+    "area": "smurf",
+    "anum": 3,
+    "name": "axe small",
+    "short_descr": "a small axe",
+    "description": "A small axe has been dropped here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "axe",
+      "dice_num": 1,
+      "dice_size": 7,
+      "attack_type": "slash"
+    },
+    "level": 3,
+    "weight": 20,
+    "cost": 370,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "smurf",
+    "anum": 4,
+    "name": "necklace",
+    "short_descr": "a small necklace",
+    "description": "A small necklace is lying on the ground.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 5,
+    "weight": 20,
+    "cost": 550,
+    "extra_flags": "glow",
+    "wear_flags": "take neck",
+    "affects": [{
+      "level": 5,
+      "apply": "intelligence",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "smurf",
+    "anum": 5,
+    "name": "pink potion",
+    "short_descr": "a pink potion",
+    "description": "A pink potion is barely visible on the ground.",
+    "item_type": "potion",
+    "values": {
+      "level": 6,
+      "skill1": "armor",
+      "skill2": "cure blindness"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 160,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "smurf",
+    "anum": 6,
+    "name": "wand",
+    "short_descr": "a small wand",
+    "description": "A small wand lies on the ground.",
+    "item_type": "wand",
+    "values": {
+      "level": 5,
+      "recharge": 1,
+      "charges": 1,
+      "skill": "burning hands"
+    },
+    "level": 3,
+    "weight": 20,
+    "cost": 540,
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "smurf",
+    "anum": 7,
+    "name": "key",
+    "short_descr": "a tiny key",
+    "description": "A tiny key is lying on the ground.",
+    "item_type": "key",
+    "values": {"value0": 2},
+    "level": 0,
+    "weight": 20,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "smurf",
+    "anum": 8,
+    "name": "well",
+    "short_descr": "a smurf well",
+    "description": "A small smurfy well is here.",
+    "item_type": "fountain",
+    "values": {
+      "capacity": 50,
+      "filled": 50,
+      "liquid": "water"
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0
+  }},
+  {"object": {
+    "area": "smurf",
+    "anum": 9,
+    "name": "key",
+    "short_descr": "a small key",
+    "description": "A key to Gargamel's door lies here.",
+    "item_type": "key",
+    "values": {"value0": 2},
+    "level": 0,
+    "weight": 20,
+    "cost": 0,
+    "wear_flags": "take"
+  }}
+]

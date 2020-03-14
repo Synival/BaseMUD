@@ -1,5 +1,26 @@
 # Changelog for BaseMUD
 
+## Version 0.1.0 Beta 2 (2020-03-14)
+
+**New Commands:**
+
+- Added `jsave` to `wiz_ml.c`: This saves files in the JSON directory. Enter  
+    `jsave` without any arguments for more details.
+
+**New Major Features:**
+
+- Added `json_std/` folder for reference only. This is _not_ used by the game,  
+    but is rather for administrators that want to disable  
+    `BASEMUD_WRITE_EXTENDED_JSON`. In this case, replace `json/` with this  
+    directory.
+
+**Bugfixes:**
+
+- Areas from JSON now update at boot time. Whoops!!
+- `had_get_by_name()` and `had_get_by_name_exact()` now reference `name`
+    instead of `filename`.
+- Refreshed `json/` directory, which added some missing flags.
+
 ## Version 0.1.0 Beta 1 (2020-03-13)
 
 Special thanks to contributions from:

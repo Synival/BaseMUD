@@ -49,6 +49,7 @@
 #include "objs.h"
 #include "quickmud.h"
 #include "json_export.h"
+#include "lookup.h"
 
 #include "wiz_ml.h"
 
@@ -118,7 +119,6 @@ DEFINE_DO_FUN (do_copyover) {
     FILE *fp;
     DESCRIPTOR_T *d, *d_next;
     char buf[100], buf2[100], buf3[100];
-    extern int port, control;    /* db.c */
 
     fp = fopen (COPYOVER_FILE, "w");
 
@@ -370,26 +370,22 @@ DEFINE_DO_FUN (do_violate) {
 
 /* This _should_ encompass all the QuickMUD config commands */
 /* -- JR 11/24/00                                           */
+#define DO_QMCONFIG_SYNTAX \
+    "Valid qmconfig options are:\n\r" \
+    "    show       (shows current status of toggles)\n\r" \
+    "    ansiprompt [on|off]\n\r" \
+    "    ansicolor  [on|off]\n\r" \
+    "    telnetga   [on|off]\n\r" \
+    "    read\n\r"
+
 DEFINE_DO_FUN (do_qmconfig) {
-    extern int mud_ansiprompt;
-    extern int mud_ansicolor;
-    extern int mud_telnetga;
-    extern char *mud_ipaddress;
     char arg1[MSL];
     char arg2[MSL];
 
     if (IS_NPC(ch))
         return;
 
-    if (argument[0] == '\0') {
-        printf_to_char(ch, "Valid qmconfig options are:\n\r");
-        printf_to_char(ch, "    show       (shows current status of toggles)\n\r");
-        printf_to_char(ch, "    ansiprompt [on|off]\n\r");
-        printf_to_char(ch, "    ansicolor  [on|off]\n\r");
-        printf_to_char(ch, "    telnetga   [on|off]\n\r");
-        printf_to_char(ch, "    read\n\r");
-        return;
-    }
+    BAIL_IF (argument[0] == '\0', DO_QMCONFIG_SYNTAX, ch);
 
     argument = one_argument( argument, arg1 );
     argument = one_argument( argument, arg2 );
@@ -400,13 +396,16 @@ DEFINE_DO_FUN (do_qmconfig) {
     }
 
     if (!str_prefix(arg1, "show")) {
-        printf_to_char(ch, "ANSI prompt: %s", mud_ansiprompt
-            ? "{GON{x\n\r" : "{ROFF{x\n\r");
-        printf_to_char(ch, "ANSI color : %s", mud_ansicolor
-            ? "{GON{x\n\r" : "{ROFF{x\n\r");
-        printf_to_char(ch, "IP Address : %s\n\r", mud_ipaddress);
-        printf_to_char(ch, "Telnet GA  : %s", mud_telnetga
-            ? "{GON{x\n\r" : "{ROFF{x\n\r");
+        printf_to_char (ch,
+            "ANSI prompt: %s\n\r"
+            "ANSI color : %s\n\r"
+            "IP Address : %s\n\r"
+            "Telnet GA  : %s\n\r",
+            mud_ansiprompt ? "{GON{x" : "{ROFF{x",
+            mud_ansicolor  ? "{GON{x" : "{ROFF{x",
+            mud_ipaddress,
+            mud_telnetga   ? "{GON{x" : "{ROFF{x"
+        );
         return;
     }
 
@@ -453,4 +452,276 @@ DEFINE_DO_FUN (do_qmconfig) {
         return;
     }
     printf_to_char(ch, "I have no clue what you are trying to do...\n\r");
+}
+
+#define DO_JSAVE_SYNTAX \
+    "Syntax for 'jsave':\n\r" \
+    "    jsave all\n\r" \
+    "    jsave socials\n\r" \
+    "    jsave portals\n\r" \
+    "    jsave area (...)\n\r" \
+    "    jsave help (...)\n\r" \
+    "    jsave table (...)\n\r"
+
+DEFINE_DO_FUN (do_jsave) {
+    char arg1[MSL];
+    char arg2[MSL];
+
+    if (IS_NPC(ch))
+        return;
+
+    argument = one_argument (argument, arg1);
+    argument = one_argument (argument, arg2);
+
+    BAIL_IF (arg1[0] == '\0',
+        DO_JSAVE_SYNTAX, ch);
+
+    /* Save everything! */
+    if (!str_prefix (arg1, "all")) {
+        printf_to_char (ch, "Saving '%ssocials.json'.\n\r", JSON_CONFIG_DIR);
+        json_export_socials (JSON_EXPORT_MODE_SAVE);
+
+        printf_to_char (ch, "Saving '%sportals.json'.\n\r", JSON_CONFIG_DIR);
+        json_export_portals (JSON_EXPORT_MODE_SAVE);
+
+        do_jsave_area (ch, "all");
+        do_jsave_help (ch, "all");
+        do_jsave_table (ch, "all");
+        return;
+    }
+
+    /* Save socials. */
+    if (!str_prefix (arg1, "socials")) {
+        printf_to_char (ch, "Saving '%ssocials.json'.\n\r", JSON_CONFIG_DIR);
+        json_export_socials (JSON_EXPORT_MODE_SAVE);
+        return;
+    }
+
+    /* Save portals. */
+    if (!str_prefix (arg1, "portals")) {
+        printf_to_char (ch, "Saving '%sportals.json'.\n\r", JSON_CONFIG_DIR);
+        json_export_portals (JSON_EXPORT_MODE_SAVE);
+        return;
+    }
+
+    /* Pass over some other parameters to sub-commands. */
+    if (!str_prefix (arg1, "area"))
+        { do_jsave_area (ch, arg2); return; }
+    if (!str_prefix (arg1, "help"))
+        { do_jsave_help (ch, arg2); return; }
+    if (!str_prefix (arg1, "table"))
+        { do_jsave_table (ch, arg2); return; }
+
+    /* No command found. */
+    printf_to_char (ch, "Invalid command '%s'\n\r", arg1);
+}
+
+void do_jsave_area (CHAR_T *ch, const char *arg) {
+    const AREA_T *area;
+
+    BAIL_IF (arg[0] == '\0',
+        "Syntax for 'jsave area':\n\r"
+        "    jsave area list\n\r"
+        "    jsave area all\n\r"
+        "    jsave area <name>\n\r", ch);
+
+    /* Listing possibilities? */
+    if (!str_cmp ("list", arg)) {
+        int col = 0;
+        send_to_char ("Areas that can be saved:\n\r", ch);
+
+        for (area = area_first; area; area = area->global_next) {
+            if (col % 7 == 0)
+                send_to_char ("  ", ch);
+            printf_to_char (ch, "%-10s", area->name);
+            if (++col % 7 == 0)
+                send_to_char ("\n\r", ch);
+        }
+        if (col % 7 != 0)
+            send_to_char ("\n\r", ch);
+
+        return;
+    }
+
+    /* Are we saving all? */
+    if (!str_cmp ("all", arg)) {
+        send_to_char ("Saving all areas...\n\r", ch);
+        desc_flush_output (ch->desc);
+
+        for (area = area_first; area; area = area->global_next) {
+            printf_to_char (ch, "   - %s%s/*\n\r", JSON_AREAS_DIR, area->name);
+            desc_flush_output (ch->desc);
+            json_export_area (area, JSON_EXPORT_MODE_SAVE);
+        }
+
+        send_to_char ("Done.\n\r", ch);
+        return;
+    }
+
+    /* We're saving one - look for it. */
+    BAIL_IF ((area = area_get_by_name_exact (arg)) == NULL,
+        "Area not found.\n\r", ch);
+
+    printf_to_char (ch, "Saving '%s%s/*'.\n\r", JSON_AREAS_DIR, area->name);
+    json_export_area (area, JSON_EXPORT_MODE_SAVE);
+}
+
+void do_jsave_help (CHAR_T *ch, const char *arg) {
+    const HELP_AREA_T *had;
+
+    BAIL_IF (arg[0] == '\0',
+        "Syntax for 'jsave help':\n\r"
+        "    jsave help list\n\r"
+        "    jsave help all\n\r"
+        "    jsave help <name>\n\r", ch);
+
+    /* Listing possibilities? */
+    if (!str_cmp ("list", arg)) {
+        int col = 0;
+        send_to_char ("Helps that can be saved:\n\r", ch);
+
+        for (had = had_first; had; had = had->global_next) {
+            if (col % 7 == 0)
+                send_to_char ("  ", ch);
+            printf_to_char (ch, "%-10s", had->name);
+            if (++col % 7 == 0)
+                send_to_char ("\n\r", ch);
+        }
+        if (col % 7 != 0)
+            send_to_char ("\n\r", ch);
+
+        return;
+    }
+
+    /* Are we saving all? */
+    if (!str_cmp ("all", arg)) {
+        send_to_char ("Saving all helps...\n\r", ch);
+        desc_flush_output (ch->desc);
+
+        for (had = had_first; had; had = had->global_next) {
+            printf_to_char (ch, "   - %s%s.json\n\r", JSON_HELP_DIR, had->name);
+            desc_flush_output (ch->desc);
+            json_export_help_area (had, JSON_EXPORT_MODE_SAVE);
+        }
+
+        send_to_char ("Done.\n\r", ch);
+        return;
+    }
+
+    /* We're saving one - look for it. */
+    BAIL_IF ((had = had_get_by_name_exact (arg)) == NULL,
+        "Helps not found.\n\r", ch);
+
+    printf_to_char (ch, "Saving '%s%s.json'.\n\r", JSON_HELP_DIR, had->name);
+    json_export_help_area (had, JSON_EXPORT_MODE_SAVE);
+}
+
+void do_jsave_table (CHAR_T *ch, const char *arg) {
+    const TABLE_T *table;
+    bool save_all;
+    int restrict_type;
+
+    BAIL_IF (arg[0] == '\0',
+        "Syntax for 'jsave table':\n\r"
+        "    jsave table list\n\r"
+        "    jsave table flags\n\r"
+        "    jsave table ext_flags\n\r"
+        "    jsave table types\n\r"
+        "    jsave table unique\n\r"
+        "    jsave table all\n\r"
+        "    jsave table <name>\n\r", ch);
+
+    /* Listing possibilities? */
+    if (!str_cmp ("list", arg)) {
+        const char *type_name;
+        int col;
+
+        for (restrict_type = 0; restrict_type < TABLE_INTERNAL; restrict_type++) {
+            switch (restrict_type) {
+                case TABLE_FLAGS:     type_name = "flags";     break;
+                case TABLE_TYPES:     type_name = "types";     break;
+                case TABLE_EXT_FLAGS: type_name = "ext_flags"; break;
+                case TABLE_UNIQUE:    type_name = "unique";    break;
+            }
+
+            if (restrict_type > 0)
+                send_to_char ("\n\r", ch);
+            printf_to_char (ch, "Tables of type '%s' can be saved:\n\r",
+                type_name);
+
+            col = 0;
+            for (table = master_get_first(); table; table = master_get_next (table)) {
+                if (table->type != restrict_type)
+                    continue;
+                if (!json_can_export_table (table))
+                    continue;
+                if (col % 4 == 0)
+                    send_to_char ("  ", ch);
+                printf_to_char (ch, "%-19s", table->name);
+                if (++col % 4 == 0)
+                    send_to_char ("\n\r", ch);
+            }
+            if (col % 4 != 0)
+                send_to_char ("\n\r", ch);
+        }
+
+        return;
+    }
+
+    /* Are we saving all? */
+    if (!str_cmp ("flags", arg)) {
+        send_to_char ("Saving all tables of type 'flags'...\n\r", ch);
+        save_all = TRUE;
+        restrict_type = TABLE_FLAGS;
+    }
+    else if (!str_cmp ("ext_flags", arg)) {
+        send_to_char ("Saving all tables of type 'ext_flags'...\n\r", ch);
+        save_all = TRUE;
+        restrict_type = TABLE_EXT_FLAGS;
+    }
+    else if (!str_cmp ("types", arg)) {
+        send_to_char ("Saving all tables of type 'types'...\n\r", ch);
+        save_all = TRUE;
+        restrict_type = TABLE_TYPES;
+    }
+    else if (!str_cmp ("unique", arg)) {
+        send_to_char ("Saving all tables of type 'unique'...\n\r", ch);
+        save_all = TRUE;
+        restrict_type = TABLE_UNIQUE;
+    }
+    else if (!str_cmp ("all", arg)) {
+        send_to_char ("Saving all tables...\n\r", ch);
+        save_all = TRUE;
+        restrict_type = -1;
+    }
+    else {
+        save_all = FALSE;
+        restrict_type = -1;
+    }
+
+    if (save_all) {
+        for (table = master_get_first(); table; table = master_get_next (table)) {
+            if (restrict_type >= 0 && table->type != restrict_type)
+                continue;
+            if (!json_can_export_table (table))
+                continue;
+
+            printf_to_char (ch, "   - %s%s/%s.json\n\r", JSON_DIR,
+                table->json_path, table->name);
+            desc_flush_output (ch->desc);
+            json_export_table (table, JSON_EXPORT_MODE_SAVE);
+        }
+
+        send_to_char ("Done.\n\r", ch);
+        return;
+    }
+
+    /* We're saving one - look for it. */
+    table = master_get_by_name_exact (arg);
+    BAIL_IF (table == NULL || !json_can_export_table (table),
+        "Table not found.\n\r", ch);
+
+    printf_to_char (ch, "Saving '%s%s/%s.json'.\n\r", JSON_DIR,
+        table->json_path, table->name);
+    json_export_table (table, JSON_EXPORT_MODE_SAVE);
 }

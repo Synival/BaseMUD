@@ -1,0 +1,737 @@
+[
+  {"object": {
+    "area": "pyramid",
+    "anum": 0,
+    "name": "egyptian mace",
+    "short_descr": "an egyptian mace",
+    "description": "A hierogylph-engraved mace has been left here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 1,
+      "dice_size": 10,
+      "attack_type": "pound"
+    },
+    "level": 6,
+    "weight": 100,
+    "cost": 370,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "egyptian mace",
+      "description": "The mace is formed from solid brass, and engraved in strange hieroglyphs."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 1,
+    "name": "sand robes",
+    "short_descr": "sand-colored robes",
+    "description": "Sand-colored robes lie here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 4
+    },
+    "level": 5,
+    "weight": 50,
+    "cost": 480,
+    "wear_flags": "take about",
+    "extra_description": [{
+      "keyword": "sand robes",
+      "description": "The robes are colored a sandy off-white, and are in fact caked and covered\nwith sand as well.  You don't seem to be able to remove all of the sand, no\nmatter how much you try."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 2,
+    "name": "obsidian dirk",
+    "short_descr": "an obsidian dirk",
+    "description": "A flat dirk made of chipped obsidian lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 8,
+      "attack_type": "pierce"
+    },
+    "level": 15,
+    "weight": 10,
+    "cost": 910,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "obsidian dirk",
+      "description": "The blade of the dirk is black, glassy obsidian, chipped razor sharp."
+    }],
+    "affects": [{
+      "level": 15,
+      "apply": "hit roll",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 3,
+    "name": "cloth turban",
+    "short_descr": "a dirty cloth turban",
+    "description": "A dirty cloth turban has been forgotten here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 5,
+      "vs_slash": 5
+    },
+    "level": 13,
+    "weight": 100,
+    "cost": 1470,
+    "extra_flags": "magic",
+    "wear_flags": "take head",
+    "extra_description": [{
+      "keyword": "cloth turban",
+      "description": "The turban used to be white cloth, now it is covered with oil and dirt from\nthe head and hair of its previous owner, who must not have bathed much."
+    }],
+    "affects": [
+      {
+        "level": 13,
+        "apply": "hp",
+        "modifier": 5
+      },
+      {
+        "level": 13,
+        "apply": "dexterity",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 4,
+    "name": "cloth wrappings",
+    "short_descr": "some cloth wrappings",
+    "description": "Long cloth wrappings lie on the ground in a pile.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 5,
+      "vs_slash": 5
+    },
+    "level": 10,
+    "weight": 150,
+    "cost": 1450,
+    "wear_flags": "take body",
+    "extra_description": [{
+      "keyword": "cloth wrappings",
+      "description": "The cloth wrappings are old, wrinkled, and stink of embalming fluid."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 5,
+    "name": "bottle fluid",
+    "short_descr": "a bottle of embalming fluid",
+    "description": "A dusty bottle lies here on the ground.",
+    "item_type": "potion",
+    "values": {
+      "level": 5,
+      "skill1": "poison"
+    },
+    "level": 3,
+    "weight": 50,
+    "cost": 270,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "bottle fluid",
+      "description": "The bottle is dusty and the fluid has a strange sickly-sweet smell to it."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 6,
+    "name": "jar formaldehyde",
+    "short_descr": "a jar of formaldehyde",
+    "description": "A small jar lies here on the ground.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "cure light"
+    },
+    "level": 0,
+    "weight": 60,
+    "cost": 200,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "jar formaldehyde",
+      "description": "The jar is sticky and smells really bad."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 7,
+    "name": "ball fire",
+    "short_descr": "a small hot ball of fire",
+    "description": "A little ball of fire hovers in the air before your eyes.",
+    "item_type": "light",
+    "values": {"duration": -1},
+    "level": 20,
+    "weight": 100,
+    "cost": 720,
+    "extra_flags": "glow magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "ball fire",
+      "description": "The ball of fire is hot to the touch and very very bright."
+    }],
+    "affects": [
+      {
+        "level": 20,
+        "apply": "moves",
+        "modifier": 20
+      },
+      {
+        "level": 20,
+        "apply": "hp",
+        "modifier": 10
+      }
+    ]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 8,
+    "name": "stone scimitar",
+    "short_descr": "a stone scimitar",
+    "description": "A curved scimitar made of stone rests on the ground.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "axe",
+      "dice_num": 3,
+      "dice_size": 6,
+      "attack_type": "slash"
+    },
+    "level": 20,
+    "weight": 180,
+    "cost": 1820,
+    "extra_flags": "hum magic",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "stone scimitar",
+      "description": "The scimitar is formed from solid stone, chipped and carved to perfection,\nwith a sharp, cold blade that is marred only by a few nicks here and there."
+    }],
+    "affects": [
+      {
+        "level": 20,
+        "apply": "damage roll",
+        "modifier": 2
+      },
+      {
+        "level": 20,
+        "apply": "hit roll",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 9,
+    "name": "stone key",
+    "short_descr": "a stone key",
+    "description": "A stone key has been dropped here.",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 150,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "stone key",
+      "description": "The key is made from stone, but is otherwise unremarkable."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 10,
+    "name": "stone sarcophagus",
+    "short_descr": "a mighty stone sarcophagus",
+    "description": "A mighty stone sarcophagus lies in the center of the tomb.",
+    "item_type": "container",
+    "values": {
+      "capacity": 500,
+      "flags": "closeable pickproof closed locked",
+      "key": 8709,
+      "max_weight": 500,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "extra_description": [{
+      "keyword": "stone sarcophagus",
+      "description": "The sarcophagus is engraved on the sides with the images of pharoahs,\ngreat wars fought long ago, mighty pyramids being constructed...\n\nA raised image atop the sarcophagus is formed in the visage of one of\nthe mighty pharoahs, painted in gold and studded with precious gems.\n\nYou see a small keyhole in the side of the sarcophagus."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 11,
+    "name": "dust",
+    "short_descr": "some ancient dust",
+    "description": "A small pile of dust is being scattered by the breeze.",
+    "item_type": "trash",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "dust",
+      "description": "The dust is old.  As you sift it through your hands you find tiny chips\nof aged bone inside -- it must be the ancient remains of something."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 12,
+    "name": "scarab",
+    "short_descr": "a small emerald scarab",
+    "description": "A small emerald scarab lies here on the ground.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 0,
+    "weight": 50,
+    "cost": 3000,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "scarab",
+      "description": "The scarab is intricately detailed, down to the tiny hairs on its\ninsectile legs and the faceting of the emeralds in its eyes."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 13,
+    "name": "lamp",
+    "short_descr": "the lamp",
+    "description": "A small, tarnished, battered lamp has been dropped here.",
+    "item_type": "staff",
+    "values": {
+      "level": 25,
+      "recharge": 5,
+      "charges": 5,
+      "skill": "fly"
+    },
+    "level": 20,
+    "weight": 100,
+    "cost": 4700,
+    "extra_flags": "glow hum magic antievil",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "lamp",
+      "description": "The lamp is quite old and tarnished.  You rub at it to get some of the\ngrime off, but it doesn't seem like anybody is home."
+    }],
+    "affects": [
+      {
+        "level": 20,
+        "apply": "hit roll",
+        "modifier": 1
+      },
+      {
+        "level": 20,
+        "apply": "armor class",
+        "modifier": -5
+      }
+    ]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 14,
+    "name": "ankh",
+    "short_descr": "an ankh",
+    "description": "A small brass ankh has been left here.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 14,
+    "weight": 90,
+    "cost": 2100,
+    "extra_flags": "bless antievil",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "ankh",
+      "description": "The ankh is a small brass symbol of an ancient religion.\nIt glows with a soft bright light that is soothing to you."
+    }],
+    "affects": [
+      {
+        "level": 14,
+        "apply": "wisdom",
+        "modifier": 1
+      },
+      {
+        "level": 14,
+        "apply": "intelligence",
+        "modifier": 1
+      },
+      {
+        "level": 14,
+        "apply": "armor class",
+        "modifier": -3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 15,
+    "name": "book riddles",
+    "short_descr": "a book of riddles",
+    "description": "A medium-sized parchment book with well-worn pages lies here.",
+    "item_type": "scroll",
+    "values": {
+      "level": 21,
+      "skill1": "identify",
+      "skill2": "know alignment",
+      "skill3": "faerie fog"
+    },
+    "level": 10,
+    "weight": 150,
+    "cost": 1540,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "book riddles",
+      "description": "The book has well-worn pages, containing many befuddling riddles\nto surprise, confuse, and amuse you.  You find yourself bewildered\nby its contents and put it down to sort your head out."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 16,
+    "name": "lion paw",
+    "short_descr": "a lion's paw",
+    "description": "The mighty paw of a lion-like creature has been dropped here.",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 5,
+      "dice_size": 4,
+      "attack_type": "claw"
+    },
+    "level": 26,
+    "weight": 200,
+    "cost": 4400,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "lion paw",
+      "description": "The massive paw has straps on it formed of bronze, so that it will\nfit snugly over your hand.  As you put it on, it melds with your hand,\nbecoming an extension of your arm."
+    }],
+    "affects": [
+      {
+        "level": 26,
+        "apply": "damage roll",
+        "modifier": 2
+      },
+      {
+        "level": 26,
+        "apply": "hit roll",
+        "modifier": 2
+      },
+      {
+        "level": 26,
+        "apply": "constitution",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 17,
+    "name": "answer",
+    "short_descr": "the answer",
+    "description": "A small piece of parchment covered in hieroglyphics lies here.",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "answer hieroglyphics",
+      "description": "You cannot decipher the strange hieroglyphics that cover the\nsheet of parchment."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 18,
+    "name": "treasure",
+    "short_descr": "the treasure of the sphinx",
+    "description": "The massive treasure of the sphinx lies here in a big pile.",
+    "item_type": "money",
+    "values": {
+      "silver": 1850,
+      "gold": 23
+    },
+    "level": 0,
+    "weight": 200,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "treasure",
+      "description": "The treasure is incredibly large, filled with gold coins and valuables, more \nwealth than you could ever possibly imagine accumulated in one place."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 19,
+    "name": "pile sand",
+    "short_descr": "a pile of sand",
+    "description": "You see a small pile of sand.",
+    "item_type": "money",
+    "values": {"silver": 129},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "pile sand",
+      "description": "You think you see some coins and valuables glinting amongst the grains of sand."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 20,
+    "name": "curse mummy",
+    "short_descr": "the curse of the mummy",
+    "description": "Some fortunate soul has escaped the mummy's curse, for now.",
+    "item_type": "trash",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "extra_flags": "evil magic nodrop noremove",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "curse mummy",
+      "description": "Rumor has it that whomever disturbs the grave of the mummy shall be \ncursed for all eternity, and that the descendents of that person shall\nlikewise be cursed for ten generations to follow."
+    }],
+    "affects": [
+      {
+        "level": 0,
+        "apply": "moves",
+        "modifier": -100
+      },
+      {
+        "level": 0,
+        "apply": "hp",
+        "modifier": -50
+      },
+      {
+        "level": 0,
+        "apply": "constitution",
+        "modifier": -3
+      },
+      {
+        "level": 0,
+        "apply": "dexterity",
+        "modifier": -3
+      },
+      {
+        "level": 0,
+        "apply": "strength",
+        "modifier": -3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 21,
+    "name": "small elixir",
+    "short_descr": "a small elixir",
+    "description": "A small glass elixir lies under your feet.",
+    "item_type": "potion",
+    "values": {
+      "level": 30,
+      "skill1": "giant strength",
+      "skill2": "stone skin",
+      "skill3": "sanctuary"
+    },
+    "level": 16,
+    "weight": 20,
+    "cost": 1820,
+    "extra_flags": "magic",
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "small elixir",
+      "description": "The elixir is deceptively small.  Something tells you that its\ncontents are truly quite potent.  Perhaps too potent for ordinary\nmortals to attempt to consume."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 22,
+    "name": "golden mask",
+    "short_descr": "a golden mask",
+    "description": "A beautiful, intricately detailed mask has been forgotten here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8,
+      "vs_magic": 3
+    },
+    "level": 33,
+    "weight": 100,
+    "cost": 5500,
+    "extra_flags": "magic",
+    "wear_flags": "take head",
+    "extra_description": [{
+      "keyword": "golden mask",
+      "description": "This beautiful mask was shaped from solid gold and magically enchanted\nto perfectly fit the face of any who choose to wear it, its golden features\nand turquoise highlights even moving to match the expressions of the face\nof the wearer."
+    }],
+    "affects": [
+      {
+        "level": 33,
+        "apply": "saves",
+        "modifier": -1
+      },
+      {
+        "level": 33,
+        "apply": "moves",
+        "modifier": 30
+      },
+      {
+        "level": 33,
+        "apply": "hp",
+        "modifier": 10
+      },
+      {
+        "level": 33,
+        "apply": "mana",
+        "modifier": 25
+      }
+    ]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 23,
+    "name": "diamond",
+    "short_descr": "the diamond",
+    "description": null,
+    "item_type": "trash",
+    "values": {},
+    "level": 0,
+    "weight": 50,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "diamond",
+      "description": "Aha!\n\nYou see a multifaceted gemstone, which strangely reflects no\nlight, making it very hard to see when it lies on the ground."
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 24,
+    "name": "sun wand",
+    "short_descr": "a blazing sun wand",
+    "description": "A small length of brass shines here with its own light.",
+    "item_type": "wand",
+    "values": {
+      "level": 35,
+      "recharge": 25,
+      "charges": 25,
+      "skill": "harm"
+    },
+    "level": 24,
+    "weight": 100,
+    "cost": 29800,
+    "extra_flags": "glow magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "sun wand",
+      "description": "This small brass shaft is a holy weapon used by the ancient people of \nthis land to defend against the deadliest of foes.  It shines with the \nbrilliant blazing light of the sun."
+    }],
+    "affects": [{
+      "level": 24,
+      "apply": "saves",
+      "modifier": -2
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 25,
+    "name": "sandy ring",
+    "short_descr": "a sandy-colored ring",
+    "description": "A small sandy-colored ring has been carelessly dropped here.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 20,
+    "weight": 50,
+    "cost": 1300,
+    "extra_flags": "hum magic",
+    "wear_flags": "take finger",
+    "extra_description": [{
+      "keyword": "sandy ring",
+      "description": "The ring is small, smooth, sandy-colored and unremarkable, save that\nit gives off a continuous low humming noise that tickles your fingertips."
+    }],
+    "affects": [
+      {
+        "level": 20,
+        "apply": "mana",
+        "modifier": 20
+      },
+      {
+        "level": 20,
+        "apply": "intelligence",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 26,
+    "name": "golden sphinx",
+    "short_descr": "a small golden sphinx",
+    "description": "A small golden sphinx glints in the light.",
+    "item_type": "treasure",
+    "values": {},
+    "level": 5,
+    "weight": 50,
+    "cost": 550,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "golden sphinx",
+      "description": "The golden sphinx is incredibly detailed and very small, fitting easily\ninto the palm of your hand.  You can even make out the expression\nof wisdom and peace on its face."
+    }],
+    "affects": [{
+      "level": 5,
+      "apply": "wisdom",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "pyramid",
+    "anum": 27,
+    "name": "spinhxian leggings",
+    "short_descr": "a pair of sphinxian leggings",
+    "description": "Massive leggings formed from the body of a sphinx stand here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 2
+    },
+    "level": 32,
+    "weight": 200,
+    "cost": 7800,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take legs",
+    "extra_description": [{
+      "keyword": "sphinxian leggings",
+      "description": "These magically fashioned leggings impart the strength and stamina\nof the mightiest of the ancient sphinxes.  You feel ancient power \nemanating from them; they seem to be almost alive."
+    }],
+    "affects": [
+      {
+        "level": 32,
+        "apply": "moves",
+        "modifier": 30
+      },
+      {
+        "level": 32,
+        "apply": "strength",
+        "modifier": 2
+      }
+    ]
+  }}
+]

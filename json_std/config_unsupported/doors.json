@@ -1,0 +1,50 @@
+[
+  {"door": {
+    "dir": 0,
+    "reverse": 2,
+    "name": "north",
+    "short_name": "N",
+    "to_phrase": "to the north",
+    "from_phrase": "from the north"
+  }},
+  {"door": {
+    "dir": 1,
+    "reverse": 3,
+    "name": "east",
+    "short_name": "E",
+    "to_phrase": "to the east",
+    "from_phrase": "from the east"
+  }},
+  {"door": {
+    "dir": 2,
+    "reverse": 0,
+    "name": "south",
+    "short_name": "S",
+    "to_phrase": "to the south",
+    "from_phrase": "from the south"
+  }},
+  {"door": {
+    "dir": 3,
+    "reverse": 1,
+    "name": "west",
+    "short_name": "W",
+    "to_phrase": "to the west",
+    "from_phrase": "from the west"
+  }},
+  {"door": {
+    "dir": 4,
+    "reverse": 5,
+    "name": "up",
+    "short_name": "U",
+    "to_phrase": "above you",
+    "from_phrase": "from above"
+  }},
+  {"door": {
+    "dir": 5,
+    "reverse": 4,
+    "name": "down",
+    "short_name": "D",
+    "to_phrase": "below you",
+    "from_phrase": "from below"
+  }}
+]

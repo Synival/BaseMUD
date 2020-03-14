@@ -1,0 +1,1741 @@
+[
+  {"room": {
+    "area": "wyvern",
+    "anum": 1,
+    "name": "Rough East-West Path",
+    "description": "You are on a very rough and overgrown path heading east-west over rugged\nterrain.  To the east the path passes between low hills.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 2,
+        "description": "The road heads into low hills this way."
+      },
+      {
+        "dir": "west",
+        "to": 102,
+        "description": "The cross-roads and a trading post lie in this direction."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 2,
+    "name": "Rough Path Between the Hills",
+    "description": "Here the path passes between low hills. The going is very rough, but\nto the east the ground is smoother. In that direction a pair of tower\nlooms above the hills.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 3,
+        "description": "You see a pair of tall towers in the distance."
+      },
+      {
+        "dir": "west",
+        "to": 1,
+        "description": "The road continues."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 3,
+    "name": "Path through an Open Area",
+    "description": "You are on a path through an open area. East of here loom two tall towers,\njoined by a barbican and surrounded by a murky moat. West the path passes\nbetween low hills.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 4,
+        "description": "Two fantastic towers surrounded by a moat rise before you."
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "description": "The road continues."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 4,
+    "name": "West Side of Moat",
+    "description": "You stand on the west side of a moat that encircles two towers, each\nover 50 feet high. You will need a boat to go east across the moat. A\nrugged path heads west, and another one heads north to a cluster of low \nbuildings.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 5,
+        "description": "A worn path leads to a cluster of low buildings."
+      },
+      {
+        "dir": "east",
+        "to": 20,
+        "description": "The Towers loom directly over you, just beyond the moat."
+      },
+      {
+        "dir": "west",
+        "to": 3,
+        "description": "An old ill-kept roads leads away to the west."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 5,
+    "name": "Path North of Moat",
+    "description": "You walk on a faint path heading south toward the west side of the moat,\nand north to three small buildings.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 6,
+        "description": "Several low buildings lie this way."
+      },
+      {
+        "dir": "south",
+        "to": 4,
+        "description": "The path ends west of the moat."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 6,
+    "name": "Cluster of Buildings",
+    "description": "You are in the middle of a cluster of small buildings. There is a building\nto the north, east, and west.  A sign over the eastern building says\n'House of Pancakes'.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 9,
+        "description": "There is an entrance to a building."
+      },
+      {
+        "dir": "east",
+        "to": 7,
+        "description": "A sign over the door reads 'House of Pancakes'."
+      },
+      {
+        "dir": "south",
+        "to": 5,
+        "description": "A path heads south toward the west side of the towers."
+      },
+      {
+        "dir": "west",
+        "to": 8,
+        "description": "There is an entrance to a building here."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 7,
+    "name": "House of Pancakes",
+    "description": "The moment you enter this room, the ceiling descends and crushes you\ninto a pancake.  Don't you hate it when that happens?",
+    "sector_type": "inside",
+    "room_flags": "unused_room_1 no_mob"
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 8,
+    "name": "Old Store Room",
+    "description": "You have entered what appears to be an old storeroom. Most of the items\nthat were in here appear to have been ruined long ago.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 6
+    }],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 52,
+        "global_limit": 2,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 9,
+    "name": "Empty Room",
+    "description": "This room appears to be completely empty. The only exit seems to be the\nway you came.  There are some scratches around the floor.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 6
+      },
+      {
+        "dir": "down",
+        "to": 10,
+        "description": "You see a concealed opening leading down."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 10,
+    "name": "Minotaur's Room",
+    "description": "You have entered a secret chamber under the empty room. In this room is\nthe worn but cared-for gear and trappings of some large humanoid.",
+    "sector_type": "inside",
+    "room_flags": "dark no_mob indoors",
+    "doors": [{
+      "dir": "up",
+      "to": 9
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 12,
+          "wear_loc": "shield",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 20,
+    "name": "Western Moat",
+    "description": "You are in the middle of the moat, on the west side of the tower.  There is a\nlanding on both sides of the moat.  Deep throated 'ribbids' come from the\nwater all around you.",
+    "sector_type": "noswim",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 21
+      },
+      {
+        "dir": "east",
+        "to": 23
+      },
+      {
+        "dir": "south",
+        "to": 22
+      },
+      {
+        "dir": "west",
+        "to": 4
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 21,
+    "name": "Northern Moat",
+    "description": "You are in the middle of the moat, on the north side of the tower.  There is\nno place to land here.  Deep throated 'ribbids' come from the water all\naround you.",
+    "sector_type": "noswim",
+    "doors": [{
+      "dir": "south",
+      "to": 20
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 4,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 22,
+    "name": "Southern Moat",
+    "description": "You are in the middle of the moat, on the south side of the tower.  There is\nno place to land here.  Deep throated 'ribbids' come from the water all\naround you.",
+    "sector_type": "noswim",
+    "doors": [{
+      "dir": "north",
+      "to": 20
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 4,
+        "room_limit": 2
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 23,
+    "name": "Tower Foyer",
+    "description": "You are on a foyer on the west side of the structure. The moat is west of \nhere. There is also a large door eastward into the structure.  You notice that\nthe walls are ornately decorated with very life-like stone gargoyles.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 24
+      },
+      {
+        "dir": "west",
+        "to": 20
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 6,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 6,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 24,
+    "name": "The Grand Lobby",
+    "description": "You have entered a vast lobby. This lobby appears to have once been very\nornately furnished, but now everything is decayed and moldering.  A highly\nornate balcony surrounds the lobby. To the east, below the balcony, is an\nopening. The door leading out is west.  You notice that the balcony is\ncovered in highly ornate and life-like stone gargoyles.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 25
+      },
+      {
+        "dir": "west",
+        "to": 23
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 6,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 6,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 25,
+    "name": "Base of the Western Tower",
+    "description": "You stand in the center of the Western tower's base. Torch brackets occupy\nthe four corners of this huge room. Above each torch is a lifelike ornate\nstone gargoyle.  There are doors north and south, and passages east and west.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 27
+      },
+      {
+        "dir": "east",
+        "to": 26
+      },
+      {
+        "dir": "south",
+        "to": 28
+      },
+      {
+        "dir": "west",
+        "to": 24
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 2,
+        "global_limit": 6,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 26,
+    "name": "The Musty Corridor",
+    "description": "You are walking along a musty east-west corridor joining the two towers.\nThere are room on each side of the corridor, and openings at each end.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 29
+      },
+      {
+        "dir": "east",
+        "to": 31
+      },
+      {
+        "dir": "south",
+        "to": 30
+      },
+      {
+        "dir": "west",
+        "to": 25
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 27,
+    "name": "Kitchen",
+    "description": "You have entered what must once have been a kitchen. The rusting remains of\nvarious utensils lie on countertops. There is also an old wash basin and a\npot-belly stove.  There is a door south, and a serving hatch east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 25
+    }],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 1,
+        "global_limit": 2,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 28,
+    "name": "Conservatory",
+    "description": "You are in the tower's private conservatory. However, through years of neglect,\nthe plants have grown into a hideous jungle.  The only exit is north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 25
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 6,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 29,
+    "name": "The Dining Hall",
+    "description": "You have entered a fabulous dining hall.  The wrecked remains of a long table\ndominate the room. A horrible odor pervades the room, like some foul-smelling\nbeast has been eating and shitting in here.  There is a serving hatch west and\na door south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 26
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 7,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 30,
+    "name": "Art Gallery",
+    "description": "You are in the ruined remains of an art gallery. Everything appears to\nhave been stolen long ago, however.  The only exit is north.",
+    "sector_type": "city",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 26
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 31,
+    "name": "Base of the Eastern Tower",
+    "description": "You stand in the center of the Eastern tower's base. Torch brackets occupy the\nfour corners of this huge room.  Above each torch is a lifelike ornate stone\ngargoyle.  There are are open doors to the north and south, and passages east\nand west.  In addition, a spiral staircase leads up to the next level of this\ntower.",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 32
+      },
+      {
+        "dir": "south",
+        "to": 33
+      },
+      {
+        "dir": "west",
+        "to": 26
+      },
+      {
+        "dir": "up",
+        "to": 35,
+        "description": "You see a spiral staircase leading up."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 2,
+        "global_limit": 6,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 32,
+    "name": "The Common Room",
+    "description": "You are in what must once have been a common room for all residents of the\ntower. There is a huge fire pit with a chimney in the center, and the smashed\nremains of a great many table and chairs.  The exit is south.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 31
+      },
+      {
+        "dir": "down",
+        "to": 34,
+        "description": "You notice a grate in the bottom of the fire pit.  Maybe it's an opening ...",
+        "exit_flags": "door"
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 33,
+    "name": "Servant's Quarters",
+    "description": "You are in what once was the servant's quarters, as evidenced by the shabby\nbelongings and decor. What little remains is rotting and of little value\nanyway.  The only exit is north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 31
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 34,
+    "name": "A Large Murky Cellar",
+    "description": "You are in a large, murky cellar. An almost tangible air of horror pervades\nthe room.  A thin layer of nitre covers the walls and ceiling.  Rotting\nfurniture looms obliquely about the room.",
+    "sector_type": "city",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "up",
+      "to": 32,
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 92,
+          "wear_loc": "hold",
+          "global_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 35,
+    "name": "On the First Staircase",
+    "description": "You are on a Spiral staircase connecting the first and second levels of\nthe eastern tower. You can go up or down.",
+    "sector_type": "field",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 36
+      },
+      {
+        "dir": "down",
+        "to": 31
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 36,
+    "name": "Second Level of the Eastern Tower",
+    "description": "You are in the center of the second level of the Eastern tower. This large\nroom appears quite empty, except for the candle abras firmly fixed to the\nwalls.  An opening leads westward, and a spiral staircase leads down.",
+    "sector_type": "city",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 37
+      },
+      {
+        "dir": "down",
+        "to": 35
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 37,
+    "name": "The Elegant Hall",
+    "description": "You are in what was once a elegant hall, although everything is moldering now.\nThe rotted remains of a plush carpet covers the floor, while several moldy\ntapestries adorn the each side of the hall.  There are door north and south,\nand openings east and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 38
+      },
+      {
+        "dir": "east",
+        "to": 36
+      },
+      {
+        "dir": "south",
+        "to": 39
+      },
+      {
+        "dir": "west",
+        "to": 40
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 38,
+    "name": "The Shaman's Room",
+    "description": "You have entered an elegantly furnished room that looks to be still in use!\nCostly paintings and pieces of furniture are tastefully situated.  On the\nnorth wall is an altar to Knar, the ghastly patron of Gargoyles.  The only\nexit is south.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 37
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "wielded",
+          "global_limit": 6
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "waist",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 39,
+    "name": "The Library",
+    "description": "This room appears to have been a library.  Empty book shelves line each wall.\nThe only exit is north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 37
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 40,
+    "name": "Second Level of the Western Tower",
+    "description": "You are in the center of the western tower's second floor.  A large spiral \nstaircase of 29 steps connects this level with the third.  There are doors\nto the east and west.  Except for a torch bracket in each corner, the \nroom is barren.",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 37
+      },
+      {
+        "dir": "west",
+        "to": 41
+      },
+      {
+        "dir": "up",
+        "to": 42,
+        "description": "You see the spiral staircase leading up."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 41,
+    "name": "On the Balcony",
+    "description": "You are on the balcony overlooking the Grand lobby.  You have a fabulous\nview of the entire room.  The only exit is the way you came in.",
+    "sector_type": "field",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 40
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 42,
+    "name": "The Spiral Stairs",
+    "description": "You are on a large spiral staircase of 29 steps, leading between the \nsecond and third floors.  You can go up or down.",
+    "sector_type": "field",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 43
+      },
+      {
+        "dir": "down",
+        "to": 40
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 43,
+    "name": "Third Level of Western Tower",
+    "description": "You stand in the center of the western tower's third floor.  This large room\nglows mysteriously with a strange light all its own.  From a door to the east\ncomes a strange inky blackness.  A spiral staircase leads down.",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 44,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "down",
+        "to": 42
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 14,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 44,
+    "name": "It's too dark to see anything!",
+    "description": null,
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 45,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "east",
+        "to": 47,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "south",
+        "to": 46,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "west",
+        "to": 43,
+        "exit_flags": "door"
+      }
+    ],
+    "resets": [
+      {
+        "command": "randomize",
+        "values": {"dir_count": 0}
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 4,
+          "room_limit": 4
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 45,
+    "name": "The Armory",
+    "description": "In this room, which has somehow evaded the ravages of time, are neatly stored\nracks of common weapons.  They appear to be quite ordinary; however, a chest\nin one corner catches your eye.  The only exit is the way you came in.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 44,
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "object",
+        "values": {
+          "obj": 51,
+          "global_limit": 1,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 3,
+          "into": 51,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 46,
+    "name": "The Officer's Quarters",
+    "description": "You have entered a lavish but functional room decked out in a military style.\nMurals on the wall show battle scenes in gargoyles, minotaurs, and huge,\nflying snake-like reptiles with poisonous tails fight humans and dwarves.\nVarious objects in the room give evidence that it is occupied by individuals\nof authority.  The only door is north.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 44,
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 5,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 14,
+          "wear_loc": "head",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 47,
+    "name": "Third Level of Eastern Tower",
+    "description": "You are in the center of the Eastern Tower's third floor.  The room you are in\nglows with a mysterious light that has no source.  In the center of the room a\nladder climbs up to a hatchway in the ceiling.  The hatchway is a strange\nlooking keyhole.  There is also a door to the west.",
+    "sector_type": "city",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 44,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "up",
+        "to": 48,
+        "description": "The hatchway appears securely fastened.  In it is a strange keyhole.",
+        "exit_flags": "door"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 6,
+          "wear_loc": "wielded",
+          "global_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 48,
+    "name": "Turret of the Eastern Tower",
+    "description": "You stand in the turret of the eastern tower.  A huge hole has been\nmade in the roof by some enormous beast, letting the daylight (or moonlight)\nin.  There is a hatchway in the floor, and an opening to the west leading out\nonto a catwalk.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 49,
+        "description": "There is a small opening this way."
+      },
+      {
+        "dir": "down",
+        "to": 47,
+        "exit_flags": "door"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "lwrist",
+          "global_limit": 2
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 21,
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 49,
+    "name": "On the Catwalk",
+    "description": "You are outdoors on a catwalk between the turrets of the eastern and \nwestern towers.  There is a 40 foot drop to the north and south.  You have\na fabulous view of the surrounding countryside, which consists of a bleak\nwilderness.  At the east end of the catwalk is a small opening leading\ninside the eastern turret.  At the western end, a strange mirror-like portal\nleads into the western turret.",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 48
+      },
+      {
+        "dir": "west",
+        "to": 50,
+        "description": "A mirror-like portal glimmers, allowing entry into the western turret."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 50,
+    "name": "Turret of the Western Tower",
+    "description": "You are in the turret of the western tower.  You feel very strange here.\nScattered about this room are a great many coins and valuable articles.\nYet you can't get rid of a feeling of dread!  A mirror-like portal is in the\nwestern wall.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 49
+      },
+      {
+        "dir": "west",
+        "to": 51,
+        "description": "A mirror-like portal glimmers in this wall."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "neck1",
+          "global_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 51,
+    "name": "On the Other Side",
+    "description": "You are outdoors on a catwalk between the turrets of the Eastern and Western\ntowers.  There is no opening into the western tower of any kind.  You have a\nfabulous view of your surroundings, a murky city partially obscured by strange\nsmoke that creeps along the ground instead of rising. The city stretches as far\nas the eye can see under the conditions.",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 50
+      },
+      {
+        "dir": "west",
+        "to": 52
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 52,
+    "name": "The Chamber",
+    "description": "You are in a small carpeted chamber. The chamber is empty except for a single\nchair facing a mirror on the wall.",
+    "sector_type": "inside",
+    "doors": [{
+      "dir": "east",
+      "to": 51
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 101,
+    "name": "Main Eastern Road",
+    "description": "You are on the old Eastern Road.  The crossroads to the east joins ANOTHER\nnorthern route to this road, which continues east.  South of the crossroads is\nan old building.  The area around here is lightly timbered.",
+    "sector_type": "forest",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 102,
+        "description": "You see a cross roads and an old building."
+      },
+      {
+        "dir": "west",
+        "portal": "wyvern-west-1"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 102,
+    "name": "Crossroads to the Wilderness",
+    "description": "You are at a crossroads to the wilderness areas east and north of here,\nand the more civilized areas to the west. The main road is west, an\nolder road continues east, and a simple trail heads north.  To the south,\nan old ram-shackle building is being used as a trading post for the\nsurrounding wilderness. ",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 104,
+        "description": "You see a trail leading north."
+      },
+      {
+        "dir": "east",
+        "to": 1,
+        "description": "The old Eastern road continues this way."
+      },
+      {
+        "dir": "south",
+        "to": 103,
+        "description": "An old, ram-shackle building serves as a trading post here."
+      },
+      {
+        "dir": "west",
+        "to": 101
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 103,
+    "name": "Trading Post",
+    "description": "You are in a trading post just south of the crossroads, where rangers,\ntrappers and hunters from the surrounding area come to buy, sell, and\nbarter goods.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 102,
+      "description": "The door opens out on the crossroads."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 102,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 111,
+          "wear_loc": "head",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 102,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 111,
+          "wear_loc": "head",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 104,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 104,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 101,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 106,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 102,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 21,
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 104,
+    "name": "Trail north of crossroads",
+    "description": "You are on a primitive north-south trail. South of here is a major cross-\nroads and an old building. To the north the trail continues toward a\ndeep, dark forest.",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 105,
+        "description": "The trail continues toward a deep, dark, forest."
+      },
+      {
+        "dir": "south",
+        "to": 102,
+        "description": "A major crossroads and a building lie in this direction."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 110,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 101,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 105,
+    "name": "Trail south of forest",
+    "description": "You are on a primitive north-south trail.  Just north of here looms the\nentrance to a deep, dark forest. To the south the trail continues.",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 106,
+        "description": "The trail enters a dark forest of thick oaks this way."
+      },
+      {
+        "dir": "south",
+        "to": 104,
+        "description": "The trail continues."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 106,
+    "name": "Entrance to the forest",
+    "description": "You are at the entrance to dark forest comprised mostly of huge black oak\nand towering firs.  A trail from the south continues north on into the\nwoods at this point.",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 107,
+        "description": "You see the trail continuing into the forest."
+      },
+      {
+        "dir": "south",
+        "to": 105,
+        "description": "You see the trail head back on south."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 111,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 107,
+    "name": "Trail in Dark Oak Forest",
+    "description": "The trail here passes through groves of closely knit Black Oak. Some of\nthese trees are of enormous size.  Rustling and other low noises come\nfrom the forest on either side of the trail.  The trail continues on north\nand south.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 108,
+        "description": "You see the trail continue into thick, dark forest."
+      },
+      {
+        "dir": "south",
+        "to": 106,
+        "description": "The edge of the forest is visible in this direction."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 108,
+    "name": "Junction in Dark Forest",
+    "description": "You are in the midst of a deep dark forest of huge oak trees.  There is a\njunction of trails here, with paths leading south, west and east.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 120,
+        "description": "A path disappears into thick forest."
+      },
+      {
+        "dir": "south",
+        "to": 107,
+        "description": "A path disappears into thick forest."
+      },
+      {
+        "dir": "west",
+        "to": 109,
+        "description": "You see the path to the Centaur village."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 110,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 101,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 109,
+    "name": "Path to Centaur Village",
+    "description": "You are on an east-west path in the forest.  Here the forest is mostly\ntowering firs, not quite as dense as the oak groves that can be seen eastward.\nWestward, the trail heads toward a small clearing.",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 108,
+        "description": "A path disappears into thick forest."
+      },
+      {
+        "dir": "west",
+        "to": 110,
+        "description": "There is a small clearing in this direction."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 111,
+        "global_limit": 2,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 110,
+    "name": "The East side of the Centaur Clearing",
+    "description": "You are on the east side of a clearing.  Small primitive huts are scattered\nabout the edges of this clearing.  Beyond these on all sides are towering\nfir trees.  A path leads east out of the clearing. The clearing continues to\nthe west.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 112,
+        "description": "There is a hut here."
+      },
+      {
+        "dir": "east",
+        "to": 109,
+        "description": "A path leads away through the forest."
+      },
+      {
+        "dir": "south",
+        "to": 113,
+        "description": "There is a hut here."
+      },
+      {
+        "dir": "west",
+        "to": 111,
+        "description": "You see the west side of the clearing."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 110,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 112,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 111,
+    "name": "West side of the Centaur Clearing",
+    "description": "You are on the west side of the clearing in the center of the Centaur village.\nHuts surround the clearing on all sides, and beyond are towering firs.  The\nclearing continues to the east.  To the west is a very large hut.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 114,
+        "description": "There is a hut here."
+      },
+      {
+        "dir": "east",
+        "to": 110,
+        "description": "You see the east side of the clearing."
+      },
+      {
+        "dir": "south",
+        "to": 115,
+        "description": "There is a hut here."
+      },
+      {
+        "dir": "west",
+        "to": 116,
+        "description": "There is a hut here."
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 114,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 112,
+    "name": "A Centaur's Hut",
+    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut\nis sparsely furnished, mostly the trappings of survival.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 110,
+      "description": "The opening leads out onto the clearing."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 112,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 113,
+    "name": "A Centaur's Hut",
+    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut\nis sparsely furnished, mostly the trappings of survival.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 110,
+      "description": "The opening leads out onto the clearing."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 112,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 114,
+    "name": "A Centaur's Hut",
+    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut\nis sparsely furnished, mostly the trappings of survival.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 111,
+      "description": "The opening leads out onto the clearing."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 114,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 115,
+    "name": "A Centaur's Hut",
+    "description": "You are inside a smallish hut, the home of a family of Centaurs.  The hut\nis sparsely furnished, mostly the trappings of survival.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 111,
+      "description": "The opening leads out onto the clearing."
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 114,
+        "global_limit": 3,
+        "room_limit": 3
+      }
+    }]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 116,
+    "name": "Entrance to a Large Hut",
+    "description": "You are in the entry foyer of a large hut.  A curtain separates this section\nof the hut from the next section to the west.  To the east is an opening out\nonto the clearing.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 111,
+        "description": "The opening leads out onto the clearing."
+      },
+      {
+        "dir": "west",
+        "to": 117,
+        "description": "There is a curtain here separating this section from the next."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 115,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 115,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 117,
+    "name": "Back of a Large Hut",
+    "description": "You are in the back of a large hut.  A curtain separates this section from\nthe front of the hut to the east.  This room is finely decorated, if\nsomewhat primitive.  The decor suggests someone of authority lives here.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 116,
+      "description": "There is a curtain here separating this room from the front of the hut."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 116,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 113,
+          "wear_loc": "rfinger",
+          "global_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "wyvern",
+    "anum": 120,
+    "name": "Eastern Path in Dark Forest",
+    "description": "You are on an east-west path through extremely old growths of oak.  The path\nis fairly faint here.  Undergrowth closes in so closely that little can\nbe seen in any direction.",
+    "sector_type": "hills",
+    "doors": [{
+      "dir": "west",
+      "to": 108,
+      "description": "The path continues west through thick forest."
+    }]
+  }}
+]

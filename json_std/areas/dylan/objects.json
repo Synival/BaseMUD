@@ -1,0 +1,119 @@
+[
+  {"object": {
+    "area": "dylan",
+    "anum": 1,
+    "name": "winged boots",
+    "short_descr": "a pair of winged boots",
+    "description": "A pair of winged boots flutters about",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 3,
+      "vs_slash": 3
+    },
+    "level": 13,
+    "weight": 100,
+    "cost": 2800,
+    "extra_flags": "magic",
+    "wear_flags": "take feet",
+    "affects": [
+      {
+        "level": 13,
+        "apply": "saves",
+        "modifier": 1
+      },
+      {
+        "level": 13,
+        "apply": "dexterity",
+        "modifier": 2
+      },
+      {
+        "level": 13,
+        "bit_type": "affects",
+        "bits": "flying"
+      }
+    ]
+  }},
+  {"object": {
+    "area": "dylan",
+    "anum": 2,
+    "name": "bronze bracer",
+    "short_descr": "A carved bronze bracer",
+    "description": "A carved bronze bracer lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 6,
+      "vs_slash": 6,
+      "vs_magic": 2
+    },
+    "level": 10,
+    "weight": 200,
+    "cost": 820,
+    "wear_flags": "take wrist"
+  }},
+  {"object": {
+    "area": "dylan",
+    "anum": 3,
+    "name": "ornate brooch",
+    "short_descr": "an ornate brooch",
+    "description": "An ornate brooch was carelessly left here.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 7,
+    "weight": 100,
+    "cost": 1140,
+    "extra_flags": "invis",
+    "wear_flags": "take neck",
+    "affects": [
+      {
+        "level": 7,
+        "apply": "wisdom",
+        "modifier": 1
+      },
+      {
+        "level": 7,
+        "apply": "intelligence",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "dylan",
+    "anum": 4,
+    "name": "magenta potion",
+    "short_descr": "magenta potion",
+    "description": "Bright magenta potion gathers dust.",
+    "item_type": "potion",
+    "values": {
+      "level": 8,
+      "skill1": "armor",
+      "skill2": "cure light",
+      "skill3": "poison"
+    },
+    "level": 3,
+    "weight": 20,
+    "cost": 320,
+    "extra_flags": "antigood",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "dylan",
+    "anum": 5,
+    "name": "ancient parchment",
+    "short_descr": "an ancient illustrated parchment",
+    "description": "An ancient illustrated parchment in the corner",
+    "item_type": "scroll",
+    "values": {
+      "level": 5,
+      "skill1": "blindness",
+      "skill2": "curse",
+      "skill3": "poison"
+    },
+    "level": 12,
+    "weight": 50,
+    "cost": 1330,
+    "extra_flags": "glow nodrop",
+    "wear_flags": "take hold"
+  }}
+]

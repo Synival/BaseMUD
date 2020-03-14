@@ -1,0 +1,412 @@
+[
+  {"portal": {
+    "two-way": true,
+    "from": "air-down-1",
+    "to": "midgaard-up-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "air-up-1",
+    "to": "astral-down-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "arachnos-south-1",
+    "to": "haon-north-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "arachnos-north-1",
+    "to": "haon-room-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "arachnos-east-1",
+    "to": "haon-room-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "canyon-north-1",
+    "to": "thalos-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "catacomb-up-1",
+    "to": "dwarven-down-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "catacomb-up-2",
+    "to": "dwarven-down-2"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "chapel-north-1",
+    "to": "grave-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "chapel-north-2",
+    "to": "tohell-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "daycare-north-1",
+    "to": "dwarven-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "draconia-east-1",
+    "to": "hitower-west-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "dream-down-1",
+    "to": "midgaard-up-2"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "drow-up-1",
+    "to": "thalos-down-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "dwarven-west-1",
+    "to": "moria-east-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "dylan-north-1",
+    "to": "redferne-south-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "dylan-east-1",
+    "to": "midgaard-room-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "eastern-west-1",
+    "to": "midgaard-east-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "eastern-east-1",
+    "to": "pyramid-west-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "eastern-south-1",
+    "to": "mega1-north-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "galaxy-west-1",
+    "to": "hitower-east-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "galaxy-down-1",
+    "to": "thalos-room-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "gnome-north-1",
+    "to": "midennir-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "grave-north-1",
+    "to": "midgaard-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "grove-north-1",
+    "to": "mirror-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "grove-up-1",
+    "to": "nirvana-down-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "grove-south-1",
+    "to": "midennir-north-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "haon-north-2",
+    "to": "shire-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "haon-east-1",
+    "to": "midgaard-west-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "haon-south-1",
+    "to": "newthalos-north-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "haon-south-2",
+    "to": "trollden-north-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "haon-south-3",
+    "to": "marsh-north-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "haon-north-3",
+    "to": "hitower-south-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "hitower-east-2",
+    "to": "drow-room-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "hitower-south-2",
+    "to": "dylan-room-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "hitower-west-2",
+    "to": "sewer-room-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "hitower-up-1",
+    "to": "olympus-room-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "hitower-down-1",
+    "to": "chapel-room-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "hitower-up-2",
+    "to": "midgaard-room-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "hood-west-1",
+    "to": "midgaard-east-2"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "hood-west-2",
+    "to": "midgaard-east-3"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "immort-up-1",
+    "to": "limbo-room-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "immort-down-1",
+    "to": "midgaard-up-3"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "immort-up-2",
+    "to": "limbo-room-2"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "immort-north-1",
+    "to": "midgaard-room-2"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "immort-east-1",
+    "to": "midgaard-room-3"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "immort-south-1",
+    "to": "midgaard-room-4"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "limbo-up-1",
+    "to": "midgaard-room-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "mahntor-north-1",
+    "to": "thalos-south-2"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midennir-north-2",
+    "to": "moria-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midennir-south-2",
+    "to": "thalos-north-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midennir-west-1",
+    "to": "midgaard-east-4"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midennir-north-3",
+    "to": "midgaard-south-2"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midennir-north-4",
+    "to": "smurf-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midennir-east-2",
+    "to": "newthalos-west-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midgaard-up-4",
+    "to": "school-down-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "midgaard-down-1",
+    "to": "sewer-room-2"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "midgaard-down-2",
+    "to": "sewer-room-3"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "midgaard-down-3",
+    "to": "sewer-room-4"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "midgaard-down-4",
+    "to": "sewer-room-5"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midgaard-down-5",
+    "to": "sewer-up-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midgaard-east-5",
+    "to": "mobfact-west-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midgaard-north-1",
+    "to": "moria-south-2"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midgaard-north-2",
+    "to": "moria-south-3"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midgaard-up-5",
+    "to": "redferne-down-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "midgaard-up-6",
+    "to": "immort-room-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "midgaard-up-7",
+    "to": "immort-room-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "midgaard-up-8",
+    "to": "immort-room-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midgaard-west-2",
+    "to": "newthalos-east-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "midgaard-north-3",
+    "to": "moria-south-4"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "moria-north-1",
+    "to": "plains-south-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "moria-east-2",
+    "to": "sewer-room-6"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "newthalos-south-2",
+    "to": "haon-room-2"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "newthalos-north-2",
+    "to": "seaprisn-south-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "ofcol-south-1",
+    "to": "plains-north-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "ofcol-east-1",
+    "to": "ofcol2-west-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "olympus-south-1",
+    "to": "plains-north-2"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "plains-north-3",
+    "to": "valley-south-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "quifael-west-1",
+    "to": "midgaard-room-5"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "school-up-1",
+    "to": "midgaard-room-1"
+  }},
+  {"portal": {
+    "two-way": false,
+    "from": "shire-up-1",
+    "to": "midgaard-room-1"
+  }},
+  {"portal": {
+    "two-way": true,
+    "from": "thalos-east-1",
+    "to": "wyvern-west-1"
+  }}
+]

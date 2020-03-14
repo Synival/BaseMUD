@@ -1,0 +1,86 @@
+{"flags": {
+  "name": "furniture_flags",
+  "description": "Flags for furniture.",
+  "values": [
+    {
+      "name": "stand_at",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "stand_on",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "stand_in",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "sit_at",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "sit_on",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "sit_in",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "rest_at",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "rest_on",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "rest_in",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "sleep_at",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "sleep_on",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "sleep_in",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "put_at",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "put_on",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "put_in",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "put_inside",
+      "value": 15,
+      "settable": true
+    }
+  ]
+}}

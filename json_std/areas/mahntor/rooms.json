@@ -1,0 +1,3956 @@
+[
+  {"room": {
+    "area": "mahntor",
+    "anum": 0,
+    "name": "The dark woods",
+    "description": "You are travelling through woods that are as dark as night. The trees above\nblock all light and wind. The air is stagnant and smells of death and decay.\nThe lack of sounds and other signs of life make your skin crawl and you feel\nvery much like turning back and heading for safer areas. The path leads north\ninto more open lands while it also leads south into the darkness of the forest.\nA small sign is posted here.",
+    "sector_type": "forest",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "portal": "mahntor-north-1"
+      },
+      {
+        "dir": "south",
+        "to": 1
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "[]================================[]\n     |      BEWARE!      | Hope you   |\n     |   Travellers are  | enjoy it!  |\n     |  advised to stay  | <------->  |\n     |   in groups for   |  Skurge    |\n     |      safety.      | Ragnarok   |\n    []================================[]"
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 1,
+    "name": "The dark woods",
+    "description": "You wearily travel through the darkness of the forest. Huge skeletal trees\nline the edges of the path and tower above you. Errant rays of light spear\ndown through the gaps in the canopy above and provide small spots of light\nthat seem to attract what little foliage can grow on the dark forest floor.\nThe path winds north and south into darkness.",
+    "sector_type": "forest",
+    "room_flags": "dark no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 0
+      },
+      {
+        "dir": "south",
+        "to": 2
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 2,
+    "name": "The small intersection in the forest",
+    "description": "The forest path splits here in three directions. Small paths lead to the east,\nnorth, and south. The trees above leave a gap which allows light to fill the\nintersection. It is almost as though you are in a circle of light that\nprovides sanctuary in this land of darkness.\nSomething has been scrawled in the dirt in blood here.",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1
+      },
+      {
+        "dir": "east",
+        "to": 4
+      },
+      {
+        "dir": "south",
+        "to": 3
+      }
+    ],
+    "extra_description": [{
+      "keyword": "blood dirt scrawl",
+      "description": "BeWAre tHe SwAmP oGreS......"
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 3,
+    "name": "The edge of the forest and hills",
+    "description": "You stand at the edge of a dark forest. A path leads north into the forest and\nits deadly darkness and silence. Looking west, you see a path that leads up\ninto a foothills region. Standing here on the boundary between light and\ndarkness, you feel very vulnerable and alone.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 2
+      },
+      {
+        "dir": "west",
+        "to": 9
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 4,
+    "name": "In the dense forest",
+    "description": "You walk along a small path leading through a dark forest. No sounds can be\nheard and little light penetrates the canopy of trees above you. The air here\nsmells musty and you long for a fresh breath. You see an intersection of paths\nto the west. The path you are on leads south into the darkening woods.",
+    "sector_type": "forest",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 5
+      },
+      {
+        "dir": "west",
+        "to": 2
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 5,
+    "name": "The dark forest path",
+    "description": "You continue on through darkness and gloom. The path below you has become a\nwet quagmire. It is difficult to walk, and you make squishing sounds as you\nmove on. Looking east, you see a swampy path. The main path leads north and\nsouth into darkness.",
+    "sector_type": "forest",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 4
+      },
+      {
+        "dir": "east",
+        "to": 27
+      },
+      {
+        "dir": "south",
+        "to": 6
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 6,
+    "name": "A turn in the path",
+    "description": "The forest path turns here towards the north and west. To the north, you see\nthat the ground has become dank and swampy, while the western path appears\nto be entering a hilly area. You hear sounds of swamp creatures to the north\neast.",
+    "sector_type": "forest",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 5
+      },
+      {
+        "dir": "west",
+        "to": 7
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 7,
+    "name": "The bloody intersection",
+    "description": "This is a small intersection. Paths lead east, west, and south. You are struck\nby the carnage here when you enter the clearing. There appears to have been a\ngreat battle here. Blood is everywhere and the ground is all torn up. Pieces\nof beaten armour and broken blades lie all around. Examining the tracks here\nlead you to believe that the dead and wounded were dragged off in two \ndirections, south and east.",
+    "sector_type": "hills",
+    "room_flags": "dark",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 6
+      },
+      {
+        "dir": "south",
+        "to": 10
+      },
+      {
+        "dir": "west",
+        "to": 8
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 46,
+          "wear_loc": "body",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 47,
+          "wear_loc": "head",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 48,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 8,
+    "name": "The rocky path",
+    "description": "The path here winds among the low rocky hills. The long trek up and down the\nhills begins to tire you greatly. Looking east, you see a small clearing. More\nhills are to the north of here.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 9
+      },
+      {
+        "dir": "east",
+        "to": 7
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 9,
+    "name": "The rocky path",
+    "description": "The path here is very rocky and treacherous. The travelling is rough and you\nslip and fall often. Looking south, you see that the path continues into the\nhills. Smoother ground is to the east, but the path seems to lead into a dark\nforest in that direction.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 3
+      },
+      {
+        "dir": "south",
+        "to": 8
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 10,
+    "name": "Up the rocky hillside",
+    "description": "You are climbing on a rocky hillside. As you scramble about, loose rocks and\nsmall boulders bounce and fall down below you. Looking to the east and west,\nyou see more stable ground. The hillside itself goes on higher to the south\nand it drops away to the north.",
+    "sector_type": "mountain",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 7
+      },
+      {
+        "dir": "east",
+        "to": 12
+      },
+      {
+        "dir": "south",
+        "to": 14
+      },
+      {
+        "dir": "west",
+        "to": 11
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 11,
+    "name": "The sparse foothills",
+    "description": "You are in foothills that are sparsely covered by scraggly bushes and weather\nbeaten trees. There are little signs of life here. Only bare rock and dry dirt\ncan be seen. Looking east, you see a small pass that will allow you to leave\nthe foothills. The foothills themselves extend to the south.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 10
+      },
+      {
+        "dir": "south",
+        "to": 13
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 4,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 12,
+    "name": "Standing on level ground",
+    "description": "You are standing at the edge of a steep set of foothills. Looking down, you\nsee what appears to be a marshy, dark forest. It reeks of death and decay.\nEven here, you catch its scent on the winds. From here, you can travel south\ndeeper into the foothills or to the west where a small pass will allow you to\nclimb down.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 15
+      },
+      {
+        "dir": "west",
+        "to": 10
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 4,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 13,
+    "name": "In the foothills",
+    "description": "You are in a barren set of foothills. Looking around, all you see are dead\nplants and boulders. From the south, you get a whiff of salty air. Barren paths\nlead east, north, and south into more barren hills.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 11
+      },
+      {
+        "dir": "east",
+        "to": 14
+      },
+      {
+        "dir": "south",
+        "to": 17
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 4,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 14,
+    "name": "Before the huge tree",
+    "description": "You enter a large ring of boulders. Sheltered by this wall of stones, a small\ncluster of plants have sprung up. In the center of this group of trees and\nbushes is a huge gnarled tree. It appears to have been twisted and torn by\nthe forces of nature. It sways and moans as a strong wind from the south tears\nthrough its old feeble branches. The hills themselves lead in all directions.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 10
+      },
+      {
+        "dir": "east",
+        "to": 15
+      },
+      {
+        "dir": "south",
+        "to": 18
+      },
+      {
+        "dir": "west",
+        "to": 13
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 1,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 15,
+    "name": "Before the dark cave",
+    "description": "You stand directly before a huge dark cave. The rocks and boulders outside the\ncave are covered with blood stains and all types of broken and shattered bones\nlie around. An unbearable stench comes from within the cave itself. The dark\ncave entrance looms to the east. The hills themselves lead towards the\nnorth, south, and west.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 12
+      },
+      {
+        "dir": "east",
+        "to": 16
+      },
+      {
+        "dir": "south",
+        "to": 19
+      },
+      {
+        "dir": "west",
+        "to": 14
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 16,
+    "name": "Inside the horrid cave",
+    "description": "The stench is overwhelming. You can hardly breathe as you enter the cave.\nLooking around, you realize that some bizarre and horrible creature uses this\ncave as a home. Skeletal remains lie all over. Several half-eaten corpses are\nrotting away slowly in the gloomy darkness. In the back of the cave, you see a\nlarge pile of rotting cloth, fur, and plant matter. Light and safety is\ntowards the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 15
+    }],
+    "extra_description": [{
+      "keyword": "pile",
+      "description": "It appears to be some sort of nest......"
+    }],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 2,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 17,
+    "name": "The hills overlooking the shore",
+    "description": "Standing at the edge of the foothills, you are able to look down upon a rocky\nshoreline. It appears as though a vast ocean is to the south. Sea birds have\nmade their nests here in the rocks and you are heartened by the presence of\nlife here. It is possible to climb down to the shore here. The hills\nthemselves are to the north. The edge of the hills leads to the east along the\nshoreline.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 13
+      },
+      {
+        "dir": "east",
+        "to": 18
+      },
+      {
+        "dir": "down",
+        "to": 20
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 18,
+    "name": "The hills overlooking the shoreline",
+    "description": "You stand on a barren section of hills that overlook a rocky shoreline. The\nstiff ocean wind has blown the rocks smooth here and you have to lean forward\na bit to keep your balance. The salty sea air fills your nostrils and you\nnotice signs of life in the rocky crags here. You can climb down towards the\nshore or head north into the hills themselves. The rocky summit you are\nstanding leads east and west along the shoreline.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 14
+      },
+      {
+        "dir": "east",
+        "to": 19
+      },
+      {
+        "dir": "west",
+        "to": 17
+      },
+      {
+        "dir": "down",
+        "to": 21
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 19,
+    "name": "The hills above the shoreline",
+    "description": "You stand on a rocky summit overlooking a rough shoreline below. The sea wind\nblows hard across the rocks here and they have been worn smooth with time.\nLooking around, you notice that you can safely climb down towards the shore.\nThe hills themselves stretch towards the north. The rough summit you stand\nupon leads west along the shoreline.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 15
+      },
+      {
+        "dir": "west",
+        "to": 18
+      },
+      {
+        "dir": "down",
+        "to": 22
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 3,
+        "global_limit": 4,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 20,
+    "name": "The rocky shore",
+    "description": "You are at the base of the rocky hills. Stretching to the south and east, you\nsee a rocky shore. To the southeast, you see a small altar of some sorts that\nglows with an eerie blue light. It is possible to climb up into the hills here.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 21
+      },
+      {
+        "dir": "south",
+        "to": 23
+      },
+      {
+        "dir": "up",
+        "to": 17
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 21,
+    "name": "The rocky shoreline",
+    "description": "You are on a rocky shore that borders a vast sea. A stiff wind blows here and\nwhistles among the rocks. You see an altar of some sort built on the shore to\nthe south. The shore itself leads east and west. Looking up, you see foothills\nand rocky crags.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 22
+      },
+      {
+        "dir": "south",
+        "to": 24
+      },
+      {
+        "dir": "west",
+        "to": 20
+      },
+      {
+        "dir": "up",
+        "to": 18
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 22,
+    "name": "The rocky shore",
+    "description": "You stand at the base of some rocky hills, where they meet a rocky shore. A\nvast sea is to your south. Looking to the southwest, you see a small altar\nthat glows with a eerie blue light. The shore stretches out to the south and\nwest. It is possible to climb up into the hills here.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 25
+      },
+      {
+        "dir": "west",
+        "to": 21
+      },
+      {
+        "dir": "up",
+        "to": 19
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 23,
+    "name": "The edge of the sea",
+    "description": "You walk along the water's edge. The vastness of the ocean is staggering as\nyou look out across it. You notice a small altar that glows with blue light\nto the east. The shore itself extends north away from the water's edge.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 20
+      },
+      {
+        "dir": "east",
+        "to": 24
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 24,
+    "name": "The Blood Sea Portal",
+    "description": "You stand on a small pedestal like altar that has been built on the shore \nhere. Standing here, you can look out across the sea. You can almost imagine\nthat you see a far away island. Dominating the altar is a small blue portal of\nlight. It is possible to walk south into the portal. The shore itself extends\nto the north, east, and west.\nThere are small inscriptions on the rock at the base of the portal.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 21
+      },
+      {
+        "dir": "east",
+        "to": 25
+      },
+      {
+        "dir": "south",
+        "to": 26
+      },
+      {
+        "dir": "west",
+        "to": 23
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "portal blue",
+        "description": "You see a swirling blue portal of light. You think you can see glimpses of\nsomething moving on the \"other side\"."
+      },
+      {
+        "keyword": "small inscriptions inscription",
+        "description": "\"Enter all ye who wish to join the Brotherhood!\""
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 25,
+    "name": "The edge of the sea",
+    "description": "You walk along the water's edge. The tide appears to have risen. Very little\ndebris is washed up on shore. You slip and slide as you tread across the\nslippery rocks that make up the shore. To the west you see a small altar that\nradiates blue light. The shore extends north away from the water's edge.",
+    "sector_type": "field",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 22
+      },
+      {
+        "dir": "west",
+        "to": 24
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 26,
+    "name": "Floating in blue light",
+    "description": "You seem to be floating in blue weightlessness. You tumble head over heels and\nfinally right yourself. Gaining your bearings, you notice that there are two\n\"windows\" in the sea of blue here. One to the south shows an image of a snowy\nplain. Another window the the north shows an image of a rocky shore.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 24
+      },
+      {
+        "dir": "south",
+        "to": 53
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 27,
+    "name": "The swampy path",
+    "description": "This damp path seems to lead into a deep, dark swamp. The trees above block\nout all light and stifle the wind. You smell swamp gas and hear damp squashing\nsounds all around you. The path leads east deeper into the swamp. You also see\na dark forest to the west.",
+    "sector_type": "forest",
+    "room_flags": "dark no_mob indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 28
+      },
+      {
+        "dir": "west",
+        "to": 5
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 28,
+    "name": "The swampy path",
+    "description": "You tread lightly in a wet, swampy path. All around you, you see pools of\nquicksand and rotting vegetation. Unlike the forest to the west, the swamp is\nteeming with life. Some of it is harmless, some is not. The path leads east\nand west into more swamp.",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 29
+      },
+      {
+        "dir": "west",
+        "to": 27
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 29,
+    "name": "The swampy path",
+    "description": "You weave your way through the treacherous swamp. Gas rises all around you and\na damp mist covers the ground, making it impossible to travel safely, without\ncarefully picking your way around obstacles. Large, gnarled trees rise above\nyou. Their moss covered branches block out all traces of the sun. The path\nhere leads east and west.",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 30
+      },
+      {
+        "dir": "west",
+        "to": 28
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 30,
+    "name": "The turn in the swampy path",
+    "description": "You come upon a bend in the swampy path. The ground here is fairly sturdy,\nas this place is elevated above the rest of the swamp. Looking around, you see\na dark, mist filled swamp. Small paths lead south and west into the mist.",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 31
+      },
+      {
+        "dir": "west",
+        "to": 29
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 49,
+          "global_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 31,
+    "name": "The swampy path",
+    "description": "You tread lightly through the mirky water and sludge that makes up the path\nyou follow. To the east, there is a thick wall of mist. You can see nothing\nwithin it. Harder ground rises to the north.",
+    "sector_type": "forest",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 30
+      },
+      {
+        "dir": "east",
+        "to": 35
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 32,
+    "name": "Lost in the Mist",
+    "description": "You wander, hopelessly lost. Swirling mist obscures your vision and clouds\nyour mind. You lose all concept of direction. Small, silent giggles can be\nheard all around. You can wander in any direction.",
+    "sector_type": "hills",
+    "room_flags": "dark indoors no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 37
+      },
+      {
+        "dir": "east",
+        "to": 34
+      },
+      {
+        "dir": "south",
+        "to": 35
+      },
+      {
+        "dir": "west",
+        "to": 34
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 5,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 33,
+    "name": "Lost in the Mist",
+    "description": "You are in a thick misty area. The mist swirls around you, seeming to taunt\nyou and dare you to escape. You feel a slight electric charge in the mist. It\nalmost caresses your body as it floats about you. You can wander in any\ndirection.......",
+    "sector_type": "forest",
+    "room_flags": "dark indoors no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 33
+      },
+      {
+        "dir": "east",
+        "to": 36
+      },
+      {
+        "dir": "south",
+        "to": 33
+      },
+      {
+        "dir": "west",
+        "to": 35
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 5,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 34,
+    "name": "Lost in the Mist",
+    "description": "You try to peer through the mist......You see nothing. It swirls about you,\ncovering you in a damp sheen. There is no sound, all light is eagerly devoured\nby the mist. You feel totally and hopelessly lost.",
+    "sector_type": "hills",
+    "room_flags": "dark indoors no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 38
+      },
+      {
+        "dir": "east",
+        "to": 32
+      },
+      {
+        "dir": "south",
+        "to": 36
+      },
+      {
+        "dir": "west",
+        "to": 32
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 35,
+    "name": "Lost in the Mist",
+    "description": "You stumble through the marsh here. The swamp seems to have swallowed you up\nand denied you exit. This mist is your jailor. You cannot tell where you are.\nYou hear quiet laughter all about you.",
+    "sector_type": "hills",
+    "room_flags": "dark indoors no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 32
+      },
+      {
+        "dir": "east",
+        "to": 33
+      },
+      {
+        "dir": "south",
+        "to": 37
+      },
+      {
+        "dir": "west",
+        "to": 31
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 36,
+    "name": "Lost in the Mist",
+    "description": "You wander, lost, for what seems an eternity. Then....From nowhere....You see\nwhat appears to be trees and hills to the east. The mist itself thickens to\nthe west, while it grows thin to the east.",
+    "sector_type": "hills",
+    "room_flags": "dark indoors no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 34
+      },
+      {
+        "dir": "east",
+        "to": 39
+      },
+      {
+        "dir": "south",
+        "to": 38
+      },
+      {
+        "dir": "west",
+        "to": 33
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 84,
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 37,
+    "name": "Lost in the Mist",
+    "description": "You wander through the thick mist. It swirls all about you and makes it hard\nto breathe. The ground below you makes a soft squishing sound as you trudge\non, but this noise is absorbed by the mist and does not travel. You can wander\nin any direction.",
+    "sector_type": "hills",
+    "room_flags": "dark indoors no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 35
+      },
+      {
+        "dir": "east",
+        "to": 38
+      },
+      {
+        "dir": "south",
+        "to": 32
+      },
+      {
+        "dir": "west",
+        "to": 38
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 5,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 38,
+    "name": "Lost in the Mist",
+    "description": "You wander, lost hopelessly. The mist swirls all about you. You can discern no\ndirection. You stumble blindly through the mist, oblivious to your\nsurroundings.",
+    "sector_type": "forest",
+    "room_flags": "dark indoors no_recall",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 36
+      },
+      {
+        "dir": "east",
+        "to": 37
+      },
+      {
+        "dir": "south",
+        "to": 34
+      },
+      {
+        "dir": "west",
+        "to": 37
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 39,
+    "name": "The solid path",
+    "description": "A solid path rises out of the misty swamp. It leads north, into what appears\nto be a forested area. The trees, above, allow light and air to penetrate and\nyou can see the sky above. A thick bank of mist is to your west.",
+    "sector_type": "hills",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 40
+      },
+      {
+        "dir": "west",
+        "to": 36
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 40,
+    "name": "A forested path",
+    "description": "The path here leads north through a thick forest. High bushes and forest\nundergrowth line both sides of the trail. Looking north, you see a thin line\nof smoke rising up above the tree line. You also notice a crude wooden gate\nfarther north on the trail. The trail itself leads south into murky territory.",
+    "sector_type": "forest",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 41
+      },
+      {
+        "dir": "south",
+        "to": 39
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 41,
+    "name": "The gate before the Ogre Village",
+    "description": "You stand before a huge pair of crude, wooden gates. They are thrown open.\nLooking inside the gates, you see a crude village. Large humanoid creatures\nare milling to and fro.......Ogres! You can head north through the gate or\nsouth into the forest.",
+    "sector_type": "forest",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 43
+      },
+      {
+        "dir": "south",
+        "to": 40
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 87,
+          "wear_loc": "wielded",
+          "global_limit": 25
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 4,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 87,
+          "wear_loc": "wielded",
+          "global_limit": 25
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 42,
+    "name": "Among the crude huts",
+    "description": "You walk among the huts of the ogre village. The village appears to be cut\nfrom the heart of the forest itself. The swamp, nearby, provides the ogres\nwith a prime hunting ground. Small paths lead north and east.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 45
+      },
+      {
+        "dir": "east",
+        "to": 43
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 86,
+          "wear_loc": "wielded",
+          "global_limit": 25
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 87,
+          "wear_loc": "wielded",
+          "global_limit": 25
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 43,
+    "name": "Inside the gates",
+    "description": "You stand just north of the gates to the village. Looking around, you see many\ncrude huts and cooking fires. To the north, you see a huge fire pit. Behind \nit, there appears to be a hut of sorts. Small paths lead east and west among \nthe crude huts. The gates to the south provide an exit from the village.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 46
+      },
+      {
+        "dir": "east",
+        "to": 44
+      },
+      {
+        "dir": "south",
+        "to": 41
+      },
+      {
+        "dir": "west",
+        "to": 42
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 85,
+          "wear_loc": "waist",
+          "global_limit": 25
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 44,
+    "name": "Among the crude huts",
+    "description": "You walk through the crude village. Small huts made of wood and thatch\nsurround you. Every so often, you can hear grunts and snarls inside the huts.\nThe smell here is unbearable. You wonder what type of creature could possibly\nlive in such squalor. Small paths lead west and north here.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 47
+      },
+      {
+        "dir": "west",
+        "to": 43
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 7,
+        "global_limit": 5,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 45,
+    "name": "The gathering place",
+    "description": "This appears to be the clearing the ogres use to assemble. It is quite large\nand has a raised mound in the center that contains a crude throne. The ground\nin front of the throne is quite worn, as if it is sat on quite often. You get\nthe impression that this place is a crude sort of auditorium. Small paths lead\neast and south.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 46
+      },
+      {
+        "dir": "south",
+        "to": 42
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 7,
+        "global_limit": 5,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 46,
+    "name": "The firepit before the lodge",
+    "description": "You stand at the edge of a huge firepit. The heat from the burning embers\nmakes you sweat as you stand here. Large spits above the pit are empty but\nthey appear to be quite large enough to hold hapless adventurers. A large\nlodge is towards the north, while paths lead east, west, and south into the\nvillage itself.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 48,
+        "keyword": "door",
+        "exit_flags": "door"
+      },
+      {
+        "dir": "east",
+        "to": 47
+      },
+      {
+        "dir": "south",
+        "to": 43
+      },
+      {
+        "dir": "west",
+        "to": 45
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 85,
+          "wear_loc": "waist",
+          "global_limit": 25
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 86,
+          "wear_loc": "wielded",
+          "global_limit": 25
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 47,
+    "name": "The village dump",
+    "description": "The smell here overpowers you. All around you are the rotting remains of the\nvillage's refuse. Partially eaten corpses, rotting food, and other truly\ndisgusting things have been discarded here. Paths lead south and west towards\nfresher air.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 44
+      },
+      {
+        "dir": "west",
+        "to": 46
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 86,
+          "wear_loc": "wielded",
+          "global_limit": 25
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 48,
+    "name": "The entryway to the lodge",
+    "description": "You are at the entry hall to a large lodge. Animal pelts and other trophies\nline the walls here. Large chests on either side of the door appear to be\nlocked. The lodge stretches north, while the doors to the south provide an\nexit into the village.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 49
+      },
+      {
+        "dir": "south",
+        "to": 46,
+        "keyword": "door",
+        "exit_flags": "door"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 86,
+          "wear_loc": "wielded",
+          "global_limit": 25
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 87,
+          "wear_loc": "wielded",
+          "global_limit": 25
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 49,
+    "name": "The throne room",
+    "description": "You stand in a large, crudely decorated throne room. A huge throne adorned\nwith humanoid skulls sits against the west wall. A crude, blood stained altar\nis against the east wall. A doorway is directly to the north, long strands of\nbeads blocking the view of the other side. Crude torches light the hall and \nsmoke clings to the ceiling.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 50
+      },
+      {
+        "dir": "south",
+        "to": 48
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 10,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 88,
+          "wear_loc": "about",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 89,
+          "wear_loc": "head",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 50,
+    "name": "The chieftain's room",
+    "description": "This appears to be the ogre chieftain's private quarters. A huge pile of furs\nis in the far corner. Large chests fill the room. All of them have heavy pad\nlocks. The room is filled with trophies of dead enemies. It is quite lavishly\ndecorated for such a crude inhabitant as an ogre. A beaded doorway is to the\nsouth.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 49
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 11,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 90,
+          "wear_loc": "hands",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 91,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 51,
+    "name": "The frigid wastelands",
+    "description": "You wander through the frigid wastelands. Your breath is a cloud before you.\nThe cold cuts to the bone. Swirling snow and wind make impossible for you to\ndiscern any directions.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 53
+      },
+      {
+        "dir": "east",
+        "to": 52
+      },
+      {
+        "dir": "south",
+        "to": 55
+      },
+      {
+        "dir": "west",
+        "to": 54
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 92,
+          "wear_loc": "neck2",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 93,
+          "wear_loc": "body",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 60,
+          "wear_loc": "feet",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 52,
+    "name": "The frigid wastelands",
+    "description": "You wander through the frigid wastelands. Your breath is a cloud before you.\nThe cold cuts to the bone. Swirling snow and wind make it impossible to\ndiscern any directions.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 57
+      },
+      {
+        "dir": "east",
+        "to": 54
+      },
+      {
+        "dir": "south",
+        "to": 58
+      },
+      {
+        "dir": "west",
+        "to": 51
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 14,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 53,
+    "name": "The Glacier Temple",
+    "description": "You are in a small temple. It appears to be built entirely from ice. The ice\nwalls are frosted and are opaque. There is a small blue portal here. You can\ngo north, to enter the portal. Looking south, you see a world of white outside\nthe open doorway. Swirling snow and bright light obscure your view.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 26
+      },
+      {
+        "dir": "south",
+        "to": 51
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 54,
+    "name": "The frigid wastelands",
+    "description": "You wander through the frigid wastelands. Your breath is a cloud before you.\nThe cold cuts to the bone. Swirling snow and wind make it impossible for you\nto discern any directions.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 59
+      },
+      {
+        "dir": "east",
+        "to": 51
+      },
+      {
+        "dir": "south",
+        "to": 56
+      },
+      {
+        "dir": "west",
+        "to": 52
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 92,
+          "wear_loc": "neck2",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 93,
+          "wear_loc": "body",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 60,
+          "wear_loc": "feet",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 14,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 55,
+    "name": "The frigid wastelands",
+    "description": "You wander through the frigid wastelands. Your breath is a cloud before you.\nThe cold cuts to the bone. Swirling snow and wind make it impossible for you\nto discern any directions.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 51
+      },
+      {
+        "dir": "east",
+        "to": 56
+      },
+      {
+        "dir": "south",
+        "to": 57
+      },
+      {
+        "dir": "west",
+        "to": 56
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 61,
+          "wear_loc": "about",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 56,
+    "name": "The frigid wastelands",
+    "description": "You wander through the frigid wastelands. Your breath is a cloud before you.\nThe cold cuts to the bone. Swirling snow and wind make it impossible for you\nto discern any directions.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 54
+      },
+      {
+        "dir": "east",
+        "to": 55
+      },
+      {
+        "dir": "south",
+        "to": 59
+      },
+      {
+        "dir": "west",
+        "to": 55
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 14,
+        "global_limit": 3,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 57,
+    "name": "The frigid wastelands",
+    "description": "You wander through the frigid wastelands. Your breath is a cloud before you.\nThe cold cuts to the bone. Swirling snow and wind make it impossible for you\nto discern any directions.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 55
+      },
+      {
+        "dir": "east",
+        "to": 58
+      },
+      {
+        "dir": "south",
+        "to": 52
+      },
+      {
+        "dir": "west",
+        "to": 59
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 61,
+          "wear_loc": "about",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 58,
+    "name": "The frigid wastelands",
+    "description": "You wander through the frigid wastelands. Your breath is a cloud before you.\nThe cold cuts to the bone. Swirling snow and wind make it impossible for you\nto discern any direction.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 52
+      },
+      {
+        "dir": "east",
+        "to": 59
+      },
+      {
+        "dir": "south",
+        "to": 60
+      },
+      {
+        "dir": "west",
+        "to": 57
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 59,
+    "name": "The frigid wastelands",
+    "description": "You wander through the frigid wastelands. Your breath is a cloud before you.\nThe cold cuts to the bone. Swirling snow and wind make it impossible for you\nto discern any directions.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 56
+      },
+      {
+        "dir": "east",
+        "to": 57
+      },
+      {
+        "dir": "south",
+        "to": 54
+      },
+      {
+        "dir": "west",
+        "to": 58
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 12,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 92,
+          "wear_loc": "neck2",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 93,
+          "wear_loc": "body",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 60,
+          "wear_loc": "feet",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 13,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 61,
+          "wear_loc": "about",
+          "global_limit": 20
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 60,
+    "name": "The edge of the frigid wastes",
+    "description": "You stand at the base of a steep rocky cliff. To the north, a vast arctic\nwasteland stretches out. The snow falls lightly here and the wind is not\nvery fierce. You can climb up the rocky cliff or head north into the arctic\nwastes.",
+    "sector_type": "mountain",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 58
+      },
+      {
+        "dir": "up",
+        "to": 61
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 61,
+    "name": "On the cliffside",
+    "description": "You cling to the side of the cliff. Looking down, you are terrified by the\nsheer distance to the ground below. You can climb up higher into the cliffs,\nbut the area above is obscured by clouds and you cannot tell what lies waiting\nabove.",
+    "sector_type": "mountain",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 62
+      },
+      {
+        "dir": "down",
+        "to": 60
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 62,
+    "name": "Before the gates of Mahn-Tor",
+    "description": "You stand at the edge of a high cliff. Directly south, set back off the\ncliff's edge, you see a huge pair of gates. These gates appear to be carved\nalmost completely out of ice. A huge city and keep appear to be on the other\nside of these gates. There is also a possibility of climbing down the cliff \nface.",
+    "sector_type": "mountain",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 64,
+        "keyword": "gate huge gates ice",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "down",
+        "to": 61
+      }
+    ],
+    "extra_description": [{
+      "keyword": "gate gates ice huge",
+      "description": "The gates to the city are made almost completely of ice. Looking closely, you\ncan see intricate carvings in the gates. They appear to be of creatures that\nare half man and half bull."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 63,
+          "wear_loc": "arms",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 64,
+          "wear_loc": "legs",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 65,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 63,
+    "name": "The city streets of Mahn-Tor",
+    "description": "You walk among the ice and snow covered shops and homes. Most of the doors are\nclosed and only the light from the windows betrays the presence of inhabitants.\nA cold wind blows through here, scattering fine clouds of snow all about. Small\nstreets lead south and east.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 64
+      },
+      {
+        "dir": "south",
+        "to": 66
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 62,
+          "wear_loc": "wielded",
+          "global_limit": 35
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 64,
+    "name": "Inside the gates of Mahn-Tor",
+    "description": "You stand just inside the gates to the city of Mahn-Tor. The city itself\nspreads out in front of you. The buildings are sturdy, as they appear to be\nmade from the very rock of this mountain. Snow falls all around and a fine\nsheet of ice can be seen covering all but the most used walk ways. Small city\nstreets lead east and west, while a main road appears to lead south.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 62,
+        "keyword": "gates gate huge ice",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "east",
+        "to": 65
+      },
+      {
+        "dir": "south",
+        "to": 67
+      },
+      {
+        "dir": "west",
+        "to": 63
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 62,
+          "wear_loc": "wielded",
+          "global_limit": 35
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 65,
+    "name": "The city streets of Mahn-Tor",
+    "description": "You trudge among the icy streets of Mahn-Tor. The streets themselves are made\nof cobblestone and are quite treacherous. Small homes and businesses along\nthe street are closed tight and light from their windows throws eerie shadows\nacross the dark street. Small streets lead west and south here.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 68
+      },
+      {
+        "dir": "west",
+        "to": 64
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 62,
+          "wear_loc": "wielded",
+          "global_limit": 35
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 66,
+    "name": "The city streets of Mahn-Tor",
+    "description": "You trudge through the snow covered streets. The street itself is made of\ncobblestones and the footing is quite treacherous. To the south, you see what\nappears to be a small tavern. Bright lights shine through the windows. Small\nstreets also lead north and east.\nA small sign hangs outside the tavern.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 63
+      },
+      {
+        "dir": "east",
+        "to": 67
+      },
+      {
+        "dir": "south",
+        "to": 69
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign small",
+      "description": "[]=============[]\n |   The Inn   |\n |    of the   |\n |    Broken   |\n |     Horn    |\n[]=============[]"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 63,
+          "wear_loc": "arms",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 64,
+          "wear_loc": "legs",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 65,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 67,
+    "name": "The Square of Mahn-Tor",
+    "description": "This appears to be the main square of Mahn-Tor. A huge fountain graces the\ncenter of the square, but the extreme cold has turned it into an ice\nsculpture. The water has frozen in arcs through the air. Snow and ice covers\nthe square and small streets lead east and west. To the north, you see\nthe gates to the city. You also notice a small store to the south.\nA small sign hangs outside the store.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 64
+      },
+      {
+        "dir": "east",
+        "to": 68
+      },
+      {
+        "dir": "south",
+        "to": 70
+      },
+      {
+        "dir": "west",
+        "to": 66
+      }
+    ],
+    "extra_description": [{
+      "keyword": "sign",
+      "description": "[]=========[]\n |  Equip  |\n |   Shop  |\n[]=========[]"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 62,
+          "wear_loc": "wielded",
+          "global_limit": 35
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "body",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 67,
+          "wear_loc": "head",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 68,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 68,
+    "name": "The streets of Mahn-Tor",
+    "description": "You walk among the small stores and homes of Mahn-Tor. The cobblestone streets\nare covered with ice and snow. Small snow drifts have formed at the edges of\nthe streets. The wind blows fiercely. Small streets lead in all directions.\nThere appears to be a large building to the east, but the snow obscures your\nview.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 65
+      },
+      {
+        "dir": "east",
+        "to": 75
+      },
+      {
+        "dir": "south",
+        "to": 71
+      },
+      {
+        "dir": "west",
+        "to": 67
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 16,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 63,
+          "wear_loc": "arms",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 64,
+          "wear_loc": "legs",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 65,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 69,
+    "name": "The Inn of the Broken Horn",
+    "description": "You enter a warm tavern. The room is lit mainly by two huge fireplaces at each\nend of the room. Small tables and a large bar furnish the room. The\ninhabitants of the inn are all minotaurs of varying size and disposition. Most\nseem to regard you with suspicion. Few approach you. A large door leads\nnorth, out of the bar and back out into the cold.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 66
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 70,
+    "name": "The Mahn-Tor Equipment Shop",
+    "description": "You are in a crude equipment shop. The store is filled with racks of various\nitems that adventurers could use. Large fireplaces light and heat the room.\nA large desk occupies the back of the room. The door to the shop lies to the\nnorth.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 67
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 15,
+          "global_limit": 5,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 62,
+          "wear_loc": "wielded",
+          "global_limit": 35
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 71,
+    "name": "The Mahn-Tor General Store",
+    "description": "You enter a small store that is dark and cold. Old empty shelves line the\nwalls and snow blows across the dirty stone floor. It is evident that this\nstore was once used, but it is no more. A small doorway leads north out into\nthe chilling snow and wind.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 68
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 72,
+    "name": "Gorak's Training Room",
+    "description": "This room is full of all sorts of weapons and armours. Pieces of old targets\nand practice dummies lie all around. The walls are chipped and scored from\nweapon blows. This is obviously the room of an avid warrior. A red door leads\neast.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 88,
+      "keyword": "red",
+      "exit_flags": "door closed locked pickproof",
+      "key": 51
+    }],
+    "extra_description": [{
+      "keyword": "red",
+      "description": "It looks like it leads back to the hall."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 25,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "hands",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "body",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "legs",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 3,
+          "wear_loc": "arms",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 73,
+    "name": "Darkoth's Dark Study",
+    "description": "This room is dark. It reeks of death and evil. Arcane symbols and a small\naltar fill the room. Blood runs from the altar. It is evident that this room\nis used for unholy purposes. A black door leads east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 89,
+      "keyword": "black",
+      "exit_flags": "door closed locked pickproof",
+      "key": 52
+    }],
+    "extra_description": [{
+      "keyword": "black",
+      "description": "It looks like it leads back to the hall."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 26,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 5,
+          "wear_loc": "about",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 6,
+          "wear_loc": "neck2",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 7,
+          "wear_loc": "hands",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 8,
+          "wear_loc": "shield",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 74,
+    "name": "Tyrgoth's Inner Sanctum",
+    "description": "Idols to the gods of good fill the room. White furniture and decorations give\nthe room a holy appearance. It is evident that some being of supreme goodness\nlives here. A white door leads east.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 92,
+      "keyword": "white",
+      "exit_flags": "door closed locked pickproof",
+      "key": 53
+    }],
+    "extra_description": [{
+      "keyword": "white",
+      "description": "It looks like it leads out to the hall."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 27,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 10,
+          "wear_loc": "head",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 11,
+          "wear_loc": "body",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 12,
+          "wear_loc": "neck2",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 13,
+          "wear_loc": "shield",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 14,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 75,
+    "name": "The road to the Keep of Mahn-Tor",
+    "description": "You walk up a steep rocky road. It leads up a steep grade to the east. At the\nend of this steep road, you see a huge keep. Snow swirls all about you and you\nfeel your breath freeze as it leaves your lungs. Blurry lights to the east and\nwest are all you can see from here.",
+    "sector_type": "mountain",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 77
+      },
+      {
+        "dir": "west",
+        "to": 68
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 76,
+    "name": "A small guard house",
+    "description": "You enter a small guard house. A huge fireplace lights and warms the room.\nLooking around, you see that the room is fairly well furnished. Thick rugs\nand curtains help insulate the room and the beds themselves look quite warm.\nA table in the center of the room has the remnants of a card game strewn\nacross it. A small door leads south.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 77
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "body",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 67,
+          "wear_loc": "head",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 68,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 77,
+    "name": "Before the Keep of Mahn-Tor",
+    "description": "You stand before a huge keep that has been carved into the side of the\nmountain. Huge wooden gates before you provide entrance to the keep. It\nappears as though the cold here has convinced the guards to seek warmth\ninside. You see the lights of the city to the west. You also notice small\nguard houses to the north and south.",
+    "sector_type": "city",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 76
+      },
+      {
+        "dir": "east",
+        "to": 79,
+        "keyword": "gate",
+        "exit_flags": "door closed locked pickproof",
+        "key": 50
+      },
+      {
+        "dir": "south",
+        "to": 78
+      },
+      {
+        "dir": "west",
+        "to": 75
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 18,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 50,
+          "global_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 78,
+    "name": "A small guard house",
+    "description": "You enter a small, but warm, guard house. Deep rugs and thick curtains\ninsulate the room. A huge fireplace lights and warms the room. Outside, you\nhear the roar of the freezing wind. A small door leads north out into the cold.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 77
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 17,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "body",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 67,
+          "wear_loc": "head",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 68,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 79,
+    "name": "The entryway to the Keep of Mahn-Tor",
+    "description": "You are at the entry hall to the huge keep. The high vaulted ceiling is carved\nfrom solid stone. Huge stone pillars rise up from the floor to meet the\nceiling far above. The architecture appears to be dwarven. A huge pair of\ngates stand to the west, protecting the keep from the harsh cold outside. A\nlarge hall leads east, deeper into the keep.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 80
+      },
+      {
+        "dir": "west",
+        "to": 77,
+        "keyword": "gate",
+        "exit_flags": "door closed locked pickproof",
+        "key": 50
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 19,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 69,
+          "wear_loc": "head",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 70,
+          "wear_loc": "legs",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 71,
+          "wear_loc": "arms",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "body",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 72,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 80,
+    "name": "The Hall",
+    "description": "You are in a huge hall. Large tapestries line the walls and huge statues of\nvarious make and appearance are spread about. The ceiling above supports huge\ncandelabras, which light the room. To the east, you see a bright light and\nhear sounds of inhabitation. Looking west, you see the entry gates to the keep.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 81
+      },
+      {
+        "dir": "west",
+        "to": 79
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 19,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 69,
+          "wear_loc": "head",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 70,
+          "wear_loc": "legs",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 71,
+          "wear_loc": "arms",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "body",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 72,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 81,
+    "name": "The Grand Hall",
+    "description": "You are in the main hall of the Keep of Mahn-Tor. This hall is huge. The wide\nfloor of the hall is an expanse of marble. It shimmers in the light thrown\noff by the torches that line the walls. To the east, you see what appears to\nbe a huge golden throne. The hall itself stretches south and a smaller hall\nleads to the west.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 83
+      },
+      {
+        "dir": "south",
+        "to": 82
+      },
+      {
+        "dir": "west",
+        "to": 80
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 82,
+    "name": "The Great Hall",
+    "description": "You stand in the great hall of the keep. Huge pillars rise up to the vaulted\nceiling and torch light glimmers off the marble floor here. You are amazed at\nthe sheer size of the hall. The hall itself leads north and east. You notice a\nsmaller hall leading south, deeper into the keep.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 81
+      },
+      {
+        "dir": "east",
+        "to": 84
+      },
+      {
+        "dir": "south",
+        "to": 87
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 73,
+          "wear_loc": "head",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 74,
+          "wear_loc": "legs",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 75,
+          "wear_loc": "arms",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "body",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 76,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 83,
+    "name": "Standing before the throne",
+    "description": "You stand before the throne of Mahn-Tor. This golden throne is so huge that it\ntakes up almost the entire wall, stretching far above the floor. Sitting upon\nit, you feel small and feeble. It is evident that this throne is more of a\ndecoration than anything else. Only the largest of kings could sit upon it.\nThe hall leads south and west into other parts of the keep.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 85,
+        "keyword": "throne huge golden gold",
+        "exit_flags": "door closed",
+        "key": "nokey"
+      },
+      {
+        "dir": "south",
+        "to": 84
+      },
+      {
+        "dir": "west",
+        "to": 81
+      }
+    ],
+    "extra_description": [{
+      "keyword": "throne huge gold golden",
+      "description": "The golden throne is huge. It takes up the whole wall........."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 20,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 73,
+          "wear_loc": "head",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 74,
+          "wear_loc": "legs",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 75,
+          "wear_loc": "arms",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "body",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 76,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 84,
+    "name": "The Great Hall",
+    "description": "You are in a great hall. Huge torches light the room and their light shimmers\noff the marble floor below you. To the north, you see a huge golden throne.\nLooking up, you grow dizzy at the height to which the vaulted ceiling rises.\nThe hall itself leads north and west.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 83
+      },
+      {
+        "dir": "west",
+        "to": 82
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 85,
+    "name": "The secret hallway",
+    "description": "You are in a small, torch lit hall. It leads from east to west. A large gold\ndoor is to the west. To the east, you see a heavy stone door.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 86,
+        "keyword": "door huge stone",
+        "exit_flags": "door closed locked pickproof",
+        "key": 59
+      },
+      {
+        "dir": "west",
+        "to": 83,
+        "keyword": "gold throne huge secret",
+        "exit_flags": "door closed",
+        "key": "nokey"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "huge stone",
+        "description": "A very formidable looking door."
+      },
+      {
+        "keyword": "gold",
+        "description": "Looks like the back of a secret door of sorts."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 77,
+          "wear_loc": "head",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 78,
+          "wear_loc": "legs",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 79,
+          "wear_loc": "arms",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "body",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 80,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 21,
+          "global_limit": 2,
+          "room_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 77,
+          "wear_loc": "head",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 78,
+          "wear_loc": "legs",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 79,
+          "wear_loc": "arms",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 66,
+          "wear_loc": "body",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 80,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 59,
+          "global_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 86,
+    "name": "Entry to the Royal Chambers",
+    "description": "You are at the entrance to the royal chambers of the keep. A plush shag rug\ncovers the stone floor. Large candelabras hang from the ceiling, lighting the\nroom. A huge fireplace warms the room. Beaded doorways lead south and east. A\nhuge stone door stands in the west wall.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 95
+      },
+      {
+        "dir": "south",
+        "to": 93
+      },
+      {
+        "dir": "west",
+        "to": 85,
+        "keyword": "door huge stone",
+        "exit_flags": "door closed locked pickproof",
+        "key": 59
+      }
+    ],
+    "extra_description": [{
+      "keyword": "door huge stone",
+      "description": "A huge stone door......."
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 87,
+    "name": "The Guard Post",
+    "description": "The hall here has been built into a guard post of sorts. It appears as though\nit would be quite easy to defend in times of emergency. Obviously, something\nimportant lies beyond. A small hall leads south, while the main hall can be\nseen to the north.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 82
+      },
+      {
+        "dir": "south",
+        "to": 88
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 24,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 81,
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 83,
+          "wear_loc": "wielded",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 82,
+          "wear_loc": "waist",
+          "global_limit": 1
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 51,
+          "into": 82,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 52,
+          "into": 82,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 53,
+          "into": 82,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 54,
+          "into": 82,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 55,
+          "into": 82,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 56,
+          "into": 82,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 57,
+          "into": 82,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": 58,
+          "into": 82,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 88,
+    "name": "The guarded hall",
+    "description": "You walk down a torch lit hallway. It has been carved out of pure stone. It is\nvery quiet in this hall. You notice rows of colored doors on each wall. To\nyour east, you see a yellow door. To your west, you see a red door. The hall\nitself leads south and north.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 87
+      },
+      {
+        "dir": "east",
+        "to": 90,
+        "keyword": "yellow",
+        "exit_flags": "door closed locked pickproof",
+        "key": 55
+      },
+      {
+        "dir": "south",
+        "to": 89
+      },
+      {
+        "dir": "west",
+        "to": 72,
+        "keyword": "red",
+        "exit_flags": "door closed locked pickproof",
+        "key": 51
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "yellow",
+        "description": "You see a yellow door. It has the name \"Sumaron\" written on it."
+      },
+      {
+        "keyword": "red",
+        "description": "You see a red door. It has the name \"Gorak\" written on it."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 89,
+    "name": "The guarded hall",
+    "description": "You walk down a small, quiet, torch lit hallway. Doors of different colors are\nin each wall. To your east, you see a maroon door. To your west, you see a\nblack door. The hall itself leads north and south.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 88
+      },
+      {
+        "dir": "east",
+        "to": 91,
+        "keyword": "maroon",
+        "exit_flags": "door closed locked pickproof",
+        "key": 56
+      },
+      {
+        "dir": "south",
+        "to": 92
+      },
+      {
+        "dir": "west",
+        "to": 73,
+        "keyword": "black",
+        "exit_flags": "door closed locked pickproof",
+        "key": 52
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "maroon",
+        "description": "You see a maroon door here. It has the name \"Amyrok\" written on it."
+      },
+      {
+        "keyword": "black",
+        "description": "You see a black door. It has the name \"Darkoth\" inscribed on it."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 90,
+    "name": "Sumaron's Sanctum",
+    "description": "You enter a temple of sorts. A small altar is here and relics of many\nreligions lie around. It is evident that this is the room of a studying cleric.\nA yellow door leads west.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 88,
+      "keyword": "yellow",
+      "exit_flags": "door closed locked pickproof",
+      "key": 55
+    }],
+    "extra_description": [{
+      "keyword": "yellow",
+      "description": "It looks like it leads back to the hall."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 29,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 20,
+          "wear_loc": "about",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 21,
+          "wear_loc": "neck1",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 22,
+          "wear_loc": "hold",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 23,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 24,
+          "wear_loc": "neck2",
+          "global_limit": 15
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 91,
+    "name": "Amyrok's Arcane Study",
+    "description": "This room is full of shelves which hold various spell components. The center\nof the room is occupied by a huge pentagram. The entire room smells of smoke\nand incense. The room is obviously used extensively by a practicing mage. A\nmaroon door leads west.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 89,
+      "keyword": "maroon",
+      "exit_flags": "door closed locked pickproof",
+      "key": 56
+    }],
+    "extra_description": [{
+      "keyword": "maroon",
+      "description": "It looks like it leads back to the hall."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 28,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 15,
+          "wear_loc": "lfinger",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 16,
+          "wear_loc": "rfinger",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 17,
+          "wear_loc": "about",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 18,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 19,
+          "wear_loc": "waist",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 92,
+    "name": "The guarded hall",
+    "description": "You walk down a quiet hall. The stone walls here are wet with moisture.\nColored doors can be seen in the walls here. To your east, you see a green\ndoor. To your west, you see a white door. The hall itself leads north and\nsouth.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 89
+      },
+      {
+        "dir": "east",
+        "to": 94,
+        "keyword": "green",
+        "exit_flags": "door closed locked pickproof",
+        "key": 57
+      },
+      {
+        "dir": "south",
+        "to": 97
+      },
+      {
+        "dir": "west",
+        "to": 74,
+        "keyword": "white",
+        "exit_flags": "door closed locked pickproof",
+        "key": 53
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "green",
+        "description": "You see a green door here. It has the name \"Nasturn\" written on it."
+      },
+      {
+        "keyword": "white",
+        "description": "You see a white door here. It has the name \"Tyrgoth\" inscribed on it."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 93,
+    "name": "The Harem Room",
+    "description": "This appears to be the harem room of the Keep. Huge piles of furs and beds\nfill the room. The lighting is dim, but the room is very warm. You can hear\nmusic playing quietly from somewhere. Beaded doorways lead north and east.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 86
+      },
+      {
+        "dir": "east",
+        "to": 96
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 22,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 22,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 22,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 22,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 22,
+          "global_limit": 5,
+          "room_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 94,
+    "name": "Nasturn's Humble Abode",
+    "description": "This room is filled with all types of natural items. Trees and plants have\nbeen lovingly cultivated and grown by hand, in large pots. The room is like an\nindoor garden. A green door leads west.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 92,
+      "keyword": "green",
+      "exit_flags": "door closed locked pickproof",
+      "key": 57
+    }],
+    "extra_description": [{
+      "keyword": "green",
+      "description": "It looks like it leads back to the hall."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 30,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 25,
+          "wear_loc": "lfinger",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 26,
+          "wear_loc": "rwrist",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 27,
+          "wear_loc": "feet",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 28,
+          "wear_loc": "about",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 29,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 95,
+    "name": "The main living room",
+    "description": "This room is decorated with sturdy stone furniture that is carved and gilded.\nLarge candles light the room. A thick rug covers the floor. Thick furs and\ntapestries decorate the walls. Beaded doorways lead south and west.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 96
+      },
+      {
+        "dir": "west",
+        "to": 86
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 23,
+        "global_limit": 1,
+        "room_limit": 1
+      }
+    }]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 96,
+    "name": "The Master Bedroom",
+    "description": "This appears to be the master bedroom. A huge bed fills the rooms. Piles of\nfurs and other rich furnishings adorn the room. Candles are everywhere and\nthey help a huge fireplace light the room. The lavishness of the room\noverwhelms you. Beaded doorways lead north and west.",
+    "sector_type": "inside",
+    "room_flags": "indoors unused_room_5",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 95
+      },
+      {
+        "dir": "west",
+        "to": 93
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 33,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 40,
+          "wear_loc": "about",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 41,
+          "wear_loc": "body",
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 42,
+          "wear_loc": "lwrist",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 43,
+          "wear_loc": "rfinger",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 44,
+          "wear_loc": "head",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 45,
+          "wear_loc": "wielded",
+          "global_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 97,
+    "name": "The end of the guarded hall",
+    "description": "You are at the end of the hall. Colored doors line the walls to the north. To\nyour west, you see a brown door. To your east, you see a grey door. The hall\nitself leads north back along the rows of doors.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 92
+      },
+      {
+        "dir": "east",
+        "to": 98,
+        "keyword": "grey",
+        "exit_flags": "door closed locked pickproof",
+        "key": 58
+      },
+      {
+        "dir": "west",
+        "to": 99,
+        "keyword": "brown",
+        "exit_flags": "door pickproof",
+        "key": 54
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "grey",
+        "description": "You see a grey door here. It has the name \"Dorgar\" written on it."
+      },
+      {
+        "keyword": "brown",
+        "description": "You see a brown door here. It has the name \"Belrak\" written on it."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 98,
+    "name": "Dorgar's Dismal Domicile",
+    "description": "This room is dirty and unkempt. Odds and ends of different items lie all over.\nIt is apparent that some type of pack-rat lives here. It appears as though\nnothing has ever entered this room and ever left again. A grey door leads west.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 97,
+      "keyword": "grey",
+      "exit_flags": "door closed locked pickproof",
+      "key": 58
+    }],
+    "extra_description": [{
+      "keyword": "grey",
+      "description": "It looks like it leads back to the hall."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 32,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 35,
+          "wear_loc": "about",
+          "global_limit": 15
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 36,
+          "wear_loc": "head",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 37,
+          "wear_loc": "arms",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 38,
+          "wear_loc": "legs",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 39,
+          "wear_loc": "wielded",
+          "global_limit": 10
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "mahntor",
+    "anum": 99,
+    "name": "Belrak's Green Room",
+    "description": "This room is full of green. The furniture and all other items show the color\nof nature. The room smells of pine and forest odors. From the items here, it\nappears as though a woodsman of some sorts lives here. A brown door leads east.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 97,
+      "keyword": "brown",
+      "exit_flags": "door pickproof",
+      "key": 54
+    }],
+    "extra_description": [{
+      "keyword": "brown",
+      "description": "It looks like it leads to the hall."
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 31,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 30,
+          "wear_loc": "rfinger",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 31,
+          "wear_loc": "hold",
+          "global_limit": 20
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 32,
+          "wear_loc": "waist",
+          "global_limit": 10
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 33,
+          "global_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 34,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      }
+    ]
+  }}
+]

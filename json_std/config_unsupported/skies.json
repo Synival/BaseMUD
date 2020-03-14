@@ -1,0 +1,30 @@
+[
+  {"sky": {
+    "index": 0,
+    "name": "cloudless",
+    "description": "cloudless",
+    "mmhg_min": 1020,
+    "mmhg_max": -1
+  }},
+  {"sky": {
+    "index": 1,
+    "name": "cloudy",
+    "description": "cloudy",
+    "mmhg_min": 1000,
+    "mmhg_max": 1020
+  }},
+  {"sky": {
+    "index": 2,
+    "name": "raining",
+    "description": "rainy",
+    "mmhg_min": 980,
+    "mmhg_max": 1000
+  }},
+  {"sky": {
+    "index": 3,
+    "name": "lightning",
+    "description": "lit by flashes of lightning",
+    "mmhg_min": -1,
+    "mmhg_max": 980
+  }}
+]

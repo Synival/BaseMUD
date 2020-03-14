@@ -1,0 +1,141 @@
+{"ext_flags": {
+  "name": "plr_flags",
+  "description": "Player flags.",
+  "values": [
+    {
+      "name": "!npc!",
+      "value": 0,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_1",
+      "value": 1,
+      "settable": false
+    },
+    {
+      "name": "autoassist",
+      "value": 2,
+      "settable": false
+    },
+    {
+      "name": "autoexit",
+      "value": 3,
+      "settable": false
+    },
+    {
+      "name": "autoloot",
+      "value": 4,
+      "settable": false
+    },
+    {
+      "name": "autosac",
+      "value": 5,
+      "settable": false
+    },
+    {
+      "name": "autogold",
+      "value": 6,
+      "settable": false
+    },
+    {
+      "name": "autosplit",
+      "value": 7,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_2",
+      "value": 8,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_3",
+      "value": 9,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_4",
+      "value": 10,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_5",
+      "value": 11,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_6",
+      "value": 12,
+      "settable": false
+    },
+    {
+      "name": "holylight",
+      "value": 13,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_7",
+      "value": 14,
+      "settable": false
+    },
+    {
+      "name": "can_loot",
+      "value": 15,
+      "settable": false
+    },
+    {
+      "name": "nosummon",
+      "value": 16,
+      "settable": false
+    },
+    {
+      "name": "nofollow",
+      "value": 17,
+      "settable": false
+    },
+    {
+      "name": "unused_plr_8",
+      "value": 18,
+      "settable": false
+    },
+    {
+      "name": "colour",
+      "value": 19,
+      "settable": false
+    },
+    {
+      "name": "permit",
+      "value": 20,
+      "settable": true
+    },
+    {
+      "name": "unused_plr_9",
+      "value": 21,
+      "settable": false
+    },
+    {
+      "name": "log",
+      "value": 22,
+      "settable": false
+    },
+    {
+      "name": "deny",
+      "value": 23,
+      "settable": false
+    },
+    {
+      "name": "freeze",
+      "value": 24,
+      "settable": false
+    },
+    {
+      "name": "thief",
+      "value": 25,
+      "settable": false
+    },
+    {
+      "name": "killer",
+      "value": 26,
+      "settable": false
+    }
+  ]
+}}

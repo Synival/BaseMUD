@@ -1,0 +1,91 @@
+{"flags": {
+  "name": "wear_flags",
+  "description": "Types of wear locations.",
+  "values": [
+    {
+      "name": "take",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "finger",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "neck",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "body",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "head",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "legs",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "feet",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "hands",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "arms",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "shield",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "about",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "waist",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "wrist",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "wield",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "hold",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "nosac",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "wearfloat",
+      "value": 16,
+      "settable": true
+    }
+  ]
+}}

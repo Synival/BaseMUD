@@ -290,6 +290,7 @@ const CMD_T cmd_table[] = {
     {"advance",     do_advance,     POS_DEAD,     ML, LOG_ALWAYS, 1},
     {"copyover",    do_copyover,    POS_DEAD,     ML, LOG_ALWAYS, 1},
     {"dump",        do_dump,        POS_DEAD,     ML, LOG_ALWAYS, 0},
+    {"jsave",       do_jsave,       POS_DEAD,     ML, LOG_ALWAYS, 1},
     {"trust",       do_trust,       POS_DEAD,     ML, LOG_ALWAYS, 1},
     {"violate",     do_violate,     POS_DEAD,     ML, LOG_ALWAYS, 1},
 

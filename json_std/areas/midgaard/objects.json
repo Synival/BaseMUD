@@ -1,0 +1,3275 @@
+[
+  {"object": {
+    "area": "midgaard",
+    "anum": 0,
+    "name": "barrel beer",
+    "short_descr": "a barrel of beer",
+    "description": "A beer barrel has been left here.",
+    "material": "wood",
+    "item_type": "drink",
+    "values": {
+      "capacity": 300,
+      "filled": 300,
+      "liquid": "beer"
+    },
+    "level": 0,
+    "weight": 160,
+    "cost": 75,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 1,
+    "name": "bottle beer",
+    "short_descr": "a bottle of beer",
+    "description": "A beer bottle has been left here.",
+    "material": "glass",
+    "item_type": "drink",
+    "values": {
+      "capacity": 16,
+      "filled": 16,
+      "liquid": "beer"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 5,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 2,
+    "name": "bottle ale",
+    "short_descr": "a bottle of ale",
+    "description": "A dark bottle of ale has been left here.",
+    "material": "glass",
+    "item_type": "drink",
+    "values": {
+      "capacity": 16,
+      "filled": 16,
+      "liquid": "ale"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 6,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 3,
+    "name": "bottle firebreather",
+    "short_descr": "a bottle of firebreather",
+    "description": "A bottle of firebreather has been left here.",
+    "material": "glass",
+    "item_type": "drink",
+    "values": {
+      "capacity": 12,
+      "filled": 12,
+      "liquid": "firebreather"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 25,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 4,
+    "name": "bottle local",
+    "short_descr": "a bottle of local specialty",
+    "description": "A dark bottle has been left here.",
+    "material": "glass",
+    "item_type": "drink",
+    "values": {
+      "capacity": 12,
+      "filled": 12,
+      "liquid": "local specialty"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 11,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 5,
+    "name": "scimitar blade",
+    "short_descr": "Hassan's scimitar",
+    "description": "Hassan's scimitar lies upon the ground, waiting for its owner.",
+    "material": "adamantite",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 4,
+      "dice_size": 10,
+      "attack_type": "cleave",
+      "flags": "vorpal twohands"
+    },
+    "level": 42,
+    "weight": 450,
+    "cost": 5600,
+    "extra_flags": "hum bless",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "scimitar blade",
+      "description": "It is quite heavy.  The blade is made of some metal that you can't even\nspell.  The edge of the blade looks as if it could cut through anything\nor anyone."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 6,
+    "name": "stone",
+    "short_descr": "A Clan Stone",
+    "description": "Somebody left their Clan Stone here.",
+    "material": "adamantite",
+    "item_type": "food",
+    "values": {
+      "hunger": 45,
+      "fullness": 45
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 9,
+    "name": "potpie pot pie",
+    "short_descr": "a big pot pie",
+    "description": "A big pot pie has been left here.",
+    "material": "food",
+    "item_type": "food",
+    "values": {
+      "hunger": 20,
+      "fullness": 40
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 22,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 10,
+    "name": "pit",
+    "short_descr": "the donation pit",
+    "description": "A pit for sacrifices is in front of the altar.",
+    "item_type": "container",
+    "values": {
+      "capacity": 10000,
+      "max_weight": 1000,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "extra_flags": "nopurge",
+    "extra_description": [{
+      "keyword": "pit",
+      "description": "This is where you put money and items to help Doz expand this shrine and\nconvert more people to the belief of Mota, lord of the gods."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 11,
+    "name": "bread",
+    "short_descr": "a bread",
+    "description": "A loaf of bread is here. It doesn't look too stale.",
+    "material": "food",
+    "item_type": "food",
+    "values": {
+      "hunger": 18,
+      "fullness": 12
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 9,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 12,
+    "name": "cinnamon roll",
+    "short_descr": "a cinnamon roll",
+    "description": "A piping hot cinnamon roll is here. It looks delicious!",
+    "material": "food",
+    "item_type": "food",
+    "values": {
+      "hunger": 4,
+      "fullness": 8
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 16,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 13,
+    "name": "cookies",
+    "short_descr": "a batch of Sara's cookies",
+    "description": "A plate of chocolate chip cookies is here.",
+    "material": "food",
+    "item_type": "food",
+    "values": {
+      "hunger": 8,
+      "fullness": 10
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 11,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 14,
+    "name": "danish blueberry",
+    "short_descr": "a blueberry danish",
+    "description": "A scrumptious blueberry danish is here.",
+    "material": "food",
+    "item_type": "food",
+    "values": {
+      "hunger": 8,
+      "fullness": 6
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 5,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 20,
+    "name": "dagger",
+    "short_descr": "a dagger",
+    "description": "A dagger with a long thin blade is here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 1,
+      "dice_size": 4,
+      "attack_type": "stab"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 157,
+    "condition": 90,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 21,
+    "name": "sword small",
+    "short_descr": "a small sword",
+    "description": "A small sword lies here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 1,
+      "dice_size": 5,
+      "attack_type": "slice"
+    },
+    "level": 0,
+    "weight": 30,
+    "cost": 250,
+    "condition": 90,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 22,
+    "name": "sword long",
+    "short_descr": "a long sword",
+    "description": "A long sword has been left here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 2,
+      "dice_size": 5,
+      "attack_type": "slash"
+    },
+    "level": 7,
+    "weight": 50,
+    "cost": 610,
+    "condition": 90,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 23,
+    "name": "club",
+    "short_descr": "a club",
+    "description": "A stout wooden club is here.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 1,
+      "dice_size": 7,
+      "attack_type": "pound"
+    },
+    "level": 3,
+    "weight": 30,
+    "cost": 220,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 3,
+      "apply": "hit roll",
+      "modifier": -1
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 24,
+    "name": "mace heavy",
+    "short_descr": "a mace",
+    "description": "A heavy iron mace is here.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "pound"
+    },
+    "level": 6,
+    "weight": 100,
+    "cost": 390,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 6,
+      "apply": "damage roll",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 25,
+    "name": "axe hand",
+    "short_descr": "a hand axe",
+    "description": "A small hand axe lies forgotten on the floor.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "axe",
+      "dice_num": 1,
+      "dice_size": 6,
+      "attack_type": "chop"
+    },
+    "level": 1,
+    "weight": 50,
+    "cost": 310,
+    "condition": 90,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 26,
+    "name": "axe battle",
+    "short_descr": "a battle axe",
+    "description": "A large steel axe rests on the ground.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "axe",
+      "dice_num": 2,
+      "dice_size": 5,
+      "attack_type": "chop",
+      "flags": "twohands"
+    },
+    "level": 5,
+    "weight": 90,
+    "cost": 650,
+    "condition": 90,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 27,
+    "name": "spear",
+    "short_descr": "a spear",
+    "description": "A long spear leans against the wall.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 1,
+      "dice_size": 8,
+      "attack_type": "pierce"
+    },
+    "level": 4,
+    "weight": 50,
+    "cost": 84,
+    "condition": 90,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 28,
+    "name": "staff",
+    "short_descr": "a wooden staff",
+    "description": "A stout wooden staff lies on the floor.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 1,
+      "dice_size": 8,
+      "attack_type": "pound",
+      "flags": "twohands"
+    },
+    "level": 9,
+    "weight": 40,
+    "cost": 580,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 9,
+      "apply": "armor class",
+      "modifier": -2
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 29,
+    "name": "flail",
+    "short_descr": "a flail",
+    "description": "A small iron flail is here.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "flail",
+      "dice_num": 1,
+      "dice_size": 7,
+      "attack_type": "pound"
+    },
+    "level": 1,
+    "weight": 50,
+    "cost": 77,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 1,
+      "apply": "armor class",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 30,
+    "name": "torch",
+    "short_descr": "a torch",
+    "description": "A large torch.",
+    "material": "wood",
+    "item_type": "light",
+    "values": {"duration": 50},
+    "level": 0,
+    "weight": 30,
+    "cost": 4,
+    "condition": 90,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 31,
+    "name": "lantern",
+    "short_descr": "a hooded brass lantern",
+    "description": "A hooded brass lantern has been left here.",
+    "material": "brass",
+    "item_type": "light",
+    "values": {"duration": 250},
+    "level": 0,
+    "weight": 40,
+    "cost": 75,
+    "wear_flags": "take",
+    "extra_description": [
+      {
+        "keyword": "letters",
+        "description": "They say, \"Use 'hold lantern' to activate.\""
+      },
+      {
+        "keyword": "lantern",
+        "description": "It is a large and robust but somewhat battered oil lantern made from brass,\nequipped with a handle to make it handy and a hood to protect its flame.\nSome letters have been scratched on its bottom."
+      }
+    ]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 32,
+    "name": "bag",
+    "short_descr": "a bag",
+    "description": "A small bag.",
+    "material": "leather",
+    "item_type": "container",
+    "values": {
+      "capacity": 50,
+      "max_weight": 5,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 9,
+    "condition": 90,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 33,
+    "name": "box",
+    "short_descr": "a box",
+    "description": "A small box.",
+    "material": "wood",
+    "item_type": "container",
+    "values": {
+      "capacity": 10,
+      "max_weight": 5,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 30,
+    "condition": 90,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 39,
+    "name": "scroll cancellation",
+    "short_descr": "a scroll of cancellation",
+    "description": "A rolled vellum scroll is here.",
+    "material": "vellum",
+    "item_type": "scroll",
+    "values": {
+      "level": 15,
+      "skill1": "cancellation"
+    },
+    "level": 9,
+    "weight": 10,
+    "cost": 1190,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "scroll",
+      "description": "Use this scroll to remove magical curses."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 40,
+    "name": "scroll identify",
+    "short_descr": "a scroll of identify",
+    "description": "A scroll has carelessly been left here.",
+    "material": "vellum",
+    "item_type": "scroll",
+    "values": {
+      "level": 12,
+      "skill1": "identify"
+    },
+    "level": 7,
+    "weight": 10,
+    "cost": 890,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "scroll identify",
+      "description": "The scroll has a magic formula drawn upon it:\n     ???\n    ?   ?\n       ?\n      ?\n      ?\n      *"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 41,
+    "name": "potion yellow",
+    "short_descr": "a yellow potion of see invisible",
+    "description": "A small yellow potion has carelessly been left here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 12,
+      "skill1": "detect invis"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 220,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "potion yellow",
+      "description": "The potion has a small label 'Detect The Invisible'."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 42,
+    "name": "scroll recall",
+    "short_descr": "a scroll of recall",
+    "description": "A scroll has carelessly been left here.",
+    "material": "vellum",
+    "item_type": "scroll",
+    "values": {
+      "level": 20,
+      "skill1": "word of recall"
+    },
+    "level": 17,
+    "weight": 20,
+    "cost": 2900,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "scroll",
+      "description": "The scroll has written a formula of 'Word of Recall' upon it."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 43,
+    "name": "ring protection",
+    "short_descr": "a ring of protection",
+    "description": "an enchanted ring of protection sits on the floor.",
+    "material": "silver",
+    "item_type": "treasure",
+    "values": {},
+    "level": 8,
+    "weight": 10,
+    "cost": 640,
+    "extra_flags": "magic",
+    "wear_flags": "take finger",
+    "extra_description": [{
+      "keyword": "ring",
+      "description": "It's a silver ring set with a gleaming moonstone."
+    }],
+    "affects": [
+      {
+        "level": 8,
+        "apply": "saves",
+        "modifier": -1
+      },
+      {
+        "level": 8,
+        "apply": "armor class",
+        "modifier": -2
+      }
+    ]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 44,
+    "name": "wand magic missile missiles",
+    "short_descr": "a wand of magic missiles",
+    "description": "a wooden stick lies on the ground.",
+    "material": "wood",
+    "item_type": "wand",
+    "values": {
+      "level": 4,
+      "recharge": 10,
+      "charges": 10,
+      "skill": "magic missile"
+    },
+    "level": 2,
+    "weight": 10,
+    "cost": 320,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "wand",
+      "description": "It has a little note that says 'point this end at target'."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 45,
+    "name": "jacket scale mail",
+    "short_descr": "a scale mail jacket",
+    "description": "A scale mail jacket is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "value4": 2
+    },
+    "level": 5,
+    "weight": 160,
+    "cost": 850,
+    "condition": 90,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 46,
+    "name": "bronze breast plate",
+    "short_descr": "a bronze breast plate",
+    "description": "A bronze breast plate is lying on the ground.",
+    "material": "bronze",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 7,
+      "value4": 5
+    },
+    "level": 15,
+    "weight": 200,
+    "cost": 2100,
+    "condition": 90,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 47,
+    "name": "bronze breast plate",
+    "short_descr": "a special bronze breast plate",
+    "description": "A special bronze breast plate is lying on the ground.",
+    "material": "bronze",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 7,
+      "value4": 5
+    },
+    "level": 15,
+    "weight": 200,
+    "cost": 2100,
+    "condition": 90,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 50,
+    "name": "raft",
+    "short_descr": "a raft",
+    "description": "A raft has been left here.",
+    "material": "wood",
+    "item_type": "boat",
+    "values": {},
+    "level": 0,
+    "weight": 750,
+    "cost": 400,
+    "condition": 75,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "raft",
+      "description": "The raft looks very primitive."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 51,
+    "name": "canoe",
+    "short_descr": "a canoe",
+    "description": "A canoe has been left here.",
+    "material": "wood",
+    "item_type": "boat",
+    "values": {},
+    "level": 0,
+    "weight": 320,
+    "cost": 900,
+    "condition": 90,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "canoe",
+      "description": "The canoe is fairly light."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 52,
+    "name": "bracer strong leather",
+    "short_descr": "a leather bracer",
+    "description": "A strong leather bracer is here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 112,
+    "condition": 90,
+    "wear_flags": "take wrist"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 53,
+    "name": "belt leather",
+    "short_descr": "a leather belt",
+    "description": "A soft leather belt is here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 136,
+    "condition": 90,
+    "wear_flags": "take waist"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 54,
+    "name": "girdle leather",
+    "short_descr": "a leather girdle",
+    "description": "A wide leather girdle is here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 3,
+      "vs_slash": 3,
+      "value4": 1
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 220,
+    "condition": 90,
+    "wear_flags": "take waist"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 60,
+    "name": "jerkin leather",
+    "short_descr": "a leather jerkin",
+    "description": "A leather jerkin is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 270,
+    "condition": 90,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 61,
+    "name": "cap leather",
+    "short_descr": "a leather cap",
+    "description": "A leather cap is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 136,
+    "condition": 90,
+    "wear_flags": "take head"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 62,
+    "name": "pants leather",
+    "short_descr": "a pair of leather pants",
+    "description": "A pair of leather pants is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 136,
+    "condition": 90,
+    "wear_flags": "take legs"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 63,
+    "name": "boots leather",
+    "short_descr": "a pair of leather boots",
+    "description": "A pair of leather boots lies here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 30,
+    "cost": 136,
+    "condition": 90,
+    "wear_flags": "take feet"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 64,
+    "name": "gloves leather",
+    "short_descr": "a pair of leather gloves",
+    "description": "A pair of leather gloves is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 136,
+    "condition": 90,
+    "wear_flags": "take hands"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 65,
+    "name": "sleeves leather",
+    "short_descr": "a pair of leather sleeves",
+    "description": "A pair of leather sleeves is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 30,
+    "cost": 136,
+    "condition": 90,
+    "wear_flags": "take arms"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 66,
+    "name": "jerkin hard leather",
+    "short_descr": "a hard leather jerkin",
+    "description": "A hard leather jerkin is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 3,
+      "vs_slash": 3,
+      "value4": 1
+    },
+    "level": 0,
+    "weight": 80,
+    "cost": 430,
+    "condition": 90,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 67,
+    "name": "cap hard leather",
+    "short_descr": "a hard leather cap",
+    "description": "A hard leather cap is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 3,
+      "vs_slash": 3
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 220,
+    "condition": 90,
+    "wear_flags": "take head"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 68,
+    "name": "pants hard leather",
+    "short_descr": "a pair of hard leather pants",
+    "description": "A pair of hard leather pants is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 3,
+      "vs_slash": 3,
+      "value4": 1
+    },
+    "level": 0,
+    "weight": 70,
+    "cost": 220,
+    "condition": 90,
+    "wear_flags": "take legs"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 69,
+    "name": "boots hard leather",
+    "short_descr": "a pair of hard leather boots",
+    "description": "A pair of hard leather boots lies here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 3,
+      "vs_slash": 3,
+      "value4": 1
+    },
+    "level": 0,
+    "weight": 40,
+    "cost": 220,
+    "condition": 90,
+    "wear_flags": "take feet"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 70,
+    "name": "gloves hard leather",
+    "short_descr": "a pair of hard leather gloves",
+    "description": "A pair of hard leather gloves is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 3,
+      "vs_slash": 3,
+      "value4": 1
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 220,
+    "condition": 90,
+    "wear_flags": "take hands"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 71,
+    "name": "sleeves hard leather",
+    "short_descr": "a pair of hard leather sleeves",
+    "description": "A pair of hard leather sleeves is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 3,
+      "vs_slash": 3,
+      "value4": 1
+    },
+    "level": 0,
+    "weight": 40,
+    "cost": 220,
+    "condition": 90,
+    "wear_flags": "take arms"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 72,
+    "name": "jerkin scale mail",
+    "short_descr": "a scale mail jerkin",
+    "description": "A scale mail jerkin is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "value4": 2
+    },
+    "level": 5,
+    "weight": 140,
+    "cost": 850,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 73,
+    "name": "coif scale mail",
+    "short_descr": "a scale mail coif",
+    "description": "A scale mail coif is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "value4": 1
+    },
+    "level": 5,
+    "weight": 40,
+    "cost": 420,
+    "wear_flags": "take head"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 74,
+    "name": "skirt scale mail",
+    "short_descr": "a long scale mail skirt",
+    "description": "A long scale mail skirt is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "value4": 2
+    },
+    "level": 5,
+    "weight": 80,
+    "cost": 420,
+    "wear_flags": "take legs"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 75,
+    "name": "boots reinforced",
+    "short_descr": "a pair of reinforced boots",
+    "description": "A pair of reinforced boots lies here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "value4": 2
+    },
+    "level": 5,
+    "weight": 40,
+    "cost": 420,
+    "wear_flags": "take feet"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 76,
+    "name": "gloves reinforced",
+    "short_descr": "a pair of reinforced gloves",
+    "description": "A pair of reinforced gloves is lying on the ground.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "value4": 2
+    },
+    "level": 5,
+    "weight": 20,
+    "cost": 420,
+    "wear_flags": "take hands"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 77,
+    "name": "sleeves scale mail",
+    "short_descr": "a pair of scale mail sleeves",
+    "description": "A pair of scale mail sleeves is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "value4": 2
+    },
+    "level": 5,
+    "weight": 60,
+    "cost": 420,
+    "wear_flags": "take arms"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 80,
+    "name": "potion heal healing",
+    "short_descr": "a potion of healing",
+    "description": "A potion of healing is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 20,
+      "skill1": "heal"
+    },
+    "level": 11,
+    "weight": 10,
+    "cost": 800,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 81,
+    "name": "potion sanct sanctuary",
+    "short_descr": "a potion of sanctuary",
+    "description": "A potion of sanctuary is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 20,
+      "skill1": "sanctuary"
+    },
+    "level": 11,
+    "weight": 10,
+    "cost": 800,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 82,
+    "name": "potion divine",
+    "short_descr": "a potion of divine protection",
+    "description": "A potion of divine protection is here.",
+    "material": "crystal",
+    "item_type": "potion",
+    "values": {
+      "level": 35,
+      "skill1": "sanctuary",
+      "skill2": "stone skin",
+      "skill3": "armor"
+    },
+    "level": 16,
+    "weight": 10,
+    "cost": 1800,
+    "extra_flags": "glow hum magic bless",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 83,
+    "name": "potion cure light",
+    "short_descr": "a potion of cure light wounds",
+    "description": "A potion of cure light wounds is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 5,
+      "skill1": "cure light"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 150,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 84,
+    "name": "potion cure serious",
+    "short_descr": "a potion of cure serious wounds",
+    "description": "A potion of cure serious wounds is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "cure serious"
+    },
+    "level": 1,
+    "weight": 10,
+    "cost": 220,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 85,
+    "name": "potion cure critical critic",
+    "short_descr": "a potion of cure critical wounds",
+    "description": "A potion of cure critical wounds is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 15,
+      "skill1": "cure critical"
+    },
+    "level": 5,
+    "weight": 10,
+    "cost": 390,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 86,
+    "name": "potion antidote bottle",
+    "short_descr": "a bottle of antidote",
+    "description": "A bottle of antidote is here.",
+    "material": "clay",
+    "item_type": "potion",
+    "values": {
+      "level": 14,
+      "skill1": "cure poison",
+      "skill2": "cure light",
+      "skill3": "cure disease"
+    },
+    "level": 8,
+    "weight": 10,
+    "cost": 550,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 87,
+    "name": "potion cure blindness",
+    "short_descr": "a potion of cure blindness",
+    "description": "A potion of cure blindness is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 13,
+      "skill1": "cure blindness"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 230,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 88,
+    "name": "vial holy water",
+    "short_descr": "a vial of holy water",
+    "description": "A vial of holy water is here.",
+    "material": "crystal",
+    "item_type": "potion",
+    "values": {
+      "level": 20,
+      "skill1": "bless",
+      "skill2": "protection evil",
+      "skill3": "remove curse"
+    },
+    "level": 10,
+    "weight": 10,
+    "cost": 720,
+    "extra_flags": "glow magic bless",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 89,
+    "name": "potion armor",
+    "short_descr": "a potion of armor",
+    "description": "A potion of armor is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "armor"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 200,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 90,
+    "name": "potion negation",
+    "short_descr": "a potion of negation",
+    "description": "A potion of negation is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 35,
+      "skill1": "cancellation"
+    },
+    "level": 9,
+    "weight": 10,
+    "cost": 830,
+    "extra_flags": "hum magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 91,
+    "name": "potion fly flying",
+    "short_descr": "a potion of flying",
+    "description": "A potion of flying is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 9,
+      "skill1": "fly"
+    },
+    "level": 3,
+    "weight": 10,
+    "cost": 250,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 92,
+    "name": "potion true sight",
+    "short_descr": "a potion of true sight",
+    "description": "A potion of true sight is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "detect invis",
+      "skill2": "detect magic",
+      "skill3": "detect hidden"
+    },
+    "level": 4,
+    "weight": 10,
+    "cost": 290,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 97,
+    "name": "shield small metal",
+    "short_descr": "a small metal shield",
+    "description": "A small metal shield is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "vs_magic": 1,
+      "value4": 2
+    },
+    "level": 5,
+    "weight": 30,
+    "cost": 750,
+    "wear_flags": "take shield"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 100,
+    "name": "tea cup",
+    "short_descr": "a cup of tea",
+    "description": "A cup has been set here.",
+    "material": "china",
+    "item_type": "drink",
+    "values": {
+      "capacity": 6,
+      "filled": 6,
+      "liquid": "tea"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 8,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "cup",
+      "description": "It is a small simple cup."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 101,
+    "name": "coffee cup",
+    "short_descr": "a cup of coffee",
+    "description": "A cup has been set here.",
+    "material": "china",
+    "item_type": "drink",
+    "values": {
+      "capacity": 6,
+      "filled": 6,
+      "liquid": "coffee"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 6,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "cup",
+      "description": "It is a small simple cup."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 102,
+    "name": "water cup",
+    "short_descr": "a cup of water",
+    "description": "A cup has been set here.",
+    "material": "clay",
+    "item_type": "drink",
+    "values": {
+      "capacity": 10,
+      "filled": 10,
+      "liquid": "water"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 1,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "cup",
+      "description": "It is a large simple cup."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 105,
+    "name": "bracer bronze",
+    "short_descr": "a bronze bracer",
+    "description": "A bronze bracer is lying on the ground.",
+    "material": "bronze",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 6,
+      "vs_slash": 6,
+      "value4": 3
+    },
+    "level": 10,
+    "weight": 30,
+    "cost": 760,
+    "condition": 90,
+    "wear_flags": "take wrist"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 106,
+    "name": "bracer iron",
+    "short_descr": "an iron bracer",
+    "description": "An iron bracer is lying on the ground.",
+    "material": "iron",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 7,
+      "vs_slash": 7,
+      "value4": 3
+    },
+    "level": 15,
+    "weight": 40,
+    "cost": 1020,
+    "condition": 90,
+    "wear_flags": "take wrist"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 110,
+    "name": "shirt chain mail",
+    "short_descr": "a chain mail shirt",
+    "description": "A chain mail shirt is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 4,
+      "vs_slash": 5,
+      "value4": 3
+    },
+    "level": 10,
+    "weight": 180,
+    "cost": 1320,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 111,
+    "name": "coif chain mail",
+    "short_descr": "a chain mail coif",
+    "description": "A chain mail coif is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 4,
+      "vs_slash": 5,
+      "value4": 2
+    },
+    "level": 10,
+    "weight": 50,
+    "cost": 660,
+    "wear_flags": "take head"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 112,
+    "name": "skirt chain mail",
+    "short_descr": "a long chain mail skirt",
+    "description": "A long chain mail skirt is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 4,
+      "vs_slash": 5,
+      "value4": 3
+    },
+    "level": 10,
+    "weight": 100,
+    "cost": 660,
+    "wear_flags": "take legs"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 113,
+    "name": "boots ironbound",
+    "short_descr": "a pair of iron-bound boots",
+    "description": "A pair of iron-bound boots lies here.",
+    "material": "iron",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 4,
+      "vs_slash": 5,
+      "value4": 3
+    },
+    "level": 10,
+    "weight": 60,
+    "cost": 660,
+    "wear_flags": "take feet"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 114,
+    "name": "gauntlets chain mail",
+    "short_descr": "a pair of chain mail gauntlets",
+    "description": "A pair of chain mail gauntlets is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 4,
+      "vs_slash": 5,
+      "value4": 3
+    },
+    "level": 10,
+    "weight": 40,
+    "cost": 660,
+    "wear_flags": "take hands"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 115,
+    "name": "sleeves chain mail",
+    "short_descr": "a pair of chain mail sleeves",
+    "description": "A pair of chain mail sleeves is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 4,
+      "vs_slash": 5,
+      "value4": 3
+    },
+    "level": 10,
+    "weight": 80,
+    "cost": 660,
+    "wear_flags": "take arms"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 116,
+    "name": "shield large metal",
+    "short_descr": "a large metal shield",
+    "description": "A large metal shield is lying on the ground.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 5,
+      "vs_slash": 5,
+      "vs_magic": 2,
+      "value4": 4
+    },
+    "level": 10,
+    "weight": 100,
+    "cost": 1190,
+    "wear_flags": "take shield"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 117,
+    "name": "shield small wooden",
+    "short_descr": "a small wooden shield",
+    "description": "A small wooden shield is lying on the ground.",
+    "material": "wood",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 3,
+      "vs_slash": 2,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 3,
+    "weight": 20,
+    "cost": 510,
+    "wear_flags": "take shield"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 120,
+    "name": "key iron",
+    "short_descr": "a key",
+    "description": "An iron key has been left here.",
+    "material": "iron",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 90,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "key iron",
+      "description": "The iron key is not special."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 121,
+    "name": "key rusty",
+    "short_descr": "a key",
+    "description": "A rusty key has been left here.",
+    "material": "iron",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 50,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "key rusty",
+      "description": "The key is a fairly large rusty key.  You notice some fresh dirt on it."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 122,
+    "name": "key wooden",
+    "short_descr": "a key",
+    "description": "A wooden key has been left here.",
+    "material": "wood",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 90,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "key wooden",
+      "description": "The wooden key is not special."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 123,
+    "name": "key brass",
+    "short_descr": "a key",
+    "description": "A brass key has been left here.",
+    "material": "brass",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 90,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "key brass",
+      "description": "The brass key is small and looks like it fits a very complicated lock."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 124,
+    "name": "sword long",
+    "short_descr": "a long sword",
+    "description": "A long sword has been left here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 2,
+      "dice_size": 12,
+      "attack_type": "slash",
+      "flags": "sharp"
+    },
+    "level": 26,
+    "weight": 50,
+    "cost": 2000,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "sword long",
+      "description": "This is the ceremonial sword of the Mayor of Midgaard.\nA\n13 20\nA\n12 20"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 129,
+    "name": "hand cuffs",
+    "short_descr": "a pair of hand cuffs",
+    "description": "A pair of hand cuffs has been left here.",
+    "material": "iron",
+    "item_type": "trash",
+    "values": {},
+    "level": 0,
+    "weight": 40,
+    "cost": 0,
+    "condition": 75,
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 130,
+    "name": "desk drawer",
+    "short_descr": "the desk",
+    "description": "A desk is set against the western wall.",
+    "material": "wood",
+    "item_type": "container",
+    "values": {
+      "capacity": 34,
+      "flags": "closeable pickproof closed locked",
+      "key": 3122,
+      "max_weight": 20,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 90,
+    "extra_description": [
+      {
+        "keyword": "drawer",
+        "description": "You notice a keyhole in the drawer."
+      },
+      {
+        "keyword": "desk",
+        "description": "The desk looks very sparse, there is a drawer on the left side."
+      }
+    ]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 131,
+    "name": "safe",
+    "short_descr": "the safe",
+    "description": "A safe is placed in a dark corner of the room.",
+    "material": "iron",
+    "item_type": "container",
+    "values": {
+      "capacity": 34,
+      "flags": "closeable pickproof closed locked",
+      "key": 3123,
+      "max_weight": 20,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 90,
+    "extra_description": [{
+      "keyword": "safe",
+      "description": "The safe is very heavy."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 132,
+    "name": "silver coins",
+    "short_descr": "the silver coins",
+    "description": "A lot of silver is here.",
+    "material": "silver",
+    "item_type": "money",
+    "values": {"silver": 1000},
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "silver",
+      "description": "Looks like at least a thousand coins."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 133,
+    "name": "city key",
+    "short_descr": "the City Key",
+    "description": "The very big City Key is lying here.",
+    "material": "gold",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 250,
+    "cost": 100,
+    "condition": 90,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "city key",
+      "description": "It is probably the biggest key you have seen in your life. It is made from\npolished gold and has various patterns on it along with the Midgaard Coat of\nArms."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 134,
+    "name": "bench",
+    "short_descr": "the bench",
+    "description": "A white-painted wooden bench is standing here.",
+    "material": "wood",
+    "item_type": "furniture",
+    "values": {
+      "max_people": 1,
+      "flags": "sit_on rest_on sleep_on",
+      "heal_rate": 125,
+      "mana_rate": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 90,
+    "extra_description": [{
+      "keyword": "bench",
+      "description": "It is a quite heavy but very comfortable bench.  It is placed with its front\ntowards the river so you can sit and watch the river and the houses on the\nother side."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 135,
+    "name": "fountain water",
+    "short_descr": "a fountain",
+    "description": "A small white fountain gushes forth here.",
+    "item_type": "fountain",
+    "values": {"liquid": "water"},
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 90,
+    "extra_description": [{
+      "keyword": "fountain",
+      "description": "It is very nice.  Made from fine white marble."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 136,
+    "name": "coins",
+    "short_descr": "a small pile of coins",
+    "description": "A small pile of coins lies here.",
+    "material": "silver",
+    "item_type": "money",
+    "values": {"silver": 20},
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 137,
+    "name": "key steel",
+    "short_descr": "a steel key",
+    "description": "A large steel key has been left here.",
+    "material": "steel",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 90,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "key steel",
+      "description": "A key of this size must fit a very strong lock."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 138,
+    "name": "skin water buffalo",
+    "short_descr": "a buffalo water skin",
+    "description": "A bloated dead buffalo is on the floor.",
+    "material": "leather",
+    "item_type": "drink",
+    "values": {
+      "capacity": 64,
+      "filled": 64,
+      "liquid": "water"
+    },
+    "level": 0,
+    "weight": 40,
+    "cost": 24,
+    "condition": 90,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 139,
+    "name": "letter resignation",
+    "short_descr": "the receptionist's letter of resignation",
+    "description": "The receptionist's letter of resignation is taped to the wall.",
+    "material": "paper",
+    "item_type": "furniture",
+    "values": {
+      "heal_rate": 100,
+      "mana_rate": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "extra_description": [{
+      "keyword": "letter resignation",
+      "description": "The letter is written in a bold and feminine Carolinian hand.\n\n    To whom it may concern,\n\n        Merc Industries has installed a new no-rent save and quit\n        system.  Apparently one can now save and quit at any time\n        from anywhere inside a town or out.  My services here are\n        no longer required.\n\n    Diana the Receptionist"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 140,
+    "name": "notice liquidation bank",
+    "short_descr": "the bank's notice of liquidation",
+    "description": "The bank's notice of liquidation is taped to the wall.",
+    "material": "paper",
+    "item_type": "furniture",
+    "values": {
+      "heal_rate": 100,
+      "mana_rate": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "extra_description": [{
+      "keyword": "notice liquidation bank",
+      "description": "The letter is written in a reserved and dignified Spencer hand.\n\n    To whom it may concern,\n\n        Merc Industries has charmed your money.  Apparently one's\n        gold will remain close, even beyond death. We are closing\n        down our offices and ATM machines.  Our services here are\n        no longer required.\n\n    Midgaard City Bank"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 150,
+    "name": "coffee cup cinnamon",
+    "short_descr": "a cup of cinnamon coffee",
+    "description": "A piping hot cup of cinnamon coffee is here.",
+    "material": "china",
+    "item_type": "drink",
+    "values": {
+      "capacity": 6,
+      "filled": 6,
+      "liquid": "coffee"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 12,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "coffee",
+      "description": "It's a nice flavorful blend, just right for late-night mudding sessions."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 151,
+    "name": "soup bowl",
+    "short_descr": "a bowl of chicken noodle soup",
+    "description": "A nice hot bowl of chicken noodle soup is here.",
+    "material": "wood",
+    "item_type": "food",
+    "values": {
+      "hunger": 4,
+      "fullness": 8
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 10,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "soup",
+      "description": "This looks like just the thing for a cold!"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 152,
+    "name": "bowl beef stew",
+    "short_descr": "a bowl of beef stew",
+    "description": "A bowl of nice thick beef stew, with lots of vegetables, steams here.",
+    "material": "food",
+    "item_type": "food",
+    "values": {
+      "hunger": 25,
+      "fullness": 25
+    },
+    "level": 0,
+    "weight": 30,
+    "cost": 14,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "stew bowl",
+      "description": "This is Kate's special stew, guaranteed to keep hunger pangs away for many\nhours.  Care for a bite?"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 153,
+    "name": "biscuit",
+    "short_descr": "a biscuit",
+    "description": "A yummy biscuit, covered with butter, is here.",
+    "material": "food",
+    "item_type": "food",
+    "values": {
+      "hunger": 4,
+      "fullness": 3
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 5,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "biscuit",
+      "description": "A nice, soft biscuit with just enough butter.  Better buy two."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 154,
+    "name": "beer bottle killian irish red",
+    "short_descr": "a bottle of George Killian's Irish Red",
+    "description": "A dark-tinted bottle of beer is here.",
+    "material": "glass",
+    "item_type": "drink",
+    "values": {
+      "capacity": 16,
+      "filled": 16,
+      "liquid": "beer"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 20,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "beer bottle",
+      "description": "It's a fine beer for serious drinkers, complete with the famous horse head\nlogo.  Worth every penny."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 155,
+    "name": "comfy wooden bed",
+    "short_descr": "a comfy wooden bed",
+    "description": "A comfy wooden bed is here.",
+    "material": "wood",
+    "item_type": "furniture",
+    "values": {
+      "max_people": 1,
+      "flags": "sit_on rest_on sleep_in",
+      "heal_rate": 200,
+      "mana_rate": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "condition": 90,
+    "extra_description": [{
+      "keyword": "bed",
+      "description": "This is a standard bed you'll find in most inns. Sleeping in or resting on\nit may yield positive results for your health!"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 161,
+    "name": "key white",
+    "short_descr": "a white key",
+    "description": "A white key has been left here.",
+    "material": "ivory",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "condition": 90,
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 162,
+    "name": "map midgaard",
+    "short_descr": "a map of the city of Midgaard",
+    "description": "A rolled up map is here.",
+    "material": "paper",
+    "item_type": "map",
+    "values": {"persist": true},
+    "level": 0,
+    "weight": 10,
+    "cost": 500,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "map midgaard",
+      "description": ".\n                        * * * MIDGAARD * * *\n                         = = ========== = =\n \n                                     Rainbow Bridge (Asgard and Valhalla)\n                                    /\n          North            Temple Altar   Mud School <--- ** NEWBIES **\n            |   /Up        (Healer, Pit)      |           ** GO HERE **\n            | /                  |       /Entrance to\n     West---+---East             |     /  Mud School\n          / |                 Temple of       |\n    Down/   |                   Mota        Arena\n          South               (Recall)\n                                 |\n                                 |   /In the Air   /Bedrooms\n                  Cleric         | /             /\n       Northern   Guild----Temple Square---Grunting---Bar    Northern\n       Midgaard              (Fountain)    Boar Inn          Midgaard\n     (Clan Road) Magic           |                          (Clan Road)\n           |     Shop   Bakery   |    Grocer    Weaponsmith     |\n           |       |      |      |       |           |          |\nTo    <---West---Main-Street---Market----Main-Street-+--------East--->Cross\nShire,    Gate     |      |    Square    |           |        Gate    Roads\nForest of  |     Mage  Armoury   |     Jeweler    Warrior       |\nHaon-Dor   |     Guild           |                 Guild     Wall Road\n          Wall                   |                              |\n          Road  Leather  Map     |    Grebe's  Pet   Apothecary |\n           |     Shop    Shop    |    Tavern   Shop  (Potions)  |\n           |      |       |    Common   |       |       |       |\n          Wall---Poor-Alley----Square---Dark-Alley------+----Wall Road\n          Road    |       |      |      |       |       |       |\n           |   Temple   Grubby   |   Thieves  Levee   Warehouse |\n           |  Of Stupid  Inn     |    Guild   (Boats) (Sailor)  |\n           |                    Dump            |               |\n          Wall  Mob      Sewers/ |              |             Wall\n          Road--Factory          |              |             Road\n           |                   South         Midgaard           |         To the\n         Bridge                Bridge         River---------> Bridge <--> Sands\n           |                     |                              |           of\n        Southern              Southern                       Southern     Sorrow\n        Midgaard              Midgaard                       Midgaard"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 163,
+    "name": "map thera",
+    "short_descr": "a map of Thera",
+    "description": "A rolled up map is here.",
+    "material": "paper",
+    "item_type": "map",
+    "values": {"persist": true},
+    "level": 0,
+    "weight": 10,
+    "cost": 1500,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "map thera",
+      "description": ".\n                         * * * Northern Thera  * * *\n                          = = ================== = =\n \n                                                   Moria\n                             Olympus          New    |    Dwarven--Mines\nMage            Elven Valley    |     Ofcol--Ofcol   +----Kingdom\nTower                       \\   |       |            |       |    \\Catacombs\n  |    Dragon Tower          Plains-----+            |   Day-Care\n  |   /                         |       |            |             Void---Old\nShadow                      Northern  Stones of      |   Nirvana\\    |   Thalos\nGrove---Galaxy              Midgaard   G'harne       |            \\Holy\n  |                             |                    |     Smurf   Grove\n   \\  Arachnos    Shire  Asgard | In the Air         |    Village    |\n     \\   |          |         \\ | /                  |       |       |    Check\n      Forest Of-----+-------Midgaard---------------Cross---Eastern Road---Point\n      Haon Dor              / | | | \\              Roads             |\n     /     |     Mob Factory  | | |  Machine            \\        Gnome Village\n  Old    Troll               /  | |  Dreams               \\\n Marsh    Den           Sewer   |  \\            Ruins of---Dwarf---Frigid Waste\n                                |    \\Midgaard   Thalos    Forest         |\n       Redferne's---Chain---Southern    River                |  \\      Keep of\n       Residence            Midgaard         \\       Wyvern--+  Drow   Mahn-tor\n           |                  / | \\          Sands of Tower  |  City\n         Clouds      Gang Land  | Graveyard  Sorrow          |\n        (Harpies)               |      \\           \\       Elemental\n                            Miden'nir   Church   Mega-City  Canyon\n                            (Goblins)  Catacombs    One\n \nThis map shows just about all the major areas on ROM.  This map is NOT drawn\nto scale, some of the directions were changed to make everything fit.  This\nmap shows the GENERAL location of an area with respect to the other areas.\nType \"areas\" for a complete list with suggested levels and the authors."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 164,
+    "name": "map southern midgaard",
+    "short_descr": "a map of southern Midgaard",
+    "description": "A rolled up map is here.",
+    "material": "paper",
+    "item_type": "map",
+    "values": {"persist": true},
+    "level": 0,
+    "weight": 10,
+    "cost": 1000,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "map southern midgaard",
+      "description": ".\n                         * * * SOUTHERN MIDGAARD * * *\n                          = = =================== = =\n \n West                          South             Kate's                   East\nBridge                         Bridge            Diner                   Bridge\n  |                              |                 |                       |\nNorthwest                        |              Austral                Northeast\nConcourse---Promenade--------Promenade----------Square-----------------Concourse\n    |           |                |                 |                       |\n    |           |                |                 |          Fountain     |\n    |           |                |              Emerald           |        |\nConcourse     Park              Park-----Park     Ave----Penny--Penny--Concourse\n    |         Road            Entrance   Cafe      |     Lane   Lane       |\n    |           |                |              Emerald                    |\n    |           |                |                Ave                      |\n    |           |                |                 |                       |\n    |  Guard  Park     Park     The      Park   Emerald   Town             |\n    |   HQ----Road---Entrance---Park---Entrance---Ave-----Hall             |\n    |           |                                  |                       |\n    |         Park              Emerald---------Emerald--------------Gang  |\n    |         Road                Ave             Ave                |  |  |\n    |           |                  |                                 |  |  |\n    |         Park----------------Road----------Park            Elm--Land  |\n    |         Road             /Crossing        Road           Street      |\n    |                     Chain    |              |              |         |\nConcourse                /         |            Park----Elm-----Elm----Concourse\n    |       (Redferne's, Harpies)  |            Road   Street  Street      |\n    |                              |              |              |         |\n    |                Emerald--Emerald            Park        Graveyard     |\n    |                  Ave      Ave             Road    (Church Catacombs) |\n    |                   |                         |                        |\n    |                Emerald                    Park                       |\n    |                  Ave                      Road                       |\n    |                   |                         |                        |\nConcourse-----------Concourse------Inside-----Concourse----------------Concourse\n                                 South Gate\n                                     |\n                                 Miden'Nir\n                                 (Goblins)\n"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 165,
+    "name": "map dwarven kingdom dwarf",
+    "short_descr": "a map of the Dwarven Kingdom",
+    "description": "A rolled up map is here.",
+    "material": "paper",
+    "item_type": "map",
+    "values": {"persist": true},
+    "level": 0,
+    "weight": 10,
+    "cost": 750,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "map dwarven kingdom dwarf",
+      "description": ".\n                         * * * The Dwarven Kingdom * * *\n                          = = ===================== = =\n \n                    Dwarven\n                    Hospital\n                       |                                              *Path to\n         North of---Path by---Path by---Barracks     Guard--Door to----Castle\n          Shops     Hospital  Barracks  Entrance     House  Kingdom  Strangelove\nGranite     |                              |                   |\nHead's---Path North                      First               Narrow\nBakery    of Shop                       Barracks              Path\n            |                              |                   |\n         Hide and    Turn               Back of     Bend in--Narrow\n        Tooth Shop--in Road             Barracks     Path     Path\n                       |                    \\         |\n                    Path to               Dwarven   Narrow\n                    Village              Catacombs   Path\n                       |                              |\n             Store  *Inside    Entrance     Top of   Dark   *Mine\n             Room---Entrance--To Mountain--Mountain--Path--Entrance\n                \\                             |                 \\\n               Wine                        Middle of          Dwarven\n              Cellar                       Mountain            Mines\n                  \\                            |\n                Dwarven                    Base of\n               Catacombs    Moria          Mountain           North\n                              |               |           Up\\   |\n                              |            Path to            \\ |\n                            Plains--Hills--Dwarven      West----+----East\n                              |            Kingdom              | \\\n                              |               |                 |   \\Down\n              Midgaard <----Cross          Dwarven            South\n                            Roads          Drop-off\n                                          (Day-Care)\n \n*key required"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 166,
+    "name": "map moria first",
+    "short_descr": "a map of the first level of Moria",
+    "description": "A rolled up map is here.",
+    "material": "paper",
+    "item_type": "map",
+    "values": {"persist": true},
+    "level": 0,
+    "weight": 10,
+    "cost": 1500,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "map moria first",
+      "description": "* * * MORIA - Map 1 * * *                                           To Mahn-Tor\n = = =============== = =                                                 |\nTalk about a mess!                                                   Foothills\n                                                                         |\nThis is as far as our courageous, noble, brave           Light Cave    Valley\nand apparently quite deceased cartographers                   |           |\ncould get.  Perhaps more maps could be found             Smelly Tunnel  Cave\nin the depths of Moria itself.                                |           |\n                                                  Cave---Many Tunnels---Tunnel\n                                                    |         |           |\n         West End--Large Cave--East End           Cave      Tunnel      *Hole\n            |          |                            |         |        (Map 2)\n            |        Tunnel---------Tunnel--------Tunnel----Tunnel\n            |                                       |\n *Hole----Damp----Damp  Tunnel--Tunnel--Tunnel    Tunnel\n(Map 3)  Tunnel  Tunnel   |               |         |\n                   |      |            (*Map 3)  The Cave\n                   |      |                         |\n                   |    Tunnel--Light--Maze      End of\n                   |            Cave    |        The Path\n                   |                  Light         |\n                   |                  Cave      The Hills--> Dwarven Kingdom\n                   |                    |           |\n                 Tunnel----Tunnel-----Light     The Plains\n                                      Cave          |\n                                                 The Lane\n                                                    |\n                                      Midgaard <--Cross--> Eastern Road\n                                                  Roads\n                                                    |\n                                               Dwarf Forest"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 167,
+    "name": "map new thalos",
+    "short_descr": "a map of New Thalos ",
+    "description": "A rolled up map is here.",
+    "material": "paper",
+    "item_type": "map",
+    "values": {"persist": true},
+    "level": 0,
+    "weight": 10,
+    "cost": 2500,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "map new thalos",
+      "description": ".\n           * * * **************** New Thalos ***************** * * *\n                   \"Not Thalos or Old Thalos but New Thalos\"\n            = = =============================================== = =\n\n                                   Plains\n                                     |\nNorthwest--West Casbah-------------North-----------------Casbah--------Northeast\n  Tower     |                       Gate                    |            Tower\n          Alley                      |                      |              |\n            |    Guard            Sultan's                  |  Library----Kali\n          Alley  House              Walk                    |             Row\n                   |                 |      Dancing         |              |\n     Sultan's----Grand----Palace--Sultan's--Daemon          |   Dance-----Kali\n      Palace    Entrance   Gate     Walk      Inn           |   Hall      Row\n                   |                 |                      |\n                 Guard               |         Bowyer--Guildsman's--Mason's\n                 House               |         Guild       Row      Guild\n High                                |                      |\nPriest                               |         Weaver--Guildsman's--Craftsman\nChamber  Altar                    Sultan's     Guild       Row        Guild\n  |        |                        Walk                    |\nInside--Inside--Donation             |         Tanner--Guildsman's--Museum\nTemple  Temple    Room               |         Guild       Row      of the\n  |        |                         |                      |       Greater\nCleric     |                         |                 Guildsman's---Gods\nGuild     /                          |                     Row\n        /                            |                      |\n     Temple             Ahkeem's  Sultan's  Vera's     Guildsman's         Mage\n     Gates                Stuff     Walk   Veggies         Row             Tower\n       |     Alley--Alley    |       |       |              |                |\n     Temple    |           Market--Market--Market           | Witch's  Magic |\n     Square  Alley   Bank--Square  Square  Square--Butchery |  Brew    Shop  |\n       |       |             |       |       |              |    |      |    |\nWest--West---West---West---Market--Center--Market---East--East--East--East--East\nGate  Main   Main   Main   Square  Square  Square   Main  Main  Main  Main  Gate\n  |    |       |             |       |       |              |    |\n  |  Repair  Alley  Store--Market--Market--Market--Abdul's  | Mercenary--Thieves\n  |   Shop     |           Square  Square  Sqaure   Armor   |   Guild     Guild\n  |          Alley--Alley    |       |       |             Alley\nWarrior's                  Bread   Medina  Igor's  Leather  |           Smuggler\n  Guild                    Stand     |    Weapons   Shop---Alley--Alley---Inn\n                                   Medina                        /\n      Warehouse    Shipwright        |     Forge  Stables      /    Cass's  Dump\n       |     |          |          Common    |       |        |       |      |\n       +-----West Ishtar Drive-----Square----+---East Ishtar Drive----+------+\n                        |            |\n                    Boat Ramp        |\n                        |          South\n===================Ishtar River====Bridge======================> To Dragon Sea\n                                     |\n                                   South\n                                   Gate"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 168,
+    "name": "map olympus",
+    "short_descr": "a map of Olympus",
+    "description": "A rolled up map is here.",
+    "material": "paper",
+    "item_type": "map",
+    "values": {"persist": true},
+    "level": 0,
+    "weight": 10,
+    "cost": 2000,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "map olympus",
+      "description": ".\n                               *****OLYMPUS*****\n                               =================\n \n                                   Bedroom\n                                      |\n                                   Northern\n                                     Hall\n                        Western       |         Eastern\n              Bedroom----Hall----Second Floor----Hall----Bedroom\n                                /     |\n                         Stairway  Southern\n                             |       Hall                    North\n                        Throne Room   |                        |  /Up\n                             |      Bedroom                    |/\n                             |                          West---+---East\n                  Kitchen    |     Stable                     /|\n                     |       |       |                  Down/  |\n        Guest     Western  Castle  Eastern   Guest           South\n       Quarters----Wing----Entry----Wing----Quarters\n                     |       |       |\n                  Storage   Z|    Storage\n                   Room     e|S    Room   Smithy\n                            u|t             |\n                            s+--Ares Street-+--Weapon\n                    Mystery  |              |   Shop\n                    Shop-----+           Armoury\n                             |\n                   Residence-+-Residence\n                             |\n                     Bakery--+\n                             |\n                       **Entrance**\n                            /\n                      Mountain"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 200,
+    "name": "juke box music",
+    "short_descr": "the juke",
+    "description": "A neon-lit juke box sits in the corner of the bar.",
+    "material": "glass",
+    "item_type": "jukebox",
+    "values": {},
+    "level": 0,
+    "weight": 0,
+    "cost": 0
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 237,
+    "name": "pit",
+    "short_descr": "the donation pit",
+    "description": "A pit for sacrifices is in front of the altar.",
+    "item_type": "container",
+    "values": {
+      "capacity": 10000,
+      "max_weight": 1000,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "extra_flags": "nopurge"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 238,
+    "name": "skin water buffalo",
+    "short_descr": "a buffalo water skin",
+    "description": "A bloated dead buffalo is on the floor.",
+    "material": "leather",
+    "item_type": "drink",
+    "values": {
+      "capacity": 64,
+      "filled": 64,
+      "liquid": "water"
+    },
+    "level": 0,
+    "weight": 40,
+    "cost": 3,
+    "condition": 90,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 240,
+    "name": "scroll identify",
+    "short_descr": "a scroll of identify",
+    "description": "A scroll has carelessly been left here.",
+    "material": "vellum",
+    "item_type": "scroll",
+    "values": {
+      "level": 12,
+      "skill1": "identify"
+    },
+    "level": 7,
+    "weight": 10,
+    "cost": 890,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "scroll identify",
+      "description": "The scroll has a magic formula drawn upon it:\n     ???\n    ?   ?\n       ?\n      ?\n      ?\n      *"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 241,
+    "name": "potion yellow",
+    "short_descr": "a yellow potion of see invisible",
+    "description": "A small yellow potion has carelessly been left here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 12,
+      "skill1": "detect invis"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 220,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "potion yellow",
+      "description": "The potion has a small label 'Detect The Invisible'."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 242,
+    "name": "scroll recall",
+    "short_descr": "a scroll of recall",
+    "description": "A scroll has carelessly been left here.",
+    "material": "vellum",
+    "item_type": "scroll",
+    "values": {
+      "level": 20,
+      "skill1": "word of recall"
+    },
+    "level": 17,
+    "weight": 20,
+    "cost": 2900,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "scroll",
+      "description": "The scroll has written a formula of 'Word of Recall' upon it."
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 280,
+    "name": "potion heal healing",
+    "short_descr": "a potion of healing",
+    "description": "A potion of healing is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 20,
+      "skill1": "heal"
+    },
+    "level": 11,
+    "weight": 10,
+    "cost": 800,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 281,
+    "name": "potion sanct sanctuary",
+    "short_descr": "a potion of sanctuary",
+    "description": "A potion of sanctuary is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 20,
+      "skill1": "sanctuary"
+    },
+    "level": 11,
+    "weight": 10,
+    "cost": 800,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 282,
+    "name": "potion divine",
+    "short_descr": "a potion of divine protection",
+    "description": "A potion of divine protection is here.",
+    "material": "crystal",
+    "item_type": "potion",
+    "values": {
+      "level": 35,
+      "skill1": "sanctuary",
+      "skill2": "stone skin",
+      "skill3": "armor"
+    },
+    "level": 16,
+    "weight": 10,
+    "cost": 1800,
+    "extra_flags": "glow hum magic bless",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 283,
+    "name": "potion cure light",
+    "short_descr": "a potion of cure light wounds",
+    "description": "A potion of cure light wounds is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 5,
+      "skill1": "cure light"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 150,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 284,
+    "name": "potion cure serious",
+    "short_descr": "a potion of cure serious wounds",
+    "description": "A potion of cure serious wounds is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "cure serious"
+    },
+    "level": 1,
+    "weight": 10,
+    "cost": 220,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 285,
+    "name": "potion cure critical critic",
+    "short_descr": "a potion of cure critical wounds",
+    "description": "A potion of cure critical wounds is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 15,
+      "skill1": "cure critical"
+    },
+    "level": 5,
+    "weight": 10,
+    "cost": 390,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 286,
+    "name": "potion antidote bottle",
+    "short_descr": "a bottle of antidote",
+    "description": "A bottle of antidote is here.",
+    "material": "clay",
+    "item_type": "potion",
+    "values": {
+      "level": 14,
+      "skill1": "cure poison",
+      "skill2": "cure light",
+      "skill3": "cure disease"
+    },
+    "level": 8,
+    "weight": 10,
+    "cost": 550,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 287,
+    "name": "potion cure blindness",
+    "short_descr": "a potion of cure blindness",
+    "description": "A potion of cure blindness is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 13,
+      "skill1": "cure blindness"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 230,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 288,
+    "name": "vial holy water",
+    "short_descr": "a vial of holy water",
+    "description": "A vial of holy water is here.",
+    "material": "crystal",
+    "item_type": "potion",
+    "values": {
+      "level": 20,
+      "skill1": "bless",
+      "skill2": "protection evil",
+      "skill3": "remove curse"
+    },
+    "level": 10,
+    "weight": 10,
+    "cost": 720,
+    "extra_flags": "glow magic bless",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 289,
+    "name": "potion armor",
+    "short_descr": "a potion of armor",
+    "description": "A potion of armor is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "armor"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 200,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 290,
+    "name": "potion negation",
+    "short_descr": "a potion of negation",
+    "description": "A potion of negation is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 35,
+      "skill1": "cancellation"
+    },
+    "level": 9,
+    "weight": 10,
+    "cost": 830,
+    "extra_flags": "hum magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 291,
+    "name": "potion fly flying",
+    "short_descr": "a potion of flying",
+    "description": "A potion of flying is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 9,
+      "skill1": "fly"
+    },
+    "level": 3,
+    "weight": 10,
+    "cost": 250,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 292,
+    "name": "potion true sight",
+    "short_descr": "a potion of true sight",
+    "description": "A potion of true sight is here.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "detect invis",
+      "skill2": "detect magic",
+      "skill3": "detect hidden"
+    },
+    "level": 4,
+    "weight": 10,
+    "cost": 290,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 349,
+    "name": "long sword",
+    "short_descr": "a glowing long sword",
+    "description": "A glowing long sword is here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 4,
+      "dice_size": 6,
+      "attack_type": "slash"
+    },
+    "level": 29,
+    "weight": 50,
+    "cost": 3100,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "long sword",
+      "description": "It looks exceptionally sharp and well-balanced. Maybe you should keep it."
+    }],
+    "affects": [
+      {
+        "level": 29,
+        "apply": "damage roll",
+        "modifier": 2
+      },
+      {
+        "level": 29,
+        "apply": "hit roll",
+        "modifier": 2
+      }
+    ]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 350,
+    "name": "sword standard merc",
+    "short_descr": "a standard issue sword",
+    "description": "You see a standard issue sword here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 3,
+      "dice_size": 5,
+      "attack_type": "slash"
+    },
+    "level": 16,
+    "weight": 50,
+    "cost": 1280,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "sword",
+      "description": "You see a sword of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }],
+    "affects": [
+      {
+        "level": 16,
+        "apply": "damage roll",
+        "modifier": 1
+      },
+      {
+        "level": 16,
+        "apply": "hit roll",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 351,
+    "name": "dagger standard merc",
+    "short_descr": "a standard issue dagger",
+    "description": "You see a standard issue dagger here.",
+    "material": "steel",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 5,
+      "attack_type": "pierce"
+    },
+    "level": 8,
+    "weight": 20,
+    "cost": 590,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "dagger",
+      "description": "You see a dagger of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }],
+    "affects": [
+      {
+        "level": 8,
+        "apply": "damage roll",
+        "modifier": 1
+      },
+      {
+        "level": 8,
+        "apply": "hit roll",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 352,
+    "name": "mace standard merc",
+    "short_descr": "a standard issue mace",
+    "description": "You see a standard issue mace here.",
+    "material": "iron",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "pound"
+    },
+    "level": 7,
+    "weight": 100,
+    "cost": 620,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "mace",
+      "description": "You see a mace of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }],
+    "affects": [
+      {
+        "level": 7,
+        "apply": "damage roll",
+        "modifier": 2
+      },
+      {
+        "level": 7,
+        "apply": "hit roll",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 353,
+    "name": "vest standard merc",
+    "short_descr": "a standard issue vest",
+    "description": "You see a standard issue vest here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 3,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 5,
+    "weight": 50,
+    "cost": 900,
+    "wear_flags": "take body",
+    "extra_description": [{
+      "keyword": "vest",
+      "description": "You see a vest of great craftsmanship.  Stamped on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 354,
+    "name": "shield standard merc",
+    "short_descr": "a standard issue shield",
+    "description": "You see a standard issue shield here.",
+    "material": "steel",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "vs_magic": 2,
+      "value4": 2
+    },
+    "level": 5,
+    "weight": 30,
+    "cost": 810,
+    "wear_flags": "take shield",
+    "extra_description": [{
+      "keyword": "shield",
+      "description": "You see a shield of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 355,
+    "name": "cloak standard merc",
+    "short_descr": "a standard issue cloak",
+    "description": "You see a standard issue cloak here.",
+    "material": "cloth",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 5,
+      "vs_slash": 4,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 5,
+    "weight": 40,
+    "cost": 510,
+    "wear_flags": "take neck",
+    "extra_description": [{
+      "keyword": "cloak",
+      "description": "You see a cloak of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 356,
+    "name": "helmet standard merc",
+    "short_descr": "a standard issue helmet",
+    "description": "You see a standard issue helmet here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 3,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 5,
+    "weight": 30,
+    "cost": 450,
+    "wear_flags": "take head",
+    "extra_description": [{
+      "keyword": "helmet",
+      "description": "You see a helmet of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 357,
+    "name": "leggings standard merc",
+    "short_descr": "a pair of standard issue leggings",
+    "description": "You see a pair of standard issue leggings here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 3,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 5,
+    "weight": 30,
+    "cost": 450,
+    "wear_flags": "take legs",
+    "extra_description": [{
+      "keyword": "leggings",
+      "description": "You see leggings of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 358,
+    "name": "boots standard merc",
+    "short_descr": "a pair of standard issue boots",
+    "description": "You see a pair of standard issue boots here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 3,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 5,
+    "weight": 30,
+    "cost": 450,
+    "wear_flags": "take feet",
+    "extra_description": [{
+      "keyword": "boots",
+      "description": "You see boots of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 359,
+    "name": "gloves standard merc",
+    "short_descr": "a pair of standard issue gloves",
+    "description": "You see a pair of standard issue gloves here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 3,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 5,
+    "weight": 30,
+    "cost": 450,
+    "wear_flags": "take hands",
+    "extra_description": [{
+      "keyword": "gloves",
+      "description": "You see gloves of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 360,
+    "name": "sleeves standard merc",
+    "short_descr": "a pair of standard issue sleeves",
+    "description": "You see a pair of standard issue sleeves here.",
+    "material": "leather",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 3,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 5,
+    "weight": 20,
+    "cost": 450,
+    "wear_flags": "take arms",
+    "extra_description": [{
+      "keyword": "sleeves",
+      "description": "You see sleeves of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 361,
+    "name": "cape standard merc",
+    "short_descr": "a standard issue cape",
+    "description": "You see a standard issue cape here.",
+    "material": "cloth",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 4,
+      "vs_slash": 3,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 3,
+    "weight": 20,
+    "cost": 380,
+    "wear_flags": "take about",
+    "extra_description": [{
+      "keyword": "cape",
+      "description": "You see a cape of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 362,
+    "name": "belt standard merc",
+    "short_descr": "a standard issue belt",
+    "description": "You see a standard issue belt here.",
+    "material": "bronze",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 3,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 5,
+    "weight": 20,
+    "cost": 450,
+    "wear_flags": "take waist",
+    "extra_description": [{
+      "keyword": "belt standard merc",
+      "description": "You see a bronze belt of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 363,
+    "name": "bracer standard merc",
+    "short_descr": "a standard issue bracer",
+    "description": "You see a standard issue bracer here.",
+    "material": "bronze",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 2,
+      "vs_bash": 4,
+      "vs_slash": 4,
+      "vs_magic": 1
+    },
+    "level": 3,
+    "weight": 10,
+    "cost": 390,
+    "wear_flags": "take wrist",
+    "extra_description": [{
+      "keyword": "bracer",
+      "description": "You see a bracer of great craftsmanship.  Imprinted on the side is:\nMerc Industries"
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 364,
+    "name": "ring signet",
+    "short_descr": "a city guard signet ring",
+    "description": "You see a ring with a strange symbol on the floor.",
+    "material": "copper",
+    "item_type": "treasure",
+    "values": {},
+    "level": 16,
+    "weight": 10,
+    "cost": 1280,
+    "extra_flags": "magic",
+    "wear_flags": "take finger",
+    "affects": [
+      {
+        "level": 16,
+        "apply": "saves",
+        "modifier": -1
+      },
+      {
+        "level": 16,
+        "apply": "armor class",
+        "modifier": -4
+      }
+    ]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 365,
+    "name": "banner war merc",
+    "short_descr": "a war banner",
+    "description": "A war banner is on the floor here.",
+    "material": "cloth",
+    "item_type": "light",
+    "values": {"duration": 500},
+    "level": 8,
+    "weight": 10,
+    "cost": 640,
+    "extra_flags": "glow magic",
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "banner",
+      "description": "This is the official Merc war banner to see you through the darkest realm!"
+    }],
+    "affects": [
+      {
+        "level": 8,
+        "apply": "armor class",
+        "modifier": -2
+      },
+      {
+        "level": 8,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 371,
+    "name": "ring diamond wedding",
+    "short_descr": "a diamond wedding ring",
+    "description": "Vanya's diamond wedding ring has been left here.",
+    "material": "diamond",
+    "item_type": "treasure",
+    "values": {},
+    "level": 20,
+    "weight": 10,
+    "cost": 860,
+    "extra_flags": "bless",
+    "wear_flags": "take finger",
+    "extra_description": [{
+      "keyword": "ring diamond wedding",
+      "description": "A slender gold band set with a marquise-cut four carat blue-white solitaire.\nInscribed on the inside of the band is: 'Your loving husband, House'."
+    }],
+    "affects": [{
+      "level": 20,
+      "apply": "saves",
+      "modifier": -2
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 372,
+    "name": "band gold wedding",
+    "short_descr": "a gold wedding band",
+    "description": "House's gold wedding band has been left here.",
+    "material": "gold",
+    "item_type": "treasure",
+    "values": {},
+    "level": 20,
+    "weight": 10,
+    "cost": 860,
+    "extra_flags": "bless",
+    "wear_flags": "take finger",
+    "extra_description": [{
+      "keyword": "band gold wedding",
+      "description": "A wide, plain circle of gold inscribed: 'Your loving wife, Vanya'."
+    }],
+    "affects": [{
+      "level": 20,
+      "apply": "saves",
+      "modifier": -2
+    }]
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 373,
+    "name": "pearl",
+    "short_descr": "a small pearl",
+    "description": "A small but well-formed pearl lies here.",
+    "material": "pearl",
+    "item_type": "gem",
+    "values": {},
+    "level": 0,
+    "weight": 1,
+    "cost": 1000,
+    "extra_flags": "sellextract",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 374,
+    "name": "garnet gem",
+    "short_descr": "a garnet",
+    "description": "A garnet catches your eye.",
+    "material": "gem",
+    "item_type": "gem",
+    "values": {},
+    "level": 0,
+    "weight": 1,
+    "cost": 500,
+    "extra_flags": "sellextract",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 375,
+    "name": "emerald gem",
+    "short_descr": "an emerald",
+    "description": "A deep green emerald winks at you.",
+    "material": "gem",
+    "item_type": "gem",
+    "values": {},
+    "level": 0,
+    "weight": 1,
+    "cost": 5000,
+    "extra_flags": "sellextract",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 376,
+    "name": "ruby gem",
+    "short_descr": "a ruby",
+    "description": "A beautiful, if small, ruby is here.",
+    "material": "gem",
+    "item_type": "gem",
+    "values": {},
+    "level": 0,
+    "weight": 1,
+    "cost": 6000,
+    "extra_flags": "sellextract",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 377,
+    "name": "diamond gem",
+    "short_descr": "a diamond",
+    "description": "A diamond catches and reflects the lighting.",
+    "material": "gem",
+    "item_type": "gem",
+    "values": {},
+    "level": 0,
+    "weight": 1,
+    "cost": 10000,
+    "extra_flags": "sellextract",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "midgaard",
+    "anum": 378,
+    "name": "opal",
+    "short_descr": "an opal",
+    "description": "A lustrous opal reminds you of far-off places.",
+    "material": "gem",
+    "item_type": "gem",
+    "values": {},
+    "level": 0,
+    "weight": 1,
+    "cost": 2000,
+    "extra_flags": "sellextract",
+    "wear_flags": "take hold"
+  }}
+]

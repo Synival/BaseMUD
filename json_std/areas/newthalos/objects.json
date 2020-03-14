@@ -1,0 +1,1723 @@
+[
+  {"object": {
+    "area": "newthalos",
+    "anum": 0,
+    "name": "palace key",
+    "short_descr": "the palace key of New Thalos",
+    "description": "A large key bearing the crest of New Thalos lies here.",
+    "item_type": "key",
+    "values": {"value0": 1},
+    "level": 0,
+    "weight": 30,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 1,
+    "name": "city key",
+    "short_descr": "the Key to the City of New Thalos",
+    "description": "The heavy city key lies here in the dust",
+    "item_type": "key",
+    "values": {"value0": 1},
+    "level": 0,
+    "weight": 30,
+    "cost": 0,
+    "wear_flags": "take neck hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 3,
+    "name": "morning star morningstar",
+    "short_descr": "a morningstar",
+    "description": "A small spiked metal ball connected to a rod by links of chain lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "flail",
+      "dice_num": 2,
+      "dice_size": 6,
+      "attack_type": "blast"
+    },
+    "level": 10,
+    "weight": 50,
+    "cost": 620,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 4,
+    "name": "awl pike awl-pike",
+    "short_descr": "an awl-pike",
+    "description": "An awl pike lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 1,
+      "dice_size": 10,
+      "attack_type": "pierce"
+    },
+    "level": 6,
+    "weight": 30,
+    "cost": 108,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 5,
+    "name": "bardiche",
+    "short_descr": "a bardiche",
+    "description": "A bardiche lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 2,
+      "dice_size": 6,
+      "attack_type": "cleave",
+      "flags": "twohands"
+    },
+    "level": 8,
+    "weight": 40,
+    "cost": 270,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 6,
+    "name": "bec corbin",
+    "short_descr": "a bec de corbine",
+    "description": "A bec de corbine lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 1,
+      "dice_size": 8,
+      "attack_type": "pierce",
+      "flags": "twohands"
+    },
+    "level": 2,
+    "weight": 30,
+    "cost": 148,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 7,
+    "name": "bill guisarme",
+    "short_descr": "a bill-guisarme",
+    "description": "A bill-guisarme lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 1,
+      "dice_size": 8,
+      "attack_type": "slash",
+      "flags": "twohands"
+    },
+    "level": 2,
+    "weight": 30,
+    "cost": 148,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 8,
+    "name": "fauchard",
+    "short_descr": "a fauchard",
+    "description": "A fauchard lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 1,
+      "dice_size": 8,
+      "attack_type": "slash",
+      "flags": "twohands"
+    },
+    "level": 2,
+    "weight": 30,
+    "cost": 148,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 9,
+    "name": "glaive",
+    "short_descr": "a glaive",
+    "description": "A glaive lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 1,
+      "dice_size": 10,
+      "attack_type": "chop",
+      "flags": "twohands"
+    },
+    "level": 4,
+    "weight": 30,
+    "cost": 192,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 10,
+    "name": "guisarme",
+    "short_descr": "a guisarme",
+    "description": "A guisarme lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "slash",
+      "flags": "twohands"
+    },
+    "level": 3,
+    "weight": 40,
+    "cost": 169,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 11,
+    "name": "sickle",
+    "short_descr": "a sickle",
+    "description": "A sickle lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 1,
+      "dice_size": 4,
+      "attack_type": "slash"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 210,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 12,
+    "name": "bastard two sword",
+    "short_descr": "a two-handed bastard sword",
+    "description": "A two handed bastard sword lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 3,
+      "dice_size": 5,
+      "attack_type": "cleave",
+      "flags": "twohands"
+    },
+    "level": 13,
+    "weight": 160,
+    "cost": 1190,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 13,
+    "name": "scimitar",
+    "short_descr": "a scimitar",
+    "description": "A scimitar lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 1,
+      "dice_size": 9,
+      "attack_type": "slash"
+    },
+    "level": 5,
+    "weight": 100,
+    "cost": 490,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 14,
+    "name": "rapier",
+    "short_descr": "a rapier",
+    "description": "A rapier lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 3,
+      "dice_size": 4,
+      "attack_type": "slash"
+    },
+    "level": 11,
+    "weight": 100,
+    "cost": 850,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 15,
+    "name": "banded mail suit",
+    "short_descr": "a suit of banded mail",
+    "description": "A suit of banded mail lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7
+    },
+    "level": 20,
+    "weight": 250,
+    "cost": 2900,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 16,
+    "name": "brigandine suit",
+    "short_descr": "a suit of brigandine",
+    "description": "A suit of brigandine lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7
+    },
+    "level": 20,
+    "weight": 200,
+    "cost": 2900,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 17,
+    "name": "field plate suit",
+    "short_descr": "a suit of field plate",
+    "description": "A suit of field plate lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8
+    },
+    "level": 25,
+    "weight": 280,
+    "cost": 3900,
+    "extra_flags": "invis magic bless antievil antineutral",
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 18,
+    "name": "ringmail ring mail suit",
+    "short_descr": "a suit of ringmail",
+    "description": "A suit of ringmail lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 3,
+      "vs_bash": 3,
+      "vs_slash": 3
+    },
+    "level": 0,
+    "weight": 360,
+    "cost": 176,
+    "wear_flags": "take body",
+    "affects": [{
+      "level": 0,
+      "apply": "mana",
+      "modifier": -20
+    }]
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 19,
+    "name": "splintmail splint mail suit",
+    "short_descr": "a suit of splintmail",
+    "description": "A suit of splintmail armor lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 5,
+      "vs_slash": 5
+    },
+    "level": 8,
+    "weight": 450,
+    "cost": 1280,
+    "wear_flags": "take body",
+    "affects": [{
+      "level": 8,
+      "apply": "mana",
+      "modifier": -10
+    }]
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 20,
+    "name": "wooden shield",
+    "short_descr": "a wooden shield",
+    "description": "A wooden shield lies here",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 2,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 250,
+    "wear_flags": "take shield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 21,
+    "name": "splinted shield",
+    "short_descr": "a splinted shield",
+    "description": "A splinted shield lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 4,
+      "vs_slash": 4
+    },
+    "level": 5,
+    "weight": 80,
+    "cost": 710,
+    "wear_flags": "take shield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 22,
+    "name": "buckler shield",
+    "short_descr": "a buckler",
+    "description": "A buckler lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 1,
+      "vs_slash": 1
+    },
+    "level": 0,
+    "weight": 60,
+    "cost": 108,
+    "wear_flags": "take shield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 23,
+    "name": "jacket leather",
+    "short_descr": "a leather jacket",
+    "description": "A leather jacket lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 1,
+      "vs_slash": 1
+    },
+    "level": 0,
+    "weight": 60,
+    "cost": 144,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 24,
+    "name": "sleeves leather",
+    "short_descr": "a pair of leather sleeves",
+    "description": "A pair of leather sleeves lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 1,
+      "vs_slash": 1
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 72,
+    "wear_flags": "take arms"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 25,
+    "name": "cap leather",
+    "short_descr": "a leather cap",
+    "description": "A leather cap lies here",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 1,
+      "vs_slash": 1
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 72,
+    "wear_flags": "take head"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 26,
+    "name": "leather pants",
+    "short_descr": "a pair of leather pants",
+    "description": "A pair of leather pants lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 1,
+      "vs_slash": 1
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 72,
+    "wear_flags": "take legs"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 27,
+    "name": "leather gloves",
+    "short_descr": "a pair of leather gloves",
+    "description": "A pair of leather gloves lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 1,
+      "vs_slash": 1
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 72,
+    "wear_flags": "take hands"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 28,
+    "name": "padded leather boots",
+    "short_descr": "a pair of padded leather boots",
+    "description": "A pair of padded leather boots lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 1,
+      "vs_slash": 1
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 72,
+    "wear_flags": "take feet"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 29,
+    "name": "studded leather jacket",
+    "short_descr": "a studded leather jacket",
+    "description": "A studded leather jacket lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 2,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 100,
+    "cost": 340,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 30,
+    "name": "studded leather sleeves",
+    "short_descr": "a pair of studded leather sleeves",
+    "description": "A pair of studded leather sleeves lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 2,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 30,
+    "cost": 168,
+    "wear_flags": "take arms"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 31,
+    "name": "studded leather pants",
+    "short_descr": "a pair of studded leather pants",
+    "description": "A pair of studded leather pants lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 2,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 30,
+    "cost": 168,
+    "wear_flags": "take legs"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 32,
+    "name": "studded leather gloves",
+    "short_descr": "a pair of studded leather gloves",
+    "description": "A pair of studded leather gloves lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 2,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 30,
+    "cost": 168,
+    "wear_flags": "take hands"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 33,
+    "name": "leather shield",
+    "short_descr": "a leather shield",
+    "description": "A leather shield lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 2,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 30,
+    "cost": 250,
+    "wear_flags": "take shield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 34,
+    "name": "sack",
+    "short_descr": "a sack",
+    "description": "A sack lies here",
+    "item_type": "container",
+    "values": {
+      "capacity": 50,
+      "max_weight": 5,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 12,
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 35,
+    "name": "oil lamp oillamp",
+    "short_descr": "an oil lamp",
+    "description": "An oil lamp lies here",
+    "item_type": "light",
+    "values": {"duration": 100},
+    "level": 0,
+    "weight": 10,
+    "cost": 50,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 36,
+    "name": "backpack back pack",
+    "short_descr": "a backpack",
+    "description": "A backpack lies here",
+    "item_type": "container",
+    "values": {
+      "capacity": 100,
+      "flags": "closeable",
+      "max_weight": 10,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 40,
+    "cost": 50,
+    "wear_flags": "take about"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 37,
+    "name": "basket",
+    "short_descr": "a basket",
+    "description": "A basket lies here.",
+    "item_type": "container",
+    "values": {
+      "capacity": 50,
+      "max_weight": 5,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 40,
+    "cost": 8,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 38,
+    "name": "belt pouch",
+    "short_descr": "a belt pouch",
+    "description": "A belt pouch lies here",
+    "item_type": "container",
+    "values": {
+      "capacity": 25,
+      "max_weight": 2,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 27,
+    "wear_flags": "take waist"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 39,
+    "name": "candle",
+    "short_descr": "a candle",
+    "description": "A candle lies here",
+    "item_type": "light",
+    "values": {"duration": 50},
+    "level": 0,
+    "weight": 10,
+    "cost": 4,
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 40,
+    "name": "cheese",
+    "short_descr": "a hunk of cheese",
+    "description": "A hunk of cheese lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 5,
+      "fullness": 5
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 4,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 41,
+    "name": "bread",
+    "short_descr": "a bread",
+    "description": "A bread lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 5,
+      "fullness": 3
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 6,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 42,
+    "name": "dry rations",
+    "short_descr": "some dry rations",
+    "description": "Some dry rations lie here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 15,
+      "fullness": 20
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 24,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 43,
+    "name": "iron rations",
+    "short_descr": "some iron rations",
+    "description": "A tin of iron rations lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 18,
+      "fullness": 30
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 50,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 45,
+    "name": "nuts",
+    "short_descr": "some nuts",
+    "description": "Some nuts lies scattered on the ground.",
+    "item_type": "food",
+    "values": {
+      "hunger": 1,
+      "fullness": 1
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 3,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 46,
+    "name": "belt",
+    "short_descr": "a belt",
+    "description": "A nicely made belt lies here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 20,
+    "cost": 8,
+    "wear_flags": "take wrist"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 47,
+    "name": "hiking boots",
+    "short_descr": "a pair of hiking boots",
+    "description": "A nicely made pair of boots lies here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 30,
+    "cost": 12,
+    "wear_flags": "take feet"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 48,
+    "name": "fur cloak",
+    "short_descr": "a fur cloak",
+    "description": "A nicely made fur cloak lies here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 20,
+    "cost": 200,
+    "wear_flags": "take about"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 49,
+    "name": "girdle",
+    "short_descr": "a girdle",
+    "description": "A nicely made girdle lies here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 12,
+    "wear_flags": "take waist"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 50,
+    "name": "hose",
+    "short_descr": "a pair of hose",
+    "description": "A nicely made pair of hose lie here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 8,
+    "wear_flags": "take legs"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 51,
+    "name": "common robe",
+    "short_descr": "a common robe",
+    "description": "A nicely made robe of common cloth lies here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 20,
+    "cost": 36,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 52,
+    "name": "embroidered robe",
+    "short_descr": "an embroidered robe",
+    "description": "A nicely made robe of embroidered cloth lies here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 20,
+    "cost": 200,
+    "wear_flags": "take body about"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 53,
+    "name": "sandles",
+    "short_descr": "a pair of sandles",
+    "description": "A nicely made pair of sandles lies here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 20,
+    "wear_flags": "take feet"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 54,
+    "name": "sash",
+    "short_descr": "a sash",
+    "description": "A nicely made sash lies here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 8,
+    "wear_flags": "take waist"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 55,
+    "name": "silk jacket",
+    "short_descr": "a silk jacket",
+    "description": "A nicely made silk jacket lies here.",
+    "item_type": "clothing",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 320,
+    "wear_flags": "take about"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 56,
+    "name": "egg",
+    "short_descr": "an egg",
+    "description": "An egg lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 2,
+      "fullness": 2
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 4,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 57,
+    "name": "carrot",
+    "short_descr": "a carrot",
+    "description": "A carrot lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 3,
+      "fullness": 3
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 6,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 58,
+    "name": "tomato",
+    "short_descr": "a tomato",
+    "description": "A tomato lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 2,
+      "fullness": 2
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 12,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 59,
+    "name": "fig",
+    "short_descr": "a fig",
+    "description": "A fig lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 2,
+      "fullness": 1
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 3,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 60,
+    "name": "dates",
+    "short_descr": "some dates",
+    "description": "A bunch of dates lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 2,
+      "fullness": 2
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 6,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 61,
+    "name": "leg lamb",
+    "short_descr": "a leg of lamb",
+    "description": "A leg of land lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 10,
+      "fullness": 12
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 10,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 62,
+    "name": "side beef",
+    "short_descr": "a side of beef",
+    "description": "A side of beef lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 15,
+      "fullness": 15
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 20,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 63,
+    "name": "whole chicken",
+    "short_descr": "a whole chicken",
+    "description": "A whole skinned chicken lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 12,
+      "fullness": 12
+    },
+    "level": 0,
+    "weight": 30,
+    "cost": 12,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 64,
+    "name": "herring salted",
+    "short_descr": "a salted herring",
+    "description": "A salted herring lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 8,
+      "fullness": 8
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 8,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 65,
+    "name": "mussel",
+    "short_descr": "a mussel",
+    "description": "A mussel lies here.",
+    "item_type": "food",
+    "values": {
+      "hunger": 4,
+      "fullness": 4
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 4,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 67,
+    "name": "liquor glass blue oasis",
+    "short_descr": "a glass of blue oasis",
+    "description": "A glass of blue alcohol rests here.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 2,
+      "filled": 2,
+      "liquid": "whisky"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 10,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 68,
+    "name": "wine glass",
+    "short_descr": "a glass of wine",
+    "description": "A glass rests here.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 6,
+      "filled": 6,
+      "liquid": "red wine"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 13,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 69,
+    "name": "bottle grog",
+    "short_descr": "a bottle of grog",
+    "description": "A bottle lies here.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 16,
+      "filled": 16,
+      "liquid": "ale"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 8,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 70,
+    "name": "glowing vial blue",
+    "short_descr": "a glowing blue vial",
+    "description": "A glowing blue vial lies here.",
+    "item_type": "potion",
+    "values": {
+      "level": 12,
+      "skill1": "sleep"
+    },
+    "level": 1,
+    "weight": 10,
+    "cost": 270,
+    "extra_flags": "glow magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 71,
+    "name": "potion green",
+    "short_descr": "a deep-green potion",
+    "description": "A deep-green potion lies here.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "stone skin",
+      "skill2": "blindness"
+    },
+    "level": 12,
+    "weight": 10,
+    "cost": 950,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 72,
+    "name": "potion crystal clear",
+    "short_descr": "a crystal clear potion",
+    "description": "A crystal clear potion lies here.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "detect invis"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 200,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 73,
+    "name": "white potion",
+    "short_descr": "an off white potion",
+    "description": "An off white potion lies here.",
+    "item_type": "potion",
+    "values": {
+      "level": 21,
+      "skill1": "haste"
+    },
+    "level": 11,
+    "weight": 10,
+    "cost": 820,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 74,
+    "name": "potion dark blue",
+    "short_descr": "a dark blue potion",
+    "description": "A dark blue potion lies here.",
+    "item_type": "potion",
+    "values": {
+      "level": 10,
+      "skill1": "detect evil",
+      "skill2": "refresh"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 200,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 75,
+    "name": "beer bottle scorpion flaming",
+    "short_descr": "a flaming scorpion",
+    "description": "A bottle of strong beer lies here.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 16,
+      "filled": 16,
+      "liquid": "beer"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 6,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 76,
+    "name": "barrel beer",
+    "short_descr": "a barrel of beer",
+    "description": "A barrel of beer lies here.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 150,
+      "filled": 150,
+      "liquid": "beer"
+    },
+    "level": 0,
+    "weight": 80,
+    "cost": 120,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 77,
+    "name": "whisky shot",
+    "short_descr": "a shot",
+    "description": "A shot of strong liquor lies here.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 2,
+      "filled": 2,
+      "liquid": "whisky"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 12,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 78,
+    "name": "scroll recall",
+    "short_descr": "a scroll of recall",
+    "description": "A scroll of recall lies here.",
+    "item_type": "scroll",
+    "values": {
+      "level": 12,
+      "skill1": "word of recall"
+    },
+    "level": 17,
+    "weight": 40,
+    "cost": 2700,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 79,
+    "name": "wand call lightning",
+    "short_descr": "a grey-silver wand",
+    "description": "A grey-silver wand lies here.",
+    "item_type": "wand",
+    "values": {
+      "level": 15,
+      "recharge": 3,
+      "charges": 3,
+      "skill": "call lightning"
+    },
+    "level": 13,
+    "weight": 10,
+    "cost": 2800,
+    "extra_flags": "glow magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "wand",
+      "description": "You see a small engraved storm cloud at the base of this wand."
+    }]
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 80,
+    "name": "wand detect invis",
+    "short_descr": "a wand of glinting yellow",
+    "description": "A wand of glinting yellow lies here.",
+    "item_type": "wand",
+    "values": {
+      "level": 1,
+      "recharge": 15,
+      "charges": 15,
+      "skill": "detect invis"
+    },
+    "level": 5,
+    "weight": 10,
+    "cost": 580,
+    "extra_flags": "magic",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "wand",
+      "description": "You see a shape slowly fading into exsistance at the base of this wand."
+    }]
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 81,
+    "name": "wand armor",
+    "short_descr": "a wand of oak",
+    "description": "A wand of oak lies here.",
+    "item_type": "wand",
+    "values": {
+      "level": 5,
+      "recharge": 10,
+      "charges": 10,
+      "skill": "armor"
+    },
+    "level": 3,
+    "weight": 10,
+    "cost": 410,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 82,
+    "name": "wand faerie fire",
+    "short_descr": "a pink wand",
+    "description": "A pink wand lies here",
+    "item_type": "wand",
+    "values": {
+      "level": 3,
+      "recharge": 3,
+      "charges": 3,
+      "skill": "faerie fire"
+    },
+    "level": 2,
+    "weight": 10,
+    "cost": 250,
+    "extra_flags": "magic",
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 83,
+    "name": "sewing shears",
+    "short_descr": "a pair of sewing shears",
+    "description": "A pair of sewing shears lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 4,
+      "attack_type": "chop"
+    },
+    "level": 5,
+    "weight": 20,
+    "cost": 360,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 84,
+    "name": "meat cleaver",
+    "short_descr": "a meat cleaver",
+    "description": "A meat cleaver lies here",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 1,
+      "dice_size": 5,
+      "attack_type": "cleave"
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 190,
+    "extra_flags": "antievil antineutral",
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 85,
+    "name": "fountain pen",
+    "short_descr": "a fountain pen",
+    "description": "A fountain pen lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 3,
+      "dice_size": 4,
+      "attack_type": "stab"
+    },
+    "level": 11,
+    "weight": 10,
+    "cost": 640,
+    "extra_flags": "hum",
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "fountain pen",
+      "description": "Well, then pen IS mightier than the sword..."
+    }]
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 86,
+    "name": "sledge hammer",
+    "short_descr": "a sledge hammer",
+    "description": "A sledge hammer lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "mace",
+      "dice_num": 2,
+      "dice_size": 7,
+      "attack_type": "smash",
+      "flags": "twohands"
+    },
+    "level": 10,
+    "weight": 240,
+    "cost": 660,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 87,
+    "name": "horse shoe",
+    "short_descr": "a horse shoe",
+    "description": "A horse shoe lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 1,
+      "vs_slash": 1
+    },
+    "level": 5,
+    "weight": 20,
+    "cost": 300,
+    "extra_flags": "hum magic",
+    "wear_flags": "take neck hold",
+    "affects": [{
+      "level": 5,
+      "apply": "hit roll",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 88,
+    "name": "saddle",
+    "short_descr": "a saddle",
+    "description": "A saddle lies here.",
+    "item_type": "furniture",
+    "values": {
+      "heal_rate": 100,
+      "mana_rate": 100
+    },
+    "level": 0,
+    "weight": 40,
+    "cost": 600,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 89,
+    "name": "crop riding",
+    "short_descr": "a riding crop",
+    "description": "A riding crop lies here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "whip",
+      "dice_num": 1,
+      "dice_size": 4,
+      "attack_type": "whip"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 105,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 90,
+    "name": "chessboard",
+    "short_descr": "a chessboard",
+    "description": "A heavy marble chessboard lies here.",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 1,
+      "dice_size": 5,
+      "attack_type": "thwack"
+    },
+    "level": 0,
+    "weight": 100,
+    "cost": 380,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 91,
+    "name": "sesame seed",
+    "short_descr": "a sesame seed",
+    "description": "A sesame seed lies here.",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 30,
+    "cost": 1,
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 92,
+    "name": "something",
+    "short_descr": "something",
+    "description": "Something lies here.",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 2,
+      "dice_size": 5,
+      "attack_type": "drain"
+    },
+    "level": 7,
+    "weight": 0,
+    "cost": 920,
+    "wear_flags": "wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 93,
+    "name": "key",
+    "short_descr": "the jail key",
+    "description": "The key to the jail lies here.",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 30,
+    "cost": 0,
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 94,
+    "name": "key",
+    "short_descr": "the dungeon key",
+    "description": "The dungeon key lies here.",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 30,
+    "cost": 0,
+    "wear_flags": "take hold"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 95,
+    "name": "shirt tie dye",
+    "short_descr": "a tie-dye shirt",
+    "description": "A multi-colored shirt lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7
+    },
+    "level": 20,
+    "weight": 10,
+    "cost": 2900,
+    "extra_flags": "magic",
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 96,
+    "name": "bugle boy jeans",
+    "short_descr": "a pair of Bugle Boy jeans",
+    "description": "A pair of jeans lie here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 5,
+      "vs_bash": 5,
+      "vs_slash": 5
+    },
+    "level": 10,
+    "weight": 10,
+    "cost": 730,
+    "extra_flags": "magic",
+    "wear_flags": "take legs"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 97,
+    "name": "sneakers reeboks reebok pumps",
+    "short_descr": "a pair of Reebok Pumps",
+    "description": "A pair of nifty sneakers lie here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 1,
+      "vs_slash": 1
+    },
+    "level": 7,
+    "weight": 10,
+    "cost": 770,
+    "extra_flags": "magic",
+    "wear_flags": "take feet",
+    "affects": [
+      {
+        "level": 7,
+        "apply": "dexterity",
+        "modifier": 1
+      },
+      {
+        "level": 7,
+        "apply": "moves",
+        "modifier": 10
+      }
+    ]
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 98,
+    "name": "daemon claw",
+    "short_descr": "the Daemon Claw",
+    "description": "A glove with blades mounted on it lies here",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 2,
+      "dice_size": 8,
+      "attack_type": "claw"
+    },
+    "level": 14,
+    "weight": 200,
+    "cost": 1520,
+    "extra_flags": "hum",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 14,
+      "apply": "hit roll",
+      "modifier": -2
+    }]
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 99,
+    "name": "wolverine claw",
+    "short_descr": "the wolverine claw",
+    "description": "A claw from some animal lies here.",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 3,
+      "dice_size": 5,
+      "attack_type": "claw"
+    },
+    "level": 15,
+    "weight": 200,
+    "cost": 1680,
+    "extra_flags": "hum",
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 100,
+    "name": "halberd",
+    "short_descr": "the halberd",
+    "description": "A mighty halberd lies against the wall.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 3,
+      "dice_size": 7,
+      "attack_type": "chop",
+      "flags": "twohands"
+    },
+    "level": 22,
+    "weight": 160,
+    "cost": 1240,
+    "extra_flags": "magic bless",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 22,
+        "apply": "hit roll",
+        "modifier": 2
+      },
+      {
+        "level": 22,
+        "apply": "damage roll",
+        "modifier": 2
+      }
+    ]
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 101,
+    "name": "fountain water",
+    "short_descr": "a fountain",
+    "description": "A large fountain is here gurgling out an endless stream of water.",
+    "item_type": "fountain",
+    "values": {
+      "capacity": 100000,
+      "filled": 100000,
+      "liquid": "water"
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "extra_flags": "magic"
+  }},
+  {"object": {
+    "area": "newthalos",
+    "anum": 102,
+    "name": "pearl",
+    "short_descr": "a beautiful white pearl",
+    "description": "A well-formed pearl sits upon the ground, looking for an oyster.",
+    "item_type": "warp_stone",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 1000,
+    "extra_flags": "nolocate",
+    "wear_flags": "take hold",
+    "extra_description": [{
+      "keyword": "pearl",
+      "description": "It's a nicely-formed pearl, should be worth a fair amount at the jewellers.\nYou look around to see if there are any others nearby."
+    }]
+  }}
+]

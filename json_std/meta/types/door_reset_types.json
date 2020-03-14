@@ -1,0 +1,21 @@
+{"types": {
+  "name": "door_reset_types",
+  "description": "Door reset types.",
+  "values": [
+    {
+      "name": "open and unlocked",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "closed and unlocked",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "closed and locked",
+      "value": 2,
+      "settable": true
+    }
+  ]
+}}

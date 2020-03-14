@@ -1,0 +1,556 @@
+[
+  {"room": {
+    "area": "redferne",
+    "anum": 0,
+    "name": "Outside Redferne's residence",
+    "description": "A huge cloud forms the plateau on which you are now standing. The wind here\nis absolutely quiet and the sun is shining warmly upon you. From under the\ncloud you can hear the faint sounds of Midgaard. Right before you to the\nnorth lies the grand Mansion of Naris, the residence of the Greater God\nRedferne.",
+    "sector_type": "inside",
+    "room_flags": "no_mob private",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1,
+        "keyword": "gate door huge arched",
+        "description": "You see a HUGE arched gate leading into this magnificent building.",
+        "exit_flags": "door closed pickproof"
+      },
+      {
+        "dir": "south",
+        "description": "You see some pretty clouds!",
+        "portal": "redferne-south-1"
+      },
+      {
+        "dir": "down",
+        "to": 18,
+        "description": "You see a Huge Chain that anchors the Mansion of Naris to the ground."
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 0,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "thalos",
+            "anum": 21
+          },
+          "wear_loc": "wielded",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "sewer",
+            "anum": 217
+          },
+          "wear_loc": "body",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "sewer",
+            "anum": 218
+          },
+          "wear_loc": "legs",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "sewer",
+            "anum": 219
+          },
+          "wear_loc": "hands",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "sewer",
+            "anum": 220
+          },
+          "wear_loc": "head",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "sewer",
+            "anum": 221
+          },
+          "wear_loc": "shield",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "sewer",
+            "anum": 223
+          },
+          "wear_loc": "arms",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "sewer",
+            "anum": 222
+          },
+          "wear_loc": "feet",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": {
+            "area": "sewer",
+            "anum": 224
+          },
+          "wear_loc": "about",
+          "global_limit": 99
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 11,
+          "global_limit": 99
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 1,
+    "name": "The Southern end of the hall",
+    "description": "You are standing in a vast hall that is dimly lit, but wherefrom the\nlight comes, is a mystery. The walls seem to radiate warmth and give\nthe pleasant feeling of being welcome here. A large portrait is hanging\non one of the walls. A large wooden staircase leads up into the tower.\nTo the east there is a high passage away from the hall. This ends\nshortly after by a tall oak door. The enormous hall extends further\nnorth from here. To the south you can see a huge, and VERY heavy-\nlooking iron-wrought door. It looks like this is the only exit from\nthis magnificent old house. To the west you can see a large ashen door.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 4,
+        "description": "The hallway continues that way. You can see more doorways under the\nwooden staircase in that direction."
+      },
+      {
+        "dir": "east",
+        "to": 10,
+        "keyword": "oak tall east oakdoor talldoor eastdoor",
+        "description": "You see there a tall oak door. It looks quite tightly closed to you.\nOn it little runes are chiselled into the wood.",
+        "exit_flags": "door closed pickproof"
+      },
+      {
+        "dir": "south",
+        "to": 0,
+        "keyword": "gate",
+        "description": "Here you see a REAL door. It would be more proper to call this a\n\"GATE\", rather than a \"door\". It's really HUGE! On it hangs a large\nsign with very large letters spelling : \"EMERGENCY EXIT\".",
+        "exit_flags": "door closed pickproof"
+      },
+      {
+        "dir": "west",
+        "to": 2,
+        "keyword": "ashen ash door west yellow",
+        "description": "This looks like a \"door\" in the meaning of the word. The ashen wood\nis painted in a peculiar yellow colour. Small letters are written\nwith black on it.",
+        "exit_flags": "door closed pickproof"
+      },
+      {
+        "dir": "up",
+        "to": 9,
+        "description": "You see the staircase extending upwards into the very high tower.\nIt ends in what seems like a large bedroom up there."
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "letters",
+        "description": "They read \"LIBRARY\"."
+      },
+      {
+        "keyword": "runes",
+        "description": "These runes are utterly strange to you, but you are in luck today: Under\nthe runes you can just make out a sentence in Common. It goes : \" Stay out,\nif you treasure your life. That is if you are mortal.\"."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 2,
+    "name": "Redferne's Library",
+    "description": "This is truly a magnificent place! Books and scrolls lie together on every\nshelf. A large globe, with the map of the Mud-world upon it, stands in the\ndimly lit north-western corner of the room. Two large and comfortable-\nlooking leather arm-chairs adorn the center of the library together with\na huge oak desk. Dim light radiates from an enormous crystal chandelier\nhanging down from the ceiling approximately 10 feet off the floor. To the\neast there is a great old ashen door. A large glass window is set in the\nwest wall.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [{
+      "dir": "east",
+      "to": 1,
+      "keyword": "door ash ashen east",
+      "description": "You can see an old ashen door, painted in a peculiar yellow colour.",
+      "exit_flags": "door closed pickproof"
+    }],
+    "extra_description": [
+      {
+        "keyword": "river",
+        "description": "You see a large and winding river cut through the landscape, starting at an\nenormous inland lake, it seeps through Midgaard and finally ends up in the\nGrand Sea on the West-coast of the land."
+      },
+      {
+        "keyword": "out outside beyond",
+        "description": "The clouds muster and form the ground on which this entire building is set.\nThrough the thinnest of the clouds you can just make out MIDGAARD with all\nit's magnificent activity."
+      },
+      {
+        "keyword": "window glass",
+        "description": "These windows are really BIG! They reach from about 20 inches above the\nfloor to approximately 10 inches under the ceiling. If you try and\n\"look out\", you might see what might lie beyond these windows."
+      },
+      {
+        "keyword": "chairs leather arm-chairs",
+        "description": "These two chair are exactly alike one another. They look incredibly\ncomfortable. They're both made from old leather, and yet they seem so worn\nthat they can be nothing but a perfect place for a long needed rest."
+      },
+      {
+        "keyword": "midgaard town city",
+        "description": "You see a small speck with woods on the west from it, plains to the east\nfrom it and mountains to the north from it. To the south from it you can\nsee a thin trail lead to a large castle. Finally you notice a rather large\nriver pour in from the east and go through Midgaard in the middle."
+      },
+      {
+        "keyword": "globe world map",
+        "description": "You see a large world map stretch out on the enormous globe. It has towns\ndrawn in every spot available for such. In the middle of the map you can\nspot a large town with the name 'MIDGAARD' written over it. The rest is\nmountains, woods, plains and water."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 3,
+    "name": "The Artifact room of Naris",
+    "description": "This is gloomy and dark room with only a faint light radiating from the\nwalls. A bunch of funny-looking items fill the center of the room. There are\nno furniture here what-so-ever. The only way out seems to be west, through\nthe low steel door.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [{
+      "dir": "west",
+      "description": "You see only the back of a safe's steel door.",
+      "portal": "redferne-west-1"
+    }],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": 9,
+        "global_limit": 10,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 4,
+    "name": "The Northern end of the hall",
+    "description": "You are standing in the northern end of the huge hall. This part is under\nthe grand wooden staircase so the light seems a little less bright here,\nbut this doesn't bother your sight at all. To the north lies the kitchen.\nTo the south lies the Southern end of the hall. To the east there is a huge\nmetal door. To the west there is a large aspenwood door.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 6
+      },
+      {
+        "dir": "east",
+        "to": 13,
+        "keyword": "steel metal huge",
+        "description": "You see a huge metal door. From it a foul stench emanates. The smell is the\nmost awful experience in your entire life. A thought seeps through this\nterrible stench and into your mind : \"Monsters\", you feel BAD about opening\nthat door.",
+        "exit_flags": "door closed pickproof"
+      },
+      {
+        "dir": "south",
+        "to": 1,
+        "description": "The rest of the hall lies in that direction, and so does the exit."
+      },
+      {
+        "dir": "west",
+        "to": 5,
+        "keyword": "aspen asp",
+        "description": "The door has \"SITTING ROOM\" written on it. It is made from Aspenwood and\nis beautifully carven with small elves as main issue of sculpture.",
+        "exit_flags": "door closed pickproof"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 5,
+    "name": "The Sitting room of Naris",
+    "description": "You are standing in the middle of a really comfortable place. The walls are\ndecorated with paintings of smiling Kings and Queens. The most attractive\npicture is one of a Prince in shiny armour. By one of the walls there is an\nold arm-chair. The only exit is through the aspenwood door to the east.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [{
+      "dir": "east",
+      "to": 4,
+      "keyword": "asp aspen door heavy",
+      "description": "The door seems to be a very HEAVY door, carved completely from the trunk of\nan Aspen tree.",
+      "exit_flags": "door closed pickproof"
+    }],
+    "extra_description": [{
+      "keyword": "chair arm-chair",
+      "description": "This is truly a wonderful relic of the past. In it is a large cushion."
+    }]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 6,
+    "name": "The Kitchen of Naris",
+    "description": "This must be the place of food and drink. You can hear the faint noise of \nrats feasting on meat and bread from somewhere undeterminable. The sound\nmakes you feel the agony of HUNGER. The only visible exit is south to the\nNorthern end of the hall. To the north there is a larder, and to the east\nstands a fridge.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 7,
+        "keyword": "larder wooden cupboard",
+        "description": "It's dark in there,  but the sounds from there are unmistakably from rats.",
+        "exit_flags": "door closed pickproof"
+      },
+      {
+        "dir": "east",
+        "to": 8,
+        "keyword": "fridge",
+        "description": "You can see the fridge from here. In it are drinks all over.",
+        "exit_flags": "door closed pickproof"
+      },
+      {
+        "dir": "south",
+        "to": 4,
+        "description": "You can see the northern end of the hall."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 7,
+    "name": "The Larder",
+    "description": "You can see food all over. Among the heaps of food you notice HUGE rats\nscuttering around, nibbling pieces off the heaps here and there.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [{
+      "dir": "south",
+      "to": 6,
+      "keyword": "door wooden larder exit",
+      "exit_flags": "door closed pickproof"
+    }]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 8,
+    "name": "The Fridge",
+    "description": "This place is LOADED with drink, water and booze.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [{
+      "dir": "west",
+      "to": 6,
+      "keyword": "door exit fridge",
+      "exit_flags": "door closed pickproof"
+    }],
+    "resets": [{
+      "command": "object",
+      "values": {
+        "obj": {
+          "area": "haon",
+          "anum": 13
+        },
+        "global_limit": 10,
+        "room_limit": 0
+      }
+    }]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 9,
+    "name": "On the stairs",
+    "description": "You can see up and down the stairway. It seems to take forever, either going\nup OR down. It's just a seemingly insurmountable climb, either way. Up is the \nbedroom of Redferne, and Down leads to the Southern end of the hall.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 11
+      },
+      {
+        "dir": "down",
+        "to": 1
+      }
+    ]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 10,
+    "name": "The Treasure room",
+    "description": "This place is gloomy.  The only visible exit is west, through the oak door.",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [
+      {
+        "dir": "east",
+        "keyword": "safe steel",
+        "portal": "redferne-east-1"
+      },
+      {
+        "dir": "west",
+        "to": 1,
+        "keyword": "door oak tall",
+        "description": "You see a tall oak door.",
+        "exit_flags": "door closed pickproof"
+      }
+    ],
+    "resets": [
+      {
+        "command": "object",
+        "values": {
+          "obj": 10,
+          "global_limit": 1,
+          "room_limit": 0
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": {
+            "area": "sewer",
+            "anum": 298
+          },
+          "into": 10,
+          "global_limit": 1,
+          "put_count": 1
+        }
+      },
+      {
+        "command": "put",
+        "values": {
+          "obj": {
+            "area": "sewer",
+            "anum": 208
+          },
+          "into": 10,
+          "global_limit": 6,
+          "put_count": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 11,
+    "name": "Redferne's Bedroom",
+    "description": "This is a snugly set bedroom with all the necessities for a romantic evening.\nA large fireplace adorns the east wall, and sizzling away is the wood that\nis ablaze within.  The bed is enormous, covering at least HALF of this great\nroom.  This stretches at least 300 square feet, so can you imagine the BED?\nA large staircase leads down to the hall.  A couple of doors open up to a\nbroad balcony to the south. ",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors private",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 12,
+        "keyword": "doors",
+        "description": "The sun seems to shine out there, warmly and comforting.",
+        "exit_flags": "door closed"
+      },
+      {
+        "dir": "down",
+        "to": 9
+      }
+    ]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 12,
+    "name": "The Balcony of Redferne's Residence",
+    "description": "You see a splendid view of the most of this world. The valleys stretch as far\nas the eye can see to the south. Down below you can see the entrance\nof this magnificent building. To the north are the doors to Redferne's Bedroom.",
+    "sector_type": "inside",
+    "room_flags": "no_mob private",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 11,
+        "keyword": "doors",
+        "description": "You see the comfortable bedroom of Naris, the mansion of Redferne the Greater\nGod.",
+        "exit_flags": "door closed pickproof"
+      },
+      {
+        "dir": "down",
+        "description": "You see the ground on which this castle is set. Funnily it seems to you that\nit's no more than clouds.",
+        "portal": "redferne-down-2"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 13,
+    "name": "The Monster Pen",
+    "description": "This looks like the cage in which a large carnivore is being kept. Judging by\nthe state the walls are in, this could very well be a large AGGRESSIVE animal. \nThis makes you pretty insecure, this stating your feeling about the place, \nquite mildly.",
+    "sector_type": "inside",
+    "room_flags": "indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 4,
+      "keyword": "door cage metal pen",
+      "description": "This looks like the only exit from here.",
+      "exit_flags": "door closed pickproof"
+    }]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 14,
+    "name": "On the Huge Chain",
+    "description": "This place has quite a good view over Midgaard. Your possibilities of movement\nseems to extend only to up and down. Unless you want to let go of the secure\nand seemingly unmoveable chain, then those are the directions you should take\nfrom here.",
+    "sector_type": "mountain",
+    "room_flags": "no_mob",
+    "doors": [
+      {
+        "dir": "up",
+        "to": 16,
+        "description": "Up the way you see the chain disappearing into the clouds above."
+      },
+      {
+        "dir": "down",
+        "description": "Down below you see the huge chain anchored to the ground in the Road Crossing.",
+        "portal": "redferne-down-1"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 16,
+    "name": "On the Great Chain of Naris",
+    "description": "You are approximately on the middle of the treacherous Chain. One false step\nand death will come and collect you quickly. The chain leads upwards and down.\nNo way are you going to descend now ... you've only just begun your climb.\nBesides it could cost you your life.  Look down and you'll see why.",
+    "sector_type": "mountain",
+    "room_flags": "no_mob",
+    "doors": [{
+      "dir": "up",
+      "to": 18,
+      "description": "There seems to be only one way from here and that's up."
+    }]
+  }},
+  {"room": {
+    "area": "redferne",
+    "anum": 18,
+    "name": "The Mighty Chain of Naris",
+    "description": "This place offers a splendid view of the WHOLE COUNTRY SIDE!!! A magnificent\nlight shines upon you and the way up through the clouds is opened. Up there\nyou can now see the Mansion of Naris, Residence of the Greater God Redferne.\nThe chain beneath you seems to evaporate in the mustering clouds that\nsurround you by now.",
+    "sector_type": "mountain",
+    "room_flags": "no_mob",
+    "doors": [{
+      "dir": "up",
+      "to": 0,
+      "description": "You see the sunny top of the clouds. Beyond these, the Mansion towers before\nyour eyes. Beautiful!!"
+    }]
+  }}
+]

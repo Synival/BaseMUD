@@ -1802,7 +1802,7 @@ RECYCLE_T recycle_table[RECYCLE_MAX + 1] = {
     RECYCLE_ENTRY   (RECYCLE_MEM_T,         mem_data,    MEM_T,               NULL,             NULL),
     RECYCLE_ENTRY   (RECYCLE_BUFFER_T,      buf,         BUFFER_T,            buf_init,         buf_dispose),
     RECYCLE_ENTRY   (RECYCLE_MPROG_LIST_T,  mprog,       MPROG_LIST_T,        mprog_init,       mprog_dispose),
-    RECYCLE_N_ENTRY (RECYCLE_HELP_AREA_T,   had,         HELP_AREA_T, filename, NULL,           had_dispose),
+    RECYCLE_N_ENTRY (RECYCLE_HELP_AREA_T,   had,         HELP_AREA_T,   name, NULL,             had_dispose),
     RECYCLE_ENTRY   (RECYCLE_NOTE_T,        note,        NOTE_T,              NULL,             note_dispose),
     RECYCLE_N_ENTRY (RECYCLE_SOCIAL_T,      social,      SOCIAL_T,      name, social_init,      social_dispose),
     RECYCLE_N_ENTRY (RECYCLE_PORTAL_EXIT_T, portal_exit, PORTAL_EXIT_T, name, NULL,             portal_exit_dispose),

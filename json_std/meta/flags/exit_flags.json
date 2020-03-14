@@ -1,0 +1,66 @@
+{"flags": {
+  "name": "exit_flags",
+  "description": "Exit types.",
+  "values": [
+    {
+      "name": "door",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "closed",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "locked",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "unused_exit_1",
+      "value": 3,
+      "settable": false
+    },
+    {
+      "name": "unused_exit_2",
+      "value": 4,
+      "settable": false
+    },
+    {
+      "name": "pickproof",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "nopass",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "easy",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "hard",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "infuriating",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "noclose",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "nolock",
+      "value": 11,
+      "settable": true
+    }
+  ]
+}}

@@ -540,9 +540,9 @@
 
 /* Types of tables used for our master reference table. */
 #define TABLE_FLAGS     0
-#define TABLE_TYPES     1
-#define TABLE_UNIQUE    2
-#define TABLE_EXT_FLAGS 3
+#define TABLE_EXT_FLAGS 1
+#define TABLE_TYPES     2
+#define TABLE_UNIQUE    3
 #define TABLE_INTERNAL  4
 
 #define TABLE_MAX               76

@@ -1,0 +1,20 @@
+[
+  {"clan": {
+    "name": null,
+    "who_name": null,
+    "hall": 3054,
+    "independent": true
+  }},
+  {"clan": {
+    "name": "loner",
+    "who_name": "[ Loner ] ",
+    "hall": 3054,
+    "independent": true
+  }},
+  {"clan": {
+    "name": "rom",
+    "who_name": "[  ROM  ] ",
+    "hall": 3054,
+    "independent": false
+  }}
+]

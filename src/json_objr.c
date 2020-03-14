@@ -689,8 +689,8 @@ AREA_T *json_objr_area (const JSON_T *json) {
     READ_PROP_STRP (area->builders,   "builders");
     READ_PROP_INT  (area->security,   "security");
 
-    area->age     = 15;
-    area->nplayer = 0;
+    area->age        = AREA_RESET_ALWAYS_AGE;
+    area->nplayer    = 0;
     area->area_flags = 0;
 
     NO_NULL_STR (area->name);

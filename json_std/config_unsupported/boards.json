@@ -1,0 +1,47 @@
+[
+  {"board": {
+    "name": "General",
+    "full_name": "General discussion",
+    "read_level": 0,
+    "write_level": 2,
+    "recipients": "all",
+    "force_type": "include",
+    "purge_days": 21
+  }},
+  {"board": {
+    "name": "Ideas",
+    "full_name": "Suggestion for improvement",
+    "read_level": 0,
+    "write_level": 2,
+    "recipients": "all",
+    "force_type": "normal",
+    "purge_days": 60
+  }},
+  {"board": {
+    "name": "Announce",
+    "full_name": "Announcements from Immortals",
+    "read_level": 0,
+    "write_level": 52,
+    "recipients": "all",
+    "force_type": "normal",
+    "purge_days": 60
+  }},
+  {"board": {
+    "name": "Bugs",
+    "full_name": "Typos, bugs, errors",
+    "read_level": 0,
+    "write_level": 1,
+    "recipients": "imm",
+    "force_type": "normal",
+    "purge_days": 60
+  }},
+  {"board": {
+    "name": "Personal",
+    "full_name": "Personal messages",
+    "read_level": 0,
+    "write_level": 1,
+    "recipients": "all",
+    "force_type": "exclude",
+    "purge_days": 28
+  }}
+]

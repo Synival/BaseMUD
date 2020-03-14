@@ -1,0 +1,56 @@
+[
+  {"mobile": {
+    "area": "air",
+    "anum": 0,
+    "name": "fairy dragon",
+    "short_descr": "A fairy dragon",
+    "long_descr": "A fairy dragon is fluttering around here looking for something to do...",
+    "description": "It's a cute little multi-colored dragon...about 2 foot long.\nIt gracefully dances around your head.",
+    "race": "human",
+    "alignment": 500,
+    "level": 5,
+    "hitroll": 0,
+    "hit_dice": "2d7+46",
+    "mana_dice": "5d9+100",
+    "damage_dice": "1d5+0",
+    "ac": {
+      "pierce": 60,
+      "bash": 60,
+      "slash": 60,
+      "magic": 80
+    },
+    "sex": "neutral",
+    "wealth": 1,
+    "size": "medium",
+    "mob_flags": "stay_area mage",
+    "affected_by": "detect_invis detect_magic",
+    "offense": "dodge assist_vnum",
+    "spec_fun": "spec_cast_mage"
+  }},
+  {"mobile": {
+    "area": "air",
+    "anum": 1,
+    "name": "griffin",
+    "short_descr": "A griffin",
+    "long_descr": "A large black winged griffin swoops into an attack.",
+    "description": "Golden maned and black all over.  It's quite a beautiful creature if not\nfor the fact it is hungry and is attacking you!",
+    "race": "human",
+    "alignment": 300,
+    "level": 8,
+    "hitroll": 0,
+    "hit_dice": "2d7+96",
+    "mana_dice": "4d9+100",
+    "damage_dice": "1d7+2",
+    "ac": {
+      "pierce": 30,
+      "bash": 30,
+      "slash": 30,
+      "magic": 90
+    },
+    "sex": "male",
+    "wealth": 25,
+    "size": "medium",
+    "mob_flags": "aggressive stay_area",
+    "offense": "disarm dodge trip assist_vnum"
+  }}
+]

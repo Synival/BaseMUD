@@ -1889,7 +1889,6 @@
     },
     {
       "keyword": "CONFISCATE",
-      "level": 58,
       "text": "Syntax: confiscate <item> <player>
               |
               |Confiscate will take an item from a player and put it in the
@@ -1897,7 +1896,8 @@
               |will be unequipped.
               |
               |The player is given notice that this has occured.
-              |"
+              |",
+      "level": 58
     }
   ]
 }}]

@@ -1,0 +1,156 @@
+{"flags": {
+  "name": "affect_flags",
+  "description": "Mobile affects.",
+  "values": [
+    {
+      "name": "blind",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "invisible",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "detect_evil",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "detect_invis",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "detect_magic",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "detect_hidden",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "detect_good",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "sanctuary",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "faerie_fire",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "infrared",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "curse",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "unused_aff_1",
+      "value": 11,
+      "settable": false
+    },
+    {
+      "name": "poison",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "protect_evil",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "protect_good",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "sneak",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "hide",
+      "value": 16,
+      "settable": true
+    },
+    {
+      "name": "sleep",
+      "value": 17,
+      "settable": true
+    },
+    {
+      "name": "charm",
+      "value": 18,
+      "settable": true
+    },
+    {
+      "name": "flying",
+      "value": 19,
+      "settable": true
+    },
+    {
+      "name": "pass_door",
+      "value": 20,
+      "settable": true
+    },
+    {
+      "name": "haste",
+      "value": 21,
+      "settable": true
+    },
+    {
+      "name": "calm",
+      "value": 22,
+      "settable": true
+    },
+    {
+      "name": "plague",
+      "value": 23,
+      "settable": true
+    },
+    {
+      "name": "weaken",
+      "value": 24,
+      "settable": true
+    },
+    {
+      "name": "dark_vision",
+      "value": 25,
+      "settable": true
+    },
+    {
+      "name": "berserk",
+      "value": 26,
+      "settable": true
+    },
+    {
+      "name": "swim",
+      "value": 27,
+      "settable": true
+    },
+    {
+      "name": "regeneration",
+      "value": 28,
+      "settable": true
+    },
+    {
+      "name": "slow",
+      "value": 29,
+      "settable": true
+    }
+  ]
+}}

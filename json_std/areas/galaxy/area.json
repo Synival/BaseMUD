@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "galaxy",
+  "filename": "galaxy.are",
+  "title": "Galaxy",
+  "credits": "{20 30} Doctor  Galaxy",
+  "min_vnum": 9300,
+  "max_vnum": 9399,
+  "builders": "None",
+  "security": 9
+}}]

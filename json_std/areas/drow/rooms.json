@@ -1,0 +1,1451 @@
+[
+  {"room": {
+    "area": "drow",
+    "anum": 0,
+    "name": "City Entrance",
+    "description": "You are at the entrance to a small underground city. A great adamantite\ngate lies open to the west allowing entrance into the city.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "west",
+        "to": 1,
+        "keyword": "gate",
+        "description": "A huge gate opens to the west allowing entrance into the city."
+      },
+      {
+        "dir": "up",
+        "keyword": "door",
+        "description": "A small hole in the ceiling leads up into darkness.",
+        "exit_flags": "door closed",
+        "portal": "drow-up-1"
+      }
+    ],
+    "extra_description": [
+      {
+        "keyword": "hole",
+        "description": "A small hole that looks to have been sealed at one time."
+      },
+      {
+        "keyword": "gate",
+        "description": "A large adamantite gate with giant spider shaped emblems stands here."
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 1,
+    "name": "City street",
+    "description": "You walk along a highly ornate street going north-south. A large gate\nlies to the east while a building lies to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 23
+      },
+      {
+        "dir": "east",
+        "to": 0
+      },
+      {
+        "dir": "south",
+        "to": 2
+      },
+      {
+        "dir": "west",
+        "to": 22
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 5,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 2,
+    "name": "City street",
+    "description": "You walk along a highly ornate city street going north and west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 1
+      },
+      {
+        "dir": "west",
+        "to": 3
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 3,
+    "name": "City street",
+    "description": "You walk along a highly ornate city street going east-west. A large house\nstands to the south.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 2
+      },
+      {
+        "dir": "south",
+        "to": 4
+      },
+      {
+        "dir": "west",
+        "to": 6
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 4,
+    "name": "3rd House",
+    "description": "You stand inside the 3rd house of the city; it is fairly well decorated\nby drow standards having a few statues, murals and such. A door leads to the\nsouth.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 3
+      },
+      {
+        "dir": "south",
+        "to": 5,
+        "exit_flags": "door"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "wielded",
+          "global_limit": 12
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 3,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 5,
+    "name": "Throne Room",
+    "description": "The throne room of the 3rd house is about as decorated as the inner\ncourtyard except with a blood covered altar in the center of the room.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 4,
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 11,
+          "wear_loc": "head",
+          "global_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 6,
+    "name": "City street",
+    "description": "You walk along a highly ornate city street going east-west. To the north\nis a large building.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 18
+      },
+      {
+        "dir": "east",
+        "to": 3
+      },
+      {
+        "dir": "west",
+        "to": 7
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 7,
+    "name": "City street",
+    "description": "You walk along a highly ornate city street leading north and east. To the\nsouth is an extremely large house.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 10
+      },
+      {
+        "dir": "east",
+        "to": 6
+      },
+      {
+        "dir": "south",
+        "to": 8
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 8,
+    "name": "2nd House",
+    "description": "You stand inside the 2nd house of the city. The room is highly decorated\nwith statues of spiders and murals everywhere.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 7
+      },
+      {
+        "dir": "west",
+        "to": 9,
+        "exit_flags": "door"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "wielded",
+          "global_limit": 12
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 3,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 9,
+    "name": "Throne Room",
+    "description": "The throne room of the 2nd house is just a little more decorative than\nthe inner courtyard having an altar in the center of the room.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 8,
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 8,
+          "wear_loc": "arms",
+          "global_limit": 2
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 10,
+    "name": "Main Gate",
+    "description": "You are at the entrance to the 1st house of the city. A large gate, almost\nas big and elegant as the one at the entrance to the city, stands here.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 14
+      },
+      {
+        "dir": "south",
+        "to": 7
+      },
+      {
+        "dir": "west",
+        "to": 11,
+        "keyword": "gate",
+        "description": "A large gate lies to the west.",
+        "exit_flags": "door"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 11,
+    "name": "1st House",
+    "description": "You stand in the inner courtyard of the 1st and largest house in the city.\nThe room is extremely large and decorative. Mural and paintings hang on the\nwalls depicting some battles and a spider queen.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 10,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "west",
+        "to": 12
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "wielded",
+          "global_limit": 12
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 3,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 12,
+    "name": "Throne Room",
+    "description": "The throne room of the 1st house is in one word...awesome. It is so\nhorrifying it is almost beautiful.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 13,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "east",
+        "to": 11
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 13,
+    "name": "Main Chamber",
+    "description": "This is the council chamber for the Matron Mother herself. A huge table\nand chairs surrounding it sits in the center of the room.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "portal": "drow-room-1",
+    "doors": [{
+      "dir": "south",
+      "to": 12,
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 8,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 12,
+          "wear_loc": "lfinger",
+          "global_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 14,
+    "name": "City street",
+    "description": "You walk along a highly ornate city street leading north-south and east.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 15
+      },
+      {
+        "dir": "east",
+        "to": 17
+      },
+      {
+        "dir": "south",
+        "to": 10
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 15,
+    "name": "City street",
+    "description": "You walk along a highly ornate city street leading south. A building is\nto the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 14
+      },
+      {
+        "dir": "west",
+        "to": 16,
+        "exit_flags": "door"
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 16,
+    "name": "Cleric Academy",
+    "description": "This is the most lavish of the academies being that it is for the clerics.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 15,
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 10,
+          "wear_loc": "hold",
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 17,
+    "name": "City street",
+    "description": "You walk along a highly ornate city street going east-west. To the north\nis a giant temple.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 19,
+        "description": "The entrance to the temple of Lloth.",
+        "exit_flags": "door"
+      },
+      {
+        "dir": "east",
+        "to": 21
+      },
+      {
+        "dir": "west",
+        "to": 14
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 18,
+    "name": "Warrior's Academy",
+    "description": "This looks more like a barracks than a school.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 6
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 10,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "wielded",
+          "global_limit": 50
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 5,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 10,
+          "wear_loc": "hold",
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 19,
+    "name": "Entrance to the Temple of Lloth",
+    "description": "The temple is the largest building in the city. Even it's doors are beyond\nimagination. Inside of the temple entrance, the walls are made of gold and\nadamantite.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 17,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "down",
+        "to": 26
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 20,
+    "name": "Mage's Academy",
+    "description": "The mages academy is fairly well decorated see that the drow prefer magic\nover physical power greatly.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 21,
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 5,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 2
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 10,
+          "wear_loc": "hold",
+          "global_limit": 5
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 21,
+    "name": "City street",
+    "description": "You walk along a highly ornate city street going eastward. To the north is\na building.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 20,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "east",
+        "to": 23
+      },
+      {
+        "dir": "south",
+        "to": 22
+      },
+      {
+        "dir": "west",
+        "to": 17
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 22,
+    "name": "Slave Chamber",
+    "description": "The room is in shambles. Straw is strewn all about the room as beds for the\nunfortunate creatures who have fallen prey to drow imperialism.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 21
+      },
+      {
+        "dir": "east",
+        "to": 1
+      }
+    ],
+    "resets": [{
+      "command": "mobile",
+      "values": {
+        "mob": 0,
+        "global_limit": 15,
+        "room_limit": 15
+      }
+    }]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 23,
+    "name": "City street",
+    "description": "You walk along a highly ornate city street leading west and south. To the\nnorth is a relatively small house.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 24,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "south",
+        "to": 1
+      },
+      {
+        "dir": "west",
+        "to": 21
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 24,
+    "name": "4th house",
+    "description": "You stand inside the 4th house of the city. Its inner courtyard is rather\ndull by drow standards and rather small as well.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 25
+      },
+      {
+        "dir": "south",
+        "to": 23,
+        "exit_flags": "door"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 2,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 1,
+          "wear_loc": "wielded",
+          "global_limit": 12
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 3,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 2,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      },
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 4,
+          "global_limit": 4,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 3,
+          "wear_loc": "wielded",
+          "global_limit": 4
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 25,
+    "name": "Throne Room",
+    "description": "The throne room is basically similar to the inner courtyard in regards\nto decor. there is a small throne behind the altar but that is about it.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 24
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 7,
+          "global_limit": 3,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 4,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      },
+      {
+        "command": "give",
+        "values": {
+          "obj": 14,
+          "global_limit": 3
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 26,
+    "name": "Entrance Way",
+    "description": "You stand in the entrance way to the temple which opens up to the north\ninto a large hallway going east and west. Small statues of spiders line the\nentrance way's walls.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 27
+      },
+      {
+        "dir": "up",
+        "to": 19
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 27,
+    "name": "Hallway",
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west. As you\nlook down the hallway you can make out one or two figures moving away from you.\nTo the north is a obsidian stairway.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 35
+      },
+      {
+        "dir": "east",
+        "to": 28
+      },
+      {
+        "dir": "south",
+        "to": 26
+      },
+      {
+        "dir": "west",
+        "to": 31
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 28,
+    "name": "Long Hallway",
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west. As you\nlook down the hallway you can make out one or two figures moving away from you.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 29
+      },
+      {
+        "dir": "west",
+        "to": 27
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 29,
+    "name": "Long Hallway",
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west. As you\nlook down the hallway you can make out one or two figures moving away from you.\nTo the north is a door.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 50,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "east",
+        "to": 30
+      },
+      {
+        "dir": "west",
+        "to": 28
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 30,
+    "name": "Long Hallway",
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west. As you\nlook down the hallway you can make out one or two figures moving away from you.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 34
+      },
+      {
+        "dir": "west",
+        "to": 29
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 31,
+    "name": "Long Hallway",
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west. As you\nlook down the hallway you can make out one or two figures moving away from you.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 27
+      },
+      {
+        "dir": "west",
+        "to": 32
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 32,
+    "name": "Long Hallway",
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west. As you\nlook down the hallway you can make out one or two figures moving away from you.\nTo the south is a door.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 31
+      },
+      {
+        "dir": "south",
+        "to": 33,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "west",
+        "to": 34
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 33,
+    "name": "Warrior's Barracks",
+    "description": "The room is a complete mess. None of the beds are made, clothes and other\nitems have been left all about the room. Well drow warriors never were known\nfor neatness.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "north",
+      "to": 32,
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 1,
+          "global_limit": 10,
+          "room_limit": 5
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 0,
+          "wear_loc": "wielded",
+          "global_limit": 50
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 34,
+    "name": "Long Hallway",
+    "description": "You are in a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west. As you\nlook down the hallway you can make out one or two figures moving away from you.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 32
+      },
+      {
+        "dir": "west",
+        "to": 30
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 35,
+    "name": "Grand Stairway",
+    "description": "You are standing at the bottom of a giant obsidian and adamantite\nstairway. The edges are trimmed with gold.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 27
+      },
+      {
+        "dir": "up",
+        "to": 36
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 36,
+    "name": "Grand Hallway",
+    "description": "You are standing in the middle of a grand hallway. The walls are\nof the purest adamantite with gold trim. Mosaics line the walls.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 38
+      },
+      {
+        "dir": "east",
+        "to": 37,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "down",
+        "to": 35
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 37,
+    "name": "Mage's Barracks",
+    "description": "The mage's living quarters is rather clean with the exception of a few\nused component containers. It is rather well decorated as well. Cots line the\nfloor for the mages to sleep on. the only door is to the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "west",
+      "to": 36,
+      "exit_flags": "door"
+    }]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 38,
+    "name": "Grand Hallway",
+    "description": "You are walking down a grand hallway, heavily decorated with adamantite\nand gold. To the north the hall goes down a flight of stairs while a door is\ntoo the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 36
+      },
+      {
+        "dir": "west",
+        "to": 39,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "down",
+        "to": 40
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 39,
+    "name": "Cleric's Barracks",
+    "description": "The bed chamber is brightly decorated with spider shaped statues, murals\nand the like. Large beds line the floor making this a comfortable room to live\nin.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 38,
+      "exit_flags": "door"
+    }]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 40,
+    "name": "Grand Stairway",
+    "description": "You are climbing a set of obsidian stairs surrounded by adamantite walls.\nTo the north are a set of large golden doors.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 41,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "up",
+        "to": 38
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 41,
+    "name": "Main Chamber",
+    "description": "This is the south side of a large auditorium used for services by the\ndrow priestesses. In the center is a large sacrificial pit and beyond that is\nan altar.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "east",
+        "to": 42
+      },
+      {
+        "dir": "south",
+        "to": 40,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "west",
+        "to": 44
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 42,
+    "name": "Eastern side of Chamber",
+    "description": "You are on the eastern side of the chamber overlooking the pit. To the east\nis a door while to the north is an altar.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 45
+      },
+      {
+        "dir": "east",
+        "to": 46,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "south",
+        "to": 41
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 43,
+    "name": "Sacrificial Pit",
+    "description": "A you climb down into the pit thousands of spiders cover you tearing your\nbody to shreds.\n\nLloth thanks you for your sacrifice.\n\nYou've fallen, and you can't get up!!!",
+    "sector_type": "inside",
+    "room_flags": "no_mob indoors"
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 44,
+    "name": "Western side of Chamber",
+    "description": "You are on the western side of the main chamber overlooking a sacrificial\npit. To the north is an altar.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 45
+      },
+      {
+        "dir": "south",
+        "to": 41
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 45,
+    "name": "The Altar",
+    "description": "You are standing in front of a highly and freshly bloodstained altar.\nEngraved on the top of the altar is a giant spider with a human head. Looking\ndown from the altar you see a large sacrificial pit.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 48
+      },
+      {
+        "dir": "east",
+        "to": 42
+      },
+      {
+        "dir": "west",
+        "to": 44
+      },
+      {
+        "dir": "down",
+        "to": 43
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 46,
+    "name": "Slave Cells",
+    "description": "This is the main room to the cell chambers for the slaves to be\nsacrificed. You notice there are no guards around.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "north",
+        "to": 47,
+        "exit_flags": "door"
+      },
+      {
+        "dir": "west",
+        "to": 42
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 47,
+    "name": "Slave Pen",
+    "description": "Rotten meat and breads lie about the floor while shackles hang from the\nwalls. The room wreaks of death. You almost become nauseous and decide to leave\nthe room since you were obviously too late to save the slave.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 46,
+      "exit_flags": "door"
+    }]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 48,
+    "name": "Dais",
+    "description": "You stand upon a dais behind the altar. Above you is a enormous illusion\nof a female drow turning into a giant spider and back again. There is a door\nto the west.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [
+      {
+        "dir": "south",
+        "to": 45
+      },
+      {
+        "dir": "west",
+        "to": 49,
+        "exit_flags": "door"
+      }
+    ],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 9,
+          "global_limit": 1,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 13,
+          "wear_loc": "wielded",
+          "global_limit": 1
+        }
+      }
+    ]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 49,
+    "name": "The Treasury",
+    "description": "This is obviously only a temporary storage place for the collected\ntreasure being rather bare.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "east",
+      "to": 48,
+      "exit_flags": "door"
+    }]
+  }},
+  {"room": {
+    "area": "drow",
+    "anum": 50,
+    "name": "Weaponsmaster's Chamber",
+    "description": "This one person bedchamber is very elegant. The owner must be held in high\nto get this kind of treatment.",
+    "sector_type": "inside",
+    "room_flags": "dark indoors",
+    "doors": [{
+      "dir": "south",
+      "to": 29,
+      "exit_flags": "door"
+    }],
+    "resets": [
+      {
+        "command": "mobile",
+        "values": {
+          "mob": 6,
+          "global_limit": 2,
+          "room_limit": 1
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 5,
+          "wear_loc": "wielded",
+          "global_limit": 3
+        }
+      },
+      {
+        "command": "equip",
+        "values": {
+          "obj": 9,
+          "wear_loc": "hands",
+          "global_limit": 1
+        }
+      }
+    ]
+  }}
+]

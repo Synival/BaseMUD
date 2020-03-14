@@ -247,7 +247,7 @@ AREA_T *area_get_by_vnum (int vnum) {
     return NULL;
 }
 
-AREA_T *area_get_by_filename (const char *filename) {
+AREA_T *area_get_by_filename_exact (const char *filename) {
     AREA_T *a;
     for (a = area_get_first(); a; a = area_get_next (a))
         if (strcmp (filename, a->filename) == 0)
@@ -278,7 +278,7 @@ HELP_AREA_T *help_area_get_by_help (HELP_T *help) {
     return NULL;
 }
 
-HELP_AREA_T *help_area_get_by_filename (const char *filename) {
+HELP_AREA_T *help_area_get_by_filename_exact (const char *filename) {
     HELP_AREA_T *had;
     for (had = had_first; had; had = had->global_next)
         if (strcmp (had->filename, filename) == 0)

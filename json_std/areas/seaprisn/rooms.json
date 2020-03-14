@@ -1,0 +1,12 @@
+[{"room": {
+  "area": "seaprisn",
+  "anum": 0,
+  "name": "Along a Rocky River",
+  "description": "The Dragon Sea funnels into a river here, somehow. To the west is the\nDragon Sea, to the north is a bend in this rocky, dangerous river.",
+  "sector_type": "noswim",
+  "room_flags": "no_mob",
+  "doors": [{
+    "dir": "south",
+    "portal": "seaprisn-south-1"
+  }]
+}}]

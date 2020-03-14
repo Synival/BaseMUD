@@ -1,0 +1,103 @@
+[
+  {"object": {
+    "area": "arachnos",
+    "anum": 103,
+    "name": "headdress pontiff's",
+    "short_descr": "a pontiff's headdress",
+    "description": "A white cone-shaped head ornament with religious symbols lies here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 6,
+      "vs_slash": 6,
+      "vs_magic": 3
+    },
+    "level": 18,
+    "weight": 50,
+    "cost": 4600,
+    "extra_flags": "invis magic",
+    "wear_flags": "take head",
+    "affects": [
+      {
+        "level": 18,
+        "apply": "armor class",
+        "modifier": -2
+      },
+      {
+        "level": 18,
+        "apply": "wisdom",
+        "modifier": 2
+      }
+    ]
+  }},
+  {"object": {
+    "area": "arachnos",
+    "anum": 104,
+    "name": "visor black knight's",
+    "short_descr": "a black knight's visor",
+    "description": "A black visor sits here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 6,
+      "vs_slash": 6,
+      "vs_magic": 2
+    },
+    "level": 17,
+    "weight": 50,
+    "cost": 4600,
+    "extra_flags": "invis magic",
+    "wear_flags": "take head",
+    "affects": [
+      {
+        "level": 17,
+        "apply": "constitution",
+        "modifier": 2
+      },
+      {
+        "level": 17,
+        "apply": "strength",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "arachnos",
+    "anum": 108,
+    "name": "coins silver gold",
+    "short_descr": "a big pile of coins",
+    "description": "A big pile of coins is lying here.",
+    "item_type": "money",
+    "values": {
+      "silver": 500,
+      "gold": 20
+    },
+    "level": 0,
+    "weight": 0,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "arachnos",
+    "anum": 109,
+    "name": "potion blue",
+    "short_descr": "a blue potion",
+    "description": "A blue potion has been left here.",
+    "item_type": "potion",
+    "values": {
+      "level": 15,
+      "skill1": "cure poison",
+      "skill2": "cure critical",
+      "skill3": "cure critical"
+    },
+    "level": 10,
+    "weight": 20,
+    "cost": 700,
+    "extra_flags": "magic",
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "potion blue",
+      "description": "It has a nice sky blue colour and a smell like peppermint."
+    }]
+  }}
+]

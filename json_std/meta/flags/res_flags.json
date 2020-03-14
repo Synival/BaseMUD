@@ -1,0 +1,136 @@
+{"flags": {
+  "name": "res_flags",
+  "description": "Mobile immunity.",
+  "values": [
+    {
+      "name": "summon",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "charm",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "magic",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "weapon",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "bash",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "pierce",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "slash",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "fire",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "cold",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "lightning",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "acid",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "poison",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "negative",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "holy",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "energy",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "mental",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "disease",
+      "value": 16,
+      "settable": true
+    },
+    {
+      "name": "drowning",
+      "value": 17,
+      "settable": true
+    },
+    {
+      "name": "light",
+      "value": 18,
+      "settable": true
+    },
+    {
+      "name": "sound",
+      "value": 19,
+      "settable": true
+    },
+    {
+      "name": "unused_res_1",
+      "value": 20,
+      "settable": false
+    },
+    {
+      "name": "unused_res_2",
+      "value": 21,
+      "settable": false
+    },
+    {
+      "name": "unused_res_3",
+      "value": 22,
+      "settable": false
+    },
+    {
+      "name": "wood",
+      "value": 23,
+      "settable": true
+    },
+    {
+      "name": "silver",
+      "value": 24,
+      "settable": true
+    },
+    {
+      "name": "iron",
+      "value": 25,
+      "settable": true
+    }
+  ]
+}}

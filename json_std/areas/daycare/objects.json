@@ -1,0 +1,222 @@
+[
+  {"object": {
+    "area": "daycare",
+    "anum": 0,
+    "name": "axe toy",
+    "short_descr": "a toy axe",
+    "description": "An axe made of wood lies here.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "axe",
+      "dice_num": 1,
+      "dice_size": 5,
+      "attack_type": "chop"
+    },
+    "level": 0,
+    "weight": 30,
+    "cost": 250,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "axe toy",
+      "description": "A small label says 'made in Taiwan'."
+    }]
+  }},
+  {"object": {
+    "area": "daycare",
+    "anum": 1,
+    "name": "ring pink ice",
+    "short_descr": "a pink ice ring",
+    "description": "A pink ice ring draws your eye.",
+    "material": "ice",
+    "item_type": "treasure",
+    "values": {},
+    "level": 3,
+    "weight": 10,
+    "cost": 620,
+    "condition": 90,
+    "extra_flags": "magic",
+    "wear_flags": "take finger",
+    "extra_description": [{
+      "keyword": "ring pink ice",
+      "description": "How strange...it's made of ice, but it doesn't melt. It feels pleasantly \ncool to the touch."
+    }],
+    "affects": [
+      {
+        "level": 3,
+        "apply": "hp",
+        "modifier": 4
+      },
+      {
+        "level": 3,
+        "apply": "strength",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "daycare",
+    "anum": 21,
+    "name": "robe linen",
+    "short_descr": "a linen robe",
+    "description": "A linen robe is crumpled into a ball here.",
+    "material": "cloth",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 1,
+      "vs_magic": 1,
+      "value4": 1
+    },
+    "level": 7,
+    "weight": 50,
+    "cost": 780,
+    "condition": 90,
+    "extra_flags": "magic",
+    "wear_flags": "take about",
+    "extra_description": [{
+      "keyword": "robe linen",
+      "description": "It radiates an aura of peace and wisdom.  The perfect garb for a teacher."
+    }],
+    "affects": [
+      {
+        "level": 7,
+        "apply": "mana",
+        "modifier": 5
+      },
+      {
+        "level": 7,
+        "apply": "wisdom",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "daycare",
+    "anum": 22,
+    "name": "broom",
+    "short_descr": "a broom",
+    "description": "A stout straw broom lies on the floor.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 2,
+      "dice_size": 3,
+      "attack_type": "pound",
+      "flags": "twohands"
+    },
+    "level": 4,
+    "weight": 30,
+    "cost": 270,
+    "condition": 50,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "broom",
+      "description": "It's worn and tired, probably from swatting too many children."
+    }],
+    "affects": [
+      {
+        "level": 4,
+        "apply": "hit roll",
+        "modifier": -1
+      },
+      {
+        "level": 4,
+        "apply": "armor class",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "daycare",
+    "anum": 44,
+    "name": "meat steak",
+    "short_descr": "a juicy steak",
+    "description": "A juicy steak sits on a plate here.",
+    "material": "meat",
+    "item_type": "food",
+    "values": {
+      "hunger": 25,
+      "fullness": 25
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "daycare",
+    "anum": 45,
+    "name": "steak rotten",
+    "short_descr": "a rotten steak",
+    "description": "A dry steak lies on the floor.",
+    "material": "meat",
+    "item_type": "food",
+    "values": {
+      "hunger": 4,
+      "fullness": 4,
+      "poisoned": true
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 0,
+    "condition": 50,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "daycare",
+    "anum": 46,
+    "name": "potion amber",
+    "short_descr": "an amber potion",
+    "description": "An amber potion sits in a corner.",
+    "material": "glass",
+    "item_type": "potion",
+    "values": {
+      "level": 5,
+      "skill1": "cure light",
+      "skill2": "armor"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 150,
+    "condition": 90,
+    "wear_flags": "take",
+    "extra_description": [{
+      "keyword": "potion",
+      "description": "It's a tight-stoppered glass bottle with a thick amber liquid inside. It\ntastes kind of like whiskey."
+    }]
+  }},
+  {"object": {
+    "area": "daycare",
+    "anum": 47,
+    "name": "gun toy",
+    "short_descr": "a toy gun",
+    "description": "A toy gun with a sharp bayonet lies here.",
+    "material": "wood",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 2,
+      "dice_size": 3,
+      "attack_type": "stab",
+      "flags": "twohands"
+    },
+    "level": 4,
+    "weight": 20,
+    "cost": 300,
+    "condition": 90,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "gun toy",
+      "description": "It's just a toy...but the point looks kind of sharp.\nYou'll put your eye out, kid!"
+    }],
+    "affects": [{
+      "level": 4,
+      "apply": "armor class",
+      "modifier": -1
+    }]
+  }}
+]

@@ -1,0 +1,1772 @@
+[
+  {"object": {
+    "area": "ofcol2",
+    "anum": 0,
+    "name": "axe hand",
+    "short_descr": "a hand axe",
+    "description": "A hand axe is on the floor here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "axe",
+      "dice_num": 1,
+      "dice_size": 8,
+      "attack_type": "chop"
+    },
+    "level": 4,
+    "weight": 100,
+    "cost": 420,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "handaxe hand axe",
+      "description": "You see a finely made axe.  Iron, with a nice wooden shaft, this axe can\nwithstand years of use."
+    }]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 1,
+    "name": "meat cleaver",
+    "short_descr": "a meat cleaver",
+    "description": "A sharp meat cleaver is just lying on the floor here!",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "dagger",
+      "dice_num": 2,
+      "dice_size": 5,
+      "attack_type": "chop"
+    },
+    "level": 8,
+    "weight": 50,
+    "cost": 530,
+    "wear_flags": "take wield",
+    "extra_description": [{
+      "keyword": "meat cleaver",
+      "description": "This meat cleaver is made of good steel."
+    }],
+    "affects": [{
+      "level": 8,
+      "apply": "damage roll",
+      "modifier": 1
+    }]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 2,
+    "name": "side meat beef",
+    "short_descr": "a side of beef",
+    "description": "A side of beef is here on the floor.",
+    "item_type": "food",
+    "values": {
+      "hunger": 24,
+      "fullness": 24
+    },
+    "level": 0,
+    "weight": 100,
+    "cost": 50,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 3,
+    "name": "side meat pork",
+    "short_descr": "a side of pork",
+    "description": "A side of pork is here on the floor.",
+    "item_type": "food",
+    "values": {
+      "hunger": 23,
+      "fullness": 23
+    },
+    "level": 0,
+    "weight": 100,
+    "cost": 42,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 4,
+    "name": "side meat horse",
+    "short_descr": "a side of horse",
+    "description": "A side of horse is here on the floor.",
+    "item_type": "food",
+    "values": {
+      "hunger": 30,
+      "fullness": 30
+    },
+    "level": 0,
+    "weight": 120,
+    "cost": 21,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 5,
+    "name": "meat chicken",
+    "short_descr": "a defeathered chicken",
+    "description": "A defeathered chicken is here on the floor.",
+    "item_type": "food",
+    "values": {
+      "hunger": 16,
+      "fullness": 16
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 10,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 6,
+    "name": "emerald ring",
+    "short_descr": "an emerald ring",
+    "description": "An emerald ring is on the floor, gathering dust.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 1000,
+    "extra_flags": "magic",
+    "wear_flags": "take finger"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 7,
+    "name": "glass trinket",
+    "short_descr": "a glass trinket",
+    "description": "A glass trinket is on the floor, gathering dust.",
+    "item_type": "gem",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 150,
+    "wear_flags": "take hold",
+    "affects": [{
+      "level": 0,
+      "apply": "saves",
+      "modifier": -1
+    }]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 8,
+    "name": "golden necklace",
+    "short_descr": "a golden necklace",
+    "description": "A golden necklace is on the floor, gathering dust.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 0,
+    "weight": 20,
+    "cost": 500,
+    "wear_flags": "take neck",
+    "affects": [{
+      "level": 0,
+      "apply": "wisdom",
+      "modifier": -1
+    }]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 9,
+    "name": "cabbage",
+    "short_descr": "a head of cabbage",
+    "description": "Some fresh cabbage is here, get it while it lasts!",
+    "item_type": "food",
+    "values": {
+      "hunger": 12,
+      "fullness": 12
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 2,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 10,
+    "name": "lettuce",
+    "short_descr": "a head of lettuce",
+    "description": "Some fresh lettuce is here, get it while it lasts!",
+    "item_type": "food",
+    "values": {
+      "hunger": 12,
+      "fullness": 12
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 2,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 11,
+    "name": "milk bottle",
+    "short_descr": "a bottle of milk",
+    "description": "A glass bottle of milk is on a shelf here, fresh from the cow.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 20,
+      "filled": 20,
+      "liquid": "milk"
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 3,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 12,
+    "name": "apple",
+    "short_descr": "an apple",
+    "description": "An apple is on the ground.",
+    "item_type": "food",
+    "values": {
+      "hunger": 8,
+      "fullness": 8
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 1,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 13,
+    "name": "corn",
+    "short_descr": "an ear of corn",
+    "description": "An ear of corn is on the ground.",
+    "item_type": "food",
+    "values": {
+      "hunger": 8,
+      "fullness": 8
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 3,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 14,
+    "name": "hay pile",
+    "short_descr": "a pile of hay",
+    "description": "There is a big pile of hay here.",
+    "item_type": "trash",
+    "values": {},
+    "level": 0,
+    "weight": 200,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 15,
+    "name": "pitchfork fork",
+    "short_descr": "a pitchfork",
+    "description": "A pitchfork is on the floor.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "staff",
+      "dice_num": 3,
+      "dice_size": 3,
+      "attack_type": "stab"
+    },
+    "level": 7,
+    "weight": 100,
+    "cost": 122,
+    "wear_flags": "take wield"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 16,
+    "name": "vest",
+    "short_descr": "a leather vest",
+    "description": "A leather vest is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 100,
+    "cost": 270,
+    "wear_flags": "take body"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 17,
+    "name": "sleeves",
+    "short_descr": "some leather sleeves",
+    "description": "Some leather sleeves are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 136,
+    "wear_flags": "take arms"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 18,
+    "name": "leggings",
+    "short_descr": "some leather leggings",
+    "description": "Some leather leggings are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 136,
+    "wear_flags": "take legs"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 19,
+    "name": "boots",
+    "short_descr": "some leather boots",
+    "description": "Some leather boots are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 1,
+      "vs_bash": 2,
+      "vs_slash": 2
+    },
+    "level": 0,
+    "weight": 50,
+    "cost": 136,
+    "wear_flags": "take feet"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 20,
+    "name": "signet ring",
+    "short_descr": "an Ofcol signet ring",
+    "description": "A shiny ring of gold is in the dirt.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 10,
+    "weight": 10,
+    "cost": 730,
+    "extra_flags": "magic",
+    "wear_flags": "take finger",
+    "affects": [
+      {
+        "level": 10,
+        "apply": "armor class",
+        "modifier": -2
+      },
+      {
+        "level": 10,
+        "apply": "hp",
+        "modifier": 5
+      },
+      {
+        "level": 10,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 21,
+    "name": "plate brass",
+    "short_descr": "brass plate",
+    "description": "A pile of brass plates is against the wall here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 6,
+      "vs_magic": 1
+    },
+    "level": 16,
+    "weight": 100,
+    "cost": 2400,
+    "extra_flags": "magic",
+    "wear_flags": "take body",
+    "affects": [
+      {
+        "level": 16,
+        "apply": "hp",
+        "modifier": 10
+      },
+      {
+        "level": 16,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 22,
+    "name": "helm brass",
+    "short_descr": "a brass helm",
+    "description": "A brass helm is against the wall here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 6,
+      "vs_magic": 1
+    },
+    "level": 16,
+    "weight": 100,
+    "cost": 1280,
+    "extra_flags": "magic",
+    "wear_flags": "take head",
+    "affects": [
+      {
+        "level": 16,
+        "apply": "hp",
+        "modifier": 5
+      },
+      {
+        "level": 16,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 23,
+    "name": "leggings brass",
+    "short_descr": "brass leggings",
+    "description": "A pile of brass plates is against the wall here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 6,
+      "vs_magic": 1
+    },
+    "level": 16,
+    "weight": 100,
+    "cost": 1280,
+    "extra_flags": "magic",
+    "wear_flags": "take legs",
+    "affects": [
+      {
+        "level": 16,
+        "apply": "hp",
+        "modifier": 5
+      },
+      {
+        "level": 16,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 24,
+    "name": "boots brass",
+    "short_descr": "brass boots",
+    "description": "Some brass boots are against the wall here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 6,
+      "vs_magic": 1
+    },
+    "level": 16,
+    "weight": 100,
+    "cost": 1280,
+    "extra_flags": "magic",
+    "wear_flags": "take feet",
+    "affects": [
+      {
+        "level": 16,
+        "apply": "hp",
+        "modifier": 5
+      },
+      {
+        "level": 16,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 25,
+    "name": "gauntlets brass",
+    "short_descr": "brass gauntlets",
+    "description": "Some brass gauntlets are against the wall here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 6,
+      "vs_magic": 1
+    },
+    "level": 16,
+    "weight": 100,
+    "cost": 1280,
+    "extra_flags": "magic",
+    "wear_flags": "take hands",
+    "affects": [
+      {
+        "level": 16,
+        "apply": "hp",
+        "modifier": 5
+      },
+      {
+        "level": 16,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 26,
+    "name": "sleeves brass",
+    "short_descr": "brass sleeves",
+    "description": "A pile of brass plates is against the wall here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 6,
+      "vs_magic": 1
+    },
+    "level": 16,
+    "weight": 100,
+    "cost": 1280,
+    "extra_flags": "magic",
+    "wear_flags": "take arms",
+    "affects": [
+      {
+        "level": 16,
+        "apply": "hp",
+        "modifier": 5
+      },
+      {
+        "level": 16,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 27,
+    "name": "shield brass",
+    "short_descr": "a brass shield",
+    "description": "A big plate of brass is against the wall here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 6,
+      "vs_magic": 2
+    },
+    "level": 16,
+    "weight": 100,
+    "cost": 1850,
+    "extra_flags": "magic",
+    "wear_flags": "take shield",
+    "affects": [
+      {
+        "level": 16,
+        "apply": "hp",
+        "modifier": 5
+      },
+      {
+        "level": 16,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 28,
+    "name": "girth brass",
+    "short_descr": "a brass girth",
+    "description": "A brass girth is against the wall here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 5,
+      "vs_slash": 6,
+      "vs_magic": 1
+    },
+    "level": 16,
+    "weight": 100,
+    "cost": 1280,
+    "extra_flags": "magic",
+    "wear_flags": "take waist",
+    "affects": [
+      {
+        "level": 16,
+        "apply": "hp",
+        "modifier": 5
+      },
+      {
+        "level": 16,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 29,
+    "name": "bracer brass",
+    "short_descr": "a brass bracer",
+    "description": "A brass bracer is against the wall here.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 4,
+      "vs_bash": 5,
+      "vs_slash": 6,
+      "vs_magic": 1
+    },
+    "level": 12,
+    "weight": 100,
+    "cost": 1040,
+    "extra_flags": "magic",
+    "wear_flags": "take wrist",
+    "affects": [
+      {
+        "level": 12,
+        "apply": "hp",
+        "modifier": 5
+      },
+      {
+        "level": 12,
+        "apply": "saves",
+        "modifier": -1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 30,
+    "name": "claymore sword",
+    "short_descr": "a claymore",
+    "description": "A VERY big sword is against the wall here.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 4,
+      "dice_size": 4,
+      "attack_type": "cleave",
+      "flags": "twohands"
+    },
+    "level": 19,
+    "weight": 160,
+    "cost": 3100,
+    "extra_flags": "magic",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 19,
+        "apply": "damage roll",
+        "modifier": 5
+      },
+      {
+        "level": 19,
+        "apply": "hit roll",
+        "modifier": -2
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 31,
+    "name": "plate silver",
+    "short_descr": "silver plate",
+    "description": "A pile of silver plating and chain is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8,
+      "vs_magic": 2
+    },
+    "level": 25,
+    "weight": 200,
+    "cost": 5000,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take body",
+    "affects": [
+      {
+        "level": 25,
+        "apply": "strength",
+        "modifier": 1
+      },
+      {
+        "level": 25,
+        "apply": "mana",
+        "modifier": 10
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 32,
+    "name": "helm silver",
+    "short_descr": "a silver helm",
+    "description": "A shiny helm is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8,
+      "vs_magic": 2
+    },
+    "level": 25,
+    "weight": 200,
+    "cost": 2900,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take head",
+    "affects": [
+      {
+        "level": 25,
+        "apply": "dexterity",
+        "modifier": 1
+      },
+      {
+        "level": 25,
+        "apply": "mana",
+        "modifier": 5
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 33,
+    "name": "leggings silver",
+    "short_descr": "silver leggings",
+    "description": "Some shiny leggings are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8,
+      "vs_magic": 2
+    },
+    "level": 25,
+    "weight": 200,
+    "cost": 2900,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take legs",
+    "affects": [
+      {
+        "level": 25,
+        "apply": "intelligence",
+        "modifier": 1
+      },
+      {
+        "level": 25,
+        "apply": "mana",
+        "modifier": 5
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 34,
+    "name": "boots silver",
+    "short_descr": "silver boots",
+    "description": "Some shiny boots are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8,
+      "vs_magic": 2
+    },
+    "level": 25,
+    "weight": 200,
+    "cost": 2900,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take feet",
+    "affects": [
+      {
+        "level": 25,
+        "apply": "wisdom",
+        "modifier": 1
+      },
+      {
+        "level": 25,
+        "apply": "mana",
+        "modifier": 5
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 35,
+    "name": "gauntlets silver",
+    "short_descr": "silver gauntlets",
+    "description": "Some shiny gauntlets are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8,
+      "vs_magic": 2
+    },
+    "level": 25,
+    "weight": 200,
+    "cost": 2900,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take hands",
+    "affects": [
+      {
+        "level": 25,
+        "apply": "constitution",
+        "modifier": 1
+      },
+      {
+        "level": 25,
+        "apply": "mana",
+        "modifier": 5
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 36,
+    "name": "sleeves silver",
+    "short_descr": "silver sleeves",
+    "description": "Some shiny sleeves are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8,
+      "vs_magic": 2
+    },
+    "level": 25,
+    "weight": 200,
+    "cost": 2400,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take arms",
+    "affects": [
+      {
+        "level": 25,
+        "apply": "hit roll",
+        "modifier": 1
+      },
+      {
+        "level": 25,
+        "apply": "mana",
+        "modifier": 5
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 37,
+    "name": "shield silver",
+    "short_descr": "the silver shield",
+    "description": "A shiny shield is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8,
+      "vs_magic": 3
+    },
+    "level": 25,
+    "weight": 200,
+    "cost": 4200,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take shield",
+    "affects": [
+      {
+        "level": 25,
+        "apply": "armor class",
+        "modifier": -3
+      },
+      {
+        "level": 25,
+        "apply": "mana",
+        "modifier": 5
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 38,
+    "name": "girth silver",
+    "short_descr": "the silver girth",
+    "description": "A shiny girth is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 8,
+      "vs_bash": 8,
+      "vs_slash": 8,
+      "vs_magic": 2
+    },
+    "level": 25,
+    "weight": 200,
+    "cost": 2400,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take waist",
+    "affects": [
+      {
+        "level": 25,
+        "apply": "damage roll",
+        "modifier": 1
+      },
+      {
+        "level": 25,
+        "apply": "mana",
+        "modifier": 5
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 39,
+    "name": "plate platinum",
+    "short_descr": "platinum plate",
+    "description": "A pile of silvery metal is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 3
+    },
+    "level": 30,
+    "weight": 500,
+    "cost": 9200,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take body",
+    "affects": [
+      {
+        "level": 30,
+        "apply": "constitution",
+        "modifier": 2
+      },
+      {
+        "level": 30,
+        "apply": "hp",
+        "modifier": 15
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 40,
+    "name": "helmet platinum",
+    "short_descr": "the platinum helmet",
+    "description": "A silvery helmet is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 3
+    },
+    "level": 30,
+    "weight": 300,
+    "cost": 6300,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take head",
+    "affects": [
+      {
+        "level": 30,
+        "apply": "wisdom",
+        "modifier": 2
+      },
+      {
+        "level": 30,
+        "apply": "mana",
+        "modifier": 10
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 41,
+    "name": "leggings platinum",
+    "short_descr": "platinum leggings",
+    "description": "Some silvery leggings are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 3
+    },
+    "level": 30,
+    "weight": 400,
+    "cost": 6300,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take legs",
+    "affects": [
+      {
+        "level": 30,
+        "apply": "dexterity",
+        "modifier": 2
+      },
+      {
+        "level": 30,
+        "apply": "hp",
+        "modifier": 10
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 42,
+    "name": "boots platinum",
+    "short_descr": "platinum boots",
+    "description": "Some silvery boots are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 3
+    },
+    "level": 32,
+    "weight": 400,
+    "cost": 4100,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take feet",
+    "affects": [
+      {
+        "level": 32,
+        "apply": "moves",
+        "modifier": 25
+      },
+      {
+        "level": 32,
+        "apply": "hp",
+        "modifier": 10
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 43,
+    "name": "gauntlets platinum",
+    "short_descr": "platinum gauntlets",
+    "description": "A pair of silvery gauntlets are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 3
+    },
+    "level": 31,
+    "weight": 400,
+    "cost": 4300,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take hands",
+    "affects": [
+      {
+        "level": 31,
+        "apply": "hit roll",
+        "modifier": 2
+      },
+      {
+        "level": 31,
+        "apply": "hp",
+        "modifier": 10
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 44,
+    "name": "sleeves platinum",
+    "short_descr": "platinum sleeves",
+    "description": "A pair of silvery sleeves are on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 3
+    },
+    "level": 30,
+    "weight": 400,
+    "cost": 6300,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take arms",
+    "affects": [
+      {
+        "level": 30,
+        "apply": "strength",
+        "modifier": 2
+      },
+      {
+        "level": 30,
+        "apply": "hp",
+        "modifier": 10
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 45,
+    "name": "shield spiked platinum",
+    "short_descr": "the platinum spiked shield",
+    "description": "A jagged, silvery shield is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 5
+    },
+    "level": 31,
+    "weight": 400,
+    "cost": 6000,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take shield",
+    "affects": [
+      {
+        "level": 31,
+        "apply": "damage roll",
+        "modifier": 2
+      },
+      {
+        "level": 31,
+        "apply": "hp",
+        "modifier": 10
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 46,
+    "name": "girth platinum",
+    "short_descr": "the platinum girth",
+    "description": "A silvery girth is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 9,
+      "vs_bash": 9,
+      "vs_slash": 9,
+      "vs_magic": 3
+    },
+    "level": 31,
+    "weight": 400,
+    "cost": 4000,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take waist",
+    "affects": [
+      {
+        "level": 31,
+        "apply": "saves",
+        "modifier": -2
+      },
+      {
+        "level": 31,
+        "apply": "hp",
+        "modifier": 10
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 47,
+    "name": "avenger holy sword",
+    "short_descr": "holy Avenger",
+    "description": "A glowing silvery sword is hovering here, ready to possess an owner.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "sword",
+      "dice_num": 4,
+      "dice_size": 6,
+      "attack_type": "slice"
+    },
+    "level": 32,
+    "weight": 250,
+    "cost": 5700,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 32,
+        "apply": "damage roll",
+        "modifier": 6
+      },
+      {
+        "level": 32,
+        "apply": "hit roll",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 48,
+    "name": "whiskey shot",
+    "short_descr": "a shot of whiskey",
+    "description": "A shot of whiskey is on the table.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 2,
+      "filled": 2,
+      "liquid": "whisky"
+    },
+    "level": 0,
+    "weight": 10,
+    "cost": 12,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 49,
+    "name": "ale quart",
+    "short_descr": "a quart of ale",
+    "description": "A quart of ale is on the table.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 32,
+      "filled": 32,
+      "liquid": "ale"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 10,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 50,
+    "name": "port brew quart",
+    "short_descr": "a quart of port brew",
+    "description": "A quart of port brew is on the table.",
+    "item_type": "drink",
+    "values": {
+      "capacity": 32,
+      "filled": 32,
+      "liquid": "dark ale"
+    },
+    "level": 0,
+    "weight": 20,
+    "cost": 18,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 51,
+    "name": "key citadel",
+    "short_descr": "the citadel key",
+    "description": "A key is on the floor.",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 52,
+    "name": "symbol holy",
+    "short_descr": "the Holy Symbol of Bahamut",
+    "description": "A very shiny symbol is on the floor.",
+    "item_type": "jewelry",
+    "values": {},
+    "level": 17,
+    "weight": 50,
+    "cost": 3700,
+    "extra_flags": "magic bless antievil antineutral",
+    "wear_flags": "take neck",
+    "affects": [
+      {
+        "level": 17,
+        "apply": "wisdom",
+        "modifier": 2
+      },
+      {
+        "level": 17,
+        "apply": "mana",
+        "modifier": 10
+      },
+      {
+        "level": 17,
+        "apply": "armor class",
+        "modifier": -3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 53,
+    "name": "ranseur polearm",
+    "short_descr": "a ranseur",
+    "description": "A heavy polearm is against the wall here, ready to inflict damage.",
+    "item_type": "weapon",
+    "values": {
+      "weapon_type": "polearm",
+      "dice_num": 4,
+      "dice_size": 6,
+      "attack_type": "thrust",
+      "flags": "twohands"
+    },
+    "level": 24,
+    "weight": 200,
+    "cost": 1460,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 24,
+        "apply": "damage roll",
+        "modifier": -1
+      },
+      {
+        "level": 24,
+        "apply": "hit roll",
+        "modifier": 3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 54,
+    "name": "torso dragonscale golden",
+    "short_descr": "a golden dragonscale torso",
+    "description": "A golden dragonscale torso is on the floor!",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7,
+      "vs_magic": 3
+    },
+    "level": 24,
+    "weight": 250,
+    "cost": 6200,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take body",
+    "affects": [
+      {
+        "level": 24,
+        "apply": "hit roll",
+        "modifier": 2
+      },
+      {
+        "level": 24,
+        "apply": "armor class",
+        "modifier": -5
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 55,
+    "name": "dragonhelm golden",
+    "short_descr": "a golden dragonhelm",
+    "description": "A golden dragonhelm is on the floor!",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7,
+      "vs_magic": 3
+    },
+    "level": 21,
+    "weight": 100,
+    "cost": 2800,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take head",
+    "affects": [
+      {
+        "level": 21,
+        "apply": "hit roll",
+        "modifier": 1
+      },
+      {
+        "level": 21,
+        "apply": "armor class",
+        "modifier": -3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 56,
+    "name": "leggings golden",
+    "short_descr": "golden dragonscale leggings",
+    "description": "Some golden dragonscale leggings are on the floor!",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7,
+      "vs_magic": 3
+    },
+    "level": 21,
+    "weight": 100,
+    "cost": 2800,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take legs",
+    "affects": [
+      {
+        "level": 21,
+        "apply": "hit roll",
+        "modifier": 1
+      },
+      {
+        "level": 21,
+        "apply": "armor class",
+        "modifier": -3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 57,
+    "name": "boots golden",
+    "short_descr": "golden dragonscale boots",
+    "description": "Some golden dragonscale boots are on the floor!",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7,
+      "vs_magic": 3
+    },
+    "level": 21,
+    "weight": 100,
+    "cost": 2800,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take feet",
+    "affects": [
+      {
+        "level": 21,
+        "apply": "hit roll",
+        "modifier": 1
+      },
+      {
+        "level": 21,
+        "apply": "armor class",
+        "modifier": -3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 58,
+    "name": "gauntlets golden",
+    "short_descr": "golden dragonscale gauntlets",
+    "description": "Some golden dragonscale gauntlets are on the floor!",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7,
+      "vs_magic": 3
+    },
+    "level": 21,
+    "weight": 100,
+    "cost": 2800,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take hands",
+    "affects": [
+      {
+        "level": 21,
+        "apply": "hit roll",
+        "modifier": 1
+      },
+      {
+        "level": 21,
+        "apply": "armor class",
+        "modifier": -3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 59,
+    "name": "sleeves golden",
+    "short_descr": "golden dragonscale sleeves",
+    "description": "Some golden dragonscale sleeves are on the floor!",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7,
+      "vs_magic": 3
+    },
+    "level": 21,
+    "weight": 100,
+    "cost": 2800,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take arms",
+    "affects": [
+      {
+        "level": 21,
+        "apply": "hit roll",
+        "modifier": 1
+      },
+      {
+        "level": 21,
+        "apply": "armor class",
+        "modifier": -3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 60,
+    "name": "shield golden",
+    "short_descr": "a golden dragonscale shield",
+    "description": "A golden dragonscale shield is on the floor!",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7,
+      "vs_magic": 4
+    },
+    "level": 21,
+    "weight": 100,
+    "cost": 3700,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take shield",
+    "affects": [
+      {
+        "level": 21,
+        "apply": "hit roll",
+        "modifier": 1
+      },
+      {
+        "level": 21,
+        "apply": "armor class",
+        "modifier": -3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 61,
+    "name": "girth golden",
+    "short_descr": "a golden dragonscale girth",
+    "description": "A golden dragonscale girth is on the floor!",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 7,
+      "vs_bash": 7,
+      "vs_slash": 7,
+      "vs_magic": 3
+    },
+    "level": 21,
+    "weight": 100,
+    "cost": 2800,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take waist",
+    "affects": [
+      {
+        "level": 21,
+        "apply": "hit roll",
+        "modifier": 1
+      },
+      {
+        "level": 21,
+        "apply": "armor class",
+        "modifier": -3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 62,
+    "name": "claw golden",
+    "short_descr": "the golden claw",
+    "description": "A small golden claw is on the floor",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 2,
+      "dice_size": 10,
+      "attack_type": "claw"
+    },
+    "level": 21,
+    "weight": 100,
+    "cost": 2600,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 21,
+      "apply": "damage roll",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 63,
+    "name": "orb dragonorb",
+    "short_descr": "the Gold Dragon Orb",
+    "description": "A very large pearl-like sphere is in the center of this room.",
+    "item_type": "staff",
+    "values": {
+      "level": 14,
+      "recharge": 4,
+      "charges": 4,
+      "skill": "heal"
+    },
+    "level": 17,
+    "weight": 300,
+    "cost": 9000,
+    "extra_flags": "magic antievil antineutral",
+    "wear_flags": "take hold",
+    "affects": [
+      {
+        "level": 17,
+        "apply": "wisdom",
+        "modifier": 2
+      },
+      {
+        "level": 17,
+        "apply": "intelligence",
+        "modifier": 1
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 64,
+    "name": "robe golden",
+    "short_descr": "a golden robe",
+    "description": "A golden robe is on the floor.",
+    "item_type": "armor",
+    "values": {
+      "vs_pierce": 6,
+      "vs_bash": 6,
+      "vs_slash": 5,
+      "vs_magic": 2
+    },
+    "level": 17,
+    "weight": 100,
+    "cost": 3800,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take about",
+    "affects": [{
+      "level": 17,
+      "apply": "intelligence",
+      "modifier": 2
+    }]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 65,
+    "name": "house key",
+    "short_descr": "a house key",
+    "description": "A house key is on the floor.",
+    "item_type": "key",
+    "values": {},
+    "level": 0,
+    "weight": 10,
+    "cost": 0,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 66,
+    "name": "broom",
+    "short_descr": "a broom",
+    "description": "A broom is against the wall here.",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 2,
+      "dice_size": 3,
+      "attack_type": "beating"
+    },
+    "level": 1,
+    "weight": 80,
+    "cost": 760,
+    "wear_flags": "take wield",
+    "affects": [
+      {
+        "level": 1,
+        "apply": "damage roll",
+        "modifier": -3
+      },
+      {
+        "level": 1,
+        "apply": "hit roll",
+        "modifier": 3
+      }
+    ]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 67,
+    "name": "chest",
+    "short_descr": "a chest",
+    "description": "A chest is on the floor here.",
+    "item_type": "container",
+    "values": {
+      "capacity": 100,
+      "max_weight": 10,
+      "weight_mult": 100
+    },
+    "level": 0,
+    "weight": 100,
+    "cost": 100,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 68,
+    "name": "claw golden",
+    "short_descr": "the Golden Claw",
+    "description": "A huge golden claw is on the floor",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 6,
+      "dice_size": 5,
+      "attack_type": "claw"
+    },
+    "level": 39,
+    "weight": 200,
+    "cost": 7200,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 39,
+      "apply": "damage roll",
+      "modifier": 4
+    }]
+  }},
+  {"object": {
+    "area": "ofcol2",
+    "anum": 69,
+    "name": "claw golden",
+    "short_descr": "the golden claw",
+    "description": "A large golden claw is on the floor",
+    "item_type": "weapon",
+    "values": {
+      "dice_num": 3,
+      "dice_size": 8,
+      "attack_type": "claw"
+    },
+    "level": 28,
+    "weight": 150,
+    "cost": 4100,
+    "extra_flags": "magic antievil",
+    "wear_flags": "take wield",
+    "affects": [{
+      "level": 28,
+      "apply": "damage roll",
+      "modifier": 3
+    }]
+  }}
+]

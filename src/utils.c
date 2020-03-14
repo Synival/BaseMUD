@@ -75,6 +75,8 @@ bool str_cmp (const char *astr, const char *bstr) {
     RETURN_IF_BUG (bstr == NULL,
         "str_cmp: null bstr.", 0, TRUE);
 
+    if (astr == bstr)
+        return FALSE;
     for (; *astr || *bstr; astr++, bstr++)
         if (LOWER (*astr) != LOWER (*bstr))
             return TRUE;

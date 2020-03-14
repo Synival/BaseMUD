@@ -1,0 +1,36 @@
+{"types": {
+  "name": "size_types",
+  "description": "Mobile sizes.",
+  "values": [
+    {
+      "name": "tiny",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "small",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "medium",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "large",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "huge",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "giant",
+      "value": 5,
+      "settable": true
+    }
+  ]
+}}

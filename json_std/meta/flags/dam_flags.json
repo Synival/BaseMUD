@@ -1,0 +1,9 @@
+{"flags": {
+  "name": "dam_flags",
+  "description": "Attributes for damage types.",
+  "values": [{
+    "name": "magical",
+    "value": 0,
+    "settable": true
+  }]
+}}

@@ -1,0 +1,28 @@
+[
+  {"cond": {
+    "type": 0,
+    "name": "drunk",
+    "msg_good": "You are sober.\n",
+    "msg_bad": "You feel drunk.\n",
+    "msg_worse": "You feel a little tispy...\n"
+  }},
+  {"cond": {
+    "type": 1,
+    "name": "full",
+    "msg_bad": "You are full.\n"
+  }},
+  {"cond": {
+    "type": 2,
+    "name": "thirst",
+    "msg_good": "Your thirst is quenched.\n",
+    "msg_bad": "You are thirsty.\n",
+    "msg_better": "You are no longer thirsty.\n"
+  }},
+  {"cond": {
+    "type": 3,
+    "name": "hunger",
+    "msg_good": "You feel well-fed.\n",
+    "msg_bad": "You are hungry.\n",
+    "msg_better": "You are no longer hungry.\n"
+  }}
+]

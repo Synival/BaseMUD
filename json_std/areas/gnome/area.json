@@ -1,0 +1,10 @@
+[{"area": {
+  "name": "gnome",
+  "filename": "gnome.are",
+  "title": "Gnome Village",
+  "credits": "{ 5 15} Vougon  Gnome Village",
+  "min_vnum": 1500,
+  "max_vnum": 1599,
+  "builders": "None",
+  "security": 9
+}}]

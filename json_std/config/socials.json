@@ -1,0 +1,2303 @@
+[
+  {"social": {
+    "name": "gack",
+    "char_no_arg": "Gaaack!",
+    "others_no_arg": "$n gacks with dismay!",
+    "char_found": "Appalled, you gack at $N.",
+    "others_found": "$n gacks expressively, shooting $N a dismayed look.",
+    "vict_found": "$n gacks, and looks your way, dismayed.",
+    "char_not_found": "That person isn't here.",
+    "char_auto": "*GACK!*",
+    "others_auto": "Appalled, $n gacks at $mself!"
+  }},
+  {"social": {
+    "name": "kiss",
+    "char_no_arg": "Isn't there someone you want to kiss?",
+    "char_found": "You kiss $M.",
+    "others_found": "$n kisses $N.",
+    "vict_found": "$n kisses you.",
+    "char_not_found": "Never around when required.",
+    "char_auto": "All the lonely people :("
+  }},
+  {"social": {
+    "name": "bounce",
+    "char_no_arg": "BOIINNNNNNGG!",
+    "others_no_arg": "$n bounces around with a happy smile.",
+    "char_found": "You bounce onto $S lap and wiggle about.",
+    "others_found": "$n bounces onto $N's lap and wiggles about.",
+    "vict_found": "$n bounces onto your lap and wiggles about.",
+    "char_not_found": "You don't see your plaything.",
+    "char_auto": "You bounce your head like a basketball.",
+    "others_auto": "$n plays basketball with $s head."
+  }},
+  {"social": {
+    "name": "smile",
+    "char_no_arg": "You smile happily.",
+    "others_no_arg": "$n smiles happily.",
+    "char_found": "You smile at $M.",
+    "others_found": "$n beams a smile at $N.",
+    "vict_found": "$n smiles at you.",
+    "char_not_found": "There's no one by that name around.",
+    "char_auto": "You smile at yourself.",
+    "others_auto": "$n smiles at $mself."
+  }},
+  {"social": {
+    "name": "dance",
+    "char_no_arg": "Feels silly, doesn't it?",
+    "others_no_arg": "$n dances wildly before you!",
+    "char_found": "You lead $M to the dancefloor.",
+    "others_found": "$n sends $N across the dancefloor.",
+    "vict_found": "$n sends you across the dancefloor.",
+    "char_not_found": "Eh, WHO?",
+    "char_auto": "You skip and dance around by yourself.",
+    "others_auto": "$n skips a light Fandango."
+  }},
+  {"social": {
+    "name": "cackle",
+    "char_no_arg": "You cackle gleefully.",
+    "others_no_arg": "$n throws back $s head and cackles with insane glee!",
+    "char_found": "You cackle gleefully at $N",
+    "others_found": "$n cackles gleefully at $N.",
+    "vict_found": "$n cackles gleefully at you.  Better keep your distance from $m.",
+    "char_not_found": "You can't find a friend to cackle with.",
+    "char_auto": "You cackle at yourself.  Now, THAT'S strange!",
+    "others_auto": "$n is really crazy now!  $e cackles at $mself."
+  }},
+  {"social": {
+    "name": "laugh",
+    "char_no_arg": "You fall down laughing.",
+    "others_no_arg": "$n falls down laughing.",
+    "char_found": "You laugh at $N mercilessly.",
+    "others_found": "$n laughs at $N mercilessly.",
+    "vict_found": "$n laughs at you mercilessly.  Hmmmmph.",
+    "char_not_found": "You can't find the butt of your joke.",
+    "char_auto": "You laugh at yourself.  I would, too.",
+    "others_auto": "$n laughs at $mself.  Let's all join in!!!"
+  }},
+  {"social": {
+    "name": "giggle",
+    "char_no_arg": "You giggle.",
+    "others_no_arg": "$n giggles.",
+    "char_found": "You giggle in $S presence.",
+    "others_found": "$n giggles at $N's actions.",
+    "vict_found": "$n giggles at you.  Hope it's not contagious!",
+    "char_not_found": "You giggle by yourself, since you can't find a partner to giggle with.",
+    "char_auto": "You giggle at yourself, which makes you giggle at yourself, which makes you ...",
+    "others_auto": "$n giggles at $mself.  $e must be nervous or something."
+  }},
+  {"social": {
+    "name": "shake",
+    "char_no_arg": "You shake your head.",
+    "others_no_arg": "$n shakes $s head.",
+    "char_found": "You shake $S hand.",
+    "others_found": "$n shakes $N's hand.",
+    "vict_found": "$n shakes your hand.",
+    "char_not_found": "Sorry good buddy, but that person doesn't seem to be here.",
+    "char_auto": "You are shaken by yourself.",
+    "others_auto": "$n shakes and quivers like a bowl full of jelly."
+  }},
+  {"social": {
+    "name": "puke",
+    "char_no_arg": "You puke...chunks everywhere!!! YUK!",
+    "others_no_arg": "$n pukes.",
+    "char_found": "You puke on $M.",
+    "others_found": "$n pukes on $N.",
+    "vict_found": "$n spews vomit and pukes all over your clothing!",
+    "char_not_found": "Once again?",
+    "char_auto": "You puke on yourself.",
+    "others_auto": "$n pukes on $s clothes."
+  }},
+  {"social": {
+    "name": "growl",
+    "char_no_arg": "Grrrrrrrrrr...",
+    "others_no_arg": "$n growls.",
+    "char_found": "Grrrrrrrrrr....take that, $N!!!",
+    "others_found": "$n growls at $N.  Better leave the room before the fighting starts.",
+    "vict_found": "$n growls at you.  Hey, two can play it that way!",
+    "char_not_found": "No one can see you growl that far.",
+    "char_auto": "You growl at yourself.  Boy, do you feel bitter!",
+    "others_auto": "$n growls at $mself.  This could get interesting..."
+  }},
+  {"social": {
+    "name": "scream",
+    "char_no_arg": "ARRRRRRRRRRGH!!!!!",
+    "others_no_arg": "$n screams loudly!",
+    "char_found": "ARRRRRRRRRRGH!!!!!  Yes, it MUST have been $S fault!!!",
+    "others_found": "$n screams loudly at $N.  Better leave before $n blames you, too!!!",
+    "vict_found": "$n screams at you!  That's not nice!  *sniff*",
+    "char_not_found": "Your lungs can't reach that far!",
+    "char_auto": "You scream at yourself.  Yes, that's ONE way of relieving tension!",
+    "others_auto": "$n screams loudly at $mself!  Is there a full moon up?"
+  }},
+  {"social": {
+    "name": "comfort",
+    "char_no_arg": "Do you feel uncomfortable?",
+    "char_found": "You comfort $M.",
+    "others_found": "$n comforts $N.",
+    "vict_found": "$n comforts you.",
+    "char_not_found": "Comfort who?",
+    "char_auto": "You make a vain attempt to comfort yourself.",
+    "others_auto": "$n has no one to comfort $m but $mself"
+  }},
+  {"social": {
+    "name": "sigh",
+    "char_no_arg": "You sigh.",
+    "others_no_arg": "$n sighs.",
+    "char_found": "You sigh as you think of $M.",
+    "others_found": "$n sighs at the sight of $N.",
+    "vict_found": "$n sighs as $e thinks of you.  Touching, huh?",
+    "char_not_found": "You really sigh, since you don't see your friend.",
+    "char_auto": "You sigh at yourself.  You MUST be lonely.",
+    "others_auto": "$n sighs at $mself.  What a sorry sight."
+  }},
+  {"social": {
+    "name": "sulk",
+    "char_no_arg": "You sulk.",
+    "others_no_arg": "$n sulks in the corner."
+  }},
+  {"social": {
+    "name": "hug",
+    "char_no_arg": "Hug who?",
+    "char_found": "You hug $M.",
+    "others_found": "$n hugs $N.",
+    "vict_found": "$n hugs you.",
+    "char_not_found": "Sorry, friend, I can't see that person here.",
+    "char_auto": "You hug yourself.",
+    "others_auto": "$n hugs $mself in a vain attempt to get friendship."
+  }},
+  {"social": {
+    "name": "snuggle",
+    "char_no_arg": "Who?",
+    "char_found": "You snuggle $M.",
+    "others_found": "$n snuggles up to $N.",
+    "vict_found": "$n snuggles up to you.",
+    "char_not_found": "They aren't here.",
+    "char_auto": "You snuggle up, getting ready to sleep.",
+    "others_auto": "$n snuggles up, getting ready to sleep."
+  }},
+  {"social": {
+    "name": "cuddle",
+    "char_no_arg": "Who do you feel like cuddling today?",
+    "char_found": "You cuddle $M.",
+    "others_found": "$n cuddles $N.",
+    "vict_found": "$n cuddles you.",
+    "char_not_found": "They aren't here.",
+    "char_auto": "You must feel very cuddly indeed ... :)",
+    "others_auto": "$n cuddles up to $s shadow.  What a sorry sight."
+  }},
+  {"social": {
+    "name": "nuzzle",
+    "char_no_arg": "Nuzzle who??",
+    "char_found": "You nuzzle $S neck softly.",
+    "others_found": "$n softly nuzzles $N's neck.",
+    "vict_found": "$n softly nuzzles your neck.",
+    "char_not_found": "No.. they aren't here..",
+    "char_auto": "I'm sorry, friend, but that's impossible."
+  }},
+  {"social": {
+    "name": "cry",
+    "char_no_arg": "Waaaaah..",
+    "others_no_arg": "$n bursts into tears.",
+    "char_found": "You cry on $S shoulder.",
+    "others_found": "$n cries on $N's shoulder.",
+    "vict_found": "$n cries on your shoulder.",
+    "char_not_found": "Who's that?",
+    "char_auto": "You cry to yourself.",
+    "others_auto": "$n sobs quietly to $mself."
+  }},
+  {"social": {
+    "name": "poke",
+    "char_no_arg": "Poke who??",
+    "char_found": "You poke $M in the ribs.",
+    "others_found": "$n pokes $N in the ribs.",
+    "vict_found": "$n pokes you in the ribs.",
+    "char_not_found": "You can't poke someone who's not here!.",
+    "char_auto": "You poke yourself in the ribs, feeling very silly.",
+    "others_auto": "$n pokes $mself in the ribs, looking very sheepish."
+  }},
+  {"social": {
+    "name": "accuse",
+    "char_no_arg": "Accuse who??",
+    "others_no_arg": "$n is in an accusing mood.",
+    "char_found": "You look accusingly at $M.",
+    "others_found": "$n looks accusingly at $N.",
+    "vict_found": "$n looks accusingly at you.",
+    "char_not_found": "Accuse somebody who's not even there ??",
+    "char_auto": "You accuse yourself.",
+    "others_auto": "$n seems to have a bad conscience."
+  }},
+  {"social": {
+    "name": "grin",
+    "char_no_arg": "You grin evilly.",
+    "others_no_arg": "$n grins evilly.",
+    "char_found": "You grin evilly at $M.",
+    "others_found": "$n grins evilly at $N.",
+    "vict_found": "$n grins evilly at you.  Hmmm.  Better keep your distance.",
+    "char_not_found": "You must be delirious.",
+    "char_auto": "You grin at youself.  You must be getting very bad thoughts.",
+    "others_auto": "$n grins at $mself.  You must wonder what's in $s mind."
+  }},
+  {"social": {
+    "name": "bow",
+    "char_no_arg": "You bow deeply.",
+    "others_no_arg": "$n bows deeply.",
+    "char_found": "You bow before $M.",
+    "others_found": "$n bows before $N.",
+    "vict_found": "$n bows before you.",
+    "char_not_found": "Who's that?",
+    "char_auto": "You kiss your toes.",
+    "others_auto": "$n folds up like a jacknife and kisses $s own toes."
+  }},
+  {"social": {
+    "name": "applaud",
+    "char_no_arg": "Clap, clap, clap.",
+    "others_no_arg": "$n gives a round of applause.",
+    "char_found": "You clap at $N's actions.",
+    "others_found": "$n claps at $N's actions.",
+    "vict_found": "$n gives you a round of applause.  You MUST'VE done something good!",
+    "char_not_found": "You give your imaginary round of applause to your imaginary friend.",
+    "char_auto": "You applaud at yourself.  Boy, are we conceited!",
+    "others_auto": "$n applauds at $mself.  Boy, are we conceited!"
+  }},
+  {"social": {
+    "name": "blush",
+    "char_no_arg": "Your cheeks are burning.",
+    "others_no_arg": "$n blushes.",
+    "char_found": "You get all flustered up seeing $M.",
+    "others_found": "$n blushes as $e sees $N here.",
+    "vict_found": "$n blushes as $e sees you here.  Such an effect on people!",
+    "char_not_found": "You blush as you notice that person isn't here.",
+    "char_auto": "You blush at your own folly.",
+    "others_auto": "$n blushes as $e notices $s boo-boo."
+  }},
+  {"social": {
+    "name": "burp",
+    "char_no_arg": "You burp loudly.",
+    "others_no_arg": "$n burps loudly.",
+    "char_found": "You burp loudly to $M in response.",
+    "others_found": "$n burps loudly in response to $N's remark.",
+    "vict_found": "$n burps loudly in response to your remark.",
+    "char_not_found": "You can't find your victim.",
+    "char_auto": "You burp at yourself.",
+    "others_auto": "$n burps at $mself.  What a sick sight."
+  }},
+  {"social": {
+    "name": "chuckle",
+    "char_no_arg": "You chuckle politely.",
+    "others_no_arg": "$n chuckles politely.",
+    "char_found": "You chuckle at $S joke.",
+    "others_found": "$n chuckles at $N's joke.",
+    "vict_found": "$n chuckles at your joke.",
+    "char_not_found": "You can't find a friend to chuckle with.",
+    "char_auto": "You chuckle at your own joke, since no one else would.",
+    "others_auto": "$n chuckles at $s own joke, since none of you would."
+  }},
+  {"social": {
+    "name": "clap",
+    "char_no_arg": "You clap your hands together.",
+    "others_no_arg": "$n shows $s approval by clapping $s hands together.",
+    "char_found": "You clap at $S performance.",
+    "others_found": "$n claps at $N's performance.",
+    "vict_found": "$n claps at your performance.",
+    "char_not_found": "You clap for nothing.",
+    "char_auto": "You clap at your own performance.",
+    "others_auto": "$n claps at $s own performance."
+  }},
+  {"social": {
+    "name": "cough",
+    "char_no_arg": "Yuck, try to cover your mouth next time!",
+    "others_no_arg": "$n coughs loudly."
+  }},
+  {"social": {
+    "name": "curtsey",
+    "char_no_arg": "You curtsey to your audience.",
+    "others_no_arg": "$n curtseys gracefully.",
+    "char_found": "You curtsey to $M.",
+    "others_found": "$n curtseys gracefully to $N.",
+    "vict_found": "$n curtseys gracefully for you.",
+    "char_not_found": "You curtsey to no one in particular.",
+    "char_auto": "You curtsey to your audience (yourself).",
+    "others_auto": "$n curtseys to $mself, since no one is paying attention to $m."
+  }},
+  {"social": {
+    "name": "fart",
+    "char_no_arg": "Where are your manners ?",
+    "others_no_arg": "$n lets off a real rip-roarer ... a greenish cloud envelops $n!",
+    "char_found": "You fart at $M.  Boy, you are sick.",
+    "others_found": "$n farts in the direction of $N.  Better flee before $e turns to you!",
+    "vict_found": "$n farts in your direction.  You gasp for air.",
+    "char_not_found": "You can't hold it that long!",
+    "char_auto": "You fart at yourself.  You deserve it.",
+    "others_auto": "$n farts at $mself.  Better $m than you."
+  }},
+  {"social": {
+    "name": "flip",
+    "char_no_arg": "You flip head over heels.",
+    "others_no_arg": "$n flips head over heels.",
+    "char_found": "You flip $M over your shoulder.",
+    "others_found": "$n flips $N over $s shoulder.",
+    "vict_found": "$n flips you over $s shoulder.  Hmmmm.",
+    "char_not_found": "You can't find the person.",
+    "char_auto": "You tumble all over the room.",
+    "others_auto": "$n does some nice tumbling and gymnastics."
+  }},
+  {"social": {
+    "name": "fondle",
+    "char_no_arg": "Who needs to be fondled ?",
+    "char_found": "You fondly fondle $M.",
+    "others_found": "$n fondly fondles $N.",
+    "vict_found": "$n fondly fondles you.",
+    "char_not_found": "You fondly try to fondle someone not in the room, but who cares.",
+    "char_auto": "You fondly fondle yourself, feels funny doesn't it?",
+    "others_auto": "$n fondly fondles $mself - this is going too far!!"
+  }},
+  {"social": {
+    "name": "frown",
+    "char_no_arg": "You frown disapprovingly.",
+    "others_no_arg": "$n frowns.",
+    "char_found": "You frown at what $E did.",
+    "others_found": "$n frowns at what $N did.",
+    "vict_found": "$n frowns at what you did.",
+    "char_not_found": "You don't see any reason to frown.",
+    "char_auto": "You frown at yourself.  Poor baby.",
+    "others_auto": "$n frowns at $mself.  What a sad puppy...."
+  }},
+  {"social": {
+    "name": "gasp",
+    "char_no_arg": "You gasp in astonishment.",
+    "others_no_arg": "$n gasps in astonishment.",
+    "char_found": "You gasp as you realize what $E did.",
+    "others_found": "$n gasps as $e realizes what $N did.",
+    "vict_found": "$n gasps as $e realizes what you did.",
+    "char_not_found": "You need to panic.",
+    "char_auto": "You look at yourself and gasp!",
+    "others_auto": "$n takes one look at $mself and gasps in astonisment!"
+  }},
+  {"social": {
+    "name": "glare",
+    "char_no_arg": "You glare at nothing in particular.",
+    "others_no_arg": "$n glares around $m.",
+    "char_found": "You glare icily at $M.",
+    "others_found": "$n glares at $N.",
+    "vict_found": "$n glares icily at you, you feel cold to your bones.",
+    "char_not_found": "You try to glare at somebody who is not present.",
+    "char_auto": "You glare icily at your feet, they are suddenly very cold.",
+    "others_auto": "$n glares at $s feet, what is bothering $m?"
+  }},
+  {"social": {
+    "name": "groan",
+    "char_no_arg": "You groan loudly.",
+    "others_no_arg": "$n groans loudly.",
+    "char_found": "You groan at the sight of $M.",
+    "others_found": "$n groans at the sight of $N.",
+    "vict_found": "$n groans at the sight of you.",
+    "char_not_found": "You see no reason to groan.",
+    "char_auto": "You groan as you realize what you have done.",
+    "others_auto": "$n groans as $e realizes what $e has done."
+  }},
+  {"social": {
+    "name": "grope",
+    "char_no_arg": "Whom do you wish to grope ??",
+    "char_found": "Well, what sort of noise do you expect here?",
+    "others_found": "$n gropes $N.",
+    "vict_found": "$n gropes you.",
+    "char_not_found": "Try someone who's here.",
+    "char_auto": "You grope yourself - YUCK.",
+    "others_auto": "$n gropes $mself - YUCK."
+  }},
+  {"social": {
+    "name": "hiccup",
+    "char_no_arg": "*HIC*",
+    "others_no_arg": "$n hiccups."
+  }},
+  {"social": {
+    "name": "lick",
+    "char_no_arg": "You lick your mouth and smile. ",
+    "others_no_arg": "$n licks $s mouth and smiles. ",
+    "char_found": "You lick $N's jawline delicately. ",
+    "others_found": "$n licks $N's jawline delicately. ",
+    "vict_found": "$n licks your jawline delicately. ",
+    "char_not_found": "Lick away, nobody's here with that name. ",
+    "char_auto": "You lick your own eyebrows. ",
+    "others_auto": "$n licks $s own eyebrows."
+  }},
+  {"social": {
+    "name": "love",
+    "char_no_arg": "You love the whole world.",
+    "others_no_arg": "$n loves everybody in the world.",
+    "char_found": "You tell your true feelings to $N.",
+    "others_found": "$n whispers softly to $N.",
+    "vict_found": "$n whispers to you sweet words of love.",
+    "char_not_found": "Alas, your love is not present...",
+    "char_auto": "Well, we already know you love yourself (lucky someone does !)",
+    "others_auto": "$n loves $mself, can you believe it ?"
+  }},
+  {"social": {
+    "name": "moan",
+    "char_no_arg": "You start to moan.",
+    "others_no_arg": "$n starts moaning.",
+    "char_found": "You moan for the loss of $M.",
+    "others_found": "$n moans for the loss of $N.",
+    "vict_found": "$n moans at the sight of you.  Hmmmm.",
+    "char_not_found": "You see no cause to moan.",
+    "char_auto": "You moan at yourself.",
+    "others_auto": "$n makes $mself moan."
+  }},
+  {"social": {
+    "name": "nibble",
+    "char_no_arg": "Nibble on who ?",
+    "char_found": "You nibble on $N's ear.",
+    "others_found": "$n nibbles on $N's ear.",
+    "vict_found": "$n nibbles on your ear.",
+    "char_not_found": "Sorry, not present.",
+    "char_auto": "You nibble on your OWN ear ???????????????????",
+    "others_auto": "$n nibbles on $s OWN ear (I wonder how it is done !!)."
+  }},
+  {"social": {
+    "name": "pout",
+    "char_no_arg": "Ah, don't take it so hard.",
+    "others_no_arg": "$n pouts."
+  }},
+  {"social": {
+    "name": "ruffle",
+    "char_no_arg": "You've got to ruffle SOMEONE.",
+    "char_found": "You ruffle $N's hair playfully.",
+    "others_found": "$n ruffles $N's hair playfully.",
+    "vict_found": "$n ruffles your hair playfully.",
+    "char_not_found": "Might be a bit difficult.",
+    "char_auto": "You ruffle your hair, wondering how far you can go before the rest think you're crazy.",
+    "others_auto": "$n ruffles $s hair - weirdo!"
+  }},
+  {"social": {
+    "name": "shiver",
+    "char_no_arg": "Brrrrrrrrr.",
+    "others_no_arg": "$n shivers uncomfortably.",
+    "char_found": "You shiver at the thought of fighting $M.",
+    "others_found": "$n shivers at the thought of fighting $N.",
+    "vict_found": "$n shivers at the suicidal thought of fighting you.",
+    "char_not_found": "You don't see any reason to shiver.",
+    "char_auto": "You shiver to yourself?",
+    "others_auto": "$n scares $mself to shivers."
+  }},
+  {"social": {
+    "name": "shrug",
+    "char_no_arg": "You shrug.",
+    "others_no_arg": "$n shrugs helplessly.",
+    "char_found": "You shrug in response to $S question.",
+    "others_found": "$n shrugs in response to $N's question.",
+    "vict_found": "$n shrugs in response to your question.",
+    "char_not_found": "You shrug to no one in particular.",
+    "char_auto": "You shrug to yourself.",
+    "others_auto": "$n shrugs to $mself.  What a strange person."
+  }},
+  {"social": {
+    "name": "sing",
+    "char_no_arg": "You raise your clear (?) voice towards the sky.",
+    "others_no_arg": "HEY CLERICS! I COULD USE A HEAL!  $n has begun to sing.",
+    "char_found": "You sing a ballad to $M.",
+    "others_found": "$n sings a ballad to $N.",
+    "vict_found": "$n sings a ballad to you!  How sweet!",
+    "char_not_found": "You see no one to sing to.",
+    "char_auto": "You sing a little ditty to yourself.",
+    "others_auto": "$n sings a little ditty to $mself."
+  }},
+  {"social": {
+    "name": "slap",
+    "char_no_arg": "What is the sound of one hand slapping?",
+    "char_found": "*thwock!* You slap $N ringingly.",
+    "others_found": "*thwock!* $n slaps $N!",
+    "vict_found": "$n slaps you stingingly.",
+    "char_not_found": "How about slapping someone in the same room as you ??",
+    "char_auto": "You slap yourself, silly you.",
+    "others_auto": "$n slaps $mself, really strange ..."
+  }},
+  {"social": {
+    "name": "smirk",
+    "char_no_arg": "You smirk.",
+    "others_no_arg": "$n smirks.",
+    "char_found": "You smirk at $S saying.",
+    "others_found": "$n smirks at $N's saying.",
+    "vict_found": "$n smirks at your saying.",
+    "char_not_found": "You want to smirk to whom?",
+    "char_auto": "You smirk at yourself.  Okay.....",
+    "others_auto": "$n smirks at $s own 'wisdom'."
+  }},
+  {"social": {
+    "name": "snap",
+    "char_no_arg": "Eureka!  You snap your fingers. ",
+    "others_no_arg": "$n snaps $s fingers. ",
+    "char_found": "You snap back at $M. ",
+    "others_found": "$n snaps back at $N. ",
+    "vict_found": "$n snaps back at you! ",
+    "char_not_found": "You must be very agitated. ",
+    "char_auto": "You snap yourself to attention. ",
+    "others_auto": "$n snaps $mself to attention. "
+  }},
+  {"social": {
+    "name": "sneeze",
+    "char_no_arg": "Gesundheit !",
+    "others_no_arg": "$n sneezes."
+  }},
+  {"social": {
+    "name": "snicker",
+    "char_no_arg": "You snicker softly.",
+    "others_no_arg": "$n snickers softly.",
+    "char_found": "You snicker with $M about your shared secret.",
+    "others_found": "$n snickers with $N about their shared secret.",
+    "vict_found": "$n snickers with you about your shared secret.",
+    "char_not_found": "Huh?",
+    "char_auto": "You snicker at your own evil thoughts.",
+    "others_auto": "$n snickers at $s own evil thoughts."
+  }},
+  {"social": {
+    "name": "sniff",
+    "char_no_arg": "You sniff sadly. *SNIFF*",
+    "others_no_arg": "$n sniffs sadly.",
+    "char_found": "You sniff sadly at the way $E is treating you.",
+    "others_found": "$n sniffs sadly at the way $N is treating $m.",
+    "vict_found": "$n sniffs sadly at the way you are treating $m.",
+    "char_not_found": "You see no reason to sniff.",
+    "char_auto": "You sniff sadly at your lost opportunities.",
+    "others_auto": "$n sniffs sadly at $mself.  Something MUST be bothering $m."
+  }},
+  {"social": {
+    "name": "snore",
+    "char_no_arg": "Zzzzzzzzzzzzzzzzz.",
+    "others_no_arg": "$n snores loudly.",
+    "min_pos": "sleep"
+  }},
+  {"social": {
+    "name": "squeeze",
+    "char_no_arg": "Where, what, how, WHO ???",
+    "char_found": "You squeeze $M fondly.",
+    "others_found": "$n squeezes $N fondly.",
+    "vict_found": "$n squeezes you fondly.",
+    "char_not_found": "Where, what, how, WHO ???",
+    "char_auto": "You squeeze yourself - try to relax a little!",
+    "others_auto": "$n squeezes $mself."
+  }},
+  {"social": {
+    "name": "stare",
+    "char_no_arg": "You stare at the sky.",
+    "others_no_arg": "$n stares at the sky.",
+    "char_found": "You stare dreamily at $N, completely lost in $S eyes..",
+    "others_found": "$n stares dreamily at $N.",
+    "vict_found": "$n stares dreamily at you, completely lost in your eyes.",
+    "char_not_found": "You stare and stare but can't see that person anywhere...",
+    "char_auto": "You stare dreamily at yourself - enough narcissism for now.",
+    "others_auto": "$n stares dreamily at $mself - NARCISSIST!"
+  }},
+  {"social": {
+    "name": "strut",
+    "char_no_arg": "Strut your stuff.",
+    "others_no_arg": "$n struts proudly.",
+    "char_found": "You strut to get $S attention.",
+    "others_found": "$n struts, hoping to get $N's attention.",
+    "vict_found": "$n struts, hoping to get your attention.",
+    "char_not_found": "You don't see an audience.",
+    "char_auto": "You strut to yourself, lost in your own world.",
+    "others_auto": "$n struts to $mself, lost in $s own world."
+  }},
+  {"social": {
+    "name": "thank",
+    "char_no_arg": "Thank you too.",
+    "char_found": "You thank $N heartily.",
+    "others_found": "$n thanks $N heartily.",
+    "vict_found": "$n thanks you heartily.",
+    "char_not_found": "No one answers to that name here.",
+    "char_auto": "You thank yourself since nobody else wants to !",
+    "others_auto": "$n thanks $mself since you won't."
+  }},
+  {"social": {
+    "name": "twiddle",
+    "char_no_arg": "You patiently twiddle your thumbs.",
+    "others_no_arg": "$n patiently twiddles $s thumbs.",
+    "char_found": "You twiddle $S ears.",
+    "others_found": "$n twiddles $N's ears.",
+    "vict_found": "$n twiddles your ears.",
+    "char_not_found": "You don't see the person here.",
+    "char_auto": "You twiddle your ears like Dumbo.",
+    "others_auto": "$n twiddles $s own ears like Dumbo."
+  }},
+  {"social": {
+    "name": "wave",
+    "char_no_arg": "You wave.",
+    "others_no_arg": "$n waves happily.",
+    "char_found": "You wave goodbye to $N.",
+    "others_found": "$n waves goodbye to $N.",
+    "vict_found": "$n waves goodbye to you.  Have a good journey.",
+    "char_not_found": "They didn't wait for you to wave goodbye.",
+    "char_auto": "Are you going on adventures as well??",
+    "others_auto": "$n waves goodbye to $mself."
+  }},
+  {"social": {
+    "name": "whistle",
+    "char_no_arg": "You whistle appreciatively.",
+    "others_no_arg": "$n whistles appreciatively.",
+    "char_found": "You whistle at the sight of $M.",
+    "others_found": "$n whistles at the sight of $N.",
+    "vict_found": "$n whistles at the sight of you.",
+    "char_not_found": "You don't see nothing special to whistle at.",
+    "char_auto": "You whistle a little tune to yourself.",
+    "others_auto": "$n whistles a little tune to $mself."
+  }},
+  {"social": {
+    "name": "wiggle",
+    "char_no_arg": "Your wiggle your bottom.",
+    "others_no_arg": "$n wiggles $s bottom.",
+    "char_found": "You wiggle your bottom toward $M.",
+    "others_found": "$n wiggles $s bottom toward $N.",
+    "vict_found": "$n wiggles $s bottom toward you.",
+    "char_not_found": "You must be alone.",
+    "char_auto": "You wiggle about like a fish.",
+    "others_auto": "$n wiggles about like a fish."
+  }},
+  {"social": {
+    "name": "wink",
+    "char_no_arg": "Have you got something in your eye?",
+    "others_no_arg": "$n winks suggestively.",
+    "char_found": "You wink suggestively at $N.",
+    "others_found": "$n winks at $N.",
+    "vict_found": "$n winks suggestively at you.",
+    "char_not_found": "No one with that name is present.",
+    "char_auto": "You wink at yourself ?? - what are you up to?",
+    "others_auto": "$n winks at $mself - something strange is going on..."
+  }},
+  {"social": {
+    "name": "yawn",
+    "char_no_arg": "You must be tired.",
+    "others_no_arg": "$n yawns."
+  }},
+  {"social": {
+    "name": "snowball",
+    "char_no_arg": "Who do you want to throw a snowball at?",
+    "char_found": "You throw a snowball in $N's face.",
+    "others_found": "$n conjures a snowball from the thin air and throws it at $N.",
+    "vict_found": "$n conjures a snowball from the thin air and throws it at you.",
+    "char_not_found": "You stand with the snowball in your hand because your victim is not here.",
+    "char_auto": "You conjure a snowball from the thin air and throw it at yourself.",
+    "others_auto": "$n conjures a snowball out of the thin air and throws it at $mself."
+  }},
+  {"social": {
+    "name": "french",
+    "char_no_arg": "Kiss whom?",
+    "char_found": "You give $N a long and passionate kiss, it seems to last forever...",
+    "others_found": "$n kisses $N passionately.",
+    "vict_found": "$n gives you a long and passionate kiss, it seems to last forever...",
+    "char_not_found": "Your heart is filled with despair as that person is not here.",
+    "char_auto": "You gather yourself in your arms and try to kiss yourself.",
+    "others_auto": "$n makes an attempt at kissing $mself."
+  }},
+  {"social": {
+    "name": "comb",
+    "char_no_arg": "You comb your hair - perfect.",
+    "others_no_arg": "$n combs $s hair, what a dashing specimen !",
+    "char_found": "You patiently untangle $N's hair - what a mess !",
+    "others_found": "$n tries patiently to untangle $N's hair.",
+    "vict_found": "$n pulls your hair in an attempt to comb it.",
+    "char_not_found": "That person is not here.",
+    "char_auto": "You pull your hair, but it will not be combed.",
+    "others_auto": "$n tries to comb $s tangled hair."
+  }},
+  {"social": {
+    "name": "massage",
+    "char_no_arg": "Massage what?  Thin air?",
+    "char_found": "You gently massage $N's shoulders.",
+    "others_found": "$n massages $N's shoulders.",
+    "vict_found": "$n gently massages your shoulders - Ahhhhhhhhhh...",
+    "char_not_found": "You can only massage someone in the same room as you.",
+    "char_auto": "You practice yoga as you try to massage yourself.",
+    "others_auto": "$n gives a show on yoga-positions, trying to massage $mself."
+  }},
+  {"social": {
+    "name": "tickle",
+    "char_no_arg": "Whom do you want to tickle?",
+    "char_found": "You tickle $N.",
+    "others_found": "$n tickles $N.",
+    "vict_found": "$n tickles you - ho ho ho.",
+    "char_not_found": "Who is that??",
+    "char_auto": "You tickle yourself, how funny!",
+    "others_auto": "$n tickles $mself."
+  }},
+  {"social": {
+    "name": "pat",
+    "char_no_arg": "Pat who?",
+    "char_found": "You pat $N on $S head.",
+    "others_found": "$n pats $N on $S head.",
+    "vict_found": "$n pats you on your head.",
+    "char_not_found": "Who, where, what?",
+    "char_auto": "You pat yourself on your head, very reassuring.",
+    "others_auto": "$n pats $mself on the head."
+  }},
+  {"social": {
+    "name": "curse",
+    "char_no_arg": "You swear loudly for a long time.",
+    "others_no_arg": "$n swears : #@*\"*&^*#%@*&! !!!!!",
+    "char_found": "You swear at $M.",
+    "others_found": "$n swears at $N.",
+    "vict_found": "$n swears at you!  Where are the manners?",
+    "char_not_found": "You can't find the victim of your frustrations.",
+    "char_auto": "You swear at your own mistakes.",
+    "others_auto": "$n starts swearing at $mself.  Why don't you help?"
+  }},
+  {"social": {
+    "name": "pray",
+    "char_no_arg": "You feel righteous, and maybe a little foolish.",
+    "others_no_arg": "$n begs and grovels to the powers that be.",
+    "char_found": "You crawl in the dust before $M.",
+    "others_found": "$n falls down and grovels in the dirt before $N.",
+    "vict_found": "$n kisses the dirt at your feet.",
+    "char_not_found": "No such person around; your prayers vanish into the endless voids.",
+    "char_auto": "Talk about narcissism...",
+    "others_auto": "$n performs some strange yoga-exercises and mumbles a prayer to $mself."
+  }},
+  {"social": {
+    "name": "beg",
+    "char_no_arg": "You beg the gods for mercy.",
+    "others_no_arg": "The gods fall down laughing at $n's request for mercy.",
+    "char_found": "You desperately try to squeeze a few coins from $M.",
+    "others_found": "$n begs you for money. You graciously let $m peep at your fortune.",
+    "vict_found": "$n begs $N for a dime or two - or twenty !",
+    "char_not_found": "Your money-lender seems to be out for the moment.",
+    "char_auto": "Begging yourself for money doesn't help."
+  }},
+  {"social": {
+    "name": "cringe",
+    "char_no_arg": "You cringe in terror.",
+    "others_no_arg": "$n cringes in terror!",
+    "char_found": "You cringe away from $M.",
+    "others_found": "$n cringes away from $N in mortal terror.",
+    "vict_found": "$n cringes away from you.",
+    "char_not_found": "I don't see anyone by that name here.. what are you afraid of?",
+    "char_auto": "I beg your pardon?"
+  }},
+  {"social": {
+    "name": "daydream",
+    "char_no_arg": "You dream of better times.",
+    "others_no_arg": "$n looks absent-minded, his eyes staring into space."
+  }},
+  {"social": {
+    "name": "fume",
+    "char_no_arg": "Take it easy now! count to ten, very slowly.",
+    "others_no_arg": "$n grits $s teeth and fumes with rage.",
+    "char_found": "You stare at $M, fuming.",
+    "others_found": "$n stares at $N, fuming with rage.",
+    "vict_found": "$n stares at you, fuming with rage!",
+    "char_not_found": "Fume away... they ain't here.",
+    "char_auto": "That's right - hate yourself!",
+    "others_auto": "$n clenches $s fists and stomps his feet, fuming with anger."
+  }},
+  {"social": {
+    "name": "grovel",
+    "char_no_arg": "You grovel in the dirt.",
+    "others_no_arg": "$n grovels in the dirt.",
+    "char_found": "You grovel before $M",
+    "others_found": "$n grovels in the dirt before $N.",
+    "vict_found": "$n grovels in the dirt before you.",
+    "char_not_found": "Who?",
+    "char_auto": "That seems a little silly to me."
+  }},
+  {"social": {
+    "name": "hop",
+    "char_no_arg": "You hop around like a little kid.",
+    "others_no_arg": "$n hops around like a little kid."
+  }},
+  {"social": {
+    "name": "nudge",
+    "char_no_arg": "Nudge whom?",
+    "char_found": "You nudge $M.",
+    "others_found": "$n nudges $N.",
+    "vict_found": "$n nudges you.",
+    "char_not_found": "Who?",
+    "char_auto": "You nudge yourself, for some strange reason.",
+    "others_auto": "$n nudges $mself, to keep $mself awake."
+  }},
+  {"social": {
+    "name": "ponder",
+    "char_no_arg": "You ponder the question.",
+    "others_no_arg": "$n sits down and thinks deeply."
+  }},
+  {"social": {
+    "name": "punch",
+    "char_no_arg": "Punch whom?",
+    "char_found": "You punch $M playfully.",
+    "others_found": "$n punches $N playfully.",
+    "vict_found": "$n punches you playfully.  OUCH!",
+    "char_not_found": "You can't find your boxing partner.",
+    "char_auto": "You punch yourself.  You deserve it.",
+    "others_auto": "$n punches $mself.  Why don't you join in?"
+  }},
+  {"social": {
+    "name": "snarl",
+    "char_no_arg": "You grizzle your teeth and look mean.",
+    "others_no_arg": "$n snarls angrily.",
+    "char_found": "You snarl at $M.",
+    "others_found": "$n snarls at $N.",
+    "vict_found": "$n snarls at you, for some reason.",
+    "char_not_found": "No need to snarl!",
+    "char_auto": "You snarl at yourself.",
+    "others_auto": "$n snarls at $mself."
+  }},
+  {"social": {
+    "name": "spank",
+    "char_no_arg": "Spank whom?",
+    "char_found": "You spank $M playfully.",
+    "others_found": "$n spanks $N playfully.",
+    "vict_found": "$n spanks you playfully.  OUCH!",
+    "char_not_found": "Your hand can't find your victim!",
+    "char_auto": "You spank yourself....HMMMMMMM...",
+    "others_auto": "$n spanks $mself....HMMMMMMM..."
+  }},
+  {"social": {
+    "name": "hand",
+    "char_no_arg": "Kiss whose hand?",
+    "char_found": "You kiss $S hand.",
+    "others_found": "$n kisses $N's hand.  How continental!",
+    "vict_found": "$n kisses your hand.  How continental!",
+    "char_not_found": "You can't find a lady in THIS group.",
+    "char_auto": "You kiss your own hand.",
+    "others_auto": "$n kisses $s own hand."
+  }},
+  {"social": {
+    "name": "yodel",
+    "char_no_arg": "You think of Julie Andrews and start to yodel.",
+    "others_no_arg": "$n begins to yodel:  HEY!! CLERICS!! I COULD USE A HEAL!!!",
+    "char_found": "$N covers $S ears as you begin to yodel.",
+    "others_found": "$n yodels to $N.",
+    "vict_found": "$n yodels to you...you cringe and turn away.",
+    "char_not_found": "That person just escaped!",
+    "char_auto": "Well, it's up to you if you want to damage your hearing.",
+    "others_auto": "$n yodels to $mself.  What a sado-masochist."
+  }},
+  {"social": {
+    "name": "faint",
+    "char_no_arg": "You faint.",
+    "others_no_arg": "$n faints.",
+    "char_found": "You faint into $S arms.",
+    "others_found": "$n faints into $N's open arms.",
+    "vict_found": "$n just fainted into YOUR arms.",
+    "char_not_found": "You fall on the floor and look stupid--really suave."
+  }},
+  {"social": {
+    "name": "pinch",
+    "char_no_arg": "You say, 'A pinch of this, and a dab of that.' ",
+    "others_no_arg": "$n says, 'A pinch of this and a dab of that.' ",
+    "char_found": "You squeeze $S bottom and grin. ",
+    "others_found": "$n pinches $N's bottom and grins. ",
+    "vict_found": "$n pinches your bottom and grins. ",
+    "char_not_found": "You'd like to, wouldn't you? ",
+    "char_auto": "You pinch yourself to see if you are dreaming! ",
+    "others_auto": "$n pinches $mself to see if $e is dreaming! "
+  }},
+  {"social": {
+    "name": "stroke",
+    "char_no_arg": "You stroke the air vaguely. ",
+    "others_no_arg": "$n makes vague stroking motions. ",
+    "char_found": "You gently stroke $S inner thigh.  $N inhales sharply. ",
+    "others_found": "$N exhales sharply and suddenly. ",
+    "vict_found": "$n gently strokes your inner thigh.  You inhale sharply. ",
+    "char_not_found": "Maybe you should practice on yourself first. ",
+    "char_auto": "You are about to do something you'd rather not be caught doing. ",
+    "others_auto": "# "
+  }},
+  {"social": {
+    "name": "apologize",
+    "char_no_arg": "You apologize until you are blue in the face.",
+    "others_no_arg": "$n apologizes profusely.",
+    "char_found": "You might as well apologize because $E sure as hell won't.",
+    "others_found": "$n apologizes to $N with a very sincere look on $s face.",
+    "vict_found": "$n apologizes to you and begs for forgiveness.",
+    "char_not_found": "Who's that?"
+  }},
+  {"social": {
+    "name": "caress",
+    "char_no_arg": "Who do you wish to caress?",
+    "others_no_arg": "$n looks for someone to caress.",
+    "char_found": "You tenderly caress $M.",
+    "others_found": "$n tenderly caresses $N.",
+    "vict_found": "$n tenderly caresses your body.",
+    "char_not_found": "You're S.O.L., buddy."
+  }},
+  {"social": {
+    "name": "stagger",
+    "char_no_arg": "You stagger blindly around the room.",
+    "others_no_arg": "$n staggers blindly around the room.",
+    "char_found": "You stagger toward $N as the room begins to spin.",
+    "others_found": "$n staggers into $N.",
+    "vict_found": "$n staggers blindly into you.",
+    "char_not_found": "Stagger into whom!?!?"
+  }},
+  {"social": {
+    "name": "snort",
+    "char_no_arg": "You snort derisively. ",
+    "others_no_arg": "$n snorts derisively. ",
+    "char_found": "You snort derisively at $N. ",
+    "others_found": "$n snorts derisively at $N. ",
+    "vict_found": "$n snorts at you. ",
+    "char_not_found": "Snort at whom? ",
+    "char_auto": "You snort derisively at yourself. ",
+    "others_auto": "$n snorts derisively at $sself."
+  }},
+  {"social": {
+    "name": "slobber",
+    "char_no_arg": "You slobber down your front.",
+    "others_no_arg": "$n slobbers all over $mself.",
+    "char_found": "You slobber on $N.",
+    "others_found": "$n slobbers on $N  **Yuck**",
+    "vict_found": "$n slobbers disgustingly on you.",
+    "char_not_found": "Slobber on WHOM?"
+  }},
+  {"social": {
+    "name": "blink",
+    "char_no_arg": "You bat your eyelashes.",
+    "others_no_arg": "$n blinks innocently.",
+    "char_found": "You blink innocently at $N.",
+    "others_found": "$n blinks innocently at $N.",
+    "vict_found": "$n blinks innocently at you.",
+    "char_not_found": "Feign innocence for whom?",
+    "char_auto": "You try to convince yourself of your innocence."
+  }},
+  {"social": {
+    "name": "tease",
+    "char_no_arg": "What a tease.   SHEESH.",
+    "others_no_arg": "$n looks around for someone to tease.",
+    "char_found": "You tease $N in a playful way.",
+    "others_found": "$n sticks $s tongue out at $N.",
+    "vict_found": "$n sticks $s tongue out at you, what a DORK!!",
+    "char_not_found": "Tease whom?",
+    "char_auto": "You tease yourself. NYAH NYAH NYAH.",
+    "others_auto": "$n teases $mself."
+  }},
+  {"social": {
+    "name": "knee",
+    "char_no_arg": "You raise one knee, preparing to do justice...",
+    "others_no_arg": "$n cocks one knee threateningly.",
+    "char_found": "You knee $M hard in the groin.",
+    "others_found": "$N doubles over in pain as $n knees $M in the groin!",
+    "vict_found": "$n suddenly knees you in the groin!  You fall to your knees in agony.",
+    "char_not_found": "Whom do you wish to render impotent?",
+    "char_auto": "What ARE you thinking !?!??!?!?!?!"
+  }},
+  {"social": {
+    "name": "flirt",
+    "char_no_arg": "You flirt outrageously.",
+    "others_no_arg": "$n is an outrageous flirt.",
+    "char_found": "You flirt with $N trying to get $S attention.",
+    "others_found": "$n flirts with $N, hmmm wonder what $e wants? *wink*",
+    "vict_found": "$n flirts with you.",
+    "char_not_found": "Sorry no one here to flirt with. :(",
+    "char_auto": "You flirt with yourself -- what ARE you trying to gain!?!?!?",
+    "others_auto": "$n flirts with $mself, wonder what $e is trying to accomplish?"
+  }},
+  {"social": {
+    "name": "tip",
+    "char_no_arg": "You tip your hat gallantly.",
+    "others_no_arg": "$n gallantly tips $s hat.",
+    "char_found": "You tip your hat to $N.",
+    "others_found": "$n gallantly tips $s hat to $N.",
+    "vict_found": "$n gallantly tips $s hat to you.",
+    "char_not_found": "But there is no one here to impress?!?!"
+  }},
+  {"social": {
+    "name": "lust",
+    "char_no_arg": "Your hormones begin to rage.",
+    "others_no_arg": "$n has that look of lust in $s eyes --- Get away QUICK!",
+    "char_found": "You have lust after $N.",
+    "others_found": "$n looks lustily at $N.",
+    "vict_found": "$n lusts after your delectable body.",
+    "char_not_found": "Whom are you trying to lust after?",
+    "char_auto": "Oh, please! You aren't THAT great...",
+    "others_auto": "$n lusts after $mself, lonely eh?"
+  }},
+  {"social": {
+    "name": "flutter",
+    "char_no_arg": "You flutter your eyelashes seductively.",
+    "others_no_arg": "$n flutters $s eyelashes seductively.",
+    "char_found": "You flutter your eyelashes at $N, trying to be seductive.",
+    "others_found": "$n flirts with $N, flutters $s eyelashes at $M.",
+    "vict_found": "$n flutters $s eyelashes at you coyly.",
+    "char_not_found": "EH? Can't see them here."
+  }},
+  {"social": {
+    "name": "bark",
+    "char_no_arg": "You bark loudly.",
+    "others_no_arg": "$n barks like a dog. GO DAWGS SIC 'EM!!! WOOF! WOOF! WOOF! WOOF!",
+    "char_found": "You bark at $N scaring $M silly -- SHAME ON YOU!!",
+    "others_found": "$n barks at $N scaring $M senseless.",
+    "vict_found": "$n barks loudly at you, you back away, because $e might bite too!!",
+    "char_not_found": "Bark at whom?",
+    "char_auto": "You bark at yourself and jump back in fear.",
+    "others_auto": "$n barks at $mself and cowers in fear."
+  }},
+  {"social": {
+    "name": "howl",
+    "char_no_arg": "You howl at the moon.",
+    "others_no_arg": "$n howls at the moon.",
+    "char_found": "You howl soulfully at $N.",
+    "others_found": "$n howls at $N.",
+    "vict_found": "$n howls soulfully at you.",
+    "char_not_found": "Who? What? Where?"
+  }},
+  {"social": {
+    "name": "babble",
+    "char_no_arg": "You babble endlessly.",
+    "others_no_arg": "$n babbles endlessly, won't $e EVER shut up?",
+    "char_found": "You babble to $N for hours on end.",
+    "others_found": "$n babbles to $N for what seems an eternity, how can $N stand it?",
+    "vict_found": "$n babbles at you. You nod mechanically, hoping $e will shut up soon.",
+    "char_not_found": "Whom do you wish to annoy with your babble?",
+    "char_auto": "You babble on and on to yourself, FINALLY! someone who LISTENS!!",
+    "others_auto": "$n babbles quietly to $mself."
+  }},
+  {"social": {
+    "name": "ramble",
+    "char_no_arg": "You ramble on and on.",
+    "others_no_arg": "$n rambles on about a boring exploit.",
+    "char_found": "You ramble on to $N about your past adventures.",
+    "others_found": "$n blithers on and on to $N about something.",
+    "vict_found": "$n tells you a rather boring tale, you feign interest.",
+    "char_not_found": "??EH??"
+  }},
+  {"social": {
+    "name": "hush",
+    "char_no_arg": "SHHHHHHHHHHHHHHHHHHHHHH",
+    "others_no_arg": "$n requests everyone quiet down.  Shhhhhhhhhhh...",
+    "char_found": "You nicely ask $N to be more quiet.",
+    "others_found": "$n nicely asks $N to be more quiet.",
+    "vict_found": "$n kindly requests that you please quiet down.",
+    "char_not_found": "Who needs to be silenced?",
+    "char_auto": "You realize you are loud and obnoxious and try to silence yourself.",
+    "others_auto": "$n covers $s mouth in an attempt to silence $mself."
+  }},
+  {"social": {
+    "name": "threaten",
+    "char_no_arg": "You threaten everyone with your overwhelming presence.",
+    "others_no_arg": "You feel threatened in the presence of the great $n.",
+    "char_found": "You stand tall as you threaten $N.",
+    "others_found": "$n threatens $N forcefully.",
+    "vict_found": "$n threatens you...oooooooh scary *laugh*",
+    "char_not_found": "Whom do you wish to intimidate?"
+  }},
+  {"social": {
+    "name": "roll",
+    "char_no_arg": "You roll your eyes in disgust.",
+    "others_no_arg": "$n rolls $s eyes, disgusted.",
+    "char_found": "You look at $N and roll your eyes in disgust.",
+    "others_found": "$n rolls $s eyes in disgust at $N.",
+    "vict_found": "$n rolls $s eyes at you.",
+    "char_not_found": "You should be disgusted with yourself because you look so foolish.",
+    "char_auto": "At whom do you wish to roll your eyes?"
+  }},
+  {"social": {
+    "name": "swoon",
+    "char_no_arg": "You swoon.",
+    "others_no_arg": "$n swoons in absolute ecstasy.",
+    "char_found": "You look at $N and swoon in ecstasy.",
+    "others_found": "$n looks at $N and swoons in ecstasy.",
+    "vict_found": "$n looks at you and swoons in ecstasy.",
+    "char_not_found": "Who?"
+  }},
+  {"social": {
+    "name": "bird",
+    "char_no_arg": "You flick a bird...How obscene!",
+    "others_no_arg": "$n flicks a bird at no one in particular.",
+    "char_found": "You shoot a bird at $N.",
+    "others_found": "$n gives $N the bird.",
+    "vict_found": "$n gives you the bird...What an ass!",
+    "char_not_found": "Don't you hate to waste a good obscene gesture like that?"
+  }},
+  {"social": {
+    "name": "eyebrow",
+    "char_no_arg": "You raise an eyebrow at the notion.",
+    "others_no_arg": "$n raises an eyebrow.",
+    "char_found": "You raise your eyebrow at $N.",
+    "others_found": "$n raises an eyebrow at $N's weird actions.",
+    "vict_found": "$n raises an eyebrow at you.",
+    "char_not_found": "Forget it.  They aren't here."
+  }},
+  {"social": {
+    "name": "serenade",
+    "char_no_arg": "You raise your voice in a loud serenade to your invisible love.",
+    "others_no_arg": "$n raises $s voice to serenade the world.",
+    "char_found": "You raise your voice in a loving serenade to $N.",
+    "others_found": "$n raises $s voice in a loving serenade to $N.",
+    "vict_found": "$n serenades you, you are swept away by $s voice.",
+    "char_not_found": "The one that you wish to serenade has left you to sing to yourself.",
+    "char_auto": "You sing a loud serenade to yourself.  What type of person are you?!",
+    "others_auto": "$n serenades $mself.  What an ego!"
+  }},
+  {"social": {
+    "name": "grimace",
+    "char_no_arg": "You grimace painfully at the thought.",
+    "others_no_arg": "$n grimaces painfully at the thought.",
+    "char_found": "You grimace at $N.",
+    "others_found": "$n grimaces at $n.",
+    "vict_found": "$n grimaces at you.  What could be wrong?",
+    "char_not_found": "You grimace at no one in particular.",
+    "char_auto": "You grimace painfully at your thoughts.",
+    "others_auto": "$n grimaces painfully to $mself."
+  }},
+  {"social": {
+    "name": "boggle",
+    "char_no_arg": "You boggle at the concept.",
+    "others_no_arg": "$n boggles at the concept.",
+    "char_found": "You boggle at $N.",
+    "others_found": "$n boggles at $N.",
+    "vict_found": "$n boggles at you.",
+    "char_not_found": "Boggle away.  They've left.",
+    "char_auto": "You boggle at yourself.  Hmmm...intriguing.",
+    "others_auto": "$n boggles quietly to $mself."
+  }},
+  {"social": {
+    "name": "beckon",
+    "char_no_arg": "You beckon for everyone to follow.",
+    "others_no_arg": "$n beckons for everyone to follow.",
+    "char_found": "You beckon for $N to follow -- sure hope they do!",
+    "others_found": "$n beckons $N to follow...hmmm what's going on?",
+    "vict_found": "$n beckons for you to follow.",
+    "char_not_found": "So sorry, that person has already left.",
+    "char_auto": "You beckon to your shadow to follow.",
+    "others_auto": "$n beckons to $s shadow to follow."
+  }},
+  {"social": {
+    "name": "wonder",
+    "char_no_arg": "You wonder about how things could have been.",
+    "others_no_arg": "$n gets a blank stare on $s face.  What could $e be wondering about?",
+    "char_found": "You look at $N and wonder what will happen.",
+    "others_found": "$n looks at $N and wonders....",
+    "vict_found": "$n looks at you quizzically.",
+    "char_not_found": "You wonder what would have happened had they been here.",
+    "char_auto": "You wonder about yourself and your purpose here.",
+    "others_auto": "A blank stare crosses $n's face.  What could $e be wondering about?"
+  }},
+  {"social": {
+    "name": "worry",
+    "char_no_arg": "You worry about what's going to happen.",
+    "others_no_arg": "A troubled look suddenly crosses $n's face.  Wonder what's wrong?",
+    "char_found": "You look at $N worriedly.",
+    "others_found": "$n looks at $N with a troubled gaze.",
+    "vict_found": "$n looks at you worriedly.",
+    "char_not_found": "Well they obviously aren't worried -- they left!",
+    "char_auto": "You worry about what's going to happen.",
+    "others_auto": "A troubled look suddenly crosses $n's face.  Wonder what's wrong?"
+  }},
+  {"social": {
+    "name": "drool",
+    "char_no_arg": "You drool down the front of your shirt.",
+    "others_no_arg": "$n drools all over $mself -- making a TERRIBLE mess!",
+    "char_found": "You drool messily on $N.",
+    "others_found": "$n drools upon $N.",
+    "vict_found": "$n looks at you lustily and drools.",
+    "char_not_found": "Oh fine, make a pool of slobber -- they aren't even here!",
+    "char_auto": "You drool down the front of your shirt.",
+    "others_auto": "$n drools all over $mself -- making a TERRIBLE mess!"
+  }},
+  {"social": {
+    "name": "nod",
+    "char_no_arg": "You nod.",
+    "others_no_arg": "$n nods.",
+    "char_found": "You nod at $N.",
+    "others_found": "$n nods at $N.",
+    "vict_found": "$n nods at you in agreement.",
+    "char_not_found": "Nod your head off -- they aren't here.",
+    "char_auto": "You attempt to nod at yourself and get dizzy instead.",
+    "others_auto": "$n nods quietly to $mself.  What a wacko."
+  }},
+  {"social": {
+    "name": "purr",
+    "char_no_arg": "MMMMMMEEEEEEEEEOOOOOOOOOOOOOWWWWWWWWWWW!!!!!!!!!!!",
+    "others_no_arg": "$n purrs contentedly.",
+    "char_found": "You rub up against $N and purr contentedly.",
+    "others_found": "$n rubs against $N and purrs contentedly.",
+    "vict_found": "$n rubs up against you and purrs contentedly.",
+    "char_not_found": "You silly cat!  They aren't here.",
+    "char_auto": "You purr quietly to yourself.",
+    "others_auto": "$n purrs contentedly to $mself."
+  }},
+  {"social": {
+    "name": "point",
+    "char_no_arg": "You point in every direction.",
+    "others_no_arg": "$n points excitedly!",
+    "char_found": "You point at $N.",
+    "others_found": "$n points excitedly at $N!",
+    "vict_found": "$n points at you.  How rude!",
+    "char_not_found": "You point at no one in particular.",
+    "char_auto": "You point at yourself, obviously very confused.",
+    "others_auto": "$n points at $mself, obviously very confused."
+  }},
+  {"social": {
+    "name": "rub",
+    "char_no_arg": "You rub your hands together in greedy anticipation.",
+    "others_no_arg": "$n rubs $s hands together in greedy anticipation.",
+    "char_found": "You give $N a nice, long, kinky rubdown.",
+    "others_found": "$n gives $N a nice long rubdown.",
+    "vict_found": "$n gives you a rubdown, running $s hands over your tense shoulders...Mmmm...",
+    "char_not_found": "Shame to waste those talented hands, but they've already left.",
+    "char_auto": "You rub yourself...lingering a little too long in some places.",
+    "others_auto": "$n rubs $mself...what a creep!"
+  }},
+  {"social": {
+    "name": "bleed",
+    "char_no_arg": "You bleed profusely -- making a horrible mess!",
+    "others_no_arg": "$n weakly bleeds all over the floor.",
+    "char_found": "You bleed on $N -- ewww!",
+    "others_found": "$n bleeds on $N.  Watch out, YOU might be next!",
+    "vict_found": "$n bleeds on you -- ewww!  Get away!!",
+    "char_not_found": "Bleed on whom?",
+    "char_auto": "You bleed all over yourself.",
+    "others_auto": "$n bleeds profusely all over $mself."
+  }},
+  {"social": {
+    "name": "highfive",
+    "char_no_arg": "You jump in the air and give a BIG high five to...umm...absolutely nothing.",
+    "others_no_arg": "$n wildly high fives the air, looking very foolish -- very foolish indeed.",
+    "char_found": "You jump in the air and give a BIG high five to $N!",
+    "others_found": "$n enthusiastically high-five's $N!",
+    "vict_found": "$n gives you a BIG high five!  Way to go!!",
+    "char_not_found": "Sorry, they have already left.",
+    "char_auto": "You try to give yourself a high five.  What ARE you thinking?",
+    "others_auto": "$n tries to high five $mself, but ends up looking foolish instead."
+  }},
+  {"social": {
+    "name": "propose",
+    "char_no_arg": "You propose to everyone in the room.",
+    "others_no_arg": "$n proposes to everyone in the room.  Very odd.",
+    "char_found": "You kneel and romantically propose to $N.",
+    "others_found": "$n gets on one knee and proposes to $N.",
+    "vict_found": "$n gets down on one knee and romantically proposes to you.",
+    "char_not_found": "You must be lonely.  They aren't here.",
+    "char_auto": "You are SO full of yourself!",
+    "others_auto": "$n proposes to $mself -- how narcissistic!"
+  }},
+  {"social": {
+    "name": "peer",
+    "char_no_arg": "You peer around yourself intently.",
+    "others_no_arg": "$n peers around $mself intently.",
+    "char_found": "You peer intently at $N.",
+    "others_found": "$n peers intently at $N.",
+    "vict_found": "$n peers at you intently.",
+    "char_not_found": "They aren't here.",
+    "char_auto": "You get a little cross-eyed with your attempts to stare yourself down.",
+    "others_auto": "$n peers at $mself, crossing $s eyes in the process."
+  }},
+  {"social": {
+    "name": "worship",
+    "char_no_arg": "You prostrate yourself and worship the gods!",
+    "others_no_arg": "$n prostrates $mself and worships the gods!",
+    "char_found": "You fall on your knees and worship $N.",
+    "others_found": "$n falls on $s knees and worships $N.",
+    "vict_found": "$n falls to the ground and worships you.",
+    "char_not_found": "You can't worship someone who isn't here.",
+    "char_auto": "You worship yourself.",
+    "others_auto": "$n worships $mself."
+  }},
+  {"social": {
+    "name": "bearhug",
+    "char_no_arg": "Whom do you wish to bearhug?",
+    "char_found": "You overwhelm $N with a great, big, hulking bearhug.",
+    "others_found": "$n encompasses $N in an ENORMOUS bearhug!",
+    "vict_found": "$n clutches you tightly in an overwhelming bearhug!",
+    "char_not_found": "Perhaps you should shower your affections on someone who is here?",
+    "char_auto": "You vainly clutch yourself in a bearhug for consolation.",
+    "others_auto": "$n hugs $mself as tightly as possible.  Looks like $e could use a hand."
+  }},
+  {"social": {
+    "name": "innocent",
+    "char_no_arg": "You innocently whistle a tune.",
+    "others_no_arg": "$n looks around and whistles innocently.",
+    "char_found": "You look at $N and bat your eyelashes -- the picture of innocence!",
+    "others_found": "$n bats $s eyelashes innocently at $N.",
+    "vict_found": "$n looks at you and innocently bats $s eyelashes.",
+    "char_not_found": "Don't even TRY -- they've already left."
+  }},
+  {"social": {
+    "name": "collapse",
+    "char_no_arg": "You collapse on the floor from exhaustion.",
+    "others_no_arg": "$n dramatically collapses to the floor from exhaustion.   ",
+    "char_found": "You collapse right into $N's arms.",
+    "others_found": "$n collapses right into $N's arms.",
+    "vict_found": "Suddenly, $n collapses into your arms from exhaustion.  ",
+    "char_not_found": "They've already left, just collapse on the floor."
+  }},
+  {"social": {
+    "name": "stretch",
+    "char_no_arg": "You lean back and streeeeeettch your arms and legs.",
+    "others_no_arg": "$n stretches luxuriously.  Kinda makes you want to doesn't it?"
+  }},
+  {"social": {
+    "name": "spam",
+    "char_no_arg": "You mutter, 'spam' quietly to yourself again and again.",
+    "others_no_arg": "$n rests in a corner and mutters 'spam' quietly to $mself.",
+    "char_found": "You SPAM $N mercilessly!",
+    "others_found": "$n spams $N!",
+    "vict_found": "You've been SPAMMED by $n!",
+    "char_not_found": "Spam away -- they've left."
+  }},
+  {"social": {
+    "name": "boast",
+    "char_no_arg": "You boast loudly of all your amazing accomplishments.",
+    "others_no_arg": "$n boasts loudly in a pigheaded fashion.",
+    "char_found": "You boast to $N of all your great deeds.",
+    "others_found": "$n boasts to $N.",
+    "vict_found": "Once again, $n boasts to you, what a bloated ego!",
+    "char_not_found": "Your ego takes a blow.  They've already left.",
+    "char_auto": "You boast to yourself of all your great feats!  Your own biggest fan.",
+    "others_auto": "$n boasts to $mself -- what an ego!"
+  }},
+  {"social": {
+    "name": "squirm",
+    "char_no_arg": "You squirm uncontrollably in your consternation.",
+    "others_no_arg": "$n squirms uncontrollably, suddenly looking very uncomfortable.",
+    "char_found": "You look at $N and squirm with delight.              ",
+    "others_found": "$n looks at $N and squirms with delight.",
+    "vict_found": "$n looks at you and squirms with delight."
+  }},
+  {"social": {
+    "name": "moo",
+    "char_no_arg": "You chew your cud and moo plaintively.  Muh-OOOOO!",
+    "others_no_arg": "$n turns cowlike eyes on you, chews $s cud, and moos plaintively.",
+    "char_found": "You focus all your bovine Zen on $N, and speak your thoughts.  Muh-OOOOO!",
+    "others_found": "Slowly, $n looks at $N, chews $s cud, and muh-OOOOs!",
+    "vict_found": "$n moos at you.  What could that possibly mean?",
+    "char_not_found": "You'd better find someone else to moo at.",
+    "char_auto": "You settle down into the center of your bovine Zen; the foolish world thinks you're just mooing.",
+    "others_auto": "$n is mooing at $mself again...  You look for an exit..."
+  }},
+  {"social": {
+    "name": "moon",
+    "char_no_arg": "You drop your drawers and moon everyone in the room!",
+    "others_no_arg": "$n drops $s pants and gives you the vertical smile!",
+    "char_found": "You bend over and moon $N.",
+    "others_found": "$n drops $s pants and rudely moons $N!",
+    "vict_found": "$n bends over and gives you the vertical smile!",
+    "char_not_found": "You stand, with your pants around your ankles, looking VERY silly!",
+    "char_auto": "You try to moon yourself, but you can't see your A** that well.",
+    "others_auto": "$n nearly goes into convulsions while trying to moon $mself."
+  }},
+  {"social": {
+    "name": "goose",
+    "char_no_arg": "Who would you like to goose?",
+    "char_found": "You tenderly goose $N on the tush.",
+    "others_found": "$n reaches around $N's backside and gooses $M tenderly.",
+    "vict_found": "$n gooses you tenderly!",
+    "char_not_found": "You should go hunting for another victim, they left.",
+    "char_auto": "You pinch yourself on the rear, you must be desperate.",
+    "others_auto": "$n pinches $mself on the rear."
+  }},
+  {"social": {
+    "name": "wince",
+    "char_no_arg": "You wince in agony.",
+    "others_no_arg": "$n winces in agony.",
+    "char_found": "You look at $N and wince at $S remark.",
+    "others_found": "$n winces at $N's remark.",
+    "vict_found": "$n winces at your remark."
+  }},
+  {"social": {
+    "name": "type",
+    "char_no_arg": "You can't type for crap tonight!  You give up in frustration!",
+    "others_no_arg": "$n throws $s hands up in disgust at $s lousy typing skills!"
+  }},
+  {"social": {
+    "name": "brb",
+    "char_no_arg": "Hope to see you soon!",
+    "others_no_arg": "$n will be right back!"
+  }},
+  {"social": {
+    "name": "mutter",
+    "char_no_arg": "You mutter quietly to yourself.",
+    "others_no_arg": "$n mutters something quietly to $mself.",
+    "char_found": "You mutter something to $N.",
+    "others_found": "$n looks at $N and mutters something nasty under $s breath.                 ",
+    "vict_found": "$n looks at you and mutters something nasty under $s breath.",
+    "char_not_found": "There's nothing left for you to say, they've left!",
+    "char_auto": "You mutter quietly to yourself.",
+    "others_auto": "$n mutters something quietly to $mself."
+  }},
+  {"social": {
+    "name": "rofl",
+    "char_no_arg": "You roll on the floor, laughing hysterically.",
+    "others_no_arg": "$n falls to the ground and rolls around laughing hysterically.",
+    "char_found": "You fall to the floor laughing at $N's remark.",
+    "others_found": "$n rolls on the floor laughing at $N's antics!",
+    "vict_found": "$n rolls on the floor laughing at your antics!"
+  }},
+  {"social": {
+    "name": "sob",
+    "char_no_arg": "You sob quietly to yourself.",
+    "others_no_arg": "$n sobs in misery.",
+    "char_found": "You sob quietly to yourself because $N has hurt your feelings so badly.",
+    "others_found": "$n sobs quietly to $mself because $N was a jerk!",
+    "vict_found": "You feel like a cad because you've made $n sob."
+  }},
+  {"social": {
+    "name": "pant",
+    "char_no_arg": "You pant lustily.",
+    "others_no_arg": "$n pants lustily.",
+    "char_found": "You pant lustily at $M.",
+    "others_found": "$n looks at $N and pants lustily.",
+    "vict_found": "$n looks at you and pants lustily..."
+  }},
+  {"social": {
+    "name": "whine",
+    "char_no_arg": "You whine to anyone who will listen to you.",
+    "others_no_arg": "$n whines pathetically to anyone who will listen.",
+    "char_found": "You whine to $M, hoping desperately that at least $E will give a damn.",
+    "others_found": "$n whines pathetically to $N.",
+    "vict_found": "$n whines pathetically to you.  What a loser!",
+    "char_not_found": "They really don't care.",
+    "char_auto": "You whine to yourself, probably the only one who will listen.",
+    "others_auto": "$n whines to $mself.  At least $e isn't bitching to YOU."
+  }},
+  {"social": {
+    "name": "flex",
+    "char_no_arg": "You flex your muscles proudly!",
+    "others_no_arg": "$n flexes $s muscles...what a stud!?!",
+    "char_found": "You show off to $N, flexing your muscles proudly.",
+    "others_found": "$n flexes $s muscles, in a vain attempt to impress $N.",
+    "vict_found": "$n flexes $s muscles in a vain attempt to show off to you."
+  }},
+  {"social": {
+    "name": "embrace",
+    "char_no_arg": "Who would you like to embrace?  ",
+    "char_found": "You wrap your arms around $N in a warm and loving embrace.",
+    "others_found": "$n wraps $s arms around $N in a warm and loving embrace.",
+    "vict_found": "$n takes you in $s arms in a warm and loving embrace.",
+    "char_not_found": "Your heart breaks as you realize you are alone.",
+    "char_auto": "You try to console yourself with a loving embrace.",
+    "others_auto": "$n tries to console $mself by wrapping $s arms around $mself."
+  }},
+  {"social": {
+    "name": "duck",
+    "char_no_arg": "DUCK!!!!",
+    "others_no_arg": "$n ducks defensively.",
+    "char_found": "You duck defensively, anticipating the oncoming swipe from $N.",
+    "others_found": "$n ducks, anticipating $N's reaction.",
+    "vict_found": "$n ducks, please oh please don't hit $m!"
+  }},
+  {"social": {
+    "name": "bonk",
+    "char_no_arg": "***BONK!!!***",
+    "char_found": "You bonk $N on the head for being such a moron.",
+    "others_found": "$n bonks $N on the head for being such an UTTER moron.",
+    "vict_found": "$n bonks you on the head for being so foolish.",
+    "char_not_found": "***BONK*** they left...",
+    "char_auto": "You bonk yourself, fool that you are.",
+    "others_auto": "$n bonks $mself and grimaces in pain."
+  }},
+  {"social": {
+    "name": "squeal",
+    "char_no_arg": "You squeal with delight!",
+    "others_no_arg": "$n lets out a sudden squeal of delight!",
+    "char_found": "You look at $N and squeal with delight!",
+    "others_found": "$n squeals with delight at $N.",
+    "vict_found": "$n looks at you and squeals with delight!"
+  }},
+  {"social": {
+    "name": "tackle",
+    "char_no_arg": "You're going to tackle everyone in the room?!",
+    "char_found": "You tackle $N playfully.",
+    "others_found": "$n playfully tackles $N.",
+    "vict_found": "$n brings you down in a playful tackle!"
+  }},
+  {"social": {
+    "name": "spit",
+    "char_no_arg": "You spit in utter disgust.",
+    "others_no_arg": "$n spits in utter disgust!",
+    "char_found": "You spit on $N...you're gross!",
+    "others_found": "$n spits on $N.",
+    "vict_found": "$n spits on you -- how gross!",
+    "char_not_found": "Your victim isn't here.",
+    "char_auto": "You spit on yourself, pretty nasty eh?",
+    "others_auto": "$n spits on $mself...what a sicko!"
+  }},
+  {"social": {
+    "name": "life",
+    "char_no_arg": "You try to get a life, and fail.",
+    "others_no_arg": "$n tries to get a life, and fails.",
+    "char_found": "$N needs to get a life!",
+    "others_found": "$N needs to get a life!",
+    "vict_found": "You need to get a life!",
+    "char_not_found": "Who needs a life?",
+    "char_auto": "But you have none to give!",
+    "others_auto": "$n attempts to give $mself a life, but has none to spare."
+  }},
+  {"social": {
+    "name": "mosh",
+    "char_no_arg": "You mosh insanely around the room!",
+    "others_no_arg": "$n moshes insanely around the room!",
+    "char_found": "You mosh sadistically against $N ... you WILL be punished.",
+    "others_found": "$n bounces off of $N in a vain attempt to mosh... what a LOSER.",
+    "vict_found": "$n slams into you, moshing painfully against you.  That REALLY hurts!",
+    "char_not_found": "Hmmm...  your victim found a new dance partner.",
+    "char_auto": "Masochist!",
+    "others_auto": "$n throws $mself on the floor, grinding $mself into a bloody pulp"
+  }},
+  {"social": {
+    "name": "flinch",
+    "char_no_arg": "EEEK... You flinch in obvious pain.",
+    "others_no_arg": "$n flinches in obvious pain... you wonder what $e did THIS time.",
+    "char_found": "Don't you wish you could just crawl under a rock and die?",
+    "others_found": "$n sneaks a glance at $N and flinches.",
+    "vict_found": "$n flinches in response to your cold rebuke.",
+    "char_not_found": "Relax, $E is gone.",
+    "char_auto": "You can't belive what you've done...",
+    "others_auto": "$n twitches violently, shocked at $s own behavior."
+  }},
+  {"social": {
+    "name": "air",
+    "char_no_arg": "You grab your air guitar and play for all you're worth.",
+    "others_no_arg": "$n air-guitars like a mad man ... EXCELLENT!!!",
+    "char_found": "You hope $E appreciates your (total lack of) talent.",
+    "others_found": "$n is surrounded by air groupies. ",
+    "vict_found": "$n plays a most excellent tune for you on $s most excellent air guitar.",
+    "char_not_found": "Awww... you have no audience!",
+    "char_auto": "You play softly to yourself."
+  }},
+  {"social": {
+    "name": "tweak",
+    "char_no_arg": "Tweak who?",
+    "char_found": "You gently tweak $S cheek.  Isn't $E so CUTE?",
+    "others_found": "$n tweaked $N's cheek... don't they look so adorable together?",
+    "vict_found": "$n lovingly tweaks your cheek.  It reminds you of Grandma... sniff...",
+    "char_not_found": "*Sniff*  That cheek seems to be missing.",
+    "char_auto": "You can't DO that."
+  }},
+  {"social": {
+    "name": "peck",
+    "char_no_arg": "Wouldn't you like to do that to a person, or do you prefer air?",
+    "char_found": "Risking a slap to the face, you give $N a peck on the cheek.",
+    "others_found": "$n smiles and gives $N a chaste peck on the cheek.",
+    "vict_found": "$n pecks you on the cheek, how sweet!",
+    "char_not_found": "I guess you scared them away...",
+    "char_auto": "You must REALLY like yourself.",
+    "others_auto": "$n tries in vain to wrap $s lips around $s cheeks."
+  }},
+  {"social": {
+    "name": "explode",
+    "char_no_arg": "You feel the blood boiling in your veins!",
+    "others_no_arg": "$n turns a deep red, fighting to contain $s temper...",
+    "char_found": "You feel your rage explode deep in the pit of your stomach...",
+    "others_found": "$n burns holes through $N with his explosive anger!",
+    "vict_found": "$n is ANGRY with you... I'd run if I were you!!!",
+    "char_not_found": "Temper Temper... they left.",
+    "char_auto": "Your soul burns brightly then fades to nothing.",
+    "others_auto": "$n implodes!!!  Only a grease spot remains where $e once stood."
+  }},
+  {"social": {
+    "name": "raspberry",
+    "char_no_arg": "You stick your tongue out at ... well, no one.",
+    "others_no_arg": "$n sticks $s tongue out, catching a few flies in the process.",
+    "char_found": "You give $N the raspberry... and spit all over yourself.",
+    "others_found": "$n gives $N the raspberry... PHBT!  What a mess... Spit EVERYWHERE!",
+    "vict_found": "You are splattered with saliva as $n gives you the raspberry... HOW RUDE!",
+    "char_not_found": "Hang your tongue out if you like, $e isn't here.",
+    "char_auto": "You try to stick your tongue out at yourself... somehow, it isn't the same."
+  }},
+  {"social": {
+    "name": "flash",
+    "char_no_arg": "You grin and strut as you open your coat and show what you've got!",
+    "others_no_arg": "$n rips $s clothes off and parades naked around the room!",
+    "char_found": "Swiftly you jerk open your jacket, trying to get $M to notice you.",
+    "others_found": "Cover your eyes, $n is exposing $mself to $n!  EWWWW!",
+    "vict_found": "You gasp!  $n has just revealed $s \"equipment\" to you!",
+    "char_not_found": "Exhibitionist, that person isn't here!",
+    "char_auto": "That's sick.",
+    "others_auto": "PERVERT PRESENT!  $n is trying to flash $mself"
+  }},
+  {"social": {
+    "name": "strip",
+    "char_no_arg": "You do a slow strip tease for the people...",
+    "others_no_arg": "$n begins a slow, erotic strip-tease act...",
+    "char_found": "You start to undress $N ... one piece of clothing at a time...",
+    "others_found": "$n runs $s hands over $Ns body, slowly stripping away the clothing...",
+    "vict_found": "$n has started to strip you... woah BABY!",
+    "char_not_found": "Your toy doesn't seem to be here...",
+    "char_auto": "You can't DO that in public!"
+  }},
+  {"social": {
+    "name": "undress",
+    "char_no_arg": "You start to undress in the shadows, waiting for someone to notice.",
+    "others_no_arg": "$n begins to undress... $e is VERY sexy... *Pant* ",
+    "char_found": "You undress $M with your eyes... Kinky.",
+    "others_found": "You feel the temperature of the room rise as $n lusts on $N...",
+    "vict_found": "Feeling exposed, you sense $n undressing you with $s eyes...",
+    "char_not_found": "They are not here...",
+    "char_auto": "A mirror would work better..."
+  }},
+  {"social": {
+    "name": "tongue",
+    "char_no_arg": "You slowly give your tongue a nice workout.",
+    "char_found": "Mmmm... you give $N a good working over with your tongue...",
+    "others_found": "$n slides $s tongue over $N's body...",
+    "vict_found": "$n wraps $s tongue around you, moving it across your young, nubile flesh...",
+    "char_not_found": "Never around when required...",
+    "char_auto": "You slowly tongue yourself.",
+    "others_auto": "$n slowly tongues $mself... ICK."
+  }},
+  {"social": {
+    "name": "view",
+    "char_no_arg": "You sit back and watch the world go by.",
+    "others_no_arg": "$n kicks back and enjoys the view."
+  }},
+  {"social": {
+    "name": "grumble",
+    "char_no_arg": "You grumble distractedly to yourself",
+    "others_no_arg": "$n grumbles and growls. You wonder what's wrong...",
+    "char_found": "You grumble at $N, disgusted with their presence.",
+    "others_found": "$n seems to be a grumpy bear... $e is grumbling at poor $N.",
+    "vict_found": "$n is grumbling at you... what'd you do?",
+    "char_not_found": "That person is presently AWOL.",
+    "char_auto": "Why bother?"
+  }},
+  {"social": {
+    "name": "cheer",
+    "char_no_arg": "You cheer and dance as the joy within you bursts forth!",
+    "others_no_arg": "$n cheers and sings... $e is just BURSTING with joy!",
+    "char_found": "You cheer $N on and wish $M good luck!",
+    "others_found": "*Yay!*  Go $N!!!  $n cheers $M on.",
+    "vict_found": "You are cheered on by $n... you feel so loved!",
+    "char_not_found": "Who? Huh? Where?  They're not here, that's for sure",
+    "char_auto": "You cheer silently for yourself since nobody else will",
+    "others_auto": "$n resorts to cheering for $mself... how sad."
+  }},
+  {"social": {
+    "name": "plead",
+    "char_no_arg": "You beg and plead to anyone who will listen.",
+    "others_no_arg": "$n pleads $s case to anyone who will listen... You ALMOST feel sorry for $s."
+  }},
+  {"social": {
+    "name": "charge",
+    "char_no_arg": "You charge into the fray!",
+    "others_no_arg": "$n charges into the fray!  All guts, no brains.",
+    "char_found": "With surprising dexterity, you head-butt $N!",
+    "others_found": "$n ducks down low, charges forward, and head-butts $N!",
+    "vict_found": "OOF!  $n rammed $s head into your stomach!  That HURT.",
+    "char_not_found": "Nobody 'round with that name, Mister!",
+    "char_auto": "You run your head into a brick wall.  OUCH!"
+  }},
+  {"social": {
+    "name": "criticize",
+    "char_no_arg": "Yes, but who?",
+    "char_found": "You criticize $M with all the warmth of a snake.",
+    "others_found": "With a nasty grin, $n rips apart $Ns efforts.",
+    "vict_found": "$n informs you that your attempts need some MAJOR adjustments.",
+    "char_not_found": "Where oh where has my victim gone, oh where oh where...",
+    "char_auto": "You criticize yourself profusely.",
+    "others_auto": "$n tears $mself apart, cursing $s own stupidity."
+  }},
+  {"social": {
+    "name": "run",
+    "char_no_arg": "You run away in terror and horror!",
+    "others_no_arg": "$n runs away in utter terror!",
+    "char_found": "You run away from $N in complete terror!",
+    "others_found": "$n runs away from $N in utter terror and horror!",
+    "vict_found": "$n runs from you, fearing for $s life!",
+    "char_not_found": "No reason to be afraid, they aren't here.",
+    "char_auto": "Are you THAT ugly?",
+    "others_auto": "$n looks in the mirror, sees $s face, and runs away terrified!"
+  }},
+  {"social": {
+    "name": "judge",
+    "char_no_arg": "Yes, but who?",
+    "char_found": "You judge $m on a scale of 1 to 10.",
+    "others_found": "On a scale from 1 to 10, $n thinks $N is a complete ZERO!!!",
+    "vict_found": "$n judges your actions on a scale of 1 to 10 and comes up with ZERO!!!",
+    "char_not_found": "They aren't here right now.",
+    "char_auto": "You don't REALLY want to do that."
+  }},
+  {"social": {
+    "name": "insane",
+    "char_no_arg": "You feel your sanity slipping away...",
+    "others_no_arg": "Before your eyes, $n's sanity is slipping away..."
+  }},
+  {"social": {
+    "name": "cover",
+    "char_no_arg": "You cover your ears to protect them from the noise.",
+    "others_no_arg": "$n covers $s ears to protect them from all the noise.",
+    "char_found": "You glare at $N and cover your ears.",
+    "others_found": "$n glares at $N and covers $s ears.",
+    "vict_found": "$n covers $s ears because of you... you are TOO LOUD!",
+    "char_not_found": "They aren't here right now.",
+    "char_auto": "No... I don't think so."
+  }},
+  {"social": {
+    "name": "flare",
+    "char_no_arg": "You flare your nostrils disdainfully.",
+    "others_no_arg": "$n flares $s nostrils disdainfully.",
+    "char_found": "You flare your nostrils disdainfully at $N... HOW RUDE!",
+    "others_found": "$n flares $s nostrils disdainfully at $N and turns up $s snobbish nose.",
+    "vict_found": "$n flares $s nostrils disdainfully at you... what'd you DO???",
+    "char_not_found": "Flare if you wish, but that person isn't here to see it.",
+    "char_auto": "*Sniff*  But you should LOVE yourself!"
+  }},
+  {"social": {
+    "name": "head",
+    "char_no_arg": "You toss your head haughtily.",
+    "others_no_arg": "$n tosses $s head haughtily.",
+    "char_found": "You toss your head haughtily at $N.",
+    "others_found": "$n tosses her head haughtily at $N... what an ATTITUDE!",
+    "vict_found": "$n tossed $s head haughtily at you... :(",
+    "char_not_found": "That person is AWOL.",
+    "char_auto": "Why would you do that?"
+  }},
+  {"social": {
+    "name": "pie",
+    "char_no_arg": "You pick up a pie and toss it around for a bit.",
+    "others_no_arg": "$n picks up a pie and tosses it around for a bit.",
+    "char_found": "You toss a pie at $N and hit $M right in the FACE!",
+    "others_found": "$n tosses a pie at $N and hits $m right in the FACE!",
+    "vict_found": "$n tossed a pie in your face... and now you are all covered in GOO!",
+    "char_not_found": "That person isn't here...",
+    "char_auto": "You bury your face in the pie... yummmmm!!! :)",
+    "others_auto": "$n buries $s face in the pie, licking the pan clean."
+  }},
+  {"social": {
+    "name": "cower",
+    "char_no_arg": "You cower in a corner.",
+    "others_no_arg": "$n cowers in a corner and whimpers softly.",
+    "char_found": "You cower away from $N and $S harsh words.",
+    "others_found": "$n cowers in a corner, terrified that $N will come after $m.",
+    "vict_found": "You scared poor $n!  Now $S is cowering in a corner, afraid for $s life.",
+    "char_not_found": "That person is AWOL at the moment.",
+    "char_auto": "You are afraid of your own shadow!",
+    "others_auto": "$n cowers in the corner afraid of $s own shadow"
+  }},
+  {"social": {
+    "name": "noogie",
+    "char_no_arg": "You can't noogie the AIR!  It has no head.",
+    "char_found": "You grab $N, get $M in a head lock and NOOGIE $M!",
+    "others_found": "$n grabs $N in a head lock and NOOGIES $M... ARGH!!!",
+    "vict_found": "Oh NO, $n grabs you, throws you in a head lock and NOOGIES you!",
+    "char_not_found": "That person has gone off to other lands...",
+    "char_auto": "You rub your head and create a static charge...",
+    "others_auto": "$n rubs $s OWN head and creates a static charge... *ZAP*"
+  }},
+  {"social": {
+    "name": "yeehaw",
+    "char_no_arg": "You mount your pony(?) and shout YEEEEEEEHAAAAAAAW!",
+    "others_no_arg": "$n bounces up and down screaming *YEEEEEEHAAAAAAW!*"
+  }},
+  {"social": {
+    "name": "pissed",
+    "char_no_arg": "You are PISSED!",
+    "others_no_arg": "$n is PISSED so watch out!",
+    "char_found": "You turn a stoney gaze toward $N... you are SOOO pissed at $N!",
+    "others_found": "$n glares at $n.... $n is SOOO PISSED at $m!",
+    "vict_found": "$n is pissed at you now... What do you think $e'll DO?",
+    "char_not_found": "That person is not here...",
+    "char_auto": "You are PISSED at yourself!",
+    "others_auto": "$n is so pissed at $mself.  How could $e be so stupid???"
+  }},
+  {"social": {
+    "name": "passout",
+    "char_no_arg": "You belch and pass out.",
+    "others_no_arg": "$n is OBVIOUSLY intoxicated... $e burps loudly and passes out!"
+  }},
+  {"social": {
+    "name": "adjust",
+    "char_no_arg": "You look around, make sure nobody is watching, and you adjust your \"Tool.\"",
+    "others_no_arg": "$n looks around slyly, smiles, then reaches down and \"adjusts\" $mself..."
+  }},
+  {"social": {
+    "name": "scratch",
+    "char_no_arg": "You scratch yourself contentedly.",
+    "others_no_arg": "$n reaches down and scratches $mself...  Now $e looks VERY happy."
+  }},
+  {"social": {
+    "name": "meditate",
+    "char_no_arg": "You assume a very comfortable position and begin to meditate.",
+    "others_no_arg": "$n rests and begins to meditate... $e chants softly to $mself."
+  }},
+  {"social": {
+    "name": "bkiss",
+    "char_no_arg": "You blow kisses to the air.",
+    "others_no_arg": "$n blows kisses at no one in particular.",
+    "char_found": "You blow a kiss at $N and wonder if $E will catch it.",
+    "others_found": "$n blows a kiss at $N ... isn't $e so CUTE?",
+    "vict_found": "$n blows a kiss at you and hopes you'll blow one back at $m.",
+    "char_not_found": "You kiss falls to the ground with no one to go to.",
+    "char_auto": "You blow a kiss to yourself... isn't the world beautiful?",
+    "others_auto": "$n blows a kiss to $mself, obviously very in love."
+  }},
+  {"social": {
+    "name": "beer",
+    "char_no_arg": "You pull out a six-pack.",
+    "others_no_arg": "$n starts to juggle a six-pack of beer.",
+    "char_found": "You toss a bottle of beer at $N.",
+    "others_found": "$n tosses a bottle of beer at $N ... let's just hope $e'll catch it!",
+    "vict_found": "$n tossed you a bottle of beer... I think $e wants something...",
+    "char_not_found": "The bottle crashes to the floor and shatters.",
+    "char_auto": "You pop off the top and down a beer.",
+    "others_auto": "$n pops the top off a bottle of beer and downs it in one gulp."
+  }},
+  {"social": {
+    "name": "bcatch",
+    "char_no_arg": "You reach out and rescue the bottle from its flight.",
+    "others_no_arg": "$n reaches out and grabs the bottle of beer tossed to $m."
+  }},
+  {"social": {
+    "name": "claw",
+    "char_no_arg": "You tighten your hands into a fist.",
+    "others_no_arg": "$n clenches $s fists until blood drips from them...",
+    "char_found": "You claw $S eyes out... GROSS!",
+    "others_found": "$n buries $s nails in $N's eyes ... OH GOD, THE BLOOD!",
+    "vict_found": "$n buries $s nails in your eyes and you are blinded by your own blood!",
+    "char_not_found": "They aren't here to claw.",
+    "char_auto": "You claw yourself to shreds!",
+    "others_auto": "$n rips $mself to shreds with $s fingernails!"
+  }},
+  {"social": {
+    "name": "rose",
+    "char_no_arg": "Who would you like to give it to?",
+    "char_found": "You give $M a pretty rose.",
+    "others_found": "$n hands $N a beautiful rose.",
+    "vict_found": "$n hands you a beautiful ---'---,--{@",
+    "char_not_found": "They seem to have left.",
+    "char_auto": "You give yourself a rose and feel a little sad...",
+    "others_auto": "$n gives $mself a rose, dont you feel sorry for $m?"
+  }},
+  {"social": {
+    "name": "laces",
+    "char_no_arg": "Whose laces?",
+    "char_found": "With the greatest of stealth, you tie $S shoelaces together.",
+    "others_found": "$n sneaks up to $N and ties $S shoelaces together.",
+    "vict_found": "You try to take a step, and you hit the world facedown!  Someone must have tied your shoelaces together!",
+    "char_not_found": "Whose laces?",
+    "char_auto": "You tie your own shoelaces together, try to walk, and promptly fall.",
+    "others_auto": "$n cleverly ties $s own shoelaces together, tries to walk, and sprawls flat on the floor."
+  }},
+  {"social": {
+    "name": "tag",
+    "char_no_arg": "Tag whom?",
+    "others_no_arg": "$n casts about for someone to tag.",
+    "char_found": ">From nowhere, you pounce on $N and TAG $M remorselessly!  BWAHAHA!!!",
+    "others_found": "$n dives from the shadows and TAGS $N.  $N IS IT!",
+    "vict_found": "$n pounces on you and >>> TAGS <<< you!  You're IT!",
+    "char_not_found": "Who were you going to tag, then?",
+    "char_auto": "Unable to catch anyone else, you do the intelligent thing and tag yourself. You're still IT!",
+    "others_auto": "Unable to catch anyone else, $n tags $mself.  Are you impressed?"
+  }},
+  {"social": {
+    "name": "tank",
+    "char_no_arg": "You boldly offer to tank for your everyone else.  Are you sure you know what you're getting into?",
+    "others_no_arg": "$n offers to tank!",
+    "char_found": "You offer to tank for $N.",
+    "others_found": "$n offers to tank for $N.",
+    "vict_found": "$n offers to tank for you!",
+    "char_not_found": "Tank for whom?",
+    "char_auto": "No one will tank for you, eh?!? WELL, YOU'LL SHOW THEM!  (right?)",
+    "others_auto": "In dazzling chivalry, $n offers to tank-- for $mself!"
+  }},
+  {"social": {
+    "name": "starve",
+    "char_no_arg": "You show your prominent ribs and hope that someone will take pity.",
+    "others_no_arg": "$n is withering before your eyes!  Starvation!",
+    "char_found": "You throw yourself upon $S mercy, begging for food.",
+    "others_found": "$n begs $N for food.  One would think that magic would have cured hunger by now...",
+    "vict_found": "$n is starving before your eyes!  Could you spare some food, please?",
+    "char_not_found": "Sorry, but that person isn't around-- looks like you'll starve."
+  }},
+  {"social": {
+    "name": "aargh",
+    "char_no_arg": "AAAAAARRRRRRGGGGGGHHHHHH!!!!!!",
+    "others_no_arg": "$n throws back $s head and howls in profound frustration!",
+    "char_found": "You scream your frustration and grab for $S throat with both hands!",
+    "others_found": "$n howls in frustration, and leaps for $N, trying to throttle $M!",
+    "vict_found": "$n grabs for your throat with two hands, howling in frustration!",
+    "char_not_found": "You get even MORE frustrated when you can't find anyone to throttle!",
+    "char_auto": "You scream in frustration at your own stupidity!",
+    "others_auto": "$n screams in frustration at $s own stupidity!"
+  }},
+  {"social": {
+    "name": "homework",
+    "char_no_arg": "Your suddenly remember that you have to defend your thesis today...",
+    "others_no_arg": "$n looks stricken.  Could $e have blown off some important homework?"
+  }},
+  {"social": {
+    "name": "puff",
+    "char_no_arg": "You mimic Puff at her most annoying.",
+    "others_no_arg": "$n says, \"Did you know that I'm written in C?\""
+  }},
+  {"social": {
+    "name": "yae",
+    "char_no_arg": "You sigh, burdened with Yet Another Eeediot.",
+    "others_no_arg": "$n sighs, burdened with Yet Another Eeediot.",
+    "char_found": "There's Yet Another Eeediot in the room, and you're looking right at $M.",
+    "others_found": "$n clearly believes that $N is an Eeediot! ",
+    "vict_found": "$n glares at you, obviously not impressed with your intelligence.",
+    "char_not_found": "There are plenty of Eeediots, but that one doesn't seem to be present.",
+    "char_auto": "You bonk yourself for the Eeediot you are!",
+    "others_auto": "$n bonks $mself, HARD, and curses $mself for the Eeediot $e is!"
+  }},
+  {"social": {
+    "name": "lightbulb",
+    "char_no_arg": "*Ding!*  Inspiration!",
+    "others_no_arg": "A light bulb appears above $n's head!"
+  }},
+  {"social": {
+    "name": "voodoo",
+    "char_no_arg": "Bad juju like this has to be directed at a person.",
+    "others_no_arg": "$n looks hostile for a moment.",
+    "char_found": "You stare daggers at $N, jabbing pins into $S effigy.",
+    "others_found": "$n glares balefully at $N while stabbing a pin into a voodoo doll.",
+    "vict_found": "Your heart lurches in your chest, and fiery pain stabs through your skull!",
+    "char_not_found": "Your hatred finds no such target.",
+    "char_auto": "You stab a pin into your own voodoo doll!  Agony!",
+    "others_auto": "$n jabs a pin into $s own voodoo doll, and twitches in agony!"
+  }},
+  {"social": {
+    "name": "ogg",
+    "char_no_arg": "Ogg who?",
+    "char_found": "Engage!",
+    "others_found": "$n oggs $N's head with photon torpedos!  $N reels.",
+    "vict_found": "$n oggs your head with photon torpedos!  You are reeling.",
+    "char_not_found": "You can't find your target.",
+    "char_auto": "If you do that, the universe will explode.",
+    "others_auto": "$n almost oggs $mself, but wisely reconsiders."
+  }},
+  {"social": {
+    "name": "confused",
+    "char_no_arg": "Your confusion is showing.",
+    "others_no_arg": "$n blinks slowly...",
+    "char_found": "You blink slowly, trying to decipher $S comment.",
+    "others_found": "$n blinks slowly.  Maybe $N left a word out of $S sentence...",
+    "vict_found": "$n blinks slowly.  Maybe you left a word out of your sentence?",
+    "char_not_found": "No wonder you're confused."
+  }},
+  {"social": {
+    "name": "beam",
+    "char_no_arg": "You beam delightedly at nothing in particular.",
+    "others_no_arg": "$n beams broadly at nothing in particular.",
+    "char_found": "You dazzle $N with your smile.",
+    "others_found": "$n must like $N a great deal to beam at $M so broadly!",
+    "vict_found": "$n must like you a great deal to beam at you so broadly!",
+    "char_not_found": "You look pretty silly beaming at imaginary friends...",
+    "char_auto": "Well, aren't you special?",
+    "others_auto": "$n beams at $mself, obviously pleased."
+  }},
+  {"social": {
+    "name": "bite",
+    "char_no_arg": "You glare around, muttering \"Bite me...\" under your breath.",
+    "others_no_arg": "$n glares around, muttering \"Bite me...\" under $s breath.",
+    "char_found": "You bite $N on the neck.",
+    "others_found": "$n bites $N on the neck!",
+    "vict_found": "$n bites you on the neck.",
+    "char_not_found": "Hungry?  No such luck.",
+    "char_auto": "You bite your knuckle in anguish.",
+    "others_auto": "$n bites $s knuckle in anguish...the tragedy!"
+  }},
+  {"social": {
+    "name": "discodance",
+    "char_no_arg": "Groovy!",
+    "others_no_arg": "$n discos wildly!",
+    "char_found": "You grab $N and disco wildly!  Groovy!",
+    "others_found": "$n grabs $N and does $m best Travolta!",
+    "vict_found": "$n grabs you and does $m best Travolta!",
+    "char_not_found": "It's okay, you can disco solo too."
+  }},
+  {"social": {
+    "name": "scuff",
+    "char_no_arg": "You scuff your foot sheepishly.",
+    "others_no_arg": "$n scuffs $s foot in the dirt, looking very sheepish.",
+    "char_found": "You scuff your foot, avoiding $N's gaze.",
+    "others_found": "$n scuffs $s foot and shyly avoids $N's gaze.",
+    "vict_found": "$n scuffs $s foot and shyly avoids your gaze.",
+    "char_not_found": "They aren't here."
+  }},
+  {"social": {
+    "name": "whap",
+    "char_no_arg": "Whap who?",
+    "char_found": "You whap $N upside the head!",
+    "others_found": "With a resounding WHAP!, $n reprimands $N.",
+    "vict_found": "HEY!  $n whaps you upside the head!",
+    "char_not_found": "Whiff...",
+    "char_auto": "Ow! You give yourself a resounding whap upside the head.",
+    "others_auto": "Biff!  $n whaps $mself upside the head!"
+  }},
+  {"social": {
+    "name": "lag",
+    "char_no_arg": "Yes, yes.",
+    "others_no_arg": "$n is   m o v i n g      v  e    ry  sl  o w   l   y ..."
+  }},
+  {"social": {
+    "name": "chortle",
+    "char_no_arg": "Heh.",
+    "others_no_arg": "$n chortles mischievously.",
+    "char_found": "You chortle mischievously at $N.",
+    "others_found": "$n chortles mischievously at $N.",
+    "vict_found": "$n chortles mischievously at you.",
+    "char_not_found": "Took you a while to get that....they aren't here.",
+    "char_auto": "You chortle at your own joke.",
+    "others_auto": "$n chortles at $s own joke.  Don't bother."
+  }},
+  {"social": {
+    "name": "zerbert",
+    "char_no_arg": "Gotta zerbert SOMEBODY.",
+    "char_found": "You lift $N's shirt and blow loudly into $S navel!",
+    "others_found": "$n lifts $N's shirt and blows loudly into $S navel!",
+    "vict_found": "Yeek!  $n lifts your shirt and blows loudly into your navel!",
+    "char_not_found": "You missed.",
+    "char_auto": "Careful, people are staring...",
+    "others_auto": "$n looks around furtively, and then bends over and blows loudly into $s own navel!"
+  }},
+  {"social": {
+    "name": "twitch",
+    "char_no_arg": "You twitch nervously.",
+    "others_no_arg": "$n twitches nervously.",
+    "char_found": "You twitch involuntarily at $N's presence.",
+    "others_found": "$N must really be getting to $n...",
+    "vict_found": "$n notices you and twitches.",
+    "char_not_found": "Nervous? They aren't even here."
+  }},
+  {"social": {
+    "name": "leer",
+    "char_no_arg": "You peer around the room, leering like the pervert you are!",
+    "others_no_arg": "$n peers about, leering like a filthy pervert!",
+    "char_found": "You leer at $N like the pervert you are.",
+    "others_found": "$n eyes $N up and down, leering like a filthy pervert! ",
+    "vict_found": "$n eyes you up and down, leering like a filthy pervert!",
+    "char_not_found": "You'll have to settle for memories -- that person isn't here.",
+    "char_auto": "Desperation has reached new heights, hasn't it?",
+    "others_auto": "$n leers at $mself shamelessly."
+  }},
+  {"social": {
+    "name": "polite",
+    "char_no_arg": "You give a polite little chuckle. ",
+    "others_no_arg": "$n gives a polite little chuckle. ",
+    "char_found": "You indicate your underappreciation of $S joke. ",
+    "others_found": "$n gives a polite little chuckle to $N's joke. ",
+    "vict_found": "$n gives a politle but unappreciative chuckle to your joke. ",
+    "char_not_found": "You can't find a friend to chuckle with. ",
+    "char_auto": "You chuckle at your own joke, since no one else would. ",
+    "others_auto": "$n chuckles at $s own joke, since none of you would. "
+  }},
+  {"social": {
+    "name": "mischievous",
+    "char_no_arg": "You give a mischievous smile at the trouble you have in mind. ",
+    "others_no_arg": "$n grins mischievously at a nasty idea. ",
+    "char_found": "You grin mischievously at $M, thinking an evil thought. ",
+    "others_found": "$n grins mischievously at $N.  $m must be thinking something evil.",
+    "vict_found": "$n grins mischievously at you.  You inch toward the door. ",
+    "char_not_found": "You must be delirious. ",
+    "char_auto": "You grin mischievously to yourself. ",
+    "others_auto": "$n grins mischievously to $mself."
+  }},
+  {"social": {
+    "name": "accept",
+    "char_no_arg": "You accept the proferred apology graciously. ",
+    "others_no_arg": "$n graciously accepts the proferred apology. "
+  }},
+  {"social": {
+    "name": "anticipate",
+    "char_no_arg": "You murmur 'Sssssoonnn, my presssssciousssss...' ",
+    "others_no_arg": "$n murmurs 'Ssssssooonnnn, my pressssscioussss...' "
+  }},
+  {"social": {
+    "name": "shudder",
+    "char_no_arg": "You shudder at the horror and repress tears. ",
+    "others_no_arg": "$n shudders at the horror and represses tears. "
+  }},
+  {"social": {
+    "name": "powertrip",
+    "char_no_arg": "You scream 'The PPppppPOOOOoooWWWwwwErrRRR!' and writhe. ",
+    "others_no_arg": "$n writhes, screaming 'The PPppppPOOOOoooWWWwwwErrRRR!' "
+  }},
+  {"social": {
+    "name": "mull",
+    "char_no_arg": "You mull over the idea at hand, asking for patience. ",
+    "others_no_arg": "$n mulls over the idea at hand.  Please be patient. "
+  }},
+  {"social": {
+    "name": "wait",
+    "char_no_arg": "You wait patiently. ",
+    "others_no_arg": "$n waits patiently. "
+  }},
+  {"social": {
+    "name": "bat",
+    "char_no_arg": "You bat your long, dark lashes and smile innocently. ",
+    "others_no_arg": "$n bats $s long, dark lashes and smiles innocently. "
+  }},
+  {"social": {
+    "name": "sage",
+    "char_no_arg": "You nod sagely. ",
+    "others_no_arg": "$n nods sagely. "
+  }},
+  {"social": {
+    "name": "contemplate",
+    "char_no_arg": "You bite your lip contemplatively. ",
+    "others_no_arg": "$n bites $s lip contemplatively. "
+  }},
+  {"social": {
+    "name": "agree",
+    "char_no_arg": "You agree absolutely.",
+    "others_no_arg": "$n agrees absolutely.",
+    "char_found": "You nod in enthusiastic agreement with $N.",
+    "others_found": "$n nods in enthusiastic agreement with $N.",
+    "vict_found": "$n nods in enthusiastic agreement with you.",
+    "char_not_found": "Sorry, your target is absent.",
+    "char_auto": "You find yourself most agreeable.",
+    "others_auto": "$n finds $mself the most agreeable being alive."
+  }},
+  {"social": {
+    "name": "toast",
+    "char_no_arg": "You raise a glass of champagne in a toast. ",
+    "others_no_arg": "$n raises $s glass of champagne in a toast. ",
+    "char_found": "You raise your glass of champagne to $S. ",
+    "others_found": "$n silently toasts $N. ",
+    "vict_found": "$n silently toasts you. ",
+    "char_not_found": "Your object of praise is absent. ",
+    "char_auto": "You grin evilly and toast yourself. ",
+    "others_auto": "$n grins evilly and toasts $mself. "
+  }},
+  {"social": {
+    "name": "conspire",
+    "char_no_arg": "You wink conspiratorily, waiting for the countersign. ",
+    "others_no_arg": "$n winks conspiratorily, waiting for the countersign. ",
+    "char_found": "You induct $S into your private conspiracy with a wink. ",
+    "others_found": "$n winks conspiratorily at $N.  You wonder what this can mean. ",
+    "vict_found": "$n inducts you into $m private conspiracy with a wink. ",
+    "char_not_found": "Even you conspire against yourself. ",
+    "char_auto": "$n is paranoid enough to distrust even $mself. ",
+    "others_auto": "# "
+  }},
+  {"social": {
+    "name": "support",
+    "char_no_arg": "You fully support the plan. ",
+    "others_no_arg": "$n fully supports the plan. ",
+    "char_found": "You hug $M supportively and smile. ",
+    "others_found": "$n hugs $N supportively and smiles. ",
+    "vict_found": "$n hugs you supportively and smiles. ",
+    "char_not_found": "Sorry, friend, I can't see that person here. ",
+    "char_auto": "You hug yourself sadly. ",
+    "others_auto": "$n hugs $mself sadly.  Perhaps you could help? "
+  }},
+  {"social": {
+    "name": "pound",
+    "char_no_arg": "You make vague pounding motions with your fist at the thought. ",
+    "others_no_arg": "$n makes vague pounding motions with $m fist at the thought. ",
+    "char_found": "You pound $M into a bloody mass. ",
+    "others_found": "$n pounds $N into a bloody mass. ",
+    "vict_found": "$n pounds you into a bloody mass. ",
+    "char_not_found": "Sorry, friend, I can't see that person here. "
+  }},
+  {"social": {
+    "name": "wrist",
+    "char_no_arg": "You hold out out a wrist for a slap. ",
+    "others_no_arg": "$n holds out a wrist for a slap. ",
+    "char_found": "You slaps $M wrist sharply. ",
+    "others_found": "$n slaps $N's wrist sharply. ",
+    "vict_found": "$n slaps your wrist sharply. ",
+    "char_not_found": "Sorry, friend, I can't see that person here. ",
+    "char_auto": "You slap your own wrist. ",
+    "others_auto": "$n slaps $m own wrist. "
+  }},
+  {"social": {
+    "name": "romeo",
+    "char_no_arg": "You light up a Romeo y Julietta cigar and puff contentedly.",
+    "others_no_arg": "$n lights up a Romeo y Julietta cigar and puffs contentedly."
+  }},
+  {"social": {
+    "name": "camel",
+    "char_no_arg": "You pretend you are a camel.",
+    "others_no_arg": "$n pretends to be a camel.",
+    "char_found": "You light a Camel cigarette for $M.",
+    "others_found": "$n lights a Camel cigarette for $N.",
+    "vict_found": "$n lights a Camel cigarette for you.",
+    "char_not_found": "You don't see that personhere.",
+    "char_auto": "You light a Camel cigarette and inhale sharply.",
+    "others_auto": "$n lights a Camel cigarette and inhales sharply."
+  }},
+  {"social": {
+    "name": "whip",
+    "char_no_arg": "You crack your bullwhip menacingly. ",
+    "others_no_arg": "$n cracks a bullwhip menacingly. ",
+    "char_found": "You flick your whip across $M bare back. ",
+    "others_found": "$n flicks $s whip across $N's bare back. ",
+    "vict_found": "$n flicks a whip across your back... the pain.. the pleasure.. ",
+    "char_not_found": "Sorry, friend, I can't see that person here. ",
+    "char_auto": "You whip yourself into a frenzy. ",
+    "others_auto": "$n whips $mself into a frenzy."
+  }},
+  {"social": {
+    "name": "cramp",
+    "char_no_arg": "You gasp and clutch your abdomen, wheezing with the pain. ",
+    "others_no_arg": "$n gasps and clutches $m abdomen in agony. ",
+    "char_found": "You hammerlock $M, screaming, \"AAAAARRRRRGH!! I HAVE A CRAMP!!!\" ",
+    "others_found": "$n hammerlocks $N, screaming, \"AAAAARRRRRGH!! I HAVE A CRAMP!!!\". ",
+    "vict_found": "$n hammerlocks you, screaming \"AAAAARRRRRGH!! I HAVE A CRAMP!!!\"",
+    "char_not_found": "Suffering as you are, you didn't see that person slip out. "
+  }},
+  {"social": {
+    "name": "make",
+    "char_no_arg": "You breathe heavily and wetly. ",
+    "others_no_arg": "$n breathes heavily and wetly. ",
+    "char_found": "You steam up the windows with $M. ",
+    "others_found": "$n and $N start steaming up the windows. ",
+    "vict_found": "$n starts steaming up the windows with you. ",
+    "char_not_found": "Sorry, friend, I can't see that person here. "
+  }},
+  {"social": {
+    "name": "sweep",
+    "char_no_arg": "You look at your empty arms and sigh. ",
+    "others_no_arg": "$n looks at $s empty arms and sighs. ",
+    "char_found": "You sweep $M into your arms and kiss $M long and deeply. ",
+    "others_found": "$n sweeps $N into $s arms and kisses $M long and deeply. ",
+    "vict_found": "$n sweeps you into $s arms and kisses you long and deeply. ",
+    "char_not_found": "The object of your kiss is absent. "
+  }},
+  {"social": {
+    "name": "buff",
+    "char_no_arg": "You buff your nails on your cloak. ",
+    "others_no_arg": "$n buffs $s nails on $s cloak. "
+  }},
+  {"social": {
+    "name": "liver",
+    "char_no_arg": "You look angrily for someone to disembowel. ",
+    "others_no_arg": "$n angrily for someone to disembowel. ",
+    "char_found": "You rip out $S liver and eat it. ",
+    "others_found": "$n rips out $N's liver and eats it. ",
+    "vict_found": "$n rips out your liver and eats it. ",
+    "char_not_found": "The object of your wrath is absent. "
+  }},
+  {"social": {
+    "name": "wrestle",
+    "char_found": "You wrestle $M to the floor and pin $M there. ",
+    "others_found": "$n wrestles $N to the floor, pinning $M there. ",
+    "vict_found": "$n wrestles you to the floor and pins you. ",
+    "char_not_found": "Sorry, friend, I can't see that person here. ",
+    "char_auto": "You wrestle with your conscience. ",
+    "others_auto": "$n wrestles with $m conscience. "
+  }},
+  {"social": {
+    "name": "tie",
+    "char_no_arg": "You toy with a pair of handcuffs suggestively. ",
+    "others_no_arg": "$n toys suggestively with a pair of handcuffs. ",
+    "char_found": "You grab $N and tie $M to the bedposts. ",
+    "others_found": "$n grabs $N and ties $S to a four poster bed. ",
+    "vict_found": "$n grabs you and ties you securely to a four poster bed. ",
+    "char_not_found": "Sorry, friend, I can't see that person here. "
+  }},
+  {"social": {
+    "name": "tight",
+    "char_found": "You hold $M tightly in your arms. ",
+    "others_found": "$n holds $N tightly in $m arms. ",
+    "vict_found": "$n holds you in $m arms. ",
+    "char_not_found": "Sorry, friend, I can't see that person here. "
+  }},
+  {"social": {
+    "name": "fatality",
+    "char_found": "You intone, '$N wins.  Fatality.' ",
+    "others_found": "$n intones, '$N wins.  Fatality.' ",
+    "vict_found": "$n intones, '$N wins.  Fatality.' "
+  }},
+  {"social": {
+    "name": "yowl",
+    "char_no_arg": "You yowl in frustration. ",
+    "others_no_arg": "$n yowls in frustration! "
+  }},
+  {"social": {
+    "name": "silly",
+    "char_no_arg": "You do the silly walk all around the room. ",
+    "others_no_arg": "$n does the silly walk all around the room.  $e *is* silly. "
+  }}
+]

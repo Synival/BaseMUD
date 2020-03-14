@@ -84,7 +84,8 @@ void json_export_portals (int mode) {
 void json_export_tables (int mode) {
     const TABLE_T *table;
     for (table = master_get_first(); table; table = master_get_next(table))
-        json_export_table (table, mode);
+        if (json_can_export_table (table))
+            json_export_table (table, mode);
 }
 
 void json_export_help_areas (int mode) {
@@ -185,7 +186,7 @@ void json_export_recycleable (const char *objname, const char *filename,
     const void *obj;
 
     if (!json_export_interpret_mode (mode, &options)) {
-        bugf ("json_export_help_area(): Unknown mode %d", mode);
+        bugf ("json_export_recycleable(): Unknown mode %d", mode);
         return;
     }
 
@@ -209,6 +210,18 @@ void json_export_recycleable (const char *objname, const char *filename,
         json_free (jarea);
 }
 
+bool json_can_export_table (const TABLE_T *table) {
+    switch (table->type) {
+        case TABLE_UNIQUE:
+        case TABLE_FLAGS:
+        case TABLE_EXT_FLAGS:
+        case TABLE_TYPES:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
 void json_export_table (const TABLE_T *table, int mode) {
     JSON_T *json;
     flag_t options;
@@ -219,6 +232,9 @@ void json_export_table (const TABLE_T *table, int mode) {
         bugf ("json_export_table(): Unknown mode %d", mode);
         return;
     }
+
+    BAIL_IF_BUGF (!json_can_export_table (table),
+        "json_export_table(): Cannot export table '%s'", table->name);
 
     switch (table->type) {
         case TABLE_UNIQUE:
@@ -232,6 +248,8 @@ void json_export_table (const TABLE_T *table, int mode) {
         case TABLE_TYPES:     oname = "types";     break;
 
         default:
+            bugf ("json_export_table(): Unhandled table type '%d'"
+                  "for '%s'", table->type, table->name);
             return;
     }
 
@@ -268,7 +286,7 @@ void json_export_help_area (const HELP_AREA_T *had, int mode) {
 
     snprintf (buf, sizeof(buf), "help/%s", had->name);
     jarea = json_root_area (buf);
-    snprintf (fbuf, sizeof (fbuf), "%shelp/%s.json", JSON_DIR, had->name);
+    snprintf (fbuf, sizeof (fbuf), "%s%s.json", JSON_HELP_DIR, had->name);
 
     if (options & JSON_EXPORT_OPTION_WRITE_INDIV)
         log_f("Exporting JSON: %s", fbuf);

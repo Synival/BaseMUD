@@ -1,0 +1,46 @@
+{"flags": {
+  "name": "weapon_flags",
+  "description": "Special weapon type.",
+  "values": [
+    {
+      "name": "flaming",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "frost",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "vampiric",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "sharp",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "vorpal",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "twohands",
+      "value": 5,
+      "settable": true
+    },
+    {
+      "name": "shocking",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "poison",
+      "value": 7,
+      "settable": true
+    }
+  ]
+}}

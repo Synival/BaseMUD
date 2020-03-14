@@ -1,0 +1,151 @@
+{"flags": {
+  "name": "form_flags",
+  "description": "Mobile body form.",
+  "values": [
+    {
+      "name": "edible",
+      "value": 0,
+      "settable": true
+    },
+    {
+      "name": "poison",
+      "value": 1,
+      "settable": true
+    },
+    {
+      "name": "magical",
+      "value": 2,
+      "settable": true
+    },
+    {
+      "name": "instant_decay",
+      "value": 3,
+      "settable": true
+    },
+    {
+      "name": "other",
+      "value": 4,
+      "settable": true
+    },
+    {
+      "name": "unused_form_1",
+      "value": 5,
+      "settable": false
+    },
+    {
+      "name": "animal",
+      "value": 6,
+      "settable": true
+    },
+    {
+      "name": "sentient",
+      "value": 7,
+      "settable": true
+    },
+    {
+      "name": "undead",
+      "value": 8,
+      "settable": true
+    },
+    {
+      "name": "construct",
+      "value": 9,
+      "settable": true
+    },
+    {
+      "name": "mist",
+      "value": 10,
+      "settable": true
+    },
+    {
+      "name": "intangible",
+      "value": 11,
+      "settable": true
+    },
+    {
+      "name": "biped",
+      "value": 12,
+      "settable": true
+    },
+    {
+      "name": "centaur",
+      "value": 13,
+      "settable": true
+    },
+    {
+      "name": "insect",
+      "value": 14,
+      "settable": true
+    },
+    {
+      "name": "spider",
+      "value": 15,
+      "settable": true
+    },
+    {
+      "name": "crustacean",
+      "value": 16,
+      "settable": true
+    },
+    {
+      "name": "worm",
+      "value": 17,
+      "settable": true
+    },
+    {
+      "name": "blob",
+      "value": 18,
+      "settable": true
+    },
+    {
+      "name": "unused_form_2",
+      "value": 19,
+      "settable": false
+    },
+    {
+      "name": "unused_form_3",
+      "value": 20,
+      "settable": false
+    },
+    {
+      "name": "mammal",
+      "value": 21,
+      "settable": true
+    },
+    {
+      "name": "bird",
+      "value": 22,
+      "settable": true
+    },
+    {
+      "name": "reptile",
+      "value": 23,
+      "settable": true
+    },
+    {
+      "name": "snake",
+      "value": 24,
+      "settable": true
+    },
+    {
+      "name": "dragon",
+      "value": 25,
+      "settable": true
+    },
+    {
+      "name": "amphibian",
+      "value": 26,
+      "settable": true
+    },
+    {
+      "name": "fish",
+      "value": 27,
+      "settable": true
+    },
+    {
+      "name": "cold_blood",
+      "value": 28,
+      "settable": true
+    }
+  ]
+}}
