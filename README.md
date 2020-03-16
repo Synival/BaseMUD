@@ -95,7 +95,10 @@ The affect code, for example, had all of its easy-to-read assignments replaced w
 incomprehensible one-liner functions. The long-term plan, in this case, is to move all of the
 affects to a table, at which point this will be fixed.
 
-Note: **OLC and Copyover code is also largely untested, and may even crash! D:**
+Note: **OLC and Copyover code is also largely untested, and may even crash! D:**  
+  
+**Want to contribute or just chat about the project?**  
+You can locate us at the [Mud Coder's Guild Slack](https://mudcoders.slack.com); reach out to either Synival or Nikhil for an invite to the private BaseMUD channel.
 
 ## Game Changes:
 
