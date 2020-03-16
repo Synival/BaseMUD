@@ -112,6 +112,22 @@ meat~
 food 0 A
 10 10 0 0 0
 0 20 0 D
+#18
+hands hand~
+the hand of %s~
+The cut-off hands of %s are lying here.~
+meat~
+food 0 A
+10 10 0 0 0
+0 5 0 D
+#19
+ear~
+the ear of %s~
+The severed ear of %s is lying here.~
+meat~
+food 0 A
+10 10 0 0 0
+0 1 0 D
 #20
 mushroom~
 a Magic Mushroom~

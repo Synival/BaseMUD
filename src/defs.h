@@ -273,6 +273,8 @@
 #define OBJ_VNUM_SLICED_LEG        15
 #define OBJ_VNUM_GUTS              16
 #define OBJ_VNUM_BRAINS            17
+#define OBJ_VNUM_CUTOFF_HANDS      18
+#define OBJ_VNUM_SEVERED_EAR       19
 
 #define OBJ_VNUM_MUSHROOM          20
 #define OBJ_VNUM_LIGHT_BALL        21

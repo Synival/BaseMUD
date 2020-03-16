@@ -1158,6 +1158,18 @@ void death_cry (CHAR_T *ch) {
                 vnum = OBJ_VNUM_BRAINS;
             }
             break;
+        case 8:
+            if (IS_SET (ch->parts, PART_HANDS)) {
+                msg = "$n's hands are cut from $s dead body.";
+                vnum = OBJ_VNUM_CUTOFF_HANDS;
+            }
+            break;
+        case 9:
+            if (IS_SET (ch->parts, PART_EAR)) {
+                msg = "$n's ear is severed as $s dead body falls to the ground.";
+                vnum = OBJ_VNUM_SEVERED_EAR;
+            }
+            break;
     }
     act (msg, ch, NULL, NULL, TO_NOTCHAR);
 

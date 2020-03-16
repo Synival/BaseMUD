@@ -208,6 +208,42 @@
   }},
   {"object": {
     "area": "limbo",
+    "anum": 18,
+    "name": "hands hand",
+    "short_descr": "the hands of %s",
+    "description": "The cut-off hands of %s are lying here.",
+    "material": "meat",
+    "item_type": "food",
+    "values": {
+      "hunger": 10,
+      "fullness": 10
+    },
+    "level": 0,
+    "weight": 5,
+    "cost": 0,
+    "condition": 25,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "limbo",
+    "anum": 19,
+    "name": "ear",
+    "short_descr": "the ear of %s",
+    "description": "The severed ear of %s is lying here.",
+    "material": "meat",
+    "item_type": "food",
+    "values": {
+      "hunger": 10,
+      "fullness": 10
+    },
+    "level": 0,
+    "weight": 1,
+    "cost": 0,
+    "condition": 25,
+    "wear_flags": "take"
+  }},
+  {"object": {
+    "area": "limbo",
     "anum": 20,
     "name": "mushroom",
     "short_descr": "a Magic Mushroom",
