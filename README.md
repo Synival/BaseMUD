@@ -22,6 +22,16 @@ cd ..
 ./run.sh
 ```
 
+OR using Docker to startup and shutdown:
+
+```
+docker-compose up
+
+docker-compose down
+```
+
+This will mount the player, log, and json/area directories for easier editing of player and area files (when using OLC in-game).
+
 To play:
 
 ```
