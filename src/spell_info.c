@@ -300,7 +300,7 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
 
     if (power <= 100) {
         int percent = (know_pos == 0) ? 100 : (know_count * 100 / know_pos);
-        send_to_char (spell_identify_know_message (percent), ch);
+        printf_to_char (ch, spell_identify_know_message (percent));
     }
 }
 

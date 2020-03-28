@@ -140,7 +140,7 @@ DEFINE_DO_FUN (do_invis) {
 
 DEFINE_DO_FUN (do_memory) {
     char *buf = mem_dump ("\n\r");
-    send_to_char (buf, ch);
+    printf_to_char (ch, buf);
 }
 
 DEFINE_DO_FUN (do_mwhere) {
@@ -339,7 +339,7 @@ DEFINE_DO_FUN (do_rstat) {
 
         printf_to_char (ch, "Extra description keywords: '");
         for (ed = location->extra_descr_first; ed; ed = ed->on_next) {
-            send_to_char (ed->keyword, ch);
+            printf_to_char (ch, ed->keyword);
             if (ed->on_next != NULL)
                 printf_to_char (ch, " ");
         }
@@ -503,12 +503,12 @@ DEFINE_DO_FUN (do_ostat) {
 
         printf_to_char (ch, "Extra description keywords: '");
         for (ed = obj->extra_descr_first; ed; ed = ed->on_next) {
-            send_to_char (ed->keyword, ch);
+            printf_to_char (ch, ed->keyword);
             if (ed->on_next != NULL)
                 printf_to_char (ch, " ");
         }
         for (ed = obj->obj_index->extra_descr_first; ed; ed = ed->on_next) {
-            send_to_char (ed->keyword, ch);
+            printf_to_char (ch, ed->keyword);
             if (ed->on_next != NULL)
                 printf_to_char (ch, " ");
         }
@@ -711,7 +711,7 @@ DEFINE_DO_FUN (do_wiznet) {
         strcat (buf, "\n\r");
 
         printf_to_char (ch, "Wiznet status:\n\r");
-        send_to_char (buf, ch);
+        printf_to_char (ch, buf);
         return;
     }
 
@@ -729,7 +729,7 @@ DEFINE_DO_FUN (do_wiznet) {
         strcat (buf, "\n\r");
 
         printf_to_char (ch, "Wiznet options available to you are:\n\r");
-        send_to_char (buf, ch);
+        printf_to_char (ch, buf);
         return;
     }
 
@@ -789,7 +789,7 @@ DEFINE_DO_FUN (do_smote) {
     BAIL_IF (strstr (argument, ch->name) == NULL,
         "You must include your name in an smote.\n\r", ch);
 
-    send_to_char (argument, ch);
+    printf_to_char (ch, argument);
     printf_to_char (ch, "\n\r");
 
     for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next) {
@@ -797,7 +797,7 @@ DEFINE_DO_FUN (do_smote) {
             continue;
 
         if ((letter = strstr (argument, vch->name)) == NULL) {
-            send_to_char (argument, vch);
+            printf_to_char (vch, argument);
             printf_to_char (vch, "\n\r");
             continue;
         }
@@ -839,7 +839,7 @@ DEFINE_DO_FUN (do_smote) {
             name = vch->name;
         }
 
-        send_to_char (temp, vch);
+        printf_to_char (vch, temp);
         printf_to_char (vch, "\n\r");
     }
 }

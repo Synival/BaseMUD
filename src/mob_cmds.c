@@ -150,7 +150,7 @@ DEFINE_DO_FUN (do_mpgecho) {
         if (d->connected == CON_PLAYING) {
             if (IS_IMMORTAL (d->character))
                 printf_to_char (d->character, "Mob echo> ");
-            send_to_char (argument, d->character);
+            printf_to_char (d->character, argument);
             printf_to_char (d->character, "\n\r");
         }
     }
@@ -174,7 +174,7 @@ DEFINE_DO_FUN (do_mpzecho) {
         {
             if (IS_IMMORTAL (d->character))
                 printf_to_char (d->character, "Mob echo> ");
-            send_to_char (argument, d->character);
+            printf_to_char (d->character, argument);
             printf_to_char (d->character, "\n\r");
         }
     }

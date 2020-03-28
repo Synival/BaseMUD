@@ -833,7 +833,7 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     }
 
     if (victim->description[0] != '\0')
-        send_to_char (victim->description, ch);
+        printf_to_char (ch, victim->description);
     else
         act ("You see nothing special about $M.", ch, NULL, victim, TO_CHAR);
 
@@ -841,7 +841,7 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
 #ifdef BASEMUD_SHOW_POSITION_IN_LOOK
     char_format_pos_msg (buf, sizeof (buf), ch, victim, TRUE);
     if (buf[0] != '\0')
-        send_to_char (buf, ch);
+        printf_to_char (ch, buf);
 
     buf[0] = '\0';
     char_format_condition_msg (buf, sizeof (buf), ch, victim, FALSE);
@@ -850,7 +850,7 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
 #endif
 
     if (buf[0] != '\0')
-        send_to_char (buf, ch);
+        printf_to_char (ch, buf);
 
     found = FALSE;
     for (wl = 0; wl < WEAR_LOC_MAX; wl++) {
@@ -1749,7 +1749,7 @@ void char_update (CHAR_T *ch) {
                 || paf_next->type != paf->type || paf_next->duration > 0)
             {
                 if (paf->type > 0 && skill_table[paf->type].msg_off) {
-                    send_to_char (skill_table[paf->type].msg_off, ch);
+                    printf_to_char (ch, skill_table[paf->type].msg_off);
                     printf_to_char (ch, "\n\r");
                 }
             }

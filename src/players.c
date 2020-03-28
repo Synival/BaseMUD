@@ -777,7 +777,7 @@ void player_change_condition (CHAR_T *ch, int cond, int value) {
 
     /* if there's a message, send it over. */
     if (msg)
-        send_to_char (msg, ch);
+        printf_to_char (ch, msg);
 }
 
 void player_update (CHAR_T *ch) {

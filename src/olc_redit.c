@@ -798,7 +798,7 @@ REDIT (redit_show) {
         }
     }
 
-    send_to_char (buf1, ch);
+    printf_to_char (ch, buf1);
     return FALSE;
 }
 

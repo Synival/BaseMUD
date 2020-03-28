@@ -484,7 +484,7 @@ void interpret (CHAR_T *ch, char *argument) {
     if (ch->position < cmd_table[cmd].position) {
         msg = interpret_pos_message (ch->position);
         if (msg != NULL)
-            send_to_char (msg, ch);
+            printf_to_char (ch, msg);
         return;
     }
 
@@ -536,7 +536,7 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
 
     /* TODO: allow a minimum position for socials? */
     while (ch->position < soc->min_pos) {
-        send_to_char (interpret_pos_message (ch->position), ch);
+        printf_to_char (ch, interpret_pos_message (ch->position));
         return TRUE;
     }
 

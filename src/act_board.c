@@ -67,7 +67,7 @@ void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note) {
         sprintf (buf, "Changed to next board, %s.\n\r", ch->pcdata->board->name);
     else
         sprintf (buf, "There are no more boards.\n\r");
-    send_to_char (buf, ch);
+    printf_to_char (ch, buf);
 }
 
 void do_nread_number (CHAR_T *ch, char *argument, time_t *last_note,
@@ -142,7 +142,7 @@ DEFINE_DO_FUN (do_nwrite) {
             break;
         }
 
-        send_to_char (buf, ch);
+        printf_to_char (ch, buf);
         printf_to_char (ch, "\n\r{YTo{x:      ");
 
         ch->desc->connected = CON_NOTE_TO;
@@ -156,7 +156,7 @@ DEFINE_DO_FUN (do_nwrite) {
                        ctime_fixed (&ch->pcdata->in_progress->expire),
                        ch->pcdata->in_progress->subject);
         printf_to_char (ch, "{GYour note so far:{x\n\r");
-        send_to_char (ch->pcdata->in_progress->text, ch);
+        printf_to_char (ch, ch->pcdata->in_progress->text);
 
         send_to_char ("\n\rEnter text. Type {W~{x or {WEND{x on an empty line to end note.\n\r"
                           "=======================================================\n\r", ch);

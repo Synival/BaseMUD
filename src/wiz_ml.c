@@ -245,11 +245,11 @@ DEFINE_DO_FUN (do_dump) {
             return;
         }
 
-        send_to_char (DO_DUMP_WORLD_SYNTAX, ch);
+        printf_to_char (ch, DO_DUMP_WORLD_SYNTAX);
         return;
     }
 
-    send_to_char (DO_DUMP_SYNTAX, ch);
+    printf_to_char (ch, DO_DUMP_SYNTAX);
 }
 
 void do_dump_stats (CHAR_T *ch) {

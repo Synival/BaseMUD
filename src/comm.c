@@ -254,12 +254,12 @@ void page_to_char (const char *txt, CHAR_T *ch) {
     if (txt == NULL || ch == NULL || ch->desc == NULL)
         return;
     if (ch->lines == 0) {
-        send_to_char (txt, ch);
+        printf_to_char (ch, txt);
         return;
     }
 
 #if defined(macintosh)
-    send_to_char (txt, ch);
+    printf_to_char (ch, txt);
 #else
     buf[0] = '\0';
     colour_puts (ch, ch->desc->ansi, txt, buf, sizeof(buf));
@@ -463,7 +463,7 @@ void printf_to_char (CHAR_T *ch, const char *fmt, ...) {
     vsnprintf (buf, sizeof(buf), fmt, args);
     va_end (args);
 
-    send_to_char (buf, ch);
+    printf_to_char (ch, buf);
 }
 
 void wiznet (const char *string, CHAR_T *ch, OBJ_T *obj,
@@ -704,9 +704,9 @@ void echo_to_char (CHAR_T *to, CHAR_T *from, const char *type,
     const char *msg)
 {
     if (char_get_trust (to) >= char_get_trust (from)) {
-        send_to_char (type, to);
+        printf_to_char (to, type);
         printf_to_char (to, "> ");
     }
-    send_to_char (msg, to);
+    printf_to_char (to, msg);
     printf_to_char (to, "\n\r");
 }

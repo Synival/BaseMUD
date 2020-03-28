@@ -338,7 +338,7 @@ void weather_update (void) {
                 continue;
             if (!IS_AWAKE (d->character))
                 continue;
-            send_to_char (buf, d->character);
+            printf_to_char (d->character, buf);
         }
     }
 }

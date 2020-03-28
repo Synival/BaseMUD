@@ -296,7 +296,7 @@ void show_olc_cmds (CHAR_T *ch, const struct olc_cmd_type *olc_table) {
     if (col % 5 != 0)
         strcat (buf1, "\n\r");
 
-    send_to_char (buf1, ch);
+    printf_to_char (ch, buf1);
 }
 
 /*****************************************************************************
@@ -607,13 +607,13 @@ void hedit (CHAR_T *ch, char *argument) {
 }
 
 bool show_version (CHAR_T *ch, char *argument) {
-    send_to_char (OLC_VERSION, ch);
+    printf_to_char (ch, OLC_VERSION);
     printf_to_char (ch, "\n\r");
-    send_to_char (OLC_AUTHOR, ch);
+    printf_to_char (ch, OLC_AUTHOR);
     printf_to_char (ch, "\n\r");
-    send_to_char (OLC_DATE, ch);
+    printf_to_char (ch, OLC_DATE);
     printf_to_char (ch, "\n\r");
-    send_to_char (OLC_CREDITS, ch);
+    printf_to_char (ch, OLC_CREDITS);
     printf_to_char (ch, "\n\r");
     return FALSE;
 }
@@ -684,7 +684,7 @@ void show_flag_cmds (CHAR_T *ch, const FLAG_T *flag_table) {
     if (col % 4 != 0)
         strcat (buf1, "\n\r");
 
-    send_to_char (buf1, ch);
+    printf_to_char (ch, buf1);
 }
 
 void show_type_cmds (CHAR_T *ch, const TYPE_T *type_table) {
@@ -705,7 +705,7 @@ void show_type_cmds (CHAR_T *ch, const TYPE_T *type_table) {
     if (col % 4 != 0)
         strcat (buf1, "\n\r");
 
-    send_to_char (buf1, ch);
+    printf_to_char (ch, buf1);
 }
 
 /*****************************************************************************
@@ -740,7 +740,7 @@ void show_skill_cmds (CHAR_T *ch, int tar) {
 
     if (col % 4 != 0)
         strcat (buf1, "\n\r");
-    send_to_char (buf1, ch);
+    printf_to_char (ch, buf1);
 }
 
 /*****************************************************************************
@@ -767,7 +767,7 @@ void show_spec_cmds (CHAR_T *ch) {
     if (col % 4 != 0)
         strcat (buf1, "\n\r");
 
-    send_to_char (buf1, ch);
+    printf_to_char (ch, buf1);
 }
 
 /*****************************************************************************
@@ -863,7 +863,7 @@ bool olc_str_replace_dup (CHAR_T *ch, char **old_str, char *new_str,
     RETURN_IF (new_str == NULL || new_str[0] == '\0',
         syntax_msg, ch, FALSE);
     str_replace_dup (old_str, new_str);
-    send_to_char (success_msg, ch);
+    printf_to_char (ch, success_msg);
     return TRUE;
 }
 
@@ -876,7 +876,7 @@ bool olc_int_replace (CHAR_T *ch, int *old_val, char *new_val,
     RETURN_IF (buf == NULL || buf[0] == '\0' || !is_number (buf),
         syntax_msg, ch, FALSE);
     *old_val = atoi (buf);
-    send_to_char (success_msg, ch);
+    printf_to_char (ch, success_msg);
     return TRUE;
 }
 
@@ -889,7 +889,7 @@ bool olc_sh_int_replace (CHAR_T *ch, sh_int *old_val, char *new_val,
     RETURN_IF (buf == NULL || buf[0] == '\0' || !is_number (buf),
         syntax_msg, ch, FALSE);
     *old_val = atoi (buf);
-    send_to_char (success_msg, ch);
+    printf_to_char (ch, success_msg);
     return TRUE;
 }
 
@@ -902,6 +902,6 @@ bool olc_long_int_replace (CHAR_T *ch, long int *old_val, char *new_val,
     RETURN_IF (buf == NULL || buf[0] == '\0' || !is_number (buf),
         syntax_msg, ch, FALSE);
     *old_val = atol (buf);
-    send_to_char (success_msg, ch);
+    printf_to_char (ch, success_msg);
     return TRUE;
 }

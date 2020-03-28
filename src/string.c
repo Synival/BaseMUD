@@ -56,7 +56,7 @@ void string_append (CHAR_T *ch, char **string_edit) {
 
     if (*string_edit == NULL)
         *string_edit = str_dup ("");
-    send_to_char (numlines (*string_edit), ch);
+    printf_to_char (ch, numlines (*string_edit));
 
 /* numlines sends the string with \n\r */
 /*  if ( *(*string_edit + strlen( *string_edit ) - 1) != '\r' )
@@ -115,7 +115,7 @@ void string_add (CHAR_T *ch, char *argument) {
         }
         if (!str_cmp (arg1, ".s")) {
             printf_to_char (ch, "String so far:\n\r");
-            send_to_char (numlines (*ch->desc->string_edit), ch);
+            printf_to_char (ch, numlines (*ch->desc->string_edit));
             return;
         }
         if (!str_cmp (arg1, ".r")) {

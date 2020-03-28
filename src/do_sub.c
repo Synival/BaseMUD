@@ -70,11 +70,11 @@ void do_flag_toggle (CHAR_T *ch, int player_only, flag_t *flags,
         "NPCs can't use player flags.\n\r", ch);
 
     if (IS_SET ((*flags), flag)) {
-        send_to_char (off_msg, ch);
+        printf_to_char (ch, off_msg);
         REMOVE_BIT ((*flags), flag);
     }
     else {
-        send_to_char (on_msg, ch);
+        printf_to_char (ch, on_msg);
         SET_BIT ((*flags), flag);
     }
 }
@@ -86,11 +86,11 @@ void do_ext_flag_toggle (CHAR_T *ch, int player_only, EXT_FLAGS_T *flags,
         "NPCs can't use player flags.\n\r", ch);
 
     if (EXT_IS_SET (*flags, bit)) {
-        send_to_char (off_msg, ch);
+        printf_to_char (ch, off_msg);
         EXT_UNSET (*flags, bit);
     }
     else {
-        send_to_char (on_msg, ch);
+        printf_to_char (ch, on_msg);
         EXT_SET (*flags, bit);
     }
 }

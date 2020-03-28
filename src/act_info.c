@@ -197,7 +197,7 @@ void do_look_direction (CHAR_T *ch, int door) {
         "Nothing special there.\n\r", ch);
 
     if (pexit->description != NULL && pexit->description[0] != '\0')
-        send_to_char (pexit->description, ch);
+        printf_to_char (ch, pexit->description);
     else
         printf_to_char (ch, "Nothing special there.\n\r");
 
@@ -343,7 +343,7 @@ DEFINE_DO_FUN (do_look) {
     #define CHECK_LOOK(cond, str, with_crlf) \
         if ((cond)) { \
             if (++count == number) { \
-                send_to_char ((str), ch); \
+                printf_to_char (ch, (str)); \
                 if ((with_crlf)) \
                     printf_to_char (ch, "\n\r"); \
                 return; \
@@ -444,7 +444,7 @@ DEFINE_DO_FUN (do_exits) {
         sprintf (buf, "Obvious exits from room %d:\n\r", ch->in_room->vnum);
     else
         sprintf (buf, "Obvious exits:\n\r");
-    send_to_char (buf, ch);
+    printf_to_char (ch, buf);
 
     mode = auto_exits ? EXITS_AUTO : EXITS_LONG;
     char_format_exit_string (ch, ch->in_room, mode, buf, sizeof (buf));
@@ -1053,7 +1053,7 @@ DEFINE_DO_FUN (do_description) {
             return;
 
     printf_to_char (ch, "Your description is:\n\r");
-    send_to_char (ch->description ? ch->description : "(None).\n\r", ch);
+    printf_to_char (ch, ch->description ? ch->description : "(None).\n\r");
 }
 
 DEFINE_DO_FUN (do_report) {

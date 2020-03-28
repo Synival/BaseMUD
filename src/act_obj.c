@@ -1012,7 +1012,7 @@ DEFINE_DO_FUN (do_steal) {
             sprintf (buf, "Bingo!  You got %d silver and %d gold coins.\n\r",
                      silver, gold);
 
-        send_to_char (buf, ch);
+        printf_to_char (ch, buf);
         player_try_skill_improve (ch, SN(STEAL), TRUE, 2);
         return;
     }

@@ -221,7 +221,7 @@ void do_resets_display (CHAR_T *ch) {
                 strcat (final, buf);
                 break;
         }
-        send_to_char (final, ch);
+        printf_to_char (ch, final);
     }
 }
 
@@ -669,7 +669,7 @@ DEFINE_DO_FUN (do_resets) {
     }
 
     /* No valid reset found. */
-    send_to_char (DO_RESETS_SYNTAX, ch);
+    printf_to_char (ch, DO_RESETS_SYNTAX);
 }
 
 /*****************************************************************************
@@ -697,7 +697,7 @@ DEFINE_DO_FUN (do_alist) {
         strcat (result, buf);
     }
 
-    send_to_char (result, ch);
+    printf_to_char (ch, result);
 }
 
 /*****************************************************************************
@@ -801,7 +801,7 @@ DEFINE_DO_FUN (do_asave) {
         save_other_helps (ch);
         if (!str_cmp (buf, "None.\n\r")) {
             if (ch)
-                send_to_char (buf, ch);
+                printf_to_char (ch, buf);
             else
                 log_string ("None.");
         }
@@ -909,7 +909,7 @@ DEFINE_DO_FUN (do_portals) {
     else if (arg2[0] != '\0' && !str_prefix (arg2, "world"))
         area = NULL;
     else {
-        send_to_char (DO_PORTALS_SYNTAX, ch);
+        printf_to_char (ch, DO_PORTALS_SYNTAX);
         return;
     }
 
@@ -1004,5 +1004,5 @@ DEFINE_DO_FUN (do_portals) {
     }
 
     /* no matches - show syntax. */
-    send_to_char (DO_PORTALS_SYNTAX, ch);
+    printf_to_char (ch, DO_PORTALS_SYNTAX);
 }
