@@ -452,6 +452,7 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
             continue;
 
         success = TRUE;
+        is_worn = (obj_lose->wear_loc != WEAR_LOC_NONE);
         can_drop = char_can_drop_obj (victim, obj_lose);
         drop_item = FALSE;
 
