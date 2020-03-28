@@ -546,7 +546,7 @@ bool check_reconnect (DESCRIPTOR_T *d, char *name, bool conn) {
                 d->character = ch;
                 ch->desc = d;
                 ch->timer = 0;
-                send_to_char ("Reconnecting. Type replay to see missed tells.\n\r", ch);
+                printf_to_char (ch, "Reconnecting. Type replay to see missed tells.\n\r");
                 act ("$n has reconnected.", ch, NULL, NULL, TO_NOTCHAR);
 
                 log_f ("%s@%s reconnected.", ch->name, d->host);
@@ -557,7 +557,7 @@ bool check_reconnect (DESCRIPTOR_T *d, char *name, bool conn) {
                 /* Inform the character of a note in progress and the possbility
                  * of continuation! */
                 if (ch->pcdata->in_progress)
-                    send_to_char ("You have a note in progress. Type NWRITE to continue it.\n\r", ch);
+                    printf_to_char (ch, "You have a note in progress. Type NWRITE to continue it.\n\r");
             }
             return TRUE;
         }
@@ -690,7 +690,7 @@ void desc_substitute_alias (DESCRIPTOR_T *d, char *argument) {
     /* check for prefix */
     if (ch->prefix[0] != '\0' && str_prefix ("prefix", argument)) {
         if (strlen (ch->prefix) + strlen (argument) > MAX_INPUT_LENGTH - 2)
-            send_to_char ("Line to long, prefix not processed.\r\n", ch);
+            printf_to_char (ch, "Line to long, prefix not processed.\r\n");
         else
         {
             sprintf (prefix, "%s %s", ch->prefix, argument);

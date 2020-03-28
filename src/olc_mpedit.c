@@ -52,7 +52,7 @@ MPEDIT (mpedit_create) {
     ch->desc->olc_edit = (void *) mcode;
     ch->desc->editor = ED_MPCODE;
 
-    send_to_char ("Mob program created.\n\r", ch);
+    printf_to_char (ch, "Mob program created.\n\r");
     return TRUE;
 }
 
@@ -75,7 +75,7 @@ MPEDIT (mpedit_code) {
         return TRUE;
     }
 
-    send_to_char ("Syntax: code\n\r", ch);
+    printf_to_char (ch, "Syntax: code\n\r");
     return FALSE;
 }
 

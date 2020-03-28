@@ -71,7 +71,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
             rev_ex->rs_flags   = ex->rs_flags;
         }
 
-        send_to_char ("Exit flag toggled.\n\r", ch);
+        printf_to_char (ch, "Exit flag toggled.\n\r");
         return TRUE;
     }
 
@@ -112,10 +112,10 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
 
         /* Unlink our exit. */
         exit_to_room_index_to (ex, NULL);
-        send_to_char ("Exit unlinked.\n\r", ch);
+        printf_to_char (ch, "Exit unlinked.\n\r");
         if (rev_ex) {
             exit_to_room_index_to (rev_ex, NULL);
-            send_to_char ("Reverse exit unlinked.\n\r", ch);
+            printf_to_char (ch, "Reverse exit unlinked.\n\r");
         }
 
         /* Update portals if necessary. */
@@ -164,7 +164,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
         exit_to_room_index_to (rev_ex, room);
 
         /* Update portals if necessary. */
-        send_to_char ("Two-way link established.\n\r", ch);
+        printf_to_char (ch, "Two-way link established.\n\r");
         redit_change_exit_update_portals (ex, old_room, old_rev_room, ch);
 
         return TRUE;
@@ -198,7 +198,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
 
         old_room = ex->to_room;
         exit_to_room_index_to (ex, to_room);
-        send_to_char ("One-way link established.\n\r", ch);
+        printf_to_char (ch, "One-way link established.\n\r");
 
         /* Update portals if necessary. */
         redit_change_exit_update_portals (ex, old_room, NULL, ch);
@@ -222,7 +222,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
             "REdit: Object is not a key.\n\r", ch, FALSE);
 
         ex->key = value;
-        send_to_char ("Exit key set.\n\r", ch);
+        printf_to_char (ch, "Exit key set.\n\r");
         return TRUE;
     }
 
@@ -240,7 +240,7 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
         else
             str_replace_dup (&ex->keyword, arg);
 
-        send_to_char ("Exit name set.\n\r", ch);
+        printf_to_char (ch, "Exit name set.\n\r");
         return TRUE;
     }
 
@@ -273,14 +273,14 @@ bool redit_change_exit (CHAR_T *ch, char *argument, int door) {
         if (ex->portal) {
             RETURN_IF (!portal_exit_rename (ex->portal, arg),
                 "The portal exit could not be renamed.\n\r", ch, FALSE);
-            send_to_char ("Portal renamed.\n\r", ch);
+            printf_to_char (ch, "Portal renamed.\n\r");
             return TRUE;
         }
         else {
             PORTAL_EXIT_T *pex;
             pex = portal_exit_create (arg);
             portal_exit_to_exit (pex, ex);
-            send_to_char ("Portal created.\n\r", ch);
+            printf_to_char (ch, "Portal created.\n\r");
             return TRUE;
         }
     }
@@ -866,7 +866,7 @@ REDIT (redit_ed) {
             "REdit: Extra description keyword not found.\n\r", ch, FALSE);
 
         extra_descr_free (ed);
-        send_to_char ("Extra description deleted.\n\r", ch);
+        printf_to_char (ch, "Extra description deleted.\n\r");
         return TRUE;
     }
 
@@ -879,7 +879,7 @@ REDIT (redit_ed) {
             "REdit: Extra description keyword not found.\n\r", ch, FALSE);
 
         ed->description = format_string (ed->description);
-        send_to_char ("Extra description formatted.\n\r", ch);
+        printf_to_char (ch, "Extra description formatted.\n\r");
         return TRUE;
     }
 
@@ -915,7 +915,7 @@ REDIT (redit_create) {
 
     ch->desc->olc_edit = (void *) room;
 
-    send_to_char ("Room created.\n\r", ch);
+    printf_to_char (ch, "Room created.\n\r");
     return TRUE;
 }
 
@@ -927,7 +927,7 @@ REDIT (redit_name) {
         "Syntax: name [name]\n\r", ch, FALSE);
 
     str_replace_dup (&(room->name), argument);
-    send_to_char ("Name set.\n\r", ch);
+    printf_to_char (ch, "Name set.\n\r");
     return TRUE;
 }
 
@@ -950,7 +950,7 @@ REDIT (redit_heal) {
         "Syntax: heal <#xnumber>\n\r", ch, FALSE);
 
     room->heal_rate = atoi (argument);
-    send_to_char ("Heal rate set.\n\r", ch);
+    printf_to_char (ch, "Heal rate set.\n\r");
     return TRUE;
 }
 
@@ -962,7 +962,7 @@ REDIT (redit_mana) {
         "Syntax: mana <#xnumber>\n\r", ch, FALSE);
 
     room->mana_rate = atoi (argument);
-    send_to_char ("Mana rate set.\n\r", ch);
+    printf_to_char (ch, "Mana rate set.\n\r");
     return TRUE;
 }
 
@@ -972,7 +972,7 @@ REDIT (redit_clan) {
 
     /* TODO: Show an error if the clan doesn't exist */
     room->clan = clan_lookup (argument);
-    send_to_char ("Clan set.\n\r", ch);
+    printf_to_char (ch, "Clan set.\n\r");
     return TRUE;
 }
 
@@ -981,7 +981,7 @@ REDIT (redit_format) {
     EDIT_ROOM (ch, room);
 
     room->description = format_string (room->description);
-    send_to_char ("String formatted.\n\r", ch);
+    printf_to_char (ch, "String formatted.\n\r");
     return TRUE;
 }
 
@@ -1175,7 +1175,7 @@ REDIT (redit_oreset) {
     }
     /* Display Syntax */
     else {
-        send_to_char ("REdit: That mobile isn't here.\n\r", ch);
+        printf_to_char (ch, "REdit: That mobile isn't here.\n\r");
         return FALSE;
     }
 
@@ -1196,7 +1196,7 @@ REDIT (redit_owner) {
     else
         str_replace_dup (&room->owner, argument);
 
-    send_to_char ("Owner set.\n\r", ch);
+    printf_to_char (ch, "Owner set.\n\r");
     return TRUE;
 }
 
@@ -1210,7 +1210,7 @@ REDIT (redit_room) {
         "Syntax: room [flags]\n\r", ch, FALSE);
 
     TOGGLE_BIT (room->room_flags, value);
-    send_to_char ("Room flags toggled.\n\r", ch);
+    printf_to_char (ch, "Room flags toggled.\n\r");
     return TRUE;
 }
 
@@ -1224,7 +1224,7 @@ REDIT (redit_sector) {
         "Syntax: sector [type]\n\r", ch, FALSE);
 
     room->sector_type = value;
-    send_to_char ("Sector type set.\n\r", ch);
+    printf_to_char (ch, "Sector type set.\n\r");
     return TRUE;
 }
 
@@ -1242,14 +1242,14 @@ REDIT (redit_portal) {
     if (room->portal) {
         RETURN_IF (!portal_exit_rename (room->portal, argument),
             "The portal exit could not be renamed.\n\r", ch, FALSE);
-        send_to_char ("Portal renamed.\n\r", ch);
+        printf_to_char (ch, "Portal renamed.\n\r");
         return TRUE;
     }
     else {
         PORTAL_EXIT_T *pex;
         pex = portal_exit_create (argument);
         portal_exit_to_room (pex, room);
-        send_to_char ("Portal created.\n\r", ch);
+        printf_to_char (ch, "Portal created.\n\r");
         return TRUE;
     }
 }

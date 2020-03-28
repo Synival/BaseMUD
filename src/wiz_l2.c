@@ -63,7 +63,7 @@ DEFINE_DO_FUN (do_allow) {
         return;
     }
 
-    send_to_char ("Site is not banned.\n\r", ch);
+    printf_to_char (ch, "Site is not banned.\n\r");
 }
 
 DEFINE_DO_FUN (do_ban) {
@@ -77,12 +77,12 @@ DEFINE_DO_FUN (do_set) {
     argument = one_argument (argument, arg);
 
     if (arg[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  set mob       <name> <field> <value>\n\r", ch);
-        send_to_char ("  set character <name> <field> <value>\n\r", ch);
-        send_to_char ("  set obj       <name> <field> <value>\n\r", ch);
-        send_to_char ("  set room      <room> <field> <value>\n\r", ch);
-        send_to_char ("  set skill     <name> <spell or skill> <value>\n\r", ch);
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  set mob       <name> <field> <value>\n\r");
+        printf_to_char (ch, "  set character <name> <field> <value>\n\r");
+        printf_to_char (ch, "  set obj       <name> <field> <value>\n\r");
+        printf_to_char (ch, "  set room      <room> <field> <value>\n\r");
+        printf_to_char (ch, "  set skill     <name> <spell or skill> <value>\n\r");
         return;
     }
 
@@ -113,10 +113,10 @@ DEFINE_DO_FUN (do_sset) {
     argument = one_argument (argument, arg3);
 
     if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  set skill <name> <spell or skill> <value>\n\r", ch);
-        send_to_char ("  set skill <name> all <value>\n\r", ch);
-        send_to_char ("   (use the name of the skill, not the number)\n\r", ch);
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  set skill <name> <spell or skill> <value>\n\r");
+        printf_to_char (ch, "  set skill <name> all <value>\n\r");
+        printf_to_char (ch, "   (use the name of the skill, not the number)\n\r");
         return;
     }
 
@@ -162,13 +162,13 @@ DEFINE_DO_FUN (do_mset) {
     strcpy (arg3, argument);
 
     if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  set char <name> <field> <value>\n\r", ch);
-        send_to_char ("  Field being one of:\n\r", ch);
-        send_to_char ("    str int wis dex con sex class level\n\r", ch);
-        send_to_char ("    race group gold silver hp mana move prac\n\r", ch);
-        send_to_char ("    align train thirst hunger drunk full\n\r", ch);
-        send_to_char ("    security hours\n\r", ch);
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  set char <name> <field> <value>\n\r");
+        printf_to_char (ch, "  Field being one of:\n\r");
+        printf_to_char (ch, "    str int wis dex con sex class level\n\r");
+        printf_to_char (ch, "    race group gold silver hp mana move prac\n\r");
+        printf_to_char (ch, "    align train thirst hunger drunk full\n\r");
+        printf_to_char (ch, "    security hours\n\r");
         return;
     }
 
@@ -201,7 +201,7 @@ DEFINE_DO_FUN (do_mset) {
             if (ch->pcdata->security != 0)
                 printf_to_char (ch, "Valid security is 0-%d.\n\r", ch->pcdata->security);
             else
-                send_to_char ("Valid security is 0 only.\n\r", ch);
+                printf_to_char (ch, "Valid security is 0 only.\n\r");
             return;
         }
         victim->pcdata->security = value;
@@ -434,11 +434,11 @@ DEFINE_DO_FUN (do_oset) {
     strcpy (arg3, argument);
 
     if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  set obj <object> <field> <value>\n\r", ch);
-        send_to_char ("  Field being one of:\n\r", ch);
-        send_to_char ("    value0 value1 value2 value3 value4 (v1-v4)\n\r", ch);
-        send_to_char ("    extra wear level weight cost timer\n\r", ch);
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  set obj <object> <field> <value>\n\r");
+        printf_to_char (ch, "  Field being one of:\n\r");
+        printf_to_char (ch, "    value0 value1 value2 value3 value4 (v1-v4)\n\r");
+        printf_to_char (ch, "    extra wear level weight cost timer\n\r");
         return;
     }
     BAIL_IF ((obj = find_obj_world (ch, arg1)) == NULL,
@@ -488,10 +488,10 @@ DEFINE_DO_FUN (do_rset) {
     strcpy (arg3, argument);
 
     if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  set room <location> <field> <value>\n\r", ch);
-        send_to_char ("  Field being one of:\n\r", ch);
-        send_to_char ("    flags sector\n\r", ch);
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  set room <location> <field> <value>\n\r");
+        printf_to_char (ch, "  Field being one of:\n\r");
+        printf_to_char (ch, "    flags sector\n\r");
         return;
     }
     BAIL_IF ((location = find_location (ch, arg1)) == NULL,
@@ -521,10 +521,10 @@ DEFINE_DO_FUN (do_wizlock) {
 
     if (wizlock) {
         wiznet ("$N has wizlocked the game.", ch, NULL, 0, 0, 0);
-        send_to_char ("Game wizlocked.\n\r", ch);
+        printf_to_char (ch, "Game wizlocked.\n\r");
     }
     else {
         wiznet ("$N removes wizlock.", ch, NULL, 0, 0, 0);
-        send_to_char ("Game un-wizlocked.\n\r", ch);
+        printf_to_char (ch, "Game un-wizlocked.\n\r");
     }
 }

@@ -73,7 +73,7 @@ DEFINE_SPELL_FUN (spell_create_rose) {
     OBJ_T *rose;
     rose = obj_create (obj_get_index (OBJ_VNUM_ROSE), 0);
     obj_give_to_char (rose, ch);
-    send_to_char ("You create a beautiful red rose.\n\r", ch);
+    printf_to_char (ch, "You create a beautiful red rose.\n\r");
     act ("$n has created a beautiful red rose.", ch, rose, NULL, TO_NOTCHAR);
 }
 
@@ -124,7 +124,7 @@ DEFINE_SPELL_FUN (spell_floating_disc) {
     disc->v.container.max_weight = ch->level *  5;  /* 5 pounds/level */
     disc->timer = ch->level * 2 - number_range (0, level / 2);
 
-    send_to_char ("You create a floating disc.\n\r", ch);
+    printf_to_char (ch, "You create a floating disc.\n\r");
     act ("$n has created a floating black disc.", ch, NULL, NULL, TO_NOTCHAR);
 
     obj_give_to_char (disc, ch);

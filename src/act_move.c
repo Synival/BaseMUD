@@ -90,7 +90,7 @@ bool do_door_filter_is_door (CHAR_T *ch, EXIT_T *pexit,
                 container = TRUE;
                 break;
             default:
-                send_to_char ("That's not a container.\n\r", ch);
+                printf_to_char (ch, "That's not a container.\n\r");
                 return TRUE;
         }
     }
@@ -208,7 +208,7 @@ bool do_door_filter_can_pick (CHAR_T *ch, EXIT_T *pexit, OBJ_T *obj) {
 
     /* pick-specific checks. */
     if (!IS_NPC (ch) && number_percent () > char_get_skill (ch, SN(PICK_LOCK))) {
-        send_to_char ("You failed.\n\r", ch);
+        printf_to_char (ch, "You failed.\n\r");
         player_try_skill_improve (ch, SN(PICK_LOCK), FALSE, 2);
         return TRUE;
     }
@@ -574,7 +574,7 @@ DEFINE_DO_FUN (do_wake) {
 DEFINE_DO_FUN (do_sneak) {
     AFFECT_T af;
 
-    send_to_char ("You attempt to move silently.\n\r", ch);
+    printf_to_char (ch, "You attempt to move silently.\n\r");
     affect_strip_char (ch, SN(SNEAK));
 
     if (IS_AFFECTED (ch, AFF_SNEAK))
@@ -589,7 +589,7 @@ DEFINE_DO_FUN (do_sneak) {
 }
 
 DEFINE_DO_FUN (do_hide) {
-    send_to_char ("You attempt to hide.\n\r", ch);
+    printf_to_char (ch, "You attempt to hide.\n\r");
 
     if (IS_AFFECTED (ch, AFF_HIDE))
         REMOVE_BIT (ch->affected_by, AFF_HIDE);
@@ -637,7 +637,7 @@ DEFINE_DO_FUN (do_recall) {
         if (number_percent () < 80 * skill / 100) {
             player_try_skill_improve (ch, SN(RECALL), FALSE, 6);
             WAIT_STATE (ch, 4);
-            send_to_char ("You failed!\n\r", ch);
+            printf_to_char (ch, "You failed!\n\r");
             return;
         }
 
@@ -678,5 +678,5 @@ DEFINE_DO_FUN (do_enter) {
 
     /* Enter the portal. */
     if (!item_enter_effect (portal, ch))
-        send_to_char ("You can't enter that.\n\r", ch);
+        printf_to_char (ch, "You can't enter that.\n\r");
 }

@@ -82,7 +82,7 @@ DEFINE_SPELL_FUN (spell_call_lightning) {
         "You need bad weather.\n\r", ch);
 
     dam = dice (level / 2, 8);
-    send_to_char ("Mota's lightning strikes your foes!\n\r", ch);
+    printf_to_char (ch, "Mota's lightning strikes your foes!\n\r");
     act ("$n calls Mota's lightning to strike $s foes!",
          ch, NULL, NULL, TO_NOTCHAR);
 
@@ -100,7 +100,7 @@ DEFINE_SPELL_FUN (spell_call_lightning) {
 
         if (vch->in_room->area == ch->in_room->area && IS_OUTSIDE (vch)
             && IS_AWAKE (vch))
-            send_to_char ("Lightning flashes in the sky.\n\r", vch);
+            printf_to_char (vch, "Lightning flashes in the sky.\n\r");
     }
 }
 
@@ -173,7 +173,7 @@ DEFINE_SPELL_FUN (spell_chain_lightning) {
             }
 
             last_vict = ch;
-            send_to_char ("You are struck by your own lightning!\n\r", ch);
+            printf_to_char (ch, "You are struck by your own lightning!\n\r");
             act ("The bolt arcs to $n...whoops!", ch, NULL, NULL, TO_NOTCHAR);
             dam = dice (level, 6);
             if (saves_spell (level, ch, DAM_LIGHTNING))
@@ -245,7 +245,7 @@ DEFINE_SPELL_FUN (spell_demonfire) {
 
     if (!IS_NPC (ch) && !IS_EVIL (ch)) {
         victim = ch;
-        send_to_char ("The demons turn upon you!\n\r", ch);
+        printf_to_char (ch, "The demons turn upon you!\n\r");
     }
 
     ch->alignment = UMAX (-1000, ch->alignment - 50);
@@ -321,7 +321,7 @@ DEFINE_SPELL_FUN (spell_earthquake) {
     CHAR_T *vch;
     CHAR_T *vch_next;
 
-    send_to_char ("The earth trembles beneath your feet!\n\r", ch);
+    printf_to_char (ch, "The earth trembles beneath your feet!\n\r");
     act ("$n makes the earth tremble and shiver.", ch, NULL, NULL, TO_NOTCHAR);
 
     for (vch = char_first; vch != NULL; vch = vch_next) {
@@ -339,7 +339,7 @@ DEFINE_SPELL_FUN (spell_earthquake) {
             continue;
         }
         if (vch->in_room->area == ch->in_room->area)
-            send_to_char ("The earth trembles and shivers.\n\r", vch);
+            printf_to_char (vch, "The earth trembles and shivers.\n\r");
     }
 }
 
@@ -353,8 +353,8 @@ DEFINE_SPELL_FUN (spell_energy_drain) {
         ch->alignment = UMAX (-1000, ch->alignment - 50);
 
     if (saves_spell (level, victim, DAM_NEGATIVE)) {
-        send_to_char ("You are left unsatisfied.\n\r", ch);
-        send_to_char ("You feel a momentary chill.\n\r", victim);
+        printf_to_char (ch, "You are left unsatisfied.\n\r");
+        printf_to_char (victim, "You feel a momentary chill.\n\r");
         return;
     }
 
@@ -368,8 +368,8 @@ DEFINE_SPELL_FUN (spell_energy_drain) {
         ch->hit += dam;
     }
 
-    send_to_char ("You feel your life slipping away!\n\r", victim);
-    send_to_char ("Wow....what a rush!\n\r", ch);
+    printf_to_char (victim, "You feel your life slipping away!\n\r");
+    printf_to_char (ch, "Wow....what a rush!\n\r");
     damage_visible (ch, victim, dam, sn, DAM_NEGATIVE, NULL);
 }
 
@@ -515,8 +515,8 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
     }
 
     if (!success) {
-        send_to_char ("Your spell had no effect.\n\r", ch);
-        send_to_char ("You feel momentarily warmer.\n\r", victim);
+        printf_to_char (ch, "Your spell had no effect.\n\r");
+        printf_to_char (victim, "You feel momentarily warmer.\n\r");
         return;
     }
 
@@ -537,14 +537,14 @@ DEFINE_SPELL_FUN (spell_holy_word) {
     curse_num  = skill_lookup ("curse");
     frenzy_num = skill_lookup ("frenzy");
 
-    send_to_char ("You utter a word of divine power.\n\r", ch);
+    printf_to_char (ch, "You utter a word of divine power.\n\r");
     act ("$n utters a word of divine power!", ch, NULL, NULL, TO_NOTCHAR);
 
     for (vch = ch->in_room->people_first; vch != NULL; vch = vch_next) {
         vch_next = vch->room_next;
 
         if (IS_SAME_ALIGN (ch, vch)) {
-            send_to_char ("You feel even more powerful.\n\r", vch);
+            printf_to_char (vch, "You feel even more powerful.\n\r");
             spell_frenzy (frenzy_num, level, ch, (void *) vch, TARGET_CHAR,
                 target_name);
             spell_bless (bless_num, level, ch, (void *) vch, TARGET_CHAR,
@@ -554,7 +554,7 @@ DEFINE_SPELL_FUN (spell_holy_word) {
                  (IS_EVIL (ch) && IS_GOOD (vch)))
         {
             if (can_attack_spell (ch, vch, TRUE)) {
-                send_to_char ("You are struck down!\n\r", vch);
+                printf_to_char (vch, "You are struck down!\n\r");
                 dam = dice (level, 6);
                 damage_visible (ch, vch, dam, sn, DAM_ENERGY, NULL);
                 spell_curse_char_quiet (curse_num, level, ch, (void *) vch,
@@ -563,7 +563,7 @@ DEFINE_SPELL_FUN (spell_holy_word) {
         }
         else if (IS_NEUTRAL (ch)) {
             if (can_attack_spell (ch, vch, TRUE)) {
-                send_to_char ("You are struck down!\n\r", vch);
+                printf_to_char (vch, "You are struck down!\n\r");
                 dam = dice (level, 4);
                 damage_visible (ch, vch, dam, sn, DAM_ENERGY, NULL);
                 spell_curse_char_quiet (curse_num, level / 2, ch, (void *) vch,
@@ -572,7 +572,7 @@ DEFINE_SPELL_FUN (spell_holy_word) {
         }
     }
 
-    send_to_char ("You feel drained.\n\r", ch);
+    printf_to_char (ch, "You feel drained.\n\r");
     ch->move = 0;
     ch->hit /= 2;
 }
@@ -623,7 +623,7 @@ DEFINE_SPELL_FUN (spell_ray_of_truth) {
 
     if (IS_EVIL (ch)) {
         victim = ch;
-        send_to_char ("The energy explodes inside you!\n\r", ch);
+        printf_to_char (ch, "The energy explodes inside you!\n\r");
     }
 
     if (victim != ch) {

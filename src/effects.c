@@ -423,7 +423,7 @@ DEFINE_EFFECT_FUN (effect_shock) {
 
         /* daze and confused? */
         if (!saves_spell (level / 4 + dam / 20, victim, DAM_LIGHTNING)) {
-            send_to_char ("Your muscles stop responding.\n\r", victim);
+            printf_to_char (victim, "Your muscles stop responding.\n\r");
             DAZE_STATE (victim, UMAX (12, level / 4 + dam / 20));
         }
 

@@ -210,7 +210,7 @@ void do_get_room (CHAR_T *ch, char *argument) {
     }
     if (!found) {
         if (type == OBJ_ALL)
-            send_to_char ("You see nothing here.\n\r", ch);
+            printf_to_char (ch, "You see nothing here.\n\r");
         else if (type == OBJ_ALL_OF || failed || obj_start == NULL)
             act ("You see no $T here.", ch, NULL, argument, TO_CHAR);
     }
@@ -266,7 +266,7 @@ DEFINE_DO_FUN (do_put) {
     }
     if (!found) {
         if (type == OBJ_ALL)
-            send_to_char ("You are not carrying anything.\n\r", ch);
+            printf_to_char (ch, "You are not carrying anything.\n\r");
         else if (type == OBJ_ALL_OF || failed || obj_start == NULL)
             act ("You are not carrying any $T.", ch, NULL, arg, TO_CHAR);
     }
@@ -335,7 +335,7 @@ DEFINE_DO_FUN (do_drop) {
     }
     if (!found) {
         if (type == OBJ_ALL)
-            send_to_char ("You are not carrying anything.\n\r", ch);
+            printf_to_char (ch, "You are not carrying anything.\n\r");
         else if (type == OBJ_ALL_OF || failed || obj_start == NULL)
             act ("You are not carrying any $T.", ch, NULL, arg, TO_CHAR);
     }
@@ -631,7 +631,7 @@ DEFINE_DO_FUN (do_drink) {
          ch, obj, liq->name, 0, POS_RESTING);
 
     if (!item_drink_effect (obj, ch))
-        send_to_char ("...but nothing happens.\n\r", ch);
+        printf_to_char (ch, "...but nothing happens.\n\r");
 }
 
 DEFINE_DO_FUN (do_eat) {
@@ -650,7 +650,7 @@ DEFINE_DO_FUN (do_eat) {
 
     act2 ("You eat $p.", "$n eats $p.", ch, obj, NULL, 0, POS_RESTING);
     if (!item_eat_effect (obj, ch))
-        send_to_char ("...but nothing happens.\n\r", ch);
+        printf_to_char (ch, "...but nothing happens.\n\r");
 }
 
 DEFINE_DO_FUN (do_wear) {
@@ -731,7 +731,7 @@ DEFINE_DO_FUN (do_sacrifice) {
 #endif
 
     if (silver == 1)
-        send_to_char ("Mota gives you one silver coin for your sacrifice.\n\r", ch);
+        printf_to_char (ch, "Mota gives you one silver coin for your sacrifice.\n\r");
     else {
         printf_to_char (ch, "Mota gives you %d silver coins for your sacrifice.\n\r",
             silver);
@@ -770,7 +770,7 @@ DEFINE_DO_FUN (do_quaff) {
         ch, obj, NULL, 0, POS_RESTING);
 
     if (!item_quaff_effect (obj, ch))
-        send_to_char ("...but nothing happens.\n\r", ch);
+        printf_to_char (ch, "...but nothing happens.\n\r");
 }
 
 DEFINE_DO_FUN (do_recite) {
@@ -802,14 +802,14 @@ DEFINE_DO_FUN (do_recite) {
         ch, scroll, NULL, 0, POS_RESTING);
 
     if (number_percent () >= 20 + char_get_skill (ch, SN(SCROLLS)) * 4 / 5) {
-        send_to_char ("You mispronounce a syllable.\n\r", ch);
+        printf_to_char (ch, "You mispronounce a syllable.\n\r");
         player_try_skill_improve (ch, SN(SCROLLS), FALSE, 2);
         obj_extract (scroll);
         return;
     }
 
     if (!item_recite_effect (scroll, ch, victim, obj)) {
-        send_to_char ("...but nothing happens.\n\r", ch);
+        printf_to_char (ch, "...but nothing happens.\n\r");
         return;
     }
 
@@ -947,7 +947,7 @@ DEFINE_DO_FUN (do_steal) {
         || (!IS_NPC (ch) && !player_has_clan (ch)))
     {
         /* Failure. */
-        send_to_char ("Oops.\n\r", ch);
+        printf_to_char (ch, "Oops.\n\r");
         affect_strip_char (ch, SN(SNEAK));
         REMOVE_BIT (ch->affected_by, AFF_SNEAK);
 
@@ -982,7 +982,7 @@ DEFINE_DO_FUN (do_steal) {
                     "$N tried to steal from %s.", victim->name);
                 if (!EXT_IS_SET (ch->ext_plr, PLR_THIEF)) {
                     EXT_SET (ch->ext_plr, PLR_THIEF);
-                    send_to_char ("*** You are now a THIEF!! ***\n\r", ch);
+                    printf_to_char (ch, "*** You are now a THIEF!! ***\n\r");
                     save_char_obj (ch);
                 }
             }
@@ -1033,7 +1033,7 @@ DEFINE_DO_FUN (do_steal) {
     obj_give_to_char (obj, ch);
     act ("You pocket $p.", ch, obj, NULL, TO_CHAR);
     player_try_skill_improve (ch, SN(STEAL), TRUE, 2);
-    send_to_char ("Got it!\n\r", ch);
+    printf_to_char (ch, "Got it!\n\r");
 }
 
 /* equips a character */
@@ -1087,7 +1087,7 @@ DEFINE_DO_FUN (do_outfit) {
         char_equip_obj (ch, obj, WEAR_LOC_SHIELD);
     }
 
-    send_to_char ("You have been equipped by Mota.\n\r", ch);
+    printf_to_char (ch, "You have been equipped by Mota.\n\r");
 }
 
 DEFINE_DO_FUN (do_play) {
@@ -1098,5 +1098,5 @@ DEFINE_DO_FUN (do_play) {
         "You see nothing to play.\n\r", ch);
 
     if (!item_play_effect (juke, ch, argument))
-        send_to_char ("Nothing happens.\n\r", ch);
+        printf_to_char (ch, "Nothing happens.\n\r");
 }
