@@ -419,7 +419,7 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
     OBJ_T *obj_lose, *obj_next;
     int dam = 0;
     bool success = FALSE;
-    bool is_weapon, is_armor, can_drop;
+    bool is_weapon, is_armor, is_worn, can_drop;
     bool fumbled, drop_item;
 
     if (saves_spell (level + 2, victim, DAM_FIRE)
