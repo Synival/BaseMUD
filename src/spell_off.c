@@ -447,8 +447,9 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
         if (!(is_weapon || is_armor))
             continue;
 
-        /* Flaming weapons being are ignored. */
-        if (is_weapon && IS_WEAPON_STAT (obj_lose, WEAPON_FLAMING))
+        /* Flaming weapons being wielded are ignored. */
+        is_worn   = (obj_lose->wear_loc != WEAR_LOC_NONE);
+        if (is_worn && is_weapon && IS_WEAPON_STAT (obj_lose, WEAPON_FLAMING))
             continue;
 
         success = TRUE;
