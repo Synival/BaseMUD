@@ -104,7 +104,7 @@ DEFINE_DO_FUN (do_berserk) {
         (!IS_NPC (ch) && ch->level <
             skill_table[SN(BERSERK)].classes[ch->class].level))
     {
-        send_to_char ("You turn red in the face, but nothing happens.\n\r", ch);
+        printf_to_char (ch, "You turn red in the face, but nothing happens.\n\r");
         return;
     }
 
@@ -133,7 +133,7 @@ DEFINE_DO_FUN (do_berserk) {
         ch->mana -= 25;
         ch->move /= 2;
 
-        send_to_char ("Your pulse speeds up, but nothing happens.\n\r", ch);
+        printf_to_char (ch, "Your pulse speeds up, but nothing happens.\n\r");
         player_try_skill_improve (ch, SN(BERSERK), FALSE, 2);
         return;
     }
@@ -146,7 +146,7 @@ DEFINE_DO_FUN (do_berserk) {
     ch->hit += ch->level * 2;
     ch->hit = UMIN (ch->hit, ch->max_hit);
 
-    send_to_char ("Your pulse races as you are consumed by rage!\n\r", ch);
+    printf_to_char (ch, "Your pulse races as you are consumed by rage!\n\r");
     act ("$n gets a wild look in $s eyes.", ch, NULL, NULL, TO_NOTCHAR);
     player_try_skill_improve (ch, SN(BERSERK), TRUE, 2);
 
@@ -297,7 +297,7 @@ DEFINE_DO_FUN (do_dirt) {
             ch, NULL, victim, 0, POS_RESTING);
 
         damage_quiet (ch, victim, number_range (2, 5), SN(DIRT), DAM_NONE);
-        send_to_char ("{5You can't see a thing!{x\n\r", victim);
+        printf_to_char (victim, "{5You can't see a thing!{x\n\r");
 
         player_try_skill_improve (ch, SN(DIRT), TRUE, 2);
         WAIT_STATE (ch, skill_table[SN(DIRT)].beats);
@@ -333,7 +333,7 @@ DEFINE_DO_FUN (do_trip) {
         "$N is your beloved master.", ch, NULL, victim);
 
     if (victim == ch) {
-        send_to_char ("{5You fall flat on your face!{x\n\r", ch);
+        printf_to_char (ch, "{5You fall flat on your face!{x\n\r");
         WAIT_STATE (ch, 2 * skill_table[SN(TRIP)].beats);
         act ("{5$n trips over $s own feet!{x", ch, NULL, NULL, TO_NOTCHAR);
         return;
@@ -425,7 +425,7 @@ DEFINE_DO_FUN (do_kill) {
 */
 
     if (victim == ch) {
-        send_to_char ("You hit yourself.  Ouch!\n\r", ch);
+        printf_to_char (ch, "You hit yourself.  Ouch!\n\r");
         multi_hit (ch, ch, ATTACK_DEFAULT);
         return;
     }
@@ -444,7 +444,7 @@ DEFINE_DO_FUN (do_kill) {
 }
 
 DEFINE_DO_FUN (do_murde) {
-    send_to_char ("If you want to MURDER, spell it out.\n\r", ch);
+    printf_to_char (ch, "If you want to MURDER, spell it out.\n\r");
 }
 
 DEFINE_DO_FUN (do_murder) {
@@ -529,7 +529,7 @@ DEFINE_DO_FUN (do_flee) {
     if ((victim = ch->fighting) == NULL) {
         if (ch->position == POS_FIGHTING)
             ch->position = POS_STANDING;
-        send_to_char ("You aren't fighting anyone.\n\r", ch);
+        printf_to_char (ch, "You aren't fighting anyone.\n\r");
         return;
     }
     BAIL_IF (ch->daze > 0,
@@ -562,14 +562,14 @@ DEFINE_DO_FUN (do_flee) {
 
         if (!IS_NPC (ch)) {
             const CLASS_T *class;
-            send_to_char ("You flee from combat!\n\r", ch);
+            printf_to_char (ch, "You flee from combat!\n\r");
 
             class = class_get (ch->class);
             if (class != NULL && class->can_sneak_away &&
                     (number_percent () < 3 * (ch->level / 2)))
-                send_to_char ("You snuck away safely.\n\r", ch);
+                printf_to_char (ch, "You snuck away safely.\n\r");
             else {
-                send_to_char ("You lost 10 exp.\n\r", ch);
+                printf_to_char (ch, "You lost 10 exp.\n\r");
                 player_gain_exp (ch, -10);
             }
         }
@@ -577,7 +577,7 @@ DEFINE_DO_FUN (do_flee) {
         stop_fighting (ch, TRUE);
         return;
     }
-    send_to_char ("PANIC! You couldn't escape!\n\r", ch);
+    printf_to_char (ch, "PANIC! You couldn't escape!\n\r");
 }
 
 DEFINE_DO_FUN (do_rescue) {
@@ -603,7 +603,7 @@ DEFINE_DO_FUN (do_rescue) {
 
     WAIT_STATE (ch, skill_table[SN(RESCUE)].beats);
     if (number_percent () > char_get_skill (ch, SN(RESCUE))) {
-        send_to_char ("You fail the rescue.\n\r", ch);
+        printf_to_char (ch, "You fail the rescue.\n\r");
         player_try_skill_improve (ch, SN(RESCUE), FALSE, 1);
         return;
     }

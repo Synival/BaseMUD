@@ -117,8 +117,8 @@ MEDIT (medit_show) {
             if (shop->buy_type[trade] == 0)
                 continue;
             if (trade == 0) {
-                send_to_char ("  Number Trades Type\n\r", ch);
-                send_to_char ("  ------ -----------\n\r", ch);
+                printf_to_char (ch, "  Number Trades Type\n\r");
+                printf_to_char (ch, "  ------ -----------\n\r");
             }
             printf_to_char (ch, "  [%4d] %s\n\r", trade,
                 item_get_name (shop->buy_type[trade]));
@@ -131,8 +131,8 @@ MEDIT (medit_show) {
         printf_to_char (ch, "\n\rMOBPrograms for [%5d]:\n\r", mob->vnum);
         for (cnt = 0, list = mob->mprog_first; list; list = list->mob_next) {
             if (cnt == 0) {
-                send_to_char (" Number Vnum Trigger Phrase\n\r", ch);
-                send_to_char (" ------ ---- ------- ------\n\r", ch);
+                printf_to_char (ch, " Number Vnum Trigger Phrase\n\r");
+                printf_to_char (ch, " ------ ---- ------- ------\n\r");
             }
 
             printf_to_char (ch, "[%5d] %4d %7s %s\n\r", cnt,
@@ -175,7 +175,7 @@ MEDIT (medit_create) {
 
     db_finalize_mob (mob);
 
-    send_to_char ("Mobile created.\n\r", ch);
+    printf_to_char (ch, "Mobile created.\n\r");
     return TRUE;
 }
 
@@ -188,16 +188,16 @@ MEDIT (medit_spec) {
 
     if (!str_cmp (argument, "none")) {
         mob->spec_fun = NULL;
-        send_to_char ("Spec removed.\n\r", ch);
+        printf_to_char (ch, "Spec removed.\n\r");
         return TRUE;
     }
     else if (spec_lookup (argument) >= 0) {
         mob->spec_fun = spec_lookup_function (argument);
-        send_to_char ("Spec set.\n\r", ch);
+        printf_to_char (ch, "Spec set.\n\r");
         return TRUE;
     }
 
-    send_to_char ("MEdit: No such special function.\n\r", ch);
+    printf_to_char (ch, "MEdit: No such special function.\n\r");
     return FALSE;
 }
 
@@ -210,7 +210,7 @@ MEDIT (medit_damtype) {
         "For a list of damage types, type '? weapon'.\n\r", ch, FALSE);
 
     mob->attack_type = attack_lookup (argument);
-    send_to_char ("Damage type set.\n\r", ch);
+    printf_to_char (ch, "Damage type set.\n\r");
     return TRUE;
 }
 
@@ -238,7 +238,7 @@ MEDIT (medit_desc) {
         string_append (ch, &mob->description);
         return TRUE;
     }
-    send_to_char ("Syntax: desc    - line edit\n\r", ch);
+    printf_to_char (ch, "Syntax: desc    - line edit\n\r");
     return FALSE;
 }
 
@@ -253,7 +253,7 @@ MEDIT (medit_long) {
     argument[0] = UPPER (argument[0]);
     str_replace_dup (&(mob->long_descr), argument);
 
-    send_to_char ("Long description set.\n\r", ch);
+    printf_to_char (ch, "Long description set.\n\r");
     return TRUE;
 }
 
@@ -300,7 +300,7 @@ MEDIT (medit_shop) {
         mob->shop->open_hour  = atoi (arg1);
         mob->shop->close_hour = atoi (argument);
 
-        send_to_char ("Shop hours set.\n\r", ch);
+        printf_to_char (ch, "Shop hours set.\n\r");
         return TRUE;
     }
 
@@ -314,7 +314,7 @@ MEDIT (medit_shop) {
         mob->shop->profit_buy = atoi (arg1);
         mob->shop->profit_sell = atoi (argument);
 
-        send_to_char ("Shop profit set.\n\r", ch);
+        printf_to_char (ch, "Shop profit set.\n\r");
         return TRUE;
     }
 
@@ -333,7 +333,7 @@ MEDIT (medit_shop) {
             "MEdit: That type of item is not known.\n\r", ch, FALSE);
         mob->shop->buy_type[atoi (arg1)] = value;
 
-        send_to_char ("Shop type set.\n\r", ch);
+        printf_to_char (ch, "Shop type set.\n\r");
         return TRUE;
     }
 
@@ -346,7 +346,7 @@ MEDIT (medit_shop) {
         LIST2_BACK (mob->shop, global_prev, global_next, shop_first, shop_last);
         mob->shop->keeper = mob->vnum;
 
-        send_to_char ("New shop assigned to mobile.\n\r", ch);
+        printf_to_char (ch, "New shop assigned to mobile.\n\r");
         return TRUE;
     }
 
@@ -355,7 +355,7 @@ MEDIT (medit_shop) {
         shop_free (mob->shop);
         mob->shop = NULL;
 
-        send_to_char ("Mobile is no longer a shopkeeper.\n\r", ch);
+        printf_to_char (ch, "Mobile is no longer a shopkeeper.\n\r");
         return TRUE;
     }
 
@@ -373,12 +373,12 @@ MEDIT (medit_sex) {
         EDIT_MOB (ch, mob);
         if ((value = type_lookup (sex_types, argument)) != TYPE_NONE) {
             mob->sex = value;
-            send_to_char ("Sex set.\n\r", ch);
+            printf_to_char (ch, "Sex set.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: sex [sex]\n\r"
-                  "Type '? sex' for a list of flags.\n\r", ch);
+    printf_to_char (ch, "Syntax: sex [sex]\n\r"
+                  "Type '? sex' for a list of flags.\n\r");
     return FALSE;
 }
 
@@ -421,12 +421,12 @@ MEDIT (medit_act) {
             EXT_SET (mob->ext_mob_final, MOB_IS_NPC);
             UPDATE_EXT_FLAGS (mob, ext_mob, ext_mob);
 
-            send_to_char ("Mob flag toggled.\n\r", ch);
+            printf_to_char (ch, "Mob flag toggled.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: act [flag]\n\r"
-                  "Type '? act' for a list of flags.\n\r", ch);
+    printf_to_char (ch, "Syntax: act [flag]\n\r"
+                  "Type '? act' for a list of flags.\n\r");
     return FALSE;
 }
 
@@ -441,12 +441,12 @@ MEDIT (medit_affect) {
             TOGGLE_BIT (mob->affected_by_final, value);
             UPDATE_FLAGS (mob, affected_by, aff);
 
-            send_to_char ("Affect flag toggled.\n\r", ch);
+            printf_to_char (ch, "Affect flag toggled.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: affect [flag]\n\r"
-                  "Type '? affect' for a list of flags.\n\r", ch);
+    printf_to_char (ch, "Syntax: affect [flag]\n\r"
+                  "Type '? affect' for a list of flags.\n\r");
     return FALSE;
 }
 
@@ -498,7 +498,7 @@ MEDIT (medit_ac) {
         mob->ac[AC_SLASH]  = slash;
         mob->ac[AC_EXOTIC] = exotic;
 
-        send_to_char ("Ac set.\n\r", ch);
+        printf_to_char (ch, "Ac set.\n\r");
         return TRUE;
     }
     while (FALSE); /* Just do it once.. */
@@ -519,12 +519,12 @@ MEDIT (medit_form) {
             TOGGLE_BIT (mob->form_plus, value);
             UPDATE_FLAGS (mob, form, form);
 
-            send_to_char ("Form toggled.\n\r", ch);
+            printf_to_char (ch, "Form toggled.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: form [flags]\n\r"
-                  "Type '? form' for a list of flags.\n\r", ch);
+    printf_to_char (ch, "Syntax: form [flags]\n\r"
+                  "Type '? form' for a list of flags.\n\r");
     return FALSE;
 }
 
@@ -538,12 +538,12 @@ MEDIT (medit_part) {
             TOGGLE_BIT (mob->parts_plus, value);
             UPDATE_FLAGS (mob, parts, parts);
 
-            send_to_char ("Parts toggled.\n\r", ch);
+            printf_to_char (ch, "Parts toggled.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: part [flags]\n\r"
-                  "Type '? part' for a list of flags.\n\r", ch);
+    printf_to_char (ch, "Syntax: part [flags]\n\r"
+                  "Type '? part' for a list of flags.\n\r");
     return FALSE;
 }
 
@@ -557,12 +557,12 @@ MEDIT (medit_imm) {
             TOGGLE_BIT (mob->imm_flags_plus, value);
             UPDATE_FLAGS (mob, imm_flags, imm);
 
-            send_to_char ("Immunity toggled.\n\r", ch);
+            printf_to_char (ch, "Immunity toggled.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: imm [flags]\n\r"
-                  "Type '? imm' for a list of flags.\n\r", ch);
+    printf_to_char (ch, "Syntax: imm [flags]\n\r"
+                  "Type '? imm' for a list of flags.\n\r");
     return FALSE;
 }
 
@@ -576,12 +576,12 @@ MEDIT (medit_res) {
             TOGGLE_BIT (mob->res_flags_plus, value);
             UPDATE_FLAGS (mob, res_flags, res);
 
-            send_to_char ("Resistance toggled.\n\r", ch);
+            printf_to_char (ch, "Resistance toggled.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: res [flags]\n\r"
-                  "Type '? res' for a list of flags.\n\r", ch);
+    printf_to_char (ch, "Syntax: res [flags]\n\r"
+                  "Type '? res' for a list of flags.\n\r");
     return FALSE;
 }
 
@@ -595,12 +595,12 @@ MEDIT (medit_vuln) {
             TOGGLE_BIT (mob->vuln_flags_plus, value);
             UPDATE_FLAGS (mob, vuln_flags, vuln);
 
-            send_to_char ("Vulnerability toggled.\n\r", ch);
+            printf_to_char (ch, "Vulnerability toggled.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: vuln [flags]\n\r"
-                  "Type '? vuln' for a list of flags.\n\r", ch);
+    printf_to_char (ch, "Syntax: vuln [flags]\n\r"
+                  "Type '? vuln' for a list of flags.\n\r");
     return FALSE;
 }
 
@@ -612,11 +612,11 @@ MEDIT (medit_material) {
         EDIT_MOB (ch, mob);
         if ((mat = material_get_by_name (argument)) != NULL) {
             mob->material = mat->type;
-            send_to_char ("Material type changed.\n\r", ch);
+            printf_to_char (ch, "Material type changed.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: material [type]\n\r", ch);
+    printf_to_char (ch, "Syntax: material [type]\n\r");
     return FALSE;
 }
 
@@ -630,12 +630,12 @@ MEDIT (medit_off) {
             TOGGLE_BIT (mob->off_flags_plus, value);
             UPDATE_FLAGS (mob, off_flags, off);
 
-            send_to_char ("Offensive behaviour toggled.\n\r", ch);
+            printf_to_char (ch, "Offensive behaviour toggled.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: off [flags]\n\r"
-                  "Type '? off' for a list of flags.\n\r", ch);
+    printf_to_char (ch, "Syntax: off [flags]\n\r"
+                  "Type '? off' for a list of flags.\n\r");
     return FALSE;
 }
 
@@ -647,12 +647,12 @@ MEDIT (medit_size) {
         EDIT_MOB (ch, mob);
         if ((value = type_lookup (size_types, argument)) != TYPE_NONE) {
             mob->size = value;
-            send_to_char ("Size set.\n\r", ch);
+            printf_to_char (ch, "Size set.\n\r");
             return TRUE;
         }
     }
-    send_to_char ("Syntax: size [size]\n\r"
-                  "Type '? size' for a list of sizes.\n\r", ch);
+    printf_to_char (ch, "Syntax: size [size]\n\r"
+                  "Type '? size' for a list of sizes.\n\r");
     return FALSE;
 }
 
@@ -692,7 +692,7 @@ MEDIT (medit_hitdice) {
     mob->hit.size   = atoi (type);
     mob->hit.bonus  = atoi (bonus);
 
-    send_to_char ("Hitdice set.\n\r", ch);
+    printf_to_char (ch, "Hitdice set.\n\r");
     return TRUE;
 }
 
@@ -735,7 +735,7 @@ MEDIT (medit_manadice) {
     mob->mana.size   = atoi (type);
     mob->mana.bonus  = atoi (bonus);
 
-    send_to_char ("Manadice set.\n\r", ch);
+    printf_to_char (ch, "Manadice set.\n\r");
     return TRUE;
 }
 
@@ -779,7 +779,7 @@ MEDIT (medit_damdice) {
     mob->damage.size   = atoi (type);
     mob->damage.bonus  = atoi (bonus);
 
-    send_to_char ("Damdice set.\n\r", ch);
+    printf_to_char (ch, "Damdice set.\n\r");
     return TRUE;
 }
 
@@ -793,26 +793,26 @@ MEDIT (medit_race) {
         mob->race = i;
         db_finalize_mob (mob);
 
-        send_to_char ("Race set.\n\r", ch);
+        printf_to_char (ch, "Race set.\n\r");
         return TRUE;
     }
 
     if (argument[0] == '?') {
-        send_to_char ("Available races are:", ch);
+        printf_to_char (ch, "Available races are:");
 
         for (i = 0; i < RACE_MAX; i++) {
             if ((race = race_get (i)) == NULL)
                 break;
             if ((i % 3) == 0)
-                send_to_char ("\n\r", ch);
+                printf_to_char (ch, "\n\r");
             printf_to_char (ch, " %-15s", race->name);
         }
 
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
         return FALSE;
     }
-    send_to_char ("Syntax: race [race]\n\r"
-                  "Type 'race ?' for a list of races.\n\r", ch);
+    printf_to_char (ch, "Syntax: race [race]\n\r"
+                  "Type 'race ?' for a list of races.\n\r");
     return FALSE;
 }
 
@@ -835,7 +835,7 @@ MEDIT (medit_position) {
 
             EDIT_MOB (ch, mob);
             mob->start_pos = value;
-            send_to_char ("Start position set.\n\r", ch);
+            printf_to_char (ch, "Start position set.\n\r");
             return TRUE;
 
         case 'D':
@@ -847,12 +847,12 @@ MEDIT (medit_position) {
 
             EDIT_MOB (ch, mob);
             mob->default_pos = value;
-            send_to_char ("Default position set.\n\r", ch);
+            printf_to_char (ch, "Default position set.\n\r");
             return TRUE;
     }
 
-    send_to_char ("Syntax: position [start/default] [position]\n\r"
-                  "Type '? position' for a list of positions.\n\r", ch);
+    printf_to_char (ch, "Syntax: position [start/default] [position]\n\r"
+                  "Type '? position' for a list of positions.\n\r");
     return FALSE;
 }
 
@@ -888,7 +888,7 @@ MEDIT (medit_group) {
 
     if (is_number (argument)) {
         mob->group = atoi (argument);
-        send_to_char ("Group set.\n\r", ch);
+        printf_to_char (ch, "Group set.\n\r");
         return TRUE;
     }
 
@@ -910,7 +910,7 @@ MEDIT (medit_group) {
         if (found)
             page_to_char (buf_string (buffer), ch);
         else
-            send_to_char ("No mobs in that group.\n\r", ch);
+            printf_to_char (ch, "No mobs in that group.\n\r");
 
         buf_free (buffer);
         return FALSE;
@@ -942,7 +942,7 @@ MEDIT (medit_addmprog) {
         "MEdit: That vnum is not assigned an area.\n\r", ch, FALSE);
 
     if ((value = flags_from_string (mprog_flags, trigger)) == FLAG_NONE) {
-        send_to_char ("Valid flags are:\n\r", ch);
+        printf_to_char (ch, "Valid flags are:\n\r");
         show_help (ch, "mprog");
         return FALSE;
     }
@@ -959,7 +959,7 @@ MEDIT (medit_addmprog) {
     SET_BIT (mob->mprog_flags, value);
     LIST2_FRONT (list, mob_prev, mob_next, mob->mprog_first, mob->mprog_last);
 
-    send_to_char ("Mob program created.\n\r", ch);
+    printf_to_char (ch, "Mob program created.\n\r");
     return TRUE;
 }
 
@@ -990,6 +990,6 @@ MEDIT (medit_delmprog) {
     REMOVE_BIT (mob->mprog_flags, mplist->trig_type);
     mprog_free (mplist);
 
-    send_to_char ("Mob program removed.\n\r", ch);
+    printf_to_char (ch, "Mob program removed.\n\r");
     return TRUE;
 }

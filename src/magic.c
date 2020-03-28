@@ -352,5 +352,5 @@ int affect_isnt_char_affected_with_act (CHAR_T *victim, int sn, flag_t flag,
 }
 
 DEFINE_SPELL_FUN (spell_null) {
-    send_to_char ("That's not a spell!\n\r", ch);
+    printf_to_char (ch, "That's not a spell!\n\r");
 }

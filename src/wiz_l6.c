@@ -89,8 +89,8 @@ DEFINE_DO_FUN (do_return) {
     BAIL_IF (ch->desc->original == NULL,
         "You aren't switched.\n\r", ch);
 
-    send_to_char ("You return to your original body. "
-                  "Type replay to see any missed tells.\n\r", ch);
+    printf_to_char (ch, "You return to your original body. "
+                  "Type replay to see any missed tells.\n\r");
 
     if (ch->prompt != NULL)
         str_replace_dup (&(ch->prompt), NULL);

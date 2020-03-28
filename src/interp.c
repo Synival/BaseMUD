@@ -476,7 +476,7 @@ void interpret (CHAR_T *ch, char *argument) {
             && !imc_command_hook (ch, command, argument)
 #endif
            )
-            send_to_char ("Huh?\n\r", ch);
+            printf_to_char (ch, "Huh?\n\r");
         return;
     }
 
@@ -530,7 +530,7 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
     if ((soc = social_get_by_name (command)) == NULL)
         return FALSE;
     if (!IS_NPC (ch) && IS_SET (ch->comm, COMM_NOEMOTE)) {
-        send_to_char ("You are anti-social!\n\r", ch);
+        printf_to_char (ch, "You are anti-social!\n\r");
         return TRUE;
     }
 
@@ -547,7 +547,7 @@ bool check_social (CHAR_T *ch, char *command, char *argument) {
         act (soc->others_no_arg, ch, NULL, victim, TO_NOTCHAR);
     }
     else if ((victim = find_char_same_room (ch, arg)) == NULL)
-        send_to_char ("They aren't here.\n\r", ch);
+        printf_to_char (ch, "They aren't here.\n\r");
     else if (victim == ch) {
         act_new (soc->char_auto,   ch, NULL, victim, TO_CHAR, POS_DEAD);
         act (soc->others_auto, ch, NULL, victim, TO_NOTCHAR);

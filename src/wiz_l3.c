@@ -96,25 +96,25 @@ DEFINE_DO_FUN (do_pardon) {
     if (!str_cmp (arg2, "killer")) {
         if (EXT_IS_SET (victim->ext_plr, PLR_KILLER)) {
             EXT_UNSET (victim->ext_plr, PLR_KILLER);
-            send_to_char ("Killer flag removed.\n\r", ch);
-            send_to_char ("You are no longer a KILLER.\n\r", victim);
+            printf_to_char (ch, "Killer flag removed.\n\r");
+            printf_to_char (victim, "You are no longer a KILLER.\n\r");
         }
         return;
     }
     if (!str_cmp (arg2, "thief")) {
         if (EXT_IS_SET (victim->ext_plr, PLR_THIEF)) {
             EXT_UNSET (victim->ext_plr, PLR_THIEF);
-            send_to_char ("Thief flag removed.\n\r", ch);
-            send_to_char ("You are no longer a THIEF.\n\r", victim);
+            printf_to_char (ch, "Thief flag removed.\n\r");
+            printf_to_char (victim, "You are no longer a THIEF.\n\r");
         }
         return;
     }
 
-    send_to_char ("Syntax: pardon <character> <killer|thief>.\n\r", ch);
+    printf_to_char (ch, "Syntax: pardon <character> <killer|thief>.\n\r");
 }
 
 DEFINE_DO_FUN (do_sla)
-    { send_to_char ("If you want to SLAY, spell it out.\n\r", ch); }
+    { printf_to_char (ch, "If you want to SLAY, spell it out.\n\r"); }
 
 DEFINE_DO_FUN (do_slay) {
     CHAR_T *victim;

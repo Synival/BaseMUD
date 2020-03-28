@@ -52,7 +52,7 @@ void do_colour_one (CHAR_T *ch, const COLOUR_SETTING_T *setting,
     /* Is this the beginning of our menu? */
     if (buf[0] == '\0') {
         if (colour != NULL)
-            send_to_char ("The following colours have been set:\n\r", ch);
+            printf_to_char (ch, "The following colours have been set:\n\r");
         strcat (buf,
             " Code | Name            | Color\n\r"
             "-------------------------------------------------------------------------\n\r");
@@ -93,26 +93,26 @@ void do_colour_codes (CHAR_T *ch, char *argument) {
     flag_t last_mask = 0;
     int i, col = 0;
 
-    send_to_char ("Valid colours:\n\r", ch);
+    printf_to_char (ch, "Valid colours:\n\r");
     for (i = 0; colour_table[i].name != NULL; i++) {
         if (last_mask != 0 && colour_table[i].mask != last_mask) {
             if (col != 0)
-                send_to_char ("\n\r", ch);
+                printf_to_char (ch, "\n\r");
             col = 0;
         }
         if (col == 0)
-            send_to_char ("    ", ch);
+            printf_to_char (ch, "    ");
 
         last_mask = colour_table[i].mask;
         printf_to_char (ch, "%-15s", colour_table[i].name);
 
         if (++col == 4) {
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
             col = 0;
         }
     }
     if (col != 0)
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
 }
 
 /* changes your scroll */
@@ -123,7 +123,7 @@ DEFINE_DO_FUN (do_scroll) {
     one_argument (argument, arg);
     if (arg[0] == '\0') {
         if (ch->lines == 0)
-            send_to_char ("You do not page long messages.\n\r", ch);
+            printf_to_char (ch, "You do not page long messages.\n\r");
         else {
             printf_to_char (ch, "You currently display %d lines per page.\n\r",
                 ch->lines + 2);
@@ -135,7 +135,7 @@ DEFINE_DO_FUN (do_scroll) {
 
     lines = atoi (arg);
     if (lines == 0) {
-        send_to_char ("Paging disabled.\n\r", ch);
+        printf_to_char (ch, "Paging disabled.\n\r");
         ch->lines = 0;
         return;
     }
@@ -242,8 +242,8 @@ DEFINE_DO_FUN (do_autolist) {
     BAIL_IF (IS_NPC (ch),
         "NPCs can't use player flags.\n\r", ch);
 
-    send_to_char ("   action         status\n\r", ch);
-    send_to_char ("---------------------------\n\r", ch);
+    printf_to_char (ch, "   action         status\n\r");
+    printf_to_char (ch, "---------------------------\n\r");
 
     do_autolist_ext_flag ("autoassist",   ch, ch->ext_plr,  PLR_AUTOASSIST);
     do_autolist_ext_flag ("autoexit",     ch, ch->ext_plr,  PLR_AUTOEXIT);
@@ -252,7 +252,7 @@ DEFINE_DO_FUN (do_autolist) {
     do_autolist_ext_flag ("autosac",      ch, ch->ext_plr,  PLR_AUTOSAC);
     do_autolist_ext_flag ("autosplit",    ch, ch->ext_plr,  PLR_AUTOSPLIT);
 
-    send_to_char ("---------------------------\n\r", ch);
+    printf_to_char (ch, "---------------------------\n\r");
     do_autolist_flag ("telnetga",     ch, ch->comm, COMM_TELNET_GA);
     do_autolist_flag ("brief",        ch, ch->comm, COMM_BRIEF);
     do_autolist_flag ("compactmode",  ch, ch->comm, COMM_COMPACT);
@@ -263,7 +263,7 @@ DEFINE_DO_FUN (do_autolist) {
     do_autolist_flag ("materials",    ch, ch->comm, COMM_MATERIALS);
 #endif
 
-    send_to_char ("---------------------------\n\r", ch);
+    printf_to_char (ch, "---------------------------\n\r");
     do_autolist_ext_flag ("noloot",       ch, EXT_INVERTED (ch->ext_plr), PLR_CANLOOT);
     do_autolist_ext_flag ("nosummon",     ch, ch->ext_plr,  PLR_NOSUMMON);
     do_autolist_ext_flag ("nofollow",     ch, ch->ext_plr,  PLR_NOFOLLOW);
@@ -379,7 +379,7 @@ DEFINE_DO_FUN (do_autoall) {
         EXT_SET (ch->ext_plr, PLR_AUTOLOOT);
         EXT_SET (ch->ext_plr, PLR_AUTOSAC);
         EXT_SET (ch->ext_plr, PLR_AUTOSPLIT);
-        send_to_char ("All autos turned on.\n\r", ch);
+        printf_to_char (ch, "All autos turned on.\n\r");
     }
     else if (!strcmp (argument, "off")) {
         EXT_UNSET (ch->ext_plr, PLR_AUTOASSIST);
@@ -388,10 +388,10 @@ DEFINE_DO_FUN (do_autoall) {
         EXT_UNSET (ch->ext_plr, PLR_AUTOLOOT);
         EXT_UNSET (ch->ext_plr, PLR_AUTOSAC);
         EXT_UNSET (ch->ext_plr, PLR_AUTOSPLIT);
-        send_to_char ("All autos turned off.\n\r", ch);
+        printf_to_char (ch, "All autos turned off.\n\r");
     }
     else
-        send_to_char ("Usage: autoall [on|off]\n\r", ch);
+        printf_to_char (ch, "Usage: autoall [on|off]\n\r");
 }
 
 DEFINE_DO_FUN (do_prompt) {
@@ -426,7 +426,7 @@ DEFINE_DO_FUN (do_prompt) {
 }
 
 DEFINE_DO_FUN (do_alia) {
-    send_to_char ("I'm sorry, alias must be entered in full.\n\r", ch);
+    printf_to_char (ch, "I'm sorry, alias must be entered in full.\n\r");
 }
 
 DEFINE_DO_FUN (do_alias) {
@@ -444,7 +444,7 @@ DEFINE_DO_FUN (do_alias) {
         BAIL_IF (rch->pcdata->alias[0] == NULL,
             "You have no aliases defined.\n\r", ch);
 
-        send_to_char ("Your current aliases are:\n\r", ch);
+        printf_to_char (ch, "Your current aliases are:\n\r");
         for (pos = 0; pos < MAX_ALIAS; pos++) {
             if (rch->pcdata->alias[pos] == NULL
                 || rch->pcdata->alias_sub[pos] == NULL)
@@ -477,7 +477,7 @@ DEFINE_DO_FUN (do_alias) {
                 return;
             }
         }
-        send_to_char ("That alias is not defined.\n\r", ch);
+        printf_to_char (ch, "That alias is not defined.\n\r");
         return;
     }
 
@@ -530,7 +530,7 @@ DEFINE_DO_FUN (do_unalias) {
         }
 
         if (!strcmp (arg, rch->pcdata->alias[pos])) {
-            send_to_char ("Alias removed.\n\r", ch);
+            printf_to_char (ch, "Alias removed.\n\r");
             str_free (&(rch->pcdata->alias[pos]));
             str_free (&(rch->pcdata->alias_sub[pos]));
             rch->pcdata->alias[pos] = NULL;
@@ -540,5 +540,5 @@ DEFINE_DO_FUN (do_unalias) {
     }
 
     if (!found)
-        send_to_char ("No alias of that name to remove.\n\r", ch);
+        printf_to_char (ch, "No alias of that name to remove.\n\r");
 }
