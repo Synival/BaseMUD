@@ -463,7 +463,7 @@ DEFINE_DO_FUN (do_heal) {
     if (arg[0] == '\0') {
         /* display price list */
         act ("$N says 'I offer the following spells:'", ch, NULL, mob, TO_CHAR);
-        send_to_char (
+        printf_to_char (ch,
             "   light:   cure light wounds    10 gold\n\r"
             "   serious: cure serious wounds  15 gold\n\r"
             "   critic:  cure critical wounds 25 gold\n\r"
@@ -474,7 +474,7 @@ DEFINE_DO_FUN (do_heal) {
             "   uncurse: remove curse         50 gold\n\r"
             "   refresh: restore movement      5 gold\n\r"
             "   mana:    restore mana         10 gold\n\r"
-            "Type heal <type> to be healed.\n\r", ch);
+            "Type heal <type> to be healed.\n\r");
         return;
     }
 

@@ -813,9 +813,9 @@ bool show_help (CHAR_T *ch, char *argument) {
         }
         else if (master_table[cnt].table == skill_table) {
             if (spell[0] == '\0') {
-                send_to_char (
+                printf_to_char (ch, 
                     "Syntax:  ? spells "
-                    "[ignore/attack/defend/self/object/all]\n\r", ch);
+                    "[ignore/attack/defend/self/object/all]\n\r");
                 return FALSE;
             }
             if (!str_prefix (spell, "all"))
@@ -831,9 +831,9 @@ bool show_help (CHAR_T *ch, char *argument) {
             else if (!str_prefix (spell, "object"))
                 show_skill_cmds (ch, SKILL_TARGET_OBJ_INV);
             else {
-                send_to_char (
+                printf_to_char (ch,
                     "Syntax:  ? spell "
-                    "[ignore/attack/defend/self/object/all]\n\r", ch);
+                    "[ignore/attack/defend/self/object/all]\n\r");
             }
             return FALSE;
         }

@@ -74,10 +74,10 @@ DEFINE_DO_FUN (do_delete) {
     BAIL_IF (argument[0] != '\0',
         "Just type delete. No argument.\n\r", ch);
 
-    send_to_char (
+    printf_to_char (ch,
         "Type delete again to confirm this command.\n\r"
         "WARNING: this command is irreversible.\n\r"
-        "Typing delete with an argument will undo delete status.\n\r", ch);
+        "Typing delete with an argument will undo delete status.\n\r");
 
     ch->pcdata->confirm_delete = TRUE;
     wiznet ("$N is contemplating deletion.", ch, NULL, 0, 0,

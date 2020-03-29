@@ -921,9 +921,8 @@ DEFINE_SPELL_FUN (spell_plague) {
     affect_init (&af, AFF_TO_AFFECTS, sn, level * 3 / 4, level, APPLY_STR, -5, AFF_PLAGUE);
     affect_join_char (&af, victim);
 
-    send_to_char (
-        "You scream in agony as plague sores erupt from your skin.\n\r",
-        victim);
+    printf_to_char (victim,
+        "You scream in agony as plague sores erupt from your skin.\n\r");
     act ("$n screams in agony as plague sores erupt from $s skin.", victim,
         NULL, NULL, TO_NOTCHAR);
 }
