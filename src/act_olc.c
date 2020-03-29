@@ -801,7 +801,7 @@ DEFINE_DO_FUN (do_asave) {
         save_other_helps (ch);
         if (!str_cmp (buf, "None.\n\r")) {
             if (ch)
-                send_to_char (buf, ch);
+                printf_to_char (ch, buf);
             else
                 log_string ("None.");
         }

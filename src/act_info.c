@@ -444,7 +444,7 @@ DEFINE_DO_FUN (do_exits) {
         sprintf (buf, "Obvious exits from room %d:\n\r", ch->in_room->vnum);
     else
         sprintf (buf, "Obvious exits:\n\r");
-    send_to_char (buf, ch);
+    printf_to_char (ch, buf);
 
     mode = auto_exits ? EXITS_AUTO : EXITS_LONG;
     char_format_exit_string (ch, ch->in_room, mode, buf, sizeof (buf));

@@ -964,7 +964,7 @@ bool item_examine (const OBJ_T *obj, CHAR_T *ch) {
                     "silver coins in the pile.\n\r", obj->v.money.gold,
                     obj->v.money.silver);
             }
-            send_to_char (buf, ch);
+            printf_to_char (ch, buf);
             return TRUE;
 
         case ITEM_DRINK_CON:

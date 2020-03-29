@@ -345,7 +345,7 @@ void do_list_items (CHAR_T *ch, char *argument) {
             sprintf (buf, "[%2d %5d %2d ] %s%s\n\r",
                 obj->level, cost, count, material_str, obj->short_descr);
         }
-        send_to_char (buf, ch);
+        printf_to_char (ch, buf);
     }
 
     if (!found)
