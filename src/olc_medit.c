@@ -503,9 +503,9 @@ MEDIT (medit_ac) {
     }
     while (FALSE); /* Just do it once.. */
 
-    printf_to_char (ch,
+    send_to_char (
         "Syntax: ac [ac-pierce [ac-bash [ac-slash [ac-exotic]]]]\n\r"
-        "help MOB_AC gives a list of reasonable ac-values.\n\r");
+        "help MOB_AC gives a list of reasonable ac-values.\n\r", ch);
     return FALSE;
 }
 

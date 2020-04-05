@@ -320,9 +320,9 @@ DEFINE_DO_FUN (do_groups) {
     /* show the sub-members of a group */
     num = skill_group_lookup (argument);
     if (num < 0) {
-        printf_to_char (ch,
+        send_to_char (
             "No group of that name exist.\n\r"
-            "Type 'groups all' or 'info all' for a full listing.\n\r");
+            "Type 'groups all' or 'info all' for a full listing.\n\r", ch);
         return;
     }
     group = skill_group_get (num);
