@@ -273,7 +273,7 @@ DEFINE_DO_FUN (do_mset) {
             }
             strcat (buf, ".\n\r");
 
-            printf_to_char (ch, buf);
+            send_to_char (buf, ch);
             return;
         }
 

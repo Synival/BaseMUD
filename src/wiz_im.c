@@ -140,7 +140,7 @@ DEFINE_DO_FUN (do_invis) {
 
 DEFINE_DO_FUN (do_memory) {
     char *buf = mem_dump ("\n\r");
-    printf_to_char (ch, buf);
+    send_to_char (buf, ch);
 }
 
 DEFINE_DO_FUN (do_mwhere) {
@@ -711,7 +711,7 @@ DEFINE_DO_FUN (do_wiznet) {
         strcat (buf, "\n\r");
 
         printf_to_char (ch, "Wiznet status:\n\r");
-        printf_to_char (ch, buf);
+        send_to_char (buf, ch);
         return;
     }
 
@@ -729,7 +729,7 @@ DEFINE_DO_FUN (do_wiznet) {
         strcat (buf, "\n\r");
 
         printf_to_char (ch, "Wiznet options available to you are:\n\r");
-        printf_to_char (ch, buf);
+        send_to_char (buf, ch);
         return;
     }
 

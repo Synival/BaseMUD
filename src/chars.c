@@ -841,7 +841,7 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
 #ifdef BASEMUD_SHOW_POSITION_IN_LOOK
     char_format_pos_msg (buf, sizeof (buf), ch, victim, TRUE);
     if (buf[0] != '\0')
-        printf_to_char (ch, buf);
+        send_to_char (buf, ch);
 
     buf[0] = '\0';
     char_format_condition_msg (buf, sizeof (buf), ch, victim, FALSE);
@@ -850,7 +850,7 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
 #endif
 
     if (buf[0] != '\0')
-        printf_to_char (ch, buf);
+        send_to_char (buf, ch);
 
     found = FALSE;
     for (wl = 0; wl < WEAR_LOC_MAX; wl++) {

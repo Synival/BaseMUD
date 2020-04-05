@@ -67,7 +67,7 @@ void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note) {
         sprintf (buf, "Changed to next board, %s.\n\r", ch->pcdata->board->name);
     else
         sprintf (buf, "There are no more boards.\n\r");
-    printf_to_char (ch, buf);
+    send_to_char (buf, ch);
 }
 
 void do_nread_number (CHAR_T *ch, char *argument, time_t *last_note,
@@ -142,7 +142,7 @@ DEFINE_DO_FUN (do_nwrite) {
             break;
         }
 
-        printf_to_char (ch, buf);
+        send_to_char (buf, ch);
         printf_to_char (ch, "\n\r{YTo{x:      ");
 
         ch->desc->connected = CON_NOTE_TO;

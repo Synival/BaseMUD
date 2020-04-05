@@ -406,7 +406,7 @@ DEFINE_DO_FUN (do_train) {
 
         if (buf[strlen (buf) - 1] != ':') {
             strcat (buf, ".\n\r");
-            printf_to_char (ch, buf);
+            send_to_char (buf, ch);
         }
         else {
             /* This message dedicated to Jordan ... you big stud! */
