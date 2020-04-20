@@ -683,7 +683,7 @@ DEFINE_NANNY_FUN (nanny_gen_groups) {
     }
 
     if (nanny_parse_gen_groups (ch, argument))
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
     do_function (ch, &do_help, "menu choice");
 }
 
@@ -710,7 +710,7 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
 
     if (!str_prefix (arg, "add")) {
         if (argument[0] == '\0') {
-            send_to_char ("You must provide a skill name.\n\r", ch);
+            printf_to_char (ch, "You must provide a skill name.\n\r");
             return TRUE;
         }
 
@@ -718,17 +718,17 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
         if (num != -1) {
             group = skill_group_get (num);
             if (ch->gen_data->group_chosen[num] || ch->pcdata->group_known[num]) {
-                send_to_char ("You already know that group!\n\r", ch);
+                printf_to_char (ch, "You already know that group!\n\r");
                 return TRUE;
             }
             if (group->classes[ch->class].cost < 1) {
-                send_to_char ("That group is not available.\n\r", ch);
+                printf_to_char (ch, "That group is not available.\n\r");
                 return TRUE;
             }
 
             /* Close security hole */
             if (ch->pcdata->creation_points + group->classes[ch->class].cost > 300) {
-                send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
+                printf_to_char (ch, "You cannot take more than 300 creation points.\n\r");
                 return TRUE;
             }
 
@@ -744,17 +744,17 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
             if (ch->gen_data->skill_chosen[num] || ch->pcdata->skill_known[num] > 0 ||
                 ch->pcdata->learned[num] > 0)
             {
-                send_to_char ("You already know that skill!\n\r", ch);
+                printf_to_char (ch, "You already know that skill!\n\r");
                 return TRUE;
             }
             if (skill->classes[ch->class].effort < 1 || skill->spell_fun != spell_null) {
-                send_to_char ("That skill is not available.\n\r", ch);
+                printf_to_char (ch, "That skill is not available.\n\r");
                 return TRUE;
             }
 
             /* Close security hole */
             if (ch->pcdata->creation_points + skill->classes[ch->class].effort > 300) {
-                send_to_char ("You cannot take more than 300 creation points.\n\r", ch);
+                printf_to_char (ch, "You cannot take more than 300 creation points.\n\r");
                 return TRUE;
             }
 
@@ -764,13 +764,13 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
             return TRUE;
         }
 
-        send_to_char ("No skills or groups by that name...\n\r", ch);
+        printf_to_char (ch, "No skills or groups by that name...\n\r");
         return TRUE;
     }
 
     if (!strcmp (arg, "drop")) {
         if (argument[0] == '\0') {
-            send_to_char ("You must provide a skill to drop.\n\r", ch);
+            printf_to_char (ch, "You must provide a skill to drop.\n\r");
             return TRUE;
         }
 
@@ -792,7 +792,7 @@ bool nanny_parse_gen_groups (CHAR_T *ch, char *argument) {
             return TRUE;
         }
 
-        send_to_char ("You haven't bought any such skill or group.\n\r", ch);
+        printf_to_char (ch, "You haven't bought any such skill or group.\n\r");
         return TRUE;
     }
 
@@ -828,7 +828,7 @@ DEFINE_NANNY_FUN (nanny_gen_groups_done) {
 
     pc_race = pc_race_get_by_race (ch->race);
     if (ch->pcdata->creation_points == pc_race->creation_points) {
-        send_to_char ("You didn't pick anything.\n\r\n\r", ch);
+        printf_to_char (ch, "You didn't pick anything.\n\r\n\r");
         do_function (ch, &do_help, "menu choice");
         return;
     }
@@ -915,9 +915,9 @@ DEFINE_NANNY_FUN (nanny_read_motd) {
         obj_give_to_char (obj_create (obj_get_index (OBJ_VNUM_MAP), 0), ch);
 
         char_to_room (ch, room_get_index (ROOM_VNUM_SCHOOL));
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
         do_function (ch, &do_help, "newbie info");
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
     }
     else if (ch->in_room != NULL)
         char_to_room (ch, ch->in_room);

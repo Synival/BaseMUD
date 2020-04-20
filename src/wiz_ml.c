@@ -82,8 +82,8 @@ DEFINE_DO_FUN (do_advance) {
      *   -- Swiftest */
     if (level <= victim->level) {
         int temp_prac;
-        send_to_char ("Lowering a player's level!\n\r", ch);
-        send_to_char ("**** OOOOHHHHHHHHHH  NNNNOOOO ****\n\r", victim);
+        printf_to_char (ch, "Lowering a player's level!\n\r");
+        printf_to_char (victim, "**** OOOOHHHHHHHHHH  NNNNOOOO ****\n\r");
         temp_prac = victim->practice;
         victim->level = 1;
         victim->exp = player_get_exp_per_level (victim);
@@ -98,8 +98,8 @@ DEFINE_DO_FUN (do_advance) {
         victim->practice = temp_prac;
     }
     else {
-        send_to_char ("Raising a player's level!\n\r", ch);
-        send_to_char ("**** OOOOHHHHHHHHHH  YYYYEEEESSS ****\n\r", victim);
+        printf_to_char (ch, "Raising a player's level!\n\r");
+        printf_to_char (victim, "**** OOOOHHHHHHHHHH  YYYYEEEESSS ****\n\r");
     }
     for (i = victim->level; i < level; i++) {
         victim->level += 1;
@@ -123,7 +123,7 @@ DEFINE_DO_FUN (do_copyover) {
     fp = fopen (COPYOVER_FILE, "w");
 
     if (!fp) {
-        send_to_char ("Copyover file not writeable, aborted.\n\r", ch);
+        printf_to_char (ch, "Copyover file not writeable, aborted.\n\r");
         log_f ("Could not write to copyover file: %s", COPYOVER_FILE);
         perror ("do_copyover:fopen");
         return;
@@ -187,7 +187,7 @@ DEFINE_DO_FUN (do_copyover) {
 
     /* Failed - sucessful exec will not return */
     perror ("do_copyover: execl");
-    send_to_char ("Copyover FAILED!\n\r", ch);
+    printf_to_char (ch, "Copyover FAILED!\n\r");
 
     /* Here you might want to reopen reserve_file */
     reserve_file = fopen (NULL_FILE, "r");
@@ -305,7 +305,7 @@ void do_dump_stats (CHAR_T *ch) {
 
     /* unlock writing? */
     reserve_file = fopen (NULL_FILE, "r");
-    send_to_char ("Done.\n\r", ch);
+    printf_to_char (ch, "Done.\n\r");
 }
 
 void do_dump_world_raw (CHAR_T *ch) {
@@ -317,7 +317,7 @@ void do_dump_world_raw (CHAR_T *ch) {
     db_dump_world (DUMP_DIR "world.dump");
 
     reserve_file = fopen (NULL_FILE, "r");
-    send_to_char ("Done.\n\r", ch);
+    printf_to_char (ch, "Done.\n\r");
 }
 
 void do_dump_world_json (CHAR_T *ch) {
@@ -329,7 +329,7 @@ void do_dump_world_json (CHAR_T *ch) {
     json_export_all (FALSE, DUMP_DIR "world.json");
 
     reserve_file = fopen (NULL_FILE, "r");
-    send_to_char ("Done.\n\r", ch);
+    printf_to_char (ch, "Done.\n\r");
 }
 
 DEFINE_DO_FUN (do_violate) {
@@ -528,24 +528,24 @@ void do_jsave_area (CHAR_T *ch, const char *arg) {
     /* Listing possibilities? */
     if (!str_cmp ("list", arg)) {
         int col = 0;
-        send_to_char ("Areas that can be saved:\n\r", ch);
+        printf_to_char (ch, "Areas that can be saved:\n\r");
 
         for (area = area_first; area; area = area->global_next) {
             if (col % 7 == 0)
-                send_to_char ("  ", ch);
+                printf_to_char (ch, "  ");
             printf_to_char (ch, "%-10s", area->name);
             if (++col % 7 == 0)
-                send_to_char ("\n\r", ch);
+                printf_to_char (ch, "\n\r");
         }
         if (col % 7 != 0)
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
 
         return;
     }
 
     /* Are we saving all? */
     if (!str_cmp ("all", arg)) {
-        send_to_char ("Saving all areas...\n\r", ch);
+        printf_to_char (ch, "Saving all areas...\n\r");
         desc_flush_output (ch->desc);
 
         for (area = area_first; area; area = area->global_next) {
@@ -554,7 +554,7 @@ void do_jsave_area (CHAR_T *ch, const char *arg) {
             json_export_area (area, JSON_EXPORT_MODE_SAVE);
         }
 
-        send_to_char ("Done.\n\r", ch);
+        printf_to_char (ch, "Done.\n\r");
         return;
     }
 
@@ -578,24 +578,24 @@ void do_jsave_help (CHAR_T *ch, const char *arg) {
     /* Listing possibilities? */
     if (!str_cmp ("list", arg)) {
         int col = 0;
-        send_to_char ("Helps that can be saved:\n\r", ch);
+        printf_to_char (ch, "Helps that can be saved:\n\r");
 
         for (had = had_first; had; had = had->global_next) {
             if (col % 7 == 0)
-                send_to_char ("  ", ch);
+                printf_to_char (ch, "  ");
             printf_to_char (ch, "%-10s", had->name);
             if (++col % 7 == 0)
-                send_to_char ("\n\r", ch);
+                printf_to_char (ch, "\n\r");
         }
         if (col % 7 != 0)
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
 
         return;
     }
 
     /* Are we saving all? */
     if (!str_cmp ("all", arg)) {
-        send_to_char ("Saving all helps...\n\r", ch);
+        printf_to_char (ch, "Saving all helps...\n\r");
         desc_flush_output (ch->desc);
 
         for (had = had_first; had; had = had->global_next) {
@@ -604,7 +604,7 @@ void do_jsave_help (CHAR_T *ch, const char *arg) {
             json_export_help_area (had, JSON_EXPORT_MODE_SAVE);
         }
 
-        send_to_char ("Done.\n\r", ch);
+        printf_to_char (ch, "Done.\n\r");
         return;
     }
 
@@ -645,7 +645,7 @@ void do_jsave_table (CHAR_T *ch, const char *arg) {
             }
 
             if (restrict_type > 0)
-                send_to_char ("\n\r", ch);
+                printf_to_char (ch, "\n\r");
             printf_to_char (ch, "Tables of type '%s' can be saved:\n\r",
                 type_name);
 
@@ -656,13 +656,13 @@ void do_jsave_table (CHAR_T *ch, const char *arg) {
                 if (!json_can_export_table (table))
                     continue;
                 if (col % 4 == 0)
-                    send_to_char ("  ", ch);
+                    printf_to_char (ch, "  ");
                 printf_to_char (ch, "%-19s", table->name);
                 if (++col % 4 == 0)
-                    send_to_char ("\n\r", ch);
+                    printf_to_char (ch, "\n\r");
             }
             if (col % 4 != 0)
-                send_to_char ("\n\r", ch);
+                printf_to_char (ch, "\n\r");
         }
 
         return;
@@ -670,27 +670,27 @@ void do_jsave_table (CHAR_T *ch, const char *arg) {
 
     /* Are we saving all? */
     if (!str_cmp ("flags", arg)) {
-        send_to_char ("Saving all tables of type 'flags'...\n\r", ch);
+        printf_to_char (ch, "Saving all tables of type 'flags'...\n\r");
         save_all = TRUE;
         restrict_type = TABLE_FLAGS;
     }
     else if (!str_cmp ("ext_flags", arg)) {
-        send_to_char ("Saving all tables of type 'ext_flags'...\n\r", ch);
+        printf_to_char (ch, "Saving all tables of type 'ext_flags'...\n\r");
         save_all = TRUE;
         restrict_type = TABLE_EXT_FLAGS;
     }
     else if (!str_cmp ("types", arg)) {
-        send_to_char ("Saving all tables of type 'types'...\n\r", ch);
+        printf_to_char (ch, "Saving all tables of type 'types'...\n\r");
         save_all = TRUE;
         restrict_type = TABLE_TYPES;
     }
     else if (!str_cmp ("unique", arg)) {
-        send_to_char ("Saving all tables of type 'unique'...\n\r", ch);
+        printf_to_char (ch, "Saving all tables of type 'unique'...\n\r");
         save_all = TRUE;
         restrict_type = TABLE_UNIQUE;
     }
     else if (!str_cmp ("all", arg)) {
-        send_to_char ("Saving all tables...\n\r", ch);
+        printf_to_char (ch, "Saving all tables...\n\r");
         save_all = TRUE;
         restrict_type = -1;
     }
@@ -712,7 +712,7 @@ void do_jsave_table (CHAR_T *ch, const char *arg) {
             json_export_table (table, JSON_EXPORT_MODE_SAVE);
         }
 
-        send_to_char ("Done.\n\r", ch);
+        printf_to_char (ch, "Done.\n\r");
         return;
     }
 

@@ -570,8 +570,8 @@ void obj_list_show_to_char (const OBJ_T *list, CHAR_T *ch, bool is_short,
 
     if (show_nothing && show_string_num == 0) {
         if (IS_NPC (ch) || IS_SET (ch->comm, COMM_COMBINE))
-            send_to_char ("     ", ch);
-        send_to_char ("Nothing.\n\r", ch);
+            printf_to_char (ch, "     ");
+        printf_to_char (ch, "Nothing.\n\r");
     }
     page_to_char (buf_string (output), ch);
 

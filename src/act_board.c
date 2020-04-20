@@ -62,7 +62,7 @@ void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note) {
         }
     }
 
-    send_to_char ("No new notes in this board.\n\r", ch);
+    printf_to_char (ch, "No new notes in this board.\n\r");
     if (char_change_to_next_board (ch))
         sprintf (buf, "Changed to next board, %s.\n\r", ch->pcdata->board->name);
     else
@@ -100,8 +100,8 @@ DEFINE_DO_FUN (do_nwrite) {
 
     /* continue previous note, if any text was written*/
     if (ch->pcdata->in_progress && (!ch->pcdata->in_progress->text)) {
-        send_to_char ("Note in progress cancelled because you did not manage to write any text \n\r"
-                      "before losing link.\n\r\n\r", ch);
+        printf_to_char (ch, "Note in progress cancelled because you did not manage to write any text \n\r"
+                      "before losing link.\n\r\n\r");
         note_free (ch->pcdata->in_progress);
         ch->pcdata->in_progress = NULL;
     }
@@ -143,7 +143,7 @@ DEFINE_DO_FUN (do_nwrite) {
         }
 
         send_to_char (buf, ch);
-        send_to_char ("\n\r{YTo{x:      ", ch);
+        printf_to_char (ch, "\n\r{YTo{x:      ");
 
         ch->desc->connected = CON_NOTE_TO;
         /* nanny takes over from here */
@@ -155,11 +155,11 @@ DEFINE_DO_FUN (do_nwrite) {
                        ch->pcdata->in_progress->to_list,
                        ctime_fixed (&ch->pcdata->in_progress->expire),
                        ch->pcdata->in_progress->subject);
-        send_to_char ("{GYour note so far:{x\n\r", ch);
+        printf_to_char (ch, "{GYour note so far:{x\n\r");
         send_to_char (ch->pcdata->in_progress->text, ch);
 
-        send_to_char ("\n\rEnter text. Type {W~{x or {WEND{x on an empty line to end note.\n\r"
-                          "=======================================================\n\r", ch);
+        printf_to_char (ch, "\n\rEnter text. Type {W~{x or {WEND{x on an empty line to end note.\n\r"
+                          "=======================================================\n\r");
 
         ch->desc->connected = CON_NOTE_TEXT;
     }
@@ -195,7 +195,7 @@ DEFINE_DO_FUN (do_nremove) {
 
     note_unlink (p, ch->pcdata->board);
     note_free (p);
-    send_to_char ("Note removed!\n\r", ch);
+    printf_to_char (ch, "Note removed!\n\r");
     board_save (ch->pcdata->board);
 }
 
@@ -215,8 +215,8 @@ DEFINE_DO_FUN (do_nlist) {
                 count++;
     }
 
-    send_to_char ("{WNotes on this board:{x\n\r"
-                  "{rNum> Author        Subject{x\n\r", ch);
+    printf_to_char (ch, "{WNotes on this board:{x\n\r"
+                  "{rNum> Author        Subject{x\n\r");
 
     last_note = ch->pcdata->last_note[board_number (ch->pcdata->board)];
     for (p = ch->pcdata->board->note_first; p; p = p->board_next) {
@@ -243,7 +243,7 @@ DEFINE_DO_FUN (do_ncatchup) {
         "Alas, there are no notes in that board.\n\r", ch);
 
     ch->pcdata->last_note[board_number(ch->pcdata->board)] = p->date_stamp;
-    send_to_char ("All mesages skipped.\n\r", ch);
+    printf_to_char (ch, "All mesages skipped.\n\r");
 }
 
 /* Show all accessible boards with their numbers of unread messages OR
@@ -259,8 +259,8 @@ DEFINE_DO_FUN (do_board) {
         int unread;
 
         count = 1;
-        send_to_char ("{RNum          Name Unread Description{x\n\r"
-                      "{R==== ============ ====== ============================={x\n\r", ch);
+        printf_to_char (ch, "{RNum          Name Unread Description{x\n\r"
+                      "{R==== ============ ====== ============================={x\n\r");
         for (i = 0; i < BOARD_MAX; i++) {
             unread = board_get_unread_notes_for_char (&board_table[i], ch);
             if (unread != BOARD_NOACCESS) {
@@ -276,11 +276,11 @@ DEFINE_DO_FUN (do_board) {
 
         /* Inform of rights */
         if (ch->pcdata->board->read_level > char_get_trust(ch))
-            send_to_char ("You cannot read nor write notes on this board.\n\r", ch);
+            printf_to_char (ch, "You cannot read nor write notes on this board.\n\r");
         else if (ch->pcdata->board->write_level > char_get_trust(ch))
-            send_to_char ("You can only read notes from this board.\n\r", ch);
+            printf_to_char (ch, "You can only read notes from this board.\n\r");
         else
-            send_to_char ("You can both read and write on this board.\n\r", ch);
+            printf_to_char (ch, "You can both read and write on this board.\n\r");
         return;
     }
 
@@ -305,7 +305,7 @@ DEFINE_DO_FUN (do_board) {
                 : "You can both read and write here");
         }
         else
-            send_to_char ("No such board.\n\r", ch);
+            printf_to_char (ch, "No such board.\n\r");
         return;
     }
 
@@ -345,9 +345,9 @@ DEFINE_DO_FUN (do_note) {
     else if (!str_cmp (arg, "remove"))
         do_nremove (ch, argument);
     else if (!str_cmp (arg, "purge"))
-        send_to_char ("Obsolete.\n\r", ch);
+        printf_to_char (ch, "Obsolete.\n\r");
     else if (!str_cmp (arg, "archive"))
-        send_to_char ("Obsolete.\n\r", ch);
+        printf_to_char (ch, "Obsolete.\n\r");
     else if (!str_cmp (arg, "catchup"))
         do_ncatchup (ch, argument);
     else

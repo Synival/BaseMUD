@@ -82,12 +82,12 @@ DEFINE_DO_FUN (do_incognito) {
     if (arg[0] == '\0') {
         if (ch->incog_level) {
             ch->incog_level = 0;
-            send_to_char ("You are no longer cloaked.\n\r", ch);
+            printf_to_char (ch, "You are no longer cloaked.\n\r");
             act ("$n is no longer cloaked.", ch, NULL, NULL, TO_NOTCHAR);
         }
         else {
             ch->incog_level = char_get_trust (ch);
-            send_to_char ("You cloak your presence.\n\r", ch);
+            printf_to_char (ch, "You cloak your presence.\n\r");
             act ("$n cloaks $s presence.", ch, NULL, NULL, TO_NOTCHAR);
         }
         return;
@@ -100,7 +100,7 @@ DEFINE_DO_FUN (do_incognito) {
 
     ch->reply = NULL;
     ch->incog_level = level;
-    send_to_char ("You cloak your presence.\n\r", ch);
+    printf_to_char (ch, "You cloak your presence.\n\r");
     act ("$n cloaks $s presence.", ch, NULL, NULL, TO_NOTCHAR);
 }
 
@@ -116,12 +116,12 @@ DEFINE_DO_FUN (do_invis) {
         /* take the default path */
         if (ch->invis_level) {
             ch->invis_level = 0;
-            send_to_char ("You slowly fade back into existence.\n\r", ch);
+            printf_to_char (ch, "You slowly fade back into existence.\n\r");
             act ("$n slowly fades into existence.", ch, NULL, NULL, TO_NOTCHAR);
         }
         else {
             ch->invis_level = char_get_trust (ch);
-            send_to_char ("You slowly vanish into thin air.\n\r", ch);
+            printf_to_char (ch, "You slowly vanish into thin air.\n\r");
             act ("$n slowly fades into thin air.", ch, NULL, NULL, TO_NOTCHAR);
         }
         return;
@@ -134,7 +134,7 @@ DEFINE_DO_FUN (do_invis) {
 
     ch->reply = NULL;
     ch->invis_level = level;
-    send_to_char ("You slowly vanish into thin air.\n\r", ch);
+    printf_to_char (ch, "You slowly vanish into thin air.\n\r");
     act ("$n slowly fades into thin air.", ch, NULL, NULL, TO_NOTCHAR);
 }
 
@@ -259,7 +259,7 @@ DEFINE_DO_FUN (do_owhere) {
     }
 
     if (!found)
-        send_to_char ("Nothing like that in heaven or earth.\n\r", ch);
+        printf_to_char (ch, "Nothing like that in heaven or earth.\n\r");
     else
         page_to_char (buf_string (buffer), ch);
 
@@ -276,11 +276,11 @@ DEFINE_DO_FUN (do_stat) {
 
     string = one_argument (argument, arg);
     if (arg[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  stat <name>\n\r", ch);
-        send_to_char ("  stat obj <name>\n\r", ch);
-        send_to_char ("  stat mob <name>\n\r", ch);
-        send_to_char ("  stat room <number>\n\r", ch);
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  stat <name>\n\r");
+        printf_to_char (ch, "  stat obj <name>\n\r");
+        printf_to_char (ch, "  stat mob <name>\n\r");
+        printf_to_char (ch, "  stat room <number>\n\r");
         return;
     }
 
@@ -304,7 +304,7 @@ DEFINE_DO_FUN (do_stat) {
     BAIL_IF_EXPR ((location = find_location (ch, argument)) != NULL,
         do_function (ch, &do_rstat, argument));
 
-    send_to_char ("Nothing by that name found anywhere.\n\r", ch);
+    printf_to_char (ch, "Nothing by that name found anywhere.\n\r");
 }
 
 DEFINE_DO_FUN (do_rstat) {
@@ -337,30 +337,30 @@ DEFINE_DO_FUN (do_rstat) {
     if (location->extra_descr_first != NULL) {
         EXTRA_DESCR_T *ed;
 
-        send_to_char ("Extra description keywords: '", ch);
+        printf_to_char (ch, "Extra description keywords: '");
         for (ed = location->extra_descr_first; ed; ed = ed->on_next) {
             send_to_char (ed->keyword, ch);
             if (ed->on_next != NULL)
-                send_to_char (" ", ch);
+                printf_to_char (ch, " ");
         }
-        send_to_char ("'.\n\r", ch);
+        printf_to_char (ch, "'.\n\r");
     }
 
-    send_to_char ("Characters:", ch);
+    printf_to_char (ch, "Characters:");
     for (rch = location->people_first; rch; rch = rch->room_next) {
         if (!char_can_see_anywhere (ch, rch))
             continue;
         one_argument (rch->name, buf);
         printf_to_char (ch, " %s", buf);
     }
-    send_to_char (".\n\r", ch);
+    printf_to_char (ch, ".\n\r");
 
-    send_to_char ("Objects:   ", ch);
+    printf_to_char (ch, "Objects:   ");
     for (obj = location->content_first; obj; obj = obj->content_next) {
         one_argument (obj->name, buf);
         printf_to_char (ch, " %s", buf);
     }
-    send_to_char (".\n\r", ch);
+    printf_to_char (ch, ".\n\r");
 
     for (door = 0; door < DIR_MAX; door++) {
         EXIT_T *pexit;
@@ -433,7 +433,7 @@ DEFINE_DO_FUN (do_ostat) {
                 printf_to_char (ch, " '%s'", skill_table[obj->v.value[3]].name);
             if (obj->v.value[4] >= 0 && obj->v.value[4] < SKILL_MAX)
                 printf_to_char (ch, " '%s'", skill_table[obj->v.value[4]].name);
-            send_to_char (".\n\r", ch);
+            printf_to_char (ch, ".\n\r");
             break;
 
         case ITEM_WAND:
@@ -442,7 +442,7 @@ DEFINE_DO_FUN (do_ostat) {
                 obj->v.value[1], obj->v.value[2], obj->v.value[0]);
             if (obj->v.value[3] >= 0 && obj->v.value[3] < SKILL_MAX)
                 printf_to_char (ch, " '%s'", skill_table[obj->v.value[3]].name);
-            send_to_char (".\n\r", ch);
+            printf_to_char (ch, ".\n\r");
             break;
 
         case ITEM_DRINK_CON: {
@@ -501,18 +501,18 @@ DEFINE_DO_FUN (do_ostat) {
     if (obj->extra_descr_first || obj->obj_index->extra_descr_first) {
         EXTRA_DESCR_T *ed;
 
-        send_to_char ("Extra description keywords: '", ch);
+        printf_to_char (ch, "Extra description keywords: '");
         for (ed = obj->extra_descr_first; ed; ed = ed->on_next) {
             send_to_char (ed->keyword, ch);
             if (ed->on_next != NULL)
-                send_to_char (" ", ch);
+                printf_to_char (ch, " ");
         }
         for (ed = obj->obj_index->extra_descr_first; ed; ed = ed->on_next) {
             send_to_char (ed->keyword, ch);
             if (ed->on_next != NULL)
-                send_to_char (" ", ch);
+                printf_to_char (ch, " ");
         }
-        send_to_char ("'\n\r", ch);
+        printf_to_char (ch, "'\n\r");
     }
 
     for (paf = obj->affect_first; paf; paf = paf->on_next) {
@@ -522,7 +522,7 @@ DEFINE_DO_FUN (do_ostat) {
         if (paf->duration > -1)
             printf_to_char (ch, ", %d hours.\n\r", paf->duration);
         else
-            send_to_char (".\n\r", ch);
+            printf_to_char (ch, ".\n\r");
 
         if (paf->bits)
             send_to_char (affect_bit_message (paf->bit_type, paf->bits), ch);
@@ -685,12 +685,12 @@ DEFINE_DO_FUN (do_wiznet) {
         return;
     }
     if (!str_prefix (argument, "on")) {
-        send_to_char ("Welcome to Wiznet!\n\r", ch);
+        printf_to_char (ch, "Welcome to Wiznet!\n\r");
         SET_BIT (ch->wiznet, WIZ_ON);
         return;
     }
     if (!str_prefix (argument, "off")) {
-        send_to_char ("Signing off of Wiznet.\n\r", ch);
+        printf_to_char (ch, "Signing off of Wiznet.\n\r");
         REMOVE_BIT (ch->wiznet, WIZ_ON);
         return;
     }
@@ -710,7 +710,7 @@ DEFINE_DO_FUN (do_wiznet) {
         }
         strcat (buf, "\n\r");
 
-        send_to_char ("Wiznet status:\n\r", ch);
+        printf_to_char (ch, "Wiznet status:\n\r");
         send_to_char (buf, ch);
         return;
     }
@@ -728,7 +728,7 @@ DEFINE_DO_FUN (do_wiznet) {
 
         strcat (buf, "\n\r");
 
-        send_to_char ("Wiznet options available to you are:\n\r", ch);
+        printf_to_char (ch, "Wiznet options available to you are:\n\r");
         send_to_char (buf, ch);
         return;
     }
@@ -790,7 +790,7 @@ DEFINE_DO_FUN (do_smote) {
         "You must include your name in an smote.\n\r", ch);
 
     send_to_char (argument, ch);
-    send_to_char ("\n\r", ch);
+    printf_to_char (ch, "\n\r");
 
     for (vch = ch->in_room->people_first; vch != NULL; vch = vch->room_next) {
         if (vch->desc == NULL || vch == ch)
@@ -798,7 +798,7 @@ DEFINE_DO_FUN (do_smote) {
 
         if ((letter = strstr (argument, vch->name)) == NULL) {
             send_to_char (argument, vch);
-            send_to_char ("\n\r", vch);
+            printf_to_char (vch, "\n\r");
             continue;
         }
 
@@ -840,20 +840,20 @@ DEFINE_DO_FUN (do_smote) {
         }
 
         send_to_char (temp, vch);
-        send_to_char ("\n\r", vch);
+        printf_to_char (vch, "\n\r");
     }
 }
 
 /* prefix command: it will put the string typed on each line typed */
 DEFINE_DO_FUN (do_prefi) {
-    send_to_char ("You cannot abbreviate the prefix command.\r\n", ch);
+    printf_to_char (ch, "You cannot abbreviate the prefix command.\r\n");
 }
 
 DEFINE_DO_FUN (do_prefix) {
     if (argument[0] == '\0') {
         BAIL_IF (ch->prefix == NULL || ch->prefix[0] == '\0',
             "You have no prefix to clear.\r\n", ch);
-        send_to_char ("Prefix removed.\r\n", ch);
+        printf_to_char (ch, "Prefix removed.\r\n");
         str_replace_dup (&(ch->prefix), "");
         return;
     }

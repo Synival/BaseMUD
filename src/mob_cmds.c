@@ -149,9 +149,9 @@ DEFINE_DO_FUN (do_mpgecho) {
     for (d = descriptor_first; d; d = d->global_next) {
         if (d->connected == CON_PLAYING) {
             if (IS_IMMORTAL (d->character))
-                send_to_char ("Mob echo> ", d->character);
+                printf_to_char (d->character, "Mob echo> ");
             send_to_char (argument, d->character);
-            send_to_char ("\n\r", d->character);
+            printf_to_char (d->character, "\n\r");
         }
     }
 }
@@ -173,9 +173,9 @@ DEFINE_DO_FUN (do_mpzecho) {
             && d->character->in_room->area == ch->in_room->area)
         {
             if (IS_IMMORTAL (d->character))
-                send_to_char ("Mob echo> ", d->character);
+                printf_to_char (d->character, "Mob echo> ");
             send_to_char (argument, d->character);
-            send_to_char ("\n\r", d->character);
+            printf_to_char (d->character, "\n\r");
         }
     }
 }

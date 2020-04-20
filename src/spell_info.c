@@ -156,7 +156,7 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
                     continue;
                 printf_to_char (ch, " '%s'", skill_table[obj->v.value[i]].name);
             }
-            send_to_char (".\n\r", ch);
+            printf_to_char (ch, ".\n\r");
             break;
         }
 
@@ -182,7 +182,7 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
             else
                 printf_to_char (ch, " a level %s ability", level_str);
 
-            send_to_char (".\n\r", ch);
+            printf_to_char (ch, ".\n\r");
             break;
         }
 
@@ -292,7 +292,7 @@ void spell_identify_perform_seeded (CHAR_T *ch, OBJ_T *obj, int power) {
             if (paf->duration > -1)
                 printf_to_char (ch, ", %d hours.\n\r", paf->duration);
             else
-                send_to_char (".\n\r", ch);
+                printf_to_char (ch, ".\n\r");
             if (paf->bits)
                 send_to_char (affect_bit_message (paf->bit_type, paf->bits), ch);
         }
@@ -374,7 +374,7 @@ DEFINE_SPELL_FUN (spell_locate_object) {
     }
 
     if (!found)
-        send_to_char ("Nothing like that in heaven or earth.\n\r", ch);
+        printf_to_char (ch, "Nothing like that in heaven or earth.\n\r");
     else
         page_to_char (buf_string (buffer), ch);
 

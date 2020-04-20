@@ -198,17 +198,17 @@ DEFINE_DO_FUN (do_socials) {
     for (soc = social_get_first(); soc != NULL; soc = social_get_next (soc)) {
         printf_to_char (ch, "%-12s", soc->name);
         if (++col % 6 == 0)
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
     }
     if (col % 6 != 0)
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
 }
 
 /* RT code to display channel status */
 DEFINE_DO_FUN (do_channels) {
     /* lists all channels and their status */
-    send_to_char ("   Channel        Status\n\r", ch);
-    send_to_char ("---------------------------\n\r", ch);
+    printf_to_char (ch, "   Channel        Status\n\r");
+    printf_to_char (ch, "---------------------------\n\r");
 
     do_autolist_flag ("{dgossip{x",     ch, ~ch->comm, COMM_NOGOSSIP);
     do_autolist_flag ("{aauction{x",    ch, ~ch->comm, COMM_NOAUCTION);
@@ -221,31 +221,31 @@ DEFINE_DO_FUN (do_channels) {
     if (IS_IMMORTAL (ch))
         do_autolist_flag ("{igod channel{x", ch, ~ch->comm, COMM_NOWIZ);
 
-    send_to_char ("---------------------------\n\r", ch);
+    printf_to_char (ch, "---------------------------\n\r");
     do_autolist_flag ("{tquiet mode{x", ch, ch->comm, COMM_QUIET);
     do_autolist_flag ("AFK", ch, ch->comm, COMM_AFK);
 
-    send_to_char ("---------------------------\n\r", ch);
+    printf_to_char (ch, "---------------------------\n\r");
     if (ch->lines != PAGELEN) {
         if (ch->lines) {
             printf_to_char (ch, "You display %d lines of scroll.\n\r",
                 ch->lines + 2);
         }
         else
-            send_to_char ("Scroll buffering is off.\n\r", ch);
+            printf_to_char (ch, "Scroll buffering is off.\n\r");
     }
 
     if (ch->prompt != NULL)
         printf_to_char (ch, "Your current prompt is: %s\n\r", ch->prompt);
 
     if (IS_SET (ch->comm, COMM_NOSHOUT))
-        send_to_char ("You cannot shout.\n\r", ch);
+        printf_to_char (ch, "You cannot shout.\n\r");
     if (IS_SET (ch->comm, COMM_NOTELL))
-        send_to_char ("You cannot use tell.\n\r", ch);
+        printf_to_char (ch, "You cannot use tell.\n\r");
     if (IS_SET (ch->comm, COMM_NOCHANNELS))
-        send_to_char ("You cannot use channels.\n\r", ch);
+        printf_to_char (ch, "You cannot use channels.\n\r");
     if (IS_SET (ch->comm, COMM_NOEMOTE))
-        send_to_char ("You cannot show emotions.\n\r", ch);
+        printf_to_char (ch, "You cannot show emotions.\n\r");
 }
 
 /* RT deaf blocks out all shouts */
@@ -574,10 +574,10 @@ DEFINE_DO_FUN (do_pose) {
 
 DEFINE_DO_FUN (do_bug) {
     append_file (ch, BUG_FILE, argument);
-    send_to_char ("Bug logged.\n\r", ch);
+    printf_to_char (ch, "Bug logged.\n\r");
 }
 
 DEFINE_DO_FUN (do_typo) {
     append_file (ch, TYPO_FILE, argument);
-    send_to_char ("Typo logged.\n\r", ch);
+    printf_to_char (ch, "Typo logged.\n\r");
 }

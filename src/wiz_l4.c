@@ -62,8 +62,8 @@ DEFINE_DO_FUN (do_guild) {
         "They aren't playing.\n\r", ch);
 
     if (!str_cmp (arg2, "none")) {
-        send_to_char ("They are now clanless.\n\r", ch);
-        send_to_char ("You are now a member of no clan!\n\r", victim);
+        printf_to_char (ch, "They are now clanless.\n\r");
+        printf_to_char (victim, "You are now a member of no clan!\n\r");
         victim->clan = 0;
         return;
     }
@@ -141,13 +141,13 @@ DEFINE_DO_FUN (do_flag) {
         argument = one_argument (argument, word);
 
     if (arg1[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  flag mob  <name> <field> <flags>\n\r", ch);
-        send_to_char ("  flag char <name> <field> <flags>\n\r", ch);
-        send_to_char ("  mob  flags: mob, aff, off, imm, res, vuln, form, part\n\r", ch);
-        send_to_char ("  char flags: plr, comm, aff, imm, res, vuln\n\r", ch);
-        send_to_char ("  +: add flag, -: remove flag, = set equal to\n\r", ch);
-        send_to_char ("  otherwise flag toggles the flags listed.\n\r", ch);
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  flag mob  <name> <field> <flags>\n\r");
+        printf_to_char (ch, "  flag char <name> <field> <flags>\n\r");
+        printf_to_char (ch, "  mob  flags: mob, aff, off, imm, res, vuln, form, part\n\r");
+        printf_to_char (ch, "  char flags: plr, comm, aff, imm, res, vuln\n\r");
+        printf_to_char (ch, "  +: add flag, -: remove flag, = set equal to\n\r");
+        printf_to_char (ch, "  otherwise flag toggles the flags listed.\n\r");
         return;
     }
 
@@ -214,7 +214,7 @@ DEFINE_DO_FUN (do_flag) {
         flag_table = comm_flags;
     }
     else {
-        send_to_char ("That's not an acceptable flag.\n\r", ch);
+        printf_to_char (ch, "That's not an acceptable flag.\n\r");
         return;
     }
 
@@ -297,15 +297,15 @@ DEFINE_DO_FUN (do_freeze) {
         "You failed.\n\r", ch);
     if (EXT_IS_SET (victim->ext_plr, PLR_FREEZE)) {
         EXT_UNSET (victim->ext_plr, PLR_FREEZE);
-        send_to_char ("You can play again.\n\r", victim);
-        send_to_char ("FREEZE removed.\n\r", ch);
+        printf_to_char (victim, "You can play again.\n\r");
+        printf_to_char (ch, "FREEZE removed.\n\r");
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N thaws %s.", victim->name);
     }
     else {
         EXT_SET (victim->ext_plr, PLR_FREEZE);
-        send_to_char ("You can't do ANYthing!\n\r", victim);
-        send_to_char ("FREEZE set.\n\r", ch);
+        printf_to_char (victim, "You can't do ANYthing!\n\r");
+        printf_to_char (ch, "FREEZE set.\n\r");
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N puts %s in the deep freeze.", victim->name);
     }
@@ -319,9 +319,9 @@ DEFINE_DO_FUN (do_load) {
 
     argument = one_argument (argument, arg);
     if (arg[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  load mob <vnum>\n\r", ch);
-        send_to_char ("  load obj <vnum> <level>\n\r", ch);
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  load mob <vnum>\n\r");
+        printf_to_char (ch, "  load obj <vnum> <level>\n\r");
         return;
     }
     BAIL_IF_EXPR (!str_cmp (arg, "mob") || !str_cmp (arg, "char"),
@@ -400,7 +400,7 @@ DEFINE_DO_FUN (do_pecho) {
 
     if (char_get_trust (victim) >= char_get_trust (ch) &&
             char_get_trust (ch) != MAX_LEVEL)
-        send_to_char ("personal> ", victim);
+        printf_to_char (victim, "personal> ");
 
     printf_to_char (victim, "%s\n\r", argument);
     printf_to_char (ch, "personal> %s\n\r", argument);
@@ -443,7 +443,7 @@ DEFINE_DO_FUN (do_purge) {
             "Ho ho ho.\n\r", ch);
 
         if (char_get_trust (ch) <= char_get_trust (victim)) {
-            send_to_char ("Maybe that wasn't a good idea...\n\r", ch);
+            printf_to_char (ch, "Maybe that wasn't a good idea...\n\r");
             printf_to_char (victim, "%s tried to purge you!\n\r", ch->name);
             return;
         }
@@ -493,7 +493,7 @@ DEFINE_DO_FUN (do_restore) {
 
         wiznetf (ch, NULL, WIZ_RESTORE, WIZ_SECURE, char_get_trust (ch),
             "$N restored room %d.", ch->in_room->vnum);
-        send_to_char ("Room restored.\n\r", ch);
+        printf_to_char (ch, "Room restored.\n\r");
         return;
     }
 
@@ -508,7 +508,7 @@ DEFINE_DO_FUN (do_restore) {
 
         wiznet ("$N restored all players.", ch, NULL, WIZ_RESTORE, WIZ_SECURE,
             char_get_trust (ch));
-        send_to_char ("All active players restored.\n\r", ch);
+        printf_to_char (ch, "All active players restored.\n\r");
         return;
     }
 
@@ -540,10 +540,10 @@ DEFINE_DO_FUN (do_vnum) {
 
     string = one_argument (argument, arg);
     if (arg[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  vnum obj <name>\n\r", ch);
-        send_to_char ("  vnum mob <name>\n\r", ch);
-        send_to_char ("  vnum skill <skill or spell>\n\r", ch);
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  vnum obj <name>\n\r");
+        printf_to_char (ch, "  vnum mob <name>\n\r");
+        printf_to_char (ch, "  vnum skill <skill or spell>\n\r");
         return;
     }
 
@@ -596,7 +596,7 @@ DEFINE_DO_FUN (do_mfind) {
         }
     }
     if (matches == 0)
-        send_to_char ("No mobiles by that name.\n\r", ch);
+        printf_to_char (ch, "No mobiles by that name.\n\r");
     else
         printf_to_char (ch, "Found %d mobiles.\n\r", matches);
 }
@@ -617,7 +617,7 @@ DEFINE_DO_FUN (do_ofind) {
         }
     }
     if (matches == 0)
-        send_to_char ("No objects by that name.\n\r", ch);
+        printf_to_char (ch, "No objects by that name.\n\r");
     else
         printf_to_char (ch, "Found %d objects.\n\r", matches);
 }

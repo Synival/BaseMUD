@@ -895,7 +895,7 @@ bool item_look_in (const OBJ_T *obj, CHAR_T *ch) {
     switch (obj->item_type) {
         case ITEM_DRINK_CON:
             if (obj->v.drink_con.filled <= 0)
-                send_to_char ("It is empty.\n\r", ch);
+                printf_to_char (ch, "It is empty.\n\r");
             else if (obj->v.drink_con.filled >= obj->v.drink_con.capacity) {
                 printf_to_char (ch,
                     "It's completely filled with a %s liquid.\n\r",
@@ -921,7 +921,7 @@ bool item_look_in (const OBJ_T *obj, CHAR_T *ch) {
         case ITEM_CORPSE_NPC:
         case ITEM_CORPSE_PC:
             if (IS_SET (obj->v.container.flags, CONT_CLOSED))
-                send_to_char ("It is closed.\n\r", ch);
+                printf_to_char (ch, "It is closed.\n\r");
             else {
                 act ("$p holds:", ch, obj, NULL, TO_CHAR);
                 obj_list_show_to_char (obj->content_first, ch, TRUE, TRUE);
@@ -990,7 +990,7 @@ bool item_eat_effect (OBJ_T *obj, CHAR_T *ch) {
                 AFFECT_T af;
 
                 /* The food was poisoned! */
-                send_to_char ("You choke and gag.\n\r", ch);
+                printf_to_char (ch, "You choke and gag.\n\r");
                 act ("$n chokes and gags.", ch, NULL, NULL, TO_NOTCHAR);
 
                 affect_init (&af, AFF_TO_AFFECTS, SN(POISON), number_fuzzy (
@@ -1036,7 +1036,7 @@ bool item_drink_effect (OBJ_T *obj, CHAR_T *ch) {
         AFFECT_T af;
 
         /* The drink was poisoned! */
-        send_to_char ("You choke and gag.\n\r", ch);
+        printf_to_char (ch, "You choke and gag.\n\r");
         act ("$n chokes and gags.", ch, NULL, NULL, TO_NOTCHAR);
 
         affect_init (&af, AFF_TO_AFFECTS, SN(POISON), number_fuzzy (amount),
@@ -1651,7 +1651,7 @@ bool item_play_effect (OBJ_T *obj, CHAR_T *ch, char *argument) {
             RETURN_IF (song < 0 || song >= MAX_SONGS || song_table[song].name == NULL,
                 "That song isn't available.\n\r", ch, TRUE);
 
-            send_to_char ("Coming right up.\n\r", ch);
+            printf_to_char (ch, "Coming right up.\n\r");
             if (global) {
                 music_queue_values (
                     &music_line, &music_song, music_queue,
@@ -2173,7 +2173,7 @@ bool item_index_show_values (const OBJ_INDEX_T *obj, CHAR_T *ch) {
             if (obj->v.light.duration == -1 ||
                 obj->v.light.duration == 999)
             {
-                send_to_char ("[v2] Light:  Infinite[-1]\n\r", ch);
+                printf_to_char (ch, "[v2] Light:  Infinite[-1]\n\r");
             }
             else
                 printf_to_char (ch, "[v2] Light:  [%ld]\n\r",

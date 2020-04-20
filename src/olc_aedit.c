@@ -80,7 +80,7 @@ AEDIT (aedit_reset) {
     EDIT_AREA (ch, area);
 
     area_reset (area);
-    send_to_char ("Area reset.\n\r", ch);
+    printf_to_char (ch, "Area reset.\n\r");
     return FALSE;
 }
 
@@ -92,7 +92,7 @@ AEDIT (aedit_create) {
     ch->desc->olc_edit = (void *) area;
 
     SET_BIT (area->area_flags, AREA_ADDED);
-    send_to_char ("Area created.\n\r", ch);
+    printf_to_char (ch, "Area created.\n\r");
     return FALSE;
 }
 
@@ -136,7 +136,7 @@ AEDIT (aedit_file) {
     str_replace_dup (&(area->name), file);
     strcat (file, ".are");
     str_replace_dup (&(area->filename), file);
-    send_to_char ("Filename set.\n\r", ch);
+    printf_to_char (ch, "Filename set.\n\r");
     return TRUE;
 }
 
@@ -157,18 +157,18 @@ AEDIT (aedit_recall) {
     one_argument (argument, room);
 
     if (!is_number (argument) || argument[0] == '\0') {
-        send_to_char ("Syntax:  recall [#xrvnum]\n\r", ch);
+        printf_to_char (ch, "Syntax:  recall [#xrvnum]\n\r");
         return FALSE;
     }
 
     value = atoi (room);
     if (!room_get_index (value)) {
-        send_to_char ("AEdit:  Room vnum does not exist.\n\r", ch);
+        printf_to_char (ch, "AEdit:  Room vnum does not exist.\n\r");
         return FALSE;
     }
 
     area->recall = value;
-    send_to_char ("Recall set.\n\r", ch);
+    printf_to_char (ch, "Recall set.\n\r");
     return TRUE;
 }
 #endif /* ROM OLC */
@@ -189,12 +189,12 @@ AEDIT (aedit_security) {
         if (ch->pcdata->security != 0)
             printf_to_char (ch, "Security is 0-%d.\n\r", ch->pcdata->security);
         else
-            send_to_char ("Security is 0 only.\n\r", ch);
+            printf_to_char (ch, "Security is 0 only.\n\r");
         return FALSE;
     }
 
     area->security = value;
-    send_to_char ("Security set.\n\r", ch);
+    printf_to_char (ch, "Security set.\n\r");
     return TRUE;
 }
 
@@ -217,7 +217,7 @@ AEDIT (aedit_builder) {
 
         if (area->builders[0] == '\0')
             str_replace_dup (&(area->builders), "None");
-        send_to_char ("Builder removed.\n\r", ch);
+        printf_to_char (ch, "Builder removed.\n\r");
         return TRUE;
     }
     else {
@@ -268,7 +268,7 @@ AEDIT (aedit_vnum) {
         "AEdit: Lower vnum already assigned.\n\r", ch, FALSE);
 
     area->min_vnum = ilower;
-    send_to_char ("Lower vnum set.\n\r", ch);
+    printf_to_char (ch, "Lower vnum set.\n\r");
 
     other = area_get_by_inner_vnum (iupper);
     RETURN_IF (other && other != area,
@@ -276,7 +276,7 @@ AEDIT (aedit_vnum) {
                         /* The lower value has been set ^^^^ */
 
     area->max_vnum = iupper;
-    send_to_char ("Upper vnum set.\n\r", ch);
+    printf_to_char (ch, "Upper vnum set.\n\r");
     return TRUE;
 }
 
@@ -302,7 +302,7 @@ AEDIT (aedit_lvnum) {
         "AEdit: Lower vnum already assigned.\n\r", ch, FALSE);
 
     area->min_vnum = ilower;
-    send_to_char ("Lower vnum set.\n\r", ch);
+    printf_to_char (ch, "Lower vnum set.\n\r");
     return TRUE;
 }
 
@@ -327,6 +327,6 @@ AEDIT (aedit_uvnum) {
         "AEdit: Upper vnum already assigned.\n\r", ch, FALSE);
 
     area->max_vnum = iupper;
-    send_to_char ("Upper vnum set.\n\r", ch);
+    printf_to_char (ch, "Upper vnum set.\n\r");
     return TRUE;
 }

@@ -365,8 +365,7 @@ void one_hit (CHAR_T *ch, CHAR_T *victim, int dt) {
                 level = poison->level;
 
             if (!saves_spell (level / 2, victim, DAM_POISON)) {
-                send_to_char ("You feel poison coursing through your veins.",
-                              victim);
+                printf_to_char (victim, "You feel poison coursing through your veins.");
                 act ("$n is poisoned by the venom on $p.",
                      victim, wield, NULL, TO_NOTCHAR);
 
@@ -460,7 +459,7 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
         if (!IS_IMMORTAL (ch)) {
             OBJ_T *obj;
             obj = char_get_eq_by_wear_loc (ch, WEAR_LOC_WIELD);
-            send_to_char ("You really shouldn't cheat.\n\r", ch);
+            printf_to_char (ch, "You really shouldn't cheat.\n\r");
             if (obj != NULL)
                 obj_extract (obj);
         }
@@ -561,23 +560,22 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
         switch (victim->position) {
             case POS_MORTAL:
                 act ("$n is mortally wounded, and will die soon, if not aided.", victim, NULL, NULL, TO_NOTCHAR);
-                send_to_char ("You are mortally wounded, and will die soon, if not aided.\n\r", victim);
+                printf_to_char (victim, "You are mortally wounded, and will die soon, if not aided.\n\r");
                 break;
 
             case POS_INCAP:
                 act ("$n is incapacitated and will slowly die, if not aided.", victim, NULL, NULL, TO_NOTCHAR);
-                send_to_char ("You are incapacitated and will slowly die, if not aided.\n\r",
-                     victim);
+                printf_to_char (victim, "You are incapacitated and will slowly die, if not aided.\n\r");
                 break;
 
             case POS_STUNNED:
                 act ("$n is stunned, but will probably recover.", victim, NULL, NULL, TO_NOTCHAR);
-                send_to_char ("You are stunned, but will probably recover.\n\r", victim);
+                printf_to_char (victim, "You are stunned, but will probably recover.\n\r");
                 break;
 
             case POS_DEAD:
                 act ("{R$n is DEAD!!{x", victim, NULL, NULL, TO_NOTCHAR);
-                send_to_char ("{RYou have been KILLED!!{x\n\r\n\r", victim);
+                printf_to_char (victim, "{RYou have been KILLED!!{x\n\r\n\r");
                 break;
         }
     }
@@ -585,9 +583,9 @@ bool damage_real (CHAR_T *ch, CHAR_T *victim, int dam, int dt, int dam_type,
     /* Message for serious damage! You'd better run! */
     if (victim->position > POS_STUNNED) {
         if (dam > victim->max_hit / 4)
-            send_to_char ("{RThat really did HURT!{x\n\r", victim);
+            printf_to_char (victim, "{RThat really did HURT!{x\n\r");
         if (victim->hit < victim->max_hit / 4)
-            send_to_char ("{RYou sure are BLEEDING!{x\n\r", victim);
+            printf_to_char (victim, "{RYou sure are BLEEDING!{x\n\r");
     }
 
     /* Sleep spells and extremely wounded folks. */
@@ -845,7 +843,7 @@ void check_killer (CHAR_T *ch, CHAR_T *victim) {
     if (EXT_IS_SET (ch->ext_plr, PLR_KILLER))
         return;
 
-    send_to_char ("*** You are now a KILLER!! ***\n\r", ch);
+    printf_to_char (ch, "*** You are now a KILLER!! ***\n\r");
     EXT_SET (ch->ext_plr, PLR_KILLER);
     wiznetf (ch, NULL, WIZ_FLAGS, 0, 0,
         "$N is attempting to murder %s", victim->name);
@@ -964,19 +962,19 @@ void set_fighting_one (CHAR_T *ch, CHAR_T *victim) {
     {
         switch (victim->position) {
             case POS_SLEEPING:
-                send_to_char ("You were caught sleeping!\n\r", victim);
+                printf_to_char (victim, "You were caught sleeping!\n\r");
                 act ("$n was caught sleeping!", victim, NULL, NULL, TO_NOTCHAR);
                 daze_mult = 3;
                 break;
 
             case POS_RESTING:
-                send_to_char ("You were caught resting!\n\r", victim);
+                printf_to_char (victim, "You were caught resting!\n\r");
                 act ("$n was caught resting!", victim, NULL, NULL, TO_NOTCHAR);
                 daze_mult = 2;
                 break;
 
             case POS_SITTING:
-                send_to_char ("You were caught sitting down!\n\r", victim);
+                printf_to_char (victim, "You were caught sitting down!\n\r");
                 act ("$n was caught sitting down!", victim, NULL, NULL, TO_NOTCHAR);
                 daze_mult = 1;
                 break;
@@ -1256,12 +1254,12 @@ void group_gain (CHAR_T *ch, CHAR_T *victim) {
         /* Taken out, add it back if you want it */
 #if 0
         if (gch->level - lch->level >= 5) {
-            send_to_char ("You are too high for this group.\n\r", gch);
+            printf_to_char (gch, "You are too high for this group.\n\r");
             continue;
         }
 
         if (gch->level - lch->level <= -5) {
-            send_to_char ("You are too low for this group.\n\r", gch);
+            printf_to_char (gch, "You are too low for this group.\n\r");
             continue;
         }
 #endif

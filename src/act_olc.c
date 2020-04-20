@@ -322,7 +322,7 @@ DEFINE_DO_FUN (do_hedit) {
             return;
         }
     }
-    send_to_char ("HEdit: There is no default help to edit.\n\r", ch);
+    printf_to_char (ch, "HEdit: There is no default help to edit.\n\r");
 }
 
 /* Entry point for editing mob_index_data. */
@@ -364,7 +364,7 @@ DEFINE_DO_FUN (do_medit) {
         return;
     }
 
-    send_to_char ("MEdit: There is no default mobile to edit.\n\r", ch);
+    printf_to_char (ch, "MEdit: There is no default mobile to edit.\n\r");
 }
 
 DEFINE_DO_FUN (do_mpedit) {
@@ -396,8 +396,8 @@ DEFINE_DO_FUN (do_mpedit) {
         return;
     }
 
-    send_to_char ("Syntax: mpedit [vnum]\n\r", ch);
-    send_to_char ("        mpedit create [vnum]\n\r", ch);
+    printf_to_char (ch, "Syntax: mpedit [vnum]\n\r");
+    printf_to_char (ch, "        mpedit create [vnum]\n\r");
 }
 
 /* Entry point for editing obj_index_data. */
@@ -439,7 +439,7 @@ DEFINE_DO_FUN (do_oedit) {
         return;
     }
 
-    send_to_char ("OEdit: There is no default object to edit.\n\r", ch);
+    printf_to_char (ch, "OEdit: There is no default object to edit.\n\r");
 }
 
 /* Entry point for editing room_index_data. */
@@ -461,7 +461,7 @@ DEFINE_DO_FUN (do_redit) {
             "REdit: Insufficient security to modify room.\n\r", ch);
 
         room_reset (room);
-        send_to_char ("Room reset.\n\r", ch);
+        printf_to_char (ch, "Room reset.\n\r");
         return;
     }
     /* redit create <vnum> */
@@ -543,8 +543,8 @@ DEFINE_DO_FUN (do_resets) {
         BAIL_IF (!ch->in_room->reset_first,
             "No resets in this room.\n\r", ch);
 
-        send_to_char ("Resets: M = mobile, R = room, O = object, "
-                      "P = pet, S = shopkeeper\n\r", ch);
+        printf_to_char (ch, "Resets: M = mobile, R = room, O = object, "
+                      "P = pet, S = shopkeeper\n\r");
         do_resets_display (ch);
         return;
     }
@@ -577,7 +577,7 @@ DEFINE_DO_FUN (do_resets) {
         }
 
         reset_data_free (reset);
-        send_to_char ("Reset deleted.\n\r", ch);
+        printf_to_char (ch, "Reset deleted.\n\r");
         return;
     }
 
@@ -649,7 +649,7 @@ DEFINE_DO_FUN (do_resets) {
         }
         reset_to_room_before (reset, ch->in_room, index);
         SET_BIT (ch->in_room->area->area_flags, AREA_CHANGED);
-        send_to_char ("Reset added.\n\r", ch);
+        printf_to_char (ch, "Reset added.\n\r");
         return;
     }
 
@@ -664,7 +664,7 @@ DEFINE_DO_FUN (do_resets) {
         v->randomize.dir_count = atoi (arg3);
         reset_to_room_before (reset, ch->in_room, index);
         SET_BIT (ch->in_room->area->area_flags, AREA_CHANGED);
-        send_to_char ("Random exits reset added.\n\r", ch);
+        printf_to_char (ch, "Random exits reset added.\n\r");
         return;
     }
 
@@ -738,14 +738,14 @@ DEFINE_DO_FUN (do_asave) {
         save_area_list ();
         json_export_portals (JSON_EXPORT_MODE_SAVE);
         save_area (area);
-        send_to_char ("Area saved.\n\r", ch);
+        printf_to_char (ch, "Area saved.\n\r");
         return;
     }
 
     /* Save the world, only authorized areas. */
     /* -------------------------------------- */
     if (!str_cmp ("world", arg1)) {
-        send_to_char ("Saving world...\n\r", ch);
+        printf_to_char (ch, "Saving world...\n\r");
         desc_flush_output (ch->desc);
         json_export_portals (JSON_EXPORT_MODE_SAVE);
         save_area_list ();
@@ -762,7 +762,7 @@ DEFINE_DO_FUN (do_asave) {
             REMOVE_BIT (area->area_flags, AREA_CHANGED);
         }
         if (ch)
-            send_to_char ("You saved the world.\n\r", ch);
+            printf_to_char (ch, "You saved the world.\n\r");
         save_other_helps (NULL);
         return;
     }
@@ -775,7 +775,7 @@ DEFINE_DO_FUN (do_asave) {
         json_export_portals (JSON_EXPORT_MODE_SAVE);
 
         if (ch)
-            send_to_char ("Saved zones:\n\r", ch);
+            printf_to_char (ch, "Saved zones:\n\r");
         else
             log_string ("Saved zones:");
         sprintf (buf, "None.\n\r");
@@ -812,7 +812,7 @@ DEFINE_DO_FUN (do_asave) {
     /* ----------------------- */
     if (!str_cmp (arg1, "list")) {
         save_area_list ();
-        send_to_char ("Area list saved.\n\r", ch);
+        printf_to_char (ch, "Area list saved.\n\r");
         return;
     }
 
@@ -820,7 +820,7 @@ DEFINE_DO_FUN (do_asave) {
     /* ----------------------- */
     if (!str_cmp (arg1, "portals")) {
         json_export_portals (JSON_EXPORT_MODE_SAVE);
-        send_to_char ("Portals saved.\n\r", ch);
+        printf_to_char (ch, "Portals saved.\n\r");
         return;
     }
 
@@ -852,10 +852,10 @@ DEFINE_DO_FUN (do_asave) {
             case ED_HELP: {
                 int saved;
 
-                send_to_char ("Saving all changed helps:\n\r", ch);
+                printf_to_char (ch, "Saving all changed helps:\n\r");
                 saved = save_other_helps (ch);
                 if (saved == 0)
-                    send_to_char ("No helps to save.\n\r", ch);
+                    printf_to_char (ch, "No helps to save.\n\r");
                 else
                     printf_to_char (ch, "%d helps to saved.\n\r", saved);
 
@@ -873,7 +873,7 @@ DEFINE_DO_FUN (do_asave) {
         json_export_portals (JSON_EXPORT_MODE_SAVE);
         save_area (area);
         REMOVE_BIT (area->area_flags, AREA_CHANGED);
-        send_to_char ("Area saved.\n\r", ch);
+        printf_to_char (ch, "Area saved.\n\r");
         return;
     }
 

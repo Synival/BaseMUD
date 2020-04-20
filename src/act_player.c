@@ -46,7 +46,7 @@
 
 /* RT code to delete yourself */
 DEFINE_DO_FUN (do_delet) {
-    send_to_char ("You must type the full command to delete yourself.\n\r", ch);
+    printf_to_char (ch, "You must type the full command to delete yourself.\n\r");
 }
 
 DEFINE_DO_FUN (do_delete) {
@@ -57,7 +57,7 @@ DEFINE_DO_FUN (do_delete) {
 
     if (ch->pcdata->confirm_delete) {
         if (argument[0] != '\0') {
-            send_to_char ("Delete status removed.\n\r", ch);
+            printf_to_char (ch, "Delete status removed.\n\r");
             ch->pcdata->confirm_delete = FALSE;
             return;
         }
@@ -74,10 +74,10 @@ DEFINE_DO_FUN (do_delete) {
     BAIL_IF (argument[0] != '\0',
         "Just type delete. No argument.\n\r", ch);
 
-    send_to_char (
+    printf_to_char (ch, 
         "Type delete again to confirm this command.\n\r"
         "WARNING: this command is irreversible.\n\r"
-        "Typing delete with an argument will undo delete status.\n\r", ch);
+        "Typing delete with an argument will undo delete status.\n\r");
 
     ch->pcdata->confirm_delete = TRUE;
     wiznet ("$N is contemplating deletion.", ch, NULL, 0, 0,
@@ -85,11 +85,11 @@ DEFINE_DO_FUN (do_delete) {
 }
 
 DEFINE_DO_FUN (do_rent) {
-    send_to_char ("There is no rent here.  Just save and quit.\n\r", ch);
+    printf_to_char (ch, "There is no rent here.  Just save and quit.\n\r");
 }
 
 DEFINE_DO_FUN (do_qui) {
-    send_to_char ("If you want to QUIT, you have to spell it out.\n\r", ch);
+    printf_to_char (ch, "If you want to QUIT, you have to spell it out.\n\r");
 }
 
 DEFINE_DO_FUN (do_quit) {
@@ -104,7 +104,7 @@ DEFINE_DO_FUN (do_quit) {
     BAIL_IF (ch->position <= POS_STUNNED,
         "You're not DEAD yet.\n\r", ch);
 
-    send_to_char ("Alas, all good things must come to an end.\n\r", ch);
+    printf_to_char (ch, "Alas, all good things must come to an end.\n\r");
     act ("$n has left the game.", ch, NULL, NULL, TO_NOTCHAR);
     log_f ("%s has quit.", ch->name);
     wiznet ("$N rejoins the real world.", ch, NULL, WIZ_LOGINS, 0,
@@ -141,7 +141,7 @@ DEFINE_DO_FUN (do_save) {
         return;
 
     save_char_obj (ch);
-    send_to_char ("Saving. Remember that ROM has automatic saving now.\n\r", ch);
+    printf_to_char (ch, "Saving. Remember that ROM has automatic saving now.\n\r");
     WAIT_STATE (ch, PULSE_VIOLENCE);
 }
 
@@ -197,7 +197,7 @@ DEFINE_DO_FUN (do_password) {
 
     if (strcmp (crypt (arg1, ch->pcdata->pwd), ch->pcdata->pwd)) {
         WAIT_STATE (ch, 40);
-        send_to_char ("Wrong password.  Wait 10 seconds.\n\r", ch);
+        printf_to_char (ch, "Wrong password.  Wait 10 seconds.\n\r");
         return;
     }
     BAIL_IF (strlen (arg2) < 5,

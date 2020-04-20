@@ -90,14 +90,14 @@ DEFINE_SPELL_FUN (spell_cancellation) {
 DEFINE_SPELL_FUN (spell_control_weather) {
     if (!str_cmp (target_name, "better")) {
         weather_info.change += dice (level / 3, 4);
-        send_to_char ("You sense the clouds clearing up...\n\r", ch);
+        printf_to_char (ch, "You sense the clouds clearing up...\n\r");
     }
     else if (!str_cmp (target_name, "worse")) {
         weather_info.change -= dice (level / 3, 4);
-        send_to_char ("You sense a storm gathering...\n\r", ch);
+        printf_to_char (ch, "You sense a storm gathering...\n\r");
     }
     else
-        send_to_char ("Do you want it to get better or worse?\n\r", ch);
+        printf_to_char (ch, "Do you want it to get better or worse?\n\r");
 }
 
 /* modified for enhanced use */
@@ -106,8 +106,8 @@ DEFINE_SPELL_FUN (spell_dispel_magic) {
     bool found = FALSE;
 
     if (saves_spell (level, victim, DAM_OTHER)) {
-        send_to_char ("You feel a brief tingling sensation.\n\r", victim);
-        send_to_char ("You notice no change.\n\r", ch);
+        printf_to_char (victim, "You feel a brief tingling sensation.\n\r");
+        printf_to_char (ch, "You notice no change.\n\r");
         return;
     }
 
@@ -196,7 +196,7 @@ DEFINE_SPELL_FUN (spell_recharge) {
         return;
     }
     else if (percent <= UMIN (95, 3 * chance / 2)) {
-        send_to_char ("Nothing seems to happen.\n\r", ch);
+        printf_to_char (ch, "Nothing seems to happen.\n\r");
         if (*recharge_ptr > 0)
             (*recharge_ptr)--;
         return;

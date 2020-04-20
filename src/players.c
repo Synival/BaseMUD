@@ -263,7 +263,7 @@ void player_gain_exp (CHAR_T *ch, int gain) {
     while (ch->level < LEVEL_HERO && ch->exp >=
            player_get_exp_per_level (ch) * (ch->level + 1))
     {
-        send_to_char ("{GYou raise a level!!  {x", ch);
+        printf_to_char (ch, "{GYou raise a level!!  {x");
         ch->level += 1;
         log_f ("%s gained level %d", ch->name, ch->level);
         wiznetf (ch, NULL, WIZ_LEVELS, 0, 0,
@@ -359,19 +359,19 @@ void player_list_skills_and_groups (CHAR_T *ch, bool chosen) {
             continue;
 
         if (col % 3 == 0)
-            send_to_char ("   ", ch);
+            printf_to_char (ch, "   ");
         printf_to_char (ch, "%s%s%d  ", group->name,
             str_line (LINE_CHAR, 19 - strlen (group->name) +
                 (3 - int_str_len (group->classes[ch->class].cost))),
             group->classes[ch->class].cost);
         if (++col % 3 == 0)
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
     }
     if (col == 0)
-        send_to_char ("   None.\n\r", ch);
+        printf_to_char (ch, "   None.\n\r");
     if (col % 3 != 0)
-        send_to_char ("\n\r", ch);
-    send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
+    printf_to_char (ch, "\n\r");
 
     col = 0;
     printf_to_char (ch, "Skills:\n\r");
@@ -390,23 +390,23 @@ void player_list_skills_and_groups (CHAR_T *ch, bool chosen) {
             continue;
 
         if (col % 3 == 0)
-            send_to_char ("   ", ch);
+            printf_to_char (ch, "   ");
 
         printf_to_char (ch, "%s%s%d  ", skill->name,
             str_line (LINE_CHAR, 19 - strlen (skill->name) +
                 (3 - int_str_len (skill->classes[ch->class].effort))),
             skill->classes[ch->class].effort);
         if (++col % 3 == 0)
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
     }
     if (col == 0)
-        send_to_char ("   None.\n\r", ch);
+        printf_to_char (ch, "   None.\n\r");
     if (col % 3 != 0)
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
 
     /* only show generation points during character generation. */
     if (ch->gen_data) {
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
         printf_to_char (ch, "Creation points: %d\n\r",
             ch->pcdata->creation_points);
         printf_to_char (ch, "Experience per level: %d\n\r",
@@ -799,7 +799,7 @@ void player_update (CHAR_T *ch) {
             ch->was_in_room = ch->in_room;
             if (ch->fighting != NULL)
                 stop_fighting (ch, TRUE);
-            send_to_char ("You disappear into the void.\n\r", ch);
+            printf_to_char (ch, "You disappear into the void.\n\r");
             act ("$n disappears into the void.",
                  ch, NULL, NULL, TO_NOTCHAR);
             if (ch->level > 1)

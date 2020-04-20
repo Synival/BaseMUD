@@ -105,7 +105,7 @@ void bust_a_prompt (CHAR_T *ch) {
     }
 
     if (IS_SET (ch->comm, COMM_AFK)) {
-        send_to_char ("{p<AFK>{x ", ch);
+        printf_to_char (ch, "{p<AFK>{x ");
         return;
     }
 
@@ -203,9 +203,9 @@ void bust_a_prompt (CHAR_T *ch) {
     *point = '\0';
     pbuff = buffer;
     colour_puts (ch, ch->desc->ansi, buf, pbuff, MAX_STRING_LENGTH);
-    send_to_char ("{p", ch);
+    printf_to_char (ch, "{p");
     write_to_buffer (ch->desc, buffer, 0);
-    send_to_char ("{x", ch);
+    printf_to_char (ch, "{x");
 
     if (ch->prefix[0] != '\0')
         write_to_buffer (ch->desc, ch->prefix, 0);
@@ -479,11 +479,11 @@ void wiznet (const char *string, CHAR_T *ch, OBJ_T *obj,
             && char_get_trust (d->character) >= min_level && d->character != ch)
         {
             if (IS_SET (d->character->wiznet, WIZ_PREFIX))
-                send_to_char ("{Z--> ", d->character);
+                printf_to_char (d->character, "{Z--> ");
             else
-                send_to_char ("{Z", d->character);
+                printf_to_char (d->character, "{Z");
             act_new (string, d->character, obj, ch, TO_CHAR, POS_DEAD);
-            send_to_char ("{x", d->character);
+            printf_to_char (d->character, "{x");
         }
     }
 }
@@ -524,7 +524,7 @@ bool position_change_send_message_to_standing (CHAR_T *ch, int from,
     switch (from) {
         case POS_SLEEPING:
             if (obj == NULL) {
-                send_to_char ("You wake and stand up.\n\r", ch);
+                printf_to_char (ch, "You wake and stand up.\n\r");
                 act ("$n wakes and stands up.", ch, NULL, NULL, TO_NOTCHAR);
             }
             else {
@@ -535,7 +535,7 @@ bool position_change_send_message_to_standing (CHAR_T *ch, int from,
 
         case POS_RESTING:
             if (obj == NULL) {
-                send_to_char ("You stop resting and stand up.\n\r", ch);
+                printf_to_char (ch, "You stop resting and stand up.\n\r");
                 act ("$n stops resting and stands up.", ch, NULL, NULL, TO_NOTCHAR);
             }
             else {
@@ -546,7 +546,7 @@ bool position_change_send_message_to_standing (CHAR_T *ch, int from,
 
         case POS_SITTING:
             if (obj == NULL) {
-                send_to_char ("You stop sitting and stand up.\n\r", ch);
+                printf_to_char (ch, "You stop sitting and stand up.\n\r");
                 act ("$n stops sitting and stands up.", ch, NULL, NULL, TO_NOTCHAR);
             }
             else {
@@ -582,17 +582,17 @@ bool position_change_send_message_to_fighting (CHAR_T *ch, int from,
 {
     switch (from) {
         case POS_SLEEPING:
-            send_to_char ("You wake up, stand up, and fight!\n\r", ch);
+            printf_to_char (ch, "You wake up, stand up, and fight!\n\r");
             act ("$n wakes up, stands up, and fights!", ch, NULL, NULL, TO_NOTCHAR);
             return TRUE;
 
         case POS_RESTING:
-            send_to_char ("You stop resting, stand up, and fight!\n\r", ch);
+            printf_to_char (ch, "You stop resting, stand up, and fight!\n\r");
             act ("$n stops resting, stands up, and fights!", ch, NULL, NULL, TO_NOTCHAR);
             return TRUE;
 
         case POS_SITTING:
-            send_to_char ("You stand up and fight!\n\r", ch);
+            printf_to_char (ch, "You stand up and fight!\n\r");
             act ("$n stands up and fights!", ch, NULL, NULL, TO_NOTCHAR);
             return TRUE;
     }
@@ -606,7 +606,7 @@ bool position_change_send_message_to_resting (CHAR_T *ch, int from,
     switch (from) {
         case POS_SLEEPING:
             if (obj == NULL) {
-                send_to_char ("You wake up and start resting.\n\r", ch);
+                printf_to_char (ch, "You wake up and start resting.\n\r");
                 act ("$n wakes up and starts resting.", ch, NULL, NULL, TO_NOTCHAR);
             }
             else {
@@ -617,7 +617,7 @@ bool position_change_send_message_to_resting (CHAR_T *ch, int from,
 
         case POS_SITTING:
             if (obj == NULL) {
-                send_to_char ("You rest.\n\r", ch);
+                printf_to_char (ch, "You rest.\n\r");
                 act ("$n rests.", ch, NULL, NULL, TO_NOTCHAR);
             }
             else {
@@ -628,7 +628,7 @@ bool position_change_send_message_to_resting (CHAR_T *ch, int from,
 
         case POS_STANDING:
             if (obj == NULL) {
-                send_to_char ("You sit down and rest.\n\r", ch);
+                printf_to_char (ch, "You sit down and rest.\n\r");
                 act ("$n sits down and rests.", ch, NULL, NULL, TO_NOTCHAR);
             }
             else {
@@ -647,7 +647,7 @@ bool position_change_send_message_to_sitting (CHAR_T *ch, int from,
     switch (from) {
         case POS_SLEEPING:
             if (obj == NULL) {
-                send_to_char ("You wake and sit up.\n\r", ch);
+                printf_to_char (ch, "You wake and sit up.\n\r");
                 act ("$n wakes and sits up.", ch, NULL, NULL, TO_NOTCHAR);
             }
             else {
@@ -658,7 +658,7 @@ bool position_change_send_message_to_sitting (CHAR_T *ch, int from,
 
         case POS_RESTING:
             if (obj == NULL)
-                send_to_char ("You stop resting.\n\r", ch);
+                printf_to_char (ch, "You stop resting.\n\r");
             else {
                 act_new ("You sit $T $p.", ch, obj, prep, TO_CHAR, POS_DEAD);
                 act ("$n sits $T $p.", ch, obj, prep, TO_NOTCHAR);
@@ -667,7 +667,7 @@ bool position_change_send_message_to_sitting (CHAR_T *ch, int from,
 
         case POS_STANDING:
             if (obj == NULL) {
-                send_to_char ("You sit down.\n\r", ch);
+                printf_to_char (ch, "You sit down.\n\r");
                 act ("$n sits down on the ground.", ch, NULL, NULL, TO_NOTCHAR);
             }
             else {
@@ -688,7 +688,7 @@ bool position_change_send_message_to_sleeping (CHAR_T *ch, int from,
         case POS_SITTING:
         case POS_STANDING:
             if (obj == NULL) {
-                send_to_char ("You lie down and go to sleep.\n\r", ch);
+                printf_to_char (ch, "You lie down and go to sleep.\n\r");
                 act ("$n lies down and goes to sleep.", ch, NULL, NULL, TO_NOTCHAR);
             }
             else {
@@ -705,8 +705,8 @@ void echo_to_char (CHAR_T *to, CHAR_T *from, const char *type,
 {
     if (char_get_trust (to) >= char_get_trust (from)) {
         send_to_char (type, to);
-        send_to_char ("> ", to);
+        printf_to_char (to, "> ");
     }
     send_to_char (msg, to);
-    send_to_char ("\n\r", to);
+    printf_to_char (to, "\n\r");
 }

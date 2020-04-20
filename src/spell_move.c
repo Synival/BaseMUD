@@ -121,7 +121,7 @@ OBJ_T *spell_sub_create_portal (ROOM_INDEX_T *from_room,
 }
 
 void spell_do_gate_teleport (CHAR_T *ch, ROOM_INDEX_T *to_room) {
-    send_to_char ("You step through a gate and vanish.\n\r", ch);
+    printf_to_char (ch, "You step through a gate and vanish.\n\r");
     act ("$n steps through a gate and vanishes.", ch, NULL, NULL, TO_NOTCHAR);
     char_to_room (ch, to_room);
     act ("$n has arrived through a gate.", ch, NULL, NULL, TO_NOTCHAR);
@@ -195,7 +195,7 @@ DEFINE_SPELL_FUN (spell_teleport) {
 
     room_index = room_get_random_index (victim);
     if (victim != ch)
-        send_to_char ("You have been teleported!\n\r", victim);
+        printf_to_char (victim, "You have been teleported!\n\r");
 
     act ("$n vanishes!", victim, NULL, NULL, TO_NOTCHAR);
     char_to_room (victim, room_index);

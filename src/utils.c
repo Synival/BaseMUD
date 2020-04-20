@@ -332,7 +332,7 @@ void append_file (CHAR_T *ch, char *file, char *str) {
     fclose (reserve_file);
     if ((fp = fopen (file, "a")) == NULL) {
         perror (file);
-        send_to_char ("Could not open the file!\n\r", ch);
+        printf_to_char (ch, "Could not open the file!\n\r");
     }
     else {
         fprintf (fp, "[%5d] %s: %s\n", ch->in_room ? ch->in_room->vnum : 0, ch->name, str);

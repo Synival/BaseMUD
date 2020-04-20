@@ -209,7 +209,7 @@ void char_to_room_apply_plague (CHAR_T *ch) {
             && !IS_IMMORTAL (vch) &&
             !IS_AFFECTED (vch, AFF_PLAGUE) && number_bits (6) == 0)
         {
-            send_to_char ("You feel hot and feverish.\n\r", vch);
+            printf_to_char (vch, "You feel hot and feverish.\n\r");
             act ("$n shivers and looks very ill.", vch, NULL, NULL,
                 TO_NOTCHAR);
             affect_join_char (&plague, vch);
@@ -862,7 +862,7 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
             continue;
 
         if (!found) {
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
             act ("$N is using:", ch, NULL, victim, TO_CHAR);
             found = TRUE;
         }
@@ -873,7 +873,7 @@ void char_look_at_char (CHAR_T *victim, CHAR_T *ch) {
     if (victim != ch && !IS_NPC (ch) &&
         number_percent () < char_get_skill (ch, SN(PEEK)))
     {
-        send_to_char ("\n\rYou peek at the inventory:\n\r", ch);
+        printf_to_char (ch, "\n\rYou peek at the inventory:\n\r");
         player_try_skill_improve (ch, SN(PEEK), TRUE, 4);
         obj_list_show_to_char (victim->content_first, ch, TRUE, TRUE);
     }
@@ -892,7 +892,7 @@ void char_list_show_to_char (const CHAR_T *list, CHAR_T *ch) {
             send_to_char (char_format_to_char (rch, ch), ch);
         else if (room_is_dark (ch->in_room)
                  && IS_AFFECTED (rch, AFF_INFRARED))
-            send_to_char ("You see glowing red eyes watching YOU!\n\r", ch);
+            printf_to_char (ch, "You see glowing red eyes watching YOU!\n\r");
     }
 }
 
@@ -1061,7 +1061,7 @@ bool char_wear_obj (CHAR_T *ch, OBJ_T *obj, bool replace) {
     }
     if (locs == 0) {
         if (replace)
-            send_to_char ("You can't wear, wield, or hold that.\n\r", ch);
+            printf_to_char (ch, "You can't wear, wield, or hold that.\n\r");
         return FALSE;
     }
 
@@ -1750,7 +1750,7 @@ void char_update (CHAR_T *ch) {
             {
                 if (paf->type > 0 && skill_table[paf->type].msg_off) {
                     send_to_char (skill_table[paf->type].msg_off, ch);
-                    send_to_char ("\n\r", ch);
+                    printf_to_char (ch, "\n\r");
                 }
             }
             affect_remove (paf);
@@ -1768,7 +1768,7 @@ void char_update (CHAR_T *ch) {
         if (ch->in_room == NULL)
             return;
 
-        send_to_char ("You writhe in agony from the plague.\n\r", ch);
+        printf_to_char (ch, "You writhe in agony from the plague.\n\r");
         act ("$n writhes in agony as plague sores erupt from $s skin.",
              ch, NULL, NULL, TO_NOTCHAR);
         for (af = ch->affect_first; af; af = af->on_next)
@@ -1790,7 +1790,7 @@ void char_update (CHAR_T *ch) {
                 && !IS_IMMORTAL (vch)
                 && !IS_AFFECTED (vch, AFF_PLAGUE) && number_bits (4) == 0)
             {
-                send_to_char ("You feel hot and feverish.\n\r", vch);
+                printf_to_char (vch, "You feel hot and feverish.\n\r");
                 act ("$n shivers and looks very ill.", vch, NULL, NULL,
                      TO_NOTCHAR);
                 affect_join_char (&plague, vch);
@@ -1809,7 +1809,7 @@ void char_update (CHAR_T *ch) {
         poison = affect_find (ch->affect_first, SN(POISON));
 
         if (poison != NULL) {
-            send_to_char ("You shiver and suffer.\n\r", ch);
+            printf_to_char (ch, "You shiver and suffer.\n\r");
             act ("$n shivers and suffers.", ch, NULL, NULL, TO_NOTCHAR);
             damage_quiet (ch, ch, poison->level / 10 + 1, SN(POISON),
                     DAM_POISON);
