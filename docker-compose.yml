@@ -1,7 +1,9 @@
 version: "3"
 services:
   app:
-    image: base
+    image: basemud:latest
+    build:
+      context: .
     volumes:
       - ./log:/opt/rom/log:rw
       - ./player:/opt/rom/player:rw
