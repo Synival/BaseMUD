@@ -25,6 +25,7 @@ cd ..
 OR using Docker to startup and shutdown:
 
 ```
+docker-compose build
 docker-compose up
 
 docker-compose down
