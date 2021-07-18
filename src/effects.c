@@ -238,6 +238,7 @@ DEFINE_EFFECT_FUN (effect_fire) {
             && !saves_spell (level / 4 + dam / 20, victim, DAM_FIRE))
         {
             AFFECT_T af;
+            
             act2 ("Your eyes tear up from smoke...you can't see a thing!",
                   "$n is blinded by smoke!",
                   victim, NULL, NULL, 0, POS_RESTING);
@@ -341,8 +342,7 @@ DEFINE_EFFECT_FUN (effect_poison) {
         /* chance of poisoning */
         if (!saves_spell (level / 4 + dam / 20, victim, DAM_POISON)) {
             AFFECT_T af;
-            send_to_char ("You feel poison coursing through your veins.\n\r",
-                          victim);
+
             act2 ("You feel poison coursing through your veins.",
                   "$n looks very ill.",
                   victim, NULL, NULL, 0, POS_RESTING);
@@ -423,7 +423,7 @@ DEFINE_EFFECT_FUN (effect_shock) {
 
         /* daze and confused? */
         if (!saves_spell (level / 4 + dam / 20, victim, DAM_LIGHTNING)) {
-            send_to_char ("Your muscles stop responding.\n\r", victim);
+            printf_to_char (victim, "Your muscles stop responding.\n\r");
             DAZE_STATE (victim, UMAX (12, level / 4 + dam / 20));
         }
 

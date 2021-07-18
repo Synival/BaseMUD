@@ -95,17 +95,15 @@ DEFINE_DO_FUN (do_nochannels) {
 
     if (IS_SET (victim->comm, COMM_NOCHANNELS)) {
         REMOVE_BIT (victim->comm, COMM_NOCHANNELS);
-        send_to_char ("The gods have restored your channel priviliges.\n\r",
-                      victim);
-        send_to_char ("NOCHANNELS removed.\n\r", ch);
+        printf_to_char (victim, "The gods have restored your channel priviliges.\n\r");
+        printf_to_char (ch, "NOCHANNELS removed.\n\r");
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N restores channels to %s", victim->name);
     }
     else {
         SET_BIT (victim->comm, COMM_NOCHANNELS);
-        send_to_char ("The gods have revoked your channel priviliges.\n\r",
-                      victim);
-        send_to_char ("NOCHANNELS set.\n\r", ch);
+        printf_to_char (victim, "The gods have revoked your channel priviliges.\n\r");
+        printf_to_char (ch, "NOCHANNELS set.\n\r");
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N revokes %s's channels.", victim->name);
     }
@@ -125,15 +123,15 @@ DEFINE_DO_FUN (do_noemote) {
 
     if (IS_SET (victim->comm, COMM_NOEMOTE)) {
         REMOVE_BIT (victim->comm, COMM_NOEMOTE);
-        send_to_char ("You can emote again.\n\r", victim);
-        send_to_char ("NOEMOTE removed.\n\r", ch);
+        printf_to_char (victim, "You can emote again.\n\r");
+        printf_to_char (ch, "NOEMOTE removed.\n\r");
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N restores emotes to %s.", victim->name);
     }
     else {
         SET_BIT (victim->comm, COMM_NOEMOTE);
-        send_to_char ("You can't emote!\n\r", victim);
-        send_to_char ("NOEMOTE set.\n\r", ch);
+        printf_to_char (victim, "You can't emote!\n\r");
+        printf_to_char (ch, "NOEMOTE set.\n\r");
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N revokes %s's emotes.", victim->name);
     }
@@ -155,15 +153,15 @@ DEFINE_DO_FUN (do_noshout) {
 
     if (IS_SET (victim->comm, COMM_NOSHOUT)) {
         REMOVE_BIT (victim->comm, COMM_NOSHOUT);
-        send_to_char ("You can shout again.\n\r", victim);
-        send_to_char ("NOSHOUT removed.\n\r", ch);
+        printf_to_char (victim, "You can shout again.\n\r");
+        printf_to_char (ch, "NOSHOUT removed.\n\r");
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N restores shouts to %s.", victim->name);
     }
     else {
         SET_BIT (victim->comm, COMM_NOSHOUT);
-        send_to_char ("You can't shout!\n\r", victim);
-        send_to_char ("NOSHOUT set.\n\r", ch);
+        printf_to_char (victim, "You can't shout!\n\r");
+        printf_to_char (ch, "NOSHOUT set.\n\r");
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N revokes %s's shouts.", victim->name);
     }
@@ -183,15 +181,15 @@ DEFINE_DO_FUN (do_notell) {
 
     if (IS_SET (victim->comm, COMM_NOTELL)) {
         REMOVE_BIT (victim->comm, COMM_NOTELL);
-        send_to_char ("You can tell again.\n\r", victim);
-        send_to_char ("NOTELL removed.\n\r", ch);
+        printf_to_char (victim, "You can tell again.\n\r");
+        printf_to_char (ch, "NOTELL removed.\n\r");
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N restores tells to %s.", victim->name);
     }
     else {
         SET_BIT (victim->comm, COMM_NOTELL);
-        send_to_char ("You can't tell!\n\r", victim);
-        send_to_char ("NOTELL set.\n\r", ch);
+        printf_to_char (victim, "You can't tell!\n\r");
+        printf_to_char (ch, "NOTELL set.\n\r");
         wiznetf (ch, NULL, WIZ_PENALTIES, WIZ_SECURE, 0,
             "$N revokes %s's tells.", victim->name);
     }
@@ -276,7 +274,7 @@ DEFINE_DO_FUN (do_snoop) {
         "No descriptor to snoop.\n\r", ch);
 
     if (victim == ch) {
-        send_to_char ("Cancelling all snoops.\n\r", ch);
+        printf_to_char (ch, "Cancelling all snoops.\n\r");
         wiznet ("$N stops being such a snoop.",
                 ch, NULL, WIZ_SNOOPS, WIZ_SECURE, char_get_trust (ch));
         for (d = descriptor_first; d != NULL; d = d->global_next)
@@ -325,11 +323,11 @@ DEFINE_DO_FUN (do_string) {
     if (type[0] == '\0' || arg1[0] == '\0' || arg2[0] == '\0'
         || arg3[0] == '\0')
     {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  string char <name> <field> <string>\n\r", ch);
-        send_to_char ("    fields: name short long desc title spec\n\r", ch);
-        send_to_char ("  string obj  <name> <field> <string>\n\r", ch);
-        send_to_char ("    fields: name short long extended\n\r", ch);
+        printf_to_char (ch, "Syntax:\n\r");
+        printf_to_char (ch, "  string char <name> <field> <string>\n\r");
+        printf_to_char (ch, "    fields: name short long desc title spec\n\r");
+        printf_to_char (ch, "  string obj  <name> <field> <string>\n\r");
+        printf_to_char (ch, "    fields: name short long extended\n\r");
         return;
     }
 
@@ -504,10 +502,10 @@ DEFINE_DO_FUN (do_newlock) {
 
     if (newlock) {
         wiznet ("$N locks out new characters.", ch, NULL, 0, 0, 0);
-        send_to_char ("New characters have been locked out.\n\r", ch);
+        printf_to_char (ch, "New characters have been locked out.\n\r");
     }
     else {
         wiznet ("$N allows new characters back in.", ch, NULL, 0, 0, 0);
-        send_to_char ("Newlock removed.\n\r", ch);
+        printf_to_char (ch, "Newlock removed.\n\r");
     }
 }

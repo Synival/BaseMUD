@@ -46,7 +46,7 @@ DEFINE_SPELL_FUN (spell_cure_blindness) {
     BAIL_IF (!check_dispel (level, victim, SN(BLINDNESS)),
         "Spell failed.\n\r", ch);
 
-    send_to_char ("Your vision returns!\n\r", victim);
+    printf_to_char (victim, "Your vision returns!\n\r");
     act ("$n is no longer blinded.", victim, NULL, NULL, TO_NOTCHAR);
 }
 
@@ -58,7 +58,7 @@ DEFINE_SPELL_FUN (spell_cure_critical) {
     victim->hit = UMIN (victim->hit + heal, victim->max_hit);
     update_pos (victim);
 
-    send_to_char ("You feel much better!\n\r", victim);
+    printf_to_char (victim, "You feel much better!\n\r");
     act ("$n's wounds look much better!", victim, NULL, NULL, TO_NOTCHAR);
 }
 
@@ -74,7 +74,7 @@ DEFINE_SPELL_FUN (spell_cure_disease) {
     BAIL_IF (!check_dispel (level, victim, SN(PLAGUE)),
         "Spell failed.\n\r", ch);
 
-    send_to_char ("Your sores vanish.\n\r", victim);
+    printf_to_char (victim, "Your sores vanish.\n\r");
     act ("$n looks relieved as $s sores vanish.", victim, NULL, NULL,
          TO_NOTCHAR);
 }
@@ -87,7 +87,7 @@ DEFINE_SPELL_FUN (spell_cure_light) {
     victim->hit = UMIN (victim->hit + heal, victim->max_hit);
     update_pos (victim);
 
-    send_to_char ("You feel a little better!\n\r", victim);
+    printf_to_char (victim, "You feel a little better!\n\r");
     act ("$n's wounds look a little better!", victim, NULL, NULL, TO_NOTCHAR);
 }
 
@@ -102,7 +102,7 @@ DEFINE_SPELL_FUN (spell_cure_poison) {
     BAIL_IF (!check_dispel (level, victim, SN(POISON)),
         "Spell failed.\n\r", ch);
 
-    send_to_char ("A warm feeling runs through your body.\n\r", victim);
+    printf_to_char (victim, "A warm feeling runs through your body.\n\r");
     act ("$n looks much healthier.", victim, NULL, NULL, TO_NOTCHAR);
 }
 
@@ -114,7 +114,7 @@ DEFINE_SPELL_FUN (spell_cure_serious) {
     victim->hit = UMIN (victim->hit + heal, victim->max_hit);
     update_pos (victim);
 
-    send_to_char ("You feel better!\n\r", victim);
+    printf_to_char (victim, "You feel better!\n\r");
     act ("$n's wounds look better!", victim, NULL, NULL, TO_NOTCHAR);
 }
 
@@ -123,7 +123,7 @@ DEFINE_SPELL_FUN (spell_heal) {
     victim->hit = UMIN (victim->hit + 100, victim->max_hit);
     update_pos (victim);
 
-    send_to_char ("A warm feeling fills your body and your injuries heal!\n\r", victim);
+    printf_to_char (victim, "A warm feeling fills your body and your injuries heal!\n\r");
     act ("$n glows and recovers from $s injuries!", victim,
         NULL, NULL, TO_NOTCHAR);
 }
@@ -149,11 +149,11 @@ DEFINE_SPELL_FUN (spell_refresh) {
     CHAR_T *victim = (CHAR_T *) vo;
     victim->move = UMIN (victim->move + level, victim->max_move);
     if (victim->max_move == victim->move) {
-        send_to_char ("You feel fully refreshed!\n\r", victim);
+        printf_to_char (victim, "You feel fully refreshed!\n\r");
         act ("$n looks fully refreshed.\n\r", victim, NULL, NULL, TO_NOTCHAR);
     }
     else {
-        send_to_char ("You feel less tired.\n\r", victim);
+        printf_to_char (victim, "You feel less tired.\n\r");
         act ("$n looks less tired.\n\r", victim, NULL, NULL, TO_NOTCHAR);
     }
 }
@@ -186,7 +186,7 @@ DEFINE_SPELL_FUN (spell_remove_curse_char) {
 
     if (check_dispel (level, victim, SN(CURSE))) {
         found = TRUE;
-        send_to_char ("You feel better.\n\r", victim);
+        printf_to_char (victim, "You feel better.\n\r");
         act ("$n looks more relaxed.", victim, NULL, NULL, TO_NOTCHAR);
     }
 
@@ -209,7 +209,7 @@ DEFINE_SPELL_FUN (spell_remove_curse_char) {
     }
 
     if (!found)
-        send_to_char ("Nothing happens.\n\r", ch);
+        printf_to_char (ch, "Nothing happens.\n\r");
 }
 
 DEFINE_SPELL_FUN (spell_remove_curse) {

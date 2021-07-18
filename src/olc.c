@@ -322,7 +322,7 @@ bool show_commands (CHAR_T *ch, char *argument) {
  Called by:    aedit, redit, oedit, medit(olc.c)
  ****************************************************************************/
 bool edit_done (CHAR_T *ch) {
-    send_to_char ("Exiting OLC.\n\r", ch);
+    printf_to_char (ch, "Exiting OLC.\n\r");
     ch->desc->olc_edit = NULL;
     ch->desc->editor = 0;
     return FALSE;
@@ -346,7 +346,7 @@ void aedit (CHAR_T *ch, char *argument) {
     argument = one_argument (argument, command);
 
     if (!IS_BUILDER (ch, area)) {
-        send_to_char ("AEdit:  Insufficient security to modify area.\n\r", ch);
+        printf_to_char (ch, "AEdit:  Insufficient security to modify area.\n\r");
         edit_done (ch);
         return;
     }
@@ -360,7 +360,7 @@ void aedit (CHAR_T *ch, char *argument) {
     }
     if ((value = flags_from_string_exact (area_flags, command)) != FLAG_NONE) {
         TOGGLE_BIT (area->area_flags, value);
-        send_to_char ("Flag toggled.\n\r", ch);
+        printf_to_char (ch, "Flag toggled.\n\r");
         return;
     }
 
@@ -396,7 +396,7 @@ void redit (CHAR_T *ch, char *argument) {
     argument = one_argument (argument, command);
 
     if (!IS_BUILDER (ch, area)) {
-        send_to_char ("REdit:  Insufficient security to modify room.\n\r", ch);
+        printf_to_char (ch, "REdit:  Insufficient security to modify room.\n\r");
         edit_done (ch);
         return;
     }
@@ -441,7 +441,7 @@ void oedit (CHAR_T *ch, char *argument) {
     area = obj->area;
 
     if (!IS_BUILDER (ch, area)) {
-        send_to_char ("OEdit: Insufficient security to modify area.\n\r", ch);
+        printf_to_char (ch, "OEdit: Insufficient security to modify area.\n\r");
         edit_done (ch);
         return;
     }
@@ -486,7 +486,7 @@ void medit (CHAR_T *ch, char *argument) {
     area = mob->area;
 
     if (!IS_BUILDER (ch, area)) {
-        send_to_char ("MEdit: Insufficient security to modify area.\n\r", ch);
+        printf_to_char (ch, "MEdit: Insufficient security to modify area.\n\r");
         edit_done (ch);
         return;
     }
@@ -535,8 +535,7 @@ void mpedit (CHAR_T *ch, char *argument) {
             return;
         }
         if (!IS_BUILDER (ch, ad)) {
-            send_to_char ("MPEdit: Insufficient security to modify code.\n\r",
-                          ch);
+            printf_to_char (ch, "MPEdit: Insufficient security to modify code.\n\r");
             edit_done (ch);
             return;
         }
@@ -582,7 +581,7 @@ void hedit (CHAR_T *ch, char *argument) {
         return;
     }
     if (ch->pcdata->security < 9) {
-        send_to_char ("HEdit: Insufficient security to edit helps.\n\r", ch);
+        printf_to_char (ch, "HEdit: Insufficient security to edit helps.\n\r");
         edit_done (ch);
         return;
     }
@@ -608,13 +607,13 @@ void hedit (CHAR_T *ch, char *argument) {
 
 bool show_version (CHAR_T *ch, char *argument) {
     send_to_char (OLC_VERSION, ch);
-    send_to_char ("\n\r", ch);
+    printf_to_char (ch, "\n\r");
     send_to_char (OLC_AUTHOR, ch);
-    send_to_char ("\n\r", ch);
+    printf_to_char (ch, "\n\r");
     send_to_char (OLC_DATE, ch);
-    send_to_char ("\n\r", ch);
+    printf_to_char (ch, "\n\r");
     send_to_char (OLC_CREDITS, ch);
-    send_to_char ("\n\r", ch);
+    printf_to_char (ch, "\n\r");
     return FALSE;
 }
 
@@ -756,7 +755,7 @@ void show_spec_cmds (CHAR_T *ch) {
 
     buf1[0] = '\0';
     col = 0;
-    send_to_char ("Preceed special functions with 'spec_'\n\r\n\r", ch);
+    printf_to_char (ch, "Preceed special functions with 'spec_'\n\r\n\r");
     for (spec = 0; spec_table[spec].function != NULL; spec++) {
         sprintf (buf, "%-19.18s", &spec_table[spec].name[5]);
         strcat (buf1, buf);
@@ -785,8 +784,8 @@ bool show_help (CHAR_T *ch, char *argument) {
 
     /* Display syntax.  */
     if (arg[0] == '\0') {
-        send_to_char ("Syntax:  ? [command]\n\r\n\r", ch);
-        send_to_char ("[command]          [description]\n\r", ch);
+        printf_to_char (ch, "Syntax:  ? [command]\n\r\n\r");
+        printf_to_char (ch, "[command]          [description]\n\r");
         for (cnt = 0; master_table[cnt].table != NULL; cnt++)
             printf_to_char (ch, "%-18.18s -%s\n\r",
                 master_table[cnt].name, master_table[cnt].description);
@@ -814,9 +813,9 @@ bool show_help (CHAR_T *ch, char *argument) {
         }
         else if (master_table[cnt].table == skill_table) {
             if (spell[0] == '\0') {
-                send_to_char (
+                printf_to_char (ch, 
                     "Syntax:  ? spells "
-                    "[ignore/attack/defend/self/object/all]\n\r", ch);
+                    "[ignore/attack/defend/self/object/all]\n\r");
                 return FALSE;
             }
             if (!str_prefix (spell, "all"))
@@ -832,9 +831,9 @@ bool show_help (CHAR_T *ch, char *argument) {
             else if (!str_prefix (spell, "object"))
                 show_skill_cmds (ch, SKILL_TARGET_OBJ_INV);
             else {
-                send_to_char (
+                printf_to_char (ch, 
                     "Syntax:  ? spell "
-                    "[ignore/attack/defend/self/object/all]\n\r", ch);
+                    "[ignore/attack/defend/self/object/all]\n\r");
             }
             return FALSE;
         }

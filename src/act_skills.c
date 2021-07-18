@@ -293,10 +293,10 @@ DEFINE_DO_FUN (do_groups) {
 
             printf_to_char (ch, "%-20s ", group->name);
             if (++col % 3 == 0)
-                send_to_char ("\n\r", ch);
+                printf_to_char (ch, "\n\r");
         }
         if (col % 3 != 0)
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
         printf_to_char (ch, "Creation points: %d\n\r",
             ch->pcdata->creation_points);
         return;
@@ -310,19 +310,19 @@ DEFINE_DO_FUN (do_groups) {
                 break;
             printf_to_char (ch, "%-20s ", group->name);
             if (++col % 3 == 0)
-                send_to_char ("\n\r", ch);
+                printf_to_char (ch, "\n\r");
         }
         if (col % 3 != 0)
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
         return;
     }
 
     /* show the sub-members of a group */
     num = skill_group_lookup (argument);
     if (num < 0) {
-        send_to_char (
+        printf_to_char (ch,
             "No group of that name exist.\n\r"
-            "Type 'groups all' or 'info all' for a full listing.\n\r", ch);
+            "Type 'groups all' or 'info all' for a full listing.\n\r");
         return;
     }
     group = skill_group_get (num);
@@ -331,10 +331,10 @@ DEFINE_DO_FUN (do_groups) {
     for (num = 0; num < MAX_IN_GROUP && group->spells[num] != NULL; num++) {
         printf_to_char (ch, "%-20s ", group->spells[num]);
         if (++col % 3 == 0)
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
     }
     if (col % 3 != 0)
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
 }
 
 DEFINE_DO_FUN (do_train) {
@@ -475,11 +475,11 @@ DEFINE_DO_FUN (do_practice) {
                     (3 - int_str_len (ch->pcdata->learned[sn]))),
                 ch->pcdata->learned[sn]);
             if (++col % 3 == 0)
-                send_to_char ("\n\r", ch);
+                printf_to_char (ch, "\n\r");
         }
 
         if (col % 3 != 0)
-            send_to_char ("\n\r", ch);
+            printf_to_char (ch, "\n\r");
 
         printf_to_char (ch, "You have %d practice sessions left.\n\r",
             ch->practice);
@@ -653,7 +653,7 @@ DEFINE_DO_FUN (do_cast) {
                 target = TARGET_OBJ;
             }
             else {
-                send_to_char ("You don't see that here.\n\r", ch);
+                printf_to_char (ch, "You don't see that here.\n\r");
                 return;
             }
             break;
@@ -673,7 +673,7 @@ DEFINE_DO_FUN (do_cast) {
                 target = TARGET_OBJ;
             }
             else {
-                send_to_char ("You don't see that here.\n\r", ch);
+                printf_to_char (ch, "You don't see that here.\n\r");
                 return;
             }
             break;
@@ -693,7 +693,7 @@ DEFINE_DO_FUN (do_cast) {
     WAIT_STATE (ch, skill_table[sn].beats);
 
     if (number_percent () > char_get_skill (ch, sn)) {
-        send_to_char ("You lost your concentration.\n\r", ch);
+        printf_to_char (ch, "You lost your concentration.\n\r");
         player_try_skill_improve (ch, sn, FALSE, 1);
         ch->mana -= mana / 2;
     }

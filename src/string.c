@@ -31,10 +31,10 @@
  Called by:  none
  ****************************************************************************/
 void string_edit (CHAR_T *ch, char **string_edit) {
-    send_to_char ("-========- Entering EDIT Mode -=========-\n\r", ch);
-    send_to_char ("    Type .h on a new line for help\n\r", ch);
-    send_to_char (" Terminate with a ~ or @ on a blank line.\n\r", ch);
-    send_to_char ("-=======================================-\n\r", ch);
+    printf_to_char (ch, "-========- Entering EDIT Mode -=========-\n\r");
+    printf_to_char (ch, "    Type .h on a new line for help\n\r");
+    printf_to_char (ch, " Terminate with a ~ or @ on a blank line.\n\r");
+    printf_to_char (ch, "-=======================================-\n\r");
 
     if (*string_edit == NULL)
         *string_edit = str_dup ("");
@@ -49,10 +49,10 @@ void string_edit (CHAR_T *ch, char **string_edit) {
  Called by:  (many)olc_act.c
  ****************************************************************************/
 void string_append (CHAR_T *ch, char **string_edit) {
-    send_to_char ("-=======- Entering APPEND Mode -========-\n\r", ch);
-    send_to_char ("    Type .h on a new line for help\n\r", ch);
-    send_to_char (" Terminate with a ~ or @ on a blank line.\n\r", ch);
-    send_to_char ("-=======================================-\n\r", ch);
+    printf_to_char (ch, "-=======- Entering APPEND Mode -========-\n\r");
+    printf_to_char (ch, "    Type .h on a new line for help\n\r");
+    printf_to_char (ch, " Terminate with a ~ or @ on a blank line.\n\r");
+    printf_to_char (ch, "-=======================================-\n\r");
 
     if (*string_edit == NULL)
         *string_edit = str_dup ("");
@@ -109,18 +109,18 @@ void string_add (CHAR_T *ch, char *argument) {
         argument = first_arg (argument, arg3, FALSE);
 
         if (!str_cmp (arg1, ".c")) {
-            send_to_char ("String cleared.\n\r", ch);
+            printf_to_char (ch, "String cleared.\n\r");
             str_replace_dup (ch->desc->string_edit, "");
             return;
         }
         if (!str_cmp (arg1, ".s")) {
-            send_to_char ("String so far:\n\r", ch);
+            printf_to_char (ch, "String so far:\n\r");
             send_to_char (numlines (*ch->desc->string_edit), ch);
             return;
         }
         if (!str_cmp (arg1, ".r")) {
             if (arg2[0] == '\0') {
-                send_to_char ("usage:  .r \"old string\" \"new string\"\n\r", ch);
+                printf_to_char (ch, "usage:  .r \"old string\" \"new string\"\n\r");
                 return;
             }
 
@@ -131,19 +131,19 @@ void string_add (CHAR_T *ch, char *argument) {
         }
         if (!str_cmp (arg1, ".f")) {
             *ch->desc->string_edit = format_string (*ch->desc->string_edit);
-            send_to_char ("String formatted.\n\r", ch);
+            printf_to_char (ch, "String formatted.\n\r");
             return;
         }
         if (!str_cmp (arg1, ".ld")) {
             *ch->desc->string_edit =
                 string_linedel (*ch->desc->string_edit, atoi (arg2));
-            send_to_char ("Line deleted.\n\r", ch);
+            printf_to_char (ch, "Line deleted.\n\r");
             return;
         }
         if (!str_cmp (arg1, ".li")) {
             *ch->desc->string_edit =
                 string_lineadd (*ch->desc->string_edit, tmparg3, atoi (arg2));
-            send_to_char ("Line inserted.\n\r", ch);
+            printf_to_char (ch, "Line inserted.\n\r");
             return;
         }
         if (!str_cmp (arg1, ".lr")) {
@@ -151,25 +151,25 @@ void string_add (CHAR_T *ch, char *argument) {
                 string_linedel (*ch->desc->string_edit, atoi (arg2));
             *ch->desc->string_edit =
                 string_lineadd (*ch->desc->string_edit, tmparg3, atoi (arg2));
-            send_to_char ("Line replaced.\n\r", ch);
+            printf_to_char (ch, "Line replaced.\n\r");
             return;
         }
         if (!str_cmp (arg1, ".h")) {
-            send_to_char ("Sedit help (commands on blank line):   \n\r", ch);
-            send_to_char (".r 'old' 'new'   - replace a substring \n\r", ch);
-            send_to_char ("                   (requires '', \"\") \n\r", ch);
-            send_to_char (".h               - get help (this info)\n\r", ch);
-            send_to_char (".s               - show string so far  \n\r", ch);
-            send_to_char (".f               - (word wrap) string  \n\r", ch);
-            send_to_char (".c               - clear string so far \n\r", ch);
-            send_to_char (".ld <num>        - delete line number <num>\n\r", ch);
-            send_to_char (".li <num> <str>  - insert <str> at line <num>\n\r", ch);
-            send_to_char (".lr <num> <str>  - replace line <num> with <str>\n\r", ch);
-            send_to_char ("@                - end string          \n\r", ch);
+            printf_to_char (ch, "Sedit help (commands on blank line):   \n\r");
+            printf_to_char (ch, ".r 'old' 'new'   - replace a substring \n\r");
+            printf_to_char (ch, "                   (requires '', \"\") \n\r");
+            printf_to_char (ch, ".h               - get help (this info)\n\r");
+            printf_to_char (ch, ".s               - show string so far  \n\r");
+            printf_to_char (ch, ".f               - (word wrap) string  \n\r");
+            printf_to_char (ch, ".c               - clear string so far \n\r");
+            printf_to_char (ch, ".ld <num>        - delete line number <num>\n\r");
+            printf_to_char (ch, ".li <num> <str>  - insert <str> at line <num>\n\r");
+            printf_to_char (ch, ".lr <num> <str>  - replace line <num> with <str>\n\r");
+            printf_to_char (ch, "@                - end string          \n\r");
             return;
         }
 
-        send_to_char ("SEdit:  Invalid dot command.\n\r", ch);
+        printf_to_char (ch, "SEdit:  Invalid dot command.\n\r");
         return;
     }
 
@@ -204,7 +204,7 @@ void string_add (CHAR_T *ch, char *argument) {
      * Edwin strikes again! Fixed avoid adding to a too-long
      * note. JR -- 10/15/00 */
     if (strlen ( *ch->desc->string_edit ) + strlen (argument) >= (MAX_STRING_LENGTH - 4)) {
-        send_to_char ("String too long, last line skipped.\n\r", ch);
+        printf_to_char (ch, "String too long, last line skipped.\n\r");
 
         /* Force character out of editing mode. */
         ch->desc->string_edit = NULL;

@@ -121,7 +121,7 @@ void do_scan_real (CHAR_T *ch, char *argument, int max_depth) {
     if (arg1[0] == '\0') {
         min_depth = 0;
         door = SCAN_ALL_DIRS;
-        send_to_char ("Looking around you see:\n\r", ch);
+        printf_to_char (ch, "Looking around you see:\n\r");
         act ("$n looks all around.", ch, NULL, NULL, TO_NOTCHAR);
     }
     else if ((door = door_lookup (arg1)) >= 0) {
@@ -132,7 +132,7 @@ void do_scan_real (CHAR_T *ch, char *argument, int max_depth) {
         max_depth *= 2;
     }
     else {
-        send_to_char ("That's not a valid direction.\n\r", ch);
+        printf_to_char (ch, "That's not a valid direction.\n\r");
         return;
     }
 
@@ -167,7 +167,7 @@ void do_look_room (CHAR_T *ch, int is_auto) {
     if ((IS_IMMORTAL (ch) && (IS_NPC (ch) || EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT)))
         || IS_BUILDER (ch, ch->in_room->area))
         printf_to_char (ch, "{r [{RRoom %d{r]{x", ch->in_room->vnum);
-    send_to_char ("\n\r", ch);
+    printf_to_char (ch, "\n\r");
 
     if (!is_auto || (!IS_NPC (ch) && !IS_SET (ch->comm, COMM_BRIEF)))
         printf_to_char(ch, "  {S%s{x", ch->in_room->description);
@@ -199,7 +199,7 @@ void do_look_direction (CHAR_T *ch, int door) {
     if (pexit->description != NULL && pexit->description[0] != '\0')
         send_to_char (pexit->description, ch);
     else
-        send_to_char ("Nothing special there.\n\r", ch);
+        printf_to_char (ch, "Nothing special there.\n\r");
 
     if (pexit->keyword != NULL && pexit->keyword[0] != '\0' &&
         pexit->keyword[0] != ' ')
@@ -231,7 +231,7 @@ bool do_filter_description_remove_line (CHAR_T *ch) {
                 buf[len + 1] = '\0';
                 str_free (&(ch->description));
                 ch->description = str_dup (buf);
-                send_to_char ("Your description is:\n\r", ch);
+                printf_to_char (ch, "Your description is:\n\r");
                 send_to_char (ch->description ? ch->description :
                               "(None).\n\r", ch);
                 return FALSE;
@@ -242,7 +242,7 @@ bool do_filter_description_remove_line (CHAR_T *ch) {
     buf[0] = '\0';
     str_free (&(ch->description));
     ch->description = str_dup (buf);
-    send_to_char ("Description cleared.\n\r", ch);
+    printf_to_char (ch, "Description cleared.\n\r");
     return FALSE;
 }
 
@@ -312,7 +312,7 @@ DEFINE_DO_FUN (do_look) {
     if (!IS_NPC (ch) && !EXT_IS_SET (ch->ext_plr, PLR_HOLYLIGHT) &&
         room_is_dark (ch->in_room))
     {
-        send_to_char ("{DIt is pitch black ... {x\n\r", ch);
+        printf_to_char (ch, "{DIt is pitch black ... {x\n\r");
         char_list_show_to_char (ch->in_room->people_first, ch);
         return;
     }
@@ -345,7 +345,7 @@ DEFINE_DO_FUN (do_look) {
             if (++count == number) { \
                 send_to_char ((str), ch); \
                 if ((with_crlf)) \
-                    send_to_char ("\n\r", ch); \
+                    printf_to_char (ch, "\n\r"); \
                 return; \
             } \
             continue; \
@@ -395,7 +395,7 @@ DEFINE_DO_FUN (do_look) {
     }
 
     /* All options failed. */
-    send_to_char ("You do not see that here.\n\r", ch);
+    printf_to_char (ch, "You do not see that here.\n\r");
 }
 
 /* RT added back for the hell of it */
@@ -512,11 +512,11 @@ DEFINE_DO_FUN (do_score) {
     printf_to_char (ch, "Wimpy set to %d hit points.\n\r", ch->wimpy);
 
     if (IS_DRUNK (ch))
-        send_to_char ("You are drunk.\n\r", ch);
+        printf_to_char (ch, "You are drunk.\n\r");
     if (IS_THIRSTY (ch))
-        send_to_char ("You are thirsty.\n\r", ch);
+        printf_to_char (ch, "You are thirsty.\n\r");
     if (IS_HUNGRY (ch))
-        send_to_char ("You are hungry.\n\r", ch);
+        printf_to_char (ch, "You are hungry.\n\r");
 
     printf_to_char (ch, "You are %s\r\n",
         char_get_position_str (ch, ch->position, ch->on, TRUE));
@@ -548,7 +548,7 @@ DEFINE_DO_FUN (do_score) {
             printf_to_char (ch, "  Invisible: level %d", ch->invis_level);
         if (ch->incog_level)
             printf_to_char (ch, "  Incognito: level %d", ch->incog_level);
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
     }
 
     if (IS_SET (ch->comm, COMM_SHOW_AFFECTS))
@@ -561,7 +561,7 @@ DEFINE_DO_FUN (do_affects) {
     BAIL_IF (ch->affect_first == NULL,
         "You are not affected by any spells.\n\r", ch);
 
-    send_to_char ("You are affected by the following spells:\n\r", ch);
+    printf_to_char (ch, "You are affected by the following spells:\n\r");
     for (paf = ch->affect_first; paf != NULL; paf = paf->on_next) {
         if (paf_last == NULL || paf->type != paf_last->type)
             printf_to_char (ch, "Spell: %-15s\n\r", skill_table[paf->type].name);
@@ -575,7 +575,7 @@ DEFINE_DO_FUN (do_affects) {
                 printf_to_char (ch, "   modifies %s by %d ",
                     affect_apply_name (paf->apply), paf->modifier);
             if (paf->duration == -1)
-                send_to_char ("permanently\n\r", ch);
+                printf_to_char (ch, "permanently\n\r");
             else
                 printf_to_char (ch, "for %d hours\n\r", paf->duration);
         }
@@ -675,14 +675,14 @@ DEFINE_DO_FUN (do_help) {
     }
 
     if (!found) {
-        send_to_char ("No help on that word.\n\r", ch);
+        printf_to_char (ch, "No help on that word.\n\r");
         /* Let's log unmet help requests so studious IMP's can improve their help files ;-)
          * But to avoid idiots, we will check the length of the help request, and trim to
          * a reasonable length (set it by redefining MAX_CMD_LEN in merc.h).  -- JR */
         if (strlen(argall) > MAX_CMD_LEN) {
             argall[MAX_CMD_LEN - 1] = '\0';
             log_f ("Excessive command length: %s requested %s.", ch->name, argall);
-            send_to_char ("That was rude!\n\r", ch);
+            printf_to_char (ch, "That was rude!\n\r");
         }
         /* OHELPS_FILE is the "orphaned helps" files. Defined in merc.h -- JR */
         else
@@ -769,7 +769,7 @@ DEFINE_DO_FUN (do_who) {
                 case 1: level_lower = atoi (arg); break;
                 case 2: level_upper = atoi (arg); break;
                 default:
-                    send_to_char ("Only two level numbers allowed.\n\r", ch);
+                    printf_to_char (ch, "Only two level numbers allowed.\n\r");
                     return;
             }
             continue;
@@ -813,7 +813,7 @@ DEFINE_DO_FUN (do_who) {
         }
 
         /* Unknown argument. */
-        send_to_char ("That's not a valid race, class, or clan.\n\r", ch);
+        printf_to_char (ch, "That's not a valid race, class, or clan.\n\r");
         return;
     }
 
@@ -881,7 +881,7 @@ DEFINE_DO_FUN (do_count) {
 }
 
 DEFINE_DO_FUN (do_inventory) {
-    send_to_char ("You are carrying:\n\r", ch);
+    printf_to_char (ch, "You are carrying:\n\r");
     obj_list_show_to_char (ch->content_first, ch, TRUE, TRUE);
 }
 
@@ -891,7 +891,7 @@ DEFINE_DO_FUN (do_equipment) {
     int wear_loc;
     bool found;
 
-    send_to_char ("You are using:\n\r", ch);
+    printf_to_char (ch, "You are using:\n\r");
     found = FALSE;
     for (wear_loc = 0; wear_loc < WEAR_LOC_MAX; wear_loc++) {
         if ((obj = char_get_eq_by_wear_loc (ch, wear_loc)) == NULL)
@@ -903,12 +903,12 @@ DEFINE_DO_FUN (do_equipment) {
         if (char_can_see_obj (ch, obj))
             printf_to_char (ch, "%s\n\r", obj_format_to_char (obj, ch, TRUE));
         else
-            send_to_char ("something.\n\r", ch);
+            printf_to_char (ch, "something.\n\r");
         found = TRUE;
     }
 
     if (!found)
-        send_to_char ("Nothing.\n\r", ch);
+        printf_to_char (ch, "Nothing.\n\r");
 }
 
 DEFINE_DO_FUN (do_compare) {
@@ -980,7 +980,7 @@ DEFINE_DO_FUN (do_where) {
     one_argument (argument, arg);
 
     if (arg[0] == '\0') {
-        send_to_char ("Players near you:\n\r", ch);
+        printf_to_char (ch, "Players near you:\n\r");
         found = FALSE;
         for (d = descriptor_first; d; d = d->global_next) {
             if (d->connected == CON_PLAYING
@@ -998,7 +998,7 @@ DEFINE_DO_FUN (do_where) {
             }
         }
         if (!found)
-            send_to_char ("None\n\r", ch);
+            printf_to_char (ch, "None\n\r");
     }
     else {
         found = FALSE;
@@ -1052,7 +1052,7 @@ DEFINE_DO_FUN (do_description) {
         if (do_filter_description_alter (ch, argument))
             return;
 
-    send_to_char ("Your description is:\n\r", ch);
+    printf_to_char (ch, "Your description is:\n\r");
     send_to_char (ch->description ? ch->description : "(None).\n\r", ch);
 }
 
@@ -1075,12 +1075,12 @@ DEFINE_DO_FUN (do_commands) {
         {
             printf_to_char (ch, "%-12s", cmd_table[cmd].name);
             if (++col % 6 == 0)
-                send_to_char ("\n\r", ch);
+                printf_to_char (ch, "\n\r");
         }
     }
 
     if (col % 6 != 0)
-        send_to_char ("\n\r", ch);
+        printf_to_char (ch, "\n\r");
 }
 
 DEFINE_DO_FUN (do_areas) {

@@ -116,7 +116,7 @@ HEDIT (hedit_new) {
     ch->desc->olc_edit = (HELP_T *) help;
     ch->desc->editor = ED_HELP;
 
-    send_to_char ("Help created.\n\r", ch);
+    printf_to_char (ch, "Help created.\n\r");
     return FALSE;
 }
 
@@ -158,7 +158,7 @@ HEDIT (hedit_delete) {
         "HEdit delete: Help %s not found in had_list.", help->keyword);
     help_free (help);
 
-    send_to_char ("Help deleted.\n\r", ch);
+    printf_to_char (ch, "Help deleted.\n\r");
     return TRUE;
 }
 

@@ -111,7 +111,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
         room_index_next = room_get_index (ch->in_room->vnum + 1);
     if (room_index_next == NULL) {
         bug ("do_buy: bad pet shop at vnum %d.", ch->in_room->vnum);
-        send_to_char ("Sorry, you can't buy that here.\n\r", ch);
+        printf_to_char (ch, "Sorry, you can't buy that here.\n\r");
         return;
     }
 
@@ -159,7 +159,7 @@ void do_buy_pet (CHAR_T *ch, char *argument) {
     add_follower (pet, ch);
     pet->leader = ch;
     ch->pet = pet;
-    send_to_char ("Enjoy your pet.\n\r", ch);
+    printf_to_char (ch, "Enjoy your pet.\n\r");
     act ("$n bought $N as a pet.", ch, NULL, pet, TO_NOTCHAR);
 }
 
@@ -275,7 +275,7 @@ void do_list_pets (CHAR_T *ch, char *argument) {
         room_index_next = room_get_index (ch->in_room->vnum + 1);
     if (room_index_next == NULL) {
         bug ("do_list: bad pet shop at vnum %d.", ch->in_room->vnum);
-        send_to_char ("You can't do that here.\n\r", ch);
+        printf_to_char (ch, "You can't do that here.\n\r");
         return;
     }
 
@@ -285,7 +285,7 @@ void do_list_pets (CHAR_T *ch, char *argument) {
             continue;
         if (!found) {
             found = TRUE;
-            send_to_char ("Pets for sale:\n\r", ch);
+            printf_to_char (ch, "Pets for sale:\n\r");
         }
         material_str = IS_SET (ch->comm, COMM_MATERIALS)
             ? material_format_part (material_get (pet->material)) : "";
@@ -293,7 +293,7 @@ void do_list_pets (CHAR_T *ch, char *argument) {
             10 * pet->level * pet->level, material_str, pet->short_descr);
     }
     if (!found)
-        send_to_char ("Sorry, we're out of pets right now.\n\r", ch);
+        printf_to_char (ch, "Sorry, we're out of pets right now.\n\r");
 }
 
 void do_list_items (CHAR_T *ch, char *argument) {
@@ -322,7 +322,7 @@ void do_list_items (CHAR_T *ch, char *argument) {
 
         if (!found) {
             found = TRUE;
-            send_to_char ("[Lv Price Qty] Item\n\r", ch);
+            printf_to_char (ch, "[Lv Price Qty] Item\n\r");
         }
 
         material_str = IS_SET (ch->comm, COMM_MATERIALS)
@@ -349,7 +349,7 @@ void do_list_items (CHAR_T *ch, char *argument) {
     }
 
     if (!found)
-        send_to_char ("You can't buy anything here.\n\r", ch);
+        printf_to_char (ch, "You can't buy anything here.\n\r");
 }
 
 DEFINE_DO_FUN (do_list) {
@@ -389,7 +389,7 @@ DEFINE_DO_FUN (do_sell) {
     if (!IS_OBJ_STAT (obj, ITEM_SELL_EXTRACT)
         && roll < char_get_skill (ch, SN(HAGGLE)))
     {
-        send_to_char ("You haggle with the shopkeeper.\n\r", ch);
+        printf_to_char (ch, "You haggle with the shopkeeper.\n\r");
         cost += obj->cost / 2 * roll / 100;
         cost = UMIN (cost, 95 * mobile_get_obj_cost (keeper, obj, TRUE) / 100);
         cost = UMIN (cost, (keeper->silver + 100 * keeper->gold));
@@ -463,7 +463,7 @@ DEFINE_DO_FUN (do_heal) {
     if (arg[0] == '\0') {
         /* display price list */
         act ("$N says 'I offer the following spells:'", ch, NULL, mob, TO_CHAR);
-        send_to_char (
+        printf_to_char (ch, 
             "   light:   cure light wounds    10 gold\n\r"
             "   serious: cure serious wounds  15 gold\n\r"
             "   critic:  cure critical wounds 25 gold\n\r"
@@ -474,7 +474,7 @@ DEFINE_DO_FUN (do_heal) {
             "   uncurse: remove curse         50 gold\n\r"
             "   refresh: restore movement      5 gold\n\r"
             "   mana:    restore mana         10 gold\n\r"
-            "Type heal <type> to be healed.\n\r", ch);
+            "Type heal <type> to be healed.\n\r");
         return;
     }
 
@@ -549,7 +549,7 @@ DEFINE_DO_FUN (do_heal) {
         ch->mana += dice (2, 8) + mob->level / 3;
         ch->mana = UMIN (ch->mana, ch->max_mana);
         say_spell_name (mob, "restore mana", class_lookup_exact ("cleric"));
-        send_to_char ("A warm glow passes through you.\n\r", ch);
+        printf_to_char (ch, "A warm glow passes through you.\n\r");
         return;
     }
     if (sn == -1)
