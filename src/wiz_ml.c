@@ -642,6 +642,7 @@ void do_jsave_table (CHAR_T *ch, const char *arg) {
                 case TABLE_TYPES:     type_name = "types";     break;
                 case TABLE_EXT_FLAGS: type_name = "ext_flags"; break;
                 case TABLE_UNIQUE:    type_name = "unique";    break;
+                default:              type_name = "<error>";   break;
             }
 
             if (restrict_type > 0)

@@ -1505,17 +1505,17 @@ void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt,
         if (damage_adj == NULL)
             strcpy (buf_hit, "hit");
         else
-            sprintf (buf_hit, "%s hit", damage_adj);
+            snprintf (buf_hit, sizeof(buf_hit), "%s hit", damage_adj);
         attack = buf_hit;
 
         if (ch == victim) {
-            sprintf (buf1, "{2You %s yourself with your %s%s%c{x", vs, str, attack, punct);
-            sprintf (buf3, "{3$n %s $melf with $s %s%s%c{x", vp, str, attack, punct);
+            snprintf (buf1, sizeof(buf1), "{2You %s yourself with your %s%s%c{x", vs, str, attack, punct);
+            snprintf (buf3, sizeof(buf3), "{3$n %s $melf with $s %s%s%c{x", vp, str, attack, punct);
         }
         else {
-            sprintf (buf1, "{2You %s $N with your %s%s%c{x", vs, str, attack, punct);
-            sprintf (buf2, "{4$n %s you with $s %s%s%c{x", vp, str, attack, punct);
-            sprintf (buf3, "{3$n %s $N with $s %s%s%c{x", vp, str, attack, punct);
+            snprintf (buf1, sizeof(buf1), "{2You %s $N with your %s%s%c{x", vs, str, attack, punct);
+            snprintf (buf2, sizeof(buf2), "{4$n %s you with $s %s%s%c{x", vp, str, attack, punct);
+            snprintf (buf3, sizeof(buf3), "{3$n %s $N with $s %s%s%c{x", vp, str, attack, punct);
         }
     }
     /* No more special cases - determine messages. */
@@ -1535,32 +1535,32 @@ void dam_message (CHAR_T *ch, CHAR_T *victim, int dam, int dt,
 
         /* Was an adjective applied to the attack type? (heavy, strong, etc) */
         if (damage_adj != NULL && damage_adj[0] != '\0') {
-            sprintf (buf_hit, "%s %s", damage_adj, attack);
+            snprintf (buf_hit, sizeof(buf_hit), "%s %s", damage_adj, attack);
             attack = buf_hit;
         }
 
         /* Special messages for immunity. */
         if (immune) {
             if (ch == victim) {
-                sprintf (buf1, "{2Luckily, you are immune to that.{x");
-                sprintf (buf3, "{3$n is unaffected by $s own %s.{x", attack);
+                snprintf (buf1, sizeof(buf1), "{2Luckily, you are immune to that.{x");
+                snprintf (buf3, sizeof(buf3), "{3$n is unaffected by $s own %s.{x", attack);
             }
             else {
-                sprintf (buf1, "{2$N is unaffected by your %s!{x", attack);
-                sprintf (buf2, "{4$n's %s is powerless against you.{x", attack);
-                sprintf (buf3, "{3$N is unaffected by $n's %s!{x", attack);
+                snprintf (buf1, sizeof(buf1), "{2$N is unaffected by your %s!{x", attack);
+                snprintf (buf2, sizeof(buf2), "{4$n's %s is powerless against you.{x", attack);
+                snprintf (buf3, sizeof(buf3), "{3$N is unaffected by $n's %s!{x", attack);
             }
         }
         /* The attack was successful - show a message. */
         else {
             if (ch == victim) {
-                sprintf (buf1, "{2Your %s%s %s you%c{x", str, attack, vp, punct);
-                sprintf (buf3, "{3$n's %s%s %s $m%c{x", str, attack, vp, punct);
+                snprintf (buf1, sizeof(buf1), "{2Your %s%s %s you%c{x", str, attack, vp, punct);
+                snprintf (buf3, sizeof(buf3), "{3$n's %s%s %s $m%c{x", str, attack, vp, punct);
             }
             else {
-                sprintf (buf1, "{2Your %s%s %s $N%c{x", str, attack, vp, punct);
-                sprintf (buf2, "{4$n's %s%s %s you%c{x", str, attack, vp, punct);
-                sprintf (buf3, "{3$n's %s%s %s $N%c{x", str, attack, vp, punct);
+                snprintf (buf1, sizeof(buf1), "{2Your %s%s %s $N%c{x", str, attack, vp, punct);
+                snprintf (buf2, sizeof(buf2), "{4$n's %s%s %s you%c{x", str, attack, vp, punct);
+                snprintf (buf3, sizeof(buf3), "{3$n's %s%s %s $N%c{x", str, attack, vp, punct);
             }
         }
     }

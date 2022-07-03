@@ -483,7 +483,7 @@ bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     sprintf (strsave, "%s%s%s", PLAYER_DIR, str_capitalized (name), ".gz");
     if ((fp = fopen (strsave, "r")) != NULL) {
         fclose (fp);
-        sprintf (buf, "gzip -dfq %s", strsave);
+        snprintf (buf, sizeof(buf), "gzip -dfq %s", strsave);
         system (buf);
     }
 #endif

@@ -128,10 +128,10 @@ void say_spell_name (CHAR_T *ch, const char *name, int class) {
 
     plural = (strchr (name, ' ')) ? "s" : "";
     printf_to_char (ch, "{5You utter the word%s, '%s'.{x\n\r", plural, name);
-    sprintf (buf1, "{5$n utters the word%s, '%s'.{x", plural, name);
+    snprintf (buf1, sizeof(buf1), "{5$n utters the word%s, '%s'.{x", plural, name);
 
     plural = (strchr (words, ' ')) ? "s" : "";
-    sprintf (buf2, "{5$n utters the word%s, '%s'.{x", plural, words);
+    snprintf (buf2, sizeof(buf2), "{5$n utters the word%s, '%s'.{x", plural, words);
 
     for (rch = ch->in_room->people_first; rch; rch = rch->room_next)
         if (rch != ch)

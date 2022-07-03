@@ -132,11 +132,11 @@ void ban_site (CHAR_T *ch, char *argument, bool perm) {
 
         buf_cat (buffer, "Banned sites  level  type     status\n\r");
         for (pban = ban_first; pban != NULL; pban = pban->global_next) {
-            sprintf (buf2, "%s%s%s",
+            snprintf (buf2, sizeof(buf2), "%s%s%s",
                      IS_SET (pban->ban_flags, BAN_PREFIX) ? "*" : "",
                      pban->name,
                      IS_SET (pban->ban_flags, BAN_SUFFIX) ? "*" : "");
-            sprintf (buf, "%-12s    %-3d  %-7s  %s\n\r",
+            snprintf (buf, sizeof(buf), "%-12s    %-3d  %-7s  %s\n\r",
                      buf2, pban->level,
                      IS_SET (pban->ban_flags, BAN_NEWBIES) ? "newbies" :
                      IS_SET (pban->ban_flags, BAN_PERMIT) ? "permit" :

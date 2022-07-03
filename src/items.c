@@ -301,7 +301,7 @@ bool item_can_position_at (const OBJ_T *obj, int pos) {
         case ITEM_FURNITURE: {
             const FURNITURE_BITS_T *furn;
             flag_t bits;
-            if ((furn = furniture_get (POS_STANDING)) == NULL)
+            if ((furn = furniture_get (pos)) == NULL)
                 return FALSE;
             bits = furn->bit_at | furn->bit_on | furn->bit_in;
             return ((obj->v.furniture.flags & bits) != 0) ? TRUE : FALSE;

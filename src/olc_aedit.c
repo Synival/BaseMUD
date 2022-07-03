@@ -211,7 +211,7 @@ AEDIT (aedit_builder) {
         "Syntax: builder All      -allows everyone\n\r", ch, FALSE);
 
     name[0] = UPPER (name[0]);
-    if (strstr (area->builders, name) != '\0') {
+    if (strstr (area->builders, name) != NULL) {
         area->builders = string_replace (area->builders, name, "\0");
         area->builders = string_unpad (area->builders);
 
@@ -222,7 +222,7 @@ AEDIT (aedit_builder) {
     }
     else {
         buf[0] = '\0';
-        if (strstr (area->builders, "None") != '\0') {
+        if (strstr (area->builders, "None") != NULL) {
             area->builders = string_replace (area->builders, "None", "\0");
             area->builders = string_unpad (area->builders);
         }
