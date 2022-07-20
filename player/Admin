@@ -1,23 +1,23 @@
 #PLAYER
 Name Admin~
 Id   1565440615
-LogO 1656860130
+LogO 1565440739
 Vers 5
-Prom <%h/%Hh %m/%Mm %v/%Vv %p> ~
+Prom <%hhp %mm %vmv> ~
 Race human~
 Sex  1
-ClassName warrior~
+Cla  3
 Levl 60
 Sec  9
-Plyd 195
+Plyd 103
 Scro 22
 Room 3700
 HMV  20 20 100 100 100 100
 Gold 0
 Silv 0
 Exp  1000
-Plr  [autoassist autoexit autoloot autosac autogold autosplit nosummon colour]
-Comm [brief prompt combine telnet_ga show_affects materials]
+Act  QT
+Comm NOP
 Pos  8
 Prac 5
 Trai 3
@@ -27,7 +27,7 @@ Hit   1
 ACs 95 95 95 99
 Attr 16 13 13 13 13
 AMod 0 0 0 0 0
-Pass Ad72Mx0lVECKE~
+Pass AdS9O3DYbGQ/I~
 Titl  the Implementor~
 Pnts 40
 TSex 1
