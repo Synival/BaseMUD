@@ -43,4 +43,10 @@ DECLARE_DO_FUN (do_train);
 DECLARE_DO_FUN (do_practice);
 DECLARE_DO_FUN (do_cast);
 
+/* Types of stats gainable via 'train'. */
+DECLARE_TRAIN_STAT_FUN (train_stat_cost_stat);
+DECLARE_TRAIN_STAT_FUN (train_stat_can_stat);
+DECLARE_TRAIN_STAT_FUN (train_stat_do_stat);
+DECLARE_TRAIN_STAT_FUN (train_stat_do_hp_mana);
+
 #endif

@@ -57,6 +57,9 @@
 #define DEFINE_COND_FUN(fun) \
     bool fun (const CHAR_T *ch)
 
+#define DEFINE_TRAIN_STAT_FUN(fun) \
+    int fun (CHAR_T *ch, const TRAIN_STAT_T *ts, bool silent)
+
 /* Short scalar types.
  * Diavolo reports AIX compiler has bugs with short types. */
 #if !defined(FALSE)
@@ -467,6 +470,7 @@
 #define COND_HOURS_STUFFED  40
 #define COND_HOURS_MAX      48
 #define AC_MAX              4
+#define TRAIN_STAT_MAX      (STAT_MAX + 2)
 
 /* Colour setting codes */
 #define COLOUR_TEXT            0
@@ -547,7 +551,7 @@
 #define TABLE_UNIQUE    3
 #define TABLE_INTERNAL  4
 
-#define TABLE_MAX               76
+#define TABLE_MAX               77
 #define TABLE_LENGTH_DYNAMIC    -1
 
 /* Types of portals. */

@@ -50,6 +50,8 @@
 #include "spell_npc.h"
 #include "spell_off.h"
 
+#include "act_skills.h"
+
 /* Useful macros for defining rows in our master table. */
 #define TFLAGS(table, desc) \
     { table, #table, TABLE_FLAGS, desc, \
@@ -158,8 +160,9 @@ const TABLE_T master_table[TABLE_MAX + 1] = {
     TTABLE_INTERNAL (map_lookup_table, "map_lookups",  "Types for object mappings."),
     TTABLE_INTERNAL (nanny_table,      "nannies",      "Descriptor 'Nanny' table."),
     TTABLE_INTERNAL (obj_map_table,    "obj_maps",     "Obj type-values[] mappings."),
-    TTABLE_INTERNAL (skill_map_table,  "skill_maps",   "Internal mappings of skills."),
     TTABLE_INTERNAL (recycle_table,    "recyclables",  "Recycleable object types."),
+    TTABLE_INTERNAL (skill_map_table,  "skill_maps",   "Internal mappings of skills."),
+    TTABLE_INTERNAL (train_stat_table, "train_stats",  "List of trainable stats."),
     TTABLE_INTERNAL (wiznet_table,     "wiznets",      "Wiznet channels."),
     {0}
 };
@@ -1843,3 +1846,15 @@ const COND_T cond_table[COND_MAX + 1] = {
     {COND_HUNGER, "hunger", char_is_fed,      char_is_hungry,  "You feel well-fed.\n\r",       "You are hungry.\n\r",  "You are no longer hungry.\n\r",  NULL },
     {0}
 };
+
+const TRAIN_STAT_T train_stat_table[TRAIN_STAT_MAX + 1] = {
+    {"str",  "strength",     train_stat_cost_stat, train_stat_can_stat, train_stat_do_stat, STAT_STR},
+    {"int",  "intelligence", train_stat_cost_stat, train_stat_can_stat, train_stat_do_stat, STAT_INT},
+    {"wis",  "wisdom",       train_stat_cost_stat, train_stat_can_stat, train_stat_do_stat, STAT_WIS},
+    {"dex",  "dexterity",    train_stat_cost_stat, train_stat_can_stat, train_stat_do_stat, STAT_DEX},
+    {"con",  "constitution", train_stat_cost_stat, train_stat_can_stat, train_stat_do_stat, STAT_CON},
+    {"hp",   "durability",   NULL,                 NULL,                train_stat_do_hp_mana, 0},
+    {"mana", "power",        NULL,                 NULL,                train_stat_do_hp_mana, 1},
+    {0},
+};
+

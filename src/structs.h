@@ -1236,4 +1236,14 @@ struct cond_type {
     char *msg_better, *msg_worse;
 };
 
+/* Stats for training. */
+struct train_stat_type {
+    const char *keyword;
+    const char *name;
+    TRAIN_STAT_FUN *cost_func;
+    TRAIN_STAT_FUN *can_func;
+    TRAIN_STAT_FUN *do_func;
+    int func_param;
+};
+
 #endif

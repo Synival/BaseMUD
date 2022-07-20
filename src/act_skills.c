@@ -338,73 +338,43 @@ DEFINE_DO_FUN (do_groups) {
 }
 
 DEFINE_DO_FUN (do_train) {
-    char buf[MAX_STRING_LENGTH];
-    CHAR_T *mob;
-    sh_int stat = -1;
-    char *output = NULL;
+    const TRAIN_STAT_T *ts;
     int cost;
 
     if (IS_NPC (ch))
         return;
 
     /* Check for trainer. */
-    BAIL_IF ((mob = char_get_trainer_room (ch)) == NULL,
+    BAIL_IF (char_get_trainer_room (ch) == NULL,
         "You can't do that here.\n\r", ch);
+
+    /* If no argument was provided, always show the stats available. */
     if (argument[0] == '\0') {
         printf_to_char (ch, "You have %d training sessions.\n\r", ch->train);
-        argument = "foo";
+        ts = NULL;
     }
-
-    cost = 1;
-    if (!str_cmp (argument, "str")) {
-        if (class_table[ch->class].attr_prime == STAT_STR)
-            cost = 1;
-        stat = STAT_STR;
-        output = "strength";
-    }
-    else if (!str_cmp (argument, "int")) {
-        if (class_table[ch->class].attr_prime == STAT_INT)
-            cost = 1;
-        stat = STAT_INT;
-        output = "intelligence";
-    }
-    else if (!str_cmp (argument, "wis")) {
-        if (class_table[ch->class].attr_prime == STAT_WIS)
-            cost = 1;
-        stat = STAT_WIS;
-        output = "wisdom";
-    }
-    else if (!str_cmp (argument, "dex")) {
-        if (class_table[ch->class].attr_prime == STAT_DEX)
-            cost = 1;
-        stat = STAT_DEX;
-        output = "dexterity";
-    }
-    else if (!str_cmp (argument, "con")) {
-        if (class_table[ch->class].attr_prime == STAT_CON)
-            cost = 1;
-        stat = STAT_CON;
-        output = "constitution";
-    }
-    else if (!str_cmp (argument, "hp"))
-        cost = 1;
-    else if (!str_cmp (argument, "mana"))
-        cost = 1;
+    /* Otherwise, does the argument correspond to a stat? */
     else {
-        strcpy (buf, "You can train:");
-        if (ch->perm_stat[STAT_STR] < char_get_max_train (ch, STAT_STR))
-            strcat (buf, " str");
-        if (ch->perm_stat[STAT_INT] < char_get_max_train (ch, STAT_INT))
-            strcat (buf, " int");
-        if (ch->perm_stat[STAT_WIS] < char_get_max_train (ch, STAT_WIS))
-            strcat (buf, " wis");
-        if (ch->perm_stat[STAT_DEX] < char_get_max_train (ch, STAT_DEX))
-            strcat (buf, " dex");
-        if (ch->perm_stat[STAT_CON] < char_get_max_train (ch, STAT_CON))
-            strcat (buf, " con");
-        strcat (buf, " hp mana");
+        for (ts = &(train_stat_table[0]); ts->keyword != NULL; ts++)
+            if (!str_cmp (argument, ts->keyword))
+                break;
+    }
 
-        if (buf[strlen (buf) - 1] != ':') {
+    /* No keyword matched - show a list of trainable stats. */
+    if (ts == NULL || ts->keyword == NULL) {
+        char buf[MAX_STRING_LENGTH];
+        strcpy (buf, "You can train:");
+
+        for (ts = &(train_stat_table[0]); ts->keyword != NULL; ts++) {
+            if (ts->can_func && !ts->can_func(ch, ts, TRUE))
+                continue;
+
+            char buf2[16];
+            snprintf(buf2, sizeof(buf2), " %s", ts->keyword);
+            strcat (buf, buf2);
+        }
+
+        if (buf[strlen(buf) - 1] != ':') {
             strcat (buf, ".\n\r");
             send_to_char (buf, ch);
         }
@@ -418,37 +388,62 @@ DEFINE_DO_FUN (do_train) {
         return;
     }
 
+    /* Determine skill cost. */
+    cost = ts->cost_func ? ts->cost_func(ch, ts, FALSE) : 1;
     BAIL_IF (cost > ch->train,
         "You don't have enough training sessions.\n\r", ch);
 
-    if (!str_cmp ("hp", argument)) {
-        ch->train -= cost;
+    /* Check any other requirements. */
+    if (ts->can_func && !ts->can_func(ch, ts, FALSE))
+        return;
+
+    /* All requirements met; perform training. */
+    ch->train -= cost;
+    ts->do_func(ch, ts, FALSE);
+}
+
+DEFINE_TRAIN_STAT_FUN (train_stat_cost_stat) {
+    /* OPTIONAL: to make a non-primary stat cost more training sessions,
+                 increase the second number! */
+    return (class_table[ch->class].attr_prime == ts->func_param) ? 1 : 1;
+}
+
+DEFINE_TRAIN_STAT_FUN (train_stat_can_stat) {
+    int stat = ts->func_param;
+    if (ch->perm_stat[stat] >= char_get_max_train (ch, stat)) {
+        if (!silent)
+            act ("Your $T is already at maximum.", ch, NULL, ts->name, TO_CHAR);
+        return 0;
+    }
+    return 1;
+}
+
+DEFINE_TRAIN_STAT_FUN (train_stat_do_stat) {
+    ch->perm_stat[ts->func_param] += 1;
+
+    if (!silent) {
+        act ("Your $T increases!", ch, NULL, ts->name, TO_CHAR);
+        act ("$n's $T increases!", ch, NULL, ts->name, TO_NOTCHAR);
+    }
+    return 0;
+}
+
+DEFINE_TRAIN_STAT_FUN (train_stat_do_hp_mana) {
+    if (ts->func_param == 0) {
         ch->pcdata->perm_hit += 10;
         ch->max_hit += 10;
         ch->hit += 10;
-        act ("Your durability increases!", ch, NULL, NULL, TO_CHAR);
-        act ("$n's durability increases!", ch, NULL, NULL, TO_NOTCHAR);
-        return;
     }
-    if (!str_cmp ("mana", argument)) {
-        ch->train -= cost;
+    else {
         ch->pcdata->perm_mana += 10;
         ch->max_mana += 10;
         ch->mana += 10;
-        act ("Your power increases!", ch, NULL, NULL, TO_CHAR);
-        act ("$n's power increases!", ch, NULL, NULL, TO_NOTCHAR);
-        return;
     }
-
-    if (ch->perm_stat[stat] >= char_get_max_train (ch, stat)) {
-        act ("Your $T is already at maximum.", ch, NULL, output, TO_CHAR);
-        return;
+    if (!silent) {
+        act ("Your $T increases!", ch, NULL, ts->name, TO_CHAR);
+        act ("$n's $T increases!", ch, NULL, ts->name, TO_NOTCHAR);
     }
-
-    ch->train -= cost;
-    ch->perm_stat[stat] += 1;
-    act ("Your $T increases!", ch, NULL, output, TO_CHAR);
-    act ("$n's $T increases!", ch, NULL, output, TO_NOTCHAR);
+    return 0;
 }
 
 DEFINE_DO_FUN (do_practice) {

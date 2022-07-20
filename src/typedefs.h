@@ -125,6 +125,7 @@ typedef struct song_type        SONG_T;
 typedef struct ext_flags_type   EXT_FLAGS_T;
 typedef struct ext_init_flags_type EXT_INIT_FLAGS_T;
 typedef struct cond_type        COND_T;
+typedef struct train_stat_type  TRAIN_STAT_T;
 
 /* JSON typedefs. */
 typedef struct json_t JSON_T;
@@ -150,6 +151,7 @@ typedef int LOOKUP_FUN  (const char *name);
 typedef void INIT_FUN (void *obj);
 typedef void DISPOSE_FUN (void *obj);
 typedef bool COND_FUN (const CHAR_T *ch);
+typedef int TRAIN_STAT_FUN (CHAR_T *ch, const TRAIN_STAT_T *ts, bool silent);
 
 /* Accommodate old non-Ansi compilers. */
 #if defined(TRADITIONAL)
@@ -167,6 +169,7 @@ typedef bool COND_FUN (const CHAR_T *ch);
     #define DECLARE_INIT_FUN(fun)   void fun()
     #define DECLARE_DISPOSE_FUN(fun) void fun()
     #define DECLARE_COND_FUN(fun)   bool fun()
+    #define DECLARE_TRAIN_STAT_FUN(fun) int fun()
 #else
     #define args(list)              list
     #define DECLARE_DO_FUN(fun)     DO_FUN     fun
@@ -181,6 +184,7 @@ typedef bool COND_FUN (const CHAR_T *ch);
     #define DECLARE_INIT_FUN(fun)   INIT_FUN fun
     #define DECLARE_DISPOSE_FUN(fun) DISPOSE_FUN fun
     #define DECLARE_COND_FUN(fun)   COND_FUN fun
+    #define DECLARE_TRAIN_STAT_FUN(fun) TRAIN_STAT_FUN fun
 #endif
 
 #endif
