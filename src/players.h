@@ -36,7 +36,7 @@ bool player_is_independent (const CHAR_T *ch);
 bool player_in_same_clan (const CHAR_T *ch, const CHAR_T *victim);
 void player_reset (CHAR_T *ch);
 void player_reset_colour (CHAR_T *ch);
-void player_set_title (CHAR_T *ch, char *title);
+void player_set_title (CHAR_T *ch, const char *title);
 void player_advance_level (CHAR_T *ch, bool hide);
 void player_gain_exp (CHAR_T *ch, int gain);
 int player_get_exp_to_next_level (const CHAR_T *ch);

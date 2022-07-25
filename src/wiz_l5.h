@@ -33,6 +33,8 @@
 /* Sub-routines and filters. */
 bool do_obj_load_check (CHAR_T *ch, OBJ_T *obj);
 void do_clone_recurse (CHAR_T *ch, OBJ_T *obj, OBJ_T *clone);
+bool do_string_char (CHAR_T *ch, char *arg1, char *arg2, char *arg3, char *argument);
+bool do_string_obj (CHAR_T *ch, char *arg1, char *arg2, char *arg3, char *argument);
 
 /* Commands. */
 DECLARE_DO_FUN (do_nochannels);

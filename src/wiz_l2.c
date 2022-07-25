@@ -72,19 +72,18 @@ DEFINE_DO_FUN (do_ban) {
 
 /* RT set replaces sset, mset, oset, and rset */
 DEFINE_DO_FUN (do_set) {
+    const char *syntax_str =
+        "Syntax:\n\r"
+        "  set mob       <name> <field> <value>\n\r"
+        "  set character <name> <field> <value>\n\r"
+        "  set obj       <name> <field> <value>\n\r"
+        "  set room      <room> <field> <value>\n\r"
+        "  set skill     <name> <spell or skill> <value>\n\r";
+
     char arg[MAX_INPUT_LENGTH];
 
     argument = one_argument (argument, arg);
-
-    if (arg[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  set mob       <name> <field> <value>\n\r", ch);
-        send_to_char ("  set character <name> <field> <value>\n\r", ch);
-        send_to_char ("  set obj       <name> <field> <value>\n\r", ch);
-        send_to_char ("  set room      <room> <field> <value>\n\r", ch);
-        send_to_char ("  set skill     <name> <spell or skill> <value>\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg[0] == '\0', syntax_str, ch);
 
     BAIL_IF_EXPR (!str_prefix (arg, "mobile") || !str_prefix (arg, "character"),
         do_function (ch, &do_mset, argument));
@@ -100,6 +99,12 @@ DEFINE_DO_FUN (do_set) {
 }
 
 DEFINE_DO_FUN (do_sset) {
+    const char *syntax_str =
+        "Syntax:\n\r"
+        "  set skill <name> <spell or skill> <value>\n\r"
+        "  set skill <name> all <value>\n\r"
+        "   (use the name of the skill, not the number)\n\r";
+
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
@@ -112,14 +117,8 @@ DEFINE_DO_FUN (do_sset) {
     argument = one_argument (argument, arg2);
     argument = one_argument (argument, arg3);
 
-    if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  set skill <name> <spell or skill> <value>\n\r", ch);
-        send_to_char ("  set skill <name> all <value>\n\r", ch);
-        send_to_char ("   (use the name of the skill, not the number)\n\r", ch);
-        return;
-    }
-
+    BAIL_IF (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0',
+        syntax_str, ch);
     BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
         "They aren't here.\n\r", ch);
     BAIL_IF (IS_NPC (victim),
@@ -148,6 +147,15 @@ DEFINE_DO_FUN (do_sset) {
 }
 
 DEFINE_DO_FUN (do_mset) {
+    const char *syntax_str =
+        "Syntax:\n\r"
+        "  set char <name> <field> <value>\n\r"
+        "  Field being one of:\n\r"
+        "    str int wis dex con sex class level\n\r"
+        "    race group gold silver hp mana move prac\n\r"
+        "    align train thirst hunger drunk full\n\r"
+        "    security hours\n\r";
+
     const CLASS_T *class;
     char arg1[MIL];
     char arg2[MIL];
@@ -161,17 +169,8 @@ DEFINE_DO_FUN (do_mset) {
     argument = one_argument (argument, arg2);
     strcpy (arg3, argument);
 
-    if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  set char <name> <field> <value>\n\r", ch);
-        send_to_char ("  Field being one of:\n\r", ch);
-        send_to_char ("    str int wis dex con sex class level\n\r", ch);
-        send_to_char ("    race group gold silver hp mana move prac\n\r", ch);
-        send_to_char ("    align train thirst hunger drunk full\n\r", ch);
-        send_to_char ("    security hours\n\r", ch);
-        return;
-    }
-
+    BAIL_IF (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0',
+        syntax_str, ch);
     BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
         "They aren't here.\n\r", ch);
 
@@ -184,7 +183,7 @@ DEFINE_DO_FUN (do_mset) {
     /* Set something. */
     if (!str_cmp (arg2, "str")) {
         if (value < 3 || value > char_get_max_train (victim, STAT_STR)) {
-            printf_to_char (ch, "Strength range is 3 to %d\n\r.",
+            printf_to_char (ch, "Strength range is 3 to %d.\n\r",
                 char_get_max_train (victim, STAT_STR));
             return;
         }
@@ -417,11 +416,17 @@ DEFINE_DO_FUN (do_mset) {
         return;
     }
 
-    /* Generate usage message. */
-    do_function (ch, &do_mset, "");
+    send_to_char (syntax_str, ch);
 }
 
 DEFINE_DO_FUN (do_oset) {
+    const char *syntax_str =
+        "Syntax:\n\r"
+        "  set obj <object> <field> <value>\n\r"
+        "  Field being one of:\n\r"
+        "    value0 value1 value2 value3 value4 (v1-v4)\n\r"
+        "    extra wear level weight cost timer\n\r";
+
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
@@ -433,14 +438,8 @@ DEFINE_DO_FUN (do_oset) {
     argument = one_argument (argument, arg2);
     strcpy (arg3, argument);
 
-    if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  set obj <object> <field> <value>\n\r", ch);
-        send_to_char ("  Field being one of:\n\r", ch);
-        send_to_char ("    value0 value1 value2 value3 value4 (v1-v4)\n\r", ch);
-        send_to_char ("    extra wear level weight cost timer\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0',
+        syntax_str, ch);
     BAIL_IF ((obj = find_obj_world (ch, arg1)) == NULL,
         "Nothing like that in heaven or earth.\n\r", ch);
 
@@ -472,10 +471,16 @@ DEFINE_DO_FUN (do_oset) {
         obj->timer = value);
 
     /* Generate usage message. */
-    do_function (ch, &do_oset, "");
+    send_to_char (syntax_str, ch);
 }
 
 DEFINE_DO_FUN (do_rset) {
+    const char *syntax_str =
+        "Syntax:\n\r"
+        "  set room <location> <field> <value>\n\r"
+        "  Field being one of:\n\r"
+        "    flags sector\n\r";
+
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
@@ -487,13 +492,8 @@ DEFINE_DO_FUN (do_rset) {
     argument = one_argument (argument, arg2);
     strcpy (arg3, argument);
 
-    if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  set room <location> <field> <value>\n\r", ch);
-        send_to_char ("  Field being one of:\n\r", ch);
-        send_to_char ("    flags sector\n\r", ch);
-        return;
-    }
+    BAIL_IF (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0',
+        syntax_str, ch);
     BAIL_IF ((location = find_location (ch, arg1)) == NULL,
         "No such location.\n\r", ch);
     BAIL_IF (!room_is_owner (location, ch) && ch->in_room != location
@@ -512,7 +512,7 @@ DEFINE_DO_FUN (do_rset) {
         location->sector_type = value);
 
     /* Generate usage message. */
-    do_function (ch, &do_rset, "");
+    send_to_char (syntax_str, ch);
 }
 
 DEFINE_DO_FUN (do_wizlock) {

@@ -309,12 +309,17 @@ DEFINE_DO_FUN (do_snoop) {
 }
 
 DEFINE_DO_FUN (do_string) {
+    const char *syntax_str =
+        "Syntax:\n\r"
+        "  string char <name> <field> <string>\n\r"
+        "    fields: name short long desc title spec\n\r"
+        "  string obj  <name> <field> <string>\n\r"
+        "    fields: name short long extended\n\r";
+
     char type[MAX_INPUT_LENGTH];
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     char arg3[MAX_INPUT_LENGTH];
-    CHAR_T *victim;
-    OBJ_T *obj;
 
     str_smash_tilde (argument);
     argument = one_argument (argument, type);
@@ -322,96 +327,111 @@ DEFINE_DO_FUN (do_string) {
     argument = one_argument (argument, arg2);
     strcpy (arg3, argument);
 
-    if (type[0] == '\0' || arg1[0] == '\0' || arg2[0] == '\0'
-        || arg3[0] == '\0')
-    {
-        send_to_char ("Syntax:\n\r", ch);
-        send_to_char ("  string char <name> <field> <string>\n\r", ch);
-        send_to_char ("    fields: name short long desc title spec\n\r", ch);
-        send_to_char ("  string obj  <name> <field> <string>\n\r", ch);
-        send_to_char ("    fields: name short long extended\n\r", ch);
-        return;
+    /* All arguments are required. */
+    BAIL_IF (type[0] == '\0' || arg1[0] == '\0' ||
+             arg2[0] == '\0' || arg3[0] == '\0',
+        syntax_str, ch);
+
+    /* What type of thing are we modifying? */
+    bool result;
+    if (!str_prefix (type, "character") || !str_prefix (type, "mobile"))
+        result = do_string_char (ch, arg1, arg2, arg3, argument);
+    else if (!str_prefix (type, "object"))
+        result = do_string_obj (ch, arg1, arg2, arg3, argument);
+    else
+        result = FALSE;
+
+    /* If no valid command was found, display the error message. */
+    if (result == FALSE)
+        send_to_char (syntax_str, ch);
+}
+
+bool do_string_char (CHAR_T *ch, char *arg1, char *arg2, char *arg3, char *argument)
+{
+    CHAR_T *victim;
+
+    RETURN_IF ((victim = find_char_world (ch, arg1)) == NULL,
+        "They aren't here.\n\r", ch, TRUE);
+
+    /* clear zone for mobs */
+    victim->area = NULL;
+
+    /* string something */
+    if (!str_prefix (arg2, "name")) {
+        RETURN_IF (!IS_NPC (victim),
+            "Not on PC's.\n\r", ch, TRUE);
+        str_replace_dup (&(victim->name), arg3);
+        return TRUE;
+    }
+    if (!str_prefix (arg2, "description")) {
+        strcat (arg3, "\n\r");
+        str_replace_dup (&(victim->description), arg3);
+        return TRUE;
+    }
+    if (!str_prefix (arg2, "short")) {
+        str_replace_dup (&(victim->short_descr), arg3);
+        return TRUE;
+    }
+    if (!str_prefix (arg2, "long")) {
+        strcat (arg3, "\n\r");
+        str_replace_dup (&(victim->long_descr), arg3);
+        return TRUE;
+    }
+    if (!str_prefix (arg2, "title")) {
+        RETURN_IF (IS_NPC (victim),
+            "Not on NPC's.\n\r", ch, TRUE);
+        player_set_title (victim, arg3);
+        return TRUE;
+    }
+    if (!str_prefix (arg2, "spec")) {
+        SPEC_FUN *spec_fun;
+        RETURN_IF (!IS_NPC (victim),
+            "Not on PC's.\n\r", ch, TRUE);
+        RETURN_IF ((spec_fun = spec_lookup_function (arg3)) == NULL,
+            "No such spec fun.\n\r", ch, TRUE);
+        victim->spec_fun = spec_fun;
+        return TRUE;
     }
 
-    if (!str_prefix (type, "character") || !str_prefix (type, "mobile")) {
-        BAIL_IF ((victim = find_char_world (ch, arg1)) == NULL,
-            "They aren't here.\n\r", ch);
+    return FALSE;
+}
 
-        /* clear zone for mobs */
-        victim->area = NULL;
+bool do_string_obj (CHAR_T *ch, char *arg1, char *arg2, char *arg3, char *argument)
+{
+    OBJ_T *obj;
 
-        /* string something */
-        if (!str_prefix (arg2, "name")) {
-            BAIL_IF (!IS_NPC (victim),
-                "Not on PC's.\n\r", ch);
-            str_replace_dup (&(victim->name), arg3);
-            return;
-        }
-        if (!str_prefix (arg2, "description")) {
-            str_replace_dup (&(victim->description), arg3);
-            return;
-        }
-        if (!str_prefix (arg2, "short")) {
-            str_replace_dup (&(victim->short_descr), arg3);
-            return;
-        }
-        if (!str_prefix (arg2, "long")) {
-            strcat (arg3, "\n\r");
-            str_replace_dup (&(victim->long_descr), arg3);
-            return;
-        }
-        if (!str_prefix (arg2, "title")) {
-            BAIL_IF (IS_NPC (victim),
-                "Not on NPC's.\n\r", ch);
-            player_set_title (victim, arg3);
-            return;
-        }
-        if (!str_prefix (arg2, "spec")) {
-            SPEC_FUN *spec_fun;
-            BAIL_IF (!IS_NPC (victim),
-                "Not on PC's.\n\r", ch);
-            BAIL_IF ((spec_fun = spec_lookup_function (arg3)) == NULL,
-                "No such spec fun.\n\r", ch);
-            victim->spec_fun = spec_fun;
-            return;
-        }
+    /* string an obj */
+    RETURN_IF ((obj = find_obj_world (ch, arg1)) == NULL,
+        "Nothing like that in heaven or earth.\n\r", ch, FALSE);
+
+    if (!str_prefix (arg2, "name")) {
+        str_replace_dup (&(obj->name), arg3);
+        return TRUE;
+    }
+    if (!str_prefix (arg2, "short")) {
+        str_replace_dup (&(obj->short_descr), arg3);
+        return TRUE;
+    }
+    if (!str_prefix (arg2, "long")) {
+        str_replace_dup (&(obj->description), arg3);
+        return TRUE;
+    }
+    if (!str_prefix (arg2, "ed") || !str_prefix (arg2, "extended")) {
+        EXTRA_DESCR_T *ed;
+
+        argument = one_argument (argument, arg3);
+        RETURN_IF (argument == NULL,
+            "Syntax: set object <object> ed <keyword> <string>\n\r", ch, TRUE);
+        strcat (argument, "\n\r");
+
+        ed = extra_descr_new ();
+        ed->keyword = str_dup (arg3);
+        ed->description = str_dup (argument);
+        extra_descr_to_obj_back (ed, obj);
+        return TRUE;
     }
 
-    if (!str_prefix (type, "object")) {
-        /* string an obj */
-        BAIL_IF ((obj = find_obj_world (ch, arg1)) == NULL,
-            "Nothing like that in heaven or earth.\n\r", ch);
-
-        if (!str_prefix (arg2, "name")) {
-            str_replace_dup (&(obj->name), arg3);
-            return;
-        }
-        if (!str_prefix (arg2, "short")) {
-            str_replace_dup (&(obj->short_descr), arg3);
-            return;
-        }
-        if (!str_prefix (arg2, "long")) {
-            str_replace_dup (&(obj->description), arg3);
-            return;
-        }
-        if (!str_prefix (arg2, "ed") || !str_prefix (arg2, "extended")) {
-            EXTRA_DESCR_T *ed;
-
-            argument = one_argument (argument, arg3);
-            BAIL_IF (argument == NULL,
-                "Syntax: oset <object> ed <keyword> <string>\n\r", ch);
-            strcat (argument, "\n\r");
-
-            ed = extra_descr_new ();
-            ed->keyword = str_dup (arg3);
-            ed->description = str_dup (argument);
-            extra_descr_to_obj_back (ed, obj);
-            return;
-        }
-    }
-
-    /* echo bad use message */
-    do_function (ch, &do_string, "");
+    return FALSE;
 }
 
 /* command that is similar to load */

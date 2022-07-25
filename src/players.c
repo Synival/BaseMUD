@@ -188,7 +188,7 @@ void player_reset_colour (CHAR_T *ch) {
         ch->pcdata->colour[i] = colour_setting_table[i].default_colour;
 }
 
-void player_set_title (CHAR_T *ch, char *title) {
+void player_set_title (CHAR_T *ch, const char *title) {
     char buf[MAX_STRING_LENGTH];
 
     BAIL_IF_BUG (IS_NPC (ch),
