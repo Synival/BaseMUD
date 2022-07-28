@@ -449,8 +449,8 @@ DEFINE_DO_FUN (do_value) {
 DEFINE_DO_FUN (do_heal) {
     CHAR_T *mob;
     char arg[MAX_INPUT_LENGTH];
-    int cost, sn;
-    SPELL_FUN *spell;
+    int sn, cost;
+    const HEAL_SPELL_T *spell;
 
     /* check for healer */
     for (mob = ch->in_room->people_first; mob; mob = mob->room_next)
@@ -459,103 +459,63 @@ DEFINE_DO_FUN (do_heal) {
     BAIL_IF (mob == NULL,
         "You can't do that here.\n\r", ch);
 
+    /* if no argument is provided, display the price list */
     one_argument (argument, arg);
     if (arg[0] == '\0') {
-        /* display price list */
         act ("$N says 'I offer the following spells:'", ch, NULL, mob, TO_CHAR);
-        send_to_char (
-            "   light:   cure light wounds    10 gold\n\r"
-            "   serious: cure serious wounds  15 gold\n\r"
-            "   critic:  cure critical wounds 25 gold\n\r"
-            "   heal:    healing spell        50 gold\n\r"
-            "   blind:   cure blindness       20 gold\n\r"
-            "   disease: cure disease         15 gold\n\r"
-            "   poison:  cure poison          25 gold\n\r"
-            "   uncurse: remove curse         50 gold\n\r"
-            "   refresh: restore movement      5 gold\n\r"
-            "   mana:    restore mana         10 gold\n\r"
-            "Type heal <type> to be healed.\n\r", ch);
+        for (spell = heal_spell_table; spell->keywords != NULL; spell++) {
+            char keyword[32];
+            const char *kw;
+            int i;
+
+            /* get the first keyword of the available keywords. */
+            for (i = 0, kw = spell->keywords;
+                 i < sizeof(keyword) - 2 && *kw != '\0' && *kw != ' ';
+                 i++, kw++)
+            {
+                keyword[i] = *kw;
+            }
+            keyword[i] = ':';
+            keyword[i + 1] = '\0';
+
+            /* show the spell keyword, description, and cost */
+            printf_to_char (ch, "   %-9s%-21s%2d gold\n\r",
+                keyword, spell->description, spell->cost_gold);
+        }
         return;
     }
 
-    if (!str_prefix (arg, "light")) {
-        spell = spell_cure_light;
-        sn = skill_lookup ("cure light");
-        cost = 1000;
-    }
-    else if (!str_prefix (arg, "serious")) {
-        spell = spell_cure_serious;
-        sn = skill_lookup ("cure serious");
-        cost = 1500;
-    }
-    else if (!str_prefix (arg, "critical")) {
-        spell = spell_cure_critical;
-        sn = skill_lookup ("cure critical");
-        cost = 2500;
-    }
-    else if (!str_prefix (arg, "heal")) {
-        spell = spell_heal;
-        sn = skill_lookup ("heal");
-        cost = 5000;
-    }
-    else if (!str_prefix (arg, "blindness")) {
-        spell = spell_cure_blindness;
-        sn = skill_lookup ("cure blindness");
-        cost = 2000;
-    }
-    else if (!str_prefix (arg, "disease")) {
-        spell = spell_cure_disease;
-        sn = skill_lookup ("cure disease");
-        cost = 1500;
-    }
-    else if (!str_prefix (arg, "poison")) {
-        spell = spell_cure_poison;
-        sn = skill_lookup ("cure poison");
-        cost = 2500;
-    }
-    else if (!str_prefix (arg, "uncurse") || !str_prefix (arg, "curse")) {
-        spell = spell_remove_curse;
-        sn = skill_lookup ("remove curse");
-        cost = 5000;
-    }
-    else if (!str_prefix (arg, "refresh") || !str_prefix (arg, "moves")) {
-        spell = spell_refresh;
-        sn = skill_lookup ("refresh");
-        cost = 500;
-    }
-    else if (!str_prefix (arg, "mana") || !str_prefix (arg, "energize")) {
-        spell = NULL;
-        sn = -1;
-        cost = 1000;
-    }
-    else {
+    /* look for a matching spell. */
+    for (spell = heal_spell_table; spell->keywords != NULL; spell++)
+        if (str_in_namelist (arg, spell->keywords))
+            break;
+    if (spell->keywords == NULL) {
         act ("$N says 'Type 'heal' for a list of spells.'", ch, NULL, mob, TO_CHAR);
         return;
     }
+
+    /* spell found - can we afford it? */
+    cost = spell->cost_gold * 100;
     if (cost > (ch->gold * 100 + ch->silver)) {
         act ("$N says 'You do not have enough gold for my services.'",
              ch, NULL, mob, TO_CHAR);
         return;
     }
 
+    /* look up the skill. if it's not available, we have a problem! */
+    sn = spell->skill_name ? skill_lookup (spell->skill_name) : -1;
+    if (sn == -1) {
+        act ("$N seems to have forgotten how to cast it...", ch, NULL, mob, TO_CHAR);
+        return;
+    }
+
+    /* all checks passed - wait a moment and dispense with services. */
     WAIT_STATE (ch, PULSE_VIOLENCE);
 
     char_reduce_money (ch, cost);
     mob->gold += cost / 100;
     mob->silver += cost % 100;
 
-    /* restore mana trap...kinda hackish */
-    if (spell == NULL) {
-        ch->mana += dice (2, 8) + mob->level / 3;
-        ch->mana = UMIN (ch->mana, ch->max_mana);
-        say_spell_name (mob, "restore mana", class_lookup_exact ("cleric"));
-        send_to_char ("A warm glow passes through you.\n\r", ch);
-        return;
-    }
-    if (sn == -1)
-        return;
-    else {
-        say_spell (mob, sn, class_lookup_exact ("cleric"));
-        spell (sn, mob->level, mob, ch, TARGET_CHAR, "");
-    }
+    say_spell (mob, sn, class_lookup_exact ("cleric"));
+    spell->spell_func (sn, mob->level, mob, ch, TARGET_CHAR, "");
 }

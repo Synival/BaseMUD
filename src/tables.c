@@ -1003,6 +1003,7 @@ SKILL_T skill_table[SKILL_MAX + 1] = {
     {"recharge",        {{ 9,  1}, {53,  1}, {53,  2}, {53,  2}}, spell_recharge,        TOI,  PS, SLOT (517), 60,  24, "",               "!Recharge!", ""},
     {"refresh",         {{ 8,  1}, { 5,  1}, {12,  2}, { 9,  2}}, spell_refresh,         TCD,  PS, SLOT (81),  12,  18, "refresh",        "!Refresh!", ""},
     {"remove curse",    {{53,  1}, {18,  1}, {53,  2}, {22,  2}}, spell_remove_curse,    TOCD, PS, SLOT (35),  5,   12, "",               "!Remove Curse!", ""},
+    {"restore mana",    {{99, 99}, {99, 99}, {99, 99}, {99, 99}}, spell_restore_mana,    TCD,  PF, SLOT (0),   0,   0,  "",               "!Restore Mana!", ""},
     {"sanctuary",       {{36,  1}, {20,  1}, {42,  2}, {30,  2}}, spell_sanctuary,       TCD,  PS, SLOT (36),  75,  12, "",               "The white aura around your body fades.", ""},
     {"shield",          {{20,  1}, {35,  1}, {35,  2}, {40,  2}}, spell_shield,          TCD,  PS, SLOT (67),  12,  18, "",               "Your force shield shimmers then fades away.", ""},
     {"shocking grasp",  {{10,  1}, {53,  1}, {14,  2}, {13,  2}}, spell_shocking_grasp,  TCO,  PF, SLOT (53),  15,  12, "shocking grasp", "!Shocking Grasp!", ""},
@@ -1858,3 +1859,16 @@ const TRAIN_STAT_T train_stat_table[TRAIN_STAT_MAX + 1] = {
     {0},
 };
 
+const HEAL_SPELL_T heal_spell_table[HEAL_SPELL_MAX + 1] = {
+    {"light",         "cure light wounds",    spell_cure_light,     "cure light",     10},
+    {"serious",       "cure serious wounds",  spell_cure_serious,   "cure serious",   15},
+    {"critic",        "cure critical wounds", spell_cure_critical,  "cure critical",  25},
+    {"heal",          "healing spell",        spell_heal,           "heal",           50},
+    {"blind",         "cure blindness",       spell_cure_blindness, "cure blindness", 20},
+    {"disease",       "cure disease",         spell_cure_disease,   "cure disease",   15},
+    {"poison",        "cure poison",          spell_cure_poison,    "cure poison",    25},
+    {"uncurse curse", "remove curse",         spell_remove_curse,   "remove curse",   50},
+    {"refresh moves", "restore movement",     spell_refresh,        "refresh",        5 },
+    {"mana energize", "restore mana",         spell_restore_mana,   "restore mana",   10},
+    {0},
+};

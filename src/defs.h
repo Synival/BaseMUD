@@ -471,6 +471,7 @@
 #define COND_HOURS_MAX      48
 #define AC_MAX              4
 #define TRAIN_STAT_MAX      (STAT_MAX + 2)
+#define HEAL_SPELL_MAX      10
 
 /* Colour setting codes */
 #define COLOUR_TEXT            0

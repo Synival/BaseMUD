@@ -1246,4 +1246,13 @@ struct train_stat_type {
     int func_param;
 };
 
+/* Spells for the 'heal' command. */
+struct heal_spell_type {
+    char *keywords;
+    const char *description;
+    SPELL_FUN *spell_func;
+    const char *skill_name;
+    int cost_gold;
+};
+
 #endif

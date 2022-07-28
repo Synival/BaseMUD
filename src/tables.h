@@ -82,6 +82,7 @@ extern RECYCLE_T              recycle_table[RECYCLE_MAX + 1];
 extern const WIZNET_T         wiznet_table[WIZNET_MAX + 1];
 extern const COND_T           cond_table[COND_MAX + 1];
 extern const TRAIN_STAT_T     train_stat_table[TRAIN_STAT_MAX + 1];
+extern const HEAL_SPELL_T     heal_spell_table[HEAL_SPELL_MAX + 1];
 
 /* Other tables. */
 extern char *const title_table[CLASS_MAX][MAX_LEVEL + 1][2];

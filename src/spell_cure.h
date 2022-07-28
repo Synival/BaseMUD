@@ -42,5 +42,6 @@ DECLARE_SPELL_FUN (spell_refresh);
 DECLARE_SPELL_FUN (spell_remove_curse_object);
 DECLARE_SPELL_FUN (spell_remove_curse_char);
 DECLARE_SPELL_FUN (spell_remove_curse);
+DECLARE_SPELL_FUN (spell_restore_mana);
 
 #endif

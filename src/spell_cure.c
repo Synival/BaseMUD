@@ -218,3 +218,10 @@ DEFINE_SPELL_FUN (spell_remove_curse) {
     else
         spell_remove_curse_char (sn, level, ch, vo, target, target_name);
 }
+
+DEFINE_SPELL_FUN (spell_restore_mana) {
+    CHAR_T *victim = (CHAR_T *) vo;
+    victim->mana += dice (2, 8) + ch->level / 3;
+    victim->mana = UMIN (victim->mana, victim->max_mana);
+    send_to_char ("A warm glow passes through you.\n\r", victim);
+}

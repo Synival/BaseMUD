@@ -2190,6 +2190,31 @@
     "off_msg_char": "!Remove Curse!"
   }},
   {"skill": {
+    "name": "restore mana",
+    "classes": {
+      "mage": {
+        "level": 99,
+        "effort": 99
+      },
+      "cleric": {
+        "level": 99,
+        "effort": 99
+      },
+      "thief": {
+        "level": 99,
+        "effort": 99
+      },
+      "warrior": {
+        "level": 99,
+        "effort": 99
+      }
+    },
+    "target": "char_defensive",
+    "min_position": "fighting",
+    "usage_beats": 0,
+    "off_msg_char": "!Restore Mana!"
+  }},
+  {"skill": {
     "name": "sanctuary",
     "classes": {
       "mage": {
