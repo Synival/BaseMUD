@@ -396,16 +396,33 @@ DEFINE_DO_FUN (do_lock)
 DEFINE_DO_FUN (do_pick)
     { do_door (ch, argument, "pick",   do_pick_object,   do_pick_door); }
 
-bool do_filter_change_position (CHAR_T *ch, int pos, const char *same_msg) {
-    FILTER (ch->position == pos,
-        same_msg, ch);
-    FILTER (ch->position == POS_SLEEPING && IS_AFFECTED (ch, AFF_SLEEP),
-        "You can't wake up!\n\r", ch);
-    FILTER (ch->position == POS_FIGHTING,
-        "Maybe you should finish this fight first?\n\r", ch);
-    FILTER (ch->daze > 0,
-        "You're too dazed to re-orient yourself right now!\n\r", ch);
-    return FALSE;
+void do_change_position_sub(CHAR_T *ch, const char *argument, int pos,
+    bool stay_on, const char *msg_cant_on, const char *msg_cant)
+{
+    OBJ_T *obj = NULL;
+
+    /* are we repositioning ourselves on something? */
+    if (argument[0] != '\0') {
+        obj = find_obj_same_room (ch, argument);
+        BAIL_IF (obj == NULL,
+            "You don't see that here.\n\r", ch);
+    }
+    /* if we're not repositioning ourselves on anything, use what we're already
+     * on (or nothing, if the flag is set) */
+    else
+        obj = stay_on ? ch->on : NULL;
+
+    /* if we're repositioning onto something, make sure it's possible. */
+    if (obj != NULL) {
+        BAIL_IF (!item_can_position_at (obj, pos),
+            msg_cant_on, ch);
+        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
+                obj->v.furniture.max_people,
+            "There's no more room on $p.", ch, obj, NULL);
+    }
+
+    /* checks passed! set our positions. */
+    char_change_position(ch, pos, obj, msg_cant);
 }
 
 DEFINE_DO_FUN (do_stand) {
@@ -445,58 +462,41 @@ DEFINE_DO_FUN (do_stand) {
     /* If we're fighting someone, move to fighting position instead. */
     /* TODO: POS_FIGHTING is dumb, get rid of it! */
     new_pos = ch->fighting ? POS_FIGHTING : POS_STANDING;
-    do_position_sub(ch, argument, new_pos, FALSE,
+    do_change_position_sub(ch, argument, new_pos, FALSE,
         "You can't seem to find a place to stand.\n\r",
         "You can't stand up from your current position.\n\r"
     );
 }
 
-void do_position_sub(CHAR_T *ch, const char *argument, int pos, bool stay_on,
-    const char *msg_cant_on, const char *msg_cant)
-{
-    OBJ_T *obj = NULL;
-
-    /* are we repositioning ourselves on something? */
-    if (argument[0] != '\0') {
-        obj = find_obj_same_room (ch, argument);
-        BAIL_IF (obj == NULL,
-            "You don't see that here.\n\r", ch);
-    }
-    /* if we're not repositioning ourselves on anything, use what we're already
-     * on (or nothing, if the flag is set) */
-    else
-        obj = stay_on ? ch->on : NULL;
-
-    /* if we're repositioning onto something, make sure it's possible. */
-    if (obj != NULL) {
-        BAIL_IF (!item_can_position_at (obj, pos),
-            msg_cant_on, ch);
-        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
-                obj->v.furniture.max_people,
-            "There's no more room on $p.", ch, obj, NULL);
-    }
-
-    /* checks passed! set our positions. */
-    char_change_position(ch, pos, obj, msg_cant);
-}
-
-DEFINE_DO_FUN (do_rest) {
-    if (do_filter_change_position (ch, POS_RESTING,
-            "You are already resting.\n\r"))
-        return;
-    do_position_sub(ch, argument, POS_RESTING, TRUE,
-        "You can't rest on that.\n\r",
-        "You can't rest from your current position.\n\r"    
-    );
+bool do_filter_change_position (CHAR_T *ch, int pos, const char *same_msg) {
+    FILTER (ch->position == pos,
+        same_msg, ch);
+    FILTER (ch->position == POS_SLEEPING && IS_AFFECTED (ch, AFF_SLEEP),
+        "You can't wake up!\n\r", ch);
+    FILTER (ch->position == POS_FIGHTING,
+        "Maybe you should finish this fight first?\n\r", ch);
+    FILTER (ch->daze > 0,
+        "You're too dazed to re-orient yourself right now!\n\r", ch);
+    return FALSE;
 }
 
 DEFINE_DO_FUN (do_sit) {
     if (do_filter_change_position (ch, POS_SITTING,
             "You are already sitting down.\n\r"))
         return;
-    do_position_sub(ch, argument, POS_SITTING, TRUE,
+    do_change_position_sub(ch, argument, POS_SITTING, TRUE,
         "You can't sit on that.\n\r",
         "You can't sit from your current position.\n\r"
+    );
+}
+
+DEFINE_DO_FUN (do_rest) {
+    if (do_filter_change_position (ch, POS_RESTING,
+            "You are already resting.\n\r"))
+        return;
+    do_change_position_sub(ch, argument, POS_RESTING, TRUE,
+        "You can't rest on that.\n\r",
+        "You can't rest from your current position.\n\r"    
     );
 }
 
@@ -504,7 +504,7 @@ DEFINE_DO_FUN (do_sleep) {
     if (do_filter_change_position (ch, POS_SLEEPING,
             "You are already sleeping.\n\r"))
         return;
-    do_position_sub(ch, argument, POS_SLEEPING, TRUE,
+    do_change_position_sub(ch, argument, POS_SLEEPING, TRUE,
         "You can't sleep on that.\n\r",
         "You can't sleep from your current position.\n\r"
     );
