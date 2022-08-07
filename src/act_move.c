@@ -396,7 +396,7 @@ DEFINE_DO_FUN (do_lock)
 DEFINE_DO_FUN (do_pick)
     { do_door (ch, argument, "pick",   do_pick_object,   do_pick_door); }
 
-bool do_filter_change_position (CHAR_T *ch, int pos, char *same_msg) {
+bool do_filter_change_position (CHAR_T *ch, int pos, const char *same_msg) {
     FILTER (ch->position == pos,
         same_msg, ch);
     FILTER (ch->position == POS_SLEEPING && IS_AFFECTED (ch, AFF_SLEEP),
@@ -418,21 +418,7 @@ DEFINE_DO_FUN (do_stand) {
     /* For sit/rest/sleep, players need to stand up first to change their
      * position to another object. For standing, however, we don't, so the
      * logic is a bit different. -- Synival */
-    if (argument[0] == '\0') {
-        if (ch->on) {
-            BAIL_IF (ch->position == POS_FIGHTING,
-                "Maybe you should finish fighting first?\n\r", ch);
-        }
-        else {
-            BAIL_IF (ch->position == POS_FIGHTING,
-                "You are already fighting!\n\r", ch);
-            BAIL_IF (ch->position == POS_STANDING,
-                "You are already standing.\n\r", ch);
-        }
-        BAIL_IF (ch->daze > 0,
-            "You're too dazed to re-orient yourself right now!\n\r", ch);
-    }
-    else {
+    if (argument[0] != '\0') {
         BAIL_IF (ch->position == POS_FIGHTING,
             "Maybe you should finish fighting first?\n\r", ch);
         BAIL_IF (ch->daze > 0,
@@ -447,6 +433,20 @@ DEFINE_DO_FUN (do_stand) {
                 obj->v.furniture.max_people,
             "There's no room to stand on $p.", ch, obj, NULL);
     }
+    else {
+        if (ch->on) {
+            BAIL_IF (ch->position == POS_FIGHTING,
+                "Maybe you should finish fighting first?\n\r", ch);
+        }
+        else {
+            BAIL_IF (ch->position == POS_FIGHTING,
+                "You are already fighting!\n\r", ch);
+            BAIL_IF (ch->position == POS_STANDING,
+                "You are already standing.\n\r", ch);
+        }
+        BAIL_IF (ch->daze > 0,
+            "You're too dazed to re-orient yourself right now!\n\r", ch);
+    }
 
     /* If we're fighting someone, move to fighting position instead. */
     new_pos = ch->fighting ? POS_FIGHTING : POS_STANDING;
@@ -457,11 +457,12 @@ DEFINE_DO_FUN (do_stand) {
     ch->on = obj;
 }
 
-DEFINE_DO_FUN (do_rest) {
+void do_position_sub(CHAR_T *ch, const char *argument, int pos,
+    const char *msg_already, const char *msg_cant_on, const char *msg_cant)
+{
     OBJ_T *obj = NULL;
 
-    if (do_filter_change_position (ch, POS_RESTING,
-            "You are already resting.\n\r"))
+    if (do_filter_change_position (ch, pos, msg_already))
         return;
 
     /* okay, now that we know we can rest, find an object to rest on */
@@ -474,77 +475,44 @@ DEFINE_DO_FUN (do_rest) {
         obj = ch->on;
 
     if (obj != NULL) {
-        BAIL_IF (!item_can_position_at (obj, POS_RESTING),
-            "You can't rest on that.\n\r", ch);
+        BAIL_IF (!item_can_position_at (obj, pos),
+            msg_cant_on, ch);
         BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
                 obj->v.furniture.max_people,
             "There's no more room on $p.", ch, obj, NULL);
     }
 
-    BAIL_IF (!position_change_send_message(ch, ch->position, POS_RESTING, obj),
-        "You can't rest from your current position.\n\r", ch);
-    ch->position = POS_RESTING;
+    BAIL_IF (!position_change_send_message(ch, ch->position, pos, obj),
+        msg_cant, ch);
+    ch->position = pos;
     ch->on = obj;
+}
+
+DEFINE_DO_FUN (do_rest) {
+    do_position_sub(ch, argument,
+        POS_RESTING,
+        "You are already resting.\n\r",
+        "You can't rest on that.\n\r",
+        "You can't rest from your current position.\n\r"    
+    );
 }
 
 DEFINE_DO_FUN (do_sit) {
-    OBJ_T *obj = NULL;
-
-    if (do_filter_change_position (ch, POS_SITTING,
-            "You are already sitting down.\n\r"))
-        return;
-
-    /* okay, now that we know we can sit, find an object to sit on */
-    if (argument[0] != '\0') {
-        obj = find_obj_same_room (ch, argument);
-        BAIL_IF (obj == NULL,
-            "You don't see that here.\n\r", ch);
-    }
-    else
-        obj = ch->on;
-
-    if (obj != NULL) {
-        BAIL_IF (!item_can_position_at (obj, POS_SITTING),
-            "You can't sit on that.\n\r", ch);
-        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
-                obj->v.furniture.max_people,
-            "There's no more room on $p.", ch, obj, NULL);
-    }
-
-    BAIL_IF (!position_change_send_message(ch, ch->position, POS_SITTING, obj),
-        "You can't sit from your current position.\n\r", ch);
-    ch->position = POS_SITTING;
-    ch->on = obj;
+    do_position_sub(ch, argument,
+        POS_SITTING,
+        "You are already sitting down.\n\r",
+        "You can't sit on that.\n\r",
+        "You can't sit from your current position.\n\r"
+    );
 }
 
 DEFINE_DO_FUN (do_sleep) {
-    OBJ_T *obj = NULL;
-
-    if (do_filter_change_position (ch, POS_SLEEPING,
-            "You are already sleeping.\n\r"))
-        return;
-
-    /* okay, now that we know we can sleep, find an object to sleep on */
-    if (argument[0] != '\0') {
-        obj = find_obj_same_room (ch, argument);
-        BAIL_IF (obj == NULL,
-            "You don't see that here.\n\r", ch);
-    }
-    else
-        obj = ch->on;
-
-    if (obj != NULL) {
-        BAIL_IF (!item_can_position_at (obj, POS_SLEEPING),
-            "You can't sleep on that!\n\r", ch);
-        BAIL_IF_ACT (ch->on != obj && obj_count_users (obj) >=
-                obj->v.furniture.max_people,
-            "There's no more room on $p.", ch, obj, NULL);
-    }
-
-    BAIL_IF (!position_change_send_message(ch, ch->position, POS_SLEEPING, obj),
-        "You can't sleep from your current position.\n\r", ch);
-    ch->position = POS_SLEEPING;
-    ch->on = obj;
+    do_position_sub(ch, argument,
+        POS_SLEEPING,
+        "You are already sleeping.\n\r",
+        "You can't sleep on that.\n\r",
+        "You can't sleep from your current position.\n\r"
+    );
 }
 
 DEFINE_DO_FUN (do_wake) {
