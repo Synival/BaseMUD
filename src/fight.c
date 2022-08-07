@@ -699,8 +699,9 @@ bool set_fighting_position_if_possible (CHAR_T *ch) {
     else if (ch->fighting == NULL)
         return FALSE;
     if (ch->position != POS_FIGHTING) {
-        position_change_send_message (ch, ch->position, POS_FIGHTING, ch->on);
+        position_change_send_message (ch, ch->position, POS_FIGHTING, NULL);
         ch->position = POS_FIGHTING;
+        ch->on = NULL;
     }
     return TRUE;
 }
@@ -982,7 +983,8 @@ void set_fighting_one (CHAR_T *ch, CHAR_T *victim) {
                 break;
         }
         if (daze_mult > 0) {
-            do_function (victim, &do_sit, "");
+            if (victim->position != POS_SITTING)
+                do_function (victim, &do_sit, "");
             DAZE_STATE (victim, daze_mult * PULSE_VIOLENCE + PULSE_VIOLENCE / 2);
         }
     }

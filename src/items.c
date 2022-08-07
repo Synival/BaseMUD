@@ -297,6 +297,9 @@ bool item_can_play (const OBJ_T *obj) {
 }
 
 bool item_can_position_at (const OBJ_T *obj, int pos) {
+    if (pos == POS_FIGHTING)
+        pos = POS_STANDING;
+
     switch (obj->item_type) {
         case ITEM_FURNITURE: {
             const FURNITURE_BITS_T *furn;
@@ -699,6 +702,9 @@ int item_get_carry_number (const OBJ_T *obj) {
 
 int item_get_furn_preposition_type (const OBJ_T *obj, int position) {
     const FURNITURE_BITS_T *bits;
+    if (position == POS_FIGHTING)
+        position = POS_STANDING;
+
     if (obj == NULL)
         return POS_PREP_NO_OBJECT;
     if (obj->item_type != ITEM_FURNITURE)

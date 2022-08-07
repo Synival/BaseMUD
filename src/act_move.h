@@ -53,8 +53,8 @@ void do_door (CHAR_T *ch, char *argument, char *arg_msg,
     void (*func_obj)  (CHAR_T *, OBJ_T *),
     void (*func_door) (CHAR_T *, int));
 bool do_filter_change_position (CHAR_T *ch, int pos, const char *same_msg);
-void do_position_sub(CHAR_T *ch, const char *argument, int pos,
-    const char *msg_already, const char *msg_cant_on, const char *msg_cant);
+void do_position_sub(CHAR_T *ch, const char *argument, int pos, bool stay_on,
+    const char *msg_cant_on, const char *msg_cant);
 
 /* Commands. */
 DECLARE_DO_FUN (do_north);
