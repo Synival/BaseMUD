@@ -1832,3 +1832,14 @@ void char_change_conditions (CHAR_T *ch, int drunk, int full, int thirst,
         return;
     return player_change_conditions (ch, drunk, full, thirst, hunger);
 }
+
+bool char_change_position (CHAR_T *ch, int pos, OBJ_T *on_obj,
+    const char *msg_cant)
+{
+    RETURN_IF (!position_change_send_message(ch, ch->position, pos, on_obj),
+        msg_cant, ch, FALSE);
+
+    ch->position = pos;
+    ch->on = on_obj;
+    return TRUE;
+}

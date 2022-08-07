@@ -477,10 +477,7 @@ void do_position_sub(CHAR_T *ch, const char *argument, int pos, bool stay_on,
     }
 
     /* checks passed! set our positions. */
-    BAIL_IF (!position_change_send_message(ch, ch->position, pos, obj),
-        msg_cant, ch);
-    ch->position = pos;
-    ch->on = obj;
+    char_change_position(ch, pos, obj, msg_cant);
 }
 
 DEFINE_DO_FUN (do_rest) {

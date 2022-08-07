@@ -202,5 +202,7 @@ OBJ_T *char_die (CHAR_T *ch);
 void char_damage_if_wounded (CHAR_T *ch);
 void char_update_all (void);
 void char_update (CHAR_T *ch);
+bool char_change_position (CHAR_T *ch, int pos, OBJ_T *on_obj,
+    const char *msg_cant);
 
 #endif

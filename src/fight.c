@@ -698,10 +698,15 @@ bool set_fighting_position_if_possible (CHAR_T *ch) {
         return FALSE;
     else if (ch->fighting == NULL)
         return FALSE;
+
     if (ch->position != POS_FIGHTING) {
-        position_change_send_message (ch, ch->position, POS_FIGHTING, NULL);
-        ch->position = POS_FIGHTING;
-        ch->on = NULL;
+        /* prefer to stay on the 'on' object if possible. */
+        OBJ_T *obj = ch->on;
+        if (obj != NULL && !item_can_position_at (obj, POS_FIGHTING))
+            obj = NULL;
+
+        /* reposition ourselves. */
+        char_change_position(ch, POS_FIGHTING, obj, "You can't stand up!\n\r");
     }
     return TRUE;
 }
