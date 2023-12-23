@@ -25,13 +25,13 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <sys/stat.h>
+#include "json_write.h"
 
-#include <string.h>
-
+#include "json.h"
 #include "utils.h"
 
-#include "json_write.h"
+#include <sys/stat.h>
+#include <string.h>
 
 static int json_indent_level = 0;
 static int json_nest_level = 0;

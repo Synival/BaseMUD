@@ -28,33 +28,32 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <errno.h>
-#include <unistd.h>
-
-#if defined(unix)
-    #include <signal.h>
-    #include <fcntl.h>
-    #include <netdb.h>
-    #include <arpa/inet.h>
-#endif
+#include "descs.h"
 
 #include "ban.h"
 #include "chars.h"
 #include "colour.h"
 #include "comm.h"
 #include "db.h"
-#include "recycle.h"
-#include "utils.h"
+#include "globals.h"
 #include "interp.h"
 #include "lookup.h"
-#include "globals.h"
 #include "memory.h"
+#include "recycle.h"
+#include "utils.h"
 
-#include "descs.h"
+#include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <errno.h>
+#include <unistd.h>
+#if defined(unix)
+    #include <signal.h>
+    #include <fcntl.h>
+    #include <netdb.h>
+    #include <arpa/inet.h>
+#endif
 
 #if defined(unix)
 int init_socket (int port) {

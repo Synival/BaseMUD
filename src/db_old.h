@@ -30,6 +30,8 @@
 
 #include "merc.h"
 
+#include <stdio.h>
+
 /* Function prototypes. */
 void load_old_mob (FILE *fp);
 void load_old_obj (FILE *fp);

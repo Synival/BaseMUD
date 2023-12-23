@@ -25,15 +25,16 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "memory.h"
+
+#include "globals.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
-
-#include "utils.h"
-#include "globals.h"
-#include "recycle.h"
-
-#include "memory.h"
 
 /* Memory management.
  * Increase MAX_STRING if you have too.

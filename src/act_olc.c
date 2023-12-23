@@ -11,39 +11,39 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
+#include "act_olc.h"
 
-#include "recycle.h"
-#include "lookup.h"
-#include "interp.h"
-#include "utils.h"
-#include "db.h"
-#include "comm.h"
-#include "olc_save.h"
 #include "act_info.h"
 #include "chars.h"
-#include "globals.h"
-#include "items.h"
-#include "mobiles.h"
-#include "rooms.h"
-#include "objs.h"
-#include "mob_prog.h"
+#include "comm.h"
+#include "db.h"
 #include "descs.h"
+#include "globals.h"
+#include "interp.h"
+#include "items.h"
 #include "json_export.h"
-#include "resets.h"
+#include "lookup.h"
 #include "memory.h"
-#include "portals.h"
-
+#include "mob_prog.h"
+#include "mobiles.h"
+#include "objs.h"
+#include "olc.h"
 #include "olc_aedit.h"
 #include "olc_hedit.h"
 #include "olc_medit.h"
 #include "olc_mpedit.h"
 #include "olc_oedit.h"
 #include "olc_redit.h"
-#include "olc.h"
+#include "olc_save.h"
+#include "portals.h"
+#include "recycle.h"
+#include "resets.h"
+#include "rooms.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "act_olc.h"
+#include <string.h>
+#include <stdlib.h>
 
 void do_resets_display (CHAR_T *ch) {
     ROOM_INDEX_T *room;

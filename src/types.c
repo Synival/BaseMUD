@@ -25,12 +25,13 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "merc.h"
+#include "types.h"
 
 #include "lookup.h"
+#include "merc.h"
 #include "utils.h"
 
-#include "types.h"
+#include <stdio.h>
 
 type_t type_lookup (const TYPE_T *type_table, const char *name)
     { SIMPLE_LOOKUP_PROP (type_table, type, name, TYPE_NONE, 0); }

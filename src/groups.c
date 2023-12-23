@@ -25,15 +25,16 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "utils.h"
+#include "groups.h"
+
 #include "affects.h"
+#include "chars.h"
 #include "comm.h"
 #include "db.h"
-#include "chars.h"
 #include "globals.h"
 #include "recycle.h"
-
-#include "groups.h"
+#include "tables.h"
+#include "utils.h"
 
 /* It is very important that this be an equivalence relation:
  * (1) A ~ A

@@ -11,26 +11,29 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "olc_medit.h"
+
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "ext_flags.h"
+#include "flags.h"
+#include "globals.h"
+#include "interp.h"
+#include "lookup.h"
+#include "memory.h"
+#include "mob_cmds.h"
+#include "mob_prog.h"
+#include "mobiles.h"
+#include "olc.h"
+#include "recycle.h"
+#include "string.h"
+#include "tables.h"
+#include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-
-#include "comm.h"
-#include "lookup.h"
-#include "db.h"
-#include "recycle.h"
-#include "utils.h"
-#include "interp.h"
-#include "string.h"
-#include "mob_cmds.h"
-#include "chars.h"
-#include "globals.h"
-#include "olc.h"
-#include "memory.h"
-#include "mobiles.h"
-#include "mob_prog.h"
-
-#include "olc_medit.h"
 
 MEDIT (medit_show) {
     MOB_INDEX_T *mob;

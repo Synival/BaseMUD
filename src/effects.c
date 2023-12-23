@@ -25,20 +25,21 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "recycle.h"
-#include "lookup.h"
-#include "db.h"
-#include "utils.h"
-#include "comm.h"
-#include "magic.h"
-#include "update.h"
-#include "affects.h"
-#include "objs.h"
-#include "chars.h"
-#include "items.h"
-#include "players.h"
-
 #include "effects.h"
+
+#include "affects.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "items.h"
+#include "lookup.h"
+#include "magic.h"
+#include "objs.h"
+#include "players.h"
+#include "recycle.h"
+#include "tables.h"
+#include "update.h"
+#include "utils.h"
 
 DEFINE_EFFECT_FUN (effect_acid) {
     /* nail objects on the floor */

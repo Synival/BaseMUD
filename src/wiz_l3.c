@@ -25,19 +25,20 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <stdlib.h>
-
-#include "db.h"
-#include "comm.h"
-#include "interp.h"
-#include "fight.h"
-#include "utils.h"
-#include "chars.h"
-#include "find.h"
-#include "descs.h"
-#include "globals.h"
-
 #include "wiz_l3.h"
+
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "descs.h"
+#include "ext_flags.h"
+#include "fight.h"
+#include "find.h"
+#include "globals.h"
+#include "interp.h"
+#include "utils.h"
+
+#include <stdlib.h>
 
 DEFINE_DO_FUN (do_disconnect) {
     char arg[MAX_INPUT_LENGTH];

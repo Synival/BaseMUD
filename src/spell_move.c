@@ -25,20 +25,21 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "magic.h"
-#include "find.h"
+#include "spell_move.h"
+
+#include "act_info.h"
 #include "chars.h"
 #include "comm.h"
-#include "interp.h"
-#include "act_info.h"
 #include "db.h"
+#include "ext_flags.h"
 #include "fight.h"
-#include "objs.h"
+#include "find.h"
+#include "interp.h"
 #include "items.h"
+#include "magic.h"
+#include "objs.h"
 #include "players.h"
 #include "rooms.h"
-
-#include "spell_move.h"
 
 /* NOTE: All the BAIL_IF() or FILTER() called to "You failed." is definitely
  * more verbose than a giant if() statement with 10-or-so different conditions,

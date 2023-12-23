@@ -25,18 +25,18 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "magic.h"
-#include "find.h"
+#include "spell_create.h"
+
+#include "chars.h"
 #include "comm.h"
 #include "db.h"
+#include "find.h"
+#include "globals.h"
+#include "items.h"
+#include "magic.h"
+#include "memory.h"
 #include "objs.h"
 #include "utils.h"
-#include "chars.h"
-#include "globals.h"
-#include "memory.h"
-#include "items.h"
-
-#include "spell_create.h"
 
 DEFINE_SPELL_FUN (spell_continual_light) {
     OBJ_T *light;

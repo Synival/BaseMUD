@@ -33,32 +33,34 @@
  *   seems to be a popular task for new mud coders, so what the heck?       *
  ***************************************************************************/
 
-#include <ctype.h>
-#include <string.h>
+#include "nanny.h"
 
-#include "interp.h"
-#include "recycle.h"
-#include "lookup.h"
-#include "utils.h"
+#include "act_board.h"
+#include "act_info.h"
+#include "act_obj.h"
+#include "act_skills.h"
+#include "ban.h"
+#include "chars.h"
 #include "comm.h"
 #include "db.h"
-#include "save.h"
-#include "ban.h"
-#include "fight.h"
-#include "act_info.h"
-#include "act_skills.h"
-#include "act_board.h"
-#include "act_obj.h"
-#include "chars.h"
-#include "objs.h"
 #include "descs.h"
+#include "ext_flags.h"
+#include "fight.h"
 #include "globals.h"
-#include "memory.h"
+#include "interp.h"
+#include "lookup.h"
 #include "magic.h"
+#include "memory.h"
+#include "objs.h"
 #include "players.h"
+#include "recycle.h"
 #include "rooms.h"
+#include "save.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "nanny.h"
+#include <ctype.h>
+#include <string.h>
 
 /* Parse a name for acceptability. */
 bool new_player_name_is_valid (char *name) {

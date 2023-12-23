@@ -30,6 +30,8 @@
 
 #include "merc.h"
 
+#include <stdio.h>
+
 /* Return values for item_get_door_flags(). */
 #define ITEM_DOOR_NONE      0
 #define ITEM_DOOR_EXIT      1

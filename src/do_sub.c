@@ -38,10 +38,11 @@
  * do_() commands but leave them in their respective files.
  *    --- Synival */
 
-#include "comm.h"
-#include "chars.h"
-
 #include "do_sub.h"
+
+#include "chars.h"
+#include "comm.h"
+#include "ext_flags.h"
 
 void do_autolist_flag (char *name, CHAR_T *ch, flag_t flags, flag_t flag) {
     char *msg = IS_SET (flags, flag) ? "{GON{x" : "{ROFF{x";

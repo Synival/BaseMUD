@@ -25,15 +25,18 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "magic.h"
-#include "comm.h"
-#include "utils.h"
-#include "lookup.h"
-#include "fight.h"
-#include "chars.h"
-#include "objs.h"
-
 #include "spell_cure.h"
+
+#include "chars.h"
+#include "comm.h"
+#include "fight.h"
+#include "lookup.h"
+#include "magic.h"
+#include "objs.h"
+#include "tables.h"
+#include "utils.h"
+
+#include <stdio.h>
 
 DEFINE_SPELL_FUN (spell_cure_blindness) {
     CHAR_T *victim = (CHAR_T *) vo;

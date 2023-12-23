@@ -27,21 +27,23 @@
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_info.c,v 1.3 2000/12/01 10:48:33 ring0 Exp $ */
 
-#include <string.h>
-#include <stdlib.h>
-
-#include "db.h"
-#include "interp.h"
-#include "colour.h"
-#include "groups.h"
-#include "comm.h"
-#include "utils.h"
-#include "lookup.h"
-#include "do_sub.h"
-#include "chars.h"
-#include "memory.h"
-
 #include "act_conf.h"
+
+#include "chars.h"
+#include "colour.h"
+#include "comm.h"
+#include "db.h"
+#include "do_sub.h"
+#include "ext_flags.h"
+#include "groups.h"
+#include "interp.h"
+#include "lookup.h"
+#include "memory.h"
+#include "tables.h"
+#include "utils.h"
+
+#include <stdlib.h>
+#include <string.h>
 
 void do_colour_one (CHAR_T *ch, const COLOUR_SETTING_T *setting,
     const COLOUR_T *colour, bool use_default, char *buf)

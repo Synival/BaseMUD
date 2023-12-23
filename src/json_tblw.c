@@ -25,12 +25,16 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-
-#include "lookup.h"
-#include "colour.h"
-
 #include "json_tblw.h"
+
+#include "colour.h"
+#include "ext_flags.h"
+#include "flags.h"
+#include "json.h"
+#include "lookup.h"
+#include "types.h"
+
+#include <string.h>
 
 #define JSON_TBLW_START(vtype, var, null_check) \
     const vtype *var = obj; \

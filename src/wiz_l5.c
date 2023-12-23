@@ -25,31 +25,32 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "wiz_l5.h"
+
+#include "act_info.h"
+#include "affects.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "do_sub.h"
+#include "ext_flags.h"
+#include "extra_descrs.h"
+#include "fight.h"
+#include "find.h"
+#include "globals.h"
+#include "interp.h"
+#include "lookup.h"
+#include "memory.h"
+#include "mobiles.h"
+#include "objs.h"
+#include "players.h"
+#include "recycle.h"
+#include "rooms.h"
+#include "save.h"
+#include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
-
-#include "db.h"
-#include "comm.h"
-#include "interp.h"
-#include "save.h"
-#include "fight.h"
-#include "utils.h"
-#include "lookup.h"
-#include "affects.h"
-#include "do_sub.h"
-#include "recycle.h"
-#include "act_info.h"
-#include "chars.h"
-#include "objs.h"
-#include "rooms.h"
-#include "find.h"
-#include "memory.h"
-#include "globals.h"
-#include "mobiles.h"
-#include "players.h"
-#include "extra_descrs.h"
-
-#include "wiz_l5.h"
 
 /* trust levels for load and clone */
 bool do_obj_load_check (CHAR_T *ch, OBJ_T *obj) {

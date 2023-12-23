@@ -27,12 +27,15 @@
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_comm.c,v 1.2 2000/12/01 10:48:33 ring0 Exp $ */
 
-#include <string.h>
-
-#include "lookup.h"
-#include "chars.h"
-
 #include "colour.h"
+
+#include "chars.h"
+#include "ext_flags.h"
+#include "lookup.h"
+#include "tables.h"
+
+#include <stdio.h>
+#include <string.h>
 
 int colour_to_ansi (flag_t colour, char *buf_out, size_t size) {
     const char *flag_str = "", *fg_str = "", *bg_str = "", *beep_str = "";

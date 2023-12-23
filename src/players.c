@@ -25,24 +25,26 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-
-#include "chars.h"
-#include "lookup.h"
-#include "objs.h"
-#include "affects.h"
-#include "memory.h"
-#include "utils.h"
-#include "globals.h"
-#include "comm.h"
-#include "save.h"
-#include "magic.h"
-#include "groups.h"
-#include "fight.h"
-#include "rooms.h"
-#include "items.h"
-
 #include "players.h"
+
+#include "affects.h"
+#include "chars.h"
+#include "comm.h"
+#include "ext_flags.h"
+#include "fight.h"
+#include "globals.h"
+#include "groups.h"
+#include "items.h"
+#include "lookup.h"
+#include "magic.h"
+#include "memory.h"
+#include "objs.h"
+#include "rooms.h"
+#include "save.h"
+#include "tables.h"
+#include "utils.h"
+
+#include <string.h>
 
 bool player_has_clan (const CHAR_T *ch) {
     if (IS_NPC (ch))

@@ -11,22 +11,22 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
+#include "olc_hedit.h"
 
 #include "comm.h"
-#include "lookup.h"
 #include "db.h"
-#include "recycle.h"
-#include "utils.h"
-#include "interp.h"
-#include "string.h"
 #include "globals.h"
-#include "olc.h"
-#include "memory.h"
 #include "help.h"
+#include "interp.h"
+#include "lookup.h"
+#include "memory.h"
+#include "olc.h"
+#include "recycle.h"
+#include "string.h"
+#include "utils.h"
 
-#include "olc_hedit.h"
+#include <string.h>
+#include <stdlib.h>
 
 HEDIT (hedit_show) {
     HELP_T *help;

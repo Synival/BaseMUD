@@ -41,30 +41,31 @@
  * The OS-dependent functions are Read_from_descriptor and Write_to_descriptor.
  * -- Furey  26 Jan 1993 */
 
+#include "comm.h"
+
+#include "act_info.h"
+#include "chars.h"
+#include "colour.h"
+#include "db.h"
+#include "descs.h"
+#include "ext_flags.h"
+#include "fight.h"
+#include "globals.h"
+#include "interp.h"
+#include "lookup.h"
+#include "mob_prog.h"
+#include "objs.h"
+#include "olc.h"
+#include "players.h"
+#include "recycle.h"
+#include "rooms.h"
+#include "save.h"
+#include "utils.h"
+
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
-
-#include "colour.h"
-#include "recycle.h"
-#include "utils.h"
-#include "fight.h"
-#include "interp.h"
-#include "db.h"
-#include "olc.h"
-#include "save.h"
-#include "mob_prog.h"
-#include "lookup.h"
-#include "act_info.h"
-#include "chars.h"
-#include "rooms.h"
-#include "objs.h"
-#include "descs.h"
-#include "globals.h"
-#include "players.h"
-
-#include "comm.h"
 
 /* Malloc debugging stuff. */
 #if defined(sun)

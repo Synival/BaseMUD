@@ -11,22 +11,22 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
+#include "olc_mpedit.h"
 
+#include "chars.h"
 #include "comm.h"
 #include "db.h"
-#include "recycle.h"
-#include "utils.h"
-#include "string.h"
-#include "lookup.h"
-#include "chars.h"
 #include "globals.h"
-#include "olc.h"
+#include "lookup.h"
 #include "memory.h"
 #include "mob_prog.h"
+#include "olc.h"
+#include "recycle.h"
+#include "string.h"
+#include "utils.h"
 
-#include "olc_mpedit.h"
+#include <string.h>
+#include <stdlib.h>
 
 MPEDIT (mpedit_create) {
     MPROG_CODE_T *mcode;

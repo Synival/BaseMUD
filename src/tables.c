@@ -25,22 +25,23 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <stddef.h>
+#include "tables.h"
 
-#include "nanny.h"
-#include "lookup.h"
-#include "recycle.h"
-#include "colour.h"
+#include "act_skills.h"
 #include "board.h"
-#include "special.h"
+#include "chars.h"
+#include "colour.h"
 #include "effects.h"
+#include "ext_flags.h"
+#include "flags.h"
 #include "json_tblr.h"
 #include "json_tblw.h"
+#include "lookup.h"
 #include "magic.h"
 #include "memory.h"
-#include "utils.h"
-#include "chars.h"
-
+#include "nanny.h"
+#include "recycle.h"
+#include "special.h"
 #include "spell_aff.h"
 #include "spell_create.h"
 #include "spell_cure.h"
@@ -49,8 +50,9 @@
 #include "spell_move.h"
 #include "spell_npc.h"
 #include "spell_off.h"
+#include "utils.h"
 
-#include "act_skills.h"
+#include <stddef.h>
 
 /* Useful macros for defining rows in our master table. */
 #define TFLAGS(table, desc) \

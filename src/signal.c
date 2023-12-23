@@ -28,13 +28,13 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "signal.h"
+
+#include "globals.h"
+#include "utils.h"
+
 #include <signal.h>
 #include <stdlib.h>
-
-#include "utils.h"
-#include "globals.h"
-
-#include "signal.h"
 
 void handle_sigint (int sig) {
     /* Try to cancel normally first. */

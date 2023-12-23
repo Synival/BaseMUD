@@ -25,14 +25,18 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-
-#include "lookup.h"
-#include "colour.h"
-#include "memory.h"
-#include "json_import.h"
-
 #include "json_tblr.h"
+
+#include "colour.h"
+#include "ext_flags.h"
+#include "flags.h"
+#include "json.h"
+#include "json_import.h"
+#include "lookup.h"
+#include "memory.h"
+#include "tables.h"
+
+#include <string.h>
 
 #define JSON_TBLR_START(vtype, var, max, null_check) \
     vtype *var; \

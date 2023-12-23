@@ -25,29 +25,31 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "recycle.h"
+
+#include "affects.h"
+#include "board.h"
+#include "chars.h"
+#include "db.h"
+#include "ext_flags.h"
+#include "extra_descrs.h"
+#include "globals.h"
+#include "help.h"
+#include "lookup.h"
+#include "memory.h"
+#include "mob_prog.h"
+#include "mobiles.h"
+#include "objs.h"
+#include "objs.h"
+#include "portals.h"
+#include "resets.h"
+#include "rooms.h"
+#include "tables.h"
+#include "utils.h"
+
 #include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>
-
-#include "utils.h"
-#include "lookup.h"
-#include "db.h"
-#include "affects.h"
-#include "objs.h"
-#include "chars.h"
-#include "globals.h"
-#include "memory.h"
-#include "resets.h"
-#include "board.h"
-#include "extra_descrs.h"
-#include "mob_prog.h"
-#include "rooms.h"
-#include "objs.h"
-#include "mobiles.h"
-#include "help.h"
-#include "portals.h"
-
-#include "recycle.h"
 
 /* Bundles of recycle functions. */
 RECYCLE_BUNDLE (RECYCLE_BAN_T,         ban,         BAN_T);

@@ -25,18 +25,18 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "db.h"
-#include "comm.h"
-#include "interp.h"
-#include "utils.h"
+#include "wiz_l7.h"
+
 #include "chars.h"
-#include "rooms.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
 #include "find.h"
 #include "globals.h"
-#include "chars.h"
+#include "interp.h"
 #include "objs.h"
-
-#include "wiz_l7.h"
+#include "rooms.h"
+#include "utils.h"
 
 /* Thanks to Grodyn for pointing out bugs in this function. */
 DEFINE_DO_FUN (do_force) {

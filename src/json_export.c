@@ -25,14 +25,15 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "json_export.h"
+
 #include "areas.h"
-#include "recycle.h"
-#include "utils.h"
+#include "json.h"
 #include "json_objw.h"
 #include "json_write.h"
 #include "lookup.h"
-
-#include "json_export.h"
+#include "recycle.h"
+#include "utils.h"
 
 void json_export_all (bool write_indiv, const char *everything) {
     int mode;

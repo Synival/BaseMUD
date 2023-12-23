@@ -30,6 +30,8 @@
 
 #include "merc.h"
 
+#include <stdio.h>
+
 extern HELP_T       *help_first,   *help_last;
 extern SHOP_T       *shop_first,   *shop_last;
 extern AREA_T       *area_first,   *area_last;

@@ -25,28 +25,29 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "wiz_im.h"
+
+#include "act_info.h"
+#include "affects.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "do_sub.h"
+#include "find.h"
+#include "globals.h"
+#include "interp.h"
+#include "lookup.h"
+#include "memory.h"
+#include "mob_cmds.h"
+#include "mob_prog.h"
+#include "objs.h"
+#include "recycle.h"
+#include "rooms.h"
+#include "tables.h"
+#include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
-
-#include "interp.h"
-#include "db.h"
-#include "utils.h"
-#include "comm.h"
-#include "lookup.h"
-#include "recycle.h"
-#include "do_sub.h"
-#include "mob_cmds.h"
-#include "act_info.h"
-#include "chars.h"
-#include "objs.h"
-#include "rooms.h"
-#include "find.h"
-#include "affects.h"
-#include "globals.h"
-#include "memory.h"
-#include "mob_prog.h"
-
-#include "wiz_im.h"
 
 DEFINE_DO_FUN (do_wizhelp) {
     int cmd, col;

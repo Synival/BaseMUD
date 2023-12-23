@@ -25,19 +25,19 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "utils.h"
+
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "globals.h"
+#include "interp.h"
+
 #include <stdlib.h>
 #include <stdarg.h>
 #include <time.h>
 #include <unistd.h>
 #include <string.h>
-
-#include "comm.h"
-#include "db.h"
-#include "interp.h"
-#include "chars.h"
-#include "globals.h"
-
-#include "utils.h"
 
 /* Returns an initial-capped string. */
 char *str_capitalized (const char *str) {

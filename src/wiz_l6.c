@@ -25,16 +25,16 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "db.h"
-#include "comm.h"
-#include "interp.h"
+#include "wiz_l6.h"
+
 #include "chars.h"
-#include "rooms.h"
+#include "comm.h"
+#include "db.h"
 #include "find.h"
 #include "globals.h"
+#include "interp.h"
 #include "memory.h"
-
-#include "wiz_l6.h"
+#include "rooms.h"
 
 DEFINE_DO_FUN (do_at) {
     char arg[MAX_INPUT_LENGTH];

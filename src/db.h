@@ -30,6 +30,8 @@
 
 #include "merc.h"
 
+#include <stdio.h>
+
 /* macro for flag swapping */
 #define GET_UNSET(flag1,flag2)    (~(flag1)&((flag1)|(flag2)))
 

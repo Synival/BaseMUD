@@ -25,13 +25,14 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
+#include "skills.h"
 
 #include "lookup.h"
+#include "tables.h"
 #include "utils.h"
 
-#include "skills.h"
+#include <string.h>
+#include <stdlib.h>
 
 void skill_clear_mapping (void) {
     int i;

@@ -28,36 +28,35 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
+#include "boot.h"
+
+#include "act_info.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "descs.h"
+#include "globals.h"
+#include "interp.h"
+#include "memory.h"
+#include "nanny.h"
+#include "olc.h"
+#include "quickmud.h"
+#include "recycle.h"
+#include "rooms.h"
+#include "save.h"
+#include "signal.h"
+#include "string.h"
+#include "tables.h"
+#include "update.h"
+#include "utils.h"
 
 #if defined(unix)
     #include <signal.h>
 #endif
-
-#include "signal.h"
-#include "globals.h"
-#include "utils.h"
-#include "interp.h"
-#include "db.h"
-#include "descs.h"
-#include "recycle.h"
-#include "memory.h"
-#include "save.h"
-#include "chars.h"
-#include "string.h"
-#include "olc.h"
-#include "nanny.h"
-#include "update.h"
-#include "comm.h"
-#include "rooms.h"
-#include "quickmud.h"
-
-#include "act_info.h"
-
-#include "boot.h"
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
 
 int main (int argc, char **argv) {
     struct timeval now_time;

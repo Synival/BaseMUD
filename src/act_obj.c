@@ -27,32 +27,34 @@
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_obj.c,v 1.2 2000/12/01 10:48:33 ring0 Exp $ */
 
-#include <stdlib.h>
+#include "act_obj.h"
 
-#include "interp.h"
+#include "act_comm.h"
+#include "act_group.h"
+#include "act_move.h"
 #include "affects.h"
-#include "utils.h"
+#include "chars.h"
 #include "comm.h"
 #include "db.h"
+#include "ext_flags.h"
 #include "fight.h"
-#include "groups.h"
-#include "mob_prog.h"
-#include "save.h"
-#include "magic.h"
-#include "act_group.h"
-#include "act_comm.h"
-#include "act_move.h"
-#include "recycle.h"
-#include "chars.h"
-#include "objs.h"
-#include "rooms.h"
 #include "find.h"
 #include "globals.h"
-#include "lookup.h"
+#include "groups.h"
+#include "interp.h"
 #include "items.h"
+#include "lookup.h"
+#include "magic.h"
+#include "mob_prog.h"
+#include "objs.h"
 #include "players.h"
+#include "recycle.h"
+#include "rooms.h"
+#include "save.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "act_obj.h"
+#include <stdlib.h>
 
 bool do_filter_can_drop_item (CHAR_T *ch, OBJ_T *obj, bool msg) {
     FILTER (!char_can_see_obj (ch, obj),

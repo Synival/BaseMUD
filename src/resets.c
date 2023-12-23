@@ -25,15 +25,16 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "mobiles.h"
-#include "utils.h"
-#include "rooms.h"
-#include "chars.h"
-#include "objs.h"
-#include "items.h"
-#include "recycle.h"
-
 #include "resets.h"
+
+#include "chars.h"
+#include "ext_flags.h"
+#include "items.h"
+#include "mobiles.h"
+#include "objs.h"
+#include "recycle.h"
+#include "rooms.h"
+#include "utils.h"
 
 /* Adds a reset to a room.  OLC
  * Similar to add_reset in olc.c */

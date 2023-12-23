@@ -25,23 +25,25 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <stdlib.h>
-
-#include "affects.h"
-#include "utils.h"
-#include "comm.h"
-#include "lookup.h"
-#include "interp.h"
-#include "groups.h"
-#include "mob_prog.h"
-#include "recycle.h"
-#include "fight.h"
-#include "act_comm.h"
-#include "chars.h"
-#include "find.h"
-#include "players.h"
-
 #include "act_fight.h"
+
+#include "act_comm.h"
+#include "affects.h"
+#include "chars.h"
+#include "comm.h"
+#include "fight.h"
+#include "find.h"
+#include "groups.h"
+#include "interp.h"
+#include "lookup.h"
+#include "mob_prog.h"
+#include "players.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
+
+#include <stdio.h>
+#include <stdlib.h>
 
 bool do_fight_filter_skill_target (CHAR_T *ch, const char *argument,
     int sn, flag_t npc_flag, const char *cant_msg, const char *self_msg,

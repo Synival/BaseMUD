@@ -25,17 +25,19 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <stdlib.h>
-#include <string.h>
+#include "magic.h"
 
-#include "lookup.h"
 #include "affects.h"
+#include "chars.h"
 #include "comm.h"
 #include "fight.h"
+#include "lookup.h"
+#include "tables.h"
 #include "utils.h"
-#include "chars.h"
 
-#include "magic.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int find_spell (CHAR_T *ch, const char *name) {
     /* finds a spell the character can cast if possible */

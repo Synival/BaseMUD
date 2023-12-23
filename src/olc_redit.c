@@ -11,32 +11,34 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
+#include "olc_redit.h"
 
-#include "comm.h"
-#include "lookup.h"
-#include "db.h"
-#include "recycle.h"
-#include "utils.h"
-#include "interp.h"
-#include "string.h"
 #include "act_info.h"
 #include "chars.h"
-#include "objs.h"
+#include "comm.h"
+#include "db.h"
+#include "extra_descrs.h"
 #include "find.h"
+#include "flags.h"
 #include "globals.h"
+#include "interp.h"
+#include "lookup.h"
+#include "memory.h"
+#include "mobiles.h"
+#include "objs.h"
 #include "olc.h"
 #include "olc_medit.h"
 #include "olc_oedit.h"
-#include "memory.h"
-#include "mobiles.h"
-#include "rooms.h"
-#include "extra_descrs.h"
-#include "resets.h"
 #include "portals.h"
+#include "recycle.h"
+#include "resets.h"
+#include "rooms.h"
+#include "string.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "olc_redit.h"
+#include <string.h>
+#include <stdlib.h>
 
 /* Local function. */
 bool redit_change_exit (CHAR_T *ch, char *argument, int door) {

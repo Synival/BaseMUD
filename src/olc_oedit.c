@@ -11,27 +11,29 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "olc_oedit.h"
+
+#include "act_info.h"
+#include "affects.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "extra_descrs.h"
+#include "flags.h"
+#include "globals.h"
+#include "interp.h"
+#include "items.h"
+#include "lookup.h"
+#include "memory.h"
+#include "objs.h"
+#include "olc.h"
+#include "recycle.h"
+#include "string.h"
+#include "types.h"
+#include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
-
-#include "comm.h"
-#include "lookup.h"
-#include "db.h"
-#include "recycle.h"
-#include "utils.h"
-#include "interp.h"
-#include "string.h"
-#include "affects.h"
-#include "act_info.h"
-#include "chars.h"
-#include "globals.h"
-#include "olc.h"
-#include "memory.h"
-#include "items.h"
-#include "objs.h"
-#include "extra_descrs.h"
-
-#include "olc_oedit.h"
 
 /* (from OLC) */
 bool oedit_set_obj_values (CHAR_T *ch, OBJ_INDEX_T *obj,

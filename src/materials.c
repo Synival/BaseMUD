@@ -25,9 +25,10 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-
 #include "materials.h"
+
+#include <stdio.h>
+#include <string.h>
 
 char *material_format_part (const MATERIAL_T *mat) {
 #ifdef BASEMUD_MATERIALS_COMMAND

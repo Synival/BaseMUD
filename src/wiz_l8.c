@@ -25,20 +25,20 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
+#include "wiz_l8.h"
 
-#include "db.h"
-#include "comm.h"
-#include "interp.h"
-#include "fight.h"
-#include "utils.h"
 #include "act_info.h"
 #include "chars.h"
-#include "rooms.h"
+#include "comm.h"
+#include "db.h"
+#include "fight.h"
 #include "find.h"
+#include "interp.h"
 #include "memory.h"
+#include "rooms.h"
+#include "utils.h"
 
-#include "wiz_l8.h"
+#include <string.h>
 
 DEFINE_DO_FUN (do_goto) {
     ROOM_INDEX_T *location;

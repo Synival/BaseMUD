@@ -11,22 +11,23 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "olc_aedit.h"
+
+#include "areas.h"
+#include "comm.h"
+#include "db.h"
+#include "flags.h"
+#include "globals.h"
+#include "interp.h"
+#include "lookup.h"
+#include "memory.h"
+#include "olc.h"
+#include "recycle.h"
+#include "string.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-
-#include "comm.h"
-#include "lookup.h"
-#include "db.h"
-#include "recycle.h"
-#include "interp.h"
-#include "string.h"
-#include "globals.h"
-#include "olc.h"
-#include "memory.h"
-#include "areas.h"
-
-#include "olc_aedit.h"
 
 /*****************************************************************************
  Name:       aedit_check_range( lower vnum, upper vnum )

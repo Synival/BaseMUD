@@ -25,18 +25,20 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <stdlib.h>
+#include "act_group.h"
 
-#include "interp.h"
-#include "groups.h"
-#include "utils.h"
+#include "chars.h"
 #include "comm.h"
 #include "db.h"
-#include "chars.h"
+#include "ext_flags.h"
 #include "find.h"
 #include "globals.h"
+#include "groups.h"
+#include "interp.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "act_group.h"
+#include <stdlib.h>
 
 void do_group_show (CHAR_T *ch) {
     CHAR_T *gch;

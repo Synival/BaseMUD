@@ -25,16 +25,16 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <sys/types.h>
+#include "json.h"
 
+#include "memory.h"
+#include "utils.h"
+
+#include <sys/types.h>
+#include <stdarg.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdarg.h>
-
-#include "utils.h"
-#include "memory.h"
-
-#include "json.h"
 
 static JSON_T *json_top = NULL;
 

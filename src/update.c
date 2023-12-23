@@ -25,23 +25,25 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-
-#include "chars.h"
-#include "utils.h"
-#include "players.h"
-#include "items.h"
-#include "comm.h"
-#include "music.h"
-#include "globals.h"
-#include "lookup.h"
-#include "fight.h"
-#include "mob_prog.h"
-#include "areas.h"
-#include "mobiles.h"
-#include "objs.h"
-
 #include "update.h"
+
+#include "areas.h"
+#include "chars.h"
+#include "comm.h"
+#include "ext_flags.h"
+#include "fight.h"
+#include "globals.h"
+#include "items.h"
+#include "lookup.h"
+#include "mob_prog.h"
+#include "mobiles.h"
+#include "music.h"
+#include "objs.h"
+#include "players.h"
+#include "tables.h"
+#include "utils.h"
+
+#include <string.h>
 
 int recovery_in_position (int gain, int position) {
     switch (position) {

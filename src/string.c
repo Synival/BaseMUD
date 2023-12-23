@@ -11,19 +11,19 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
+#include "string.h"
 
 #include "comm.h"
-#include "utils.h"
-#include "interp.h"
-#include "olc.h"
 #include "db.h"
-#include "olc_mpedit.h"
 #include "globals.h"
+#include "interp.h"
 #include "memory.h"
+#include "olc.h"
+#include "olc_mpedit.h"
+#include "utils.h"
 
-#include "string.h"
+#include <string.h>
+#include <stdlib.h>
 
 /*****************************************************************************
  Name:       string_edit

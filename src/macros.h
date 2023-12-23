@@ -28,6 +28,8 @@
 #ifndef __ROM_MACROS_H
 #define __ROM_MACROS_H
 
+#include "merc.h"
+
 /* Utility macros. */
 #define IS_VALID(data)       ((data) != NULL && (data)->rec_data.valid)
 #define UMIN(a, b)           ((a) < (b) ? (a) : (b))

@@ -25,14 +25,14 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "globals.h"
+#include "areas.h"
+
 #include "comm.h"
-#include "rooms.h"
-#include "utils.h"
+#include "globals.h"
 #include "recycle.h"
 #include "resets.h"
-
-#include "areas.h"
+#include "rooms.h"
+#include "utils.h"
 
 void area_update_all (void) {
     AREA_T *area;

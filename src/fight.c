@@ -25,34 +25,36 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
+#include "fight.h"
 
-#include "interp.h"
-#include "lookup.h"
-#include "update.h"
-#include "utils.h"
+#include "act_comm.h"
+#include "act_fight.h"
+#include "act_move.h"
+#include "act_obj.h"
+#include "affects.h"
+#include "chars.h"
+#include "comm.h"
 #include "db.h"
 #include "effects.h"
-#include "mob_prog.h"
-#include "comm.h"
-#include "save.h"
-#include "groups.h"
-#include "magic.h"
-#include "affects.h"
-#include "act_fight.h"
-#include "act_obj.h"
-#include "act_comm.h"
-#include "act_move.h"
-#include "chars.h"
-#include "objs.h"
+#include "ext_flags.h"
 #include "find.h"
 #include "globals.h"
-#include "memory.h"
+#include "groups.h"
+#include "interp.h"
 #include "items.h"
-#include "players.h"
+#include "lookup.h"
+#include "magic.h"
+#include "memory.h"
+#include "mob_prog.h"
 #include "mobiles.h"
+#include "objs.h"
+#include "players.h"
+#include "save.h"
+#include "tables.h"
+#include "update.h"
+#include "utils.h"
 
-#include "fight.h"
+#include <string.h>
 
 int should_assist_group (CHAR_T *bystander, CHAR_T *attacker, CHAR_T *victim) {
     if (!is_same_group (bystander, attacker))

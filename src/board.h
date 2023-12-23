@@ -30,6 +30,8 @@
 
 #include "merc.h"
 
+#include <stdio.h>
+
 /* Definitions and global variables. */
 #define L_SUP (MAX_LEVEL - 1) /* if not already defined */
 #define BOARD_NOACCESS -1

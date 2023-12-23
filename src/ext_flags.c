@@ -25,16 +25,15 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <stdarg.h>
-#include <string.h>
-
-#include "merc.h"
+#include "ext_flags.h"
 
 #include "interp.h"
 #include "lookup.h"
+#include "merc.h"
 #include "utils.h"
 
-#include "ext_flags.h"
+#include <stdarg.h>
+#include <string.h>
 
 /* various flag tables */
 const EXT_FLAG_DEF_T mob_flags[] = {

@@ -25,11 +25,13 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
+#include "fwrite.h"
 
+#include "flags.h"
+#include "ext_flags.h"
 #include "save.h"
 
-#include "fwrite.h"
+#include <string.h>
 
 /*
  * ROM OLC

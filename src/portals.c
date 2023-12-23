@@ -25,15 +25,16 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
+#include "portals.h"
 
 #include "lookup.h"
-#include "recycle.h"
-#include "utils.h"
 #include "memory.h"
+#include "recycle.h"
 #include "rooms.h"
+#include "utils.h"
 
-#include "portals.h"
+#include <stdio.h>
+#include <string.h>
 
 /* TODO: check for duplicate portals. */
 

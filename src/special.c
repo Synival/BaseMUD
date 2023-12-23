@@ -32,23 +32,25 @@
  * future use. It is nevertheless here, so I cleaned some of it up.
  *    --- Synival */
 
-#include "utils.h"
-#include "fight.h"
-#include "comm.h"
-#include "interp.h"
-#include "magic.h"
-#include "lookup.h"
-#include "db.h"
-#include "act_fight.h"
+#include "special.h"
+
 #include "act_comm.h"
+#include "act_fight.h"
 #include "act_move.h"
 #include "chars.h"
-#include "objs.h"
-#include "spell_aff.h"
+#include "comm.h"
+#include "db.h"
+#include "ext_flags.h"
+#include "fight.h"
 #include "globals.h"
+#include "interp.h"
+#include "lookup.h"
+#include "magic.h"
+#include "objs.h"
 #include "rooms.h"
-
-#include "special.h"
+#include "spell_aff.h"
+#include "tables.h"
+#include "utils.h"
 
 static const char *spec_troll_member_message (void) {
     switch (number_range (0, 6)) {

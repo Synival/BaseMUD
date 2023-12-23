@@ -25,10 +25,10 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "utils.h"
-#include "fread.h"
-
 #include "quickmud.h"
+
+#include "fread.h"
+#include "utils.h"
 
 void qmconfig_read (void) {
     FILE *fp;

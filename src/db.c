@@ -25,37 +25,40 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "db.h"
+
+#include "affects.h"
+#include "areas.h"
+#include "ban.h"
+#include "board.h"
+#include "db_old.h"
+#include "ext_flags.h"
+#include "extra_descrs.h"
+#include "flags.h"
+#include "fread.h"
+#include "globals.h"
+#include "help.h"
+#include "items.h"
+#include "json_import.h"
+#include "lookup.h"
+#include "memory.h"
+#include "mob_prog.h"
+#include "mobiles.h"
+#include "music.h"
+#include "objs.h"
+#include "portals.h"
+#include "recycle.h"
+#include "resets.h"
+#include "rooms.h"
+#include "skills.h"
+#include "tables.h"
+#include "utils.h"
+
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <stddef.h>
 #include <dirent.h>
-
-#include "utils.h"
-#include "recycle.h"
-#include "affects.h"
-#include "lookup.h"
-#include "json_import.h"
-#include "music.h"
-#include "ban.h"
-#include "board.h"
-#include "portals.h"
-#include "rooms.h"
-#include "objs.h"
-#include "db_old.h"
-#include "globals.h"
-#include "memory.h"
-#include "items.h"
-#include "mobiles.h"
-#include "skills.h"
-#include "fread.h"
-#include "areas.h"
-#include "mob_prog.h"
-#include "resets.h"
-#include "extra_descrs.h"
-#include "help.h"
-
-#include "db.h"
 
 #if !defined(OLD_RAND)
     #if !defined(linux)

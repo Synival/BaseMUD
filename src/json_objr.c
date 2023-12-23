@@ -25,22 +25,26 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-
-#include "json_import.h"
-#include "recycle.h"
-#include "memory.h"
-#include "lookup.h"
-#include "portals.h"
-#include "db.h"
-#include "globals.h"
-#include "rooms.h"
-#include "resets.h"
-#include "extra_descrs.h"
-#include "affects.h"
-#include "help.h"
-
 #include "json_objr.h"
+
+#include "affects.h"
+#include "db.h"
+#include "ext_flags.h"
+#include "extra_descrs.h"
+#include "flags.h"
+#include "globals.h"
+#include "help.h"
+#include "json.h"
+#include "json_import.h"
+#include "lookup.h"
+#include "memory.h"
+#include "portals.h"
+#include "recycle.h"
+#include "resets.h"
+#include "rooms.h"
+#include "types.h"
+
+#include <string.h>
 
 ROOM_INDEX_T *json_objr_room (const JSON_T *json) {
     JSON_T *array, *sub;

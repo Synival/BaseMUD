@@ -27,6 +27,8 @@
 
 #include "help.h"
 
+#include <stdio.h>
+
 void help_area_to_area (HELP_AREA_T *had, AREA_T *area) {
     LIST2_REASSIGN_BACK (had, area, area_prev, area_next,
         area, had_first, had_last);

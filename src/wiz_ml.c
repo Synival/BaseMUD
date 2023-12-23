@@ -25,33 +25,35 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "wiz_ml.h"
+
+#include "act_info.h"
+#include "boot.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "descs.h"
+#include "fight.h"
+#include "find.h"
+#include "find.h"
+#include "globals.h"
+#include "interp.h"
+#include "json.h"
+#include "json_export.h"
+#include "lookup.h"
+#include "memory.h"
+#include "mobiles.h"
+#include "objs.h"
+#include "players.h"
+#include "quickmud.h"
+#include "rooms.h"
+#include "save.h"
+#include "tables.h"
+#include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-#include "db.h"
-#include "comm.h"
-#include "interp.h"
-#include "save.h"
-#include "fight.h"
-#include "utils.h"
-#include "act_info.h"
-#include "chars.h"
-#include "rooms.h"
-#include "find.h"
-#include "descs.h"
-#include "boot.h"
-#include "memory.h"
-#include "globals.h"
-#include "find.h"
-#include "players.h"
-#include "mobiles.h"
-#include "objs.h"
-#include "quickmud.h"
-#include "json_export.h"
-#include "lookup.h"
-
-#include "wiz_ml.h"
 
 DEFINE_DO_FUN (do_advance) {
     char arg1[MAX_INPUT_LENGTH];

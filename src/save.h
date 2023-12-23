@@ -30,6 +30,8 @@
 
 #include "merc.h"
 
+#include <stdio.h>
+
 /* Function prototypes. */
 void save_char_obj (CHAR_T *ch);
 bool load_char_obj (DESCRIPTOR_T *d, char *name);

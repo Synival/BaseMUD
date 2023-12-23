@@ -25,12 +25,17 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
+#include "json_objw.h"
 
+#include "ext_flags.h"
+#include "flags.h"
+#include "json.h"
 #include "lookup.h"
+#include "types.h"
 #include "utils.h"
 
-#include "json_objw.h"
+#include <stdio.h>
+#include <string.h>
 
 JSON_PROP_FUN_OF (obj_room, json_objw_room, const ROOM_INDEX_T *);
 JSON_T *json_objw_room (const char *name, const ROOM_INDEX_T *room) {

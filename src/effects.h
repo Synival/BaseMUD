@@ -28,6 +28,10 @@
 #ifndef __ROM_EFFECTS_H
 #define __ROM_EFFECTS_H
 
+#include "merc.h"
+
+#include "defs.h"
+
 /* Function prototypes. */
 DECLARE_EFFECT_FUN (effect_acid);
 DECLARE_EFFECT_FUN (effect_cold);

@@ -25,26 +25,29 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
+#include "wiz_l4.h"
 
-#include "db.h"
-#include "comm.h"
-#include "interp.h"
-#include "save.h"
-#include "fight.h"
-#include "utils.h"
-#include "lookup.h"
 #include "affects.h"
 #include "chars.h"
-#include "objs.h"
-#include "find.h"
-#include "recycle.h"
+#include "comm.h"
+#include "db.h"
 #include "descs.h"
+#include "ext_flags.h"
+#include "fight.h"
+#include "find.h"
+#include "flags.h"
 #include "globals.h"
+#include "interp.h"
+#include "lookup.h"
 #include "mobiles.h"
+#include "objs.h"
+#include "recycle.h"
+#include "save.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "wiz_l4.h"
+#include <string.h>
+#include <stdlib.h>
 
 DEFINE_DO_FUN (do_guild) {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];

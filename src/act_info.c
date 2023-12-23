@@ -27,37 +27,39 @@
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_info.c,v 1.3 2000/12/01 10:48:33 ring0 Exp $ */
 
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
-#include <ctype.h>
+#include "act_info.h"
 
-#include "interp.h"
-#include "magic.h"
-#include "recycle.h"
-#include "lookup.h"
-#include "utils.h"
-#include "groups.h"
-#include "db.h"
-#include "fight.h"
-#include "update.h"
-#include "comm.h"
-#include "save.h"
-#include "do_sub.h"
 #include "act_comm.h"
 #include "act_obj.h"
 #include "chars.h"
-#include "rooms.h"
-#include "objs.h"
-#include "find.h"
-#include "spell_info.h"
-#include "globals.h"
-#include "memory.h"
-#include "items.h"
-#include "players.h"
+#include "comm.h"
+#include "db.h"
+#include "do_sub.h"
+#include "ext_flags.h"
 #include "extra_descrs.h"
+#include "fight.h"
+#include "find.h"
+#include "globals.h"
+#include "groups.h"
+#include "interp.h"
+#include "items.h"
+#include "lookup.h"
+#include "magic.h"
+#include "memory.h"
+#include "objs.h"
+#include "players.h"
+#include "recycle.h"
+#include "rooms.h"
+#include "save.h"
+#include "spell_info.h"
+#include "tables.h"
+#include "update.h"
+#include "utils.h"
 
-#include "act_info.h"
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 #define SCAN_ALL_DIRS -2
 

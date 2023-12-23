@@ -25,19 +25,20 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "db.h"
-#include "lookup.h"
-#include "utils.h"
-#include "objs.h"
-#include "interp.h"
-#include "chars.h"
-#include "globals.h"
-#include "mobiles.h"
-#include "items.h"
-#include "resets.h"
-#include "recycle.h"
-
 #include "rooms.h"
+
+#include "chars.h"
+#include "db.h"
+#include "globals.h"
+#include "interp.h"
+#include "items.h"
+#include "lookup.h"
+#include "mobiles.h"
+#include "objs.h"
+#include "recycle.h"
+#include "resets.h"
+#include "tables.h"
+#include "utils.h"
 
 /* Translates mob virtual number to its room index struct.
  * Hash table lookup. */

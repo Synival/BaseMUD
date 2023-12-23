@@ -45,23 +45,24 @@
 
 */
 
+#include "board.h"
+
+#include "chars.h"
+#include "comm.h"
+#include "descs.h"
+#include "fread.h"
+#include "globals.h"
+#include "interp.h"
+#include "lookup.h"
+#include "memory.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <time.h>
-
-#include "interp.h"
-#include "fread.h"
-#include "utils.h"
-#include "comm.h"
-#include "recycle.h"
-#include "lookup.h"
-#include "chars.h"
-#include "descs.h"
-#include "memory.h"
-#include "globals.h"
-
-#include "board.h"
 
 #define L_SUP (MAX_LEVEL - 1) /* if not already defined */
 

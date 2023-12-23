@@ -27,22 +27,22 @@
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_comm.c,v 1.2 2000/12/01 10:48:33 ring0 Exp $ */
 
-#include <string.h>
-#include <ctype.h>
+#include "act_player.h"
 
-#include "db.h"
+#include "chars.h"
 #include "comm.h"
+#include "db.h"
+#include "descs.h"
+#include "fight.h"
+#include "globals.h"
+#include "interp.h"
+#include "memory.h"
+#include "recycle.h"
 #include "save.h"
 #include "utils.h"
-#include "fight.h"
-#include "interp.h"
-#include "recycle.h"
-#include "chars.h"
-#include "descs.h"
-#include "memory.h"
-#include "globals.h"
 
-#include "act_player.h"
+#include <string.h>
+#include <ctype.h>
 
 /* RT code to delete yourself */
 DEFINE_DO_FUN (do_delet) {

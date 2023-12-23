@@ -25,16 +25,16 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <stdlib.h>
+#include "find.h"
 
-#include "interp.h"
-#include "utils.h"
 #include "chars.h"
 #include "db.h"
 #include "globals.h"
+#include "interp.h"
 #include "rooms.h"
+#include "utils.h"
 
-#include "find.h"
+#include <stdlib.h>
 
 int find_number_argument (const char *arg_in, char *arg_out) {
     int number;

@@ -30,6 +30,8 @@
 
 #include "merc.h"
 
+#include <stdio.h>
+
 /* Writing functions. */
 const char *json_escaped_string (const char *value, int newline_pos);
 void json_print_real (JSON_T *json, FILE *fp, int new_line);

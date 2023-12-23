@@ -11,28 +11,29 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
-
-#include "utils.h"
-#include "interp.h"
-#include "comm.h"
-#include "db.h"
-#include "recycle.h"
-#include "lookup.h"
-#include "magic.h"
-#include "chars.h"
-#include "memory.h"
+#include "olc.h"
 
 #include "act_olc.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "flags.h"
+#include "interp.h"
+#include "lookup.h"
+#include "magic.h"
+#include "memory.h"
 #include "olc_aedit.h"
 #include "olc_hedit.h"
 #include "olc_medit.h"
 #include "olc_mpedit.h"
 #include "olc_oedit.h"
 #include "olc_redit.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "olc.h"
+#include <string.h>
+#include <stdlib.h>
 
 const EDITOR_CMD_T editor_table[] = {
     {"area",   do_aedit},

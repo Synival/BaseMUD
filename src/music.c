@@ -25,18 +25,19 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "recycle.h"
-#include "utils.h"
-#include "comm.h"
-#include "interp.h"
-#include "globals.h"
-#include "lookup.h"
-#include "chars.h"
-#include "objs.h"
-#include "memory.h"
-#include "fread.h"
-
 #include "music.h"
+
+#include "chars.h"
+#include "comm.h"
+#include "fread.h"
+#include "globals.h"
+#include "interp.h"
+#include "lookup.h"
+#include "memory.h"
+#include "objs.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
 
 bool music_queue_values (flag_t *line, flag_t *song_num, flag_t *queue,
     int queue_max, int song)

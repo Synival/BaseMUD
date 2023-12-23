@@ -25,16 +25,19 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "lookup.h"
+
+#include "db.h"
+#include "ext_flags.h"
+#include "flags.h"
+#include "globals.h"
+#include "interp.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
-
-#include "utils.h"
-#include "interp.h"
-#include "db.h"
-#include "recycle.h"
-#include "globals.h"
-
-#include "lookup.h"
 
 /* Lookup bundles. */
 SIMPLE_INDEX_BUNDLE (master,   TABLE_T,    0);

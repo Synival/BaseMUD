@@ -25,39 +25,41 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "chars.h"
+
+#include "affects.h"
+#include "board.h"
+#include "comm.h"
+#include "db.h"
+#include "ext_flags.h"
+#include "fight.h"
+#include "globals.h"
+#include "groups.h"
+#include "interp.h"
+#include "items.h"
+#include "lookup.h"
+#include "magic.h"
+#include "materials.h"
+#include "memory.h"
+#include "mob_prog.h"
+#include "mobiles.h"
+#include "objs.h"
+#include "players.h"
+#include "recycle.h"
+#include "rooms.h"
+#include "save.h"
+#include "tables.h"
+#include "update.h"
+#include "utils.h"
+#include "wiz_l6.h"
+
 #include <string.h>
 #include <stdlib.h>
 
-#include "utils.h"
-#include "comm.h"
-#include "objs.h"
-#include "affects.h"
-#include "lookup.h"
-#include "magic.h"
-#include "db.h"
-#include "groups.h"
-#include "fight.h"
-#include "interp.h"
-#include "recycle.h"
-#include "rooms.h"
-#include "mob_prog.h"
-#include "wiz_l6.h"
-#include "materials.h"
-#include "globals.h"
-#include "memory.h"
-#include "board.h"
-#include "update.h"
-#include "items.h"
-#include "players.h"
-#include "mobiles.h"
-#include "save.h"
-
-#include "act_move.h"
-#include "act_info.h"
 #include "act_group.h"
+#include "act_info.h"
+#include "act_move.h"
 #include "act_player.h"
-
-#include "chars.h"
 
 /* used for saving */
 static int save_number = 0;

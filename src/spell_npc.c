@@ -25,15 +25,17 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "magic.h"
-#include "utils.h"
-#include "lookup.h"
+#include "spell_npc.h"
+
+#include "chars.h"
+#include "comm.h"
 #include "effects.h"
 #include "fight.h"
-#include "comm.h"
-#include "chars.h"
+#include "lookup.h"
+#include "magic.h"
+#include "utils.h"
 
-#include "spell_npc.h"
+#include <stdio.h>
 
 /* NPC spells. */
 void perform_breath_attack (CHAR_T *ch, ROOM_INDEX_T *room,

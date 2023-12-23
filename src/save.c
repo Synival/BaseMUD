@@ -25,27 +25,30 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "recycle.h"
-#include "lookup.h"
-#include "colour.h"
-#include "db.h"
-#include "utils.h"
-#include "recycle.h"
+#include "save.h"
+
+#include "affects.h"
 #include "board.h"
 #include "chars.h"
-#include "objs.h"
-#include "globals.h"
-#include "memory.h"
-#include "items.h"
-#include "mobiles.h"
-#include "players.h"
+#include "colour.h"
+#include "db.h"
+#include "ext_flags.h"
+#include "extra_descrs.h"
+#include "flags.h"
 #include "fread.h"
 #include "fwrite.h"
+#include "globals.h"
+#include "items.h"
+#include "lookup.h"
+#include "memory.h"
+#include "mobiles.h"
+#include "objs.h"
+#include "players.h"
+#include "recycle.h"
+#include "recycle.h"
 #include "rooms.h"
-#include "affects.h"
-#include "extra_descrs.h"
-
-#include "save.h"
+#include "tables.h"
+#include "utils.h"
 
 /* Array of containers read for proper re-nesting of objects. */
 #define MAX_NEST    100

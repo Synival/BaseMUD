@@ -25,20 +25,22 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "magic.h"
-#include "utils.h"
+#include "spell_aff.h"
+
 #include "affects.h"
-#include "comm.h"
 #include "chars.h"
+#include "comm.h"
+#include "ext_flags.h"
+#include "extra_descrs.h"
 #include "fight.h"
 #include "groups.h"
+#include "items.h"
+#include "lookup.h"
+#include "magic.h"
 #include "objs.h"
 #include "recycle.h"
-#include "lookup.h"
-#include "items.h"
-#include "extra_descrs.h"
-
-#include "spell_aff.h"
+#include "tables.h"
+#include "utils.h"
 
 DEFINE_SPELL_FUN (spell_armor) {
     CHAR_T *victim = (CHAR_T *) vo;

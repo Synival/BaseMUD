@@ -25,19 +25,20 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
+#include "ban.h"
 
+#include "chars.h"
+#include "comm.h"
+#include "flags.h"
+#include "fread.h"
+#include "fwrite.h"
+#include "globals.h"
+#include "interp.h"
+#include "memory.h"
 #include "recycle.h"
 #include "utils.h"
-#include "fread.h"
-#include "interp.h"
-#include "comm.h"
-#include "chars.h"
-#include "globals.h"
-#include "memory.h"
-#include "fwrite.h"
 
-#include "ban.h"
+#include <string.h>
 
 void ban_save_all (void) {
     BAN_T *pban;

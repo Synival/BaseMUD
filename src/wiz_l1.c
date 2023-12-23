@@ -25,23 +25,24 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
+#include "wiz_l1.h"
 
-#include "db.h"
+#include "act_player.h"
+#include "ban.h"
+#include "chars.h"
 #include "comm.h"
+#include "db.h"
+#include "descs.h"
+#include "ext_flags.h"
+#include "fight.h"
+#include "find.h"
+#include "globals.h"
 #include "interp.h"
 #include "save.h"
-#include "fight.h"
-#include "ban.h"
 #include "utils.h"
-#include "act_player.h"
 #include "wiz_l4.h"
-#include "chars.h"
-#include "find.h"
-#include "descs.h"
-#include "globals.h"
 
-#include "wiz_l1.h"
+#include <string.h>
 
 DEFINE_DO_FUN (do_deny) {
     char arg[MAX_INPUT_LENGTH];

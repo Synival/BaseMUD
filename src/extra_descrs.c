@@ -25,9 +25,11 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "extra_descrs.h"
+
 #include "utils.h"
 
-#include "extra_descrs.h"
+#include <stdio.h>
 
 void extra_descr_to_room_index_front (EXTRA_DESCR_T *ed, ROOM_INDEX_T *room) {
     ed->parent_type = EXTRA_DESCR_ROOM_INDEX;

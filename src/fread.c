@@ -25,15 +25,17 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
+#include "fread.h"
+
+#include "ext_flags.h"
+#include "flags.h"
+#include "globals.h"
+#include "memory.h"
+#include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-
-#include "utils.h"
-#include "memory.h"
-#include "globals.h"
-
-#include "fread.h"
 
 /* Read a letter from a file.  */
 char fread_letter (FILE *fp) {

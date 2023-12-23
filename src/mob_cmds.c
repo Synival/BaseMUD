@@ -33,25 +33,27 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <stdlib.h>
+#include "mob_cmds.h"
 
-#include "lookup.h"
-#include "interp.h"
-#include "groups.h"
-#include "utils.h"
-#include "comm.h"
-#include "fight.h"
-#include "mob_prog.h"
-#include "db.h"
+#include "act_info.h"
 #include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "ext_flags.h"
+#include "fight.h"
+#include "find.h"
+#include "globals.h"
+#include "groups.h"
+#include "interp.h"
+#include "lookup.h"
+#include "mob_prog.h"
+#include "mobiles.h"
 #include "objs.h"
 #include "rooms.h"
-#include "find.h"
-#include "act_info.h"
-#include "globals.h"
-#include "mobiles.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "mob_cmds.h"
+#include <stdlib.h>
 
 /* Command table. */
 const MOB_CMD_T mob_cmd_table[] = {

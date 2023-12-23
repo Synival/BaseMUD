@@ -27,26 +27,27 @@
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_comm.c,v 1.2 2000/12/01 10:48:33 ring0 Exp $ */
 
-#include <string.h>
-#include <stdlib.h>
-#include <ctype.h> /* for isalpha() and isspace() -- JR */
+#include "act_comm.h"
 
-#include "interp.h"
-#include "recycle.h"
-#include "lookup.h"
+#include "chars.h"
+#include "chars.h"
 #include "comm.h"
-#include "utils.h"
-#include "mob_prog.h"
 #include "db.h"
 #include "do_sub.h"
-#include "chars.h"
 #include "find.h"
-#include "chars.h"
 #include "globals.h"
-#include "players.h"
+#include "interp.h"
+#include "lookup.h"
 #include "memory.h"
+#include "mob_prog.h"
+#include "players.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "act_comm.h"
+#include <ctype.h> /* for isalpha() and isspace() -- JR */
+#include <stdlib.h>
+#include <string.h>
 
 bool do_comm_filter_quiet (CHAR_T *ch) {
     FILTER_ACT (IS_SET (ch->comm, COMM_QUIET),

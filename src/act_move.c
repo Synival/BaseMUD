@@ -27,27 +27,28 @@
 
 /*   QuickMUD - The Lazy Man's ROM - $Id: act_move.c,v 1.2 2000/12/01 10:48:33 ring0 Exp $ */
 
-#include <string.h>
+#include "act_move.h"
 
-#include "interp.h"
-#include "lookup.h"
-#include "utils.h"
-#include "comm.h"
-#include "mob_prog.h"
+#include "act_info.h"
 #include "affects.h"
+#include "chars.h"
+#include "comm.h"
 #include "db.h"
 #include "fight.h"
-#include "groups.h"
-#include "act_info.h"
-#include "chars.h"
-#include "rooms.h"
-#include "objs.h"
 #include "find.h"
 #include "globals.h"
+#include "groups.h"
+#include "interp.h"
 #include "items.h"
+#include "lookup.h"
+#include "mob_prog.h"
+#include "objs.h"
 #include "players.h"
+#include "rooms.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "act_move.h"
+#include <string.h>
 
 int do_door_filter_find (CHAR_T *ch, char *argument) {
     EXIT_T *pexit;

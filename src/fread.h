@@ -30,6 +30,8 @@
 
 #include "merc.h"
 
+#include <stdio.h>
+
 /* Writing functions. */
 char fread_letter (FILE *fp);
 int fread_number (FILE *fp);

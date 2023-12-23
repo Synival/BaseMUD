@@ -25,26 +25,28 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <stdlib.h>
+#include "mobiles.h"
 
-#include "globals.h"
-#include "utils.h"
-#include "recycle.h"
-#include "memory.h"
-#include "chars.h"
-#include "affects.h"
-#include "lookup.h"
-#include "fight.h"
-#include "interp.h"
 #include "act_fight.h"
-#include "magic.h"
-#include "objs.h"
-#include "items.h"
-#include "mob_prog.h"
+#include "affects.h"
+#include "chars.h"
 #include "comm.h"
 #include "db.h"
+#include "ext_flags.h"
+#include "fight.h"
+#include "globals.h"
+#include "interp.h"
+#include "items.h"
+#include "lookup.h"
+#include "magic.h"
+#include "memory.h"
+#include "mob_prog.h"
+#include "objs.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "mobiles.h"
+#include <stdlib.h>
 
 /* Translates mob virtual number to its mob index struct.
  * Hash table lookup. */

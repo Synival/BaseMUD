@@ -31,22 +31,23 @@
  * at the head of that file.
  *     -- Synival */
 
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
-
-#include "board.h"
-#include "comm.h"
-#include "recycle.h"
-#include "utils.h"
-#include "lookup.h"
-#include "interp.h"
-#include "act_info.h"
-#include "chars.h"
-#include "memory.h"
-#include "globals.h"
-
 #include "act_board.h"
+
+#include "act_info.h"
+#include "board.h"
+#include "chars.h"
+#include "comm.h"
+#include "globals.h"
+#include "interp.h"
+#include "lookup.h"
+#include "memory.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
+
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note) {
     NOTE_T *p;

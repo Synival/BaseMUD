@@ -25,24 +25,25 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <stdlib.h>
+#include "spell_info.h"
 
-#include "magic.h"
-#include "comm.h"
-#include "utils.h"
-#include "lookup.h"
-#include "chars.h"
-#include "recycle.h"
-#include "db.h"
-#include "interp.h"
 #include "act_info.h"
 #include "affects.h"
-#include "objs.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
 #include "globals.h"
+#include "interp.h"
 #include "items.h"
+#include "lookup.h"
+#include "magic.h"
 #include "memory.h"
+#include "objs.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "spell_info.h"
+#include <stdlib.h>
 
 DEFINE_SPELL_FUN (spell_detect_poison) {
     flag_t *pflag;

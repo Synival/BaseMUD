@@ -25,24 +25,25 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
+#include "act_skills.h"
 
-#include "db.h"
-#include "utils.h"
-#include "comm.h"
-#include "interp.h"
-#include "magic.h"
-#include "fight.h"
-#include "lookup.h"
-#include "recycle.h"
 #include "act_comm.h"
 #include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "fight.h"
 #include "find.h"
-#include "players.h"
+#include "interp.h"
+#include "lookup.h"
+#include "magic.h"
 #include "memory.h"
+#include "players.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "act_skills.h"
+#include <string.h>
+#include <stdlib.h>
 
 #ifdef BASEMUD_DOTTED_LINES_IN_SKILLS
     #define LINE_CHAR '.'

@@ -25,27 +25,29 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "magic.h"
-#include "lookup.h"
-#include "comm.h"
-#include "interp.h"
-#include "utils.h"
-#include "db.h"
-#include "groups.h"
-#include "chars.h"
-#include "objs.h"
-#include "find.h"
+#include "act_shop.h"
+
 #include "act_comm.h"
-#include "spell_cure.h"
-#include "materials.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "ext_flags.h"
+#include "find.h"
 #include "globals.h"
-#include "memory.h"
+#include "groups.h"
+#include "interp.h"
 #include "items.h"
+#include "lookup.h"
+#include "magic.h"
+#include "materials.h"
+#include "memory.h"
 #include "mobiles.h"
+#include "objs.h"
 #include "players.h"
 #include "rooms.h"
-
-#include "act_shop.h"
+#include "spell_cure.h"
+#include "tables.h"
+#include "utils.h"
 
 bool do_filter_get_keeper (CHAR_T *ch, CHAR_T **out_keeper) {
     CHAR_T *keeper;

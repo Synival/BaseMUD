@@ -16,6 +16,8 @@
 
 #include "merc.h"
 
+#include <stdio.h>
+
 /* Function prototypes. */
 char *olc_save_filename_static (const char *filename);
 char *fix_string (const char *str);

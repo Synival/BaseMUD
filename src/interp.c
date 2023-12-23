@@ -25,23 +25,24 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <ctype.h>
-#include <stdlib.h>
+#include "act_board.h"
 
-#include "utils.h"
+#include "act_comm.h"
+#include "chars.h"
 #include "comm.h"
 #include "db.h"
-#include "recycle.h"
-#include "chars.h"
-#include "find.h"
 #include "descs.h"
+#include "ext_flags.h"
+#include "find.h"
 #include "globals.h"
-#include "memory.h"
 #include "lookup.h"
+#include "memory.h"
+#include "recycle.h"
+#include "utils.h"
+#include <ctype.h>
+#include <stdlib.h>
+#include <string.h>
 
-#include "act_board.h"
-#include "act_comm.h"
 #include "act_conf.h"
 #include "act_fight.h"
 #include "act_group.h"

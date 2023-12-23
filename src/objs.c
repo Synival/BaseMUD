@@ -25,23 +25,24 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include <string.h>
-#include <stdlib.h>
+#include "objs.h"
 
 #include "affects.h"
-#include "utils.h"
 #include "chars.h"
-#include "db.h"
-#include "recycle.h"
 #include "comm.h"
+#include "db.h"
+#include "extra_descrs.h"
+#include "globals.h"
+#include "items.h"
 #include "lookup.h"
 #include "materials.h"
-#include "globals.h"
 #include "memory.h"
-#include "items.h"
-#include "extra_descrs.h"
+#include "recycle.h"
+#include "tables.h"
+#include "utils.h"
 
-#include "objs.h"
+#include <string.h>
+#include <stdlib.h>
 
 /* Translates mob virtual number to its obj index struct.
  * Hash table lookup. */

@@ -30,6 +30,9 @@
 
 #include "merc.h"
 
+#include "defs.h"
+#include "types.h"
+
 /* A table containing every table of every type. */
 extern const TABLE_T          master_table[TABLE_MAX + 1];
 

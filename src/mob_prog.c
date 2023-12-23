@@ -35,22 +35,24 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "mob_prog.h"
+
+#include "chars.h"
+#include "db.h"
+#include "ext_flags.h"
+#include "flags.h"
+#include "find.h"
+#include "globals.h"
+#include "groups.h"
+#include "interp.h"
+#include "lookup.h"
+#include "mob_cmds.h"
+#include "objs.h"
+#include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-
-#include "lookup.h"
-#include "utils.h"
-#include "groups.h"
-#include "interp.h"
-#include "mob_cmds.h"
-#include "db.h"
-#include "chars.h"
-#include "objs.h"
-#include "find.h"
-#include "globals.h"
-
-#include "mob_prog.h"
 
 /* if-check keywords: */
 static const char *fn_keyword[] = {

@@ -25,19 +25,19 @@
  *  ROM license, in the file Rom24/doc/rom.license                         *
  ***************************************************************************/
 
-#include "magic.h"
-#include "comm.h"
-#include "utils.h"
-#include "lookup.h"
-#include "db.h"
-#include "affects.h"
-#include "objs.h"
-#include "interp.h"
-#include "chars.h"
-#include "globals.h"
-#include "items.h"
-
 #include "spell_misc.h"
+
+#include "affects.h"
+#include "chars.h"
+#include "comm.h"
+#include "db.h"
+#include "globals.h"
+#include "interp.h"
+#include "items.h"
+#include "lookup.h"
+#include "magic.h"
+#include "objs.h"
+#include "utils.h"
 
 DEFINE_SPELL_FUN (spell_cancellation) {
     CHAR_T *victim = (CHAR_T *) vo;
