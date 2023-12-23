@@ -199,7 +199,7 @@ static void sha256_transform(int * state, const unsigned char block[64]) {
         state[i] += S[i];
 }
 
-static unsigned char pad[64] = {
+static unsigned char PAD[64] = {
     0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -284,7 +284,7 @@ void sha256_update(sha256_ctx * ctx, const unsigned char *src, size_t len) {
  * and clears the context state. */
 void sha256_final(unsigned char digest[32], sha256_ctx * ctx) {
     /* Add padding */
-    sha256_Pad(ctx);
+    sha256_pad(ctx);
 
     /* Write the hash */
     be32enc_vect(digest, ctx->state, 32);

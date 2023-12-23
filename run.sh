@@ -1,2 +1,2 @@
 #!/bin/sh
-bin/rom
+bin/basemud
