@@ -15,8 +15,6 @@
 
 #include "areas.h"
 #include "comm.h"
-#include "db.h"
-#include "flags.h"
 #include "globals.h"
 #include "interp.h"
 #include "lookup.h"

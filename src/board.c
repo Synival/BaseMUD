@@ -62,7 +62,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <time.h>
 
 #define L_SUP (MAX_LEVEL - 1) /* if not already defined */
 

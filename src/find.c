@@ -28,7 +28,6 @@
 #include "find.h"
 
 #include "chars.h"
-#include "db.h"
 #include "globals.h"
 #include "interp.h"
 #include "rooms.h"

@@ -31,7 +31,6 @@
 #include "db.h"
 #include "globals.h"
 #include "interp.h"
-#include "items.h"
 #include "lookup.h"
 #include "mobiles.h"
 #include "objs.h"

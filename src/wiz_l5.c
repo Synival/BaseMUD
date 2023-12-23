@@ -28,12 +28,8 @@
 #include "wiz_l5.h"
 
 #include "act_info.h"
-#include "affects.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
-#include "do_sub.h"
-#include "ext_flags.h"
 #include "extra_descrs.h"
 #include "fight.h"
 #include "find.h"
@@ -46,11 +42,9 @@
 #include "players.h"
 #include "recycle.h"
 #include "rooms.h"
-#include "save.h"
 #include "utils.h"
 
 #include <string.h>
-#include <stdlib.h>
 
 /* trust levels for load and clone */
 bool do_obj_load_check (CHAR_T *ch, OBJ_T *obj) {

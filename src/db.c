@@ -32,9 +32,7 @@
 #include "ban.h"
 #include "board.h"
 #include "db_old.h"
-#include "ext_flags.h"
 #include "extra_descrs.h"
-#include "flags.h"
 #include "fread.h"
 #include "globals.h"
 #include "help.h"
@@ -56,9 +54,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#include <stddef.h>
-#include <dirent.h>
 
 #if !defined(OLD_RAND)
     #if !defined(linux)

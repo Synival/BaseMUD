@@ -29,24 +29,19 @@
 
 #include "affects.h"
 #include "db.h"
-#include "ext_flags.h"
 #include "extra_descrs.h"
-#include "flags.h"
 #include "fread.h"
 #include "globals.h"
 #include "interp.h"
 #include "items.h"
 #include "lookup.h"
-#include "memory.h"
 #include "mobiles.h"
 #include "objs.h"
-#include "olc.h"
 #include "recycle.h"
 #include "rooms.h"
 #include "tables.h"
 #include "utils.h"
 
-#include <string.h>
 #include <stdlib.h>
 
 /* Snarf a mob section.  old style */

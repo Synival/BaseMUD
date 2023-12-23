@@ -39,15 +39,12 @@
 #include "comm.h"
 #include "globals.h"
 #include "interp.h"
-#include "lookup.h"
 #include "memory.h"
 #include "recycle.h"
 #include "tables.h"
 #include "utils.h"
 
 #include <stdlib.h>
-#include <string.h>
-#include <time.h>
 
 void do_nread_next (CHAR_T *ch, char *argument, time_t *last_note) {
     NOTE_T *p;

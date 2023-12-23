@@ -33,7 +33,6 @@
 #include "utils.h"
 
 #include <stdio.h>
-#include <string.h>
 
 void affect_modify_char_bits (AFFECT_T *paf, CHAR_T *ch, bool on) {
     if (on) {

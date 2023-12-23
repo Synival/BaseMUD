@@ -29,11 +29,9 @@
 
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "find.h"
 #include "globals.h"
 #include "items.h"
-#include "magic.h"
 #include "memory.h"
 #include "objs.h"
 #include "utils.h"

@@ -31,7 +31,6 @@
 #include "affects.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "do_sub.h"
 #include "find.h"
 #include "globals.h"

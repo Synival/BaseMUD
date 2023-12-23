@@ -28,11 +28,8 @@
 #include "json_tblw.h"
 
 #include "colour.h"
-#include "ext_flags.h"
-#include "flags.h"
 #include "json.h"
 #include "lookup.h"
-#include "types.h"
 
 #include <string.h>
 

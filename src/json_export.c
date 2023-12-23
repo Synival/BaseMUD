@@ -27,7 +27,6 @@
 
 #include "json_export.h"
 
-#include "areas.h"
 #include "json.h"
 #include "json_objw.h"
 #include "json_write.h"

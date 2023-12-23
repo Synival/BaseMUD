@@ -43,28 +43,18 @@
 
 #include "comm.h"
 
-#include "act_info.h"
 #include "chars.h"
 #include "colour.h"
-#include "db.h"
 #include "descs.h"
-#include "ext_flags.h"
-#include "fight.h"
 #include "globals.h"
-#include "interp.h"
-#include "lookup.h"
 #include "mob_prog.h"
 #include "objs.h"
 #include "olc.h"
 #include "players.h"
-#include "recycle.h"
 #include "rooms.h"
-#include "save.h"
 #include "utils.h"
 
-#include <ctype.h>
 #include <string.h>
-#include <stdlib.h>
 #include <stdarg.h>
 
 /* Malloc debugging stuff. */
@@ -73,7 +63,6 @@
 #endif
 
 #if defined(MALLOC_DEBUG)
-    #include <malloc.h>
     extern int malloc_debug args ((int));
     extern int malloc_verify args ((void));
 #endif

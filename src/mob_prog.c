@@ -38,16 +38,12 @@
 #include "mob_prog.h"
 
 #include "chars.h"
-#include "db.h"
-#include "ext_flags.h"
-#include "flags.h"
 #include "find.h"
 #include "globals.h"
 #include "groups.h"
 #include "interp.h"
 #include "lookup.h"
 #include "mob_cmds.h"
-#include "objs.h"
 #include "utils.h"
 
 #include <string.h>

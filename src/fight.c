@@ -34,15 +34,12 @@
 #include "affects.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "effects.h"
-#include "ext_flags.h"
 #include "find.h"
 #include "globals.h"
 #include "groups.h"
 #include "interp.h"
 #include "items.h"
-#include "lookup.h"
 #include "magic.h"
 #include "memory.h"
 #include "mob_prog.h"
@@ -51,7 +48,6 @@
 #include "players.h"
 #include "save.h"
 #include "tables.h"
-#include "update.h"
 #include "utils.h"
 
 #include <string.h>

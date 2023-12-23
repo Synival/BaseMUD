@@ -38,7 +38,6 @@
 #include "lookup.h"
 #include "mob_prog.h"
 #include "players.h"
-#include "recycle.h"
 #include "tables.h"
 #include "utils.h"
 

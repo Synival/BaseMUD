@@ -15,7 +15,6 @@
 
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "globals.h"
 #include "lookup.h"
 #include "memory.h"

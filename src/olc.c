@@ -17,7 +17,6 @@
 #include "chars.h"
 #include "comm.h"
 #include "db.h"
-#include "flags.h"
 #include "interp.h"
 #include "lookup.h"
 #include "magic.h"

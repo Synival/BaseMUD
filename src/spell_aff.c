@@ -30,8 +30,6 @@
 #include "affects.h"
 #include "chars.h"
 #include "comm.h"
-#include "ext_flags.h"
-#include "extra_descrs.h"
 #include "fight.h"
 #include "groups.h"
 #include "items.h"

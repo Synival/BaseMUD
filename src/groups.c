@@ -30,7 +30,6 @@
 #include "affects.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "globals.h"
 #include "recycle.h"
 #include "tables.h"

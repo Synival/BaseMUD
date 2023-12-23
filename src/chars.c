@@ -30,8 +30,6 @@
 #include "affects.h"
 #include "board.h"
 #include "comm.h"
-#include "db.h"
-#include "ext_flags.h"
 #include "fight.h"
 #include "globals.h"
 #include "groups.h"
@@ -40,7 +38,6 @@
 #include "lookup.h"
 #include "magic.h"
 #include "materials.h"
-#include "memory.h"
 #include "mob_prog.h"
 #include "mobiles.h"
 #include "objs.h"
@@ -49,14 +46,11 @@
 #include "rooms.h"
 #include "save.h"
 #include "tables.h"
-#include "update.h"
 #include "utils.h"
 #include "wiz_l6.h"
 
 #include <string.h>
-#include <stdlib.h>
 
-#include "act_group.h"
 #include "act_info.h"
 #include "act_move.h"
 #include "act_player.h"

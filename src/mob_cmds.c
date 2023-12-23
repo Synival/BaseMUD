@@ -38,8 +38,6 @@
 #include "act_info.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
-#include "ext_flags.h"
 #include "fight.h"
 #include "find.h"
 #include "globals.h"

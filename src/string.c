@@ -14,7 +14,6 @@
 #include "string.h"
 
 #include "comm.h"
-#include "db.h"
 #include "globals.h"
 #include "interp.h"
 #include "memory.h"

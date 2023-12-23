@@ -28,7 +28,6 @@
 #include "types.h"
 
 #include "lookup.h"
-#include "merc.h"
 #include "utils.h"
 
 #include <stdio.h>

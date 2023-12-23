@@ -32,7 +32,6 @@
 #include "chars.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "do_sub.h"
 #include "find.h"
 #include "globals.h"
@@ -46,7 +45,6 @@
 #include "utils.h"
 
 #include <ctype.h> /* for isalpha() and isspace() -- JR */
-#include <stdlib.h>
 #include <string.h>
 
 bool do_comm_filter_quiet (CHAR_T *ch) {

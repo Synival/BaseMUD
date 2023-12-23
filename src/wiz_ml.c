@@ -28,7 +28,6 @@
 #include "wiz_ml.h"
 
 #include "act_info.h"
-#include "boot.h"
 #include "chars.h"
 #include "comm.h"
 #include "db.h"

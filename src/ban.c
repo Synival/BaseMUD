@@ -29,7 +29,6 @@
 
 #include "chars.h"
 #include "comm.h"
-#include "flags.h"
 #include "fread.h"
 #include "fwrite.h"
 #include "globals.h"

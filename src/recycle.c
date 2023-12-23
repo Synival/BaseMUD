@@ -31,7 +31,6 @@
 #include "board.h"
 #include "chars.h"
 #include "db.h"
-#include "ext_flags.h"
 #include "extra_descrs.h"
 #include "globals.h"
 #include "help.h"
@@ -47,7 +46,6 @@
 #include "tables.h"
 #include "utils.h"
 
-#include <stdarg.h>
 #include <string.h>
 #include <stdlib.h>
 

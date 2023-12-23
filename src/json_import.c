@@ -37,7 +37,6 @@
 #include "memory.h"
 #include "mobiles.h"
 #include "objs.h"
-#include "portals.h"
 #include "recycle.h"
 #include "rooms.h"
 #include "utils.h"

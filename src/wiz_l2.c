@@ -30,7 +30,6 @@
 #include "ban.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "find.h"
 #include "globals.h"
 #include "interp.h"

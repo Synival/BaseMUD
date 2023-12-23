@@ -27,7 +27,6 @@
 
 #include "act_skills.h"
 
-#include "act_comm.h"
 #include "chars.h"
 #include "comm.h"
 #include "db.h"

@@ -28,13 +28,10 @@
 #include "save.h"
 
 #include "affects.h"
-#include "board.h"
 #include "chars.h"
 #include "colour.h"
 #include "db.h"
-#include "ext_flags.h"
 #include "extra_descrs.h"
-#include "flags.h"
 #include "fread.h"
 #include "fwrite.h"
 #include "globals.h"

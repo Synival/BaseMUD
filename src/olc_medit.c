@@ -16,8 +16,6 @@
 #include "chars.h"
 #include "comm.h"
 #include "db.h"
-#include "ext_flags.h"
-#include "flags.h"
 #include "globals.h"
 #include "interp.h"
 #include "lookup.h"

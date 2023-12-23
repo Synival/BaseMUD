@@ -31,7 +31,6 @@
 #include "tables.h"
 #include "utils.h"
 
-#include <string.h>
 #include <stdlib.h>
 
 void skill_clear_mapping (void) {

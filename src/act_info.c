@@ -30,27 +30,19 @@
 #include "act_info.h"
 
 #include "act_comm.h"
-#include "act_obj.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
-#include "do_sub.h"
-#include "ext_flags.h"
 #include "extra_descrs.h"
-#include "fight.h"
 #include "find.h"
 #include "globals.h"
-#include "groups.h"
 #include "interp.h"
 #include "items.h"
 #include "lookup.h"
-#include "magic.h"
 #include "memory.h"
 #include "objs.h"
 #include "players.h"
 #include "recycle.h"
 #include "rooms.h"
-#include "save.h"
 #include "spell_info.h"
 #include "tables.h"
 #include "update.h"
@@ -59,7 +51,6 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 
 #define SCAN_ALL_DIRS -2
 

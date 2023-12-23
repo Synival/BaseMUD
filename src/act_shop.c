@@ -30,8 +30,6 @@
 #include "act_comm.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
-#include "ext_flags.h"
 #include "find.h"
 #include "globals.h"
 #include "groups.h"
@@ -45,7 +43,6 @@
 #include "objs.h"
 #include "players.h"
 #include "rooms.h"
-#include "spell_cure.h"
 #include "tables.h"
 #include "utils.h"
 

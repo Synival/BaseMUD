@@ -30,15 +30,12 @@
 #include "affects.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "items.h"
 #include "lookup.h"
 #include "magic.h"
 #include "objs.h"
 #include "players.h"
-#include "recycle.h"
 #include "tables.h"
-#include "update.h"
 #include "utils.h"
 
 DEFINE_EFFECT_FUN (effect_acid) {

@@ -16,7 +16,6 @@
 #include "act_info.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "descs.h"
 #include "globals.h"
 #include "interp.h"

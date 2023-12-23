@@ -28,12 +28,9 @@
 #include "interp.h"
 
 #include "lookup.h"
-#include "merc.h"
-#include <string.h>
-
 #include "utils.h"
 
-#include "flags.h"
+#include <string.h>
 
 flag_t flag_lookup (const FLAG_T *flag_table, const char *name)
     { SIMPLE_LOOKUP_PROP (flag_table, bit, name, FLAG_NONE, 0); }

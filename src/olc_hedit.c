@@ -14,7 +14,6 @@
 #include "olc_hedit.h"
 
 #include "comm.h"
-#include "db.h"
 #include "globals.h"
 #include "help.h"
 #include "interp.h"

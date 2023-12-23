@@ -34,7 +34,6 @@
 #include "comm.h"
 #include "db.h"
 #include "do_sub.h"
-#include "ext_flags.h"
 #include "groups.h"
 #include "interp.h"
 #include "lookup.h"

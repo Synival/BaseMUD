@@ -30,8 +30,6 @@
 #include "colour.h"
 
 #include "chars.h"
-#include "ext_flags.h"
-#include "lookup.h"
 #include "tables.h"
 
 #include <stdio.h>

@@ -30,7 +30,6 @@
 #include "act_info.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "fight.h"
 #include "find.h"
 #include "interp.h"

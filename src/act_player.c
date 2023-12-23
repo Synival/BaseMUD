@@ -31,7 +31,6 @@
 
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "descs.h"
 #include "fight.h"
 #include "globals.h"

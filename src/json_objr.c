@@ -29,9 +29,7 @@
 
 #include "affects.h"
 #include "db.h"
-#include "ext_flags.h"
 #include "extra_descrs.h"
-#include "flags.h"
 #include "globals.h"
 #include "help.h"
 #include "json.h"
@@ -42,7 +40,6 @@
 #include "recycle.h"
 #include "resets.h"
 #include "rooms.h"
-#include "types.h"
 
 #include <string.h>
 

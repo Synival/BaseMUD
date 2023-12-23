@@ -28,7 +28,6 @@
 #include "resets.h"
 
 #include "chars.h"
-#include "ext_flags.h"
 #include "items.h"
 #include "mobiles.h"
 #include "objs.h"

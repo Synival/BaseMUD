@@ -34,10 +34,8 @@
 #include "chars.h"
 #include "colour.h"
 #include "comm.h"
-#include "db.h"
 #include "globals.h"
 #include "interp.h"
-#include "lookup.h"
 #include "memory.h"
 #include "recycle.h"
 #include "utils.h"
@@ -49,7 +47,6 @@
 #include <errno.h>
 #include <unistd.h>
 #if defined(unix)
-    #include <signal.h>
     #include <fcntl.h>
     #include <netdb.h>
     #include <arpa/inet.h>

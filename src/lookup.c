@@ -27,11 +27,7 @@
 
 #include "lookup.h"
 
-#include "db.h"
-#include "ext_flags.h"
-#include "flags.h"
 #include "globals.h"
-#include "interp.h"
 #include "recycle.h"
 #include "tables.h"
 #include "utils.h"

@@ -39,8 +39,6 @@
 #include "act_move.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
-#include "ext_flags.h"
 #include "fight.h"
 #include "globals.h"
 #include "interp.h"

@@ -19,8 +19,6 @@
 #include "db.h"
 #include "extra_descrs.h"
 #include "find.h"
-#include "flags.h"
-#include "globals.h"
 #include "interp.h"
 #include "lookup.h"
 #include "memory.h"

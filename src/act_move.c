@@ -33,22 +33,17 @@
 #include "affects.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "fight.h"
 #include "find.h"
 #include "globals.h"
-#include "groups.h"
 #include "interp.h"
 #include "items.h"
 #include "lookup.h"
-#include "mob_prog.h"
 #include "objs.h"
 #include "players.h"
 #include "rooms.h"
 #include "tables.h"
 #include "utils.h"
-
-#include <string.h>
 
 int do_door_filter_find (CHAR_T *ch, char *argument) {
     EXIT_T *pexit;

@@ -27,14 +27,11 @@
 
 #include "json_read.h"
 
-#include "flags.h"
 #include "json.h"
 #include "utils.h"
 
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <stdarg.h>
-#include <unistd.h>
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>

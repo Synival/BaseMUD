@@ -23,28 +23,18 @@
 #include "olc_save.h"
 
 #include "comm.h"
-#include "db.h"
-#include "ext_flags.h"
-#include "flags.h"
-#include "fread.h"
 #include "fwrite.h"
 #include "globals.h"
-#include "interp.h"
 #include "items.h"
 #include "json_export.h"
 #include "lookup.h"
-#include "merc.h"
 #include "mob_cmds.h"
 #include "mob_prog.h"
 #include "mobiles.h"
 #include "objs.h"
-#include "olc.h"
 #include "rooms.h"
 #include "tables.h"
 #include "utils.h"
-
-#include <string.h>
-#include <stdlib.h>
 
 /* Verbose writes reset data in plain english into the comments
  * section of the resets.  It makes areas considerably larger but

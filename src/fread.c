@@ -27,8 +27,6 @@
 
 #include "fread.h"
 
-#include "ext_flags.h"
-#include "flags.h"
 #include "globals.h"
 #include "memory.h"
 #include "utils.h"

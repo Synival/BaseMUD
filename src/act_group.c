@@ -29,8 +29,6 @@
 
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
-#include "ext_flags.h"
 #include "find.h"
 #include "globals.h"
 #include "groups.h"

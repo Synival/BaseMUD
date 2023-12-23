@@ -27,9 +27,6 @@
 
 #include "json_tblr.h"
 
-#include "colour.h"
-#include "ext_flags.h"
-#include "flags.h"
 #include "json.h"
 #include "json_import.h"
 #include "lookup.h"

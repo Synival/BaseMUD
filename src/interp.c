@@ -30,14 +30,11 @@
 #include "act_comm.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "descs.h"
-#include "ext_flags.h"
 #include "find.h"
 #include "globals.h"
 #include "lookup.h"
 #include "memory.h"
-#include "recycle.h"
 #include "utils.h"
 #include <ctype.h>
 #include <stdlib.h>
@@ -65,7 +62,6 @@
 #include "wiz_l8.h"
 #include "wiz_ml.h"
 
-#include "olc.h"
 #include "mob_cmds.h"
 
 #include "interp.h"

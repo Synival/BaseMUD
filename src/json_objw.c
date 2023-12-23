@@ -27,11 +27,8 @@
 
 #include "json_objw.h"
 
-#include "ext_flags.h"
-#include "flags.h"
 #include "json.h"
 #include "lookup.h"
-#include "types.h"
 #include "utils.h"
 
 #include <stdio.h>

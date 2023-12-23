@@ -36,7 +36,6 @@
 #include "utils.h"
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 int find_spell (CHAR_T *ch, const char *name) {

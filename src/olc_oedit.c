@@ -17,9 +17,7 @@
 #include "affects.h"
 #include "chars.h"
 #include "comm.h"
-#include "db.h"
 #include "extra_descrs.h"
-#include "flags.h"
 #include "globals.h"
 #include "interp.h"
 #include "items.h"
@@ -29,7 +27,6 @@
 #include "olc.h"
 #include "recycle.h"
 #include "string.h"
-#include "types.h"
 #include "utils.h"
 
 #include <string.h>
