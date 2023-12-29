@@ -40,575 +40,535 @@ clean:
 	rm -f $(OBJ_FILES)
 # DO NOT DELETE
 
-obj/act_board.o: src/board.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/act_board.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/act_board.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/act_board.o: src/comm.h src/recycle.h src/utils.h src/lookup.h
-obj/act_board.o: src/interp.h src/act_info.h src/chars.h src/memory.h
-obj/act_board.o: src/globals.h src/act_board.h
-obj/act_comm.o: src/interp.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/act_comm.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/act_comm.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/act_comm.o: src/recycle.h src/lookup.h src/comm.h src/utils.h
-obj/act_comm.o: src/mob_prog.h src/db.h src/do_sub.h src/chars.h src/find.h
-obj/act_comm.o: src/globals.h src/players.h src/memory.h src/act_comm.h
-obj/act_conf.o: src/db.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/act_conf.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/act_conf.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/act_conf.o: src/interp.h src/colour.h src/groups.h src/comm.h src/utils.h
-obj/act_conf.o: src/lookup.h src/do_sub.h src/chars.h src/memory.h
-obj/act_conf.o: src/act_conf.h
-obj/act_fight.o: src/affects.h src/merc.h src/basemud.h src/compat.h
-obj/act_fight.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/act_fight.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/act_fight.o: src/ext_flags.h src/utils.h src/comm.h src/lookup.h
-obj/act_fight.o: src/interp.h src/groups.h src/mob_prog.h src/recycle.h
-obj/act_fight.o: src/fight.h src/act_comm.h src/chars.h src/find.h
-obj/act_fight.o: src/players.h src/act_fight.h
-obj/act_group.o: src/interp.h src/merc.h src/basemud.h src/compat.h
-obj/act_group.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/act_group.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/act_group.o: src/ext_flags.h src/groups.h src/utils.h src/comm.h src/db.h
-obj/act_group.o: src/chars.h src/find.h src/globals.h src/act_group.h
-obj/act_info.o: src/interp.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/act_info.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/act_info.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/act_info.o: src/magic.h src/recycle.h src/lookup.h src/utils.h
-obj/act_info.o: src/groups.h src/db.h src/fight.h src/update.h src/comm.h
-obj/act_info.o: src/save.h src/do_sub.h src/act_comm.h src/act_obj.h
-obj/act_info.o: src/chars.h src/rooms.h src/objs.h src/find.h
-obj/act_info.o: src/spell_info.h src/globals.h src/memory.h src/items.h
-obj/act_info.o: src/players.h src/extra_descrs.h src/act_info.h
-obj/act_move.o: src/interp.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/act_move.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/act_move.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/act_move.o: src/lookup.h src/utils.h src/comm.h src/mob_prog.h
-obj/act_move.o: src/affects.h src/db.h src/fight.h src/groups.h
-obj/act_move.o: src/act_info.h src/chars.h src/rooms.h src/objs.h src/find.h
-obj/act_move.o: src/globals.h src/items.h src/players.h src/act_move.h
-obj/act_obj.o: src/interp.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/act_obj.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/act_obj.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/act_obj.o: src/affects.h src/utils.h src/comm.h src/db.h src/fight.h
-obj/act_obj.o: src/groups.h src/mob_prog.h src/save.h src/magic.h
-obj/act_obj.o: src/act_group.h src/act_comm.h src/act_move.h src/recycle.h
-obj/act_obj.o: src/chars.h src/objs.h src/rooms.h src/find.h src/globals.h
-obj/act_obj.o: src/lookup.h src/items.h src/players.h src/act_obj.h
-obj/act_olc.o: src/recycle.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/act_olc.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/act_olc.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/act_olc.o: src/lookup.h src/interp.h src/utils.h src/db.h src/comm.h
-obj/act_olc.o: src/olc_save.h src/act_info.h src/chars.h src/globals.h
-obj/act_olc.o: src/items.h src/mobiles.h src/rooms.h src/objs.h
-obj/act_olc.o: src/mob_prog.h src/descs.h src/json_export.h src/resets.h
-obj/act_olc.o: src/memory.h src/portals.h src/olc_aedit.h src/olc_hedit.h
-obj/act_olc.o: src/olc_medit.h src/olc_mpedit.h src/olc_oedit.h
-obj/act_olc.o: src/olc_redit.h src/olc.h src/act_olc.h
-obj/act_player.o: src/db.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/act_player.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/act_player.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/act_player.o: src/comm.h src/save.h src/utils.h src/fight.h src/interp.h
-obj/act_player.o: src/recycle.h src/chars.h src/descs.h src/memory.h
-obj/act_player.o: src/globals.h src/act_player.h
-obj/act_shop.o: src/magic.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/act_shop.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/act_shop.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/act_shop.o: src/lookup.h src/comm.h src/interp.h src/utils.h src/db.h
-obj/act_shop.o: src/groups.h src/chars.h src/objs.h src/find.h src/act_comm.h
-obj/act_shop.o: src/spell_cure.h src/materials.h src/globals.h src/memory.h
-obj/act_shop.o: src/items.h src/mobiles.h src/players.h src/rooms.h
-obj/act_shop.o: src/act_shop.h
-obj/act_skills.o: src/db.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/act_skills.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/act_skills.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/act_skills.o: src/utils.h src/comm.h src/interp.h src/magic.h src/fight.h
-obj/act_skills.o: src/lookup.h src/recycle.h src/act_comm.h src/chars.h
-obj/act_skills.o: src/find.h src/players.h src/memory.h src/act_skills.h
-obj/affects.o: src/recycle.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/affects.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/affects.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/affects.o: src/utils.h src/lookup.h src/chars.h src/affects.h
-obj/areas.o: src/globals.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/areas.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/areas.o: src/flags.h src/tables.h src/ext_flags.h src/comm.h src/rooms.h
-obj/areas.o: src/utils.h src/recycle.h src/resets.h src/areas.h
-obj/ban.o: src/recycle.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/ban.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/ban.o: src/flags.h src/tables.h src/ext_flags.h src/utils.h src/fread.h
-obj/ban.o: src/interp.h src/comm.h src/chars.h src/globals.h src/memory.h
-obj/ban.o: src/fwrite.h src/ban.h
-obj/board.o: src/interp.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/board.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/board.o: src/flags.h src/tables.h src/ext_flags.h src/fread.h src/utils.h
-obj/board.o: src/comm.h src/recycle.h src/lookup.h src/chars.h src/descs.h
-obj/board.o: src/memory.h src/globals.h src/board.h
-obj/boot.o: src/signal.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/boot.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/boot.o: src/flags.h src/tables.h src/ext_flags.h src/globals.h
-obj/boot.o: src/utils.h src/interp.h src/db.h src/descs.h src/recycle.h
-obj/boot.o: src/memory.h src/save.h src/chars.h src/string.h src/olc.h
-obj/boot.o: src/nanny.h src/update.h src/comm.h src/rooms.h src/quickmud.h
-obj/boot.o: src/act_info.h src/boot.h
-obj/chars.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/chars.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/chars.o: src/flags.h src/tables.h src/ext_flags.h src/utils.h src/comm.h
-obj/chars.o: src/objs.h src/affects.h src/lookup.h src/magic.h src/db.h
-obj/chars.o: src/groups.h src/fight.h src/interp.h src/recycle.h src/rooms.h
-obj/chars.o: src/mob_prog.h src/wiz_l6.h src/materials.h src/globals.h
-obj/chars.o: src/memory.h src/board.h src/update.h src/items.h src/players.h
-obj/chars.o: src/mobiles.h src/save.h src/act_move.h src/act_info.h
-obj/chars.o: src/act_group.h src/act_player.h src/chars.h
-obj/colour.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/colour.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/colour.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/colour.o: src/lookup.h src/chars.h src/colour.h
-obj/comm.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/comm.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/comm.o: src/flags.h src/tables.h src/ext_flags.h src/colour.h
-obj/comm.o: src/recycle.h src/utils.h src/fight.h src/interp.h src/db.h
-obj/comm.o: src/olc.h src/save.h src/mob_prog.h src/lookup.h src/act_info.h
-obj/comm.o: src/chars.h src/rooms.h src/objs.h src/descs.h src/globals.h
-obj/comm.o: src/players.h src/comm.h
-obj/db.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/db.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/db.o: src/flags.h src/tables.h src/ext_flags.h src/utils.h src/recycle.h
-obj/db.o: src/affects.h src/lookup.h src/json_import.h src/music.h src/ban.h
-obj/db.o: src/board.h src/portals.h src/rooms.h src/objs.h src/db_old.h
-obj/db.o: src/globals.h src/memory.h src/items.h src/mobiles.h src/skills.h
-obj/db.o: src/fread.h src/areas.h src/mob_prog.h src/resets.h
-obj/db.o: src/extra_descrs.h src/help.h src/db.h
-obj/db_old.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/db_old.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/db_old.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/db.h
-obj/db_old.o: src/recycle.h src/utils.h src/interp.h src/lookup.h src/olc.h
-obj/db_old.o: src/affects.h src/globals.h src/memory.h src/items.h
-obj/db_old.o: src/fread.h src/mobiles.h src/objs.h src/rooms.h
-obj/db_old.o: src/extra_descrs.h src/db_old.h
-obj/descs.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/descs.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/descs.o: src/flags.h src/tables.h src/ext_flags.h src/ban.h src/chars.h
-obj/descs.o: src/colour.h src/comm.h src/db.h src/recycle.h src/utils.h
-obj/descs.o: src/interp.h src/lookup.h src/globals.h src/memory.h src/descs.h
-obj/do_sub.o: src/comm.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/do_sub.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/do_sub.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/do_sub.o: src/chars.h src/do_sub.h
-obj/effects.o: src/recycle.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/effects.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/effects.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/effects.o: src/lookup.h src/db.h src/utils.h src/comm.h src/magic.h
-obj/effects.o: src/update.h src/affects.h src/objs.h src/chars.h src/items.h
-obj/effects.o: src/players.h src/effects.h
-obj/ext_flags.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/ext_flags.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/ext_flags.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/ext_flags.o: src/ext_flags.h src/interp.h src/lookup.h src/utils.h
-obj/extra_descrs.o: src/utils.h src/merc.h src/basemud.h src/compat.h
-obj/extra_descrs.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/extra_descrs.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/extra_descrs.o: src/ext_flags.h src/extra_descrs.h
-obj/fight.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/fight.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/fight.o: src/flags.h src/tables.h src/ext_flags.h src/interp.h
-obj/fight.o: src/lookup.h src/update.h src/utils.h src/db.h src/effects.h
-obj/fight.o: src/mob_prog.h src/comm.h src/save.h src/groups.h src/magic.h
-obj/fight.o: src/affects.h src/act_fight.h src/act_obj.h src/act_comm.h
-obj/fight.o: src/act_move.h src/chars.h src/objs.h src/find.h src/globals.h
-obj/fight.o: src/memory.h src/items.h src/players.h src/mobiles.h src/fight.h
-obj/find.o: src/interp.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/find.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/find.o: src/flags.h src/tables.h src/ext_flags.h src/utils.h src/chars.h
-obj/find.o: src/db.h src/globals.h src/rooms.h src/find.h
-obj/flags.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/flags.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/flags.o: src/flags.h src/tables.h src/ext_flags.h src/interp.h
-obj/flags.o: src/lookup.h src/utils.h
-obj/fread.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/fread.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/fread.o: src/flags.h src/tables.h src/ext_flags.h src/utils.h
-obj/fread.o: src/memory.h src/globals.h src/fread.h
-obj/fwrite.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/fwrite.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/fwrite.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/save.h
-obj/fwrite.o: src/fwrite.h
+obj/act_board.o: src/act_board.h src/merc.h src/basemud.h src/compat.h
+obj/act_board.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/act_board.o: src/flags.h src/ext_flags.h src/types.h src/act_info.h
+obj/act_board.o: src/board.h src/chars.h src/comm.h src/globals.h
+obj/act_board.o: src/interp.h src/memory.h src/recycle.h src/tables.h
+obj/act_board.o: src/utils.h
+obj/act_comm.o: src/act_comm.h src/merc.h src/basemud.h src/compat.h
+obj/act_comm.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/act_comm.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/act_comm.o: src/comm.h src/do_sub.h src/find.h src/globals.h src/interp.h
+obj/act_comm.o: src/lookup.h src/memory.h src/mob_prog.h src/players.h
+obj/act_comm.o: src/recycle.h src/tables.h src/utils.h
+obj/act_conf.o: src/act_conf.h src/merc.h src/basemud.h src/compat.h
+obj/act_conf.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/act_conf.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/act_conf.o: src/colour.h src/comm.h src/db.h src/do_sub.h src/groups.h
+obj/act_conf.o: src/interp.h src/lookup.h src/memory.h src/tables.h
+obj/act_conf.o: src/utils.h
+obj/act_fight.o: src/act_fight.h src/merc.h src/basemud.h src/compat.h
+obj/act_fight.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/act_fight.o: src/flags.h src/ext_flags.h src/types.h src/act_comm.h
+obj/act_fight.o: src/affects.h src/chars.h src/comm.h src/fight.h src/find.h
+obj/act_fight.o: src/groups.h src/interp.h src/lookup.h src/mob_prog.h
+obj/act_fight.o: src/players.h src/tables.h src/utils.h
+obj/act_group.o: src/act_group.h src/merc.h src/basemud.h src/compat.h
+obj/act_group.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/act_group.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/act_group.o: src/comm.h src/find.h src/globals.h src/groups.h
+obj/act_group.o: src/interp.h src/tables.h src/utils.h
+obj/act_info.o: src/act_info.h src/merc.h src/basemud.h src/compat.h
+obj/act_info.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/act_info.o: src/flags.h src/ext_flags.h src/types.h src/act_comm.h
+obj/act_info.o: src/chars.h src/comm.h src/extra_descrs.h src/find.h
+obj/act_info.o: src/globals.h src/interp.h src/items.h src/lookup.h
+obj/act_info.o: src/memory.h src/objs.h src/players.h src/recycle.h
+obj/act_info.o: src/rooms.h src/spell_info.h src/tables.h src/update.h
+obj/act_info.o: src/utils.h
+obj/act_move.o: src/act_move.h src/merc.h src/basemud.h src/compat.h
+obj/act_move.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/act_move.o: src/flags.h src/ext_flags.h src/types.h src/act_info.h
+obj/act_move.o: src/affects.h src/chars.h src/comm.h src/fight.h src/find.h
+obj/act_move.o: src/globals.h src/interp.h src/items.h src/lookup.h
+obj/act_move.o: src/objs.h src/players.h src/rooms.h src/tables.h src/utils.h
+obj/act_obj.o: src/act_obj.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/act_obj.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/act_obj.o: src/ext_flags.h src/types.h src/act_comm.h src/act_group.h
+obj/act_obj.o: src/act_move.h src/affects.h src/chars.h src/comm.h
+obj/act_obj.o: src/fight.h src/find.h src/globals.h src/groups.h src/interp.h
+obj/act_obj.o: src/items.h src/lookup.h src/mob_prog.h src/objs.h
+obj/act_obj.o: src/players.h src/rooms.h src/save.h src/tables.h src/utils.h
+obj/act_olc.o: src/act_olc.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/act_olc.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/act_olc.o: src/ext_flags.h src/types.h src/act_info.h src/chars.h
+obj/act_olc.o: src/comm.h src/descs.h src/globals.h src/interp.h src/items.h
+obj/act_olc.o: src/json_export.h src/lookup.h src/memory.h src/mob_prog.h
+obj/act_olc.o: src/mobiles.h src/objs.h src/olc.h src/olc_aedit.h
+obj/act_olc.o: src/olc_hedit.h src/olc_medit.h src/olc_mpedit.h
+obj/act_olc.o: src/olc_oedit.h src/olc_redit.h src/olc_save.h src/portals.h
+obj/act_olc.o: src/recycle.h src/resets.h src/rooms.h src/tables.h
+obj/act_olc.o: src/utils.h
+obj/act_player.o: src/act_player.h src/merc.h src/basemud.h src/compat.h
+obj/act_player.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/act_player.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/act_player.o: src/comm.h src/descs.h src/fight.h src/globals.h
+obj/act_player.o: src/interp.h src/memory.h src/recycle.h src/save.h
+obj/act_player.o: src/utils.h
+obj/act_shop.o: src/act_shop.h src/merc.h src/basemud.h src/compat.h
+obj/act_shop.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/act_shop.o: src/flags.h src/ext_flags.h src/types.h src/act_comm.h
+obj/act_shop.o: src/chars.h src/comm.h src/find.h src/globals.h src/groups.h
+obj/act_shop.o: src/interp.h src/items.h src/lookup.h src/magic.h
+obj/act_shop.o: src/materials.h src/memory.h src/mobiles.h src/objs.h
+obj/act_shop.o: src/players.h src/rooms.h src/tables.h src/utils.h
+obj/act_skills.o: src/act_skills.h src/merc.h src/basemud.h src/compat.h
+obj/act_skills.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/act_skills.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/act_skills.o: src/comm.h src/db.h src/fight.h src/find.h src/interp.h
+obj/act_skills.o: src/lookup.h src/magic.h src/memory.h src/players.h
+obj/act_skills.o: src/recycle.h src/tables.h src/utils.h
+obj/affects.o: src/affects.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/affects.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/affects.o: src/ext_flags.h src/types.h src/chars.h src/lookup.h
+obj/affects.o: src/recycle.h src/utils.h
+obj/areas.o: src/areas.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/areas.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/areas.o: src/ext_flags.h src/types.h src/comm.h src/globals.h
+obj/areas.o: src/recycle.h src/resets.h src/rooms.h src/utils.h
+obj/ban.o: src/ban.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/ban.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/ban.o: src/ext_flags.h src/types.h src/chars.h src/comm.h src/fread.h
+obj/ban.o: src/fwrite.h src/globals.h src/interp.h src/memory.h src/recycle.h
+obj/ban.o: src/utils.h
+obj/board.o: src/board.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/board.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/board.o: src/ext_flags.h src/types.h src/chars.h src/comm.h src/descs.h
+obj/board.o: src/fread.h src/globals.h src/interp.h src/lookup.h src/memory.h
+obj/board.o: src/recycle.h src/tables.h src/utils.h
+obj/boot.o: src/boot.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/boot.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/boot.o: src/ext_flags.h src/types.h src/act_info.h src/chars.h src/comm.h
+obj/boot.o: src/db.h src/descs.h src/globals.h src/interp.h src/memory.h
+obj/boot.o: src/nanny.h src/olc.h src/quickmud.h src/recycle.h src/rooms.h
+obj/boot.o: src/save.h src/signal.h src/string.h src/tables.h src/update.h
+obj/boot.o: src/utils.h
+obj/chars.o: src/chars.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/chars.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/chars.o: src/ext_flags.h src/types.h src/affects.h src/board.h src/comm.h
+obj/chars.o: src/fight.h src/globals.h src/groups.h src/interp.h src/items.h
+obj/chars.o: src/lookup.h src/magic.h src/materials.h src/mob_prog.h
+obj/chars.o: src/mobiles.h src/objs.h src/players.h src/recycle.h src/rooms.h
+obj/chars.o: src/save.h src/tables.h src/utils.h src/wiz_l6.h src/string.h
+obj/chars.o: src/act_info.h src/act_move.h src/act_player.h
+obj/colour.o: src/colour.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/colour.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/colour.o: src/ext_flags.h src/types.h src/chars.h src/tables.h
+obj/colour.o: src/string.h
+obj/comm.o: src/comm.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/comm.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/comm.o: src/ext_flags.h src/types.h src/chars.h src/colour.h src/descs.h
+obj/comm.o: src/globals.h src/mob_prog.h src/objs.h src/olc.h src/players.h
+obj/comm.o: src/rooms.h src/utils.h src/string.h
+obj/db.o: src/db.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/db.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/db.o: src/ext_flags.h src/types.h src/affects.h src/areas.h src/ban.h
+obj/db.o: src/board.h src/db_old.h src/extra_descrs.h src/fread.h
+obj/db.o: src/globals.h src/help.h src/items.h src/json_import.h src/lookup.h
+obj/db.o: src/memory.h src/mob_prog.h src/mobiles.h src/music.h src/objs.h
+obj/db.o: src/portals.h src/recycle.h src/resets.h src/rooms.h src/skills.h
+obj/db.o: src/tables.h src/utils.h src/string.h
+obj/db_old.o: src/db_old.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/db_old.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/db_old.o: src/ext_flags.h src/types.h src/affects.h src/db.h
+obj/db_old.o: src/extra_descrs.h src/fread.h src/globals.h src/interp.h
+obj/db_old.o: src/items.h src/lookup.h src/mobiles.h src/objs.h src/recycle.h
+obj/db_old.o: src/rooms.h src/tables.h src/utils.h
+obj/descs.o: src/descs.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/descs.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/descs.o: src/ext_flags.h src/types.h src/ban.h src/chars.h src/colour.h
+obj/descs.o: src/comm.h src/globals.h src/interp.h src/memory.h src/recycle.h
+obj/descs.o: src/utils.h src/string.h
+obj/do_sub.o: src/do_sub.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/do_sub.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/do_sub.o: src/ext_flags.h src/types.h src/chars.h src/comm.h
+obj/effects.o: src/effects.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/effects.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/effects.o: src/ext_flags.h src/types.h src/affects.h src/chars.h
+obj/effects.o: src/comm.h src/items.h src/lookup.h src/magic.h src/objs.h
+obj/effects.o: src/players.h src/tables.h src/utils.h
+obj/ext_flags.o: src/ext_flags.h src/merc.h src/basemud.h src/compat.h
+obj/ext_flags.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/ext_flags.o: src/flags.h src/types.h src/interp.h src/lookup.h
+obj/ext_flags.o: src/utils.h src/string.h
+obj/extra_descrs.o: src/extra_descrs.h src/merc.h src/basemud.h src/compat.h
+obj/extra_descrs.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/extra_descrs.o: src/flags.h src/ext_flags.h src/types.h src/utils.h
+obj/fight.o: src/fight.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/fight.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/fight.o: src/ext_flags.h src/types.h src/act_comm.h src/act_fight.h
+obj/fight.o: src/act_move.h src/act_obj.h src/affects.h src/chars.h
+obj/fight.o: src/comm.h src/effects.h src/find.h src/globals.h src/groups.h
+obj/fight.o: src/interp.h src/items.h src/magic.h src/memory.h src/mob_prog.h
+obj/fight.o: src/mobiles.h src/objs.h src/players.h src/save.h src/tables.h
+obj/fight.o: src/utils.h src/string.h
+obj/find.o: src/find.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/find.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/find.o: src/ext_flags.h src/types.h src/chars.h src/globals.h
+obj/find.o: src/interp.h src/rooms.h src/utils.h
+obj/flags.o: src/interp.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/flags.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/flags.o: src/ext_flags.h src/types.h src/lookup.h src/utils.h
+obj/flags.o: src/string.h
+obj/fread.o: src/fread.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/fread.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/fread.o: src/ext_flags.h src/types.h src/globals.h src/memory.h
+obj/fread.o: src/utils.h src/string.h
+obj/fwrite.o: src/fwrite.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/fwrite.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/fwrite.o: src/ext_flags.h src/types.h src/save.h
 obj/globals.o: src/globals.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/globals.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/globals.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/groups.o: src/utils.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/groups.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/groups.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/groups.o: src/affects.h src/comm.h src/db.h src/chars.h src/globals.h
-obj/groups.o: src/recycle.h src/groups.h
+obj/globals.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/globals.o: src/ext_flags.h src/types.h
+obj/groups.o: src/groups.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/groups.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/groups.o: src/ext_flags.h src/types.h src/affects.h src/chars.h
+obj/groups.o: src/comm.h src/globals.h src/recycle.h src/tables.h src/utils.h
 obj/help.o: src/help.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/help.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/help.o: src/flags.h src/tables.h src/ext_flags.h
-obj/interp.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/interp.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/interp.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/interp.o: src/utils.h src/comm.h src/db.h src/recycle.h src/chars.h
-obj/interp.o: src/find.h src/descs.h src/globals.h src/memory.h src/lookup.h
-obj/interp.o: src/act_board.h src/act_comm.h src/act_conf.h src/act_fight.h
-obj/interp.o: src/act_group.h src/act_info.h src/act_move.h src/act_obj.h
-obj/interp.o: src/act_player.h src/act_shop.h src/act_skills.h src/act_olc.h
-obj/interp.o: src/wiz_im.h src/wiz_l1.h src/wiz_l2.h src/wiz_l3.h
-obj/interp.o: src/wiz_l4.h src/wiz_l5.h src/wiz_l6.h src/wiz_l7.h
-obj/interp.o: src/wiz_l8.h src/wiz_ml.h src/olc.h src/mob_cmds.h src/interp.h
-obj/items.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/items.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/items.o: src/flags.h src/tables.h src/ext_flags.h src/utils.h src/comm.h
-obj/items.o: src/interp.h src/objs.h src/lookup.h src/chars.h src/affects.h
-obj/items.o: src/magic.h src/db.h src/recycle.h src/rooms.h src/mob_prog.h
-obj/items.o: src/groups.h src/globals.h src/music.h src/players.h src/fread.h
-obj/items.o: src/fwrite.h src/act_info.h src/act_move.h src/act_group.h
-obj/items.o: src/items.h
-obj/json.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/json.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/json.o: src/flags.h src/tables.h src/ext_flags.h src/utils.h src/memory.h
-obj/json_export.o: src/areas.h src/merc.h src/basemud.h src/compat.h
-obj/json_export.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/json_export.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/json_export.o: src/ext_flags.h src/recycle.h src/utils.h src/json_objw.h
-obj/json_export.o: src/json_write.h src/lookup.h src/json_export.h
-obj/json_import.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/json_import.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/json_import.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/json_import.o: src/ext_flags.h src/utils.h src/recycle.h src/db.h
-obj/json_import.o: src/lookup.h src/portals.h src/globals.h src/memory.h
-obj/json_import.o: src/json_objr.h src/help.h src/json_read.h src/rooms.h
-obj/json_import.o: src/mobiles.h src/objs.h src/json_import.h
-obj/json_objr.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/json_objr.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/json_objr.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/json_objr.o: src/ext_flags.h src/json_import.h src/recycle.h src/memory.h
-obj/json_objr.o: src/lookup.h src/portals.h src/db.h src/globals.h
-obj/json_objr.o: src/rooms.h src/resets.h src/extra_descrs.h src/affects.h
-obj/json_objr.o: src/help.h src/json_objr.h
-obj/json_objw.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/json_objw.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/json_objw.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/json_objw.o: src/ext_flags.h src/lookup.h src/utils.h src/json_objw.h
-obj/json_read.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/json_read.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/json_read.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/json_read.o: src/ext_flags.h src/utils.h src/json_read.h
-obj/json_tblr.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/json_tblr.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/json_tblr.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/json_tblr.o: src/ext_flags.h src/lookup.h src/colour.h src/memory.h
-obj/json_tblr.o: src/json_import.h src/json_tblr.h
-obj/json_tblw.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/json_tblw.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/json_tblw.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/json_tblw.o: src/ext_flags.h src/lookup.h src/colour.h src/json_tblw.h
-obj/json_write.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/json_write.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/json_write.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/json_write.o: src/ext_flags.h src/utils.h src/json_write.h
-obj/lookup.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/lookup.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/lookup.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/lookup.o: src/utils.h src/interp.h src/db.h src/recycle.h src/globals.h
-obj/lookup.o: src/lookup.h
-obj/magic.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/magic.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/magic.o: src/flags.h src/tables.h src/ext_flags.h src/lookup.h
-obj/magic.o: src/affects.h src/comm.h src/fight.h src/utils.h src/chars.h
-obj/magic.o: src/magic.h
-obj/materials.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/materials.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/materials.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/materials.o: src/ext_flags.h src/materials.h
-obj/memory.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/memory.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/memory.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/memory.o: src/utils.h src/globals.h src/recycle.h src/memory.h
-obj/mob_cmds.o: src/lookup.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/mob_cmds.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/mob_cmds.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/mob_cmds.o: src/interp.h src/groups.h src/utils.h src/comm.h src/fight.h
-obj/mob_cmds.o: src/mob_prog.h src/db.h src/chars.h src/objs.h src/rooms.h
-obj/mob_cmds.o: src/find.h src/act_info.h src/globals.h src/mobiles.h
-obj/mob_cmds.o: src/mob_cmds.h
-obj/mob_prog.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/mob_prog.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/mob_prog.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/mob_prog.o: src/lookup.h src/utils.h src/groups.h src/interp.h
-obj/mob_prog.o: src/mob_cmds.h src/db.h src/chars.h src/objs.h src/find.h
-obj/mob_prog.o: src/globals.h src/mob_prog.h
-obj/mobiles.o: src/globals.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/mobiles.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/mobiles.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/mobiles.o: src/utils.h src/recycle.h src/memory.h src/chars.h
-obj/mobiles.o: src/affects.h src/lookup.h src/fight.h src/interp.h
-obj/mobiles.o: src/act_fight.h src/magic.h src/objs.h src/items.h
-obj/mobiles.o: src/mob_prog.h src/comm.h src/db.h src/mobiles.h
-obj/music.o: src/recycle.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/music.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/music.o: src/flags.h src/tables.h src/ext_flags.h src/utils.h src/comm.h
-obj/music.o: src/interp.h src/globals.h src/lookup.h src/chars.h src/objs.h
-obj/music.o: src/memory.h src/fread.h src/music.h
-obj/nanny.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/nanny.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/nanny.o: src/flags.h src/tables.h src/ext_flags.h src/interp.h
-obj/nanny.o: src/recycle.h src/lookup.h src/utils.h src/comm.h src/db.h
-obj/nanny.o: src/save.h src/ban.h src/fight.h src/act_info.h src/act_skills.h
-obj/nanny.o: src/act_board.h src/act_obj.h src/chars.h src/objs.h src/descs.h
-obj/nanny.o: src/globals.h src/memory.h src/magic.h src/players.h src/rooms.h
-obj/nanny.o: src/nanny.h
-obj/objs.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/objs.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/objs.o: src/flags.h src/tables.h src/ext_flags.h src/affects.h
-obj/objs.o: src/utils.h src/chars.h src/db.h src/recycle.h src/comm.h
-obj/objs.o: src/lookup.h src/materials.h src/globals.h src/memory.h
-obj/objs.o: src/items.h src/extra_descrs.h src/objs.h
-obj/olc.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/olc.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/olc.o: src/flags.h src/tables.h src/ext_flags.h src/utils.h src/interp.h
-obj/olc.o: src/comm.h src/db.h src/recycle.h src/lookup.h src/magic.h
-obj/olc.o: src/chars.h src/memory.h src/act_olc.h src/olc_aedit.h
-obj/olc.o: src/olc_hedit.h src/olc_medit.h src/olc_mpedit.h src/olc_oedit.h
-obj/olc.o: src/olc_redit.h src/olc.h
-obj/olc_aedit.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/olc_aedit.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/olc_aedit.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/olc_aedit.o: src/ext_flags.h src/comm.h src/lookup.h src/db.h
-obj/olc_aedit.o: src/recycle.h src/interp.h src/globals.h src/olc.h
-obj/olc_aedit.o: src/memory.h src/areas.h src/olc_aedit.h
-obj/olc_hedit.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/olc_hedit.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/olc_hedit.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/olc_hedit.o: src/ext_flags.h src/comm.h src/lookup.h src/db.h
-obj/olc_hedit.o: src/recycle.h src/utils.h src/interp.h src/globals.h
-obj/olc_hedit.o: src/olc.h src/memory.h src/help.h src/olc_hedit.h
-obj/olc_medit.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/olc_medit.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/olc_medit.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/olc_medit.o: src/ext_flags.h src/comm.h src/lookup.h src/db.h
-obj/olc_medit.o: src/recycle.h src/utils.h src/interp.h src/mob_cmds.h
-obj/olc_medit.o: src/chars.h src/globals.h src/olc.h src/memory.h
-obj/olc_medit.o: src/mobiles.h src/mob_prog.h src/olc_medit.h
-obj/olc_mpedit.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/olc_mpedit.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/olc_mpedit.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/olc_mpedit.o: src/ext_flags.h src/comm.h src/db.h src/recycle.h
-obj/olc_mpedit.o: src/utils.h src/lookup.h src/chars.h src/globals.h
-obj/olc_mpedit.o: src/olc.h src/memory.h src/mob_prog.h src/olc_mpedit.h
-obj/olc_oedit.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/olc_oedit.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/olc_oedit.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/olc_oedit.o: src/ext_flags.h src/comm.h src/lookup.h src/db.h
-obj/olc_oedit.o: src/recycle.h src/utils.h src/interp.h src/affects.h
-obj/olc_oedit.o: src/act_info.h src/chars.h src/globals.h src/olc.h
-obj/olc_oedit.o: src/memory.h src/items.h src/objs.h src/extra_descrs.h
-obj/olc_oedit.o: src/olc_oedit.h
-obj/olc_redit.o: src/string.h src/merc.h src/basemud.h src/compat.h
-obj/olc_redit.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/olc_redit.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/olc_redit.o: src/ext_flags.h src/comm.h src/lookup.h src/db.h
-obj/olc_redit.o: src/recycle.h src/utils.h src/interp.h src/act_info.h
-obj/olc_redit.o: src/chars.h src/objs.h src/find.h src/globals.h src/olc.h
-obj/olc_redit.o: src/olc_medit.h src/olc_oedit.h src/memory.h src/mobiles.h
-obj/olc_redit.o: src/rooms.h src/extra_descrs.h src/resets.h src/portals.h
-obj/olc_redit.o: src/olc_redit.h
-obj/olc_save.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/olc_save.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/olc_save.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/olc_save.o: src/lookup.h src/utils.h src/db.h src/mob_cmds.h src/comm.h
-obj/olc_save.o: src/interp.h src/globals.h src/olc.h src/items.h src/fread.h
-obj/olc_save.o: src/fwrite.h src/objs.h src/mobiles.h src/rooms.h
-obj/olc_save.o: src/mob_prog.h src/json_export.h src/olc_save.h
-obj/players.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/players.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/players.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/players.o: src/chars.h src/lookup.h src/objs.h src/affects.h src/memory.h
-obj/players.o: src/utils.h src/globals.h src/comm.h src/save.h src/magic.h
-obj/players.o: src/groups.h src/fight.h src/rooms.h src/items.h src/players.h
-obj/portals.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/portals.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/portals.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/portals.o: src/lookup.h src/recycle.h src/utils.h src/memory.h
-obj/portals.o: src/rooms.h src/portals.h
-obj/quickmud.o: src/utils.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/quickmud.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/quickmud.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/quickmud.o: src/fread.h src/quickmud.h
-obj/recycle.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/recycle.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/recycle.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/recycle.o: src/utils.h src/lookup.h src/db.h src/affects.h src/objs.h
-obj/recycle.o: src/chars.h src/globals.h src/memory.h src/resets.h
-obj/recycle.o: src/board.h src/extra_descrs.h src/mob_prog.h src/rooms.h
-obj/recycle.o: src/mobiles.h src/help.h src/portals.h src/recycle.h
-obj/resets.o: src/mobiles.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/resets.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/resets.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/resets.o: src/utils.h src/rooms.h src/chars.h src/objs.h src/items.h
-obj/resets.o: src/recycle.h src/resets.h
-obj/rooms.o: src/db.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/rooms.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/rooms.o: src/flags.h src/tables.h src/ext_flags.h src/lookup.h
-obj/rooms.o: src/utils.h src/objs.h src/interp.h src/chars.h src/globals.h
-obj/rooms.o: src/mobiles.h src/items.h src/resets.h src/recycle.h src/rooms.h
-obj/save.o: src/recycle.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/save.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/save.o: src/flags.h src/tables.h src/ext_flags.h src/lookup.h
-obj/save.o: src/colour.h src/db.h src/utils.h src/board.h src/chars.h
-obj/save.o: src/objs.h src/globals.h src/memory.h src/items.h src/mobiles.h
-obj/save.o: src/players.h src/fread.h src/fwrite.h src/rooms.h src/affects.h
-obj/save.o: src/extra_descrs.h src/save.h
+obj/help.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/help.o: src/ext_flags.h src/types.h
+obj/interp.o: src/act_board.h src/merc.h src/basemud.h src/compat.h
+obj/interp.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/interp.o: src/flags.h src/ext_flags.h src/types.h src/act_comm.h
+obj/interp.o: src/chars.h src/comm.h src/descs.h src/find.h src/globals.h
+obj/interp.o: src/lookup.h src/memory.h src/utils.h src/string.h
+obj/interp.o: src/act_conf.h src/act_fight.h src/act_group.h src/act_info.h
+obj/interp.o: src/act_move.h src/act_obj.h src/act_player.h src/act_shop.h
+obj/interp.o: src/act_skills.h src/act_olc.h src/wiz_im.h src/wiz_l1.h
+obj/interp.o: src/wiz_l2.h src/wiz_l3.h src/wiz_l4.h src/wiz_l5.h
+obj/interp.o: src/wiz_l6.h src/wiz_l7.h src/wiz_l8.h src/wiz_ml.h
+obj/interp.o: src/mob_cmds.h src/interp.h
+obj/items.o: src/act_info.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/items.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/items.o: src/ext_flags.h src/types.h src/act_move.h src/affects.h
+obj/items.o: src/chars.h src/comm.h src/fread.h src/fwrite.h src/globals.h
+obj/items.o: src/groups.h src/interp.h src/lookup.h src/magic.h
+obj/items.o: src/mob_prog.h src/music.h src/objs.h src/players.h
+obj/items.o: src/recycle.h src/rooms.h src/tables.h src/utils.h src/string.h
+obj/items.o: src/act_group.h src/items.h
+obj/json.o: src/json.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/json.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/json.o: src/ext_flags.h src/types.h src/utils.h src/string.h
+obj/json_export.o: src/json_export.h src/merc.h src/basemud.h src/compat.h
+obj/json_export.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/json_export.o: src/flags.h src/ext_flags.h src/types.h src/json.h
+obj/json_export.o: src/json_objw.h src/json_write.h src/lookup.h
+obj/json_export.o: src/recycle.h src/utils.h
+obj/json_import.o: src/json_import.h src/merc.h src/basemud.h src/compat.h
+obj/json_import.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/json_import.o: src/flags.h src/ext_flags.h src/types.h src/db.h
+obj/json_import.o: src/globals.h src/help.h src/json.h src/json_objr.h
+obj/json_import.o: src/json_read.h src/lookup.h src/memory.h src/mobiles.h
+obj/json_import.o: src/objs.h src/recycle.h src/rooms.h src/utils.h
+obj/json_import.o: src/string.h
+obj/json_objr.o: src/json_objr.h src/merc.h src/basemud.h src/compat.h
+obj/json_objr.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/json_objr.o: src/flags.h src/ext_flags.h src/types.h src/affects.h
+obj/json_objr.o: src/db.h src/extra_descrs.h src/globals.h src/help.h
+obj/json_objr.o: src/json.h src/json_import.h src/lookup.h src/memory.h
+obj/json_objr.o: src/portals.h src/recycle.h src/resets.h src/rooms.h
+obj/json_objr.o: src/string.h
+obj/json_objw.o: src/json_objw.h src/merc.h src/basemud.h src/compat.h
+obj/json_objw.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/json_objw.o: src/flags.h src/ext_flags.h src/types.h src/json.h
+obj/json_objw.o: src/lookup.h src/utils.h src/string.h
+obj/json_read.o: src/json_read.h src/merc.h src/basemud.h src/compat.h
+obj/json_read.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/json_read.o: src/flags.h src/ext_flags.h src/types.h src/json.h
+obj/json_read.o: src/utils.h src/string.h
+obj/json_tblr.o: src/json_tblr.h src/merc.h src/basemud.h src/compat.h
+obj/json_tblr.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/json_tblr.o: src/flags.h src/ext_flags.h src/types.h src/json.h
+obj/json_tblr.o: src/json_import.h src/lookup.h src/memory.h src/tables.h
+obj/json_tblr.o: src/string.h
+obj/json_tblw.o: src/json_tblw.h src/merc.h src/basemud.h src/compat.h
+obj/json_tblw.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/json_tblw.o: src/flags.h src/ext_flags.h src/types.h src/colour.h
+obj/json_tblw.o: src/json.h src/lookup.h src/string.h
+obj/json_write.o: src/json_write.h src/merc.h src/basemud.h src/compat.h
+obj/json_write.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/json_write.o: src/flags.h src/ext_flags.h src/types.h src/json.h
+obj/json_write.o: src/utils.h src/string.h
+obj/lookup.o: src/lookup.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/lookup.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/lookup.o: src/ext_flags.h src/types.h src/globals.h src/recycle.h
+obj/lookup.o: src/tables.h src/utils.h src/string.h
+obj/magic.o: src/magic.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/magic.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/magic.o: src/ext_flags.h src/types.h src/affects.h src/chars.h src/comm.h
+obj/magic.o: src/fight.h src/lookup.h src/tables.h src/utils.h src/string.h
+obj/materials.o: src/materials.h src/merc.h src/basemud.h src/compat.h
+obj/materials.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/materials.o: src/flags.h src/ext_flags.h src/types.h src/string.h
+obj/memory.o: src/memory.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/memory.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/memory.o: src/ext_flags.h src/types.h src/globals.h src/recycle.h
+obj/memory.o: src/tables.h src/utils.h src/string.h
+obj/mob_cmds.o: src/mob_cmds.h src/merc.h src/basemud.h src/compat.h
+obj/mob_cmds.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/mob_cmds.o: src/flags.h src/ext_flags.h src/types.h src/act_info.h
+obj/mob_cmds.o: src/chars.h src/comm.h src/fight.h src/find.h src/globals.h
+obj/mob_cmds.o: src/groups.h src/interp.h src/lookup.h src/mob_prog.h
+obj/mob_cmds.o: src/mobiles.h src/objs.h src/rooms.h src/tables.h src/utils.h
+obj/mob_prog.o: src/mob_prog.h src/merc.h src/basemud.h src/compat.h
+obj/mob_prog.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/mob_prog.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/mob_prog.o: src/find.h src/globals.h src/groups.h src/interp.h
+obj/mob_prog.o: src/lookup.h src/mob_cmds.h src/utils.h src/string.h
+obj/mobiles.o: src/mobiles.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/mobiles.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/mobiles.o: src/ext_flags.h src/types.h src/act_fight.h src/affects.h
+obj/mobiles.o: src/chars.h src/comm.h src/db.h src/fight.h src/globals.h
+obj/mobiles.o: src/interp.h src/items.h src/lookup.h src/magic.h src/memory.h
+obj/mobiles.o: src/mob_prog.h src/objs.h src/recycle.h src/tables.h
+obj/mobiles.o: src/utils.h
+obj/music.o: src/music.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/music.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/music.o: src/ext_flags.h src/types.h src/chars.h src/comm.h src/fread.h
+obj/music.o: src/globals.h src/interp.h src/lookup.h src/memory.h src/objs.h
+obj/music.o: src/recycle.h src/tables.h src/utils.h
+obj/nanny.o: src/nanny.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/nanny.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/nanny.o: src/ext_flags.h src/types.h src/act_board.h src/act_info.h
+obj/nanny.o: src/act_obj.h src/act_skills.h src/ban.h src/chars.h src/comm.h
+obj/nanny.o: src/descs.h src/globals.h src/interp.h src/lookup.h src/magic.h
+obj/nanny.o: src/memory.h src/objs.h src/players.h src/recycle.h src/rooms.h
+obj/nanny.o: src/save.h src/tables.h src/utils.h src/string.h
+obj/objs.o: src/objs.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/objs.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/objs.o: src/ext_flags.h src/types.h src/affects.h src/chars.h src/comm.h
+obj/objs.o: src/db.h src/extra_descrs.h src/globals.h src/items.h
+obj/objs.o: src/lookup.h src/materials.h src/memory.h src/recycle.h
+obj/objs.o: src/tables.h src/utils.h src/string.h
+obj/olc.o: src/olc.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/olc.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/olc.o: src/ext_flags.h src/types.h src/act_olc.h src/chars.h src/comm.h
+obj/olc.o: src/db.h src/interp.h src/lookup.h src/magic.h src/memory.h
+obj/olc.o: src/olc_aedit.h src/olc_hedit.h src/olc_medit.h src/olc_mpedit.h
+obj/olc.o: src/olc_oedit.h src/olc_redit.h src/recycle.h src/tables.h
+obj/olc.o: src/utils.h src/string.h
+obj/olc_aedit.o: src/olc_aedit.h src/merc.h src/basemud.h src/compat.h
+obj/olc_aedit.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/olc_aedit.o: src/flags.h src/ext_flags.h src/types.h src/areas.h
+obj/olc_aedit.o: src/comm.h src/globals.h src/interp.h src/lookup.h
+obj/olc_aedit.o: src/memory.h src/olc.h src/recycle.h src/string.h
+obj/olc_hedit.o: src/olc_hedit.h src/merc.h src/basemud.h src/compat.h
+obj/olc_hedit.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/olc_hedit.o: src/flags.h src/ext_flags.h src/types.h src/comm.h
+obj/olc_hedit.o: src/globals.h src/help.h src/interp.h src/lookup.h
+obj/olc_hedit.o: src/memory.h src/olc.h src/recycle.h src/string.h
+obj/olc_hedit.o: src/utils.h
+obj/olc_medit.o: src/olc_medit.h src/merc.h src/basemud.h src/compat.h
+obj/olc_medit.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/olc_medit.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/olc_medit.o: src/comm.h src/db.h src/globals.h src/interp.h src/lookup.h
+obj/olc_medit.o: src/memory.h src/mob_cmds.h src/mob_prog.h src/mobiles.h
+obj/olc_medit.o: src/olc.h src/recycle.h src/string.h src/tables.h
+obj/olc_medit.o: src/utils.h
+obj/olc_mpedit.o: src/olc_mpedit.h src/merc.h src/basemud.h src/compat.h
+obj/olc_mpedit.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/olc_mpedit.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/olc_mpedit.o: src/comm.h src/globals.h src/lookup.h src/memory.h
+obj/olc_mpedit.o: src/mob_prog.h src/olc.h src/recycle.h src/string.h
+obj/olc_mpedit.o: src/utils.h
+obj/olc_oedit.o: src/olc_oedit.h src/merc.h src/basemud.h src/compat.h
+obj/olc_oedit.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/olc_oedit.o: src/flags.h src/ext_flags.h src/types.h src/act_info.h
+obj/olc_oedit.o: src/affects.h src/chars.h src/comm.h src/extra_descrs.h
+obj/olc_oedit.o: src/globals.h src/interp.h src/items.h src/lookup.h
+obj/olc_oedit.o: src/memory.h src/objs.h src/olc.h src/recycle.h src/string.h
+obj/olc_oedit.o: src/utils.h
+obj/olc_redit.o: src/olc_redit.h src/merc.h src/basemud.h src/compat.h
+obj/olc_redit.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/olc_redit.o: src/flags.h src/ext_flags.h src/types.h src/act_info.h
+obj/olc_redit.o: src/chars.h src/comm.h src/db.h src/extra_descrs.h
+obj/olc_redit.o: src/find.h src/interp.h src/lookup.h src/memory.h
+obj/olc_redit.o: src/mobiles.h src/objs.h src/olc.h src/olc_medit.h
+obj/olc_redit.o: src/olc_oedit.h src/portals.h src/recycle.h src/resets.h
+obj/olc_redit.o: src/rooms.h src/string.h src/tables.h src/utils.h
+obj/olc_save.o: src/olc_save.h src/merc.h src/basemud.h src/compat.h
+obj/olc_save.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/olc_save.o: src/flags.h src/ext_flags.h src/types.h src/comm.h
+obj/olc_save.o: src/fwrite.h src/globals.h src/items.h src/json_export.h
+obj/olc_save.o: src/lookup.h src/mob_cmds.h src/mob_prog.h src/mobiles.h
+obj/olc_save.o: src/objs.h src/rooms.h src/tables.h src/utils.h
+obj/players.o: src/players.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/players.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/players.o: src/ext_flags.h src/types.h src/affects.h src/chars.h
+obj/players.o: src/comm.h src/fight.h src/globals.h src/groups.h src/items.h
+obj/players.o: src/lookup.h src/magic.h src/memory.h src/objs.h src/rooms.h
+obj/players.o: src/save.h src/tables.h src/utils.h src/string.h
+obj/portals.o: src/portals.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/portals.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/portals.o: src/ext_flags.h src/types.h src/lookup.h src/memory.h
+obj/portals.o: src/recycle.h src/rooms.h src/utils.h src/string.h
+obj/quickmud.o: src/quickmud.h src/merc.h src/basemud.h src/compat.h
+obj/quickmud.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/quickmud.o: src/flags.h src/ext_flags.h src/types.h src/fread.h
+obj/quickmud.o: src/utils.h
+obj/recycle.o: src/recycle.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/recycle.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/recycle.o: src/ext_flags.h src/types.h src/affects.h src/board.h
+obj/recycle.o: src/chars.h src/db.h src/extra_descrs.h src/globals.h
+obj/recycle.o: src/help.h src/lookup.h src/memory.h src/mob_prog.h
+obj/recycle.o: src/mobiles.h src/objs.h src/portals.h src/resets.h
+obj/recycle.o: src/rooms.h src/tables.h src/utils.h src/string.h
+obj/resets.o: src/resets.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/resets.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/resets.o: src/ext_flags.h src/types.h src/chars.h src/items.h
+obj/resets.o: src/mobiles.h src/objs.h src/recycle.h src/rooms.h src/utils.h
+obj/rooms.o: src/rooms.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/rooms.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/rooms.o: src/ext_flags.h src/types.h src/chars.h src/db.h src/globals.h
+obj/rooms.o: src/interp.h src/lookup.h src/mobiles.h src/objs.h src/recycle.h
+obj/rooms.o: src/resets.h src/tables.h src/utils.h
+obj/save.o: src/save.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/save.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/save.o: src/ext_flags.h src/types.h src/affects.h src/chars.h
+obj/save.o: src/colour.h src/db.h src/extra_descrs.h src/fread.h src/fwrite.h
+obj/save.o: src/globals.h src/items.h src/lookup.h src/memory.h src/mobiles.h
+obj/save.o: src/objs.h src/players.h src/recycle.h src/rooms.h src/tables.h
+obj/save.o: src/utils.h
 obj/sha256.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/sha256.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/sha256.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/sha256.o: src/sha256.h
+obj/sha256.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/sha256.o: src/ext_flags.h src/types.h src/sha256.h
 obj/signal.o: src/signal.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/signal.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/signal.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/signal.o: src/utils.h src/globals.h
-obj/skills.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/skills.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/skills.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/skills.o: src/lookup.h src/utils.h src/skills.h
-obj/special.o: src/utils.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/special.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/special.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/special.o: src/fight.h src/comm.h src/interp.h src/magic.h src/lookup.h
-obj/special.o: src/db.h src/act_fight.h src/act_comm.h src/act_move.h
-obj/special.o: src/chars.h src/objs.h src/spell_aff.h src/globals.h
-obj/special.o: src/rooms.h src/special.h
-obj/spell_aff.o: src/magic.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/spell_aff.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/spell_aff.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/spell_aff.o: src/utils.h src/affects.h src/comm.h src/chars.h src/fight.h
-obj/spell_aff.o: src/groups.h src/objs.h src/recycle.h src/lookup.h
-obj/spell_aff.o: src/items.h src/extra_descrs.h src/spell_aff.h
-obj/spell_create.o: src/magic.h src/merc.h src/basemud.h src/compat.h
-obj/spell_create.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/spell_create.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/spell_create.o: src/ext_flags.h src/find.h src/comm.h src/db.h src/objs.h
-obj/spell_create.o: src/utils.h src/chars.h src/globals.h src/memory.h
-obj/spell_create.o: src/items.h src/spell_create.h
-obj/spell_cure.o: src/magic.h src/merc.h src/basemud.h src/compat.h
-obj/spell_cure.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/spell_cure.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/spell_cure.o: src/ext_flags.h src/comm.h src/utils.h src/lookup.h
-obj/spell_cure.o: src/fight.h src/chars.h src/objs.h src/spell_cure.h
-obj/spell_info.o: src/magic.h src/merc.h src/basemud.h src/compat.h
-obj/spell_info.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/spell_info.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/spell_info.o: src/ext_flags.h src/comm.h src/utils.h src/lookup.h
-obj/spell_info.o: src/chars.h src/recycle.h src/db.h src/interp.h
-obj/spell_info.o: src/act_info.h src/affects.h src/objs.h src/globals.h
-obj/spell_info.o: src/items.h src/memory.h src/spell_info.h
-obj/spell_misc.o: src/magic.h src/merc.h src/basemud.h src/compat.h
-obj/spell_misc.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/spell_misc.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/spell_misc.o: src/ext_flags.h src/comm.h src/utils.h src/lookup.h
-obj/spell_misc.o: src/db.h src/affects.h src/objs.h src/interp.h src/chars.h
-obj/spell_misc.o: src/globals.h src/items.h src/spell_misc.h
-obj/spell_move.o: src/magic.h src/merc.h src/basemud.h src/compat.h
-obj/spell_move.o: src/defs.h src/typedefs.h src/macros.h src/json.h
-obj/spell_move.o: src/structs.h src/types.h src/flags.h src/tables.h
-obj/spell_move.o: src/ext_flags.h src/find.h src/chars.h src/comm.h
-obj/spell_move.o: src/interp.h src/act_info.h src/db.h src/fight.h src/objs.h
-obj/spell_move.o: src/items.h src/players.h src/rooms.h src/spell_move.h
-obj/spell_npc.o: src/magic.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/spell_npc.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/spell_npc.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/spell_npc.o: src/utils.h src/lookup.h src/effects.h src/fight.h
-obj/spell_npc.o: src/comm.h src/chars.h src/spell_npc.h
-obj/spell_off.o: src/magic.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/spell_off.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/spell_off.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/spell_off.o: src/utils.h src/fight.h src/comm.h src/affects.h
-obj/spell_off.o: src/lookup.h src/db.h src/spell_aff.h src/chars.h src/objs.h
-obj/spell_off.o: src/globals.h src/items.h src/players.h src/spell_off.h
+obj/signal.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/signal.o: src/ext_flags.h src/types.h src/globals.h src/utils.h
+obj/skills.o: src/skills.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/skills.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/skills.o: src/ext_flags.h src/types.h src/lookup.h src/tables.h
+obj/skills.o: src/utils.h
+obj/special.o: src/special.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/special.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/special.o: src/ext_flags.h src/types.h src/act_comm.h src/act_fight.h
+obj/special.o: src/act_move.h src/chars.h src/comm.h src/fight.h
+obj/special.o: src/globals.h src/interp.h src/lookup.h src/magic.h src/objs.h
+obj/special.o: src/rooms.h src/spell_aff.h src/tables.h src/utils.h
+obj/spell_aff.o: src/spell_aff.h src/merc.h src/basemud.h src/compat.h
+obj/spell_aff.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/spell_aff.o: src/flags.h src/ext_flags.h src/types.h src/affects.h
+obj/spell_aff.o: src/chars.h src/comm.h src/fight.h src/groups.h src/items.h
+obj/spell_aff.o: src/lookup.h src/magic.h src/objs.h src/recycle.h
+obj/spell_aff.o: src/tables.h src/utils.h
+obj/spell_create.o: src/spell_create.h src/merc.h src/basemud.h src/compat.h
+obj/spell_create.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/spell_create.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/spell_create.o: src/comm.h src/find.h src/globals.h src/items.h
+obj/spell_create.o: src/memory.h src/objs.h src/utils.h
+obj/spell_cure.o: src/spell_cure.h src/merc.h src/basemud.h src/compat.h
+obj/spell_cure.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/spell_cure.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/spell_cure.o: src/comm.h src/fight.h src/lookup.h src/magic.h src/objs.h
+obj/spell_cure.o: src/tables.h src/utils.h
+obj/spell_info.o: src/spell_info.h src/merc.h src/basemud.h src/compat.h
+obj/spell_info.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/spell_info.o: src/flags.h src/ext_flags.h src/types.h src/act_info.h
+obj/spell_info.o: src/affects.h src/chars.h src/comm.h src/globals.h
+obj/spell_info.o: src/interp.h src/items.h src/lookup.h src/memory.h
+obj/spell_info.o: src/objs.h src/recycle.h src/tables.h src/utils.h
+obj/spell_misc.o: src/spell_misc.h src/merc.h src/basemud.h src/compat.h
+obj/spell_misc.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/spell_misc.o: src/flags.h src/ext_flags.h src/types.h src/affects.h
+obj/spell_misc.o: src/chars.h src/comm.h src/globals.h src/interp.h
+obj/spell_misc.o: src/items.h src/lookup.h src/magic.h src/objs.h src/utils.h
+obj/spell_move.o: src/spell_move.h src/merc.h src/basemud.h src/compat.h
+obj/spell_move.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/spell_move.o: src/flags.h src/ext_flags.h src/types.h src/act_info.h
+obj/spell_move.o: src/chars.h src/comm.h src/fight.h src/find.h src/interp.h
+obj/spell_move.o: src/items.h src/magic.h src/objs.h src/players.h
+obj/spell_move.o: src/rooms.h
+obj/spell_npc.o: src/spell_npc.h src/merc.h src/basemud.h src/compat.h
+obj/spell_npc.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/spell_npc.o: src/flags.h src/ext_flags.h src/types.h src/chars.h
+obj/spell_npc.o: src/comm.h src/effects.h src/fight.h src/lookup.h
+obj/spell_npc.o: src/magic.h src/utils.h
+obj/spell_off.o: src/spell_off.h src/merc.h src/basemud.h src/compat.h
+obj/spell_off.o: src/defs.h src/macros.h src/typedefs.h src/structs.h
+obj/spell_off.o: src/flags.h src/ext_flags.h src/types.h src/affects.h
+obj/spell_off.o: src/chars.h src/comm.h src/fight.h src/globals.h src/items.h
+obj/spell_off.o: src/lookup.h src/magic.h src/objs.h src/players.h
+obj/spell_off.o: src/spell_aff.h src/tables.h src/utils.h
 obj/string.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/string.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/string.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/comm.h
-obj/string.o: src/utils.h src/interp.h src/olc.h src/db.h src/olc_mpedit.h
-obj/string.o: src/globals.h src/memory.h
-obj/tables.o: src/nanny.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/tables.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/tables.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/tables.o: src/lookup.h src/recycle.h src/colour.h src/board.h
-obj/tables.o: src/special.h src/effects.h src/json_tblr.h src/json_tblw.h
-obj/tables.o: src/magic.h src/memory.h src/utils.h src/chars.h
-obj/tables.o: src/spell_aff.h src/spell_create.h src/spell_cure.h
-obj/tables.o: src/spell_info.h src/spell_misc.h src/spell_move.h
-obj/tables.o: src/spell_npc.h src/spell_off.h src/act_skills.h
-obj/types.o: src/merc.h src/basemud.h src/compat.h src/defs.h src/typedefs.h
-obj/types.o: src/macros.h src/json.h src/structs.h src/types.h src/flags.h
-obj/types.o: src/tables.h src/ext_flags.h src/lookup.h src/utils.h
-obj/update.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/update.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/update.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/update.o: src/chars.h src/utils.h src/players.h src/items.h src/comm.h
-obj/update.o: src/music.h src/globals.h src/lookup.h src/fight.h
-obj/update.o: src/mob_prog.h src/areas.h src/mobiles.h src/objs.h
-obj/update.o: src/update.h
-obj/utils.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/utils.o: src/typedefs.h src/macros.h src/json.h src/structs.h src/types.h
-obj/utils.o: src/flags.h src/tables.h src/ext_flags.h src/comm.h src/db.h
-obj/utils.o: src/interp.h src/chars.h src/globals.h src/utils.h
-obj/wiz_im.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/wiz_im.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/wiz_im.o: src/types.h src/flags.h src/tables.h src/ext_flags.h
-obj/wiz_im.o: src/interp.h src/db.h src/utils.h src/comm.h src/lookup.h
-obj/wiz_im.o: src/recycle.h src/do_sub.h src/mob_cmds.h src/act_info.h
-obj/wiz_im.o: src/chars.h src/objs.h src/rooms.h src/find.h src/affects.h
-obj/wiz_im.o: src/globals.h src/memory.h src/mob_prog.h src/wiz_im.h
-obj/wiz_l1.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/wiz_l1.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/wiz_l1.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/db.h
-obj/wiz_l1.o: src/comm.h src/interp.h src/save.h src/fight.h src/ban.h
-obj/wiz_l1.o: src/utils.h src/act_player.h src/wiz_l4.h src/chars.h
-obj/wiz_l1.o: src/find.h src/descs.h src/globals.h src/wiz_l1.h
-obj/wiz_l2.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/wiz_l2.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/wiz_l2.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/db.h
-obj/wiz_l2.o: src/comm.h src/interp.h src/ban.h src/utils.h src/recycle.h
-obj/wiz_l2.o: src/lookup.h src/chars.h src/rooms.h src/find.h src/globals.h
-obj/wiz_l2.o: src/wiz_l2.h
-obj/wiz_l3.o: src/db.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/wiz_l3.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/wiz_l3.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/comm.h
-obj/wiz_l3.o: src/interp.h src/fight.h src/utils.h src/chars.h src/find.h
-obj/wiz_l3.o: src/descs.h src/globals.h src/wiz_l3.h
-obj/wiz_l4.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/wiz_l4.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/wiz_l4.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/db.h
-obj/wiz_l4.o: src/comm.h src/interp.h src/save.h src/fight.h src/utils.h
-obj/wiz_l4.o: src/lookup.h src/affects.h src/chars.h src/objs.h src/find.h
-obj/wiz_l4.o: src/recycle.h src/descs.h src/globals.h src/mobiles.h
-obj/wiz_l4.o: src/wiz_l4.h
-obj/wiz_l5.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/wiz_l5.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/wiz_l5.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/db.h
-obj/wiz_l5.o: src/comm.h src/interp.h src/save.h src/fight.h src/utils.h
-obj/wiz_l5.o: src/lookup.h src/affects.h src/do_sub.h src/recycle.h
-obj/wiz_l5.o: src/act_info.h src/chars.h src/objs.h src/rooms.h src/find.h
-obj/wiz_l5.o: src/memory.h src/globals.h src/mobiles.h src/players.h
-obj/wiz_l5.o: src/extra_descrs.h src/wiz_l5.h
-obj/wiz_l6.o: src/db.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/wiz_l6.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/wiz_l6.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/comm.h
-obj/wiz_l6.o: src/interp.h src/chars.h src/rooms.h src/find.h src/globals.h
-obj/wiz_l6.o: src/memory.h src/wiz_l6.h
-obj/wiz_l7.o: src/db.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/wiz_l7.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/wiz_l7.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/comm.h
-obj/wiz_l7.o: src/interp.h src/utils.h src/chars.h src/rooms.h src/find.h
-obj/wiz_l7.o: src/globals.h src/objs.h src/wiz_l7.h
-obj/wiz_l8.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/wiz_l8.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/wiz_l8.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/db.h
-obj/wiz_l8.o: src/comm.h src/interp.h src/fight.h src/utils.h src/act_info.h
-obj/wiz_l8.o: src/chars.h src/rooms.h src/find.h src/memory.h src/wiz_l8.h
-obj/wiz_ml.o: src/string.h src/merc.h src/basemud.h src/compat.h src/defs.h
-obj/wiz_ml.o: src/typedefs.h src/macros.h src/json.h src/structs.h
-obj/wiz_ml.o: src/types.h src/flags.h src/tables.h src/ext_flags.h src/db.h
-obj/wiz_ml.o: src/comm.h src/interp.h src/save.h src/fight.h src/utils.h
-obj/wiz_ml.o: src/act_info.h src/chars.h src/rooms.h src/find.h src/descs.h
-obj/wiz_ml.o: src/boot.h src/memory.h src/globals.h src/players.h
-obj/wiz_ml.o: src/mobiles.h src/objs.h src/quickmud.h src/json_export.h
-obj/wiz_ml.o: src/lookup.h src/wiz_ml.h
+obj/string.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/string.o: src/ext_flags.h src/types.h src/comm.h src/globals.h
+obj/string.o: src/interp.h src/memory.h src/olc.h src/olc_mpedit.h
+obj/string.o: src/utils.h
+obj/tables.o: src/tables.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/tables.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/tables.o: src/ext_flags.h src/types.h src/act_skills.h src/board.h
+obj/tables.o: src/chars.h src/colour.h src/effects.h src/json_tblr.h
+obj/tables.o: src/json_tblw.h src/magic.h src/memory.h src/nanny.h
+obj/tables.o: src/recycle.h src/special.h src/spell_aff.h src/spell_create.h
+obj/tables.o: src/spell_cure.h src/spell_info.h src/spell_misc.h
+obj/tables.o: src/spell_move.h src/spell_npc.h src/spell_off.h src/utils.h
+obj/types.o: src/types.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/types.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/types.o: src/ext_flags.h src/lookup.h src/utils.h
+obj/update.o: src/update.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/update.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/update.o: src/ext_flags.h src/types.h src/areas.h src/chars.h src/comm.h
+obj/update.o: src/fight.h src/globals.h src/items.h src/lookup.h
+obj/update.o: src/mob_prog.h src/mobiles.h src/music.h src/objs.h
+obj/update.o: src/players.h src/tables.h src/utils.h src/string.h
+obj/utils.o: src/utils.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/utils.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/utils.o: src/ext_flags.h src/types.h src/chars.h src/comm.h src/globals.h
+obj/utils.o: src/interp.h src/string.h
+obj/wiz_im.o: src/wiz_im.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/wiz_im.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/wiz_im.o: src/ext_flags.h src/types.h src/act_info.h src/affects.h
+obj/wiz_im.o: src/chars.h src/comm.h src/do_sub.h src/find.h src/globals.h
+obj/wiz_im.o: src/interp.h src/lookup.h src/memory.h src/mob_cmds.h
+obj/wiz_im.o: src/mob_prog.h src/objs.h src/recycle.h src/rooms.h
+obj/wiz_im.o: src/tables.h src/utils.h src/string.h
+obj/wiz_l1.o: src/wiz_l1.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/wiz_l1.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/wiz_l1.o: src/ext_flags.h src/types.h src/act_player.h src/ban.h
+obj/wiz_l1.o: src/chars.h src/comm.h src/descs.h src/fight.h src/find.h
+obj/wiz_l1.o: src/globals.h src/interp.h src/save.h src/utils.h src/wiz_l4.h
+obj/wiz_l1.o: src/string.h
+obj/wiz_l2.o: src/wiz_l2.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/wiz_l2.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/wiz_l2.o: src/ext_flags.h src/types.h src/ban.h src/chars.h src/comm.h
+obj/wiz_l2.o: src/find.h src/globals.h src/interp.h src/lookup.h
+obj/wiz_l2.o: src/recycle.h src/rooms.h src/tables.h src/utils.h src/string.h
+obj/wiz_l3.o: src/wiz_l3.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/wiz_l3.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/wiz_l3.o: src/ext_flags.h src/types.h src/chars.h src/comm.h src/descs.h
+obj/wiz_l3.o: src/find.h src/globals.h src/interp.h src/utils.h
+obj/wiz_l4.o: src/wiz_l4.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/wiz_l4.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/wiz_l4.o: src/ext_flags.h src/types.h src/affects.h src/chars.h
+obj/wiz_l4.o: src/comm.h src/descs.h src/fight.h src/find.h src/globals.h
+obj/wiz_l4.o: src/interp.h src/lookup.h src/mobiles.h src/objs.h
+obj/wiz_l4.o: src/recycle.h src/save.h src/tables.h src/utils.h src/string.h
+obj/wiz_l5.o: src/wiz_l5.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/wiz_l5.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/wiz_l5.o: src/ext_flags.h src/types.h src/act_info.h src/chars.h
+obj/wiz_l5.o: src/comm.h src/extra_descrs.h src/fight.h src/find.h
+obj/wiz_l5.o: src/globals.h src/interp.h src/lookup.h src/memory.h
+obj/wiz_l5.o: src/mobiles.h src/objs.h src/players.h src/recycle.h
+obj/wiz_l5.o: src/rooms.h src/utils.h src/string.h
+obj/wiz_l6.o: src/wiz_l6.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/wiz_l6.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/wiz_l6.o: src/ext_flags.h src/types.h src/chars.h src/comm.h src/find.h
+obj/wiz_l6.o: src/globals.h src/interp.h src/memory.h src/rooms.h
+obj/wiz_l7.o: src/wiz_l7.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/wiz_l7.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/wiz_l7.o: src/ext_flags.h src/types.h src/chars.h src/comm.h src/find.h
+obj/wiz_l7.o: src/globals.h src/interp.h src/objs.h src/rooms.h src/utils.h
+obj/wiz_l8.o: src/wiz_l8.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/wiz_l8.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/wiz_l8.o: src/ext_flags.h src/types.h src/act_info.h src/chars.h
+obj/wiz_l8.o: src/comm.h src/fight.h src/find.h src/interp.h src/memory.h
+obj/wiz_l8.o: src/rooms.h src/utils.h src/string.h
+obj/wiz_ml.o: src/wiz_ml.h src/merc.h src/basemud.h src/compat.h src/defs.h
+obj/wiz_ml.o: src/macros.h src/typedefs.h src/structs.h src/flags.h
+obj/wiz_ml.o: src/ext_flags.h src/types.h src/act_info.h src/chars.h
+obj/wiz_ml.o: src/comm.h src/db.h src/descs.h src/fight.h src/find.h
+obj/wiz_ml.o: src/globals.h src/interp.h src/json.h src/json_export.h
+obj/wiz_ml.o: src/lookup.h src/memory.h src/mobiles.h src/objs.h
+obj/wiz_ml.o: src/players.h src/quickmud.h src/rooms.h src/save.h
+obj/wiz_ml.o: src/tables.h src/utils.h src/string.h
