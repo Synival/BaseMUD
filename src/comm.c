@@ -585,6 +585,10 @@ bool position_change_send_message_to_fighting (CHAR_T *ch, int from,
             send_to_char ("You stand up and fight!\n\r", ch);
             act ("$n stands up and fights!", ch, NULL, NULL, TO_NOTCHAR);
             return TRUE;
+
+        case POS_STANDING:
+            /* No message, just fight! */
+            return TRUE;
     }
     return FALSE;
 }
