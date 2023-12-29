@@ -60,7 +60,7 @@ DEFINE_SPELL_FUN (spell_identify) {
 }
 
 long int spell_identify_seed (CHAR_T *ch, OBJ_T *obj) {
-    long int next_seed = random();
+    long int next_seed = number_long();
     unsigned long hash;
     char *name1 = ch->name;
     char *name2 = obj->name;
@@ -76,7 +76,7 @@ long int spell_identify_seed (CHAR_T *ch, OBJ_T *obj) {
     if (obj->obj_index)
         hash += obj->obj_index->vnum;
 
-    srandom (hash);
+    number_seed (hash);
     return next_seed;
 }
 
@@ -96,7 +96,7 @@ int spell_identify_know_check (CHAR_T *ch, OBJ_T *obj, int pos,
 void spell_identify_perform (CHAR_T *ch, OBJ_T *obj, int power) {
     long int next_seed = spell_identify_seed (ch, obj);
     spell_identify_perform_seeded (ch, obj, power);
-    srandom (next_seed);
+    number_seed (next_seed);
 }
 
 const char *spell_identify_know_message (int percent) {

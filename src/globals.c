@@ -60,17 +60,15 @@ FILE *current_area_file;
 char  current_area_filename[MAX_INPUT_LENGTH];
 
 /* Socket and TCP/IP stuff. */
-#if defined(macintosh) || defined(MSDOS)
-    const char echo_off_str[] = { '\0' };
-    const char echo_on_str[]  = { '\0' };
-    const char go_ahead_str[] = { '\0' };
-#endif
-
 #if defined(unix)
     #include "telnet.h"
     const char echo_off_str[] = { IAC, WILL, TELOPT_ECHO, '\0' };
     const char echo_on_str[]  = { IAC, WONT, TELOPT_ECHO, '\0' };
     const char go_ahead_str[] = { IAC, GA, '\0' };
+#else
+    const char echo_off_str[] = { '\0' };
+    const char echo_on_str[]  = { '\0' };
+    const char go_ahead_str[] = { '\0' };
 #endif
 
 /* Global variables. */

@@ -77,8 +77,8 @@ static long last_note_stamp = 0; /* To generate unique timestamps on notes */
 void note_write (NOTE_T *note, FILE *fp) {
     fprintf (fp, "Sender  %s~\n", note->sender);
     fprintf (fp, "Date    %s~\n", note->date);
-    fprintf (fp, "Stamp   %ld\n", note->date_stamp);
-    fprintf (fp, "Expire  %ld\n", note->expire);
+    fprintf (fp, "Stamp   %ld\n", (long int) note->date_stamp);
+    fprintf (fp, "Expire  %ld\n", (long int) note->expire);
     fprintf (fp, "To      %s~\n", note->to_list);
     fprintf (fp, "Subject %s~\n", note->subject);
     fprintf (fp, "Text\n%s~\n\n", note->text);

@@ -72,7 +72,7 @@ void save_char_obj (CHAR_T *ch) {
     if (ch->desc != NULL && ch->desc->original != NULL)
         ch = ch->desc->original;
 
-#if defined(unix)
+#if defined(GOD_DIR)
     /* create god log */
     if (IS_IMMORTAL (ch) || ch->level >= LEVEL_IMMORTAL) {
         fclose (reserve_file);
@@ -105,7 +105,18 @@ void save_char_obj (CHAR_T *ch) {
         fprintf (fp, "#END\n");
     }
     fclose (fp);
-    rename (TEMP_FILE, strsave);
+
+#ifdef __MINGW32__
+    if (remove (strsave) != 0) {
+        bug ("save_char_obj: remove", 0);
+        perror (strsave);
+    }
+#endif
+
+    if (rename (TEMP_FILE, strsave) != 0) {
+        bug ("save_char_obj: rename", 0);
+        perror (strsave);
+    }
     reserve_file = fopen (NULL_FILE, "r");
 }
 
@@ -122,7 +133,7 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
     fprintf (fp, "#%s\n", IS_NPC (ch) ? "MOB" : "PLAYER");
     fprintf (fp, "Name %s~\n", ch->name);
     fprintf (fp, "Id   %ld\n", ch->id);
-    fprintf (fp, "LogO %ld\n", current_time);
+    fprintf (fp, "LogO %ld\n", (long int) current_time);
     fprintf (fp, "Vers %d\n", 5);
     if (ch->short_descr[0] != '\0')
         fprintf (fp, "ShD  %s~\n", ch->short_descr);
@@ -241,7 +252,7 @@ void fwrite_char (CHAR_T *ch, FILE *fp) {
         /* Save number of boards in case that number changes */
         fprintf (fp, "Boards       %d ", BOARD_MAX);
         for (i = 0; i < BOARD_MAX; i++)
-            fprintf (fp, "%s %ld ", board_table[i].name, ch->pcdata->last_note[i]);
+            fprintf (fp, "%s %ld ", board_table[i].name, (long int) ch->pcdata->last_note[i]);
         fprintf (fp, "\n");
 
         for (sn = 0; sn < SKILL_MAX; sn++) {
@@ -289,7 +300,7 @@ void fwrite_pet (CHAR_T *pet, FILE *fp) {
     fprintf (fp, "Vnum %d\n", mob_index->vnum);
 
     fprintf (fp, "Name %s~\n", pet->name);
-    fprintf (fp, "LogO %ld\n", current_time);
+    fprintf (fp, "LogO %ld\n", (long int) current_time);
     if (pet->short_descr != mob_index->short_descr)
         fprintf (fp, "ShD  %s~\n", pet->short_descr);
     if (pet->long_descr != mob_index->long_descr)
@@ -441,7 +452,9 @@ void fwrite_obj (CHAR_T *ch, OBJ_T *obj, FILE *fp, int nest) {
 /* Load a char and inventory into a new ch structure. */
 bool load_char_obj (DESCRIPTOR_T *d, char *name) {
     char strsave[MAX_INPUT_LENGTH];
+#if defined(unix)
     char buf[100];
+#endif
     CHAR_T *ch;
     FILE *fp;
     bool found;

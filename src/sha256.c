@@ -31,7 +31,7 @@
 
 #if defined(__FreeBSD__)
     #include <sys/endian.h>
-#else
+#elif !defined(__MINGW32__)
     #include <endian.h>
 #endif
 

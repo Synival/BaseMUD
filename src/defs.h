@@ -86,23 +86,14 @@
  *   so players can go ahead and telnet to all the other descriptors.
  * Then we close it whenever we need to open a file (e.g. a save file). */
 
-#if defined(macintosh)
-    #define PLAYER_DIR  "player/"           /* Player files          */
-    #define NULL_FILE   "proto.are"         /* To reserve one stream */
-    #define TEMP_FILE   "romtmp"
-#endif
-
-#if defined(MSDOS)
-    #define PLAYER_DIR  "player/"           /* Player files          */
-    #define NULL_FILE   "nul"               /* To reserve one stream */
-    #define TEMP_FILE   "romtmp"
-#endif
+#define PLAYER_DIR  "player/"           /* Player files          */
+#define GOD_DIR     "gods/"             /* list of gods          */
+#define TEMP_FILE   "player/romtmp"
 
 #if defined(unix)
-    #define PLAYER_DIR  "player/"           /* Player files          */
-    #define GOD_DIR     "gods/"             /* list of gods          */
     #define NULL_FILE   "/dev/null"         /* To reserve one stream */
-    #define TEMP_FILE   "player/romtmp"
+#else
+    #define NULL_FILE   "nul"               /* To reserve one stream */
 #endif
 
 #define AREA_DIR        "area/"

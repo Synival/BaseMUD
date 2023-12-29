@@ -52,7 +52,7 @@
     #include <arpa/inet.h>
 #endif
 
-#if defined(unix)
+#if !defined(NOSERVER)
 int init_socket (int port) {
     static struct sockaddr_in sa_zero;
     struct sockaddr_in sa;
@@ -72,7 +72,7 @@ int init_socket (int port) {
         exit (1);
     }
 
-    #if defined(SO_DONTLINGER) && !defined(SYSV)
+#if defined(SO_DONTLINGER) && !defined(SYSV)
     {
         struct linger ld;
 
@@ -87,7 +87,7 @@ int init_socket (int port) {
             exit (1);
         }
     }
-    #endif
+#endif
 
     sa = sa_zero;
     sa.sin_family = AF_INET;
@@ -111,33 +111,44 @@ int init_socket (int port) {
 }
 #endif
 
-#if defined(unix)
+#if defined(NOSERVER)
+void init_descriptor () {
+#else
 void init_descriptor (int control) {
-    char buf[MAX_STRING_LENGTH];
+#endif
     DESCRIPTOR_T *dnew;
+#if !defined(NOSERVER)
+    char buf[MAX_STRING_LENGTH];
     struct sockaddr_in sock;
     struct hostent *from;
     size_t desc;
     socklen_t size = sizeof(struct sockaddr_in);
+#endif
 
+#if !defined(NOSERVER)
     getsockname (control, (struct sockaddr *) &sock, &size);
     if ((desc = accept (control, (struct sockaddr *) &sock, &size)) < 0) {
         perror ("New_descriptor: accept");
         return;
     }
 
-    #if !defined(FNDELAY)
-        #define FNDELAY O_NDELAY
-    #endif
+#if !defined(FNDELAY)
+    #define FNDELAY O_NDELAY
+#endif
 
     if (fcntl (desc, F_SETFL, FNDELAY) == -1) {
         perror ("New_descriptor: fcntl: FNDELAY");
         return;
     }
+#endif
 
     /* Cons a new descriptor. */
     dnew = descriptor_new ();
+#if defined(NOSERVER)
+    dnew->descriptor = 0;
+#else
     dnew->descriptor = desc;
+#endif
     if (!mud_ansiprompt)
         dnew->connected = CON_GET_NAME;
     else
@@ -152,6 +163,9 @@ void init_descriptor (int control) {
     dnew->editor        = 0;    /* OLC */
     dnew->outbuf        = mem_alloc (dnew->outsize);
 
+#if defined(NOSERVER)
+    dnew->host = str_dup("localhost");
+#else
     size = sizeof (sock);
     if (getpeername (desc, (struct sockaddr *) &sock, &size) < 0) {
         perror ("New_descriptor: getpeername");
@@ -185,6 +199,7 @@ void init_descriptor (int control) {
         descriptor_free (dnew);
         return;
     }
+#endif
 
     /* Init descriptor data. */
     LIST2_FRONT (dnew, global_prev, global_next,
@@ -201,7 +216,6 @@ void init_descriptor (int control) {
     else
         send_to_desc ("Do you want ANSI? (Y/n) ", dnew);
 }
-#endif
 
 void close_socket (DESCRIPTOR_T *dclose) {
     CHAR_T *ch;
@@ -248,9 +262,6 @@ void close_socket (DESCRIPTOR_T *dclose) {
 
     close (dclose->descriptor);
     descriptor_free (dclose);
-    #if defined(MSDOS) || defined(macintosh)
-        exit (1);
-    #endif
 }
 
 bool read_from_descriptor (DESCRIPTOR_T *d) {
@@ -270,7 +281,7 @@ bool read_from_descriptor (DESCRIPTOR_T *d) {
     }
 
     /* Snarf input. */
-    #if defined(macintosh)
+#if defined(macintosh)
     while (1) {
         int c;
         c = getc (stdin);
@@ -283,9 +294,7 @@ bool read_from_descriptor (DESCRIPTOR_T *d) {
         if (start > sizeof (d->inbuf) - 10)
             break;
     }
-    #endif
-
-#if defined(MSDOS) || defined(unix)
+#else
     while (1) {
         int bytes_read;
         bytes_read = read (d->descriptor, d->inbuf + start,
@@ -502,7 +511,7 @@ bool write_to_descriptor (int desc, char *txt, int length) {
     int bytes_written;
     int block_size;
 
-#if defined(macintosh) || defined(MSDOS)
+#if defined(macintosh) || defined(MSDOS) || defined(__MINGW32__)
     if (desc == 0)
         desc = 1;
 #endif

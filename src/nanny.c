@@ -87,9 +87,7 @@ bool new_player_name_is_valid (char *name) {
     #if defined(MSDOS)
         if (strlen (name) > 8)
             return FALSE;
-    #endif
-
-    #if defined(macintosh) || defined(unix)
+    #else
         if (strlen (name) > 12)
             return FALSE;
     #endif

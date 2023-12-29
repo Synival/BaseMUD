@@ -226,7 +226,11 @@ int json_mkdir (const char *dir) {
     end = last_slash ? (last_slash + 1) : dir;
     if (!strcmp (end, ".") || !strcmp (end, ".."))
         return 0;
+#if defined(__MINGW32__)
+     return mkdir (dir) == 0;
+#else
      return mkdir (dir, 0777) == 0;
+#endif
 }
 
 int json_mkdir_to (const char *filename) {

@@ -226,7 +226,7 @@ int number_fuzzy (int number) {
     static int mm_state[2 + 55];
 #endif
 
-void number_mm_init (void) {
+void number_seed (unsigned int seed) {
 #if defined (OLD_RAND)
     int *state_ptr;
     int state;
@@ -235,18 +235,26 @@ void number_mm_init (void) {
     state_ptr[-2] = 55 - 55;
     state_ptr[-1] = 55 - 24;
 
-    state_ptr[0] = ((int) current_time) & ((1 << 30) - 1);
+    state_ptr[0] = ((int) seed) & ((1 << 30) - 1);
     state_ptr[1] = 1;
     for (state = 2; state < 55; state++) {
         state_ptr[state] = (state_ptr[state - 1] + state_ptr[state - 2])
             & ((1 << 30) - 1);
     }
 #else
-    srandom (time (NULL) ^ getpid ());
+    srandom (seed);
 #endif
 }
 
-long number_mm (void) {
+void number_mm_init (void) {
+#if defined (OLD_RAND)
+    number_seed (current_time);
+#else
+    number_seed ((unsigned int) (time (NULL) ^ getpid ()));
+#endif
+}
+
+long number_long (void) {
 #if defined (OLD_RAND)
     int *state_ptr;
     int state1;
@@ -268,6 +276,10 @@ long number_mm (void) {
 #else
     return random () >> 6;
 #endif
+}
+
+long number_mm (void) {
+    return number_long() >> 6;
 }
 
 /* Generate a random number. */
@@ -510,6 +522,58 @@ void log_f (const char *fmt, ...) {
     va_end (args);
     log_string (buf);
 }
+
+#if defined(NOSCANDIR)
+
+int alphasort(const void *a, const void *b) {
+    return strcmp((*(const struct dirent **) a)->d_name, (*(const struct dirent **) b)->d_name);
+}
+
+int scandir(const char *dirname, struct dirent ***namelist, int (*select)(const struct dirent *),
+            int (*dcomp)(const void *, const void *))
+{
+    DIR *dir;
+    struct dirent *f, **files = NULL;
+    int file_count = 0;
+    size_t files_size = 1;
+
+    /* fail if the directory cannot be opened.
+     * TODO: set errno? */
+    if ((dir = opendir(dirname)) == NULL)
+        return -1;
+
+    /* create an array for files to output. */
+    files = malloc(sizeof(struct dirent *) * files_size);
+
+    /* read all files in directory 'dir'. */
+    while ((f = readdir(dir)) != NULL) {
+        /* if a 'select' callback was provided, use it to filter out files. */
+        if (select != NULL && !select(f))
+            continue;
+
+        /* increase files array if necessary. */
+        if (file_count >= files_size) {
+            files_size *= 2;
+            files = realloc(files, sizeof(struct dirent *) * files_size);
+        }
+
+        /* copy the file entry into 'files' and increment the file counter. */
+        files[file_count] = malloc(sizeof(struct dirent));
+        memcpy(files[file_count++], f, sizeof(struct dirent));
+    }
+    closedir(dir);
+
+    /* sort files if a sorting algorithm was provided. */
+    if (dcomp && files)
+        qsort(files, file_count, sizeof(struct dirent *), dcomp);
+
+    /* return our new list of files and the number of files. */
+    if (namelist)
+        *namelist = files;
+    return file_count;
+}
+
+#endif // #if defined(NOSCANDIR)
 
 /* This function is here to aid in debugging.
  * If the last expression in a function is another function call,

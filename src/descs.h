@@ -34,18 +34,15 @@
 #include "merc.h"
 
 /* OS-dependent local functions. */
-#if defined(macintosh) || defined(MSDOS)
-    bool read_from_descriptor args ((DESCRIPTOR_T *d));
-    bool write_to_descriptor args ((int desc, char *txt, int length));
-#endif
-
-#if defined(unix)
+#if defined(NOSERVER)
+    void init_descriptor args ((void));
+#else
     int init_socket args ((int port));
     void init_descriptor args ((int control));
-    bool read_from_descriptor args ((DESCRIPTOR_T *d));
-    bool write_to_descriptor args ((int desc, char *txt, int length));
 #endif
 
+bool read_from_descriptor args ((DESCRIPTOR_T *d));
+bool write_to_descriptor args ((int desc, char *txt, int length));
 void close_socket (DESCRIPTOR_T *dclose);
 void read_from_buffer (DESCRIPTOR_T *d);
 bool process_output (DESCRIPTOR_T *d, bool prompt);

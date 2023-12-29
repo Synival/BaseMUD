@@ -28,8 +28,6 @@
 #ifndef __ROM_COMPAT_H
 #define __ROM_COMPAT_H
 
-#include "defs.h"
-
 #if defined(macintosh)
     #include <types.h>
 #else
@@ -79,22 +77,21 @@ int system();
     char *crypt args( ( const char *key, const char *salt ) );
 #endif
 
-#if defined(macintosh)
+#if defined(macintosh) || defined(MSDOS) || defined(__MINGW32__)
     #define NOCRYPT
+    #define NOSERVER
     #if defined(unix)
-        #undef    unix
+        #undef unix
     #endif
+#endif
+
+#if defined(__MINGW32__)
+    #define OLD_RAND
+    #define NOSCANDIR
 #endif
 
 #if defined(MIPS_OS)
     char *crypt args( ( const char *key, const char *salt ) );
-#endif
-
-#if defined(MSDOS)
-    #define NOCRYPT
-    #if defined(unix)
-        #undef unix
-    #endif
 #endif
 
 #if defined(NeXT)

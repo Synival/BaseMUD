@@ -50,6 +50,9 @@
 #include "update.h"
 #include "utils.h"
 
+#if defined(__MINGW32__)
+    #include <conio.h>
+#endif
 #if defined(unix)
     #include <signal.h>
 #endif
@@ -59,16 +62,18 @@
 
 int main (int argc, char **argv) {
     struct timeval now_time;
+#if !defined(NOSERVER)
     bool copyover = FALSE;
+#endif
     int free_count;
-    #ifdef IMC
-        int imcsocket = -1;
-    #endif
+#ifdef IMC
+    int imcsocket = -1;
+#endif
 
     /* Memory debugging if needed. */
-    #if defined(MALLOC_DEBUG)
-        malloc_debug (2);
-    #endif
+#if defined(MALLOC_DEBUG)
+    malloc_debug (2);
+#endif
 
     /* Catch CTRL-C so we can do some manditory clean-up. */
     init_signal_handlers ();
@@ -79,12 +84,12 @@ int main (int argc, char **argv) {
     strcpy (str_boot_time, ctime_fixed (&current_time));
 
     /* Macintosh console initialization. */
-    #if defined(macintosh)
-        console_options.nrows = 31;
-        cshow (stdout);
-        csetmode (C_RAW, stdin);
-        cecho2file ("log file", 1, stderr);
-    #endif
+#if defined(macintosh)
+    console_options.nrows = 31;
+    cshow (stdout);
+    csetmode (C_RAW, stdin);
+    cecho2file ("log file", 1, stderr);
+#endif
 
     /* Reserve one channel for our use. */
     if ((reserve_file = fopen (NULL_FILE, "r")) == NULL) {
@@ -106,46 +111,48 @@ int main (int argc, char **argv) {
 
         /* Are we recovering from a copyover? */
         if (argv[2] && argv[2][0]) {
+#if !defined(NOSERVER)
             copyover = TRUE;
+#endif
             control = atoi (argv[3]);
-            #ifdef IMC
-                imcsocket = atoi (argv[4]);
-            #endif
+#ifdef IMC
+            imcsocket = atoi (argv[4]);
+#endif
         }
+#if !defined(NOSERVER)
         else
             copyover = FALSE;
+#endif
     }
 
     /* Run the game. */
     qmconfig_read(); /* Here because it fits, no conflicts with Linux placement -- JR 05/06/01 */
                      /* Here so we can set the IP adress. -- JR 05/06/01 */
 
-    #if defined(macintosh) || defined(MSDOS)
-        boot_db ();
-        log_f ("ROM is ready to rock on port %d (%s).", port, mud_ipaddress);
-        game_loop_mac_msdos ();
-    #endif
+#if defined(NOSERVER)
+    boot_db ();
+    log_f ("ROM is ready to rock on port %d (%s).", port, mud_ipaddress);
+    game_loop_local ();
+#else
+    if (!copyover)
+        control = init_socket (port);
+    boot_db ();
+    log_f ("ROM is ready to rock on port %d (%s).", port, mud_ipaddress);
 
-    #if defined(unix)
-        if (!copyover)
-            control = init_socket (port);
-        boot_db ();
-        log_f ("ROM is ready to rock on port %d (%s).", port, mud_ipaddress);
+#ifdef IMC
+    /* Initialize and connect to IMC2 */
+    imc_startup (FALSE, imcsocket, copyover);
+#endif
 
-        #ifdef IMC
-            /* Initialize and connect to IMC2 */
-            imc_startup (FALSE, imcsocket, copyover);
-        #endif
+    if (copyover)
+        copyover_recover ();
 
-        if (copyover)
-            copyover_recover ();
-
-        game_loop_unix (control);
-        close (control);
-        #ifdef IMC
-            imc_shutdown (FALSE);
-        #endif
-    #endif
+    game_loop_server (control);
+    close (control);
+#ifdef IMC
+    imc_shutdown (FALSE);
+#endif
+#endif
 
     /* Free allocated memory so we can track what was lost due to
      * memory leaks. */
@@ -174,59 +181,32 @@ int main (int argc, char **argv) {
     return 0;
 }
 
-#if defined(macintosh) || defined(MSDOS)
-void game_loop_mac_msdos (void) {
+#if defined(NOSERVER)
+void game_loop_local (void) {
     struct timeval last_time;
     struct timeval now_time;
-    static DESCRIPTOR_T dcon;
 
     gettimeofday (&last_time, NULL);
     current_time = (time_t) last_time.tv_sec;
 
     /* New_descriptor analogue. */
-    dcon.descriptor = 0;
-    if (!mud_ansiprompt)
-        dcon.connected = CON_GET_NAME;
-    else
-        dcon.connected = CON_ANSI;
-
-    dcon.ansi          = mud_ansicolor;
-    dcon.host          = str_dup ("localhost");
-    dcon.outsize       = 2000;
-    dcon.outbuf        = mem_alloc (dcon.outsize);
-    dcon.next          = descriptor_list;
-    dcon.showstr_head  = NULL;
-    dcon.showstr_point = NULL;
-    dcon.olc_edit      = NULL; /* OLC */
-    dcon.string_edit   = NULL; /* OLC */
-    dcon.editor        = 0;    /* OLC */
-    descriptor_list    = &dcon;
-
-    /* First Contact! */
-    if (!mud_ansiprompt) {
-        extern char *help_greeting;
-        if ( help_greeting[0] == '.' )
-            send_to_desc ( help_greeting+1, &dcon );
-        else
-            send_to_desc ( help_greeting  , &dcon );
-    }
-    else
-        write_to_buffer (&dcon, "Do you want ANSI? (Y/n) ", 0);
+    /* Create one descriptor. */
+    init_descriptor();
 
     /* Main loop */
     merc_down = FALSE;
     in_game_loop = TRUE;
-    while (!merc_down) {
+    while (!merc_down && descriptor_first) {
         DESCRIPTOR_T *d;
 
         /* Process input. */
-        for (d = descriptor_list; d != NULL; d = d_next) {
-            d_next = d->next;
+        for (d = descriptor_first; d != NULL; d = d_next) {
+            d_next = d->global_next;
             d->fcommand = FALSE;
 
-            #if defined(MSDOS)
-                if (kbhit ())
-            #endif
+#if defined(MSDOS) || defined(__MINGW32__)
+            if (kbhit ())
+#endif
             {
                 if (d->character != NULL)
                     d->character->timer = 0;
@@ -274,8 +254,8 @@ void game_loop_mac_msdos (void) {
         update_handler ();
 
         /* Output. */
-        for (d = descriptor_list; d != NULL; d = d_next) {
-            d_next = d->next;
+        for (d = descriptor_first; d != NULL; d = d_next) {
+            d_next = d->global_next;
             if ((d->fcommand || d->outtop > 0)) {
                 if (!process_output (d, TRUE)) {
                     if (d->character != NULL && d->connected == CON_PLAYING)
@@ -290,23 +270,24 @@ void game_loop_mac_msdos (void) {
          * Busy wait (blargh). */
         now_time = last_time;
         while (1) {
+            DESCRIPTOR_T *df = descriptor_first;
             int delta;
 
-            #if defined(MSDOS)
-                if (kbhit ())
-            #endif
+#if defined(MSDOS) || defined(__MINGW32__)
+            if (kbhit ())
+#endif
             {
-                if (dcon.character != NULL)
-                    dcon.character->timer = 0;
-                if (!read_from_descriptor (&dcon)) {
-                    if (dcon.character != NULL && d->connected == CON_PLAYING)
+                if (df->character != NULL)
+                    df->character->timer = 0;
+                if (!read_from_descriptor (df)) {
+                    if (df->character != NULL && d->connected == CON_PLAYING)
                         save_char_obj (d->character);
-                    dcon.outtop = 0;
-                    close_socket (&dcon);
+                    df->outtop = 0;
+                    close_socket (df);
                 }
-                #if defined(MSDOS)
-                    break;
-                #endif
+#if defined(MSDOS) || defined(__MINGW32__)
+                break;
+#endif
             }
 
             gettimeofday (&now_time, NULL);
@@ -320,10 +301,10 @@ void game_loop_mac_msdos (void) {
     }
     in_game_loop = FALSE;
 }
-#endif
 
-#if defined(unix)
-void game_loop_unix (int control) {
+#else // #if defined(NOSERVER)
+
+void game_loop_server (int control) {
     static struct timeval null_time;
     struct timeval last_time;
 
@@ -429,9 +410,9 @@ void game_loop_unix (int control) {
             }
         }
 
-        #ifdef IMC
-            imc_loop();
-        #endif
+#ifdef IMC
+        imc_loop();
+#endif
 
         /* Autonomous game motion. */
         update_handler ();
@@ -495,6 +476,7 @@ void game_loop_unix (int control) {
 }
 #endif
 
+#if !defined(NOSERVER)
 /* Recover from a copyover - load players */
 void copyover_recover (void) {
     DESCRIPTOR_T *d;
@@ -572,3 +554,4 @@ void copyover_recover (void) {
     }
     fclose (fp);
 }
+#endif

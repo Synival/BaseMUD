@@ -422,8 +422,8 @@ char *mem_dump (char *eol) {
         rec = &(recycle_table[i]);
         len += snprintf (buf + len, size - len,
             "%-11s %5d (%8ld bytes, %d:%d in use:freed)%s", rec->name,
-            rec->top, rec->top * rec->size, rec->list_count, rec->free_count,
-            eol);
+            rec->top, (long unsigned int) (rec->top * rec->size), rec->list_count,
+            rec->free_count, eol);
     }
 
 #ifndef BASEMUD_DEBUG_DISABLE_MEMORY_MANAGEMENT

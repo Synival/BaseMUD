@@ -30,6 +30,10 @@
 
 #include "merc.h"
 
+#ifdef NOSCANDIR
+    #include <dirent.h>
+#endif
+
 /* String utilities. */
 char *str_capitalized (const char *str);
 void str_smash_char (char *str, char from, char to);
@@ -51,7 +55,9 @@ int int_interpolate (int level, int value_00, int value_32);
 int int_str_len (int num);
 
 /* Random number utilities. */
+void number_seed (unsigned int seed);
 void number_mm_init (void);
+long number_long (void);
 long number_mm (void);
 int number_fuzzy (int number);
 int number_range (int from, int to);
@@ -62,6 +68,11 @@ int dice (int number, int size);
 
 /* File utilities. */
 void append_file (CHAR_T *ch, char *file, char *str);
+#if defined(NOSCANDIR)
+int alphasort(const void *a, const void *b);
+int scandir(const char *dirname, struct dirent ***namelist, int (*select)(const struct dirent *),
+            int (*dcomp)(const void *, const void *));
+#endif
 
 /* Logging utilities. */
 void bug (const char *str, int param);
