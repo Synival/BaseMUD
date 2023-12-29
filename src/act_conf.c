@@ -411,7 +411,7 @@ DEFINE_DO_FUN (do_prompt) {
     }
 
     if (!strcmp (argument, "all"))
-        strcpy (buf, "<%hhp %mm %vmv> ");
+        strcpy (buf, DEFAULT_PROMPT);
     else {
         if (strlen (argument) > 50)
             argument[50] = '\0';

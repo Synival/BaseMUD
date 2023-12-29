@@ -714,4 +714,11 @@
 #define AREA_RESET_AFTER_PLAYERS_AGE    15
 #define AREA_RESET_ALWAYS_AGE           31
 
+/* prompt to use for new players or resetting prompt to default. */
+#ifdef BASEMUD_SENSIBLE_PROMPT
+    #define DEFAULT_PROMPT "<%h/%Hhp %m/%Mmp %v/%Vmv %p> "
+#else
+    #define DEFAULT_PROMPT "<%hhp %mm %vmv> "
+#endif
+
 #endif
