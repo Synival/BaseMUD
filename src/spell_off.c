@@ -425,8 +425,8 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
     if (saves_spell (level + 2, victim, DAM_FIRE)
         || IS_SET (victim->imm_flags, RES_FIRE))
     {
-        send_to_char ("Your spell had no effect.\n\r", ch);
-        send_to_char ("You feel momentarily warmer.\n\r", victim);
+        printf_to_char(ch, "Your spell had no effect.\n\r");
+        printf_to_char(victim, "You feel momentarily warmer.\n\r");
         return;
     }
 
@@ -447,12 +447,12 @@ DEFINE_SPELL_FUN (spell_heat_metal) {
         if (!(is_weapon || is_armor))
             continue;
 
-        /* Flaming weapons being wielded are ignored. */
-        is_worn   = (obj_lose->wear_loc != WEAR_LOC_NONE);
-        if (is_worn && is_weapon && IS_WEAPON_STAT (obj_lose, WEAPON_FLAMING))
+        /* Flaming weapons being are ignored. */
+        if (is_weapon && IS_WEAPON_STAT (obj_lose, WEAPON_FLAMING))
             continue;
 
         success = TRUE;
+        is_worn = (obj_lose->wear_loc != WEAR_LOC_NONE);
         can_drop = char_can_drop_obj (victim, obj_lose);
         drop_item = FALSE;
 
