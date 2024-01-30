@@ -125,8 +125,7 @@ phased out or at least optional. A handful of changes were just for fun.
 
 * The `rom` executable is now in the `/bin` directory and run from the _root_
   directory. For convenience, you can use `run.sh` in the root directory.
-* The `Dockerfile` has been temporarilly removed until some of the structural
-  changes are accounted for.
+* A `Dockerfile` and `docker-compose.yml` has been added for those that are running Docker containerization.
 
 **Optional Features - enable/disabled by uncommenting/commenting `#define BASEMUD_(FEATURE)` in `basemud.h`:**
 
